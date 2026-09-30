@@ -16,4 +16,4 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     diagnostic logs come from engine stdout captured by `tools/run-dev.sh` (`LOG_OUT=`).
 11. **TACTICS.md is updated after every ladder run** (owner standing order, PROMPTS 18) and must be comprehensive:
     `tools/post-block.sh` re-runs `tools/tactics-survey.py` and regenerates the measured section; every tactic an
-    opponent that beats us uses gets a row with evidence, offence status and defence status.
+    opponent that beats us uses gets a row with evidence, Adoption status and Neutralization status (PROMPTS 21).

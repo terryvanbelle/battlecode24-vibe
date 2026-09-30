@@ -59,8 +59,8 @@ change aimed at the field; a single seeded game is a filter, never a verdict.
 Sources, used in turn so none dries up:
 - **Defects in our own games** (no opponent needed): idle units, stuck or oscillating movement,
   resources floating, overruns, exceptions, shut-off gates. Repairs transfer; reallocations rarely do.
-- **Tactics the field beats us with** (`TACTICS.md`): copy the offence first, submit it, then build the
-  defence against our own copy.
+- **Tactics the field beats us with** (`TACTICS.md`): adopt the tactic first and submit it, then neutralize
+  it, tested against our own adopted copy.
 - **Block census**: earliest-onset metric that separates wins from losses, stratified by opponent.
 - **Capability gap**: unused API methods, unused mechanics, cross-year principles.
 
@@ -82,7 +82,7 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
   incumbent in the same period against the same band; accept when the pooled difference's lower
   one-SE bound is above zero after a confirming second pair of blocks. Never compare against the
   incumbent's pooled history (winner's curse).
-- **Archetype arm** (defences): pre-register a second arm against the archetype that has the property,
+- **Archetype arm** (neutralizations): pre-register a second arm against the archetype that has the property,
   decided before the gate runs.
 - Never read a running batch. Never move a bar after seeing a number. Diff game by game and read the
   shape (one-directional on one map or side = real; scattered = noise). Report maps swept from both
@@ -103,7 +103,7 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
 
 - `TRAINING_LOG.md`: append-only, one entry per attempt (target, trace, pre-registration, counters,
   gate numbers, decision, lesson, next); closed-directions ledger and functional-area map at the end.
-- `TACTICS.md`: per opponent tactic: evidence, offence progress, defence progress.
+- `TACTICS.md`: per opponent tactic: evidence, Adoption progress, Neutralization progress.
 - `LEARNINGS.md`: durable lessons, each with its measurement.
 - `HANDOFF.md`: state block first (incumbent, grade, in-flight run ids), then gotchas.
 - `PROMPTS.md`: every owner prompt verbatim. Charts regenerated at every block; nothing stale stays.
