@@ -69,3 +69,12 @@ Screen: gate2 (paired mirror vs g_iter1, the relocation-only code with the round
 discordant after 128 pairs: no regression beyond noise; the mirror cannot price a defence against rushes.
 Judge: three field blocks on identical cells (scrim SEED=424242, all 55 bots x2): a2reloc, a2relay, and a
 g_iter1 control in the same period. Accept the arm whose rating beats the g_iter1 control block.
+- gate2 final: SPRT_INCONCLUSIVE 36-40 discordant after 160 pairs (concordant 40-44): relocation is neutral
+  in self-play, as expected for a field-facing defence; the field blocks decide (queued, run h2h2).
+
+## Iteration 3 (prepared) — T4 offence copy: setup checkerboard digging (dose ladder)
+
+Onset table of g_iter1's block: level_sum (us-them) is the earliest predictor (+0.37 at r100, +0.40 at r200);
+top bots dig 60-86 tiles in setup. C.SETUP_DIGS (0 = off), DIG_RESERVE 1000, parity x+y even, never within
+dist2 8 of a spawn centre. Counter `dg`. Diagnostic a3dig5 vs g_iter1 DefaultMedium seed 11: 63 digs by r100,
+won on level sum at r2000 (421 vs 419); 0 overruns. Dose arms 0/5/10 to be built on the iteration-2 winner.

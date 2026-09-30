@@ -1,4 +1,4 @@
-package bot;
+package a3dig5;
 
 import battlecode.common.*;
 
