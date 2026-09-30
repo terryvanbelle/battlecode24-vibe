@@ -1,4 +1,4 @@
-package z0inert;
+package z1copy;
 
 import battlecode.common.*;
 
@@ -11,7 +11,6 @@ public strictfp class Duck {
     static int exploreSince;
 
     static boolean isDefender() { return G.idx >= 0 && G.idx < 3 * C.DEFENDERS_PER_FLAG; }
-    static boolean isRusher() { return G.idx >= 3 * C.DEFENDERS_PER_FLAG && G.idx < 3 * C.DEFENDERS_PER_FLAG + C.RUSHERS; }
     static int homeFlag() { return G.idx % 3; }
 
     public static void turn() throws GameActionException {
@@ -26,7 +25,6 @@ public strictfp class Duck {
         if (G.round <= C.SETUP_ROUNDS) { setup(); return; }
         pickupFlags();
         if (rc.hasFlag()) { carryFlag(); return; }
-        if (isRusher()) { rush(); return; }
         if (enemies.length > 0) {
             placeCombatTrap();
             Micro.fight(enemies, allies);
@@ -38,23 +36,6 @@ public strictfp class Duck {
         Nav.moveTo(fieldTarget());
         if (rc.isActionReady()) Micro.tryHeal(allies);
         if (rc.isActionReady() && rc.getCrumbs() > C.FLOAT_CRUMBS) spendFloat();
-    }
-
-    static int rushTurns;
-
-    /** T1 offence copy: go straight for the nearest enemy flag; strike whatever is in reach on the way; never kite.
-     *  Escort a friendly carrier in view (it feeds the relay). */
-    static void rush() throws GameActionException {
-        RobotController rc = G.rc;
-        rushTurns++;
-        G.note = "rush";
-        MapLocation t = null;
-        for (RobotInfo r : allies) if (r.hasFlag) { t = r.location; break; }
-        if (t == null) for (FlagInfo f : flags) if (f.getTeam() == G.them && !f.isPickedUp()) { t = f.getLocation(); break; }
-        if (t == null) t = fieldTargetFrom(G.me);
-        if (enemies.length > 0) { Micro.fight(enemies, allies, t); return; }
-        Nav.moveTo(t);
-        Micro.tryHeal(allies);
     }
 
     static void sense() throws GameActionException {
@@ -69,12 +50,12 @@ public strictfp class Duck {
             }
             if (f.getTeam() == G.them) Comms.reportEnemyFlag(f);
             else if (enemies.length > 0) {
-                for (int i = 0; i < 3; i++) { MapLocation h = Comms.flagHome(i); if (h != null && f.getLocation().distanceSquaredTo(h) <= 36) Comms.alertOurFlag(i); }
+                for (int i = 0; i < 3; i++) if (G.spawnCenters[i] != null && f.getLocation().distanceSquaredTo(G.spawnCenters[i]) <= 36) Comms.alertOurFlag(i);
             }
         }
         // our flags: alert if enemies are near a home flag
         if (enemies.length > 0) for (int i = 0; i < 3; i++) {
-            MapLocation c = Comms.flagHome(i);
+            MapLocation c = G.spawnCenters[i];
             if (c != null && G.me.distanceSquaredTo(c) <= 20) Comms.alertOurFlag(i);
         }
     }
@@ -91,11 +72,11 @@ public strictfp class Duck {
     static void trySpawn() throws GameActionException {
         RobotController rc = G.rc;
         MapLocation want;
-        if (isDefender() || G.round <= 5) want = G.round <= 5 ? G.spawnCenters[G.idx % 3] : Comms.flagHome(homeFlag());
+        if (isDefender() || G.round <= 5) want = G.spawnCenters[G.idx % 3];
         else {
             int alerted = alertedFlag();
             MapLocation ch = carrierTarget(G.spawnCenters[G.idx % 3]);
-            want = ch != null ? ch : alerted >= 0 ? Comms.flagHome(alerted) : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
+            want = ch != null ? ch : alerted >= 0 ? G.spawnCenters[alerted] : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
         }
         if (want == null) want = G.spawns[0];
         // try tiles nearest the wanted point first
@@ -120,8 +101,7 @@ public strictfp class Duck {
     // ------------------------------------------------------------------ setup phase
     static void setup() throws GameActionException {
         RobotController rc = G.rc;
-        if (isDefender()) { if (C.RELOCATE_FLAGS && !placed) relocateFlag(); else defend(); return; }
-        if (C.SETUP_DIGS > 0) setupDig();
+        if (isDefender()) { defend(); return; }
         if (G.round < C.GATHER_ROUND) {
             MapLocation[] crumbs = rc.senseNearbyCrumbs(-1);
             MapLocation c = G.nearest(G.me, crumbs);
@@ -134,24 +114,6 @@ public strictfp class Duck {
         if (!nextToDam()) Nav.moveTo(t);
         else if (G.round >= C.DAM_TRAP_ROUND) damTrap();
         G.note = "gather";
-    }
-
-    static int digs;
-
-    /** T4 offence copy: dig a checkerboard (x+y even) in our territory during setup for build XP (level sum,
-     *  cheaper traps later). Parity keeps every land tile diagonally connected; spawn zones, flags and tiles next
-     *  to the dam are skipped by the engine or by us. Dose: C.SETUP_DIGS per duck. */
-    static void setupDig() throws GameActionException {
-        RobotController rc = G.rc;
-        if (digs >= C.SETUP_DIGS || !rc.isActionReady() || rc.getCrumbs() < 20 + C.DIG_RESERVE) return;
-        for (Direction d : G.DIRS) {
-            MapLocation t = G.me.add(d);
-            if (((t.x + t.y) & 1) != 0 || !rc.canDig(t)) continue;
-            boolean nearFlag = false;
-            for (int i = 0; i < 3; i++) { MapLocation h = G.spawnCenters[i]; if (h != null && h.distanceSquaredTo(t) <= 8) nearFlag = true; }
-            if (nearFlag) continue;
-            rc.dig(t); digs++; return;
-        }
     }
 
     static boolean nextToDam() throws GameActionException {
@@ -185,40 +147,16 @@ public strictfp class Duck {
         }
     }
 
-    static int relays;
-
-    /** T3 offence copy: hand the flag forward to an ally (the carrier moves at +20 cooldown; a relay keeps it moving). */
-    static void relay(MapLocation home) throws GameActionException {
-        RobotController rc = G.rc;
-        if (!rc.isActionReady()) return;
-        MapLocation me = rc.getLocation();
-        int dMe = me.distanceSquaredTo(home);
-        RobotInfo[] near = rc.senseNearbyRobots(8, G.us);
-        if (near.length == 0) return;
-        MapLocation best = null; int bd = dMe;
-        for (Direction d : G.DIRS) {
-            MapLocation t = me.add(d);
-            int dt = t.distanceSquaredTo(home);
-            if (dt >= bd || !rc.canDropFlag(t)) continue;
-            boolean taker = false;
-            for (RobotInfo a : near) if (!a.hasFlag && a.location.distanceSquaredTo(t) <= 2 && !a.location.equals(t)) { taker = true; break; }
-            if (taker) { bd = dt; best = t; }
-        }
-        if (best != null) { rc.dropFlag(best); relays++; carriedFlagId = -1; }
-    }
-
     static void carryFlag() throws GameActionException {
         RobotController rc = G.rc;
-        if (G.round <= C.SETUP_ROUNDS) {    // our own flag in setup: only a relocating defender carries one
-            if (isDefender() && C.RELOCATE_FLAGS) { relocateFlag(); return; }
+        if (G.round <= C.SETUP_ROUNDS) { // our own flag in setup: we never pick those up in iteration 0; drop it
             if (rc.canDropFlag(G.me)) rc.dropFlag(G.me);
             return;
         }
         MapLocation home = G.nearest(G.me, G.spawns);
         G.note = "carry";
         Nav.moveTo(home);
-        if (!rc.hasFlag() && carriedFlagId >= 0) { Comms.enemyFlagCaptured(carriedFlagId); carriedFlagId = -1; return; }
-        if (C.RELAY && rc.hasFlag()) relay(home);
+        if (!rc.hasFlag() && carriedFlagId >= 0) { Comms.enemyFlagCaptured(carriedFlagId); carriedFlagId = -1; }
     }
 
     // ------------------------------------------------------------------ targets
@@ -229,7 +167,7 @@ public strictfp class Duck {
         MapLocation chase = carrierTarget(G.me);
         if (chase != null) { G.note = "chase"; return chase; }
         if (isDefender()) return defendTarget();
-        if (a >= 0 && G.me.distanceSquaredTo(Comms.flagHome(a)) <= C.ALERT_RADIUS2) return Comms.flagHome(a);
+        if (a >= 0 && G.me.distanceSquaredTo(G.spawnCenters[a]) <= 100) return G.spawnCenters[a];
         // a visible dropped enemy flag
         for (FlagInfo f : flags) if (f.getTeam() == G.them && !f.isPickedUp()) return f.getLocation();
         // escort a friendly carrier we can see
@@ -279,75 +217,8 @@ public strictfp class Duck {
     }
 
     // ------------------------------------------------------------------ defence
-    static MapLocation defendTarget() throws GameActionException {
-        return Comms.flagHome(homeFlag());
-    }
-
-    static boolean placed;
-    static MapLocation flagTarget;
-    static int relocStall;
-
-    /** Target spots for our three flags: far from the enemy, 8+ apart (engine needs > 6). Deterministic, so all agree. */
-    static int[] rcx = new int[3], rcy = new int[3];
-    static int relocK = 0, rex = -1, rey;
-
-    /** Target spots for our flags, one per call (bytecode): far from the enemy, 8+ apart (engine needs > 6).
-     *  Deterministic, so every defender computes the same list. Returns null until spot i is ready. */
-    static MapLocation relocTarget(int i) {
-        if (rex < 0) {
-            MapLocation[] ec = Sym.enemyCenters();
-            int ex = 0, ey = 0, n = 0;
-            for (MapLocation e : ec) if (e != null) { ex += e.x; ey += e.y; n++; }
-            rex = ex / Math.max(1, n); rey = ey / Math.max(1, n);
-            return null;
-        }
-        if (relocK <= i) {
-            int k = relocK;
-            int step = Math.max(3, Math.max(G.W, G.H) / 9);           // at most ~100 grid points per call
-            int bx = -1, by = -1, bs = Integer.MIN_VALUE;
-            int sx = G.spawnCenters[k].x, sy = G.spawnCenters[k].y;
-            for (int x = 2; x < G.W - 2; x += step) for (int y = 2; y < G.H - 2; y += step) {
-                boolean ok = true;
-                for (int j = 0; j < k; j++) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < 64) { ok = false; break; } }
-                if (!ok) continue;
-                int dex = x - rex, dey = y - rey, dsx = x - sx, dsy = y - sy;
-                int sc = dex * dex + dey * dey - (dsx * dsx + dsy * dsy) / 2;   // far from the enemy, not far from our spawn
-                if (sc > bs) { bs = sc; bx = x; by = y; }
-            }
-            rcx[k] = bx; rcy[k] = by; relocK++;
-            if (relocK <= i) return null;
-        }
-        return rcx[i] < 0 ? G.spawnCenters[i] : new MapLocation(rcx[i], rcy[i]);
-    }
-
-    static int relocs;
-
-    static void relocateFlag() throws GameActionException {
-        RobotController rc = G.rc;
-        int i = homeFlag();
-        G.note = "reloc";
-        if (!rc.hasFlag()) {
-            MapLocation c = G.spawnCenters[i];
-            if (G.round > 5 && G.me.distanceSquaredTo(c) > 2 && !rc.canSenseLocation(c)) { placed = true; return; }   // lost it: give up
-            if (rc.canPickupFlag(c)) { rc.pickupFlag(c); flagTarget = null; relocStall = 0; return; }   // target next turn (bytecode)
-            if (G.me.distanceSquaredTo(c) > 2) { Nav.moveTo(c); return; }
-            if (G.round > 20) placed = true;       // cannot pick it up: leave it at spawn
-            return;
-        }
-        if (flagTarget == null) { flagTarget = relocTarget(i); return; }   // one spot per turn (bytecode)
-        boolean there = G.me.distanceSquaredTo(flagTarget) <= 2;
-        int before = G.me.distanceSquaredTo(flagTarget);
-        if (!there && G.round < C.RELOC_DEADLINE) {
-            Nav.moveTo(flagTarget);
-            if (G.rc.getLocation().distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0;
-            if (relocStall < C.RELOC_STALL) return;
-        }
-        // drop here if the engine will accept it as a default location
-        if (rc.senseLegalStartingFlagPlacement(G.me) && rc.canDropFlag(G.me)) {
-            rc.dropFlag(G.me);
-            rc.writeSharedArray(Comms.OF_HOME + i, Comms.enc(G.me));
-            placed = true; relocs++;
-        } else Nav.moveTo(G.spawnCenters[i]);   // illegal spot: walk back toward spawn and try again
+    static MapLocation defendTarget() {
+        return G.spawnCenters[homeFlag()];
     }
 
     static int ringStep;
@@ -357,27 +228,21 @@ public strictfp class Duck {
         MapLocation home = defendTarget();
         if (home == null) return;
         G.note = "defend";
-        if (G.me.distanceSquaredTo(home) > C.RING_RADIUS2) { Nav.moveTo(home); return; }
+        if (G.me.distanceSquaredTo(home) > 8) { Nav.moveTo(home); return; }
         // ring the flag with traps: stun where dist2 to the flag is 4..8, explosive adjacent to it
         if (rc.isActionReady()) {
             for (Direction d : G.DIRS) {
                 MapLocation t = G.me.add(d);
                 int dh = t.distanceSquaredTo(home);
-                if (dh == 0 || dh > C.RING_RADIUS2) continue;
+                if (dh == 0 || dh > 8) continue;
                 TrapType tt = dh <= 2 ? TrapType.EXPLOSIVE : TrapType.STUN;
                 if (rc.getCrumbs() >= tt.buildCost + C.DEF_TRAP_RESERVE && rc.canBuild(tt, t)) { rc.build(tt, t); Duck.defTraps++; break; }
             }
         }
         // walk around the flag so every ring tile comes within reach
-        MapLocation post = ringPost(home);
+        MapLocation post = home.add(G.DIRS[ringStep & 7]);
         if (G.me.equals(post) || !rc.canSenseLocation(post) || !rc.sensePassability(post)) ringStep++;
-        Nav.moveTo(ringPost(home));
-    }
-
-    /** Posts around the flag: the 8 neighbours; with a ring wider than dist2 8, alternate laps two tiles out. */
-    static MapLocation ringPost(MapLocation home) {
-        Direction d = G.DIRS[ringStep & 7];
-        return (C.RING_RADIUS2 > 8 && (ringStep & 8) != 0) ? home.add(d).add(d) : home.add(d);
+        Nav.moveTo(home.add(G.DIRS[ringStep & 7]));
     }
 
     static int defTraps, damTraps;
@@ -411,26 +276,15 @@ public strictfp class Duck {
         }
     }
 
-    static int combatTraps;
-
-    /** Combat traps: when the enemy is close enough to walk onto them next turn, put one on the adjacent tile that lies
-     *  most toward the enemy mass (the engine forbids tiles next to an enemy). Explosive when the bank is large and the
-     *  enemy is clumped (750 to all within dist2 4), else stun (freezes all within dist2 13). */
     static void placeCombatTrap() throws GameActionException {
         RobotController rc = G.rc;
         if (!rc.isActionReady() || enemies.length < C.STUN_ENEMIES_MIN || rc.getCrumbs() < 100 + C.TRAP_RESERVE) return;
-        int sx = 0, sy = 0, close = 0;
-        for (RobotInfo e : enemies) { sx += e.location.x; sy += e.location.y; if (G.me.distanceSquaredTo(e.location) <= C.TRAP_ENEMY_DIST2) close++; }
-        if (close == 0) return;
+        // a stun trap on the tile toward the enemy mass
+        int sx = 0, sy = 0;
+        for (RobotInfo e : enemies) { sx += e.location.x; sy += e.location.y; }
         MapLocation c = new MapLocation(sx / enemies.length, sy / enemies.length);
-        TrapType tt = (rc.getCrumbs() >= C.EXPLOSIVE_BANK && enemies.length >= 4) ? TrapType.EXPLOSIVE : TrapType.STUN;
-        MapLocation best = null; int bd = Integer.MAX_VALUE;
-        for (Direction d : G.DIRS) {
-            MapLocation t = G.me.add(d);
-            if (!rc.canBuild(tt, t)) continue;
-            int x = t.distanceSquaredTo(c);
-            if (x < bd) { bd = x; best = t; }
-        }
-        if (best != null && best.distanceSquaredTo(c) < G.me.distanceSquaredTo(c)) { rc.build(tt, best); combatTraps++; }
+        Direction d = G.me.directionTo(c);
+        MapLocation t = G.me.add(d);
+        if (rc.canBuild(TrapType.STUN, t)) rc.build(TrapType.STUN, t);
     }
 }

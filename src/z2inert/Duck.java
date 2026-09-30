@@ -1,4 +1,4 @@
-package bot;
+package z2inert;
 
 import battlecode.common.*;
 

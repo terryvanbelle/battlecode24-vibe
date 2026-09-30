@@ -152,3 +152,15 @@ exceptions, 0 caught exceptions (indicator x), 0 turns at the bytecode limit, AB
 still 32.6%. No defect to repair. Behaviour gap vs the top 14 at r400: we heal more (1282 vs 1005) and attack
 less (807 vs 975). Dose ladder on aggression (field blocks, shared cells): e1aggr ADVANCE_MARGIN 3 -> 1;
 e2aggr + ENGAGE_MAX_THREAT 1 -> 2. Queued (q10) after the inert control gate (q9).
+
+### Harness check (2026-09-30) — an instrument error found
+
+- q9 "inert" control z0inert vs g_iter1 (OPP=arch_rush10): SPRT_INCONCLUSIVE **18-32**. It was not inert: the
+  iteration-4 rewrite of placeCombatTrap was claimed default-equivalent and is not (it picks the adjacent tile
+  nearest the enemy centroid and only if closer than we stand; g_iter1 takes the tile in the direction of the
+  centroid). The reading prices that placement change at about -14 discordant in 96 pairs vs the partner.
+- Contaminated by the new placement: c4bank (80/110), z0inert, e1aggr (82/110), e2aggr (83/110). The aggression
+  dose must be re-run on the restored placement. d1def2, d2alert, d3fort were built before the change (valid).
+- Fix: C.TRAP_PLACEMENT_V2=false restores g_iter1's placement exactly. Queued (q11): z1copy (byte-identical copy
+  of g_iter1; the harness must read 0 discordant) and z2inert (src/bot, defaults; must read ~0).
+- Lesson: "default-equivalent" is a claim to verify with a paired inert gate, never an assumption.

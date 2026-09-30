@@ -1,4 +1,4 @@
-package z0inert;
+package z1copy;
 
 import battlecode.common.*;
 

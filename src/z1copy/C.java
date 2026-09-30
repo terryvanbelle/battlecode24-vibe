@@ -1,4 +1,4 @@
-package z0inert;
+package z1copy;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -18,17 +18,5 @@ public strictfp class C {
     public static final int FLOAT_CRUMBS = 1500;        // above this bank an idle duck spends on traps (self-play floated 13k by r1500)
     public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
-    public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
-    public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
-    public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
-    public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
-    public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
-    public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
-    public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
-    public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
-    public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
-    public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
-    public static final int TRAP_ENEMY_DIST2 = 20;      // combat trap only with an enemy this close (iteration 0: any in vision)
-    public static final int EXPLOSIVE_BANK = 100000;    // combat explosive trap above this bank (off by default)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

@@ -1,4 +1,4 @@
-package z0inert;
+package z2inert;
 
 import battlecode.common.*;
 
@@ -81,7 +81,7 @@ public strictfp class Micro {
             int score;
             if (carrier != null && !hurt) {
                 score = 20000 - l.distanceSquaredTo(carrier.location) * 10 - th;   // a flag carrier: close in regardless
-            } else if (actReady && !hurt && inRange > 0 && (strong || th <= 1)) {
+            } else if (actReady && !hurt && inRange > 0 && (strong || th <= C.ENGAGE_MAX_THREAT)) {
                 score = 10000 - th * 100 + adjAllies * 10;               // engage: hit from the safest reaching tile
             } else if (actReady && !hurt && nearAllies + 1 >= nearEnemies + C.ADVANCE_MARGIN) {
                 score = 5000 - minD * 20 - th * 50 + adjAllies * 10;       // clear local superiority: close the gap
