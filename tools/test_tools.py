@@ -74,6 +74,9 @@ check(bsel.JUNK.search('testplayer') and bsel.JUNK.search('donothing') and not b
 
 REPO = os.path.dirname(HERE)
 
+# --- elolib.accepted_builds: accept order is numeric, not lexical
+check(elolib.accepted_builds({'us:g_iter10': 1, 'us:g_iter2': 1, 'x.bot': 1, 'us:g_iter0': 1}) == ['us:g_iter0', 'us:g_iter2', 'us:g_iter10'], 'elolib: accepted builds sorted numerically, externals excluded')
+
 # --- replay-dump: integrity on the committed fixture replay (examplefuncsplayer mirror, DefaultSmall, seed 1)
 FIX = os.path.join(REPO, 'test', 'fixtures', 'example-DefaultSmall-s1.bc24')
 if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.jar')):

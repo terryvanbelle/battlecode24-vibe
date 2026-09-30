@@ -74,3 +74,10 @@ def append(rows):
         w = csv.DictWriter(fh, fieldnames=HDR)
         if new: w.writeheader()
         for r in rows: w.writerow(r)
+
+
+def accepted_builds(players):
+    """Our accepted snapshots us:g_iterN among the players, in accept (numeric) order."""
+    import re
+    b = [(int(m.group(1)), p) for p in players if (m := re.fullmatch(r'us:g_iter(\d+)', p))]
+    return [p for _, p in sorted(b)]

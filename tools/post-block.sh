@@ -12,7 +12,8 @@ RUN="${1:?run id}"; LABEL="${2:?build label, e.g. g_iter1}"
 "$REPO/tools/scrim-record.py" "$REPO/gauntlet/$RUN" --label "$LABEL"
 "$REPO/tools/elo.py" --quiet
 PY="$REPO/tools/.venv/bin/python3"; [ -x "$PY" ] || PY=python3
-"$PY" "$REPO/tools/field-score.py" | tail -7 || true   # PROMPTS 28-30: the field-score projection chart, refreshed with every block
+"$PY" "$REPO/tools/field-score.py" | tail -7 || true   # the field-score projection chart (needs 3+ submissions)
+"$REPO/tools/progress-chart.py" || true   # progress/progress.png: every accepted build's rating and field score
 "$REPO/tools/bench-roster.py"
 "$REPO/tools/scrim-study.sh" "$REPO/gauntlet/$RUN" 2>&1 | grep -v '^  studied'
 "$REPO/tools/correlate.py" "$REPO/gauntlet/$RUN" --round 200 || true
