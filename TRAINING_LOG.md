@@ -135,3 +135,7 @@ with an enemy within dist2 13 from 2 enemies, explosive when the bank >= 1500 an
 adjacent tile nearest the enemy centroid (new placement code, default-equivalent in src/bot). Counter `ct`.
 Diagnostic (DefaultMedium seed 4 vs g_iter1, before FILL_RESERVE): bank still 230 at r200 because 99 fills cost
 ~3000 crumbs; FILL_RESERVE 500 added. Won on level sum 405-391, kills 234-169. Field block queued (q8).
+- d3fort (fortress ring): SPRT_INCONCLUSIVE **16-29** after 96 pairs (LLR -2.68, near the reject bound).
+  Three defence arms in a row read negative vs arch_rush10. Rule: three rejects in one area -> leave it; and run a
+  control-versus-control gate to prove the harness fair: z0inert (src/bot with default constants, functionally
+  g_iter1) vs g_iter1 with OPP=arch_rush10, SEED 777, queued (q9) after c4bank's field block.
