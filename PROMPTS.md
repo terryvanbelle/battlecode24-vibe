@@ -47,3 +47,7 @@ If self-play can't show the value of a rush defence, maybe you should implement 
 ## 7. 2026-09-30
 
 task check
+
+## 8. 2026-09-30
+
+task check
