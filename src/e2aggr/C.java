@@ -31,5 +31,6 @@ public strictfp class C {
     public static final int TRAP_ENEMY_DIST2 = 20;      // combat trap only with an enemy this close (iteration 0: any in vision)
     public static final int EXPLOSIVE_BANK = 100000;    // combat explosive trap above this bank (off by default)
     public static final int ENGAGE_MAX_THREAT = 2;      // engage when weaker only if at most this many enemies threaten the tile
+    public static final boolean TRAP_PLACEMENT_V2 = false; // iteration-4 placement (nearest-to-centroid tile); read 18-32 vs the rush partner as an unintended 'inert' control
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

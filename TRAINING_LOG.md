@@ -164,3 +164,7 @@ e2aggr + ENGAGE_MAX_THREAT 1 -> 2. Queued (q10) after the inert control gate (q9
 - Fix: C.TRAP_PLACEMENT_V2=false restores g_iter1's placement exactly. Queued (q11): z1copy (byte-identical copy
   of g_iter1; the harness must read 0 discordant) and z2inert (src/bot, defaults; must read ~0).
 - Lesson: "default-equivalent" is a claim to verify with a paired inert gate, never an assumption.
+- q11 harness verified: z1copy (byte-identical g_iter1) **0-0 discordant** in 48 pairs (concordant 29-19); z2inert
+  (src/bot defaults, TRAP_PLACEMENT_V2 off) **0-0**. The paired OPP harness is exact; src/bot is inert again.
+- Re-queued on the restored placement (q12, field blocks on the shared cells): e1aggr, e2aggr, c5bank (c4bank's
+  bank settings without the new placement).

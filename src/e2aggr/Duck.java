@@ -419,6 +419,14 @@ public strictfp class Duck {
     static void placeCombatTrap() throws GameActionException {
         RobotController rc = G.rc;
         if (!rc.isActionReady() || enemies.length < C.STUN_ENEMIES_MIN || rc.getCrumbs() < 100 + C.TRAP_RESERVE) return;
+        if (!C.TRAP_PLACEMENT_V2) {                       // g_iter1's placement, byte-for-byte behaviour
+            int sx = 0, sy = 0;
+            for (RobotInfo e : enemies) { sx += e.location.x; sy += e.location.y; }
+            MapLocation c = new MapLocation(sx / enemies.length, sy / enemies.length);
+            MapLocation t = G.me.add(G.me.directionTo(c));
+            if (rc.canBuild(TrapType.STUN, t)) { rc.build(TrapType.STUN, t); combatTraps++; }
+            return;
+        }
         int sx = 0, sy = 0, close = 0;
         for (RobotInfo e : enemies) { sx += e.location.x; sy += e.location.y; if (G.me.distanceSquaredTo(e.location) <= C.TRAP_ENEMY_DIST2) close++; }
         if (close == 0) return;

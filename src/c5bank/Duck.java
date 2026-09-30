@@ -1,4 +1,4 @@
-package e1aggr;
+package c5bank;
 
 import battlecode.common.*;
 
