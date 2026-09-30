@@ -106,3 +106,7 @@ spawn more costly or the archetype shows spawn-held flags falling first.
 - Queued (q5): arch_rush10 field block on the iteration-2 cells (SEED 424242; compare with the g_iter1 control
   84/110); then defence gates vs the archetype, paired, OPP=arch_rush10, REF=g_iter1, 96 pairs each:
   d1def2 (2 defenders per flag), d2alert (alert radius dist2 100 -> 400).
+- arch_rush field block (all-out rush as offence): 62/110, 1537 +- 91: far below g_iter1 (1830-1888). Closed as
+  an offence doctrine.
+- arch_rush10 field block (10-duck squad + relay), identical cells: 84/110 = the g_iter1 control 84/110; game-by-
+  game 7 flips each way, scattered by opponent: neutral. Kept as the sparring partner only, not shipped.
