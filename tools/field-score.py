@@ -45,9 +45,9 @@ xs = np.array([np.log1p(days(d) / o.tau) for d, _ in subs]); ys = np.array([R[p]
 def proj(t):
     x = np.log1p(t / o.tau); r = r0 + aa * x; s = np.sqrt(cov[0, 0] * x * x + 2 * cov[0, 1] * x + cov[1, 1]); return r, 1.96 * s
 now = dt.datetime.now(PDT).replace(tzinfo=None); tn = days(now)
-# The projection horizons are the ends of the project's weeks (PROMPTS 46: the project began 2026-09-23, so week 1 ends
+# The projection horizons are the ends of the project's weeks (PROMPTS 46: the project began 2026-09-30 (2024 season), so week 1 ends
 # September 30), not "now + 7 days". PROMPTS 79: two charts, one to the end of week 1 and one to the end of week 4.
-START = dt.datetime(2026, 9, 23); HORIZONS = [(f'week {k}', START + dt.timedelta(days=7 * k)) for k in (1, 2, 3, 4)]   # PDT
+START = dt.datetime(2026, 9, 30); HORIZONS = [(f'week {k}', START + dt.timedelta(days=7 * k)) for k in (1, 2, 3, 4)]   # PDT
 print('submissions:', ', '.join(f'{p[3:]} {R[p]:.0f}+-{1.96 * SE[p]:.0f} ({d:%m-%d %H:%M}) {score(R[p]):.1f}%' for d, p in subs))
 print(f'rating fit R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g} d) (t in days from {t0:%Y-%m-%d %H:%M} PDT)')
 r, e = proj(tn); print(f'  now ({now:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%], vs higher {score_hi(r):.1f}%, rank #{rank_of(r)}')

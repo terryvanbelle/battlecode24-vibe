@@ -12,9 +12,10 @@ import battlecode.common.*;
  *   10..12   our flag i: round of the latest enemy sighting within 20 of it (0 = never)
  *   13..15   our flag i: current location when seen away from home (0 = at home / unknown)
  *   16       surviving map symmetries as a Sym bitmask (0 = not yet written = all three)
+ *   17..19   our flag i: round an enemy was last seen carrying it (location in 13..15)
  */
 public strictfp class Comms {
-    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13, SYM = 16;
+    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13, SYM = 16, OF_CARRY = 17;
 
     public static int enc(MapLocation m) { return m == null ? 0 : m.x * 64 + m.y + 1; }
     public static MapLocation dec(int v) { return v == 0 ? null : new MapLocation((v - 1) / 64, (v - 1) % 64); }
@@ -60,6 +61,25 @@ public strictfp class Comms {
         int v = G.rc.readSharedArray(SYM);
         if (v != 0 && (Sym.cands & v) != 0) Sym.cands &= v;
         if (v != Sym.cands) G.rc.writeSharedArray(SYM, Sym.cands);
+    }
+
+    /** Our flag index for a flag id (flag id = location index of its original spawn centre), -1 if unknown. */
+    public static int ourFlagIndex(int flagId) {
+        for (int i = 0; i < 3; i++) { MapLocation c = G.spawnCenters[i]; if (c != null && c.x + c.y * G.W == flagId) return i; }
+        return -1;
+    }
+
+    public static void reportCarried(int i, MapLocation at) throws GameActionException {
+        int v = enc(at);
+        if (G.rc.readSharedArray(OF_LOC + i) != v) G.rc.writeSharedArray(OF_LOC + i, v);
+        if (G.rc.readSharedArray(OF_CARRY + i) != G.round) G.rc.writeSharedArray(OF_CARRY + i, G.round);
+    }
+
+    /** Location of an enemy carrying our flag i, if seen in the last `fresh` rounds; else null. */
+    public static MapLocation carried(int i, int fresh) throws GameActionException {
+        int r = G.rc.readSharedArray(OF_CARRY + i);
+        if (r == 0 || G.round - r > fresh) return null;
+        return dec(G.rc.readSharedArray(OF_LOC + i));
     }
 
     public static void alertOurFlag(int i) throws GameActionException {

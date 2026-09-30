@@ -73,7 +73,7 @@ public class ReplayDump {
     static boolean[][] visited = new boolean[3][];
 
     // ---- options
-    static int every = 0, metricsEvery = 0, from = -1, to = -1, robot = -1, mapAt = -1;
+    static int every = 0, metricsEvery = 0, from = -1, to = -1, robot = Integer.MIN_VALUE, mapAt = -1;   // robot: MIN_VALUE = none (water-trap digs have actor id -1)
     static Pattern logs = null; static int logTeam = 0;
     static boolean bytecode = false, navstats = false, flagsMode = false, summary = true;
     static PrintStream out = System.out;

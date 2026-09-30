@@ -17,7 +17,7 @@ public class BotTest {
         check(rt, "comms: enc/dec round trip on 60x60, never 0, fits 16 bits");
         check(Comms.dec(0) == null && Comms.enc(null) == 0, "comms: 0 is none");
         // slot layout: no two purposes overlap and all fit in 64
-        int[][] ranges = {{Comms.IDX, 1}, {Comms.EF_ID, 3}, {Comms.EF_LOC, 3}, {Comms.EF_STATE, 3}, {Comms.OF_ALERT, 3}, {Comms.OF_LOC, 3}};
+        int[][] ranges = {{Comms.IDX, 1}, {Comms.EF_ID, 3}, {Comms.EF_LOC, 3}, {Comms.EF_STATE, 3}, {Comms.OF_ALERT, 3}, {Comms.OF_LOC, 3}, {Comms.SYM, 1}, {Comms.OF_CARRY, 3}};
         boolean[] used = new boolean[64]; boolean ok = true;
         for (int[] r : ranges) for (int i = r[0]; i < r[0] + r[1]; i++) { if (i >= 64 || used[i]) ok = false; else used[i] = true; }
         check(ok, "comms: slot ranges disjoint and < 64");
@@ -59,6 +59,8 @@ public class BotTest {
         Sym.cands = Sym.FY;
         check(Sym.enemyCenters()[0].equals(new MapLocation(3, 26)), "sym: enemy centre under flip-y");
 
+        G.W = 40; G.spawnCenters = new MapLocation[]{new MapLocation(3, 3), new MapLocation(3, 15), new MapLocation(10, 3)};
+        check(Comms.ourFlagIndex(3 + 15 * 40) == 1 && Comms.ourFlagIndex(7) == -1, "comms: flag id -> our flag index via spawn centre location index");
         // constants: the near-miss bar sits below the limit; gather happens inside setup
         check(C.NEAR_MISS_BC < GameConstants.BYTECODE_LIMIT, "const: near-miss below the limit");
         check(C.GATHER_ROUND < C.SETUP_ROUNDS && C.SETUP_ROUNDS == GameConstants.SETUP_ROUNDS, "const: gather inside setup; setup length matches engine");

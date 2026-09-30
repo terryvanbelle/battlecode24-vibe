@@ -96,6 +96,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(len(cov) == 2 and all(0 <= c <= 100 for c in cov), 'replay-dump: coverage in [0,100]')
     m = dump('--map-at', '300').splitlines()
     check(len(m) == 1 + 31 and all(len(l) == 3 + 31 for l in m[1:]), 'replay-dump: board is 31x31 with row labels')
+    check(not any(l.startswith('r') and ' digs ' in l for l in s.splitlines()), 'replay-dump: the summary prints no events (actor -1 is not the default --robot)')
     r = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, '--nosuchflag'], capture_output=True, text=True)
     check(r.returncode != 0, 'replay-dump: unknown flags are hard errors')
 else:

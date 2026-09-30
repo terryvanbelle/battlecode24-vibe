@@ -35,6 +35,7 @@ public strictfp class Duck {
         Micro.tryHeal(allies);
         Nav.moveTo(fieldTarget());
         if (rc.isActionReady()) Micro.tryHeal(allies);
+        if (rc.isActionReady() && rc.getCrumbs() > C.FLOAT_CRUMBS) spendFloat();
     }
 
     static void sense() throws GameActionException {
@@ -43,6 +44,10 @@ public strictfp class Duck {
         allies = rc.senseNearbyRobots(-1, G.us);
         flags = rc.senseNearbyFlags(-1);
         for (FlagInfo f : flags) {
+            if (f.getTeam() == G.us && f.isPickedUp()) {
+                int i = Comms.ourFlagIndex(f.getID());
+                if (i >= 0) Comms.reportCarried(i, f.getLocation());
+            }
             if (f.getTeam() == G.them) Comms.reportEnemyFlag(f);
             else if (enemies.length > 0) {
                 for (int i = 0; i < 3; i++) if (G.spawnCenters[i] != null && f.getLocation().distanceSquaredTo(G.spawnCenters[i]) <= 36) Comms.alertOurFlag(i);
@@ -70,7 +75,8 @@ public strictfp class Duck {
         if (isDefender() || G.round <= 5) want = G.spawnCenters[G.idx % 3];
         else {
             int alerted = alertedFlag();
-            want = alerted >= 0 ? G.spawnCenters[alerted] : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
+            MapLocation ch = carrierTarget(G.spawnCenters[G.idx % 3]);
+            want = ch != null ? ch : alerted >= 0 ? G.spawnCenters[alerted] : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
         }
         if (want == null) want = G.spawns[0];
         // try tiles nearest the wanted point first
@@ -158,6 +164,8 @@ public strictfp class Duck {
     static MapLocation fieldTarget() throws GameActionException {
         // defend a flag under attack if we are its defender or close to it
         int a = alertedFlag();
+        MapLocation chase = carrierTarget(G.me);
+        if (chase != null) { G.note = "chase"; return chase; }
         if (isDefender()) return defendTarget();
         if (a >= 0 && G.me.distanceSquaredTo(G.spawnCenters[a]) <= 100) return G.spawnCenters[a];
         // a visible dropped enemy flag
@@ -165,6 +173,25 @@ public strictfp class Duck {
         // escort a friendly carrier we can see
         for (RobotInfo r : allies) if (r.hasFlag) return r.location;
         return fieldTargetFrom(G.me);
+    }
+
+    static int chases;
+
+    /** An enemy carrying our flag: chase it if close, else wait at the enemy spawn centre it is walking to. */
+    static MapLocation carrierTarget(MapLocation from) throws GameActionException {
+        MapLocation best = null; int bd = Integer.MAX_VALUE;
+        MapLocation[] ec = Sym.enemyCenters();
+        for (int i = 0; i < 3; i++) {
+            MapLocation c = Comms.carried(i, C.CARRY_FRESH);
+            if (c == null) continue;
+            MapLocation dest = G.nearest(c, ec);
+            int dc = from.distanceSquaredTo(c);
+            MapLocation t = (dest != null && dc > C.CHASE_RADIUS2 && from.distanceSquaredTo(dest) < dc) ? dest : c;
+            int d = from.distanceSquaredTo(t);
+            if (d < bd) { bd = d; best = t; }
+        }
+        if (best != null) chases++;
+        return best;
     }
 
     static MapLocation fieldTargetFrom(MapLocation from) throws GameActionException {
@@ -233,6 +260,19 @@ public strictfp class Duck {
                 if (rc.onTheMap(n) && rc.canSenseLocation(n) && rc.senseMapInfo(n).isDam()) { touchesDam = true; break; }
             }
             if (touchesDam) { rc.build(TrapType.STUN, t); damTraps++; return; }
+        }
+    }
+
+    static int floatTraps;
+
+    /** Nothing to do and a big bank: a stun trap on an adjacent tile toward the enemy (also build XP for the tiebreak). */
+    static void spendFloat() throws GameActionException {
+        MapLocation t = fieldTargetFrom(G.me);
+        Direction d = t == null ? G.DIRS[G.rand(8)] : G.me.directionTo(t);
+        Direction[] ds = {d, d.rotateLeft(), d.rotateRight(), d.rotateLeft().rotateLeft(), d.rotateRight().rotateRight()};
+        for (Direction x : ds) {
+            MapLocation l = G.me.add(x);
+            if (G.rc.canBuild(TrapType.STUN, l)) { G.rc.build(TrapType.STUN, l); floatTraps++; return; }
         }
     }
 

@@ -10,4 +10,7 @@ reproducible attacker); then build the defence against our own copy.
 
 | # | tactic | seen from | offence | defence |
 |---|---|---|---|---|
-| — | (none yet: the first ladder blocks have not been played) | | | |
+| T1 | **Flag rush after the dam opens**: a strike force reaches our spawn-held flags ~50 rounds after r200 and takes all three while losing the fight on kills | hsmalladi.finalbot (DefaultSmall: all three taken by r383 although we out-killed them 38 to 18) and most sub-r500 losses in calibration | none | in candidate: carrier sightings shared (slots 17..19), chase within dist 15, intercept at its destination spawn centre, respawn toward the carrier, micro closes on carriers |
+| T2 | **Flags relocated in setup** to map edges/corners far from spawn, ringed by dug water (moat) | hsmalladi.finalbot (flags to (22,0),(30,0),(30,8) at r2) | none | n/a (a defence of theirs; our offence must find flags that are not at spawn: broadcast hints + sightings already used) |
+| T3 | **Flag relay**: carrier drops the flag and an adjacent ally picks it up, repeatedly (sidesteps the carrier's +20 move cooldown) | hsmalladi.finalbot (PLACE/PICKUP pairs every 1-10 rounds) | none | chase/intercept (T1) applies |
+| T4 | **Checkerboard digging in own territory during setup** (build XP for the level tiebreak; broken ground for attackers) | hsmalladi.finalbot (60 digs by r175, level sum 12 at r175 vs our 0) | none | none |

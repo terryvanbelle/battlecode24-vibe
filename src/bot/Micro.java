@@ -8,7 +8,7 @@ import battlecode.common.*;
  * dist² 10 of it (the enemy can step once and still reach dist² 4).
  */
 public strictfp class Micro {
-    public static int attacks, heals, kites, engages;
+    public static int attacks, heals, kites, engages, advances;
 
     static RobotInfo bestTarget(RobotInfo[] enemies, MapLocation from) {
         RobotInfo best = null; int bs = Integer.MAX_VALUE;
@@ -59,6 +59,8 @@ public strictfp class Micro {
         boolean strong = nearAllies + 1 >= nearEnemies;
         boolean hurt = rc.getHealth() < C.RETREAT_HP;
 
+        RobotInfo carrier = null;
+        for (RobotInfo e : enemies) if (e.hasFlag) { carrier = e; break; }
         Direction best = null; int bestScore = Integer.MIN_VALUE;
         for (int i = 0; i < 9; i++) {
             Direction d = i < 8 ? G.DIRS[i] : Direction.CENTER;
@@ -74,8 +76,12 @@ public strictfp class Micro {
             int adjAllies = 0;
             for (RobotInfo a : allies) if (l.distanceSquaredTo(a.location) <= 2) adjAllies++;
             int score;
-            if (actReady && !hurt && inRange > 0 && (strong || th <= 1)) {
+            if (carrier != null && !hurt) {
+                score = 20000 - l.distanceSquaredTo(carrier.location) * 10 - th;   // a flag carrier: close in regardless
+            } else if (actReady && !hurt && inRange > 0 && (strong || th <= 1)) {
                 score = 10000 - th * 100 + adjAllies * 10;               // engage: hit from the safest reaching tile
+            } else if (actReady && !hurt && nearAllies + 1 >= nearEnemies + C.ADVANCE_MARGIN) {
+                score = 5000 - minD * 20 - th * 50 + adjAllies * 10;       // clear local superiority: close the gap
             } else {
                 // kite / hold: out of reach, but stay close enough to strike next turn
                 score = -th * 1000 + adjAllies * 10 + (minD >= 11 && minD <= 20 ? 50 : 0) - (hurt ? minD < 20 ? 200 : 0 : 0);
@@ -85,7 +91,7 @@ public strictfp class Micro {
         }
         if (best != null && best != Direction.CENTER) {
             rc.move(best); G.me = rc.getLocation();
-            if (bestScore >= 5000) engages++; else kites++;
+            if (bestScore >= 9000) engages++; else if (bestScore >= 4000) advances++; else kites++;
         }
         if (actReady) { if (!tryAttack(enemies)) tryHeal(allies); }
         return true;

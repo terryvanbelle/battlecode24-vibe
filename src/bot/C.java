@@ -14,5 +14,9 @@ public strictfp class C {
     public static final int DEF_TRAP_RESERVE = 100;     // defenders keep this many crumbs after a flag-ring trap
     public static final int DAM_TRAP_ROUND = 185;       // setup: start trapping the dam front (dam opens after r200)
     public static final int DAM_TRAP_RESERVE = 600;     // keep this bank for the fight when trapping the dam
+    public static final int ADVANCE_MARGIN = 3;         // advance into a held line when allies+1 >= enemies+3 in vision (iteration 1 guess)
+    public static final int FLOAT_CRUMBS = 1500;        // above this bank an idle duck spends on traps (self-play floated 13k by r1500)
+    public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
+    public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }
