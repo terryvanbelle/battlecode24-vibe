@@ -14,3 +14,6 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
 9. **Post-mortems from 2024 are never read**, first- or second-hand.
 10. 2024 replays do not contain robot stdout: in-game counters go into indicator strings (64 chars) and
     diagnostic logs come from engine stdout captured by `tools/run-dev.sh` (`LOG_OUT=`).
+11. **TACTICS.md is updated after every ladder run** (owner standing order, PROMPTS 18) and must be comprehensive:
+    `tools/post-block.sh` re-runs `tools/tactics-survey.py` and regenerates the measured section; every tactic an
+    opponent that beats us uses gets a row with evidence, offence status and defence status.

@@ -83,3 +83,11 @@ task check
 ## 16. 2026-09-30
 
 task check
+
+## 17. 2026-09-30
+
+Are T1-T4 the only tactics you've observed in all the games you've played against all opponents?
+
+## 18. 2026-09-30
+
+As a standing order, I'd like you to update TACTICS.md every time you do a ladder run.  I'd like TACTICS to be comprehensive

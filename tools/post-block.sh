@@ -19,5 +19,6 @@ PY="$REPO/tools/.venv/bin/python3"; [ -x "$PY" ] || PY=python3
 "$REPO/tools/correlate.py" "$REPO/gauntlet/$RUN" --round 200 || true
 "$REPO/tools/onset.py" "$REPO/gauntlet/$RUN" --md "$REPO/progress/ONSET.md" --plot "$REPO/progress/onset-ladder.png" | tail -25 || true
 "$REPO/tools/onset-merged.sh" "$LABEL" | tail -1 || true   # the same table over every block of this build (noise floor ~0.07 at 800 games)
+"$REPO/tools/tactics-survey.py" "$REPO/gauntlet/$RUN" | tail -1 || true   # standing order (PROMPTS 18): TACTICS.md after every ladder run
 head -12 "$REPO/progress/ELO.md"
 echo "done: $RUN recorded as us:$LABEL; ladder, roster, study and onset regenerated"

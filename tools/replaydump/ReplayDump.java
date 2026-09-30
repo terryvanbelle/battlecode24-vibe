@@ -75,7 +75,14 @@ public class ReplayDump {
     // ---- options
     static int every = 0, metricsEvery = 0, from = -1, to = -1, robot = Integer.MIN_VALUE, mapAt = -1;   // robot: MIN_VALUE = none (water-trap digs have actor id -1)
     static Pattern logs = null; static int logTeam = 0;
-    static boolean bytecode = false, navstats = false, flagsMode = false, summary = true;
+    static boolean bytecode = false, navstats = false, flagsMode = false, summary = true, survey = false;
+    // --survey: per-team tactic features (TACTICS.md survey, tools/tactics-survey.py)
+    static int[] sOwnFlagPickupsSetup = new int[3], sDigs200 = new int[3], sFills200 = new int[3], sTraps200 = new int[3],
+            sCrumbs200 = new int[3], sCrumbs250 = new int[3], sLevel200 = new int[3], sFirstPickup = new int[3], sDrops = new int[3],
+            sHeals400 = new int[3], sAtk400 = new int[3], sAlive400 = new int[3], sDefend300 = new int[3];
+    static int[][] sTraps400 = new int[3][3];
+    static String[] sUpgrades = {"", "", ""};
+    static int[] sFlagMoveDist = new int[3];
     static PrintStream out = System.out;
 
     public static void main(String[] args) throws Exception {
@@ -95,6 +102,7 @@ public class ReplayDump {
                 case "--bytecode": bytecode = true; summary = false; break;
                 case "--navstats": navstats = true; summary = false; break;
                 case "--flags": flagsMode = true; summary = false; break;
+                case "--survey": survey = true; summary = false; break;
                 case "--summary": summary = true; break;
                 default: System.err.println("unknown flag " + a); System.exit(2);   // unknown flags are hard errors
             }
@@ -238,10 +246,16 @@ public class ReplayDump {
                 case Action.EXPLOSIVE_TRAP: case Action.WATER_TRAP: case Action.STUN_TRAP:
                     cTrapsHit[t]++; desc = "triggers " + ACTION[a] + " at (" + tgt % W + "," + tgt / W + ")"; break;
                 case Action.PICKUP_FLAG:
+                    if (rn <= 200) sOwnFlagPickupsSetup[t]++;
+                    else if (sFirstPickup[t] == 0) sFirstPickup[t] = rn;
                     cPickups[t]++; carrying.put(id, tgt); flagLoc.put(tgt, null);
                     desc = "picks up flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "PICKUP", id, tgt); break;
                 case Action.PLACE_FLAG: {    // id is the FLAG id
                     int fx = tgt % W, fy = tgt / W;
+                    if (rn > 200) { for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) if (ce.getValue() == id) {
+                        int holder = ce.getKey(); boolean dies = false;
+                        for (int q = 0; q < r.diedIdsLength(); q++) if (r.diedIds(q) == holder) dies = true;
+                        if (!dies) sDrops[team.getOrDefault(holder, 0)]++; } }
                     flagLoc.put(id, new int[]{fx, fy});
                     carrying.values().remove(id);
                     desc = null;
@@ -253,7 +267,7 @@ public class ReplayDump {
                     cCaptures[t]++; carrying.remove(id); flagLoc.put(tgt, null);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
                     desc = "CAPTURES flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "CAPTURE", id, tgt); break;
-                case Action.GLOBAL_UPGRADE: cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
+                case Action.GLOBAL_UPGRADE: sUpgrades[t] += (sUpgrades[t].isEmpty() ? "" : "+") + (tgt == 0 ? "ATK" : tgt == 1 ? "HEAL" : "CAP") + "@" + rn; cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
                 case Action.DIE_EXCEPTION: cExc[t]++; desc = "DIES OF EXCEPTION"; break;
                 default: desc = "action" + a;
             }
@@ -298,7 +312,40 @@ public class ReplayDump {
         if (every > 0 && rn % every == 0) printEvery(rn);
         if (metricsEvery > 0 && rn % metricsEvery == 0) for (int t = 1; t <= 2; t++) out.println(metricRow(rn, t));
         if (rn == mapAt) printMap(rn);
+        if (survey) surveyTick(rn);
         totalRounds = rn;
+    }
+
+    static void surveyTick(int rn) {
+        for (int t = 1; t <= 2; t++) {
+            if (rn == 200) {
+                sDigs200[t] = cDigs[t]; sFills200[t] = cFills[t]; sTraps200[t] = cTraps[t][0] + cTraps[t][1] + cTraps[t][2];
+                sCrumbs200[t] = crumbsNow[t]; sLevel200[t] = levelSum(t);
+                int d = 0;
+                for (Map.Entry<Integer, int[]> e : flagLoc.entrySet()) {
+                    if (flagTeam.getOrDefault(e.getKey(), 0) != t || e.getValue() == null) continue;
+                    int k = e.getKey(), cx = k % W, cy = k / W; int[] l = e.getValue();
+                    d += (int) Math.round(Math.sqrt((l[0] - cx) * (l[0] - cx) + (l[1] - cy) * (l[1] - cy)));
+                }
+                sFlagMoveDist[t] = d;
+            }
+            if (rn == 250) sCrumbs250[t] = crumbsNow[t];
+            if (rn == 300) {   // own robots within dist2 20 of own uncarried flags
+                int c = 0;
+                for (Map.Entry<Integer, int[]> e : flagLoc.entrySet()) {
+                    if (flagTeam.getOrDefault(e.getKey(), 0) != t || e.getValue() == null) continue;
+                    int[] f = e.getValue();
+                    for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                        if (team.getOrDefault(re.getKey(), 0) != t) continue;
+                        int[] l = re.getValue(); int dx = l[0] - f[0], dy = l[1] - f[1];
+                        if (dx * dx + dy * dy <= 20) c++;
+                    }
+                }
+                sDefend300[t] = c;
+            }
+            if (rn == 400) { sHeals400[t] = cHeals[t]; sAtk400[t] = cAttacks[t]; sAlive400[t] = alive[t];
+                for (int k = 0; k < 3; k++) sTraps400[t][k] = cTraps[t][k]; }
+        }
     }
 
     static void flagEvent(int rn, String what, int actor, int flag) {
@@ -366,6 +413,18 @@ public class ReplayDump {
                 out.printf("%s: captured=%d firstCapture=r%d pickups=%d spawns=%d deaths=%d kills=%d attacks=%d heals=%d traps(expl/water/stun)=%d/%d/%d enemyTrapsHit=%d digs=%d fills=%d upgrades=%d exceptions=%d levelSum=%d crumbs=%d moves=%d%n",
                         tname(t), cCaptures[t], firstCapture[t], cPickups[t], cSpawns[t], cDeaths[t], cDeaths[o], cAttacks[t], cHeals[t],
                         cTraps[t][0], cTraps[t][1], cTraps[t][2], cTrapsHit[t], cDigs[t], cFills[t], cUpgrades[t], cExc[t], levelSum(t), crumbsNow[t], cMoves[t]);
+            }
+        }
+        if (survey && totalRounds < 400) { int keep = totalRounds; surveyTick(totalRounds < 250 ? 250 : totalRounds < 300 ? 300 : 400);
+            if (totalRounds < 300) surveyTick(300); if (totalRounds < 400) surveyTick(400); totalRounds = keep; }
+        if (survey) {
+            out.println("team,name,won,rounds,wintype,captured,firstCapture,firstPickup,pickups,drops,setupFlagPickups,flagMoveDist,digs200,fills200,traps200,crumbs200,crumbs250,level200,defend300,atk400,heal400,expl400,water400,stun400,trapsHit,kills,deaths,upgrades");
+            for (int t = 1; t <= 2; t++) {
+                int o = 3 - t;
+                out.println(tname(t) + "," + (t == 1 ? teamA : teamB) + "," + (winner == t ? 1 : 0) + "," + totalRounds + "," + (winType >= 0 && winType < WIN.length ? WIN[winType] : "?") + ","
+                        + cCaptures[t] + "," + firstCapture[t] + "," + sFirstPickup[t] + "," + cPickups[t] + "," + sDrops[t] + "," + sOwnFlagPickupsSetup[t] + "," + sFlagMoveDist[t] + ","
+                        + sDigs200[t] + "," + sFills200[t] + "," + sTraps200[t] + "," + sCrumbs200[t] + "," + sCrumbs250[t] + "," + sLevel200[t] + "," + sDefend300[t] + ","
+                        + sAtk400[t] + "," + sHeals400[t] + "," + sTraps400[t][0] + "," + sTraps400[t][1] + "," + sTraps400[t][2] + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + sUpgrades[t]);
             }
         }
         if (bytecode) for (int t = 1; t <= 2; t++)
