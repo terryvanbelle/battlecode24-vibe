@@ -139,3 +139,16 @@ Diagnostic (DefaultMedium seed 4 vs g_iter1, before FILL_RESERVE): bank still 23
   Three defence arms in a row read negative vs arch_rush10. Rule: three rejects in one area -> leave it; and run a
   control-versus-control gate to prove the harness fair: z0inert (src/bot with default constants, functionally
   g_iter1) vs g_iter1 with OPP=arch_rush10, SEED 777, queued (q9) after c4bank's field block.
+- a2reloc vs arch_rush10 (paired): SPRT_INCONCLUSIVE 20-21: relocation is neutral against a rush too. Closed.
+
+### Iteration 4 — c4bank: REJECT
+Field block on the shared cells: 80/110 vs the g_iter1 control 84/110; game by game 3 gained, 7 lost.
+
+## Plateau audit (2026-09-30) and iteration 5 (aggression dose)
+
+Since g_iter1: relocation, relay, rush offence, setup digging, more defenders, wider alert, fortress ring and
+bank-then-spend traps are all neutral or negative. Defect census over 40 g_iter1 control replays: 0 fatal
+exceptions, 0 caught exceptions (indicator x), 0 turns at the bytecode limit, ABA 9.4% (kiting, by design),
+still 32.6%. No defect to repair. Behaviour gap vs the top 14 at r400: we heal more (1282 vs 1005) and attack
+less (807 vs 975). Dose ladder on aggression (field blocks, shared cells): e1aggr ADVANCE_MARGIN 3 -> 1;
+e2aggr + ENGAGE_MAX_THREAT 1 -> 2. Queued (q10) after the inert control gate (q9).

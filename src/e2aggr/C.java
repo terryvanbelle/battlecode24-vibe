@@ -1,4 +1,4 @@
-package bot;
+package e2aggr;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -14,7 +14,7 @@ public strictfp class C {
     public static final int DEF_TRAP_RESERVE = 100;     // defenders keep this many crumbs after a flag-ring trap
     public static final int DAM_TRAP_ROUND = 185;       // setup: start trapping the dam front (dam opens after r200)
     public static final int DAM_TRAP_RESERVE = 600;     // keep this bank for the fight when trapping the dam
-    public static final int ADVANCE_MARGIN = 3;         // advance into a held line when allies+1 >= enemies+3 in vision (iteration 1 guess)
+    public static final int ADVANCE_MARGIN = 1;         // advance into a held line when allies+1 >= enemies+3 in vision (iteration 1 guess)
     public static final int FLOAT_CRUMBS = 1500;        // above this bank an idle duck spends on traps (self-play floated 13k by r1500)
     public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
@@ -30,6 +30,6 @@ public strictfp class C {
     public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
     public static final int TRAP_ENEMY_DIST2 = 20;      // combat trap only with an enemy this close (iteration 0: any in vision)
     public static final int EXPLOSIVE_BANK = 100000;    // combat explosive trap above this bank (off by default)
-    public static final int ENGAGE_MAX_THREAT = 1;      // engage when weaker only if at most this many enemies threaten the tile
+    public static final int ENGAGE_MAX_THREAT = 2;      // engage when weaker only if at most this many enemies threaten the tile
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

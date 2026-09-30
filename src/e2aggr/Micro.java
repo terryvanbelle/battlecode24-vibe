@@ -1,4 +1,4 @@
-package bot;
+package e2aggr;
 
 import battlecode.common.*;
 
