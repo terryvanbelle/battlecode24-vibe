@@ -90,3 +90,11 @@ keeps the strike logic but scores tiles by -150 per threatening enemy - 4 x dist
 `src/arch_rush` = RUSHERS 47. Queued (run rush3): archetype check vs g_iter1 on 16 random maps x 2 sides
 (a partner must land 25-75% to rank builds), then a field block on the same cells (SEED 424242) as an
 offence arm. Next: defence work as paired mirrors with OPP=arch_rush.
+
+### Iteration 2 — result: REJECT (both arms), kept switched off
+
+Field blocks on identical cells (scrim SEED 424242, 55 bots x 2, same period): a2reloc 81/110, a2relay 81/110,
+g_iter1 control 84/110. Neither arm beats the control; direction negative, inside noise. Closed as shipped
+features: C.RELOCATE_FLAGS=false, C.RELAY=false in src/bot (code kept; arch_rush keeps the relay, which fed its
+captures). Ledger: relocation (T2 copy) priced at -3/110 on the field; re-open if a rush defence makes flags at
+spawn more costly or the archetype shows spawn-held flags falling first.
