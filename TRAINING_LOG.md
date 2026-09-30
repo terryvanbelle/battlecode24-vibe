@@ -125,3 +125,13 @@ spawn more costly or the archetype shows spawn-held flags falling first.
 Field blocks on the shared cells: a3dig5 84/110, a3dig10 82/110 vs the g_iter1 control 84/110. No dose response.
 The r50-r200 level_sum onset marks strong opponents (they dig) rather than a lever for us. Ledger: re-open only
 if a build-level specialist (cheap traps) becomes part of a trap-heavy defence.
+
+## Iteration 4 (queued) — bank through setup, spend on combat traps
+
+Block study of the g_iter1 control vs the 14 top bots: at r250 they hold a median 2398 crumbs (us 240); by r400
+they have built 90 traps (us 57) and we trigger 53 of theirs (they 32 of ours). They spend in the fight.
+Arm c4bank: no dam traps (DAM_TRAP_ROUND 999), flag rings only above a 1000 bank, fills keep 500, combat traps
+with an enemy within dist2 13 from 2 enemies, explosive when the bank >= 1500 and 4+ enemies; the trap goes on the
+adjacent tile nearest the enemy centroid (new placement code, default-equivalent in src/bot). Counter `ct`.
+Diagnostic (DefaultMedium seed 4 vs g_iter1, before FILL_RESERVE): bank still 230 at r200 because 99 fills cost
+~3000 crumbs; FILL_RESERVE 500 added. Won on level sum 405-391, kills 234-169. Field block queued (q8).

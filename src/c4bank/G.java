@@ -1,4 +1,4 @@
-package bot;
+package c4bank;
 
 import battlecode.common.*;
 
