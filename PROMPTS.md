@@ -59,3 +59,7 @@ I'd like to see field-score graphs in the repository, like the ones from bc20
 ## 10. 2026-09-30
 
 That sounds reasonable
+
+## 11. 2026-09-30
+
+task check

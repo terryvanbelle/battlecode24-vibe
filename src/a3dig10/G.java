@@ -1,4 +1,4 @@
-package a3dig5;
+package a3dig10;
 
 import battlecode.common.*;
 

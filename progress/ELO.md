@@ -1,80 +1,82 @@
 # Ladder
 
-659 scrimmages (ours only), 659 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+769 scrimmages (ours only), 769 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter1_c2 | 1892 +- 111 | 17 of 61 | 110 | 84-26 | 75.6% | 27.9% (vs 16) |
-| g_iter1 | 1837 +- 110 | 18 of 61 | 110 | 81-29 | 73.0% | 22.5% (vs 16) |
-| a2relay | 1837 +- 110 | 19 of 61 | 110 | 81-29 | 73.0% | 22.5% (vs 16) |
-| a2reloc | 1837 +- 110 | 20 of 61 | 110 | 81-29 | 73.0% | 22.5% (vs 16) |
-| arch_rush | 1546 +- 91 | 26 of 61 | 110 | 62-48 | 56.2% | 14.2% (vs 21) |
-| g_iter0 | 1485 +- 87 | 28 of 61 | 109 | 56-53 | 51.7% | 12.7% (vs 22) |
+| arch_rush10 | 1888 +- 114 | 16 of 62 | 110 | 84-26 | 75.6% | 25.3% (vs 15) |
+| g_iter1_c2 | 1888 +- 114 | 17 of 62 | 110 | 84-26 | 75.6% | 25.3% (vs 15) |
+| a2relay | 1830 +- 112 | 19 of 62 | 110 | 81-29 | 73.0% | 21.9% (vs 16) |
+| a2reloc | 1830 +- 112 | 20 of 62 | 110 | 81-29 | 73.0% | 21.9% (vs 16) |
+| g_iter1 | 1830 +- 112 | 21 of 62 | 110 | 81-29 | 73.0% | 21.9% (vs 16) |
+| arch_rush | 1537 +- 91 | 27 of 62 | 110 | 62-48 | 56.3% | 14.7% (vs 21) |
+| g_iter0 | 1477 +- 87 | 29 of 62 | 109 | 56-53 | 51.7% | 13.2% (vs 22) |
 
 Our last run = OUR win rate (our W-L) against the bot, by the most recent of our builds that played it 30+ times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).
 
 | rank | player | rating | +- 95% | games | W-L | our last run |
 |---|---|---|---|---|---|---|
-| 1 | IvanGeffner.kuma | 2212 | 360 | 12 | 12-0 |  |
-| 2 | NotLLeon.v3 | 2212 | 360 | 12 | 12-0 |  |
-| 3 | Strequals.duck0127v5 | 2212 | 360 | 12 | 12-0 |  |
-| 4 | andli28.v9_USQuals_angle | 2212 | 360 | 12 | 12-0 |  |
-| 5 | andrewgopher.player22 | 2212 | 360 | 12 | 12-0 |  |
-| 6 | uravt.Version18Final | 2212 | 360 | 12 | 12-0 |  |
-| 7 | Gymhgy.v10official | 2070 | 270 | 12 | 11-1 |  |
-| 8 | chenyx512.flagbot_final | 2070 | 270 | 12 | 11-1 |  |
-| 9 | jmerle.camel_case_v21_final | 2070 | 270 | 12 | 11-1 |  |
-| 10 | kyleezz.jeeryfix3 | 2070 | 270 | 12 | 11-1 |  |
-| 11 | winkelmantanner.waffle | 2070 | 270 | 12 | 11-1 |  |
-| 12 | CyrilSharma.finalBot | 1977 | 234 | 12 | 10-2 |  |
-| 13 | ColtG5.Goob_final | 1901 | 217 | 12 | 9-3 |  |
-| 14 | SampleProvider.TSPAARKSPRINT1 | 1901 | 217 | 12 | 9-3 |  |
-| 15 | hsmalladi.finalbot | 1901 | 217 | 12 | 9-3 |  |
-| 16 | quesswho.cretplayer2_3 | 1901 | 217 | 12 | 9-3 |  |
-| 17 | **us:g_iter1_c2** | 1892 | 111 | 110 | 84-26 |  |
-| 18 | **us:g_iter1** | 1837 | 110 | 110 | 81-29 |  |
-| 19 | **us:a2relay** | 1837 | 110 | 110 | 81-29 |  |
-| 20 | **us:a2reloc** | 1837 | 110 | 110 | 81-29 |  |
-| 21 | dmtrung14.defaultplayer_intlqualifier | 1709 | 204 | 12 | 6-6 |  |
-| 22 | awu7.ExplosiveBot | 1581 | 212 | 12 | 4-8 |  |
-| 23 | clbarrell.duck8 | 1581 | 212 | 12 | 4-8 |  |
-| 24 | jonters.bling3 | 1581 | 212 | 12 | 4-8 |  |
-| 25 | justinottesen.sprint1 | 1581 | 212 | 12 | 4-8 |  |
-| 26 | **us:arch_rush** | 1546 | 91 | 110 | 62-48 |  |
-| 27 | HugoIngelsson.Bot21 | 1511 | 221 | 12 | 3-9 |  |
-| 28 | **us:g_iter0** | 1485 | 87 | 109 | 56-53 |  |
-| 29 | Metta-AI.bc24scenario | 1432 | 239 | 12 | 2-10 |  |
-| 30 | noahzemlin.honeyducklings | 1432 | 239 | 12 | 2-10 |  |
-| 31 | sivakovivan.NewHide | 1432 | 239 | 12 | 2-10 |  |
-| 32 | JeffLegendPower.v11 | 1335 | 274 | 12 | 1-11 |  |
-| 33 | MiloAkerman.v1 | 1335 | 274 | 12 | 1-11 |  |
-| 34 | PerishoJ.tx | 1335 | 274 | 12 | 1-11 |  |
-| 35 | TylerJulian.v9 | 1335 | 274 | 12 | 1-11 |  |
-| 36 | aj-chau.cowards | 1335 | 274 | 12 | 1-11 |  |
-| 37 | cViper971.ourplayer | 1335 | 274 | 12 | 1-11 |  |
-| 38 | dylanzemlin.dangerduck2 | 1335 | 274 | 12 | 1-11 |  |
-| 39 | lukerhoads.warrior_2nd_comp | 1335 | 274 | 12 | 1-11 |  |
-| 40 | neilhuang007.baseline | 1335 | 274 | 12 | 1-11 |  |
-| 41 | polyllc.polyv4 | 1335 | 274 | 12 | 1-11 |  |
-| 42 | andrearante12.turtle | 1223 | 365 | 11 | 0-11 |  |
-| 43 | AlexYu84.smartPlayer | 1190 | 363 | 12 | 0-12 |  |
-| 44 | H4ffliger.keyboardcrusader_v1 | 1190 | 363 | 12 | 0-12 |  |
-| 45 | Lithanium.AttackingBot | 1190 | 363 | 12 | 0-12 |  |
-| 46 | Peter-Fun.dinoboxer | 1190 | 363 | 12 | 0-12 |  |
-| 47 | Rubrasum.version_3 | 1190 | 363 | 12 | 0-12 |  |
-| 48 | RyanAspen.v22 | 1190 | 363 | 12 | 0-12 |  |
-| 49 | SriLakshmiPolavarapu.ducks | 1190 | 363 | 12 | 0-12 |  |
-| 50 | VarunVejalla.alexander | 1190 | 363 | 12 | 0-12 |  |
-| 51 | abdullah8a0.crayBasic | 1190 | 363 | 12 | 0-12 |  |
-| 52 | adamseth2.moveBot1 | 1190 | 363 | 12 | 0-12 |  |
-| 53 | dylanconklin.Team3 | 1190 | 363 | 12 | 0-12 |  |
-| 54 | itswin.MPAttack | 1190 | 363 | 12 | 0-12 |  |
-| 55 | joelcrouch.ducks | 1190 | 363 | 12 | 0-12 |  |
-| 56 | lcforges.funkyguy3 | 1190 | 363 | 12 | 0-12 |  |
-| 57 | qpwoeirut.tournament_sprint1 | 1190 | 363 | 12 | 0-12 |  |
-| 58 | reeceyang.v5 | 1190 | 363 | 12 | 0-12 |  |
-| 59 | samithShetty.combustiblelemon | 1190 | 363 | 12 | 0-12 |  |
-| 60 | sayam-goyal.SimpleBot | 1190 | 363 | 12 | 0-12 |  |
-| 61 | tlevietpdx.Sprint2 | 1190 | 363 | 12 | 0-12 |  |
+| 1 | IvanGeffner.kuma | 2253 | 356 | 14 | 14-0 |  |
+| 2 | NotLLeon.v3 | 2253 | 356 | 14 | 14-0 |  |
+| 3 | Strequals.duck0127v5 | 2253 | 356 | 14 | 14-0 |  |
+| 4 | andli28.v9_USQuals_angle | 2253 | 356 | 14 | 14-0 |  |
+| 5 | andrewgopher.player22 | 2253 | 356 | 14 | 14-0 |  |
+| 6 | uravt.Version18Final | 2253 | 356 | 14 | 14-0 |  |
+| 7 | Gymhgy.v10official | 2115 | 265 | 14 | 13-1 |  |
+| 8 | chenyx512.flagbot_final | 2115 | 265 | 14 | 13-1 |  |
+| 9 | jmerle.camel_case_v21_final | 2115 | 265 | 14 | 13-1 |  |
+| 10 | CyrilSharma.finalBot | 2026 | 228 | 14 | 12-2 |  |
+| 11 | winkelmantanner.waffle | 2026 | 228 | 14 | 12-2 |  |
+| 12 | kyleezz.jeeryfix3 | 1955 | 208 | 14 | 11-3 |  |
+| 13 | SampleProvider.TSPAARKSPRINT1 | 1894 | 197 | 14 | 10-4 |  |
+| 14 | hsmalladi.finalbot | 1894 | 197 | 14 | 10-4 |  |
+| 15 | quesswho.cretplayer2_3 | 1894 | 197 | 14 | 10-4 |  |
+| 16 | **us:arch_rush10** | 1888 | 114 | 110 | 84-26 |  |
+| 17 | **us:g_iter1_c2** | 1888 | 114 | 110 | 84-26 |  |
+| 18 | ColtG5.Goob_final | 1838 | 192 | 14 | 9-5 |  |
+| 19 | **us:a2relay** | 1830 | 112 | 110 | 81-29 |  |
+| 20 | **us:a2reloc** | 1830 | 112 | 110 | 81-29 |  |
+| 21 | **us:g_iter1** | 1830 | 112 | 110 | 81-29 |  |
+| 22 | dmtrung14.defaultplayer_intlqualifier | 1675 | 193 | 14 | 6-8 |  |
+| 23 | awu7.ExplosiveBot | 1557 | 205 | 14 | 4-10 |  |
+| 24 | clbarrell.duck8 | 1557 | 205 | 14 | 4-10 |  |
+| 25 | jonters.bling3 | 1557 | 205 | 14 | 4-10 |  |
+| 26 | justinottesen.sprint1 | 1557 | 205 | 14 | 4-10 |  |
+| 27 | **us:arch_rush** | 1537 | 91 | 110 | 62-48 |  |
+| 28 | HugoIngelsson.Bot21 | 1491 | 216 | 14 | 3-11 |  |
+| 29 | **us:g_iter0** | 1477 | 87 | 109 | 56-53 |  |
+| 30 | Metta-AI.bc24scenario | 1415 | 235 | 14 | 2-12 |  |
+| 31 | noahzemlin.honeyducklings | 1415 | 235 | 14 | 2-12 |  |
+| 32 | sivakovivan.NewHide | 1415 | 235 | 14 | 2-12 |  |
+| 33 | JeffLegendPower.v11 | 1321 | 271 | 14 | 1-13 |  |
+| 34 | MiloAkerman.v1 | 1321 | 271 | 14 | 1-13 |  |
+| 35 | PerishoJ.tx | 1321 | 271 | 14 | 1-13 |  |
+| 36 | Peter-Fun.dinoboxer | 1321 | 271 | 14 | 1-13 |  |
+| 37 | RyanAspen.v22 | 1321 | 271 | 14 | 1-13 |  |
+| 38 | TylerJulian.v9 | 1321 | 271 | 14 | 1-13 |  |
+| 39 | aj-chau.cowards | 1321 | 271 | 14 | 1-13 |  |
+| 40 | cViper971.ourplayer | 1321 | 271 | 14 | 1-13 |  |
+| 41 | dylanzemlin.dangerduck2 | 1321 | 271 | 14 | 1-13 |  |
+| 42 | lukerhoads.warrior_2nd_comp | 1321 | 271 | 14 | 1-13 |  |
+| 43 | neilhuang007.baseline | 1321 | 271 | 14 | 1-13 |  |
+| 44 | polyllc.polyv4 | 1321 | 271 | 14 | 1-13 |  |
+| 45 | andrearante12.turtle | 1210 | 363 | 13 | 0-13 |  |
+| 46 | AlexYu84.smartPlayer | 1177 | 361 | 14 | 0-14 |  |
+| 47 | H4ffliger.keyboardcrusader_v1 | 1177 | 361 | 14 | 0-14 |  |
+| 48 | Lithanium.AttackingBot | 1177 | 361 | 14 | 0-14 |  |
+| 49 | Rubrasum.version_3 | 1177 | 361 | 14 | 0-14 |  |
+| 50 | SriLakshmiPolavarapu.ducks | 1177 | 361 | 14 | 0-14 |  |
+| 51 | VarunVejalla.alexander | 1177 | 361 | 14 | 0-14 |  |
+| 52 | abdullah8a0.crayBasic | 1177 | 361 | 14 | 0-14 |  |
+| 53 | adamseth2.moveBot1 | 1177 | 361 | 14 | 0-14 |  |
+| 54 | dylanconklin.Team3 | 1177 | 361 | 14 | 0-14 |  |
+| 55 | itswin.MPAttack | 1177 | 361 | 14 | 0-14 |  |
+| 56 | joelcrouch.ducks | 1177 | 361 | 14 | 0-14 |  |
+| 57 | lcforges.funkyguy3 | 1177 | 361 | 14 | 0-14 |  |
+| 58 | qpwoeirut.tournament_sprint1 | 1177 | 361 | 14 | 0-14 |  |
+| 59 | reeceyang.v5 | 1177 | 361 | 14 | 0-14 |  |
+| 60 | samithShetty.combustiblelemon | 1177 | 361 | 14 | 0-14 |  |
+| 61 | sayam-goyal.SimpleBot | 1177 | 361 | 14 | 0-14 |  |
+| 62 | tlevietpdx.Sprint2 | 1177 | 361 | 14 | 0-14 |  |
