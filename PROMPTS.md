@@ -39,3 +39,7 @@ Try another zone
 ## 5. 2026-09-30
 
 /loop 30m task check
+
+## 6. 2026-09-30
+
+If self-play can't show the value of a rush defence, maybe you should implement a rush offense.  Then you can use self-play to develop a rush defence

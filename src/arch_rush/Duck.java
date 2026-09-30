@@ -1,4 +1,4 @@
-package bot;
+package arch_rush;
 
 import battlecode.common.*;
 
