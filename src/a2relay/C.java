@@ -1,4 +1,4 @@
-package bot;
+package a2relay;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {

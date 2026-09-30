@@ -222,7 +222,7 @@ public class ReplayDump {
             if (t == 0) continue;
             if (bc > maxBc[t]) maxBc[t] = bc;
             if (bc > roundMaxBc[t]) roundMaxBc[t] = bc;
-            if (bc >= BYTECODE_LIMIT) turnsAtLimit[t]++; else if (bc >= BYTECODE_LIMIT * 9 / 10) turnsNear[t]++;
+            if (bc >= BYTECODE_LIMIT) { turnsAtLimit[t]++; if (bytecode) out.printf("r%d %s#%d at the bytecode limit (%d)%n", r.roundId(), tname(t), id, bc); } else if (bc >= BYTECODE_LIMIT * 9 / 10) turnsNear[t]++;
             bcSum[t] += bc; bcTurns[t]++;
         }
         // actions

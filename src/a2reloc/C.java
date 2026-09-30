@@ -1,4 +1,4 @@
-package bot;
+package a2reloc;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -21,6 +21,6 @@ public strictfp class C {
     public static final boolean RELOCATE_FLAGS = true;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
-    public static final boolean RELAY = true;           // T3 offence copy: hand the flag forward to an adjacent ally
+    public static final boolean RELAY = false;           // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

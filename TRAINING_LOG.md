@@ -54,3 +54,18 @@ block vs g_iter0's calibration band). Falsifier: ladder rating not above g_iter0
   intervals. Losses before r600: 26 (g_iter0) -> 6 (g_iter1).
 - Lesson: the stack mixed a defect repair (standoff), a spend-the-float rule and a T1 defence (carrier chase);
   attribution between them is open. Next: the T2 offence copy (flag relocation) as iteration 2.
+
+## Iteration 2 — T2 and T3 offence copies: setup flag relocation, flag relay (pre-registration)
+
+Motivation: g_iter1's fastest losses (andli28 on Battlefield r297; jmerle on Pancakes r374) lose spawn-held
+flags within 20-40 rounds of the dam opening, and lose flag races to relay carriers.
+- Relocation (C.RELOCATE_FLAGS): defenders 0-2 carry their flag in setup to spots far from the enemy centroid
+  (grid search, 8+ apart, one spot per turn for bytecode) and publish the new home (slots 20..22); alerts,
+  defence and respawns use the home. Counter `rl`. Diagnostic DefaultHuge seed 11: flags placed r23/r44/r76,
+  0 overruns after spreading the search (first version hit the limit on 2 turns in round 1-2).
+- Relay (C.RELAY): a carrier that can act drops the flag on the adjacent tile nearest home when an ally is next
+  to it; allies pick up visible enemy flags first thing in their turn. Counter `ry`.
+Screen: gate2 (paired mirror vs g_iter1, the relocation-only code with the round-1 overrun) read 29-33
+discordant after 128 pairs: no regression beyond noise; the mirror cannot price a defence against rushes.
+Judge: three field blocks on identical cells (scrim SEED=424242, all 55 bots x2): a2reloc, a2relay, and a
+g_iter1 control in the same period. Accept the arm whose rating beats the g_iter1 control block.
