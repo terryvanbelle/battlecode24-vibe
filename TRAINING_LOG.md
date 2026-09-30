@@ -31,3 +31,17 @@ Diagnostic (DefaultSmall, seed 7, vs examplefuncsplayer): **won by CAPTURE at r7
 kills 424 / deaths 12; 248 stun traps built (35 hit by the enemy... enemy triggered 207 of ours);
 bytecode max 13,981 of 25,000, 0 overruns, 0 exceptions; nav ABA oscillation 9.1% (example bot 15.9%).
 Accepted by construction as the first rung.
+
+## Iteration 1 — stack: symmetry, trap rings, advance, float spending, carrier chase (pre-registration, 2026-09-30)
+
+Targets: (a) self-play standoff: every g_iter0 mirror game ran to r2000 on level sum, no kills r400-r1500,
+13k crumbs floating by r1500 (speed1 run, 8 games); (b) T1 flag rush: calibration losses end r380-r630 with
+our spawn-held flags carried off (hsmalladi.finalbot DefaultSmall traced).
+Mechanisms and counters (indicator string of every robot): `adv` Micro advances (allies+1 >= enemies+3);
+`ft` float stun traps (bank > 1500, idle); `ch` carrier chase/intercept turns; replay counts of stun/explosive
+traps for the defender ring and the dam line.
+Diagnostic (DefaultSmall seed 11 vs g_iter0): won by CAPTURE r1241 (was: every mirror game to r2000);
+adv 3-125 per robot, ft 0 (bank now spent in fights), ch 0 (g_iter0 never carries our flags: the mirror
+cannot see T1; the field can). 0 overruns, 0 exceptions, bytecode max 12k.
+Gate: paired mirror SPRT vs g_iter0 as a regression screen; the judge for T1 is the ladder (head-to-head
+block vs g_iter0's calibration band). Falsifier: ladder rating not above g_iter0's.

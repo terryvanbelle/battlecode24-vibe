@@ -66,6 +66,7 @@ Reaching level 4 in one skill caps the others at level 3. Effects per level in `
 | Visible within vision (dist² 20) always, including carried ones. Out of vision: `senseBroadcastFlagLocations()` gives a random point within dist² 100 of each **dropped** (not carried) enemy flag, re-drawn every 100 rounds (world RNG, map-seeded). | [spec] [E:GameWorld updateFlagBroadcastLocations] |
 | A dropped (non-start) flag returns to its start location after 4 end-of-round ticks (25 if the carrier team has CAPTURING). | [E:GameWorld processEndOfRound] |
 | Carrying a flag: no actions except movement. | [spec] [E:RCI assert*] |
+| A dropped flag can be picked up again from the next round (its dropped-round counter becomes non-zero at end of round), so a relay costs one round per hand-off; pickup +10 action cooldown means a new carrier cannot also drop in the same turn. | [E:RCI assertCanPickupFlag, GameWorld processEndOfRound] |
 
 ## Map, sensing, economy
 
