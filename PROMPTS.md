@@ -91,3 +91,7 @@ Are T1-T4 the only tactics you've observed in all the games you've played agains
 ## 18. 2026-09-30
 
 As a standing order, I'd like you to update TACTICS.md every time you do a ladder run.  I'd like TACTICS to be comprehensive
+
+## 19. 2026-09-30
+
+Presumably many of the tactics are employed by many opponents, so eventually you'll stabilize on a fixed set of tactics that work against us, but there will be more then 4
