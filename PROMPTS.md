@@ -55,3 +55,7 @@ task check
 ## 9. 2026-09-30
 
 I'd like to see field-score graphs in the repository, like the ones from bc20
+
+## 10. 2026-09-30
+
+That sounds reasonable
