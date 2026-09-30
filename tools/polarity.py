@@ -2,20 +2,21 @@
 and a POSITIVE correlation with the result is therefore always good.
 
   +1  higher is better for us        -1  lower is better for us        0  unoriented (reported, never ranked)
-A metric of theirs is always the negation: more for them is worse for us. A gap (us - them) is
-multiplied by the metric's own sign: being further ahead on something good is good, being further
-ahead on deaths or oscillation is bad. (The 2021 project shipped gaps unoriented for three days.)
+A metric of theirs is the negation. A gap (us - them) is multiplied by the metric's own sign.
+STUDY_COLS is the single list of per-team study columns (tools/scrim-study.sh reads it); the names match
+tools/replaydump/ReplayDump.java --metrics.
 """
+STUDY_COLS = ['alive', 'hp', 'crumbs', 'captured', 'carrying', 'deaths', 'kills', 'attacks', 'heals', 'traps_built',
+              'traps_expl', 'traps_water', 'traps_stun', 'traps_hit', 'digs', 'fills', 'pickups', 'level_sum', 'moves', 'spawned']
 POLARITY = {
-    'soup': +1, 'hq': +1, 'hqBuried': -1, 'hqElev': 0, 'worth': +1,
-    'miners': +1, 'landscapers': +1, 'drones': +1, 'refineries': +1, 'vaporators': +1, 'schools': +1, 'centers': +1, 'netguns': +1,
-    'units': +1,                          # derived: miners + landscapers + drones (the tiebreak counts every robot; buildings too)
-    'robots': +1,                         # derived: all living robots, the actual tiebreak quantity
-    'spawned': +1, 'spawnCost': +1,
-    'died': -1, 'drowned': -1, 'shot': -1, 'buriedDeaths': -1,
-    'mines': +1, 'soupDeps': +1, 'refines': +1, 'digs': +1, 'dirtDeps': +1, 'pickups': +1, 'drops': +1, 'shots': +1,
-    'moves': +1, 'meanMoves': +1, 'cov': +1, 'aba': -1, 'bcOver': -1,
-    'firstHQ': 0,                         # round of first contact with the enemy HQ: direction unclear
+    'alive': +1, 'hp': +1, 'crumbs': 0,          # banked crumbs: floating is bad, saving for traps is fine -> unoriented
+    'captured': +1, 'carrying': +1, 'deaths': -1, 'kills': +1, 'attacks': +1, 'heals': +1,
+    'traps_built': +1, 'traps_expl': +1, 'traps_water': +1, 'traps_stun': +1,
+    'traps_hit': +1,                             # our traps the enemy set off
+    'digs': 0, 'fills': 0, 'pickups': +1, 'level_sum': +1, 'moves': +1,
+    'spawned': 0,                                # respawns follow deaths: unoriented
+    'net': +1,                                   # derived: kills - deaths
+    'cov': +1, 'meanMoves': +1, 'aba': -1, 'still': -1,
 }
 def orient(metric, value, side):
     """side: 'us', 'th', or 'gap'. Returns the oriented value, or None if unoriented."""

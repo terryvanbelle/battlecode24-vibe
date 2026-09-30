@@ -18,6 +18,8 @@ public strictfp class Duck {
         buyUpgrades();
         if (!rc.isSpawned()) { trySpawn(); if (!rc.isSpawned()) return; }
         G.me = rc.getLocation();
+        if (G.round <= 3) Sym.fromBroadcasts(rc.senseBroadcastFlagLocations());
+        Comms.syncSym();
         sense();
         if (rc.hasFlag()) { carryFlag(); return; }
         if (G.round <= C.SETUP_ROUNDS) { setup(); return; }
@@ -104,6 +106,7 @@ public strictfp class Duck {
         // gather at the dam facing the enemy
         MapLocation t = fieldTargetFrom(G.me);
         if (!nextToDam()) Nav.moveTo(t);
+        else if (G.round >= C.DAM_TRAP_ROUND) damTrap();
         G.note = "gather";
     }
 
@@ -183,7 +186,7 @@ public strictfp class Duck {
         MapLocation[] bc = rc.senseBroadcastFlagLocations();
         best = G.nearest(from, bc);
         if (best != null) return best;
-        return new MapLocation(G.W - 1 - from.x, G.H - 1 - from.y);   // last resort: the rotational image
+        return G.nearest(from, Sym.enemyCenters());                    // last resort: enemy spawn centres by symmetry
     }
 
     // ------------------------------------------------------------------ defence
@@ -191,19 +194,45 @@ public strictfp class Duck {
         return G.spawnCenters[homeFlag()];
     }
 
+    static int ringStep;
+
     static void defend() throws GameActionException {
         RobotController rc = G.rc;
         MapLocation home = defendTarget();
         if (home == null) return;
         G.note = "defend";
-        if (G.me.distanceSquaredTo(home) > 2) { Nav.moveTo(home); return; }
-        // ring the flag with traps when affordable: stun on the diagonals, explosive on the orthogonals
+        if (G.me.distanceSquaredTo(home) > 8) { Nav.moveTo(home); return; }
+        // ring the flag with traps: stun where dist2 to the flag is 4..8, explosive adjacent to it
         if (rc.isActionReady()) {
             for (Direction d : G.DIRS) {
-                MapLocation t = home.add(d).add(d);
-                TrapType tt = (d.getDeltaX() == 0 || d.getDeltaY() == 0) ? TrapType.EXPLOSIVE : TrapType.STUN;
-                if (rc.getCrumbs() >= tt.buildCost + 100 && rc.canBuild(tt, t)) { rc.build(tt, t); break; }
+                MapLocation t = G.me.add(d);
+                int dh = t.distanceSquaredTo(home);
+                if (dh == 0 || dh > 8) continue;
+                TrapType tt = dh <= 2 ? TrapType.EXPLOSIVE : TrapType.STUN;
+                if (rc.getCrumbs() >= tt.buildCost + C.DEF_TRAP_RESERVE && rc.canBuild(tt, t)) { rc.build(tt, t); Duck.defTraps++; break; }
             }
+        }
+        // walk around the flag so every ring tile comes within reach
+        MapLocation post = home.add(G.DIRS[ringStep & 7]);
+        if (G.me.equals(post) || !rc.canSenseLocation(post) || !rc.sensePassability(post)) ringStep++;
+        Nav.moveTo(home.add(G.DIRS[ringStep & 7]));
+    }
+
+    static int defTraps, damTraps;
+
+    /** Late setup, standing at the dam: trap the tiles the enemy must step on first. */
+    static void damTrap() throws GameActionException {
+        RobotController rc = G.rc;
+        if (!rc.isActionReady() || rc.getCrumbs() < TrapType.STUN.buildCost + C.DAM_TRAP_RESERVE) return;
+        for (Direction d : G.DIRS) {
+            MapLocation t = G.me.add(d);
+            if (!rc.canBuild(TrapType.STUN, t)) continue;
+            boolean touchesDam = false;
+            for (Direction e : G.DIRS) {
+                MapLocation n = t.add(e);
+                if (rc.onTheMap(n) && rc.canSenseLocation(n) && rc.senseMapInfo(n).isDam()) { touchesDam = true; break; }
+            }
+            if (touchesDam) { rc.build(TrapType.STUN, t); damTraps++; return; }
         }
     }
 

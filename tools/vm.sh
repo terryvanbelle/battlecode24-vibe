@@ -4,7 +4,7 @@
 # The VM mirrors the driver's layout, so tools/lib.sh works unchanged there:
 #   ~/jdk/jdk8u504-b01, ~/projects/vibe/2024 (this repo: src tools test engine),
 #   ~/projects/vibe/bc24-benchmarks/{_classes,manifest.tsv}
-VM=battlecode-dev; ZONE=us-west1-b; PROJECT=tvanbelle-vibecode
+VM=battlecode-dev2; ZONE=us-west2-a; PROJECT=tvanbelle-vibecode
 REMOTE_REPO='projects/vibe/2024'
 SSHO=(-i "$HOME/.ssh/google_compute_engine" -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
       -o ConnectTimeout=20 -o ServerAliveInterval=20 -o ServerAliveCountMax=3 -o LogLevel=ERROR)

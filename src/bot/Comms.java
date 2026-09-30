@@ -11,9 +11,10 @@ import battlecode.common.*;
  *   7..9     enemy flag state: 0 at large, 1 carried by us, 2 captured
  *   10..12   our flag i: round of the latest enemy sighting within 20 of it (0 = never)
  *   13..15   our flag i: current location when seen away from home (0 = at home / unknown)
+ *   16       surviving map symmetries as a Sym bitmask (0 = not yet written = all three)
  */
 public strictfp class Comms {
-    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13;
+    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13, SYM = 16;
 
     public static int enc(MapLocation m) { return m == null ? 0 : m.x * 64 + m.y + 1; }
     public static MapLocation dec(int v) { return v == 0 ? null : new MapLocation((v - 1) / 64, (v - 1) % 64); }
@@ -52,6 +53,13 @@ public strictfp class Comms {
 
     public static void clearEnemyFlagLoc(int slot) throws GameActionException {
         if (G.rc.readSharedArray(EF_LOC + slot) != 0) G.rc.writeSharedArray(EF_LOC + slot, 0);
+    }
+
+    /** Merge our symmetry candidates with the team's and publish the intersection. */
+    public static void syncSym() throws GameActionException {
+        int v = G.rc.readSharedArray(SYM);
+        if (v != 0 && (Sym.cands & v) != 0) Sym.cands &= v;
+        if (v != Sym.cands) G.rc.writeSharedArray(SYM, Sym.cands);
     }
 
     public static void alertOurFlag(int i) throws GameActionException {

@@ -11,5 +11,8 @@ public strictfp class C {
     public static final int RETREAT_HP = 300;           // iteration 0 guess: below this HP back off when threatened
     public static final int FILL_RESERVE = 0;           // crumbs kept back when filling water to get through
     public static final int TRAP_RESERVE = 200;         // crumbs kept back when placing combat stun traps
+    public static final int DEF_TRAP_RESERVE = 100;     // defenders keep this many crumbs after a flag-ring trap
+    public static final int DAM_TRAP_ROUND = 185;       // setup: start trapping the dam front (dam opens after r200)
+    public static final int DAM_TRAP_RESERVE = 600;     // keep this bank for the fight when trapping the dam
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

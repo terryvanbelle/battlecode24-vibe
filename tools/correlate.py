@@ -32,7 +32,7 @@ def report(path, cols, title):
     if not os.path.exists(path): print(f"  (no {path})"); return
     rows = list(csv.DictReader(open(path), delimiter='\t'))
     if not rows: return
-    if 'us_miners' in rows[0]: add_derived(rows)
+    if 'us_kills' in rows[0]: add_derived(rows)
     def _rk(x):
         try: return (0, float(x))
         except (TypeError, ValueError): return (1, 0.0)
@@ -78,9 +78,10 @@ def report(path, cols, title):
             cws = f"{cw:+7.2f}" if cw is not None else "      -"
             print(f"{name:30s} {c2:+7.2f} {cws} {wm:12.1f} {lm:12.1f}")
 run = o.run.rstrip('/')
-COLS = ['soup','worth','robots','units','miners','landscapers','drones','refineries','vaporators','schools','centers','netguns','hqBuried','spawned','spawnCost','died','drowned','shot','buriedDeaths','mines','soupDeps','refines','digs','dirtDeps','pickups','drops','shots','moves','cov','aba','bcOver']
-report(os.path.join(run, 'study.tsv'), COLS, 'economy, defence and exploration')
-report(os.path.join(run, 'nav.tsv'), ['cov','moves','meanMoves','aba','firstHQ'], 'exploration')
+from polarity import STUDY_COLS
+COLS = STUDY_COLS + ['net']
+report(os.path.join(run, 'study.tsv'), COLS, 'economy, combat, traps and flags')
+report(os.path.join(run, 'nav.tsv'), ['cov','meanMoves','aba','still'], 'movement')
 print("\nRead: 'corr' is raw; 'within' removes each opponent-and-map's own average, so it cannot")
 print("score merely by identifying weak opponents. Act on r200 -- later rounds are contaminated")
 print("by the outcome itself. A correlation is a place to look, not a mechanism: confirm with a")

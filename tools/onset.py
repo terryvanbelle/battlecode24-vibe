@@ -36,10 +36,11 @@ from statlib import pointbiserial as _pb, onset as _onset, anti_onset as _anti, 
 run = o.run.rstrip('/')
 rows = list(csv.DictReader(open(os.path.join(run, 'study.tsv')), delimiter='\t'))
 from derived import add_derived
-if rows and 'us_miners' in rows[0]: add_derived(rows)
+if rows and 'us_kills' in rows[0]: add_derived(rows)
 if not rows: sys.exit("no study.tsv rows")
 rounds = sorted({int(r['round']) for r in rows})
-cols = ['soup','worth','robots','units','miners','landscapers','drones','vaporators','netguns','hqBuried','spawned','died','drowned','mines','digs','dirtDeps','pickups','moves','cov','aba']
+from polarity import STUDY_COLS
+cols = STUDY_COLS + ['net']
 # every metric is oriented so that higher = better for us (tools/polarity.py),
 # hence a positive correlation always means "this being better goes with winning"
 # Progressive variants: the running mean of a metric over every sampled round up to r.

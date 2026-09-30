@@ -27,3 +27,11 @@ This year we will compete in Battlecode 2024.  Store all results in a new Github
 ## 2. 2026-09-30
 
 Try again
+
+## 3. 2026-09-30
+
+What is using the vm at the moment?
+
+## 4. 2026-09-30
+
+Try another zone
