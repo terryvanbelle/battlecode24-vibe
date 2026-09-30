@@ -119,3 +119,9 @@ spawn more costly or the archetype shows spawn-held flags falling first.
 - Next (q7): d3fort (ring out to dist2 13, posts two tiles out on alternate laps, no crumb reserve; diagnostic
   vs arch_rush10 DefaultSmall seed 3: 48 stun + 11 explosive by r200 vs ~15-24 before, 0 overruns) and a2reloc
   (T2 relocation, neutral on the field, now priced against the rush it is meant to answer).
+
+### Iteration 3 — setup digging (T4 copy): REJECT, closed
+
+Field blocks on the shared cells: a3dig5 84/110, a3dig10 82/110 vs the g_iter1 control 84/110. No dose response.
+The r50-r200 level_sum onset marks strong opponents (they dig) rather than a lever for us. Ledger: re-open only
+if a build-level specialist (cheap traps) becomes part of a trap-heavy defence.
