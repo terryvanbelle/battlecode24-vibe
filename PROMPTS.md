@@ -103,3 +103,7 @@ task check
 ## 21. 2026-09-30
 
 As you build up TACTICS.md, I'd like you to refer to the column adopting enemy tactics as "Adoption" rather than "Offense", and "Neutralization" rather then "Defense".  I'm afraid that the offense/defense dichotomy is confusing you, when actually it's more about adoption vs. neutralization
+
+## 22. 2026-09-30
+
+Keep the new dichotomy in mind when you update TACTICS.md
