@@ -8,8 +8,8 @@ evidence-driven loop, measured against every publicly available 2024 competitor 
 - `TACTICS.md`: tactics opponents used against us, and our offensive and defensive progress on each.
 - `TRAINING_LOG.md`: append-only record of every attempt.
 - `BENCHMARK.md`: the external field and the rules for using it.
-- `progress/`: ratings and charts: `progress.png` (every accepted build's ladder rating and field score), `elo.png` (the whole ladder), `ELO.md` (table).
+- `progress/`: ratings and charts: `field-score-1w.png` / `field-score-4w.png` (rating, field score, score against the bots above us, and rank for every submission and candidate, with a diminishing-returns projection to the end of week 1 and week 4 once three submissions span half a day), `progress.png` (accepted builds only), `elo.png` (the whole ladder), `ELO.md` (table).
 
-![progress](progress/progress.png)
+![field score](progress/field-score-4w.png)
 - `research/`: digests of the five earlier practice seasons.
 - `PROMPTS.md`: every owner prompt, verbatim.

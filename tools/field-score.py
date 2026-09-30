@@ -29,7 +29,9 @@ for r in rows:
             d = to_pdt(dt.datetime.strptime(r['run'][:15], '%Y%m%d-%H%M%S')); first[b] = min(first.get(b, d), d)
 pts = sorted((first[p], p) for p in first if p in R and games.get(p, 0) >= 48)
 subs = [(d, p) for d, p in pts if re.match(r'us:g_iter\d+$', p)]
-if len(subs) < 3: sys.exit('fewer than three submissions to fit')
+if len(subs) < 2: sys.exit('fewer than two submissions to fit')
+# A projection needs at least three submissions spanning half a day; before that the charts show only what was measured
+# (2026-09-30: two builds an hour apart extrapolated to a rating of 26,000 by week 1).
 t0 = subs[0][0]
 def days(d): return (d - t0).total_seconds() / 86400
 def score(r):
@@ -40,8 +42,9 @@ def rank_of(r):   # PROMPTS 78: 1 + the ladder bots rated above r (our other bui
 def score_hi(r):   # PROMPTS 75: expected score against only the ladder bots rated above r (as ELO.md's "vs higher")
     up = [b for b in rated if R[b] > r]; R2 = dict(R); R2['proj'] = r
     return 100 * elolib.field_score(R2, 'proj', up) if up else float('nan')
+FIT = len(subs) >= 3 and days(subs[-1][0]) >= 0.5
 xs = np.array([np.log1p(days(d) / o.tau) for d, _ in subs]); ys = np.array([R[p] for _, p in subs]); w = np.array([1 / SE[p] for _, p in subs])
-(aa, r0), cov = np.polyfit(xs, ys, 1, w=w, cov='unscaled')
+(aa, r0), cov = np.polyfit(xs, ys, 1, w=w, cov='unscaled') if FIT else ((0.0, ys[-1]), np.zeros((2, 2)))
 def proj(t):
     x = np.log1p(t / o.tau); r = r0 + aa * x; s = np.sqrt(cov[0, 0] * x * x + 2 * cov[0, 1] * x + cov[1, 1]); return r, 1.96 * s
 now = dt.datetime.now(PDT).replace(tzinfo=None); tn = days(now)
@@ -49,32 +52,34 @@ now = dt.datetime.now(PDT).replace(tzinfo=None); tn = days(now)
 # September 30), not "now + 7 days". PROMPTS 79: two charts, one to the end of week 1 and one to the end of week 4.
 START = dt.datetime(2026, 9, 30); HORIZONS = [(f'week {k}', START + dt.timedelta(days=7 * k)) for k in (1, 2, 3, 4)]   # PDT
 print('submissions:', ', '.join(f'{p[3:]} {R[p]:.0f}+-{1.96 * SE[p]:.0f} ({d:%m-%d %H:%M}) {score(R[p]):.1f}%' for d, p in subs))
-print(f'rating fit R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g} d) (t in days from {t0:%Y-%m-%d %H:%M} PDT)')
+print(f'rating fit R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g} d) (t in days from {t0:%Y-%m-%d %H:%M} PDT)' if FIT else 'no projection yet (needs 3 submissions spanning half a day): measured points only')
 r, e = proj(tn); print(f'  now ({now:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%], vs higher {score_hi(r):.1f}%, rank #{rank_of(r)}')
-for name, when in HORIZONS:
+for name, when in (HORIZONS if FIT else []):
     r, e = proj(days(when)); print(f'  {name} ({when:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%], vs higher {score_hi(r):.1f}%, rank #{rank_of(r)}')
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 def draw(weeks, path):
-    HZ = HORIZONS[:weeks]
+    HZ = HORIZONS[:weeks] if FIT else []
     fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(9.5, 14.5), sharex=True)
-    tt = np.linspace(0, days(HZ[-1][1]) + 0.3, 200); dates = [t0 + dt.timedelta(days=t) for t in tt]
+    tt = np.linspace(0, days(HZ[-1][1]) + 0.3, 200) if FIT else np.array([]); dates = [t0 + dt.timedelta(days=t) for t in tt]
     rr = np.array([proj(t)[0] for t in tt]); ee = np.array([proj(t)[1] for t in tt])
     cand = [(d, p) for d, p in pts if (d, p) not in subs]
     # rating panel
     ax1.errorbar([d for d, _ in subs], ys, yerr=[1.96 * SE[p] for _, p in subs], fmt='o', color='tab:blue', ms=5, capsize=2, label='submission (rating +- 95%)', zorder=3)
     if cand: ax1.plot([d for d, _ in cand], [R[p] for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate (not fitted)')
+    for d, p in cand: ax1.annotate(p[3:], (d, R[p]), textcoords='offset points', xytext=(4, -9), fontsize=6, color='0.4')
     for d, p in subs: ax1.annotate(p[3:], (d, R[p]), textcoords='offset points', xytext=(4, 5), fontsize=7)
     past = tt <= tn
-    ax1.plot(np.array(dates)[past], rr[past], '-', color='tab:blue', lw=1.2, label=f'fit: R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g}d)')
-    ax1.plot(np.array(dates)[~past], rr[~past], '--', color='tab:blue', lw=1.2, label='projection'); ax1.fill_between(dates, rr - ee, rr + ee, color='tab:blue', alpha=.12, label='95% band')
+    ax1.plot(np.array(dates)[past], rr[past], '-', color='tab:blue', lw=1.2, label=f'fit: R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g}d)' if FIT else None)
+    ax1.plot(np.array(dates)[~past], rr[~past], '--', color='tab:blue', lw=1.2, label='projection' if FIT else None); ax1.fill_between(dates, rr - ee, rr + ee, color='tab:blue', alpha=.12, label='95% band' if FIT else None)
     ax1.axvline(now, color='0.6', lw=0.8, ls=':'); ax1.set_ylabel('rating (Bradley-Terry, Elo scale)'); ax1.grid(alpha=.3); ax1.legend(fontsize=8, loc='lower right')
-    ax1.set_title('Rating by submission with a diminishing-returns fit, and the field score it implies')
+    ax1.set_title('Rating by submission with a diminishing-returns fit, and the field score it implies' if FIT else 'Rating by submission (projection starts once 3 submissions span half a day)')
+    if not FIT: ax1.set_xlim(t0 - dt.timedelta(hours=1), max(now, subs[-1][0]) + dt.timedelta(hours=1))
     # field-score panel
     ss = np.array([score(r) for r in rr]); lo = np.array([score(r) for r in rr - ee]); hi = np.array([score(r) for r in rr + ee])
     ax2.plot([d for d, _ in subs], [score(R[p]) for _, p in subs], 'o', color='tab:blue', ms=5, zorder=3, label='submission')
     if cand: ax2.plot([d for d, _ in cand], [score(R[p]) for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate')
-    ax2.plot(np.array(dates)[past], ss[past], '-', color='tab:blue', lw=1.2); ax2.plot(np.array(dates)[~past], ss[~past], '--', color='tab:blue', lw=1.2, label='projection (mapped rating)')
-    ax2.fill_between(dates, lo, hi, color='tab:blue', alpha=.12, label='95% band')
+    ax2.plot(np.array(dates)[past], ss[past], '-', color='tab:blue', lw=1.2); ax2.plot(np.array(dates)[~past], ss[~past], '--', color='tab:blue', lw=1.2, label='projection (mapped rating)' if FIT else None)
+    ax2.fill_between(dates, lo, hi, color='tab:blue', alpha=.12, label='95% band' if FIT else None)
     for name, d in HZ:
         r, e = proj(days(d)); ax2.plot([d], [score(r)], 's', color='tab:red', ms=6)
         ax2.annotate(f'{name} ({d:%b %d}): {score(r):.1f}% [{score(r - e):.0f}-{score(r + e):.0f}]', (d, score(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
@@ -86,7 +91,7 @@ def draw(weeks, path):
     ax3.plot([d for d, _ in subs], [score_hi(R[p]) for _, p in subs], 'o', color='tab:purple', ms=5, zorder=3, label='submission')
     if cand: ax3.plot([d for d, _ in cand], [score_hi(R[p]) for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate')
     for d, p in subs: ax3.annotate(f"{p[3:]} ({sum(1 for b in rated if R[b] > R[p])})", (d, score_hi(R[p])), textcoords='offset points', xytext=(4, 5), fontsize=7)
-    ax3.plot(np.array(dates)[past], sh[past], '-', color='tab:purple', lw=1.2); ax3.plot(np.array(dates)[~past], sh[~past], '--', color='tab:purple', lw=1.2, label='projection (mapped rating)')
+    ax3.plot(np.array(dates)[past], sh[past], '-', color='tab:purple', lw=1.2); ax3.plot(np.array(dates)[~past], sh[~past], '--', color='tab:purple', lw=1.2, label='projection (mapped rating)' if FIT else None)
     for name, d in HZ:
         r, e = proj(days(d)); ax3.plot([d], [score_hi(r)], 's', color='tab:red', ms=6)
         ax3.annotate(f'{name}: {score_hi(r):.1f}% vs the {sum(1 for b in rated if R[b] > r)} above', (d, score_hi(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
@@ -97,8 +102,8 @@ def draw(weeks, path):
     ax4.plot([d for d, _ in subs], [rank_of(R[p]) for _, p in subs], 'o', color='tab:green', ms=5, zorder=3, label='submission')
     if cand: ax4.plot([d for d, _ in cand], [rank_of(R[p]) for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate')
     for d, p in subs: ax4.annotate(f"{p[3:]} #{rank_of(R[p])}", (d, rank_of(R[p])), textcoords='offset points', xytext=(4, -10), fontsize=7)
-    ax4.step(np.array(dates)[past], rk[past], '-', where='post', color='tab:green', lw=1.2); ax4.step(np.array(dates)[~past], rk[~past], '--', where='post', color='tab:green', lw=1.2, label='projection (mapped rating)')
-    ax4.fill_between(dates, rlo, rhi, step='post', color='tab:green', alpha=.12, label='95% band')
+    ax4.step(np.array(dates)[past], rk[past], '-', where='post', color='tab:green', lw=1.2); ax4.step(np.array(dates)[~past], rk[~past], '--', where='post', color='tab:green', lw=1.2, label='projection (mapped rating)' if FIT else None)
+    ax4.fill_between(dates, rlo, rhi, step='post', color='tab:green', alpha=.12, label='95% band' if FIT else None)
     for name, d in HZ:
         r, e = proj(days(d)); ax4.plot([d], [rank_of(r)], 's', color='tab:red', ms=6)
         ax4.annotate(f'{name}: #{rank_of(r)} of {len(rated) + 1}', (d, rank_of(r)), textcoords='offset points', xytext=(-8, -14), fontsize=8, ha='right', color='tab:red')
