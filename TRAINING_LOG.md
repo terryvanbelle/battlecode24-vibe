@@ -168,3 +168,7 @@ e2aggr + ENGAGE_MAX_THREAT 1 -> 2. Queued (q10) after the inert control gate (q9
   (src/bot defaults, TRAP_PLACEMENT_V2 off) **0-0**. The paired OPP harness is exact; src/bot is inert again.
 - Re-queued on the restored placement (q12, field blocks on the shared cells): e1aggr, e2aggr, c5bank (c4bank's
   bank settings without the new placement).
+
+### Iteration 5 — aggression dose: REJECT
+Clean field blocks (restored placement, shared cells): e1aggr 83/110 (4 gained, 5 lost), e2aggr 81/110 (3, 6)
+vs g_iter1 control 84/110. No dose response. The attack/heal gap vs top bots is a symptom, not a knob.
