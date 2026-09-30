@@ -37,7 +37,7 @@ public strictfp class G {
     }
 
     public static void endTurn() {
-        rc.setIndicatorString("bc" + maxBc / 1000 + "k o" + overruns + " x" + exceptions + " adv" + Micro.advances + " ft" + Duck.floatTraps + " ch" + Duck.chases + " " + note);
+        rc.setIndicatorString("bc" + maxBc / 1000 + "k o" + overruns + " x" + exceptions + " adv" + Micro.advances + " ft" + Duck.floatTraps + " ch" + Duck.chases + " rl" + Duck.relocs + " " + note);
     }
 
     /** xorshift; per-robot seeded from the id so identical code on both sides never shares a sequence. */

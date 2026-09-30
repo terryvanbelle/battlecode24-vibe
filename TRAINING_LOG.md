@@ -45,3 +45,12 @@ adv 3-125 per robot, ft 0 (bank now spent in fights), ch 0 (g_iter0 never carrie
 cannot see T1; the field can). 0 overruns, 0 exceptions, bytecode max 12k.
 Gate: paired mirror SPRT vs g_iter0 as a regression screen; the judge for T1 is the ladder (head-to-head
 block vs g_iter0's calibration band). Falsifier: ladder rating not above g_iter0's.
+
+### Iteration 1 — result: ACCEPT (g_iter1)
+
+- Mirror screen (paired SPRT vs g_iter0, gate1): ACCEPT 27-1 discordant after 48 pairs.
+- Field judge (same 55-bot field, two games each, random maps/sides): **g_iter1 1756 ± 88, rank 14 of 57,
+  field score 73.1%** (81-29) against g_iter0 1510 ± 78, rank 24, 51.5% (56-53). +246 Elo, far outside both
+  intervals. Losses before r600: 26 (g_iter0) -> 6 (g_iter1).
+- Lesson: the stack mixed a defect repair (standoff), a spend-the-float rule and a T1 defence (carrier chase);
+  attribution between them is open. Next: the T2 offence copy (flag relocation) as iteration 2.

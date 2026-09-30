@@ -50,12 +50,12 @@ public strictfp class Duck {
             }
             if (f.getTeam() == G.them) Comms.reportEnemyFlag(f);
             else if (enemies.length > 0) {
-                for (int i = 0; i < 3; i++) if (G.spawnCenters[i] != null && f.getLocation().distanceSquaredTo(G.spawnCenters[i]) <= 36) Comms.alertOurFlag(i);
+                for (int i = 0; i < 3; i++) { MapLocation h = Comms.flagHome(i); if (h != null && f.getLocation().distanceSquaredTo(h) <= 36) Comms.alertOurFlag(i); }
             }
         }
         // our flags: alert if enemies are near a home flag
         if (enemies.length > 0) for (int i = 0; i < 3; i++) {
-            MapLocation c = G.spawnCenters[i];
+            MapLocation c = Comms.flagHome(i);
             if (c != null && G.me.distanceSquaredTo(c) <= 20) Comms.alertOurFlag(i);
         }
     }
@@ -72,11 +72,11 @@ public strictfp class Duck {
     static void trySpawn() throws GameActionException {
         RobotController rc = G.rc;
         MapLocation want;
-        if (isDefender() || G.round <= 5) want = G.spawnCenters[G.idx % 3];
+        if (isDefender() || G.round <= 5) want = G.round <= 5 ? G.spawnCenters[G.idx % 3] : Comms.flagHome(homeFlag());
         else {
             int alerted = alertedFlag();
             MapLocation ch = carrierTarget(G.spawnCenters[G.idx % 3]);
-            want = ch != null ? ch : alerted >= 0 ? G.spawnCenters[alerted] : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
+            want = ch != null ? ch : alerted >= 0 ? Comms.flagHome(alerted) : fieldTargetFrom(G.spawnCenters[G.idx % 3]);
         }
         if (want == null) want = G.spawns[0];
         // try tiles nearest the wanted point first
@@ -101,7 +101,7 @@ public strictfp class Duck {
     // ------------------------------------------------------------------ setup phase
     static void setup() throws GameActionException {
         RobotController rc = G.rc;
-        if (isDefender()) { defend(); return; }
+        if (isDefender()) { if (C.RELOCATE_FLAGS && !placed) relocateFlag(); else defend(); return; }
         if (G.round < C.GATHER_ROUND) {
             MapLocation[] crumbs = rc.senseNearbyCrumbs(-1);
             MapLocation c = G.nearest(G.me, crumbs);
@@ -149,7 +149,8 @@ public strictfp class Duck {
 
     static void carryFlag() throws GameActionException {
         RobotController rc = G.rc;
-        if (G.round <= C.SETUP_ROUNDS) { // our own flag in setup: we never pick those up in iteration 0; drop it
+        if (G.round <= C.SETUP_ROUNDS) {    // our own flag in setup: only a relocating defender carries one
+            if (isDefender() && C.RELOCATE_FLAGS) { relocateFlag(); return; }
             if (rc.canDropFlag(G.me)) rc.dropFlag(G.me);
             return;
         }
@@ -167,7 +168,7 @@ public strictfp class Duck {
         MapLocation chase = carrierTarget(G.me);
         if (chase != null) { G.note = "chase"; return chase; }
         if (isDefender()) return defendTarget();
-        if (a >= 0 && G.me.distanceSquaredTo(G.spawnCenters[a]) <= 100) return G.spawnCenters[a];
+        if (a >= 0 && G.me.distanceSquaredTo(Comms.flagHome(a)) <= 100) return Comms.flagHome(a);
         // a visible dropped enemy flag
         for (FlagInfo f : flags) if (f.getTeam() == G.them && !f.isPickedUp()) return f.getLocation();
         // escort a friendly carrier we can see
@@ -217,8 +218,66 @@ public strictfp class Duck {
     }
 
     // ------------------------------------------------------------------ defence
-    static MapLocation defendTarget() {
-        return G.spawnCenters[homeFlag()];
+    static MapLocation defendTarget() throws GameActionException {
+        return Comms.flagHome(homeFlag());
+    }
+
+    static boolean placed;
+    static MapLocation flagTarget;
+    static int relocStall;
+
+    /** Target spots for our three flags: far from the enemy, 8+ apart (engine needs > 6). Deterministic, so all agree. */
+    static MapLocation relocTarget(int i) {
+        MapLocation[] ec = Sym.enemyCenters();
+        int ex = 0, ey = 0, n = 0;
+        for (MapLocation e : ec) if (e != null) { ex += e.x; ey += e.y; n++; }
+        ex /= Math.max(1, n); ey /= Math.max(1, n);
+        int step = Math.max(3, Math.max(G.W, G.H) / 12);          // at most ~144 grid points: bounded bytecode
+        int[] cx = new int[3], cy = new int[3];
+        for (int k = 0; k <= i; k++) {
+            int bx = -1, by = -1, bs = Integer.MIN_VALUE;
+            int sx = G.spawnCenters[k].x, sy = G.spawnCenters[k].y;
+            for (int x = 2; x < G.W - 2; x += step) for (int y = 2; y < G.H - 2; y += step) {
+                boolean ok = true;
+                for (int j = 0; j < k; j++) { int dx = cx[j] - x, dy = cy[j] - y; if (dx * dx + dy * dy < 64) { ok = false; break; } }
+                if (!ok) continue;
+                int dex = x - ex, dey = y - ey, dsx = x - sx, dsy = y - sy;
+                int sc = dex * dex + dey * dey - (dsx * dsx + dsy * dsy) / 2;   // far from the enemy, not far from our spawn
+                if (sc > bs) { bs = sc; bx = x; by = y; }
+            }
+            cx[k] = bx; cy[k] = by;
+        }
+        return cx[i] < 0 ? G.spawnCenters[i] : new MapLocation(cx[i], cy[i]);
+    }
+
+    static int relocs;
+
+    static void relocateFlag() throws GameActionException {
+        RobotController rc = G.rc;
+        int i = homeFlag();
+        G.note = "reloc";
+        if (!rc.hasFlag()) {
+            MapLocation c = G.spawnCenters[i];
+            if (G.round > 5 && G.me.distanceSquaredTo(c) > 2 && !rc.canSenseLocation(c)) { placed = true; return; }   // lost it: give up
+            if (rc.canPickupFlag(c)) { rc.pickupFlag(c); flagTarget = relocTarget(i); relocStall = 0; return; }
+            if (G.me.distanceSquaredTo(c) > 2) { Nav.moveTo(c); return; }
+            if (G.round > 20) placed = true;       // cannot pick it up: leave it at spawn
+            return;
+        }
+        if (flagTarget == null) flagTarget = relocTarget(i);
+        boolean there = G.me.distanceSquaredTo(flagTarget) <= 2;
+        int before = G.me.distanceSquaredTo(flagTarget);
+        if (!there && G.round < C.RELOC_DEADLINE) {
+            Nav.moveTo(flagTarget);
+            if (G.rc.getLocation().distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0;
+            if (relocStall < C.RELOC_STALL) return;
+        }
+        // drop here if the engine will accept it as a default location
+        if (rc.senseLegalStartingFlagPlacement(G.me) && rc.canDropFlag(G.me)) {
+            rc.dropFlag(G.me);
+            rc.writeSharedArray(Comms.OF_HOME + i, Comms.enc(G.me));
+            placed = true; relocs++;
+        } else Nav.moveTo(G.spawnCenters[i]);   // illegal spot: walk back toward spawn and try again
     }
 
     static int ringStep;

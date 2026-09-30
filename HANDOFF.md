@@ -2,10 +2,11 @@
 
 ## State (update at every accept)
 
-- Incumbent: **g_iter0** (foundation bot). Ladder grade: not yet rated.
-- In flight: blind compile of 73 benchmark repos (driver); VM start retries (zone exhausted).
-- Next: calibration block against every benchmark bot (two games each) once the VM is up; port the
-  block-study pipeline (`scrim-study`) to 2024 metric columns and re-enable `test_metrics.py`.
+- Incumbent: **g_iter1** — ladder 1756 ± 88, rank 14 of 57, field score 73.1% (110 games vs all 55 bots).
+- Previous: g_iter0 1510 ± 78, rank 24.
+- In flight: gate2 (VM, `gauntlet/gate2.log`): paired mirror SPRT, candidate = g_iter1 + setup flag relocation.
+- VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
+  its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 
 ## Gotchas
 

@@ -13,9 +13,10 @@ import battlecode.common.*;
  *   13..15   our flag i: current location when seen away from home (0 = at home / unknown)
  *   16       surviving map symmetries as a Sym bitmask (0 = not yet written = all three)
  *   17..19   our flag i: round an enemy was last seen carrying it (location in 13..15)
+ *   20..22   our flag i: home (default) location chosen in setup (0 = its spawn centre)
  */
 public strictfp class Comms {
-    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13, SYM = 16, OF_CARRY = 17;
+    public static final int IDX = 0, EF_ID = 1, EF_LOC = 4, EF_STATE = 7, OF_ALERT = 10, OF_LOC = 13, SYM = 16, OF_CARRY = 17, OF_HOME = 20;
 
     public static int enc(MapLocation m) { return m == null ? 0 : m.x * 64 + m.y + 1; }
     public static MapLocation dec(int v) { return v == 0 ? null : new MapLocation((v - 1) / 64, (v - 1) % 64); }
@@ -80,6 +81,12 @@ public strictfp class Comms {
         int r = G.rc.readSharedArray(OF_CARRY + i);
         if (r == 0 || G.round - r > fresh) return null;
         return dec(G.rc.readSharedArray(OF_LOC + i));
+    }
+
+    /** Home of our flag i: where it was placed in setup, else its spawn centre. */
+    public static MapLocation flagHome(int i) throws GameActionException {
+        MapLocation h = dec(G.rc.readSharedArray(OF_HOME + i));
+        return h != null ? h : G.spawnCenters[i];
     }
 
     public static void alertOurFlag(int i) throws GameActionException {
