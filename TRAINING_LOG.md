@@ -110,3 +110,12 @@ spawn more costly or the archetype shows spawn-held flags falling first.
   an offence doctrine.
 - arch_rush10 field block (10-duck squad + relay), identical cells: 84/110 = the g_iter1 control 84/110; game-by-
   game 7 flips each way, scattered by opponent: neutral. Kept as the sparring partner only, not shipped.
+
+## Defence against the rush partner (paired mirrors, OPP=arch_rush10, REF=g_iter1, SEED 777)
+
+- d1def2 (2 defenders per flag): **SPRT_REJECT 9-25** discordant after 80 pairs.
+- d2alert (alert radius dist2 400): **SPRT_REJECT 12-31** after 80 pairs.
+  Bodies pulled home cost more than they save (ADVICE: standing defences that cost no actions beat bodies).
+- Next (q7): d3fort (ring out to dist2 13, posts two tiles out on alternate laps, no crumb reserve; diagnostic
+  vs arch_rush10 DefaultSmall seed 3: 48 stun + 11 explosive by r200 vs ~15-24 before, 0 overruns) and a2reloc
+  (T2 relocation, neutral on the field, now priced against the rush it is meant to answer).

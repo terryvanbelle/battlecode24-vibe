@@ -1,4 +1,4 @@
-package bot;
+package d3fort;
 
 import battlecode.common.*;
 
