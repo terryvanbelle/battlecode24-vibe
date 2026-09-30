@@ -1,0 +1,15 @@
+# build artefacts
+build/
+.gradle/
+client/
+matches/
+logs/
+gauntlet/
+*.class
+tools/.venv/
+__pycache__/
+tools/.reexec-*
+# engine jars are built locally (tools/build-engine.sh)
+engine/
+# benchmark bots live outside the repo (see BENCHMARK.md); never commit their source
+diag/
