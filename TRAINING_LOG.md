@@ -452,3 +452,8 @@ dist2 36 of an enemy spawn centre. Counter `es`. (Also seen: arch_rush's relay i
 Step 5(a) vs arch_rush DefaultSmall s3 (same cell as b1v2): es fires; enemy re-grabs 1 vs 11, enemy first grabs 3
 vs 16; won by CAPTURE r1277 (3 captures) vs b1v2's level-sum game with 0. One game. Step 5(b) pre-registered as for
 z1hold: mean:enemyRegrabs<=6.4, mean:postPickups>=5.4; band test only on PASS.
+- b1z2 step 5(b): **FAIL** (enemyRegrabs mean 6.5 vs <= 6.4 pre-registered; our pickups 7.9 ok). Band test refused.
+  Not rescued by moving the bar. Fix: escorts were defined as within dist2 2 of the carrier, but a raider within
+  dist2 8 can step in and pick up in the same turn -> C.Z2_ESC_R2 = 8 (arm b1z2b). Step 5(a) vs arch_rush s3: es
+  fires; enemy re-grabs 4 (b1v2 11), our pickups 5; level-sum win. Same pre-registered checks for step 5(b).
+- Filler tally (b1v2 vs g_iter1): 2 seeds, 79 paired games, 6-6.
