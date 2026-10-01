@@ -106,6 +106,8 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(int(cap[0]['enemyCarrierKills']) == int(cap[1]['carrierDeaths']) and int(cap[1]['enemyCarrierKills']) == int(cap[0]['carrierDeaths']),
           'replay-dump --capabilities: one side\'s carrier kills are the other side\'s carrier deaths')
     check(all(0 <= float(c['meanAlive']) <= 50 for c in cap), 'replay-dump --capabilities: mean alive in [0,50]')
+    check(all(int(c['firstGrabs']) + int(c['regrabs']) + int(c['relayPickups']) == int(c['postPickups']) <= int(c['pickups']) for c in cap),
+          'replay-dump --capabilities: first grabs + re-grabs + relay pickups = post-setup pickups <= all pickups')
     r = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, '--nosuchflag'], capture_output=True, text=True)
     check(r.returncode != 0, 'replay-dump: unknown flags are hard errors')
 else:

@@ -381,3 +381,8 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
 | cohesion | 20-23, gr8 4-18 | refuted | - |
 | upgrade order heal/capture first | 22-26, 14-33 | refuted (ATTACK first is load-bearing) | - |
 | combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
+- Phase 0 instrumentation (part 1): `--capabilities` adds postPickups split into firstGrabs (flag taken from its
+  default spot), regrabs (after a carrier death) and relayPickups (after a voluntary drop), the mean distance of a
+  carrier's death from its own team's nearest spawn centre, and robots within 2 tiles of the dam at r199. Tested
+  (kinds sum to post-setup pickups). Examples: CyrilSharma (Islands) 5 first grabs + 5 re-grabs, carriers die ~19
+  tiles from their spawn; hsmalladi (DefaultSmall) 6 relay pickups of 12.
