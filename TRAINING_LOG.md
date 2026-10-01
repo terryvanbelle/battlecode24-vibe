@@ -186,3 +186,12 @@ the shared cells after t7water (q15).
 - T8 retreat dose: RETREAT_HP 500 -> 82/110 (4, 6), 700 -> 80/110 (3, 7) vs 300 (control) 84. A monotone dose
   response in the WRONG direction for the sustain hypothesis: more retreat is worse. Extending the ladder the other
   way: 150 (t8hp150), 0 (t8hp0, never retreat) queued (q16).
+- T8 ladder extended: RETREAT_HP 150 -> 83/110, 0 -> 85/110. Full ladder 0:85 150:83 300:84 500:82 700:80.
+
+## Instrument change (2026-10-01): the field judge moves to the rating band
+
+Since g_iter1 every arm has landed within +-4 games of 110 on the full-field cells; any two builds flip ~10 games
+each way, so the instrument resolves ~5 games and half of each block is spent on bots we always beat.
+TRAINING_ALGORITHM §6 already says pool = the band. New judge: the 20 bots nearest the incumbent's rating
+(`tools/band-20261001.txt`, from `elo.py --band 20 --as g_iter1_c2`), 120 games per seed, two seeds (SEED 515151
+and 616161), identical cells for every arm. Queued (q17): g_iter1 control, t7water, t8hp0, s1stack (both).
