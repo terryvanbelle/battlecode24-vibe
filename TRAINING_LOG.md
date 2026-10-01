@@ -215,3 +215,16 @@ kills 145-232, lost r1035. Paired mirrors vs g_iter1 queued (q18): m2g20, m2g60,
 | s1stack | 86 | 6-9 and 13-8 -> 19-17 |
 t7water over every cell so far (field + band): 27 gained, 19 lost, sign test p ~ 0.3: weak positive, below the
 provisional bar (p < 0.10). Two more band seeds for g_iter1 and t7water queued (q19). t8hp0 and the stack: closed.
+
+### Iteration 7 — micro v2: REJECT (closed)
+Paired mirrors vs g_iter1 (q18): m2g20 **SPRT_REJECT 1-25**, m2g60 **SPRT_REJECT 1-26** after 48 pairs. The
+lexicographic engage/kite micro is far better than this smooth scoring. Ledger: closed; re-open only with a new
+premise (e.g. a scored micro built from logged fight states, not hand weights).
+
+## Iteration 8 — T1 neutralization: a stun trap on the flag tile (queued)
+Survey (vs the top 12, our losses, 320 games): they pick up our flags 17 times a game (median), we pick up theirs 3;
+first pickups tie at ~r270. A stun trap triggers when an enemy enters a tile within dist2 2 of it, which is exactly
+the pickup range, so a stun trap ON the flag tile freezes the raider (cooldowns 40) at the moment of the grab.
+g_iter1 skipped the flag tile (dh == 0). C.FLAG_TILE_STUN: defenders build it first and rebuild it when it fires.
+Counter `fs`. Diagnostic vs arch_rush10 DefaultSmall seed 4: placed in round 1 by every defender, rebuilt later
+(fs2); partner pickups 8. Queued (q20): paired gate vs arch_rush10, then band seeds 515151 + 616161.

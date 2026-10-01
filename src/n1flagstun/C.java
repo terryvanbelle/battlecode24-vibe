@@ -1,4 +1,4 @@
-package bot;
+package n1flagstun;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -36,6 +36,6 @@ public strictfp class C {
     public static final boolean MICRO_V2 = false;       // structural swing (iteration 7): smooth tile scoring
     public static final int V2_HURT_HP = 300, V2_THREAT_HURT = 120, V2_THREAT_STRONG = 15, V2_THREAT_WEAK = 45;
     public static final int V2_SUPPORT = 6, V2_REACH = 100, V2_KILL = 60, V2_GOAL = 20;
-    public static final boolean FLAG_TILE_STUN = false; // T1 neutralization: keep a stun trap on each home flag tile (rebuilt when triggered)
+    public static final boolean FLAG_TILE_STUN = true;  // T1 neutralization: keep a stun trap on each home flag tile (rebuilt when triggered)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }
