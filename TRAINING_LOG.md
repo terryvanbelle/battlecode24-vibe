@@ -249,3 +249,11 @@ then 148 stun traps by r350 vs our 47; we triggered 130 of them. Correction afte
 HungerGames seed 4): our ducks do collect the centre crumbs by walking over them, and g_iter1 spends them at once
 (~80 traps in 25 rounds); the difference is that they bank the windfall and spend it over the fight. Arm t10crumbs
 (C.POST_SETUP_CRUMBS: idle ducks detour to visible crumbs after setup) queued on the band (2 seeds).
+- n1flagstun band seed 616161: 41 vs 39 (10 gained, 8 lost). Two seeds: 19 gained, 23 lost: **REJECT**.
+- t10crumbs band seed 515151: 41 vs 43 (9, 11). Second seed running.
+
+## Plateau escalation step 1 (2026-10-01): ablate what g_iter1 carries
+~16 arms since g_iter1 without an accept. TRAINING_ALGORITHM §4: ablate accepted features first (failure-mode
+preventers may be worth most, thin-margin features nothing). Band arms, 2 seeds each, queued (ablate4):
+ab1nodam (no dam-front traps), ab2noring (no flag trap ring), ab3nofloat (no idle-bank stun traps; doubles as the
+T10 "bank the windfall" arm), ab4nocombat (no combat stun traps).
