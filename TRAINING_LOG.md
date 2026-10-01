@@ -263,3 +263,13 @@ T10 "bank the windfall" arm), ab4nocombat (no combat stun traps).
 ## Plateau escalation step 2: mechanics sweep — global upgrade order
 g_iter1 buys ATTACK (r600) > HEALING (r1200) > CAPTURING (r1800). Arms (C.UPGRADE_ORDER): up1 healing first, up2
 capturing first (enemy-dropped flags return after 25 rounds, our carriers move at +12). Band, 2 seeds, queued.
+
+### Ablation results (band, seeds 515151 + 616161, paired vs the g_iter1 control)
+| removed from g_iter1 | gained-lost | reading |
+|---|---|---|
+| dam-front traps (ab1nodam) | 20-16 | ~0 (slight lean to removing) |
+| flag trap ring (ab2noring) | 20-19 | ~0 |
+| idle-bank stun traps (ab3nofloat) | 19-20 | ~0 |
+| combat stun traps (ab4nocombat) | 16-26 | **load-bearing** (p ~ 0.16) |
+Of g_iter1's trap habits only combat stun traps carry value; setup and bank traps are worth about nothing either way.
+- up1 (healing upgrade first) band seed 515151: 38 vs 43 (8, 13).
