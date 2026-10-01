@@ -493,3 +493,10 @@ If the bank guard fails, the next arm is a lower dose, not a looser bar.
   ducks spend 30 crumbs per tile. T4 is now blocked on C2 navigation (water-aware routing), not on the bank; a lower
   dose would not fix it. Not band-tested.
 - Filler tallies vs g_iter1: B1 (b1v2) 11 seeds 32-31 (+0.1 SE); B2 (b1z2b) 3 seeds 12-8 (+0.9 SE).
+
+## C2 navigation: avoidable fills (FILL_SMART) on B2
+Measurement first (counter in Nav.fillToward, B2 build b2meas vs g_iter1, DefaultMedium s4): 128 fills, of which 33
+(26%) had a free land step that did not lose distance to the target. Arm b2fs (C.FILL_SMART: take that step instead
+of filling). Step 5(a), same cell: fills 106 vs 128, crumbs200 2180 vs 1940, firstFlagSight r299 vs r330, inEnemy250
+24 vs 27, deaths 159 vs 247 (won vs lost). Step 5(b) pre-registered (BASE=b1z2b): rel:fills200<=0.9
+rel:crumbs200>=1.0 rel:inEnemy250>=0.9.

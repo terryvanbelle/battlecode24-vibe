@@ -1,4 +1,4 @@
-package bot;
+package b2meas;
 
 import battlecode.common.*;
 
