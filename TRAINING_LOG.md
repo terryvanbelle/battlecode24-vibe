@@ -419,3 +419,15 @@ Capability deltas (all cells): crumbs200 +4662 (23.4 SE), traps200 -42, fills200
 kills/deaths ~0. Block 1 v2 **ADVANCES to the stack as base B1** (own metric >= 2 SE, wins non-inferior). Not a new
 incumbent: that needs a power-sized test of the stack (~8 seeds). Next on B1: block 5 (fight traps on the freed bank),
 T4 retry (B1 bank condition met), flag-pressure lever from the Phase 0 census.
+
+## Block 4 (flag pressure) — Phase 0 decision and the z1hold arm on B1
+Phase 0 census of g_iter1 band games vs the beaters (333 games, means per game): their post-setup pickups 20.9 =
+first grabs 7.2 + **re-grabs after a carrier death 9.8** + relay pickups 3.9; ours 5.4 = 4.4 + 1.0 + 0. Their carrier
+deaths 14.5 per game, ~23.5 tiles from their own spawn (mid-field, not at their spawn). Dam staging at r199: us 41.9,
+them 38.1 (at par). Decision rule (TACTIC_LEVELS §3 block 4): deaths do not cluster at their spawn; re-grabs >= 30% of
+first grabs -> arm z1hold: when our flag lies dropped within dist2 20, ducks converge on it and target enemies in
+pickup range of it right after carriers. Counter `zh` (indicator compacted: dead counters dropped).
+Step 5(a): vs arch_rush10 (DefaultSmall s4) it never picked up our flags: no chance to fire, games identical (not a
+valid diagnostic). Vs arch_rush (s3): zh fires; their re-grabs 13 vs 11 (b1v2), first grabs 10 vs 16, our pickups 12
+vs 24 (the hold pulls bodies home). One game. Step 5(b) pre-registered: mean:enemyRegrabs<=6.4 (control 9.19 on band
+games, -30%), mean:postPickups>=5.4 (control 7.74, guard). New census columns enemyRegrabs, enemyFirstGrabs.

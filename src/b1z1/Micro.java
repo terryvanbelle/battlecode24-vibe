@@ -1,4 +1,4 @@
-package bot;
+package b1z1;
 
 import battlecode.common.*;
 
