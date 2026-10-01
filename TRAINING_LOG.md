@@ -322,3 +322,16 @@ the flag nearest our spawn centroid), with the relay on. Diagnostic fl10 vs g_it
 r1771, first capture r296, 84 pickups vs 11, kills 457-226**, 0 overruns. Dose arms fl6/fl10/fl15 on the band (flank).
 - gr4 seed 2: 11-12 -> two seeds 20-23. gr8 seed 1: **4-18**. Cohesion hurts in proportion to how hard it is
   enforced: tempo and spread win flags (consistent with T12). Closed.
+
+## Basic-capability census (owner prompt 56, 2026-10-01)
+New reader mode `--capabilities` (crumbs gathered by r200/r400, first round in enemy territory, robots in the enemy
+half at r250/r300, first enemy-flag sighting, pickups, captures, carrier deaths/rounds/moves, enemy carriers killed,
+traps built/hit, mean alive) and tools/capability-census.sh / capability-summary.py. 700 g_iter1 games
+(research/CAPABILITY_CENSUS.md). A first-pass bug (carrier deaths always 0: the flag's drop event precedes the death
+record) was caught by a number looking odd and fixed, with invariant tests.
+Vs the 15 bots that beat us: fights roughly even (212-220 in our losses); robots in the enemy half at r250 **10 vs
+24** (flips to 18 vs 13 in our wins); first enemy-flag sighting r271 vs r232; pickups 4 vs 17; capture rate 0.06 vs
+0.13; we kill their carriers 11 times a game, they kill ours 3; crumbs gathered by r400 3900 vs 4950.
+Workflow wf_7819c1e0-5b6 (12 decomposers, 3 method designers, synthesis, 3 adversarial critics, revision) is
+classifying the 12 tactics as elementary vs infrastructure-heavy against these numbers.
+- fl10 band seed 616161: 13-10 -> two seeds 20-23 (neutral). fl6 seed 515151: 7-11.

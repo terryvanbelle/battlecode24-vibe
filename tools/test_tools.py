@@ -100,6 +100,12 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     m = dump('--map-at', '300').splitlines()
     check(len(m) == 1 + 31 and all(len(l) == 3 + 31 for l in m[1:]), 'replay-dump: board is 31x31 with row labels')
     check(not any(l.startswith('r') and ' digs ' in l for l in s.splitlines()), 'replay-dump: the summary prints no events (actor -1 is not the default --robot)')
+    cap = list(csv.DictReader(dump('--capabilities').splitlines()))
+    check(len(cap) == 2 and all(int(c['captured']) + int(c['carrierDeaths']) <= int(c['pickups']) for c in cap),
+          'replay-dump --capabilities: captures + carrier deaths never exceed pickups')
+    check(int(cap[0]['enemyCarrierKills']) == int(cap[1]['carrierDeaths']) and int(cap[1]['enemyCarrierKills']) == int(cap[0]['carrierDeaths']),
+          'replay-dump --capabilities: one side\'s carrier kills are the other side\'s carrier deaths')
+    check(all(0 <= float(c['meanAlive']) <= 50 for c in cap), 'replay-dump --capabilities: mean alive in [0,50]')
     r = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, '--nosuchflag'], capture_output=True, text=True)
     check(r.returncode != 0, 'replay-dump: unknown flags are hard errors')
 else:
