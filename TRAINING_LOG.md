@@ -195,3 +195,13 @@ each way, so the instrument resolves ~5 games and half of each block is spent on
 TRAINING_ALGORITHM §6 already says pool = the band. New judge: the 20 bots nearest the incumbent's rating
 (`tools/band-20261001.txt`, from `elo.py --band 20 --as g_iter1_c2`), 120 games per seed, two seeds (SEED 515151
 and 616161), identical cells for every arm. Queued (q17): g_iter1 control, t7water, t8hp0, s1stack (both).
+
+## Iteration 7 (structural swing, in progress) — micro v2: smooth tile scoring
+
+C.MICRO_V2 (off in src/bot): one score per tile: +100 reach (+60 if the reachable enemy dies to one hit),
+-threat weight per enemy within dist2 10 (120 hurt / 15 strong / 45 weak), +6 per ally within dist2 8, approach
+when ready, back off when not, pull toward the carrier and (when strong) toward the field objective (V2_GOAL per
+tile); targeting: a kill this turn, then carriers, then lowest HP.
+Diagnostics vs g_iter1 DefaultSmall seed 4 (single games, filters only): no objective pull -> kills 125-49 but
+0 flag pickups, lost on captures r966; pull 20 -> kills 304-233, pickups 2 vs 29, lost on flag count; pull 60 ->
+kills 145-232, lost r1035. Paired mirrors vs g_iter1 queued (q18): m2g20, m2g60, 96 pairs each.

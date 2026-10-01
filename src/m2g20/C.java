@@ -1,4 +1,4 @@
-package bot;
+package m2g20;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -33,7 +33,7 @@ public strictfp class C {
     public static final int ENGAGE_MAX_THREAT = 1;      // engage when weaker only if at most this many enemies threaten the tile
     public static final boolean TRAP_PLACEMENT_V2 = false; // iteration-4 placement (nearest-to-centroid tile); read 18-32 vs the rush partner as an unintended 'inert' control
     public static final boolean WATER_WHEN_WEAK = false; // T7 adoption: combat trap is a water trap when allies+1 < enemies in vision
-    public static final boolean MICRO_V2 = false;       // structural swing (iteration 7): smooth tile scoring
+    public static final boolean MICRO_V2 = true;        // structural swing (iteration 7): smooth tile scoring
     public static final int V2_HURT_HP = 300, V2_THREAT_HURT = 120, V2_THREAT_STRONG = 15, V2_THREAT_WEAK = 45;
     public static final int V2_SUPPORT = 6, V2_REACH = 100, V2_KILL = 60, V2_GOAL = 20;
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
