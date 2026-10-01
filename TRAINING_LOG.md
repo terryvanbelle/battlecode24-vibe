@@ -412,3 +412,10 @@ rule 13. The running b1v2 band job (started 17:44, no delivery check) was stoppe
     inEnemy250 27 vs 14, firstFlagSight r330 vs r594, kills 214-150, 0 overruns. Fires.
 (b) Pre-registered delivery checks: median:traps200<=6, median:crumbs200>=1500, median:fills200>=20 (bank target
     1500, not 2500: fills spend part of it by design). Band test only if (b) passes (queued as one job).
+(b) Delivery gate: **PASS** (24 band games: traps200 median 0, crumbs200 4780, fills200 65.5).
+Band test (seeds 515151, 616161), paired vs the g_iter1 control: wins **24 gained, 20 lost (+4, non-inferior)**.
+Capability deltas (all cells): crumbs200 +4662 (23.4 SE), traps200 -42, fills200 +7 (fills preserved), stun400 +10
+(10 SE), **inEnemy250 +3.05 (5.7 SE; +3.40 on beater cells)**, captured +0.12 (1.8 SE), gathered400 +37 (0.4 SE),
+kills/deaths ~0. Block 1 v2 **ADVANCES to the stack as base B1** (own metric >= 2 SE, wins non-inferior). Not a new
+incumbent: that needs a power-sized test of the stack (~8 seeds). Next on B1: block 5 (fight traps on the freed bank),
+T4 retry (B1 bank condition met), flag-pressure lever from the Phase 0 census.

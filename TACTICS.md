@@ -38,7 +38,7 @@ outcome of who wins the fight?), (2) payoff graph (count below-par root capabili
 | T1 | undetermined (composite on the graph) | C11 presence in the enemy half, C12 force division; signature is an outcome | cheap layer only | inEnemy250 >= 18 vs beaters, carrier deaths/pickup <= 0.70, first grabs against us down a third |
 | T2 | intermediate | C10b flag pressure (every uncarried flag is broadcast within dist2 100, so hiding cannot delay raiders) | completed, no effect (engine) | a home defence that works away from spawn exists |
 | T3 | composite | C11, flag pressure, path-distance navigation | defective: 219 drops per capture vs their 3-7 (dropper likely re-picks its own drop) | Phase 3: sparing hand-off, path distance |
-| T4 | intermediate | setup crumb budget | starved: median 0 digs | block 1 base reached (crumbs200 >= 2500) |
+| T4 | intermediate | setup crumb budget (**now at par on B1**: crumbs200 median 4780) | starved: median 0 digs | **condition met on B1** — retry next, delivery-gated |
 | T5 | composite | setup budget, C11 | starved: bank gone by r250 | blocks 1, 3, 5 |
 | T6 | symptom (retired) | attack/heal mix follows fight state | - | - |
 | T7 | intermediate | setup budget (an additive moat needs crumbs) | wrong usage: we replaced a stun with a volume moat; beaters place a fixed 3-4 | block 1 base + usage trace |
