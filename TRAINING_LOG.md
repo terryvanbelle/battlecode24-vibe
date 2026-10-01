@@ -257,3 +257,9 @@ HungerGames seed 4): our ducks do collect the centre crumbs by walking over them
 preventers may be worth most, thin-margin features nothing). Band arms, 2 seeds each, queued (ablate4):
 ab1nodam (no dam-front traps), ab2noring (no flag trap ring), ab3nofloat (no idle-bank stun traps; doubles as the
 T10 "bank the windfall" arm), ab4nocombat (no combat stun traps).
+- t10crumbs band seed 616161: 40 vs 39 (12, 11). Two seeds 21 gained, 22 lost: **REJECT**.
+- ab1nodam band seed 515151: 42 vs 43 (9, 10).
+
+## Plateau escalation step 2: mechanics sweep — global upgrade order
+g_iter1 buys ATTACK (r600) > HEALING (r1200) > CAPTURING (r1800). Arms (C.UPGRADE_ORDER): up1 healing first, up2
+capturing first (enemy-dropped flags return after 25 rounds, our carriers move at +12). Band, 2 seeds, queued.
