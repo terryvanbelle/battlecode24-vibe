@@ -294,3 +294,4 @@ C.ATTACKER_TENTHS: ducks with idx%10 below it never heal. Diagnostic sp5 vs g_it
 masters vs 0, won on flags. Dose arms sp3/sp5/sp7, band 2 seeds each (specialise), after combattraps.
 - ct1 (combat trap from 2 enemies): 8-12 and 12-10 -> 20-22. ct2 (from 1, no reserve): 7-11 and 9-7 -> 16-18.
   Quantity of combat traps is not the lever (they are load-bearing at the current amount).
+- ct3 (combat trap toward the nearest enemy): 5-13 and 10-10 -> 15-23: worse; the centroid aim stays.
