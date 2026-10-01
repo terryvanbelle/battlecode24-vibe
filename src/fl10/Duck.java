@@ -1,4 +1,4 @@
-package bot;
+package fl10;
 
 import battlecode.common.*;
 

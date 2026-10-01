@@ -310,3 +310,13 @@ penalty keep resetting attack XP), and fewer healers means more deaths and a low
 C.GROUP_MIN: outside combat after setup, a duck with fewer than GROUP_MIN allies in view moves to the centroid of
 the visible allies instead of pushing (not defenders, carriers or chasers). Arms gr4, gr8 on the band (cohesion).
 Diagnostic gr8 vs g_iter1 DefaultMedium seed 4: won on level sum r2000, 0 pickups vs 15 (maybe too passive).
+- gr4 band seed 515151: 9-11.
+
+## T12 (traced 2026-10-01) — flank raid on a lightly held flag
+Survey vs the 16 that beat us: kills 224 vs deaths 226 (fights even), but they pick up our flags 17 times a game to
+our 4, and they reach r200 with ~2720 crumbs (us 195), ~1 setup trap (us 27), no explosives. Traced CyrilSharma on
+Islands at its first pickup (r275): the armies fight centre-left while a column of ~8 raiders comes from the east to
+our top flag (few defenders there); another group probes the bottom flag.
+Adoption arm: C.RUSH_FLANK — the rush squad targets the enemy flag farthest from the army's target (the army takes
+the flag nearest our spawn centroid), with the relay on. Diagnostic fl10 vs g_iter1 Islands seed 4: **won by CAPTURE
+r1771, first capture r296, 84 pickups vs 11, kills 457-226**, 0 overruns. Dose arms fl6/fl10/fl15 on the band (flank).

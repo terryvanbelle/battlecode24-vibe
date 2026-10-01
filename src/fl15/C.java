@@ -1,4 +1,4 @@
-package bot;
+package fl15;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -21,11 +21,11 @@ public strictfp class C {
     public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
-    public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
+    public static final boolean RELAY = true;           // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
-    public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
+    public static final int RUSHERS = 15;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
     public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
     public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
     public static final int TRAP_ENEMY_DIST2 = 20;      // combat trap only with an enemy this close (iteration 0: any in vision)
@@ -42,6 +42,6 @@ public strictfp class C {
     public static final boolean TRAP_TOWARD_NEAREST = false; // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
     public static final int ATTACKER_TENTHS = 0;         // specialisation: ducks with idx%10 below this never heal (attack mastery)
     public static final int GROUP_MIN = 0;               // cohesion: push only with this many allies in view, else regroup (0 = off)
-    public static final boolean RUSH_FLANK = false;     // T12 adoption: rushers raid the enemy flag farthest from the army's target
+    public static final boolean RUSH_FLANK = true;      // T12 adoption: rushers raid the enemy flag farthest from the army's target
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }
