@@ -172,3 +172,7 @@ e2aggr + ENGAGE_MAX_THREAT 1 -> 2. Queued (q10) after the inert control gate (q9
 ### Iteration 5 — aggression dose: REJECT
 Clean field blocks (restored placement, shared cells): e1aggr 83/110 (4 gained, 5 lost), e2aggr 81/110 (3, 6)
 vs g_iter1 control 84/110. No dose response. The attack/heal gap vs top bots is a symptom, not a knob.
+- c5bank (clean bank settings): 82/110 vs control 84 (4 gained, 6 lost): banking alone is neutral.
+- c6pair (bank + combat stun from 1 enemy, no reserve) diagnostic DefaultMedium seed 4: bank only 560 at r200
+  because 77 fills (~2300 crumbs) still happen above the 500 reserve; 19 setup traps. Field block running (q13).
+- T7 adoption arm t7water (combat trap = water trap when allies+1 < enemies) queued after it (q14).

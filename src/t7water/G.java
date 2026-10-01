@@ -1,4 +1,4 @@
-package bot;
+package t7water;
 
 import battlecode.common.*;
 
