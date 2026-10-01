@@ -320,3 +320,5 @@ our top flag (few defenders there); another group probes the bottom flag.
 Adoption arm: C.RUSH_FLANK — the rush squad targets the enemy flag farthest from the army's target (the army takes
 the flag nearest our spawn centroid), with the relay on. Diagnostic fl10 vs g_iter1 Islands seed 4: **won by CAPTURE
 r1771, first capture r296, 84 pickups vs 11, kills 457-226**, 0 overruns. Dose arms fl6/fl10/fl15 on the band (flank).
+- gr4 seed 2: 11-12 -> two seeds 20-23. gr8 seed 1: **4-18**. Cohesion hurts in proportion to how hard it is
+  enforced: tempo and spread win flags (consistent with T12). Closed.
