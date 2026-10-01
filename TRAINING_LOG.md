@@ -457,3 +457,13 @@ z1hold: mean:enemyRegrabs<=6.4, mean:postPickups>=5.4; band test only on PASS.
   dist2 8 can step in and pick up in the same turn -> C.Z2_ESC_R2 = 8 (arm b1z2b). Step 5(a) vs arch_rush s3: es
   fires; enemy re-grabs 4 (b1v2 11), our pickups 5; level-sum win. Same pre-registered checks for step 5(b).
 - Filler tally (b1v2 vs g_iter1): 2 seeds, 79 paired games, 6-6.
+- b1z2b step 5(b): **FAIL** (enemyRegrabs mean 9.2 vs <= 6.4; our pickups 6.7 ok). Band test refused.
+
+### Instrument fix: paired delivery checks (2026-10-01, pre-registered BEFORE any re-run)
+The absolute bar (arm mean on 24 cells vs the band-wide g_iter1 mean 9.19) was (1) noisy: per-game re-grabs vary so
+a 24-game mean has SE ~1.6, so a 30% cut is ~1.7 SE and b1z2 6.5 / b1z2b 9.2 on the same cells are within noise of
+each other; (2) the wrong comparison: the z-arms are built on B1 (b1v2), not g_iter1. New: delivery-gate BASE=<bot>
+plays the base's mini-block on the same seed once (cached) and `rel:` checks compare arm vs base cell by cell
+(delivery-check.py, tested). Pre-registered for the escort arms, decided now, before the runs:
+`rel:enemyRegrabs<=0.7 rel:postPickups>=0.8` with BASE=b1v2. Both b1z2 and b1z2b are re-gated under it; the band test
+runs only on PASS. The earlier absolute FAILs stand in the log.

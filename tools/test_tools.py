@@ -123,6 +123,10 @@ with tempfile.TemporaryDirectory() as d:
     check('delivery zz: PASS' in r.stdout and os.path.exists(os.path.join(d, 'gauntlet', 'delivery-zz.PASS')), 'delivery-check: median and fire checks pass on our rows only: ' + r.stdout + r.stderr)
     r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zy', 'fire:digs200>0>=0.9', c, sv, 'run'], cwd=d, capture_output=True, text=True)
     check('delivery zy: FAIL' in r.stdout and os.path.exists(os.path.join(d, 'gauntlet', 'delivery-zy.FAIL')), 'delivery-check: a 67% fire rate fails a 90% bar')
+    bc = os.path.join(d, 'bc.csv'); bs = os.path.join(d, 'bs.csv')
+    open(bc, 'w').write('file,opp,us,team,crumbs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n'); open(bs, 'w').write('file,opp,us,team,digs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n')
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zr', 'rel:digs200<=0.7', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
+    check('delivery zr: PASS' in r.stdout and '2 shared cells' in r.stdout, 'delivery-check rel: arm 2.5 vs base 10 on the 2 shared cells passes <=0.7: ' + r.stdout)
 r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
 check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
 
