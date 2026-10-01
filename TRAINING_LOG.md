@@ -176,3 +176,13 @@ vs g_iter1 control 84/110. No dose response. The attack/heal gap vs top bots is 
 - c6pair (bank + combat stun from 1 enemy, no reserve) diagnostic DefaultMedium seed 4: bank only 560 at r200
   because 77 fills (~2300 crumbs) still happen above the 500 reserve; 19 setup traps. Field block running (q13).
 - T7 adoption arm t7water (combat trap = water trap when allies+1 < enemies) queued after it (q14).
+- c6pair field block: 82/110 vs control 84 (4 gained, 6 lost): the bank+spend pair is neutral too.
+
+## Iteration 6 (queued) — T8 sustain: retreat threshold dose ladder
+Survey: 10 of the 16 bots that beat us heal more than they attack by r400. Knob: C.RETREAT_HP (below it a duck
+minimises threat and backs toward allies/healers): 300 (g_iter1) -> 500 (t8hp500) -> 700 (t8hp700). Field blocks on
+the shared cells after t7water (q15).
+- t7water (T7 adoption: water trap when outnumbered): 85/110 vs control 84 (6 gained, 5 lost): neutral.
+- T8 retreat dose: RETREAT_HP 500 -> 82/110 (4, 6), 700 -> 80/110 (3, 7) vs 300 (control) 84. A monotone dose
+  response in the WRONG direction for the sustain hypothesis: more retreat is worse. Extending the ladder the other
+  way: 150 (t8hp150), 0 (t8hp0, never retreat) queued (q16).
