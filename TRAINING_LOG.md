@@ -472,3 +472,12 @@ runs only on PASS. The earlier absolute FAILs stand in the log.
   b1z2b band test running. Note: b1z2b's arm mini-block re-played on the same cells read 9.2 before and 4.83 now
   (engine seeds differ per play): the single-mean bar was noise; paired is the right instrument.
 - Filler tally (b1v2 vs g_iter1): 6 seeds, 238 paired games, 12-18 (-1.1 SE).
+
+### b1z2b (escort-first, radius 8) on the band — ADVANCES to the stack as B2
+Wins (2 seeds): vs its base b1v2 17 gained, 18 lost (non-inferior); vs g_iter1 22-19. Own metric vs b1v2, paired on
+234 band cells: **opponent re-grabs -4.79 +- 0.64 (-7.5 SE; base 11.15)**, opponent pickups -5.0 (-4.8 SE), opponent
+first grabs -0.2 (n.s.), **opponent captures +0.01 (n.s.)**, our kills -24 (-1.2 SE), inEnemy250 ~0. Advances under
+the two-tier rule (own metric >= 2 SE, wins non-inferior). Caveat recorded: fewer re-grabs did not yet turn into
+fewer captures against us; the flag-pressure root is not closed. Stack: B2 = b1v2 + Z2ESCORT (radius 8).
+Filler now plays g_iter1, b1v2 and b1z2b on each seed (tally per candidate). B1 tally so far: 7 seeds, 278 paired
+games, 14-22 (-1.3 SE).
