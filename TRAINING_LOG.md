@@ -292,3 +292,5 @@ Kuma shows the same cap; jonters.bling3 has 20 attack masters. The upgrade-order
 strong lever (capture-first 14-33).
 C.ATTACKER_TENTHS: ducks with idx%10 below it never heal. Diagnostic sp5 vs g_iter1 DefaultSmall seed 4: 22 attack
 masters vs 0, won on flags. Dose arms sp3/sp5/sp7, band 2 seeds each (specialise), after combattraps.
+- ct1 (combat trap from 2 enemies): 8-12 and 12-10 -> 20-22. ct2 (from 1, no reserve): 7-11 and 9-7 -> 16-18.
+  Quantity of combat traps is not the lever (they are load-bearing at the current amount).
