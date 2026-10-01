@@ -442,3 +442,13 @@ task check (CLAUDE.md rule 14); (4) scrim.sh RUNTAG tags filler runs (*-fill<see
 - z1hold delivery gate (24 band games): **FAIL**: enemy re-grabs mean 9.0 (target <= 6.4), our pickups 5.2 (guard
   >= 5.4). band-test.sh refused; no ladder time spent. Next: trace why ducks do not stop re-grabs within the 4-round
   window (do they reach the dropped flag in time?).
+
+### Block 4 v2 — escort-first targeting (b1z2)
+Trace of a z1hold delivery loss (CyrilSharma, ORV): every time we kill their carrier an adjacent raider re-picks the
+flag within 1-5 rounds (r252 -> r253, r255 -> r257, r261 -> r262, captured r313): the pack always has an escort in
+pickup range, so converging on the dropped flag (z1hold) cannot work. Lever: targeting. C.Z2ESCORT: when an enemy
+carrier is in view with escorts within dist2 2, hit an escort in range first (lowest HP), unless the carrier is within
+dist2 36 of an enemy spawn centre. Counter `es`. (Also seen: arch_rush's relay is the predicted dropper-re-picks defect.)
+Step 5(a) vs arch_rush DefaultSmall s3 (same cell as b1v2): es fires; enemy re-grabs 1 vs 11, enemy first grabs 3
+vs 16; won by CAPTURE r1277 (3 captures) vs b1v2's level-sum game with 0. One game. Step 5(b) pre-registered as for
+z1hold: mean:enemyRegrabs<=6.4, mean:postPickups>=5.4; band test only on PASS.
