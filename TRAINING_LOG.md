@@ -335,3 +335,13 @@ Vs the 15 bots that beat us: fights roughly even (212-220 in our losses); robots
 Workflow wf_7819c1e0-5b6 (12 decomposers, 3 method designers, synthesis, 3 adversarial critics, revision) is
 classifying the 12 tactics as elementary vs infrastructure-heavy against these numbers.
 - fl10 band seed 616161: 13-10 -> two seeds 20-23 (neutral). fl6 seed 515151: 7-11.
+
+### T12 flank-raid adoption: REJECT (dose curve)
+| raiders | gained-lost, 2 band seeds |
+|---|---|
+| 6 (fl6) | 19-21 |
+| 10 (fl10) | 20-23 |
+| 15 (fl15) | see below; seed 1 2-16 |
+A raid squad bolted onto g_iter1 does not pay, and taking 15 ducks from the main army costs heavily. The opponents'
+flank raids presumably rest on other capabilities (a main army that holds with fewer bodies; twice our presence in
+the enemy half): consistent with the owner's hypothesis (prompt 56).
