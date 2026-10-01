@@ -487,3 +487,9 @@ Step 5(a) vs b1z2b, DefaultMedium s4: digs200 92 vs 0 (fires), level200 5 vs 0, 
 (no build-4 cap); but crumbs200 190 vs 1970 (92 digs ~1840 crumbs): the dose eats B1's bank. Won on level sum.
 Step 5(b) pre-registered (BASE=b1z2b): fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1 rel:crumbs200>=0.5.
 If the bank guard fails, the next arm is a lower dose, not a looser bar.
+- b2dig5 step 5(b): **FAIL**. digs fire 92%, level200 15.7 (ok); but fills200 118 vs base 74 (+44 +- 9) and
+  crumbs200 1133 vs 4940. Mechanism: our Nav fills water whenever the direct step and its two neighbours are blocked
+  (Nav.fillToward) instead of taking the diagonal detours a checkerboard leaves open, so our own digging makes our own
+  ducks spend 30 crumbs per tile. T4 is now blocked on C2 navigation (water-aware routing), not on the bank; a lower
+  dose would not fix it. Not band-tested.
+- Filler tallies vs g_iter1: B1 (b1v2) 11 seeds 32-31 (+0.1 SE); B2 (b1z2b) 3 seeds 12-8 (+0.9 SE).
