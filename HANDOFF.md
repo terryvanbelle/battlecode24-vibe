@@ -8,6 +8,9 @@
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 
+- VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
+  `gauntlet/queue-runner.log`); idle filler = a 120-game band block of the incumbent on a random seed.
+
 ## Gotchas
 
 - 2024 replays have no robot stdout; use indicator strings (64 chars, first fields survive truncation).

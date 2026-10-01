@@ -231,3 +231,10 @@ Counter `fs`. Diagnostic vs arch_rush10 DefaultSmall seed 4: placed in round 1 b
 - t7water band seeds 3-4 (717171, 818181): 10-15 and 12-4. Over 4 band seeds: wins 175/480 vs control 165/480;
   paired 43 gained, 33 lost; with the field block 49-38, sign test p ~ 0.24. Lean positive, below the provisional
   bar (p < 0.10). Kept off; candidate to stack with the next change that clears its gate.
+
+## Throughput audit (owner question, 2026-10-01)
+VM /proc/stat since boot (12.6 h): user+system ~70%, idle ~29%, steal <1%. During runs the 8 vCPUs are saturated
+(7 games, load ~19, idle < 5% in a 1-minute sample), so more parallel games would not help; the loss is idle time
+between runs (results collected and recorded on the driver, launches waiting for a task check, 30 s polling loops,
+batch tails). Fix: a standing queue on the VM (tools/vm-queue.sh, tools/vm-enqueue.sh) with an idle filler (band
+blocks of the incumbent on random seeds, which also tighten its rating). Smoke-tested live.
