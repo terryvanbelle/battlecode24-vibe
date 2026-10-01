@@ -278,3 +278,7 @@ Of g_iter1's trap habits only combat stun traps carry value; setup and bank trap
 Combat stun traps are load-bearing (ablation 16-26); top bots out-trap us in fights and we trigger more of theirs
 (53 vs 32 by r400). Arms on the g_iter1 base, band 2 seeds each (combattraps): ct1 STUN_ENEMIES_MIN 3 -> 2;
 ct2 -> 1 with TRAP_RESERVE 0; ct3 aim at the nearest enemy (the one about to step in) instead of the centroid.
+- Upgrade order: up1 (healing first) 22-26 over 2 seeds; up2 (capturing first) seed 1 4-15. ATTACK first stays.
+- up2 (capturing first) seed 2: 10-18; total **14-33 (p ~ 0.005)**: buying ATTACK first is worth a lot. The most
+  significant reading of the plateau: the attack upgrade is a strong lever (it cannot be bought before r600).
+- ct1 (combat traps from 2 enemies) seed 1: 8-12.
