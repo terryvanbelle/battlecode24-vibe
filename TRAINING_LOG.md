@@ -398,3 +398,17 @@ arrival and flag sighting ~40 rounds later, ~1400 fewer crumbs gathered by r400,
 on post-dam fills anyway. Setup fills are C2 infrastructure, not waste. Hint idling (block 2) was not costing
 anything measurable: closed. Next: b1v2 = no setup traps (dam + ring) and the paced floor, fills unrestricted (queued).
 New tool: tools/arm-deltas.py (paired deltas with SE per capability column, all and beater cells).
+
+## Process correction (owner prompts 66-67, 2026-10-01)
+The owner flagged that arms went to ladder/band tests without reproducing the intended behaviour. Correct: step 5
+(Diagnose) had shrunk to "one game where a counter fires", and 10 of 11 adoption arms were judged on wins without
+delivering. Now enforced in tools: tools/delivery-gate.sh (24-cell mini-block, census + survey, pre-registered
+checks -> gauntlet/delivery-<arm>.PASS/FAIL, logic in tools/delivery-check.py, unit-tested) and tools/band-test.sh
+(refuses without PASS; override only with a written NO_DELIVERY_REASON). TRAINING_ALGORITHM §3 step 5, CLAUDE.md
+rule 13. The running b1v2 band job (started 17:44, no delivery check) was stopped by PID.
+
+### b1v2 (block 1 v2: no setup traps, paced floor, fills unrestricted) — step 5
+(a) Logged diagnostic vs g_iter1, DefaultMedium seed 4: traps200 0 vs 26, crumbs200 1940 vs 75, fills200 112 vs 62,
+    inEnemy250 27 vs 14, firstFlagSight r330 vs r594, kills 214-150, 0 overruns. Fires.
+(b) Pre-registered delivery checks: median:traps200<=6, median:crumbs200>=1500, median:fills200>=20 (bank target
+    1500, not 2500: fills spend part of it by design). Band test only if (b) passes (queued as one job).

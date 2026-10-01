@@ -46,8 +46,12 @@ change aimed at the field; a single seeded game is a filter, never a verdict.
    displaces); which instrument decides; gate; falsifier; for numeric changes a dose ladder with a
    byte-identical zero arm.
 4. **Implement** one change. Tests pass. Zero overruns in a logged game.
-5. **Diagnose**: one logged game where the mechanism can fire, read against the incumbent on the same
-   seed. No gate starts until the counter fires at roughly the claimed rate.
+5. **Diagnose — no shortcuts** (owner, PROMPTS 66-67): (a) one logged game where the mechanism can fire, read
+   against the incumbent on the same seed; then (b) a delivery mini-block (`tools/delivery-gate.sh`, ~24 random band
+   cells) showing the arm produces the pre-registered behaviour: the mechanism fires in >= 90% of games and the
+   signature reaches its target (for a copied tactic, >= 50% of the gap to the opponents'). No band test, mirror gate
+   or ladder block starts until (b) passes; `tools/band-test.sh` refuses without the PASS file. A failed delivery is
+   fixed and re-diagnosed, or the arm is dropped and logged as not delivered; it is never judged on wins.
 6. **Gate** (§5). ACCEPT, REJECT, or PROVISIONAL.
 7. **On accept**: snapshot; archetype regression; ladder block(s) as a submission; post-block
    (record, refit, charts, study); update TACTICS, ledger, handoff; commit explicit paths; push.

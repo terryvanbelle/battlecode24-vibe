@@ -113,5 +113,18 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
 else:
     print('test_tools: replay fixture or engine missing, replay-dump checks skipped')
 
+# --- delivery gate: the checker passes/fails correctly; band-test.sh refuses without a PASS file
+with tempfile.TemporaryDirectory() as d:
+    c = os.path.join(d, 'c.csv'); sv = os.path.join(d, 's.csv')
+    open(c, 'w').write('file,opp,us,team,crumbs200\nf1,o,1,A,3000\nf1,o,0,B,10\nf2,o,1,A,2000\nf3,o,1,B,4000\n')
+    open(sv, 'w').write('file,opp,us,team,digs200\nf1,o,1,A,5\nf2,o,1,A,0\nf3,o,1,B,7\n')
+    os.makedirs(os.path.join(d, 'gauntlet'))
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zz', 'median:crumbs200>=2500 fire:digs200>0>=0.6', c, sv, 'run'], cwd=d, capture_output=True, text=True)
+    check('delivery zz: PASS' in r.stdout and os.path.exists(os.path.join(d, 'gauntlet', 'delivery-zz.PASS')), 'delivery-check: median and fire checks pass on our rows only: ' + r.stdout + r.stderr)
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zy', 'fire:digs200>0>=0.9', c, sv, 'run'], cwd=d, capture_output=True, text=True)
+    check('delivery zy: FAIL' in r.stdout and os.path.exists(os.path.join(d, 'gauntlet', 'delivery-zy.FAIL')), 'delivery-check: a 67% fire rate fails a 90% bar')
+r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
+check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

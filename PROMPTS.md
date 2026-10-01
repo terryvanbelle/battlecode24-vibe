@@ -279,3 +279,11 @@ task check
 ## 65. 2026-10-01
 
 task check
+
+## 66. 2026-10-01
+
+I'm a bit concerned to hear that so many times you failed to reproduce the enemy's tactics, but went ahead with a ladder test anyways.  I thought your approach required you to reproduce the behavior you wanted in a test game before committing resources to the idea
+
+## 67. 2026-10-01
+
+From now on, make sure you honor Step 3.5 in TRAINING_ALGORITHM, and don't make any shortcuts
