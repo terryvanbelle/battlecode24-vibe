@@ -386,3 +386,15 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
   carrier's death from its own team's nearest spawn centre, and robots within 2 tiles of the dam at r199. Tested
   (kinds sum to post-setup pickups). Examples: CyrilSharma (Islands) 5 first grabs + 5 re-grabs, carriers die ~19
   tiles from their spawn; hsmalladi (DefaultSmall) 6 relay pickups of 12.
+
+### Phase 1 blocks — first readings (band, 2 seeds, paired capability deltas via tools/arm-deltas.py)
+| arm | wins gained-lost | key capability deltas vs control (all cells) |
+|---|---|---|
+| b12 (budget + hint) | 12-25 | crumbs200 +5398 (27.7 SE), traps200 -42, fills200 -51, gathered400 -1455 (-6.8 SE), firstFlagSight +15, kills -61 (-2.7 SE) |
+| b2hint (hint sweep) | 21-25 | firstFlagSight -1 +- 10 (no change), everything else ~0 |
+| b1budget (budget) | 16-26 | crumbs200 +5409, gathered400 -1373 (-6.6 SE), firstFlagSight **+40 (3.0 SE later)**, kills -60 (-2.6 SE), crumbs250 only +32 |
+Reading: the budget block delivered its signature (bank at r200) but cutting setup FILLS broke navigation over water:
+arrival and flag sighting ~40 rounds later, ~1400 fewer crumbs gathered by r400, worse fights; and the bank drained
+on post-dam fills anyway. Setup fills are C2 infrastructure, not waste. Hint idling (block 2) was not costing
+anything measurable: closed. Next: b1v2 = no setup traps (dam + ring) and the paced floor, fills unrestricted (queued).
+New tool: tools/arm-deltas.py (paired deltas with SE per capability column, all and beater cells).
