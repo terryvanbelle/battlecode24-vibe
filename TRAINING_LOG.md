@@ -238,3 +238,14 @@ VM /proc/stat since boot (12.6 h): user+system ~70%, idle ~29%, steal <1%. Durin
 between runs (results collected and recorded on the driver, launches waiting for a task check, 30 s polling loops,
 batch tails). Fix: a standing queue on the VM (tools/vm-queue.sh, tools/vm-enqueue.sh) with an idle filler (band
 blocks of the incumbent on random seeds, which also tighten its rating). Smoke-tested live.
+
+### Iteration 8 — flag-tile stun (T1 neutralization)
+- Paired gate vs arch_rush10 (q20): SPRT_INCONCLUSIVE 20-25 after 96 pairs. Band seed 515151: 37 vs control 43
+  (9 gained, 15 lost). Second seed running; heading for REJECT.
+
+### T10 (new tactic, traced 2026-10-01) — the centre crumb windfall
+NotLLeon on HungerGames: bank 2590 at r200 -> 17950 at r225 (the map holds 22,200 crumbs, many behind the dam),
+then 148 stun traps by r350 vs our 47; we triggered 130 of them. Correction after a diagnostic (t10crumbs vs g_iter1,
+HungerGames seed 4): our ducks do collect the centre crumbs by walking over them, and g_iter1 spends them at once
+(~80 traps in 25 rounds); the difference is that they bank the windfall and spend it over the fight. Arm t10crumbs
+(C.POST_SETUP_CRUMBS: idle ducks detour to visible crumbs after setup) queued on the band (2 seeds).

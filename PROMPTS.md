@@ -167,3 +167,7 @@ Just want to double check:  Are you fully utilizing all the VM's CPUs?  Is there
 ## 37. 2026-10-01
 
 OK, that's fine.  Just wanted to check that all the cores are engaged during a run
+
+## 38. 2026-10-01
+
+task check

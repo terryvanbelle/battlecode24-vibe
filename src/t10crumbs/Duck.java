@@ -1,4 +1,4 @@
-package bot;
+package t10crumbs;
 
 import battlecode.common.*;
 
