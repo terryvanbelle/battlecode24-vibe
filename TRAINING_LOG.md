@@ -295,3 +295,18 @@ masters vs 0, won on flags. Dose arms sp3/sp5/sp7, band 2 seeds each (specialise
 - ct1 (combat trap from 2 enemies): 8-12 and 12-10 -> 20-22. ct2 (from 1, no reserve): 7-11 and 9-7 -> 16-18.
   Quantity of combat traps is not the lever (they are load-bearing at the current amount).
 - ct3 (combat trap toward the nearest enemy): 5-13 and 10-10 -> 15-23: worse; the centroid aim stays.
+
+### Iteration 10 — specialisation: REJECT (closed)
+| attackers (never heal) | gained-lost vs control, 2 band seeds |
+|---|---|
+| 30% (sp3) | 19-22 |
+| 50% (sp5) | 18-17 |
+| 70% (sp7) | 12-30 |
+In real band games attackers reach mastery only partly (4-13 of 25 in two kuma losses: deaths and the jail
+penalty keep resetting attack XP), and fewer healers means more deaths and a lower level sum. Healing is valuable
+(also T8); closed.
+
+## Iteration 11 (queued) — army cohesion
+C.GROUP_MIN: outside combat after setup, a duck with fewer than GROUP_MIN allies in view moves to the centroid of
+the visible allies instead of pushing (not defenders, carriers or chasers). Arms gr4, gr8 on the band (cohesion).
+Diagnostic gr8 vs g_iter1 DefaultMedium seed 4: won on level sum r2000, 0 pickups vs 15 (maybe too passive).

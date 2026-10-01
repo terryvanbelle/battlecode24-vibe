@@ -1,4 +1,4 @@
-package bot;
+package gr8;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -41,6 +41,6 @@ public strictfp class C {
     public static final int UPGRADE_ORDER = 0;           // 0 attack>heal>capture (g_iter1), 1 heal first, 2 capture first
     public static final boolean TRAP_TOWARD_NEAREST = false; // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
     public static final int ATTACKER_TENTHS = 0;         // specialisation: ducks with idx%10 below this never heal (attack mastery)
-    public static final int GROUP_MIN = 0;               // cohesion: push only with this many allies in view, else regroup (0 = off)
+    public static final int GROUP_MIN = 8;               // cohesion: push only with this many allies in view, else regroup (0 = off)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }
