@@ -63,6 +63,10 @@ Sources, used in turn so none dries up:
   it, tested against our own adopted copy.
 - **Block census**: earliest-onset metric that separates wins from losses, stratified by opponent.
 - **Capability gap**: unused API methods, unused mechanics, cross-year principles.
+- **Tactic levels** (research/TACTIC_LEVELS.md, TL-1): a copied tactic is armed only if it is elementary, or if its
+  below-par root capability is already at par; every arm first passes a delivery mini-block (~20 cells: the mechanism
+  fires in >= 90% of games and our signature closes >= 50% of the gap to the opponents'). Otherwise build the root
+  capabilities first, each gated on its own early metric measured against a same-block control.
 
 Balance: after 3 consecutive rejects in one functional area, leave it. At least one structural swing
 in every 4 attempts, and immediately when the ladder is flat for 5 accepts. Plateau escalation, in

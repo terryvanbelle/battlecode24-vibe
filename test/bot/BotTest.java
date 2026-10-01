@@ -61,6 +61,10 @@ public class BotTest {
 
         G.W = 40; G.spawnCenters = new MapLocation[]{new MapLocation(3, 3), new MapLocation(3, 15), new MapLocation(10, 3)};
         check(Comms.ourFlagIndex(3 + 15 * 40) == 1 && Comms.ourFlagIndex(7) == -1, "comms: flag id -> our flag index via spawn centre location index");
+        // block-1 bank floor: 0 when off; with C.BUDGET_V1 it would be "no discretionary spend in setup" then paced down
+        G.round = 150; check(C.BUDGET_V1 || G.bankFloor() == 0, "bank floor: 0 when BUDGET_V1 is off");
+        check(C.BANK_FLOOR0 - (C.SETUP_ROUNDS + 1000 - C.SETUP_ROUNDS) * C.BANK_PACE <= 0, "bank floor: pacing reaches 0 well before the round cap");
+
         // constants: the near-miss bar sits below the limit; gather happens inside setup
         check(C.NEAR_MISS_BC < GameConstants.BYTECODE_LIMIT, "const: near-miss below the limit");
         check(C.GATHER_ROUND < C.SETUP_ROUNDS && C.SETUP_ROUNDS == GameConstants.SETUP_ROUNDS, "const: gather inside setup; setup length matches engine");

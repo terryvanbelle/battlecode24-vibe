@@ -1,4 +1,4 @@
-package bot;
+package b2hint;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -43,7 +43,7 @@ public strictfp class C {
     public static final int ATTACKER_TENTHS = 0;         // specialisation: ducks with idx%10 below this never heal (attack mastery)
     public static final int GROUP_MIN = 0;               // cohesion: push only with this many allies in view, else regroup (0 = off)
     public static final boolean RUSH_FLANK = false;     // T12 adoption: rushers raid the enemy flag farthest from the army's target
-    public static final boolean HINT_SWEEP = false;      // block 2: sweep the dist2-100 disc of a broadcast hint instead of idling on it
+    public static final boolean HINT_SWEEP = true;       // block 2: sweep the dist2-100 disc of a broadcast hint instead of idling on it
     public static final boolean BUDGET_V1 = false;      // block 1: no discretionary spending in setup, paced floor after
     public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 3;
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision

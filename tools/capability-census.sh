@@ -6,11 +6,11 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT="${1:?out.csv}"; shift
 "$REPO/tools/replay-dump.sh" "$REPO/test/fixtures/example-DefaultSmall-s1.bc24" --capabilities > /dev/null   # compile once
-one () {
+one () {   # MODE=--survey for the tactic features instead
   f="$1"; b=$(basename "$f" .bc24); opp=${b%%__*}; side=${b##*bot}
-  nice -n 19 "$REPO/tools/replay-dump.sh" "$f" --capabilities 2>/dev/null | tail -n +2 | awk -F, -v f="$f" -v o="$opp" -v s="$side" '{print f","o","($1==s?1:0)","$0}'
+  nice -n 19 "$REPO/tools/replay-dump.sh" "$f" ${MODE:---capabilities} 2>/dev/null | tail -n +2 | awk -F, -v f="$f" -v o="$opp" -v s="$side" '{print f","o","($1==s?1:0)","$0}'
 }
 export -f one; export REPO
-{ echo "file,opp,us,$("$REPO/tools/replay-dump.sh" "$REPO/test/fixtures/example-DefaultSmall-s1.bc24" --capabilities | head -1)"
+{ echo "file,opp,us,$("$REPO/tools/replay-dump.sh" "$REPO/test/fixtures/example-DefaultSmall-s1.bc24" ${MODE:---capabilities} | head -1)"
   for d in "$@"; do ls "$d"/losses/*.bc24 "$d"/replays/*.bc24 2>/dev/null; done | xargs -P "${P:-3}" -I{} bash -c 'one {}'; } > "$OUT"
 echo "census: $(( $(wc -l < "$OUT") - 1 )) rows -> $OUT"

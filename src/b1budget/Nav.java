@@ -1,4 +1,4 @@
-package bot;
+package b1budget;
 
 import battlecode.common.*;
 

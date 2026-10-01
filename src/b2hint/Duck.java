@@ -1,4 +1,4 @@
-package bot;
+package b2hint;
 
 import battlecode.common.*;
 

@@ -345,3 +345,39 @@ classifying the 12 tactics as elementary vs infrastructure-heavy against these n
 A raid squad bolted onto g_iter1 does not pay, and taking 15 ducks from the main army costs heavily. The opponents'
 flank raids presumably rest on other capabilities (a main army that holds with fewer bodies; twice our presence in
 the enemy half): consistent with the owner's hypothesis (prompt 56).
+
+## Tactic levels (owner prompt 56) — result and the new programme
+Workflow wf_7819c1e0-5b6 (20 agents, 3 adversarial critiques) -> research/TACTIC_LEVELS.md (raw outputs:
+research/tactic-levels-workflow.json). Answer: tactics can be graded, by TL-1 (symptom screen -> payoff graph of
+below-par root capabilities -> delivery mini-block). None of the 12 is elementary; T4, T7 (root: setup crumb budget)
+and T2 (root: flag pressure) are intermediate; T3, T5, T10 composite; T6, T8, T9 symptoms (retired); T1, T11, T12
+undetermined. 10 of 11 Adoption arms never reproduced the opponents' state, so the ~25 neutral readings say little
+about the tactics. Roots shared across tactics: setup crumb budget (bank 175 vs 2909 at r200 vs beaters), C11 presence
+in the enemy half (10 vs 24 at r250), flag pressure (pickups 4 vs 17).
+Defects found by the decomposers: (a) ducks idle at a broadcast hint (the hint is up to dist2 100 from the flag,
+vision is 20; redrawn every 100 rounds); (b) the relay likely lets the dropper re-pick its own drop (219 drops per
+capture); (c) Sym.observe is never called; (d) the T10 detour only runs with no enemy in view.
+Programme: Phase 0 instrumentation; Phase 1 blocks 1 (setup budget + paced floor, C.BUDGET_V1) and 2 (hint sweep,
+C.HINT_SWEEP); Phase 2 C11 presence, flag-pressure defence, fight traps on the freed bank; Phase 3 carrier protection.
+Diagnostic b12 (both blocks) vs g_iter1 DefaultMedium seed 4: crumbs200 5240 vs 75, traps200 0 vs 25, fills200 2 vs
+65, inEnemy250 23 vs 0, firstFlagSight r244 vs r331, kills 256-193; crumbs250 210 (spent on combat traps), 0 overruns.
+Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and survey of their replays.
+
+### Closed-directions ledger (2026-10-01; re-open conditions per research/TACTIC_LEVELS.md)
+| direction | measurement | kind | re-open when |
+|---|---|---|---|
+| flag relocation (T2 adoption) | 81 vs 84/110; 20-21 vs arch_rush10 | completed, engine-blocked | home defence away from spawn works |
+| relay (T3) | 81 vs 84/110 | defective implementation | sparing hand-off with path distance (Phase 3) |
+| setup digging (T4) | 84, 82 vs 84/110 | starved (median 0 digs) | block 1 base |
+| bank + spend (T5) | c5bank 82, c6pair 82 vs 84/110 | starved | blocks 1, 3, 5 |
+| aggression (T6) | e1 83, e2 81 vs 84 | symptom | - |
+| water instead of stun (T7) | 175 vs 165/480 (p~0.24) | wrong usage | additive moat on block 1 base |
+| retreat threshold (T8) | flat <= 300, worse above | symptom | - |
+| more defenders / wider alert / fortress / flag-tile stun | 9-25, 12-31, 16-29, 19-23 | refuted (bodies/traps at the flag) | a stated difference from all four |
+| crumb detour (T10) | 21-22 | not reproduced | blocks 1 and 3 |
+| specialisation (T11) | 19-22, 18-17, 12-30 | different mechanism | XP-gated specialist with a beater source |
+| flank squad (T12) | 19-21, 20-23, 10-26 | cheap layer only | Phase 4 |
+| micro v2 (smooth scoring) | 1-25, 1-26 | refuted | a scored micro built from logged fight states |
+| cohesion | 20-23, gr8 4-18 | refuted | - |
+| upgrade order heal/capture first | 22-26, 14-33 | refuted (ATTACK first is load-bearing) | - |
+| combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
