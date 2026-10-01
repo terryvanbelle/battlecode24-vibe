@@ -205,3 +205,13 @@ tile); targeting: a kill this turn, then carriers, then lowest HP.
 Diagnostics vs g_iter1 DefaultSmall seed 4 (single games, filters only): no objective pull -> kills 125-49 but
 0 flag pickups, lost on captures r966; pull 20 -> kills 304-233, pickups 2 vs 29, lost on flag count; pull 60 ->
 kills 145-232, lost r1035. Paired mirrors vs g_iter1 queued (q18): m2g20, m2g60, 96 pairs each.
+
+### Band verdicts (q17, 20 band bots, seeds 515151 + 616161, 240 games per build)
+| build | wins/240 | paired vs control (gained-lost) |
+|---|---|---|
+| g_iter1 (control) | 84 | - |
+| t7water | 91 | 8-7 and 13-7 -> 21-14 |
+| t8hp0 | 82 | 7-9 and 10-10 -> 17-19 |
+| s1stack | 86 | 6-9 and 13-8 -> 19-17 |
+t7water over every cell so far (field + band): 27 gained, 19 lost, sign test p ~ 0.3: weak positive, below the
+provisional bar (p < 0.10). Two more band seeds for g_iter1 and t7water queued (q19). t8hp0 and the stack: closed.
