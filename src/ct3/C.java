@@ -1,4 +1,4 @@
-package bot;
+package ct3;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -39,6 +39,6 @@ public strictfp class C {
     public static final boolean FLAG_TILE_STUN = false; // T1 neutralization: keep a stun trap on each home flag tile (rebuilt when triggered)
     public static final boolean POST_SETUP_CRUMBS = false; // T10 adoption: after setup, idle ducks pick up visible crumbs (g_iter1 never does)
     public static final int UPGRADE_ORDER = 0;           // 0 attack>heal>capture (g_iter1), 1 heal first, 2 capture first
-    public static final boolean TRAP_TOWARD_NEAREST = false; // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
+    public static final boolean TRAP_TOWARD_NEAREST = true;  // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

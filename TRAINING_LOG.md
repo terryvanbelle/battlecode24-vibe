@@ -273,3 +273,8 @@ capturing first (enemy-dropped flags return after 25 rounds, our carriers move a
 | combat stun traps (ab4nocombat) | 16-26 | **load-bearing** (p ~ 0.16) |
 Of g_iter1's trap habits only combat stun traps carry value; setup and bank traps are worth about nothing either way.
 - up1 (healing upgrade first) band seed 515151: 38 vs 43 (8, 13).
+
+## Iteration 9 (queued) — push on the one load-bearing trap habit
+Combat stun traps are load-bearing (ablation 16-26); top bots out-trap us in fights and we trigger more of theirs
+(53 vs 32 by r400). Arms on the g_iter1 base, band 2 seeds each (combattraps): ct1 STUN_ENEMIES_MIN 3 -> 2;
+ct2 -> 1 with TRAP_RESERVE 0; ct3 aim at the nearest enemy (the one about to step in) instead of the centroid.
