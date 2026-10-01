@@ -9,7 +9,8 @@
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
-  `gauntlet/queue-runner.log`); idle filler = a 120-game band block of the incumbent on a random seed.
+  `gauntlet/queue-runner.log`); idle filler = `tools/filler-pair.sh g_iter1 b1v2 40` (paired seeds, the stack's
+  acceptance test), collected with `tools/collect-fillers.sh` at every task check.
 
 ## Gotchas
 

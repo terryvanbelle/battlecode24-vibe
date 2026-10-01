@@ -126,5 +126,15 @@ with tempfile.TemporaryDirectory() as d:
 r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
 check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
 
+# --- filler-tally: pairs cells of control and candidate runs on the same filler seed
+with tempfile.TemporaryDirectory() as d:
+    fake = os.path.join(d, 'tools'); os.makedirs(fake); open(os.path.join(fake, 'filler-tally.py'), 'w').write(open(os.path.join(HERE, 'filler-tally.py')).read())
+    hdr = 'opponent,map,bot_side,winner_side,rounds,bot_result,reason,seed\n'
+    for bot, res in (('ctl', ['win', 'loss', 'loss']), ('cand', ['win', 'win', 'loss'])):
+        rd = os.path.join(d, 'gauntlet', f'20260101-000000-scrim-{bot}-fill77'); os.makedirs(rd)
+        open(os.path.join(rd, 'results.csv'), 'w').write(hdr + ''.join(f'o{i},M,A,A,9,{r},x,1\n' for i, r in enumerate(res)))
+    out = subprocess.run([sys.executable, os.path.join(fake, 'filler-tally.py'), 'ctl', 'cand'], capture_output=True, text=True).stdout
+    check('1 seeds, 3 paired games, gained 1, lost 0, net +1' in out, 'filler-tally: one discordant pair in the candidate\'s favour: ' + out)
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

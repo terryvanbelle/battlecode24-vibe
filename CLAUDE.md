@@ -24,3 +24,7 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     between runs; the queue and filler remove that gap.
 13. **TRAINING_ALGORITHM §3 step 5 is mandatory, no shortcuts** (PROMPTS 66-67): no band test, gate or ladder block
     for an arm until its delivery mini-block passes (`tools/delivery-gate.sh`; `tools/band-test.sh` refuses otherwise).
+14. **Idle filler = the stack's paired acceptance test** (PROMPTS 73): queue/filler.job runs `tools/filler-pair.sh
+    g_iter1 <stack> 40` (both builds on the same fresh seed, with census). At every task check run
+    `tools/collect-fillers.sh g_iter1 <stack>`: it records new filler runs in the ladder and prints the running paired
+    tally. Update the filler's candidate whenever the stack changes.

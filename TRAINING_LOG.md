@@ -431,3 +431,14 @@ Step 5(a): vs arch_rush10 (DefaultSmall s4) it never picked up our flags: no cha
 valid diagnostic). Vs arch_rush (s3): zh fires; their re-grabs 13 vs 11 (b1v2), first grabs 10 vs 16, our pickups 12
 vs 24 (the hold pulls bodies home). One game. Step 5(b) pre-registered: mean:enemyRegrabs<=6.4 (control 9.19 on band
 games, -30%), mean:postPickups>=5.4 (control 7.74, guard). New census columns enemyRegrabs, enemyFirstGrabs.
+
+## Idle filler redesigned (owner prompt 73)
+Audit: 17 filler blocks (~2000 games of g_iter1) had been played and none recorded; the post-block step was manual.
+Now: (1) all 20 unrecorded g_iter1 band/filler runs recorded -> **g_iter1 1853 +- 20 over 2350 games**; (2) the filler
+plays g_iter1 and the current stack (b1v2) on the SAME fresh seed, 40 games each, with census
+(tools/filler-pair.sh), so idle time accumulates the stack's power-sized paired test (~8 seeds x 120 = 960 games);
+(3) tools/collect-fillers.sh records them and prints the running tally (tools/filler-tally.py, tested), run at every
+task check (CLAUDE.md rule 14); (4) scrim.sh RUNTAG tags filler runs (*-fill<seed>).
+- z1hold delivery gate (24 band games): **FAIL**: enemy re-grabs mean 9.0 (target <= 6.4), our pickups 5.2 (guard
+  >= 5.4). band-test.sh refused; no ladder time spent. Next: trace why ducks do not stop re-grabs within the 4-round
+  window (do they reach the dropped flag in time?).

@@ -55,5 +55,5 @@ for _ in range(n):
     print(o, random.choice(maps), random.choice("AB"))
 PY
 echo "scrim block: bot=$BOT n=$N seed=$SEED pool=[$POOL]"
-SCRIM=1 KEEP_ALL=1 CELLS="$CELLS" BOT="$BOT" TAG="scrim-$BOT" MAXJOBS="$MAXJOBS" "$REPO/tools/gauntlet.sh"   # KEEP_ALL: wins are studied too (PROMPTS 43)
+SCRIM=1 KEEP_ALL=1 CELLS="$CELLS" BOT="$BOT" TAG="scrim-$BOT${RUNTAG:+-$RUNTAG}" MAXJOBS="$MAXJOBS" "$REPO/tools/gauntlet.sh"   # KEEP_ALL: wins are studied too (PROMPTS 43)
 rm -f "$CELLS"
