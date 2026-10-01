@@ -481,3 +481,9 @@ the two-tier rule (own metric >= 2 SE, wins non-inferior). Caveat recorded: fewe
 fewer captures against us; the flag-pressure root is not closed. Stack: B2 = b1v2 + Z2ESCORT (radius 8).
 Filler now plays g_iter1, b1v2 and b1z2b on each seed (tally per candidate). B1 tally so far: 7 seeds, 278 paired
 games, 14-22 (-1.3 SE).
+
+## T4 retry on B2 (b2dig5: SETUP_DIGS 5, DIG_RESERVE 1000)
+Step 5(a) vs b1z2b, DefaultMedium s4: digs200 92 vs 0 (fires), level200 5 vs 0, fills200 111 vs 111, build mastery 0
+(no build-4 cap); but crumbs200 190 vs 1970 (92 digs ~1840 crumbs): the dose eats B1's bank. Won on level sum.
+Step 5(b) pre-registered (BASE=b1z2b): fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1 rel:crumbs200>=0.5.
+If the bank guard fails, the next arm is a lower dose, not a looser bar.
