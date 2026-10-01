@@ -282,3 +282,13 @@ ct2 -> 1 with TRAP_RESERVE 0; ct3 aim at the nearest enemy (the one about to ste
 - up2 (capturing first) seed 2: 10-18; total **14-33 (p ~ 0.005)**: buying ATTACK first is worth a lot. The most
   significant reading of the plateau: the attack upgrade is a strong lever (it cannot be bought before r600).
 - ct1 (combat traps from 2 enemies) seed 1: 8-12.
+
+## Iteration 10 (queued) — skill specialisation (engine mechanic found by reading the code)
+Engine (InternalRobot.incrementSkill): once any skill reaches level 4, the others stop gaining XP past level 3.
+New reader mode `--levels`: in g_iter1's long games ~40 of our 50 ducks reach HEAL mastery first, so attack is
+capped at level 3 (165 damage, ~18 cooldown) instead of up to level 6 (240 damage, ~8 cooldown: ~2.9x the damage
+per turn). Our ducks average ~180 attacks in a long game, enough for level 6 (150 XP) if heal did not cap them.
+Kuma shows the same cap; jonters.bling3 has 20 attack masters. The upgrade-order sweep also says damage is a
+strong lever (capture-first 14-33).
+C.ATTACKER_TENTHS: ducks with idx%10 below it never heal. Diagnostic sp5 vs g_iter1 DefaultSmall seed 4: 22 attack
+masters vs 0, won on flags. Dose arms sp3/sp5/sp7, band 2 seeds each (specialise), after combattraps.

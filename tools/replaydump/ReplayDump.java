@@ -75,7 +75,7 @@ public class ReplayDump {
     // ---- options
     static int every = 0, metricsEvery = 0, from = -1, to = -1, robot = Integer.MIN_VALUE, mapAt = -1;   // robot: MIN_VALUE = none (water-trap digs have actor id -1)
     static Pattern logs = null; static int logTeam = 0;
-    static boolean bytecode = false, navstats = false, flagsMode = false, summary = true, survey = false;
+    static boolean bytecode = false, navstats = false, flagsMode = false, summary = true, survey = false, levelsMode = false;
     // --survey: per-team tactic features (TACTICS.md survey, tools/tactics-survey.py)
     static int[] sOwnFlagPickupsSetup = new int[3], sDigs200 = new int[3], sFills200 = new int[3], sTraps200 = new int[3],
             sCrumbs200 = new int[3], sCrumbs250 = new int[3], sLevel200 = new int[3], sFirstPickup = new int[3], sDrops = new int[3],
@@ -103,6 +103,7 @@ public class ReplayDump {
                 case "--navstats": navstats = true; summary = false; break;
                 case "--flags": flagsMode = true; summary = false; break;
                 case "--survey": survey = true; summary = false; break;
+                case "--levels": levelsMode = true; summary = false; break;
                 case "--summary": summary = true; break;
                 default: System.err.println("unknown flag " + a); System.exit(2);   // unknown flags are hard errors
             }
@@ -426,6 +427,17 @@ public class ReplayDump {
                         + sDigs200[t] + "," + sFills200[t] + "," + sTraps200[t] + "," + sCrumbs200[t] + "," + sCrumbs250[t] + "," + sLevel200[t] + "," + sDefend300[t] + ","
                         + sAtk400[t] + "," + sHeals400[t] + "," + sTraps400[t][0] + "," + sTraps400[t][1] + "," + sTraps400[t][2] + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + sUpgrades[t]);
             }
+        }
+        if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot
+            Map<String, Integer> hist = new TreeMap<>(); int n = 0, atk4 = 0, heal4 = 0, build4 = 0, atkSum = 0, healSum = 0;
+            for (Map.Entry<Integer, int[]> e : levels.entrySet()) {
+                if (team.getOrDefault(e.getKey(), 0) != t) continue;
+                int[] l = e.getValue(); n++; atkSum += l[0]; healSum += l[2];
+                if (l[0] >= 4) atk4++; if (l[2] >= 4) heal4++; if (l[1] >= 4) build4++;
+                hist.merge("a" + l[0] + "b" + l[1] + "h" + l[2], 1, Integer::sum);
+            }
+            out.printf("levels %s: robots=%d meanAtk=%.2f meanHeal=%.2f atkMastery=%d healMastery=%d buildMastery=%d  %s%n", tname(t), n,
+                    n > 0 ? (double) atkSum / n : 0.0, n > 0 ? (double) healSum / n : 0.0, atk4, heal4, build4, hist);
         }
         if (bytecode) for (int t = 1; t <= 2; t++)
             out.printf("bytecode %s: max=%d mean=%.0f turnsAtLimit=%d turnsNear90=%d turns=%d%n", tname(t), maxBc[t],
