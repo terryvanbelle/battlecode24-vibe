@@ -467,3 +467,8 @@ plays the base's mini-block on the same seed once (cached) and `rel:` checks com
 (delivery-check.py, tested). Pre-registered for the escort arms, decided now, before the runs:
 `rel:enemyRegrabs<=0.7 rel:postPickups>=0.8` with BASE=b1v2. Both b1z2 and b1z2b are re-gated under it; the band test
 runs only on PASS. The earlier absolute FAILs stand in the log.
+- Paired re-gates (BASE b1v2 mini-block, 24 shared cells): b1z2 **FAIL** (re-grabs 5.38 vs 8.25 ok; our pickups
+  5.50 vs 7.88 below the 0.8 guard); b1z2b **PASS** (re-grabs 4.83 vs 8.25, -3.42 +- 2.07; our pickups 6.92 vs 7.88).
+  b1z2b band test running. Note: b1z2b's arm mini-block re-played on the same cells read 9.2 before and 4.83 now
+  (engine seeds differ per play): the single-mean bar was noise; paired is the right instrument.
+- Filler tally (b1v2 vs g_iter1): 6 seeds, 238 paired games, 12-18 (-1.1 SE).

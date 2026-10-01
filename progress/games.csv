@@ -4108,3 +4108,43 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261001-210402-scrim-g_iter1-fill1790888639,38,quesswho.cretplayer2_3,us:g_iter1,Intercontinental,B,513,The winning team captured all flags.,798211571
 20261001-210402-scrim-g_iter1-fill1790888639,39,winkelmantanner.waffle,us:g_iter1,Fountain,A,504,The winning team captured all flags.,291012898
 20261001-210402-scrim-g_iter1-fill1790888639,40,us:g_iter1,winkelmantanner.waffle,Intercontinental,B,498,The winning team captured all flags.,158843561
+20261001-210854-scrim-b1v2-fill1790888639,1,ColtG5.Goob_final,us:b1v2,Gated,A,2000,The winning team won on tiebreakers (cap,615001530
+20261001-210854-scrim-b1v2-fill1790888639,2,ColtG5.Goob_final,us:b1v2,Snake,A,2000,The winning team won on tiebreakers (cap,30083883
+20261001-210854-scrim-b1v2-fill1790888639,3,us:b1v2,CyrilSharma.finalBot,MIT,B,1889,The winning team captured all flags.,39070997
+20261001-210854-scrim-b1v2-fill1790888639,4,us:b1v2,CyrilSharma.finalBot,Whirlpool,A,2000,The winning team won on tiebreakers (hig,705581921
+20261001-210854-scrim-b1v2-fill1790888639,5,us:b1v2,Gymhgy.v10official,Ambush,B,341,The winning team captured all flags.,896652988
+20261001-210854-scrim-b1v2-fill1790888639,6,us:b1v2,Gymhgy.v10official,OceanFloor,B,2000,The winning team won on tiebreakers (cap,877299971
+20261001-210854-scrim-b1v2-fill1790888639,7,us:b1v2,IvanGeffner.kuma,Divergent,A,2000,The winning team won on tiebreakers (hig,850380240
+20261001-210854-scrim-b1v2-fill1790888639,8,us:b1v2,IvanGeffner.kuma,Hockey,B,457,The winning team captured all flags.,959979082
+20261001-210854-scrim-b1v2-fill1790888639,9,NotLLeon.v3,us:b1v2,Diagonal,A,2000,The winning team won on tiebreakers (hig,299953619
+20261001-210854-scrim-b1v2-fill1790888639,10,us:b1v2,NotLLeon.v3,Soccer,B,721,The winning team captured all flags.,740972005
+20261001-210854-scrim-b1v2-fill1790888639,11,SampleProvider.TSPAARKSPRINT1,us:b1v2,Ambush,A,506,The winning team captured all flags.,302992481
+20261001-210854-scrim-b1v2-fill1790888639,12,SampleProvider.TSPAARKSPRINT1,us:b1v2,Ambush,B,1465,The winning team captured all flags.,640167576
+20261001-210854-scrim-b1v2-fill1790888639,13,Strequals.duck0127v5,us:b1v2,Mountain,A,2000,The winning team won on tiebreakers (cap,1065912807
+20261001-210854-scrim-b1v2-fill1790888639,14,Strequals.duck0127v5,us:b1v2,StarryNight,A,2000,The winning team won on tiebreakers (hig,373961650
+20261001-210854-scrim-b1v2-fill1790888639,15,us:b1v2,andli28.v9_USQuals_angle,Occulus,B,975,The winning team captured all flags.,333990615
+20261001-210854-scrim-b1v2-fill1790888639,16,andli28.v9_USQuals_angle,us:b1v2,QueenOfHearts,A,543,The winning team captured all flags.,193872445
+20261001-210854-scrim-b1v2-fill1790888639,17,us:b1v2,andrewgopher.player22,GaltonBoard,B,597,The winning team captured all flags.,345109365
+20261001-210854-scrim-b1v2-fill1790888639,18,us:b1v2,andrewgopher.player22,Rivers,B,1465,The winning team captured all flags.,417329794
+20261001-210854-scrim-b1v2-fill1790888639,19,us:b1v2,awu7.ExplosiveBot,Anchor,A,1239,The winning team captured all flags.,539229156
+20261001-210854-scrim-b1v2-fill1790888639,20,awu7.ExplosiveBot,us:b1v2,SteamboatMickey,B,872,The winning team captured all flags.,990830892
+20261001-210854-scrim-b1v2-fill1790888639,21,chenyx512.flagbot_final,us:b1v2,Ambush,A,636,The winning team captured all flags.,789175903
+20261001-210854-scrim-b1v2-fill1790888639,22,us:b1v2,chenyx512.flagbot_final,DefaultLarge,B,1848,The winning team captured all flags.,459475409
+20261001-210854-scrim-b1v2-fill1790888639,23,us:b1v2,clbarrell.duck8,Battlecode24,A,1423,The winning team captured all flags.,410115126
+20261001-210854-scrim-b1v2-fill1790888639,24,clbarrell.duck8,us:b1v2,Rainbow,B,2000,The winning team won on tiebreakers (cap,701303898
+20261001-210854-scrim-b1v2-fill1790888639,25,us:b1v2,dmtrung14.defaultplayer_intlqualifier,Islands,A,2000,The winning team won on tiebreakers (hig,869177455
+20261001-210854-scrim-b1v2-fill1790888639,26,us:b1v2,dmtrung14.defaultplayer_intlqualifier,Racetrack,B,2000,The winning team won on tiebreakers (cap,750923536
+20261001-210854-scrim-b1v2-fill1790888639,27,hsmalladi.finalbot,us:b1v2,StackGame,A,495,The winning team captured all flags.,36417384
+20261001-210854-scrim-b1v2-fill1790888639,28,us:b1v2,hsmalladi.finalbot,TwistedTreeline,B,1984,The winning team captured all flags.,582996054
+20261001-210854-scrim-b1v2-fill1790888639,29,jmerle.camel_case_v21_final,us:b1v2,Canals,A,457,The winning team captured all flags.,893626260
+20261001-210854-scrim-b1v2-fill1790888639,30,us:b1v2,jmerle.camel_case_v21_final,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1043021026
+20261001-210854-scrim-b1v2-fill1790888639,31,us:b1v2,jonters.bling3,Asteroids,A,1843,The winning team captured all flags.,257036274
+20261001-210854-scrim-b1v2-fill1790888639,32,jonters.bling3,us:b1v2,CH3353C4K3F4CT0RY,B,1883,The winning team captured all flags.,356869522
+20261001-210854-scrim-b1v2-fill1790888639,33,justinottesen.sprint1,us:b1v2,EvilGrin,B,514,The winning team captured all flags.,335200834
+20261001-210854-scrim-b1v2-fill1790888639,34,justinottesen.sprint1,us:b1v2,OceanFloor,B,409,The winning team captured all flags.,966290623
+20261001-210854-scrim-b1v2-fill1790888639,35,kyleezz.jeeryfix3,us:b1v2,BedWars,A,2000,The winning team won on tiebreakers (cap,188900145
+20261001-210854-scrim-b1v2-fill1790888639,36,kyleezz.jeeryfix3,us:b1v2,Hurricane,A,2000,The winning team won on tiebreakers (cap,49533739
+20261001-210854-scrim-b1v2-fill1790888639,37,quesswho.cretplayer2_3,us:b1v2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (hig,176805937
+20261001-210854-scrim-b1v2-fill1790888639,38,quesswho.cretplayer2_3,us:b1v2,Intercontinental,A,599,The winning team captured all flags.,1057390202
+20261001-210854-scrim-b1v2-fill1790888639,39,winkelmantanner.waffle,us:b1v2,Fountain,A,558,The winning team captured all flags.,628262127
+20261001-210854-scrim-b1v2-fill1790888639,40,us:b1v2,winkelmantanner.waffle,Intercontinental,B,529,The winning team captured all flags.,58742798
