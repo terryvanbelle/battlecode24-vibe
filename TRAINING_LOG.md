@@ -944,3 +944,8 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   turn (it needs the move), update() after it, only with >= 6000 left, every loop stops at 2500 left (partial memory is
   fine); scout target recomputed only with budget. Also tools/diag-batch.sh now runs at most 8 games at once (24 at once
   starved the VM's sshd for minutes: a task check hung). Verification 4 queued (10 maps incl. the overrun ones).
+- **Verification 4 was invalid**: g1sym ran with Sym.OBSERVE OFF (bytecode max ~14.9k = g_iter1; symmetry never decided
+  on 9/10 maps). Cause: inserting the BC_START line moved OBSERVE's trailing comment, so the sed that flips the switch
+  for the arm matched nothing, silently. Repaired the source line; the arm is now built by a regex that asserts one
+  match. New guard: tools/arm-intent.txt (arm, File.CONSTANT=value) checked by test_tools.py against the arm's source;
+  shown to fail when the intent and the source disagree. Verification 5 queued (same 10 maps, OBSERVE really on).

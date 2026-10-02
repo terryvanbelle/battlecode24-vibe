@@ -22,8 +22,8 @@ import battlecode.common.*;
  */
 public strictfp class Sym {
     public static final int ROT = 1, FX = 2, FY = 4;
-    public static final boolean OBSERVE = false;
-    public static final int BC_START = 6000, BC_STOP = 2500;   // observation runs after the turn, only with this much left   // observation-based symmetry (default off: src/bot stays g_iter1)
+    public static final boolean OBSERVE = false;   // observation-based symmetry (default off: src/bot stays g_iter1)
+    public static final int BC_START = 6000, BC_STOP = 2500;   // observation runs after the turn, only with this much left
     public static int cands = 7;
     public static int conflicts, eliminations, equivalents, decidedRound = -1;
 

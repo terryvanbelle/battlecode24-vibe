@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tests for the python tools: the SPRT, the Elo bookkeeping, the scrimmage recorder, the benchmark
 selector. Synthetic inputs; runs from tools/unit-tests.sh. Every check names what it protects."""
-import math, os, subprocess, sys, tempfile, csv, importlib.util
+import math, re, os, subprocess, sys, tempfile, csv, importlib.util
 HERE = os.path.dirname(os.path.abspath(__file__))
 fails = 0
 def check(ok, what):
@@ -502,6 +502,16 @@ public class A {
 """)
     dead = dcode.scan(td)
     check(dead == ['method observe (A.java)', 'constant UNUSED (A.java)'], 'deadcode: finds the uncalled method and unread constant only: %r' % (dead,))
+
+# arm intent: every switch an arm is meant to carry is really set in its source (a silent sed miss ran g1sym with it off)
+REPO_ROOT = os.path.dirname(HERE)
+for line in open(os.path.join(HERE, 'arm-intent.txt')):
+    line = line.strip()
+    if not line or line.startswith('#'): continue
+    arm, spec = line.split(); fc, val = spec.split('='); fname, const = fc.split('.')
+    src = open(os.path.join(REPO_ROOT, 'src', arm, fname + '.java')).read()
+    m = re.search(r'static final \w+\s+(?:\w+\s*=\s*[^,;]+,\s*)*' + const + r'\s*=\s*([^,;]+)', src)
+    check(m is not None and m.group(1).strip() == val, 'arm intent: %s %s.%s should be %s, found %r' % (arm, fname, const, val, m.group(1).strip() if m else None))
 
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

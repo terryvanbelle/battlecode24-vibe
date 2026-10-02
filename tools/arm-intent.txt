@@ -1,0 +1,4 @@
+# Each line: <arm package> <File.CONSTANT>=<value>. tools/test_tools.py checks every line against src/<arm>/<File>.java
+# (2026-10-02: a text edit moved a comment and the sed that turned g1sym's switch on silently missed; the arm ran OFF).
+g1sym Sym.OBSERVE=true
+g1sym Sym.BC_START=6000
