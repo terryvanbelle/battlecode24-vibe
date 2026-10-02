@@ -1,4 +1,4 @@
-package bot;
+package g1alert;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -23,11 +23,9 @@ public strictfp class C {
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
     public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
-    public static final boolean ALERT_FIX = false;      // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders
+    public static final boolean ALERT_FIX = true;       // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders
                                                         // gate on their own flag; responders go to the threat, never onto the flag tile
     public static final int ALERT_THREAT_R2 = 20;
-    public static final boolean REG_FIX = false;        // audit A5/A6: our dead carrier's flag is "dropped", not "carried by us" forever;
-                                                        // a drop tile expires to the flag's home after the return window
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
     public static final int DIG_SITE = 0;               // T4 siting: 0 any, 1 wall-hugging (>=3 wall/off-map nbrs), 2 behind our spawn (away from the enemy)

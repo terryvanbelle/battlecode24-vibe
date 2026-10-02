@@ -137,6 +137,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(all(0 <= float(c['stillPost']) <= 100 for c in cap), 'replay-dump --capabilities: stillPost is a percentage')
     check(all(c['exceptions'].isdigit() for c in cap), 'replay-dump --capabilities: exceptions is a count')
     check(all(c['symWrong'] in ('', '0', '1') for c in cap), 'replay-dump --capabilities: symWrong is blank, 0 or 1')
+    check(all(c['alertNoThreat'] == '' or int(c['alertNoThreat']) <= int(c['alertWrites']) for c in cap), 'replay-dump --capabilities: alerts without a threat are a subset of alert writes')
     dfn = outs['fix'].get(11, [])
     caps = {c['team']: int(c['captured']) for c in cap}
     check(dfn and all(d['outcome'] in ('DIED', 'DROP', 'CAPTURE') for d in dfn) and
@@ -241,7 +242,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False

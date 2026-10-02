@@ -404,6 +404,31 @@ public class ReplayDump {
                     r.robotMoveCooldowns(j), r.robotActionCooldowns(j), r.attackLevels(j), r.buildLevels(j), r.healLevels(j),
                     r.attacksPerformed(j), r.buildsPerformed(j), r.healsPerformed(j), carrying.containsKey(id) ? " FLAG" : "");
         }
+        // audit A1 contracts: an own-flag alert written this round with no enemy within dist2 20 of any of that team's flag
+        // homes; robots standing on one of their own flag home tiles (consecutive rounds, per robot)
+        if (rn > 200) for (int t = 1; t <= 2; t++) {
+            List<int[]> homes = new ArrayList<>();
+            for (Map.Entry<Integer, int[]> fh : flagHome.entrySet()) if (flagTeam.getOrDefault(fh.getKey(), 0) == t && fh.getValue() != null) homes.add(fh.getValue());
+            if (homes.isEmpty()) continue;
+            if (commSeen) for (int i = 0; i < 3; i++) if (comm[t][10 + i] == rn) {
+                boolean threat = false;
+                for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                    if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
+                    for (int[] h : homes) { int dx = re.getValue()[0] - h[0], dy = re.getValue()[1] - h[1]; if (dx * dx + dy * dy <= 20) { threat = true; break; } }
+                    if (threat) break;
+                }
+                kAlertWrites[t]++; if (!threat) kAlertNoThreat[t]++;
+            }
+            for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                int id = re.getKey();
+                if (team.getOrDefault(id, 0) != t) continue;
+                boolean on = false;
+                for (int[] h : homes) if (re.getValue()[0] == h[0] && re.getValue()[1] == h[1]) on = true;
+                int run = on ? parkRun.getOrDefault(id, 0) + 1 : 0;
+                parkRun.put(id, run);
+                if (run > kMaxPark[t]) kMaxPark[t] = run;
+            }
+        }
         // bytecodes
         for (int j = 0; j < r.bytecodeIdsLength(); j++) {
             int id = r.bytecodeIds(j), t = team.getOrDefault(id, 0), bc = r.bytecodesUsed(j);
@@ -608,6 +633,8 @@ public class ReplayDump {
     static int[][] comm = new int[3][64];
     static boolean commSeen, commMode, commHeader, trackMode, trackLog, execDone, execBroken;
     static int[] sym250 = {-1, -1, -1}, psym250 = {0, 0, 0};
+    static int[] kAlertWrites = new int[3], kAlertNoThreat = new int[3], kMaxPark = new int[3];
+    static Map<Integer, Integer> parkRun = new HashMap<>();
     static int[] symDecided = {-1, -1, -1}, symWrongT = {0, 0, 0}, correctSymsCache = {-2, -2, -2};
     /** Symmetries (bitmask ROT 1, FX 2, FY 4) that map team t's spawn centres exactly onto the other team's; -1 unknown. */
     static int correctSyms(int t) {
@@ -1114,7 +1141,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1133,7 +1160,8 @@ public class ReplayDump {
                         + "," + (cDeaths[t] > 0 ? String.valueOf(kLoneDeaths[t]) : "") + "," + (cDeaths[t] > 0 ? String.valueOf(kTrickleDeaths[t]) : "")
                         + "," + (symOk(t) >= 0 ? String.valueOf(symOk(t)) : "") + "," + (psymOk(t) >= 0 ? String.valueOf(psymOk(t)) : "")
                         + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]
-                        + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : ""));
+                        + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : "")
+                        + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]);
             }
         }
         if (trackMode) printTrack();

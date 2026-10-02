@@ -1,4 +1,4 @@
-package bot;
+package g1trk;
 
 import battlecode.common.*;
 
@@ -17,10 +17,6 @@ public strictfp class Duck {
     public static void turn() throws GameActionException {
         RobotController rc = G.rc;
         if (C.TRACK) Track.roundStart();                   // S0b: every robot, jailed included; the first of ours each round expires tracks
-        if (C.REG_FIX) {                                   // audit A5: jailed while holding a carried id = our carrier died
-            if (carriedFlagId >= 0 && !rc.isSpawned()) { Comms.enemyFlagDropped(carriedFlagId); carriedFlagId = -1; }
-            if (G.round > 200) Comms.expireDrops();         // audit A6
-        }
         buyUpgrades();
         if (!rc.isSpawned()) { trySpawn(); if (!rc.isSpawned()) return; }
         G.me = rc.getLocation();
@@ -62,7 +58,7 @@ public strictfp class Duck {
             G.note = "fight e" + enemies.length + " a" + allies.length;
             return;
         }
-        if (isDefender() && (C.ALERT_FIX ? !alertFresh(homeFlag()) : alertedFlag() < 0)) { defend(); Micro.tryHeal(allies); return; }
+        if (isDefender() && alertedFlag() < 0) { defend(); Micro.tryHeal(allies); return; }
         Micro.tryHeal(allies);
         if (C.POST_SETUP_CRUMBS) {                         // T10 adoption: take the crumbs the dam was hiding
             MapLocation c = G.nearest(G.me, rc.senseNearbyCrumbs(-1));
@@ -147,20 +143,15 @@ public strictfp class Duck {
                 if (i >= 0) Comms.reportCarried(i, f.getLocation());
             }
             if (f.getTeam() == G.them) Comms.reportEnemyFlag(f);
-            else if (!C.ALERT_FIX && enemies.length > 0) {
+            else if (enemies.length > 0) {
                 for (int i = 0; i < 3; i++) { MapLocation h = Comms.flagHome(i); if (h != null && f.getLocation().distanceSquaredTo(h) <= 36) Comms.alertOurFlag(i); }
             }
         }
-        if (C.ALERT_FIX) {                                  // audit A1: an alert means an enemy within ALERT_THREAT_R2 of the home
-            if (enemies.length > 0) for (int i = 0; i < 3; i++) {
-                RobotInfo t = Comms.threatTo(Comms.flagHome(i), enemies);
-                if (t != null) { Comms.alertOurFlag(i, t.location); }
-            }
-        } else if (enemies.length > 0) for (int i = 0; i < 3; i++) {   // g_iter1: observer near a home sees any enemy
+        // our flags: alert if enemies are near a home flag
+        if (enemies.length > 0) for (int i = 0; i < 3; i++) {
             MapLocation c = Comms.flagHome(i);
             if (c != null && G.me.distanceSquaredTo(c) <= 20) Comms.alertOurFlag(i);
         }
-        if (C.REG_FIX && G.round > 200) for (int s = 0; s < 3; s++) Comms.clearIfEmpty(s, flags);   // audit A6
         if (C.TRACK) { Track.homes(); Track.negatives(); Track.psym(); }   // S0b: empty home/drop tile, negative sightings, private symmetry
     }
 
@@ -193,14 +184,6 @@ public strictfp class Duck {
             if (d < bd || (d == bd && G.rand(2) == 0)) { bd = d; best = s; }
         }
         if (best != null) rc.spawn(best);
-    }
-
-
-
-    /** Audit A1: our flag i's alert is fresh (raised within 10 rounds). */
-    static boolean alertFresh(int i) throws GameActionException {
-        int r = G.rc.readSharedArray(Comms.OF_ALERT + i);
-        return r > 0 && G.round - r <= 10;
     }
 
     static int alertedFlag() throws GameActionException {
@@ -296,7 +279,6 @@ public strictfp class Duck {
             if (rc.canPickupFlag(f.getLocation())) {
                 rc.pickupFlag(f.getLocation());
                 carriedFlagId = f.getID();
-                if (C.REG_FIX && !rc.hasFlag()) { Comms.enemyFlagCaptured(carriedFlagId); carriedFlagId = -1; return; }   // A5: picked up inside our zone = captured
                 Comms.reportEnemyFlag(new FlagInfo(G.me, G.them, true, f.getID()));
                 return;
             }
@@ -371,11 +353,7 @@ public strictfp class Duck {
         MapLocation chase = carrierTarget(G.me);
         if (chase != null) { G.note = "chase"; return chase; }
         if (isDefender()) return defendTarget();
-        if (a >= 0 && G.me.distanceSquaredTo(Comms.flagHome(a)) <= C.ALERT_RADIUS2) {
-            if (!C.ALERT_FIX) return Comms.flagHome(a);
-            MapLocation th = Comms.threatAt(a);                // audit A1: to the threat, never onto the flag tile
-            if (th != null) { G.note = "threat"; return th; }
-        }
+        if (a >= 0 && G.me.distanceSquaredTo(Comms.flagHome(a)) <= C.ALERT_RADIUS2) return Comms.flagHome(a);
         // a visible dropped enemy flag
         for (FlagInfo f : flags) if (f.getTeam() == G.them && !f.isPickedUp()) return f.getLocation();
         // escort a friendly carrier we can see

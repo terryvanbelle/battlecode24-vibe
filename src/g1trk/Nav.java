@@ -1,4 +1,4 @@
-package bot;
+package g1trk;
 
 import battlecode.common.*;
 
@@ -95,4 +95,16 @@ public strictfp class Nav {
         return ((n.x + n.y) & 1) == 0 && Duck.behindSpawn(n);
     }
 
+    /** Step to the adjacent tile (or stay) minimising distance to t; used for small adjustments. */
+    public static boolean stepToward(MapLocation t) throws GameActionException {
+        if (!G.rc.isMovementReady()) return false;
+        MapLocation me = G.rc.getLocation();
+        Direction best = null; int bd = me.distanceSquaredTo(t);
+        for (Direction d : G.DIRS) {
+            if (!G.rc.canMove(d)) continue;
+            int x = me.add(d).distanceSquaredTo(t);
+            if (x < bd || (x == bd && best != null && G.rand(2) == 0)) { bd = x; best = d; }
+        }
+        return best != null && tryMove(best);
+    }
 }

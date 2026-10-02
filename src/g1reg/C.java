@@ -1,4 +1,4 @@
-package bot;
+package g1reg;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -26,7 +26,7 @@ public strictfp class C {
     public static final boolean ALERT_FIX = false;      // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders
                                                         // gate on their own flag; responders go to the threat, never onto the flag tile
     public static final int ALERT_THREAT_R2 = 20;
-    public static final boolean REG_FIX = false;        // audit A5/A6: our dead carrier's flag is "dropped", not "carried by us" forever;
+    public static final boolean REG_FIX = true;         // audit A5/A6: our dead carrier's flag is "dropped", not "carried by us" forever;
                                                         // a drop tile expires to the flag's home after the return window
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this

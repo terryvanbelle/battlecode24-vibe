@@ -4,3 +4,6 @@ g1sym Sym.OBSERVE=true
 g1sym Sym.BC_START=6000
 arch_rush10s Sym.OBSERVE=true
 fl10s Sym.OBSERVE=true
+g1trk C.TRACK=true
+g1alert C.ALERT_FIX=true
+g1reg C.REG_FIX=true

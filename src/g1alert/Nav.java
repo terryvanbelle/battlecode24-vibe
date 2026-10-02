@@ -1,4 +1,4 @@
-package bot;
+package g1alert;
 
 import battlecode.common.*;
 

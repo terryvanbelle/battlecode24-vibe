@@ -1029,3 +1029,19 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
   measured") instead of passing silently. Tests: identical seeded cells for two bots on one SEED; legacy fallback;
   basics on synthetic blocks. Queued: re-census of the g1sym band runs with the new columns; the identity control
   (g_iter1 vs the byte-identical g1copy on shared seeds, 40 band + 40 ColtG5; expected 0 discordant).
+- **Identity control on shared engine seeds** (audit B2 fix): g_iter1 vs the byte-identical g1copy, 40 band games:
+  gained 0, lost 0 (0 discordant). Seeded pairing is exact; from here a discordant pair is the change, not the engine.
+- S0b sensor committed (workflow: implement, 3 reviews, 12 issues fixed incl. a major PSYM non-convergence on FloodGates):
+  src/bot/Track.java + hooks behind C.TRACK; with it off the classes compile to identical bytecode; with it on (g1trk)
+  play is identical to g_iter1 (every/survey/flags/slots 0-22 equal); added ~700 bytecode a turn after setup.
+- Dead-code check wired into tools/unit-tests.sh for src/bot (Nav.stepToward removed; the design's reserved slot
+  constants AUC/AUC_SLOTS/OWN_C allowed by name).
+- **A1 confirmed on our own replay with new census columns** (alertWrites, alertNoThreat, maxParkOnHome): g_iter1 on
+  Tunnels wrote 2121 alerts, 1769 (83%) with no enemy within dist2 20 of any of its flag homes; one robot stood on a flag
+  home tile 1164 rounds in a row. Fix C.ALERT_FIX (alert only for an enemy within dist2 20 of the home, with the threat's
+  location in slots 49-51; defenders gate on their own flag; responders go to the threat, never the flag tile).
+  test/bot/AuditTest.java covers it. Arm g1alert; diagnostic batch queued (paired with g1copy on 7 cells).
+- A5/A6 fix C.REG_FIX: our jailed carrier's flag becomes "dropped" (slot 52-54 drop round), a pickup that captures at
+  once is reported as captured; after the return window (4, or 25 with our CAPTURING) the drop tile becomes the learned
+  home (slots 55-57) or is cleared (targeting falls back to the hints); a drop tile seen empty is cleared. AuditTest:
+  dropped not carried; window kept; home after the window; cleared without a home. Arm g1reg.

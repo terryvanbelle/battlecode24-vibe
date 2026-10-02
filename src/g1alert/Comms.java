@@ -1,4 +1,4 @@
-package bot;
+package g1alert;
 
 import battlecode.common.*;
 
@@ -41,40 +41,6 @@ public strictfp class Comms {
     /** 49..51: OF_THREAT (C.ALERT_FIX, audit A1): where the enemy that raised our flag i's alert stood (enc), so responders go
      *  to the threat, never onto the flag tile. Written only with OF_ALERT. */
     public static final int OF_THREAT = 49;
-    /** 52..54 EF_DROP: round enemy flag slot s was dropped by our dying carrier (0 none); 55..57 EF_HOME: its learned home
-     *  (enc; first ground sighting with no drop pending). C.REG_FIX, audit A5/A6. */
-    public static final int EF_DROP = 52, EF_HOME = 55;
-
-    /** A5: our carrier of enemy flag `flagId` died: the flag is on the ground at its last carried location. */
-    public static void enemyFlagDropped(int flagId) throws GameActionException {
-        int s = enemyFlagSlot(flagId);
-        if (s < 0) return;
-        if (G.rc.readSharedArray(EF_STATE + s) == 1) G.rc.writeSharedArray(EF_STATE + s, 0);
-        G.rc.writeSharedArray(EF_DROP + s, Math.max(1, G.round));
-    }
-
-    /** A6: after the return window a dropped flag is home again: point the registry at its home (or clear it, so targeting
-     *  falls back to the broadcast hints). Every robot, every turn; cheap (3 slots). */
-    public static void expireDrops() throws GameActionException {
-        int win = 4;
-        for (GlobalUpgrade u : G.rc.getGlobalUpgrades(G.us)) if (u == GlobalUpgrade.CAPTURING) win = 25;
-        for (int s = 0; s < 3; s++) {
-            int d = G.rc.readSharedArray(EF_DROP + s);
-            if (d == 0 || G.round <= d + win) continue;
-            G.rc.writeSharedArray(EF_LOC + s, G.rc.readSharedArray(EF_HOME + s));
-            G.rc.writeSharedArray(EF_DROP + s, 0);
-        }
-    }
-
-    /** A6: a remembered ground location that is in view and empty is stale (the flag moved home or was re-grabbed). */
-    public static void clearIfEmpty(int s, FlagInfo[] seen) throws GameActionException {
-        MapLocation l = dec(G.rc.readSharedArray(EF_LOC + s));
-        if (l == null || G.rc.readSharedArray(EF_STATE + s) != 0 || !G.rc.canSenseLocation(l)) return;
-        int id = G.rc.readSharedArray(EF_ID + s) - 1;
-        for (FlagInfo f : seen) if (f.getID() == id && f.getLocation().equals(l)) return;
-        G.rc.writeSharedArray(EF_LOC + s, G.rc.readSharedArray(EF_HOME + s) == G.rc.readSharedArray(EF_LOC + s) ? 0 : G.rc.readSharedArray(EF_HOME + s));
-        G.rc.writeSharedArray(EF_DROP + s, 0);
-    }
 
     public static int enc(MapLocation m) { return m == null ? 0 : m.x * 64 + m.y + 1; }
     public static MapLocation dec(int v) { return v == 0 ? null : new MapLocation((v - 1) / 64, (v - 1) % 64); }
@@ -103,13 +69,7 @@ public strictfp class Comms {
         int loc = enc(f.getLocation());
         if (G.rc.readSharedArray(EF_LOC + s) != loc) G.rc.writeSharedArray(EF_LOC + s, loc);
         int st = f.isPickedUp() ? 1 : 0;
-        int prev = G.rc.readSharedArray(EF_STATE + s);
-        if (prev != 2 && prev != st) G.rc.writeSharedArray(EF_STATE + s, st);
-        if (C.REG_FIX && st == 0 && G.round > 200) {     // A6: learn the home from a ground sighting with no drop pending
-            if (prev == 1) { if (G.rc.readSharedArray(EF_DROP + s) == 0) G.rc.writeSharedArray(EF_DROP + s, G.round); }
-            else if (G.rc.readSharedArray(EF_DROP + s) == 0 && G.rc.readSharedArray(EF_HOME + s) == 0) G.rc.writeSharedArray(EF_HOME + s, loc);
-            else if (G.rc.readSharedArray(EF_HOME + s) == loc) G.rc.writeSharedArray(EF_DROP + s, 0);   // seen back home
-        }
+        if (G.rc.readSharedArray(EF_STATE + s) != 2 && G.rc.readSharedArray(EF_STATE + s) != st) G.rc.writeSharedArray(EF_STATE + s, st);
     }
 
     public static void enemyFlagCaptured(int flagId) throws GameActionException {

@@ -1,4 +1,4 @@
-package bot;
+package g1alert;
 
 import battlecode.common.*;
 
@@ -17,10 +17,6 @@ public strictfp class Duck {
     public static void turn() throws GameActionException {
         RobotController rc = G.rc;
         if (C.TRACK) Track.roundStart();                   // S0b: every robot, jailed included; the first of ours each round expires tracks
-        if (C.REG_FIX) {                                   // audit A5: jailed while holding a carried id = our carrier died
-            if (carriedFlagId >= 0 && !rc.isSpawned()) { Comms.enemyFlagDropped(carriedFlagId); carriedFlagId = -1; }
-            if (G.round > 200) Comms.expireDrops();         // audit A6
-        }
         buyUpgrades();
         if (!rc.isSpawned()) { trySpawn(); if (!rc.isSpawned()) return; }
         G.me = rc.getLocation();
@@ -154,13 +150,12 @@ public strictfp class Duck {
         if (C.ALERT_FIX) {                                  // audit A1: an alert means an enemy within ALERT_THREAT_R2 of the home
             if (enemies.length > 0) for (int i = 0; i < 3; i++) {
                 RobotInfo t = Comms.threatTo(Comms.flagHome(i), enemies);
-                if (t != null) { Comms.alertOurFlag(i, t.location); }
+                if (t != null) { Comms.alertOurFlag(i, t.location); alertsRaised++; }
             }
         } else if (enemies.length > 0) for (int i = 0; i < 3; i++) {   // g_iter1: observer near a home sees any enemy
             MapLocation c = Comms.flagHome(i);
             if (c != null && G.me.distanceSquaredTo(c) <= 20) Comms.alertOurFlag(i);
         }
-        if (C.REG_FIX && G.round > 200) for (int s = 0; s < 3; s++) Comms.clearIfEmpty(s, flags);   // audit A6
         if (C.TRACK) { Track.homes(); Track.negatives(); Track.psym(); }   // S0b: empty home/drop tile, negative sightings, private symmetry
     }
 
@@ -195,7 +190,7 @@ public strictfp class Duck {
         if (best != null) rc.spawn(best);
     }
 
-
+    static int alertsRaised;
 
     /** Audit A1: our flag i's alert is fresh (raised within 10 rounds). */
     static boolean alertFresh(int i) throws GameActionException {
@@ -296,7 +291,6 @@ public strictfp class Duck {
             if (rc.canPickupFlag(f.getLocation())) {
                 rc.pickupFlag(f.getLocation());
                 carriedFlagId = f.getID();
-                if (C.REG_FIX && !rc.hasFlag()) { Comms.enemyFlagCaptured(carriedFlagId); carriedFlagId = -1; return; }   // A5: picked up inside our zone = captured
                 Comms.reportEnemyFlag(new FlagInfo(G.me, G.them, true, f.getID()));
                 return;
             }

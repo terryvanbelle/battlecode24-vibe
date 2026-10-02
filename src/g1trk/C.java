@@ -1,4 +1,4 @@
-package bot;
+package g1trk;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -23,11 +23,6 @@ public strictfp class C {
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
     public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
-    public static final boolean ALERT_FIX = false;      // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders
-                                                        // gate on their own flag; responders go to the threat, never onto the flag tile
-    public static final int ALERT_THREAT_R2 = 20;
-    public static final boolean REG_FIX = false;        // audit A5/A6: our dead carrier's flag is "dropped", not "carried by us" forever;
-                                                        // a drop tile expires to the flag's home after the return window
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
     public static final int DIG_SITE = 0;               // T4 siting: 0 any, 1 wall-hugging (>=3 wall/off-map nbrs), 2 behind our spawn (away from the enemy)
@@ -76,7 +71,7 @@ public strictfp class C {
     public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer
-    public static final boolean TRACK = false;          // S0b switch (g1trk): off, javac drops every Track hook and play is g_iter1 exactly
+    public static final boolean TRACK = true;           // S0b switch (g1trk): off, javac drops every Track hook and play is g_iter1 exactly
     public static final int HOME_CONFIRM = 8;           // re-stamp a HOME track this old when the flag is seen at home: bounds MISSING's
                                                         // pessimistic departure to ~8 rounds for 3 writes per 8 rounds (design 2.4)
     public static final int TRK_MISS_R2 = 10;           // a negative sighting needs the predicted point this close: half the vision dist2 20,
