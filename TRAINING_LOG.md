@@ -654,3 +654,7 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   with BASE=g_iter1, the bars B2's escort block passed: rel:enemyRegrabs<=0.7 rel:postPickups>=0.8. Queued with the
   band test.
 - Filler: B3 vs g_iter1 now 11-35 over 319 (-3.5 SE).
+- g1z2 step 5(b): **FAIL** (BASE=g_iter1): enemyRegrabs 8.33 vs 11.25 (-2.9 +- 2.3; ratio 0.74, bar 0.7); postPickups
+  6.04 vs 6.46 ok. Not band-tested. Next arm with the same bars, not a looser bar: g1z2w (escort radius dist2 13,
+  untried; 2 failed, 8 passed on B1). Step 5(a) batch queued.
+- Filler: B2 vs g_iter1 72-72 over 877 (0.0 SE); B1 77-102 over 1234 (-1.9 SE); B3 14-37 over 359 (-3.2 SE).
