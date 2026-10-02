@@ -1,4 +1,4 @@
-package bot;
+package g1line4;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -37,9 +37,9 @@ public strictfp class C {
     public static final boolean DEST_CAMP = false;     // C10a: after a carrier slips out of sight, ducks that can beat it there wait at its destination spawn
     public static final boolean ESCORT_CARRIER = false; // C9: in a fight, a visible own carrier within ESCORT_R2 makes its next homeward tile the fight goal
     public static final int ESCORT_R2 = 20;
-    public static final boolean HOLD_LINE = false;     // structural: the army holds front points (midpoints spawn centre - its mirror) instead of marching on enemy flags
+    public static final boolean HOLD_LINE = true;      // structural: the army holds front points (midpoints spawn centre - its mirror) instead of marching on enemy flags
     public static final int HOLD_UNTIL = 2001;            // round after which the army marches on flags again
-    public static final int HOLD_DEPTH_TENTHS = 5;        // front point at this fraction of the way from our spawn centre to its mirror (5 = midline)
+    public static final int HOLD_DEPTH_TENTHS = 4;        // front point at this fraction of the way from our spawn centre to its mirror (5 = midline)
     public static final boolean ESCORT_BEHIND = false; // escort goal one tile behind the carrier (never in its path) instead of its next tile
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)

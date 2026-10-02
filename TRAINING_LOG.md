@@ -746,3 +746,18 @@ swing (none in the last 4 attempts).
   on the 5 cells where both carried. First flag-pressure arm whose behaviour shows; the cost shows too (enemy captures).
   Step 5(b) pre-registered (BASE=g_iter1): rel:regrabs>=2.0 rel:escorts20>=1.1 rel:captured>=1.0 rel:enemyCaptured<=1.3.
 - Filler: B1 vs g_iter1 113-138 over 1631 (-1.6 SE); B2 98-104 over 1274 (-0.4 SE); B3 45-68 over 757 (-2.2 SE).
+- g1escrg step 5(b): **FAIL** (BASE=g_iter1): regrabs 9.08 vs 1.46 ok; escorts20 4.37 vs 4.46 FAIL (no convoy forms on
+  the band); captured 1.04 vs 1.21 FAIL; enemyCaptured 1.92 vs 2.12 ok. The pair fails: re-grabs without conversion
+  again. Flag-pressure area stays closed.
+
+### 2026-10-02 — structural attempt S1: hold the line (designed from the outcome split, ADVICE §14/§30)
+Premise (B3 band, games we lose): fights at parity (kills 331 vs 294), beaters hold more of our half (inEnemy300 21.8
+vs 15.7) and their carriers walk home through it unopposed (47% of their captures); we win the level-sum tiebreak 20-4.
+Doctrine: after setup the army holds front points between our spawn centres and their mirror images instead of
+marching on enemy flags; raiders and carriers must cross it; games without captures go to the tiebreak we win.
+Switch C.HOLD_LINE (fieldTarget only: chase, defend, alert, dropped flag and escort keep priority), HOLD_UNTIL,
+HOLD_DEPTH_TENTHS; counter "hl".
+Stage budget: A diagnostic (army at the line; enemy pickups/captures down) -> B delivery mini-block
+(rel:enemyCaptured<=0.7, rel:enemyFirstGrabs<=0.8, pre-registered then) -> C band test. Closing criterion (written
+now): two stage-B failures across depth variants close S1.
+Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batch queued (7 cells each).
