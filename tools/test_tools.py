@@ -488,5 +488,20 @@ with tempfile.TemporaryDirectory() as td:
           and 'n=   1' in lines[1] and 'delta +4.00' in lines[1] and 'delta +1.00' in lines[2],
           'eval-paired: pairs cells, splits tiers, capture difference deltas: ' + out)
 
+# deadcode: an unreferenced method or constant in a bot package is reported (owner prompt 127: Sym.observe was never called)
+spec = importlib.util.spec_from_file_location('dcode', os.path.join(HERE, 'deadcode.py')); dcode = importlib.util.module_from_spec(spec); spec.loader.exec_module(dcode)
+with tempfile.TemporaryDirectory() as td:
+    open(os.path.join(td, 'A.java'), 'w').write("""package p;
+public class A {
+    public static final int USED = 1, UNUSED = 2;
+    public static void run(Object rc) { helper(USED); }
+    static void helper(int x) { /* calls nothing: observe(x) in a comment does not count */ }
+    static void observe(int x) { }
+    static String s = "observe(1) in a string does not count";
+}
+""")
+    dead = dcode.scan(td)
+    check(dead == ['method observe (A.java)', 'constant UNUSED (A.java)'], 'deadcode: finds the uncalled method and unread constant only: %r' % (dead,))
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

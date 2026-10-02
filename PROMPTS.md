@@ -523,3 +523,7 @@ Can you tell me more about our symmetry check?  I was under the impression we co
 ## 126. 2026-10-02
 
 task check
+
+## 127. 2026-10-02
+
+Yes, most definitely fix the symmetry check bug, and please do an audit to determine if anything else is broken.  Also add more tests to keep this from happening again.  This is basic stuff

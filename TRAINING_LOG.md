@@ -903,3 +903,24 @@ programme; its S0a tools (in review) serve the study, and its stages return only
   39.9 +- 2.5% (144 vs 371 games); band 29.1 +- 5.1% vs 37.4 +- 3.9%. Correlational and confounded by map (the same maps
   are always wrong), so only a fix tested on identical cells can price it. Candidate repair arm: observation-based
   symmetry (spawn-zone check on image tiles, dam/wall checks near the axis in setup, shared slot 16).
+
+### 2026-10-02 — symmetry repair, audit, regression tests (owner prompts 127-128: "fix it; 100% after a limited number
+of observations, else it is a bug; audit for anything else broken; add tests")
+- src/bot/Sym.java rewritten: decided by observation, never guessed. (2) geometry at start: a symmetry that maps one of our
+  spawn centres into our own spawn zones is impossible; (3) spawn zones: the image of our centre must be THEIR spawn-zone
+  tile (one sight confirms or eliminates); (4) per-duck memory of every tile seen (wall, spawn zone; both immutable): a tile
+  seen now must match its remembered image. Never empties the set (contradictions counted); results AND-merged through
+  slot 16 by Comms.syncSym. Dead Sym.observe removed. Switch Sym.OBSERVE (default off in src/bot until the arm is judged),
+  hook in RobotPlayer before Duck.turn.
+- test/bot/SymTest.java: 300 random symmetric maps (30-60 a side, random wall density, a valid spawn zone); simulated
+  vision disks through the real pruning code: the true symmetry is never eliminated, the set never empties, no
+  contradictions, and every map is decided within 13 disks (bar 60); plus hand cases (wall vs open image eliminates FX;
+  a contradiction is counted not applied; a centre on the FX axis rules FX out). OK.
+- Arm g1sym = g_iter1 + the new Sym (OBSERVE on), nothing else (112 diff lines: Sym.java and the hook). Verification batch
+  queued: 14 maps where the old guess was always wrong + DefaultMedium/DefaultLarge vs g_iter1: symOk and the round slot 16
+  is decided, from the replays.
+- tools/deadcode.py: lists methods never called and constants never read in a bot package (comments and strings
+  ignored); on src/g_iter1 it reports Sym.observe (the bug), G.onMap, Nav.stepToward. Tested on a synthetic package.
+  To be wired into unit-tests.sh for src/bot once the S0b workflow (editing src/bot now) has finished.
+- Correctness audit launched (workflow: five lenses: dead code, rules/API, comms, behaviour in replays, measurement tools;
+  two adversarial verifiers; ranked report with fixes and regression tests). Read-only on src/g_iter1 and tools.

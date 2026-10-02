@@ -1,4 +1,4 @@
-package bot;
+package g1sym;
 
 import battlecode.common.*;
 
@@ -22,7 +22,7 @@ import battlecode.common.*;
  */
 public strictfp class Sym {
     public static final int ROT = 1, FX = 2, FY = 4;
-    public static final boolean OBSERVE = false;   // observation-based symmetry (default off: src/bot stays g_iter1)
+    public static final boolean OBSERVE = true;    // observation-based symmetry (arm g1sym)
     public static int cands = 7;
     public static int conflicts, eliminations, decidedRound = -1;
 
