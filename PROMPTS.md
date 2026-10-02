@@ -351,3 +351,7 @@ task check
 ## 83. 2026-10-02
 
 task check
+
+## 84. 2026-10-02
+
+Try again to delete the local replays.  I gave you new access on Github

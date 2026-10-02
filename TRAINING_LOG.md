@@ -511,4 +511,4 @@ Band, 2 seeds, paired against B2 (b1z2b) on identical cells, 234 games.
 - Stack is now B1 b1v2 -> B2 b1z2b -> B3 b2fs. Filler now pairs g_iter1 vs b1v2,b1z2b,b2fs.
 - Next: T4 setup-digging retry on B3, now that the navigator avoids needless fills (b2dig5 failed because we filled our own digs).
 Ops: local disk hit 100% (gauntlet replays 2.6 GB). 2026-09-30 replays copied to the VM at ~/archive/bc24-local (1111 files, count verified);
-deleting the local copies needs the user's permission.
+local copies deleted with the user's approval (prompt 84); 1.5 GB free afterwards.
