@@ -42,3 +42,16 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
   were closed band-wide, which says little about an all-in aggressor).
 - Screen 1 (not a gate; chooses the crack): g_iter1, arch_rush10, arch_rush20, fl6, fl10, fl15 vs ColtG5, 40 games
   each, SEED 777001 (identical random cells), census per run.
+- Screen 1 result (37 identical cells each vs ColtG5; wins / captures ours-theirs / our pickups): g_iter1 14 / 0.68-1.65 /
+  2.1; arch_rush10 12 / 0.65-1.68 / 43.4; arch_rush20 12 / 0.81-1.65 / 63.5; fl6 12 / 0.46-1.62; fl10 12 / 0.57-1.57;
+  fl15 13 / 0.45-1.47. Every raid build reaches their flags (pickups x12-30) and none converts: carriers die on the way
+  home; their respawners appear on top of their flags. **Crack A (counter-raid) closed** for ColtG5.
+- Their trips on our flags (165 g_iter1 games vs ColtG5, --defense; research/crack/colt-trips-g_iter1.csv): 1953 trips,
+  254 captured (13%). Captured trips: 41% first grabs, median 38 rounds carried, **56% with on average under 0.5 of our
+  ducks within dist2 20 of the carrier**; at the pickup a median of 4 of ours are within dist2 20 (they see it). Trips of
+  15+ rounds by mean chasers: < 0.5: 145, 82% captured; 0.5-1.5: 120, 48%; 1.5-3: 60, 25%; 3+: 37, 32%.
+  Our ducks see the grab, go back to fighting ColtG5's flood, and the carrier walks home alone.
+- **Crack chosen: B, stop the carrier that walks home**, i.e. the CUT stage of research/REWRITE_DESIGN.md (shared,
+  predicted flag track; a few committed responders on the predicted path), aimed at ColtG5. Stages as designed (S0a
+  premise, S0b sensor, S1 CUT), with these changes for the crack: the premise and the delivery blocks use ColtG5 games
+  (scrims, random maps and sides); the decision is this file's victory criterion, not the band bars.

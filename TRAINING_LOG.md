@@ -865,3 +865,7 @@ are the more-flags tiebreak at r2000 (one flag decides the game). Victory = >= 6
 sides) and paired net >= +2 SE vs g_iter1 on the same cells. The filler now plays g_iter1 vs ColtG5 (FILLPOOL; "-" = no
 candidate) to build the baseline and the replays for study. The band-wide rewrite (REWRITE_DESIGN) is paused as a
 programme; its S0a tools (in review) serve the study, and its stages return only if they are the crack.
+- Crack screen 1 vs ColtG5 (37 identical cells): rush and flank builds reach their flags (pickups x12-30) but none
+  converts (captures 0.45-0.81 vs g_iter1 0.68). Counter-raid closed for ColtG5. Trip study (165 g_iter1 games): 56% of
+  their captured trips unopposed; 15+ round trips captured 82% with < 0.5 chasers vs 25% with 1.5-3. Crack chosen: CUT
+  (REWRITE_DESIGN) aimed at ColtG5; premise, delivery and decision on ColtG5 scrims (research/CRACK.md).
