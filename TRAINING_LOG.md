@@ -630,3 +630,9 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   predates (regrabsLate/capturedLate). New tools/diag-batch.sh: step 5(a) games in parallel through the VM queue,
   own builds only as opponents (refuses others). Batch u-h queued: b2u vs b1z2b on Tunnels, Battlecode24,
   DefaultLarge; b2rgh vs b2rg on DefaultLarge, DefaultMedium (all s4 vs g_iter1).
+- B3 demotion rule applied at 6 filler seeds (as pre-registered): B3 vs B2 16-29, net -13, **-1.94 SE**: above the
+  -2 SE line, so B3 is **not demoted** by the rule's letter. The 7th seed reads 20-35 (-2.02 SE); band + filler together
+  38-54 (-1.7 SE). B3 stays in the filler; the stack decision moves to the power-sized test (~960 paired games).
+  New arms are built on B2 (b2u, b2rgh) because B3's value is unresolved.
+- Filler vs g_iter1: B1 72-97 over 1114 (-1.9 SE); B2 64-59 over 757 (+0.5 SE); B3 11-32 over 279 (-3.2 SE). The stack
+  has not yet beaten the incumbent g_iter1 on paired games; B2 is level with it.
