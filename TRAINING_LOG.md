@@ -547,3 +547,6 @@ B3 vs B2 6-17 (net -11, -2.3 SE); B1 vs g_iter1 5-13 (these seeds are hard on B1
 Pre-registered demotion rule: at 6 filler seeds (240 paired games) of B3 vs B2 (`tools/filler-tally.py b1z2b b2fs`),
 if net <= -2 SE, B3 is demoted (FILL_SMART leaves the stack), the filler candidate list drops b2fs, and the digging
 arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B3 stays.
+- b3own step 5(b): **PASS** (BASE=b2fs, 24 games): digs fire 92%; level200 11.9; fills200 59.3 vs 58.3 (+1.0 +- 4.1,
+  the self-fill cost is gone: b3dig5 was +41); crumbs200 2874 vs 5014 (-2140 +- 500; above the 0.5 bar, the dig cost
+  itself, ~140 digs x 20). Band test started (gauntlet/20261002-031317-scrim-b3own = seed 1).
