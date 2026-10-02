@@ -949,3 +949,7 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   for the arm matched nothing, silently. Repaired the source line; the arm is now built by a regex that asserts one
   match. New guard: tools/arm-intent.txt (arm, File.CONSTANT=value) checked by test_tools.py against the arm's source;
   shown to fail when the intent and the source disagree. Verification 5 queued (same 10 maps, OBSERVE really on).
+- Verification 5 (OBSERVE really on; 10 maps): **0 overruns**, max 22.7k (the 2500 guard), symOk 8/10 at r250; Snake
+  decided r253, Soccer r1059. But undecided ducks spent their spare budget every turn rescanning the vision disk
+  (Soccer: mean 14.8k a turn, 309 turns near 90%, 56k robot turns vs ~100k). Fix: each tile is processed once per duck
+  (a pair is compared when its second tile is first seen, so nothing is lost). Verification 6 queued.

@@ -227,8 +227,10 @@ public strictfp class Sym {
         for (MapInfo mi : rc.senseNearbyMapInfos()) {
             if (Clock.getBytecodesLeft() < BC_STOP) return;  // partial memory is fine: the rest is seen again later
             MapLocation m = mi.getMapLocation();
-            observeTile(m.x, m.y, mi.isWall(), mi.isSpawnZone());
-            if (decided()) return;
+            int i = m.x + m.y * G.W;
+            if ((seen[i >>> 6] & (1L << (i & 63))) != 0) continue;   // each tile once: a pair is compared when its
+            observeTile(m.x, m.y, mi.isWall(), mi.isSpawnZone());    // second tile is first seen (verification 5:
+            if (decided()) return;                                    // rescanning cost 14.8k a turn on Soccer)
         }
     }
 }
