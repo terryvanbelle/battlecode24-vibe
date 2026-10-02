@@ -563,3 +563,8 @@ arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B
   just below an enemy carrier; pick it up before striking; counter rg in the indicator). Based on B2, not B3, while
   B3's demotion rule is pending. Step 5(a): DefaultMedium and DefaultLarge s4 vs g_iter1, against b1z2b.
 - Also fixed: research/census-b2fs.csv and survey-b2fs.csv had been committed empty (copied while the disk was full).
+- b2rg step 5(a) vs g_iter1, s4 (pickups / first grabs / re-grabs / captured; b2rg vs b1z2b):
+  DefaultLarge 19/4/15/0 vs 8/6/2/0; DefaultMedium 12/5/7/0 vs 4/2/2/0. rg counter fires (up to rg2 per duck).
+  Every carrier still dies (carrierDeaths = pickups) against the g_iter1 defence; both games lost on level sum as before.
+  Step 5(b) pre-registered (BASE=b1z2b): rel:regrabs>=1.5 rel:pickups>=1.0 rel:captured>=0.8 rel:inEnemy250>=0.9
+  (captured bar loose: its 24-game noise is about +-0.25 of the mean).
