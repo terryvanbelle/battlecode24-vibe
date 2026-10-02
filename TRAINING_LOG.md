@@ -894,3 +894,12 @@ programme; its S0a tools (in review) serve the study, and its stages return only
   P1 1.0 tiles PASS; P2 295/389 = 0.758 +- 0.022 PASS; P3 0.892 +- 0.013 PASS (Sym.best() 0.655); P4 PASS (ratio 3.56);
   P6 their 25+ round trips captured 0.506 with chasers >= 1 vs 0.882 with < 0.5 = 0.57 +- 0.05 PASS. symOk 0.720.
   **ROUTING: all bars pass, S0b next.** psymOk >= 0.95 is an S0b bar (symOk < 0.9 in both samples).
+- Owner question (prompt 125) on the symmetry check. Finding: g_iter1's Sym uses only the enemy-flag broadcast hints at
+  rounds 1-3 (each within dist2 100 of an enemy spawn centre), which often leave 2-3 symmetries consistent; best() then
+  picks ROT > FX > FY by fixed order, i.e. guesses. Sym.observe (walls must mirror walls) exists but has no callers, and
+  as written needs a tile and its image in one duck's vision. Correctness (symOk from --track): band 155/234 (66%),
+  ColtG5 games 371/515 (72%); always wrong on some maps (StackGame, AceOfSpades, Snake, Tunnels, Soccer, TreeSearch,
+  MazeRunner, HungerGames, Decision, ...). Win rate with a wrong guess vs a right one: vs ColtG5 25.0 +- 3.6% vs
+  39.9 +- 2.5% (144 vs 371 games); band 29.1 +- 5.1% vs 37.4 +- 3.9%. Correlational and confounded by map (the same maps
+  are always wrong), so only a fix tested on identical cells can price it. Candidate repair arm: observation-based
+  symmetry (spawn-zone check on image tiles, dam/wall checks near the axis in setup, shared slot 16).

@@ -515,3 +515,7 @@ task check
 ## 124. 2026-10-02
 
 task check
+
+## 125. 2026-10-02
+
+Can you tell me more about our symmetry check?  I was under the impression we could figure it out via observations, without having to guess
