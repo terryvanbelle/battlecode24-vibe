@@ -11,9 +11,15 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   Archetype partners can start from builds we already have, each an early, weak copy of one enemy component:
   g1escrg (convoy with re-grabs), arch_rush / arch_rush10 (early raid), g1drift80 (ground push). Rejected as our
   strategy, useful as sparring opponents.
+- 14:40 UTC: design done (research/REWRITE_DESIGN.md): persistent per-flag tracks predicted toward their spawn, a capped
+  auction of free or jailed responders that cut the predicted path; every other duck plays g_iter1. Stage S0a (premise
+  from g_iter1 band replays, no bot code) being implemented by a workflow with three-lens review. g_iter1 control on the
+  confirmation seeds finished. Replays for the premise are on the VM (2 pinned runs; 3 more for a descriptive check).
 
 ## Working
 
 ## Not working
 
 ## Open questions for the owner
+- The design picks one bet (unseen carriers walking home) and closes cheaply if its premise fails in S0a. Is a single
+  focused bet the right shape, or should a second line (e.g. economy, the +2000 crumbs) run in parallel?
