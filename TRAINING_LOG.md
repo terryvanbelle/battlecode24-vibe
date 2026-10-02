@@ -795,4 +795,5 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   delete permission (prompt 92): removed 14,728 replays (*.bc24 only, older than 30 min) from closed-arm scrim runs and
   censused filler runs; kept every results.csv, summary, log and census file, the stack builds' runs (g_iter0/1, b1v2,
   b1z2b, b2fs) and the dg909090 delivery-gate base runs (re-censused when a new column appears). VM disk 100% -> 45%.
-  The drift80 batch was re-queued. To do: a standing prune in tools/vm-queue.sh so this cannot recur.
+  The drift80 batch was re-queued. Standing guard: tools/vm-prune.sh (disk > 80%: replays older than 60 min of censused
+  arm and filler runs; keeps tools/keep-replays.txt builds and gate bases), run at the start of every filler; tested.

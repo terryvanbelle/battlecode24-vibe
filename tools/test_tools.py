@@ -159,5 +159,24 @@ r = fo.classify(['r3 A#10 digs (1,1)', 'r5 B#11 digs (2,2)', 'r9 A#12 fills (1,1
 check(r['A'][:4] == [4, 1, 1, 2] and r['A'][4] == [6], 'fill-origin: A fills own/enemy/natural: %r' % (r['A'],))
 check(r['B'][:4] == [1, 0, 0, 1], 'fill-origin: B one natural fill: %r' % (r['B'],))
 
+# vm-prune: deletes old replays of censused arm/filler runs; keeps stack builds, gate bases, unfinished runs, non-replays
+with tempfile.TemporaryDirectory() as td:
+    os.makedirs(os.path.join(td, 'tools'))
+    open(os.path.join(td, 'tools', 'keep-replays.txt'), 'w').write('g_iter1\n')
+    runs = {'20261001-000000-scrim-x': True, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
+            '20261001-000003-scrim-z': False, '20261001-000004-scrim-g_iter1-fill123': True}
+    old = 1e9
+    for r, done in runs.items():
+        d = os.path.join(td, 'gauntlet', r, 'losses'); os.makedirs(d)
+        f = os.path.join(d, 'a__m__botA.bc24'); open(f, 'w').write('x'); os.utime(f, (old, old))
+        if done: open(os.path.join(td, 'gauntlet', r, 'results.csv'), 'w').write('h\n')
+    out = subprocess.run(['bash', os.path.join(HERE, 'vm-prune.sh')], env=dict(os.environ, REPO=td, THRESH='-1', AGE='60'),
+                         capture_output=True, text=True).stdout
+    left = {r: os.path.exists(os.path.join(td, 'gauntlet', r, 'losses', 'a__m__botA.bc24')) for r in runs}
+    check(left == {'20261001-000000-scrim-x': False, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
+                   '20261001-000003-scrim-z': True, '20261001-000004-scrim-g_iter1-fill123': False}
+          and all(os.path.exists(os.path.join(td, 'gauntlet', r, 'results.csv')) for r, d in runs.items() if d),
+          'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs and results: %r %s' % (left, out))
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

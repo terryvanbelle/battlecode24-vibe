@@ -6,6 +6,7 @@
 # (gauntlet/fillcensus-<bot>-<seed>.csv). tools/collect-fillers.sh (driver) records them in the ladder and tallies pairs.
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"
+THRESH=80 AGE=60 tools/vm-prune.sh || true   # standing prune: replays filled the VM disk on 2026-10-02
 CTL="${1:?control}"; CAND="${2:?candidate}"; N="${3:-40}"; S="$(date +%s)"
 for B in "$CTL" ${CAND//,/ }; do
   BOT="$B" N="$N" SEED="$S" RUNTAG="fill$S" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/filler-classes" \
