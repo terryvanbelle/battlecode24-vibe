@@ -778,3 +778,10 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
 - Arm g1drift = g_iter1 + HOLD_DRIFT 40: in the kite/hold branch only, +40 for a tile closer to the field target, -40
   for one farther (below the 50 safe-band bonus and far below the 1000 per threat: a safe forward creep).
   Micro.objective = fieldTarget() in fights when on. Step 5(a) batch queued (7 cells).
+- g1drift step 5(a) vs the g_iter1 mirrors, 7 cells (won / stillPost / inEnemy300 / their inEnemy300 / kills-deaths):
+  Battlecode24 s4 1 / 50.9 / 28 / 11 / 190-203 vs 0 / 63.6 / 6 / 29 / 202-340 (won 1-0 on captures instead of losing 0-2);
+  DefaultLarge s4 1 / 30.6 / 39 / 36 vs 1 / 38.2 / 18 / 24; s5 **0** / 34.1 / 39 / 24 / 290-366 vs 1 / 35.3 / 14 / 16 / 395-322;
+  DefaultMedium s4 1 / 49.7 / 7 vs 1 / 48.7 / 1; s5 1 / 49.4 / 31 vs 1 / 58.6 / 22; Tunnels s4 1 / 55.9 / 4 vs 1 / 58.9 / 0;
+  s5 **0** / 51.7 / 0 vs 1 / 60.1 / 0. Means: stillPost 46.0 vs 51.9; inEnemy300 21.1 vs 8.7; their inEnemy300 14.7 vs
+  15.1; wins 5/7 vs 6/7. The mechanism delivers (less parking, more forward presence).
+  Step 5(b) pre-registered (BASE=g_iter1): rel:stillPost<=0.92 rel:inEnemy300>=1.2 rel:enemyCaptured<=1.2.
