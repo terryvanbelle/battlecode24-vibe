@@ -714,3 +714,15 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
   wins 4/7 vs the mirrors' 6/7. Reading: the goal "the carrier's next homeward tile" (roadmap block 6) puts escorts in
   the carrier's path. **Not reproduced; not gated.** Variant g1esc2 (ESCORT_BEHIND: goal one tile behind the carrier, so
   escorts trail and never block) queued for step 5(a).
+- g1esc2 step 5(a) vs mirrors (escorts20): DefaultLarge s4 4.43 vs 4.44, s5 5.00 vs 5.20; DefaultMedium s4 5.19 vs 6.51;
+  Tunnels s4 6.91 vs 5.91, s5 6.23 vs 5.69: mean 5.55 vs 5.55. Captures +1 Tunnels, -1 DefaultMedium; wins 5/7 vs 6/7.
+  **Not delivered; not gated.**
+
+### 2026-10-02 — leaving the flag-pressure / carrier area (TRAINING_ALGORITHM §4: 3 consecutive rejects in one area)
+Today's arms in this area, none delivered and won: b2rg (delivered regrabs, lost 11-26), b2rgc, b2rgu, b2u, b2rgh,
+g1z2 (delivery 0.74 vs bar 0.7), g1z2w, g1icpt, g1camp, g1icamp, g1esc, g1esc2. What was learned stays: their captures
+are carriers that get clear (47% unopposed) and chains of re-grabs/relays (64%); our escorts 4.85 vs their 6.76;
+local rules that only see a fight do not reach the carriers nobody sees. Re-open condition: a mechanism that changes
+what is seen (shared carrier tracking with prediction) or who is free to act (a dedicated interception/escort group).
+Next per §4: plateau escalation steps 3-4 (re-read field games; re-read ADVICE and other years), and a structural
+swing (none in the last 4 attempts).
