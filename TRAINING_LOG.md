@@ -500,3 +500,15 @@ Measurement first (counter in Nav.fillToward, B2 build b2meas vs g_iter1, Defaul
 of filling). Step 5(a), same cell: fills 106 vs 128, crumbs200 2180 vs 1940, firstFlagSight r299 vs r330, inEnemy250
 24 vs 27, deaths 159 vs 247 (won vs lost). Step 5(b) pre-registered (BASE=b1z2b): rel:fills200<=0.9
 rel:crumbs200>=1.0 rel:inEnemy250>=0.9.
+
+### 2026-10-02 — b2fs (B2 + FILL_SMART) band verdict: ADVANCES as B3
+Band, 2 seeds, paired against B2 (b1z2b) on identical cells, 234 games.
+- Wins: seed 1 41 -> 39, seed 2 44 -> 45; net -1 (non-inferior, bar is -5).
+- Own metric (survey): fills200 -8.9 +- 0.7 (-12.2 SE); crumbs200 +265 +- 29 (+9.2 SE); stun400 +3.4 (+3.6 SE).
+  crumbs250 flat: the saved crumbs are spent by round 250, not hoarded.
+- Census: inEnemy250 -0.5 (-0.9 SE). The delivery-block gain (+5.5) did not hold on the band. Everything else within 1.5 SE;
+  carrierDeathDist +1.1 (+2.1 SE, n=168).
+- Stack is now B1 b1v2 -> B2 b1z2b -> B3 b2fs. Filler now pairs g_iter1 vs b1v2,b1z2b,b2fs.
+- Next: T4 setup-digging retry on B3, now that the navigator avoids needless fills (b2dig5 failed because we filled our own digs).
+Ops: local disk hit 100% (gauntlet replays 2.6 GB). 2026-09-30 replays copied to the VM at ~/archive/bc24-local (1111 files, count verified);
+deleting the local copies needs the user's permission.
