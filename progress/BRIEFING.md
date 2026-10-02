@@ -23,9 +23,19 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   converts 1-2 early; games then freeze to r2000 and one flag decides them. Screen 1 queued: existing rush/flank builds
   vs ColtG5 on identical cells. The filler now builds the g_iter1 vs ColtG5 baseline. Band-wide rewrite paused.
 
+- 18:00 UTC: crack screen: rush/flank raids reach ColtG5's flags (pickups x12-30) but never convert: closed. Trip study:
+  56% of ColtG5's captured trips walk home with none of ours near; with 1.5-3 chasers its capture rate drops 82% -> 25%.
+  Crack = CUT (intercept the carrier walking home). S0a premise on 515 g_iter1-vs-ColtG5 games: all bars pass.
+  S0b (sensor) being implemented; then S1 (responders) against ColtG5.
+
 ## Working
+- Measuring before building: the premise tools answered "can it work against ColtG5?" from 515 replays with no bot change.
+- The ColtG5 focus gives a sensitive target: one flag decides most games (102/135 of its wins are 1-flag tiebreaks).
 
 ## Not working
+- Raids against ColtG5 (5 builds): flags reached, never brought home.
+- Bot symmetry guess wrong in 28% of ColtG5 games and 34% of band games: the sensor must fix this (PSYM).
+- Band premise fails P3 (destination 0.76): widening beyond ColtG5 will need the tracker revision.
 
 ## Open questions for the owner
 - (answered, prompt 120: one strategy, all energy on it; the crack against ColtG5.)
