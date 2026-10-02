@@ -726,3 +726,15 @@ local rules that only see a fight do not reach the carriers nobody sees. Re-open
 what is seen (shared carrier tracking with prediction) or who is free to act (a dedicated interception/escort group).
 Next per §4: plateau escalation steps 3-4 (re-read field games; re-read ADVICE and other years), and a structural
 swing (none in the last 4 attempts).
+
+### 2026-10-02 — plateau escalation steps 3-5 (re-read games, re-read advice, jointly necessary pairs)
+- Field games re-read through the band survey split by outcome (B3 band; us/them in games we won / lost):
+  kills 676/186 and 331/294 (our kill lead is against the weak; vs beaters fights are at parity); inEnemy300 19.3/13.8
+  and 15.7/21.8 (beaters hold more of our half than we of theirs); gathered400 6125/6500 and 6317/8359 (beaters gather
+  ~2000 more map crumbs by r400); level200 0/1.6 and 0/7.0; stun400 83/32 and 81/81.
+- Aggression re-open check (ADVICE §29: re-test when a fixed defect blocked it): e1aggr/e2aggr were re-run clean on the
+  restored trap placement (83/110, 81/110 vs 84): the closure stands.
+- Jointly necessary pair (ADVICE §29): REGRAB alone delivered re-grabs but lost (lone re-grabbers die deep in their
+  base); ESCORT_BEHIND alone moved nothing (nobody acts on the drop). Together they are the enemy's own convoy (64% of
+  their captures come from re-grab/relay chains; escorts 6.76 vs our 4.85). Arm g1escrg = g_iter1 + ESCORT_CARRIER +
+  ESCORT_BEHIND + REGRAB; per-half counters et and rg. Step 5(a) batch queued (7 cells vs g_iter1).
