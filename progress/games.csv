@@ -10988,3 +10988,243 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261002-155700-scrim-b2fs-fill1790955660,38,quesswho.cretplayer2_3,us:b2fs,Hockey,B,2000,The winning team won on tiebreakers (hig,1013242969
 20261002-155700-scrim-b2fs-fill1790955660,39,winkelmantanner.waffle,us:b2fs,Funnel,B,2000,The winning team won on tiebreakers (hig,746313680
 20261002-155700-scrim-b2fs-fill1790955660,40,us:b2fs,winkelmantanner.waffle,QueenOfHearts,A,838,The winning team captured all flags.,974369453
+20261002-163551-scrim-g_iter1-fill1790958946,1,us:g_iter1,ColtG5.Goob_final,Backslash,A,2000,The winning team won on tiebreakers (hig,91281255
+20261002-163551-scrim-g_iter1-fill1790958946,2,us:g_iter1,ColtG5.Goob_final,Battlefield,B,446,The winning team captured all flags.,662233803
+20261002-163551-scrim-g_iter1-fill1790958946,3,ColtG5.Goob_final,us:g_iter1,Battlefield,A,372,The winning team captured all flags.,844247094
+20261002-163551-scrim-g_iter1-fill1790958946,4,ColtG5.Goob_final,us:g_iter1,Battlefield,A,379,The winning team captured all flags.,549282076
+20261002-163551-scrim-g_iter1-fill1790958946,5,ColtG5.Goob_final,us:g_iter1,BedWars,A,1037,The winning team captured all flags.,535610434
+20261002-163551-scrim-g_iter1-fill1790958946,6,ColtG5.Goob_final,us:g_iter1,BedWars,B,1174,The winning team captured all flags.,277997385
+20261002-163551-scrim-g_iter1-fill1790958946,7,us:g_iter1,ColtG5.Goob_final,Bunkers,B,804,The winning team captured all flags.,55658417
+20261002-163551-scrim-g_iter1-fill1790958946,8,us:g_iter1,ColtG5.Goob_final,CH3353C4K3F4CT0RY,B,570,The winning team captured all flags.,674803469
+20261002-163551-scrim-g_iter1-fill1790958946,9,us:g_iter1,ColtG5.Goob_final,Checkered,A,2000,The winning team won on tiebreakers (hig,178509534
+20261002-163551-scrim-g_iter1-fill1790958946,10,ColtG5.Goob_final,us:g_iter1,Diagonal,A,2000,The winning team won on tiebreakers (cap,717166267
+20261002-163551-scrim-g_iter1-fill1790958946,11,ColtG5.Goob_final,us:g_iter1,EndAround,B,2000,The winning team won on tiebreakers (hig,891636881
+20261002-163551-scrim-g_iter1-fill1790958946,12,us:g_iter1,ColtG5.Goob_final,EvilGrin,B,2000,The winning team won on tiebreakers (cap,288821828
+20261002-163551-scrim-g_iter1-fill1790958946,13,ColtG5.Goob_final,us:g_iter1,Funnel,B,2000,The winning team won on tiebreakers (hig,726076837
+20261002-163551-scrim-g_iter1-fill1790958946,14,ColtG5.Goob_final,us:g_iter1,Fusbol,B,2000,The winning team won on tiebreakers (cap,894318171
+20261002-163551-scrim-g_iter1-fill1790958946,15,ColtG5.Goob_final,us:g_iter1,Gauntlet,B,2000,The winning team won on tiebreakers (hig,5219313
+20261002-163551-scrim-g_iter1-fill1790958946,16,ColtG5.Goob_final,us:g_iter1,Hurricane,A,2000,The winning team won on tiebreakers (cap,506334753
+20261002-163551-scrim-g_iter1-fill1790958946,17,ColtG5.Goob_final,us:g_iter1,Hurricane,B,2000,The winning team won on tiebreakers (hig,999637881
+20261002-163551-scrim-g_iter1-fill1790958946,18,ColtG5.Goob_final,us:g_iter1,Intercontinental,A,1510,The winning team captured all flags.,453026809
+20261002-163551-scrim-g_iter1-fill1790958946,19,us:g_iter1,ColtG5.Goob_final,Islands,A,2000,The winning team won on tiebreakers (hig,853944648
+20261002-163551-scrim-g_iter1-fill1790958946,20,us:g_iter1,ColtG5.Goob_final,KingQuacksCastle,B,2000,The winning team won on tiebreakers (cap,547282034
+20261002-163551-scrim-g_iter1-fill1790958946,21,us:g_iter1,ColtG5.Goob_final,MIT,B,2000,The winning team won on tiebreakers (cap,44317902
+20261002-163551-scrim-g_iter1-fill1790958946,22,ColtG5.Goob_final,us:g_iter1,MazeRunner,A,2000,The winning team won on tiebreakers (cap,296233082
+20261002-163551-scrim-g_iter1-fill1790958946,23,us:g_iter1,ColtG5.Goob_final,Mountain,B,2000,The winning team won on tiebreakers (cap,119269097
+20261002-163551-scrim-g_iter1-fill1790958946,24,us:g_iter1,ColtG5.Goob_final,Occulus,B,2000,The winning team won on tiebreakers (cap,922116218
+20261002-163551-scrim-g_iter1-fill1790958946,25,ColtG5.Goob_final,us:g_iter1,QueenOfHearts,B,2000,The winning team won on tiebreakers (hig,594784153
+20261002-163551-scrim-g_iter1-fill1790958946,26,us:g_iter1,ColtG5.Goob_final,Rainbow,B,2000,The winning team won on tiebreakers (cap,336627109
+20261002-163551-scrim-g_iter1-fill1790958946,27,ColtG5.Goob_final,us:g_iter1,Rainbow,A,2000,The winning team won on tiebreakers (cap,227292212
+20261002-163551-scrim-g_iter1-fill1790958946,28,us:g_iter1,ColtG5.Goob_final,Rivers,B,2000,The winning team won on tiebreakers (cap,692321163
+20261002-163551-scrim-g_iter1-fill1790958946,29,us:g_iter1,ColtG5.Goob_final,Rivers,B,2000,The winning team won on tiebreakers (cap,998772692
+20261002-163551-scrim-g_iter1-fill1790958946,30,ColtG5.Goob_final,us:g_iter1,Rivers,A,2000,The winning team won on tiebreakers (cap,210419285
+20261002-163551-scrim-g_iter1-fill1790958946,31,us:g_iter1,ColtG5.Goob_final,Snake,B,2000,The winning team won on tiebreakers (cap,461603803
+20261002-163551-scrim-g_iter1-fill1790958946,32,us:g_iter1,ColtG5.Goob_final,Snake,B,724,The winning team captured all flags.,437164005
+20261002-163551-scrim-g_iter1-fill1790958946,33,ColtG5.Goob_final,us:g_iter1,Soccer,B,1943,The winning team captured all flags.,706132413
+20261002-163551-scrim-g_iter1-fill1790958946,34,ColtG5.Goob_final,us:g_iter1,SteamboatMickey,A,1274,The winning team captured all flags.,610863332
+20261002-163551-scrim-g_iter1-fill1790958946,35,us:g_iter1,ColtG5.Goob_final,TreeSearch,A,2000,The winning team won on tiebreakers (hig,830147904
+20261002-163551-scrim-g_iter1-fill1790958946,36,us:g_iter1,ColtG5.Goob_final,Tunnels,B,2000,The winning team won on tiebreakers (cap,738614216
+20261002-163551-scrim-g_iter1-fill1790958946,37,ColtG5.Goob_final,us:g_iter1,Tunnels,A,2000,The winning team won on tiebreakers (cap,1068325197
+20261002-163551-scrim-g_iter1-fill1790958946,38,us:g_iter1,ColtG5.Goob_final,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,67874096
+20261002-163551-scrim-g_iter1-fill1790958946,39,ColtG5.Goob_final,us:g_iter1,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,716202658
+20261002-163551-scrim-g_iter1-fill1790958946,40,ColtG5.Goob_final,us:g_iter1,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,895824672
+20261002-164126-scrim-g_iter1-fill1790959279,1,ColtG5.Goob_final,us:g_iter1,Alligator,A,2000,The winning team won on tiebreakers (cap,452908716
+20261002-164126-scrim-g_iter1-fill1790959279,2,ColtG5.Goob_final,us:g_iter1,Ambush,A,325,The winning team captured all flags.,279841498
+20261002-164126-scrim-g_iter1-fill1790959279,3,us:g_iter1,ColtG5.Goob_final,Battlefield,B,423,The winning team captured all flags.,301967341
+20261002-164126-scrim-g_iter1-fill1790959279,4,ColtG5.Goob_final,us:g_iter1,Battlefield,A,246,The winning team captured all flags.,139356424
+20261002-164126-scrim-g_iter1-fill1790959279,5,ColtG5.Goob_final,us:g_iter1,BigDucksBigPond,B,2000,The winning team won on tiebreakers (hig,551128471
+20261002-164126-scrim-g_iter1-fill1790959279,6,ColtG5.Goob_final,us:g_iter1,Checkered,A,2000,The winning team won on tiebreakers (cap,994840481
+20261002-164126-scrim-g_iter1-fill1790959279,7,ColtG5.Goob_final,us:g_iter1,Checkered,B,2000,The winning team won on tiebreakers (hig,14369595
+20261002-164126-scrim-g_iter1-fill1790959279,8,us:g_iter1,ColtG5.Goob_final,DefaultLarge,A,2000,The winning team won on tiebreakers (cap,668237375
+20261002-164126-scrim-g_iter1-fill1790959279,9,ColtG5.Goob_final,us:g_iter1,Duck,A,2000,The winning team won on tiebreakers (cap,201623497
+20261002-164126-scrim-g_iter1-fill1790959279,10,ColtG5.Goob_final,us:g_iter1,FloodGates,A,2000,The winning team won on tiebreakers (cap,841577808
+20261002-164126-scrim-g_iter1-fill1790959279,11,us:g_iter1,ColtG5.Goob_final,Gauntlet,B,602,The winning team captured all flags.,429198418
+20261002-164126-scrim-g_iter1-fill1790959279,12,ColtG5.Goob_final,us:g_iter1,Gauntlet,A,556,The winning team captured all flags.,722379153
+20261002-164126-scrim-g_iter1-fill1790959279,13,ColtG5.Goob_final,us:g_iter1,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,830340388
+20261002-164126-scrim-g_iter1-fill1790959279,14,us:g_iter1,ColtG5.Goob_final,Hockey,A,2000,The winning team won on tiebreakers (cap,738982231
+20261002-164126-scrim-g_iter1-fill1790959279,15,ColtG5.Goob_final,us:g_iter1,HungerGames,A,338,The winning team captured all flags.,931989177
+20261002-164126-scrim-g_iter1-fill1790959279,16,ColtG5.Goob_final,us:g_iter1,KingQuacksCastle,A,2000,The winning team won on tiebreakers (cap,746655696
+20261002-164126-scrim-g_iter1-fill1790959279,17,us:g_iter1,ColtG5.Goob_final,MIT,B,2000,The winning team won on tiebreakers (cap,725753423
+20261002-164126-scrim-g_iter1-fill1790959279,18,ColtG5.Goob_final,us:g_iter1,MIT,A,2000,The winning team won on tiebreakers (cap,352358449
+20261002-164126-scrim-g_iter1-fill1790959279,19,ColtG5.Goob_final,us:g_iter1,MIT,B,2000,The winning team won on tiebreakers (hig,336230301
+20261002-164126-scrim-g_iter1-fill1790959279,20,us:g_iter1,ColtG5.Goob_final,Occulus,B,934,The winning team captured all flags.,600239239
+20261002-164126-scrim-g_iter1-fill1790959279,21,ColtG5.Goob_final,us:g_iter1,OceanFloor,B,1834,The winning team captured all flags.,857119310
+20261002-164126-scrim-g_iter1-fill1790959279,22,ColtG5.Goob_final,us:g_iter1,QuestionableChess,A,2000,The winning team won on tiebreakers (cap,582428008
+20261002-164126-scrim-g_iter1-fill1790959279,23,ColtG5.Goob_final,us:g_iter1,QuestionableChess,A,449,The winning team captured all flags.,866198011
+20261002-164126-scrim-g_iter1-fill1790959279,24,us:g_iter1,ColtG5.Goob_final,Rainbow,B,2000,The winning team won on tiebreakers (cap,249289320
+20261002-164126-scrim-g_iter1-fill1790959279,25,ColtG5.Goob_final,us:g_iter1,Rainbow,B,2000,The winning team won on tiebreakers (hig,120854228
+20261002-164126-scrim-g_iter1-fill1790959279,26,ColtG5.Goob_final,us:g_iter1,Randy,A,2000,The winning team won on tiebreakers (cap,326095213
+20261002-164126-scrim-g_iter1-fill1790959279,27,ColtG5.Goob_final,us:g_iter1,Rivers,A,2000,The winning team won on tiebreakers (cap,615127665
+20261002-164126-scrim-g_iter1-fill1790959279,28,us:g_iter1,ColtG5.Goob_final,Soccer,A,1766,The winning team captured all flags.,131366720
+20261002-164126-scrim-g_iter1-fill1790959279,29,us:g_iter1,ColtG5.Goob_final,StackGame,B,734,The winning team captured all flags.,1014453334
+20261002-164126-scrim-g_iter1-fill1790959279,30,us:g_iter1,ColtG5.Goob_final,SteamboatMickey,A,1957,The winning team captured all flags.,456375613
+20261002-164126-scrim-g_iter1-fill1790959279,31,ColtG5.Goob_final,us:g_iter1,SteamboatMickey,B,1965,The winning team captured all flags.,672570784
+20261002-164126-scrim-g_iter1-fill1790959279,32,us:g_iter1,ColtG5.Goob_final,TreeSearch,B,1501,The winning team captured all flags.,333624
+20261002-164126-scrim-g_iter1-fill1790959279,33,ColtG5.Goob_final,us:g_iter1,TwistedTreeline,B,2000,The winning team won on tiebreakers (hig,127195481
+20261002-164126-scrim-g_iter1-fill1790959279,34,us:g_iter1,ColtG5.Goob_final,Valentine,A,2000,The winning team won on tiebreakers (hig,410284954
+20261002-164126-scrim-g_iter1-fill1790959279,35,us:g_iter1,ColtG5.Goob_final,WheresMyWater,A,2000,The winning team won on tiebreakers (hig,821478525
+20261002-164126-scrim-g_iter1-fill1790959279,36,ColtG5.Goob_final,us:g_iter1,Whirlpool,A,914,The winning team captured all flags.,103894077
+20261002-164126-scrim-g_iter1-fill1790959279,37,us:g_iter1,ColtG5.Goob_final,Yinyang,A,2000,The winning team won on tiebreakers (hig,800986455
+20261002-164126-scrim-g_iter1-fill1790959279,38,us:g_iter1,ColtG5.Goob_final,Yinyang,A,2000,The winning team won on tiebreakers (hig,997700928
+20261002-164126-scrim-g_iter1-fill1790959279,39,ColtG5.Goob_final,us:g_iter1,Yinyang,A,732,The winning team captured all flags.,11974235
+20261002-164126-scrim-g_iter1-fill1790959279,40,ColtG5.Goob_final,us:g_iter1,Yinyang,B,2000,The winning team won on tiebreakers (hig,140337701
+20261002-164723-scrim-g_iter1-fill1790959639,1,us:g_iter1,ColtG5.Goob_final,Backslash,A,2000,The winning team won on tiebreakers (hig,164690463
+20261002-164723-scrim-g_iter1-fill1790959639,2,ColtG5.Goob_final,us:g_iter1,Backslash,B,2000,The winning team won on tiebreakers (hig,961233478
+20261002-164723-scrim-g_iter1-fill1790959639,3,us:g_iter1,ColtG5.Goob_final,Battlefield,B,329,The winning team captured all flags.,873367236
+20261002-164723-scrim-g_iter1-fill1790959639,4,us:g_iter1,ColtG5.Goob_final,BedWars,B,2000,The winning team won on tiebreakers (cap,924015485
+20261002-164723-scrim-g_iter1-fill1790959639,5,ColtG5.Goob_final,us:g_iter1,BedWars,B,2000,The winning team won on tiebreakers (hig,292449684
+20261002-164723-scrim-g_iter1-fill1790959639,6,ColtG5.Goob_final,us:g_iter1,BedWars,B,2000,The winning team won on tiebreakers (hig,369107256
+20261002-164723-scrim-g_iter1-fill1790959639,7,us:g_iter1,ColtG5.Goob_final,BigDucksBigPond,A,2000,The winning team won on tiebreakers (hig,67282357
+20261002-164723-scrim-g_iter1-fill1790959639,8,ColtG5.Goob_final,us:g_iter1,BigDucksBigPond,B,1857,The winning team captured all flags.,299101585
+20261002-164723-scrim-g_iter1-fill1790959639,9,us:g_iter1,ColtG5.Goob_final,CH3353C4K3F4CT0RY,A,2000,The winning team won on tiebreakers (hig,532582219
+20261002-164723-scrim-g_iter1-fill1790959639,10,us:g_iter1,ColtG5.Goob_final,CH3353C4K3F4CT0RY,B,2000,The winning team won on tiebreakers (cap,739305248
+20261002-164723-scrim-g_iter1-fill1790959639,11,us:g_iter1,ColtG5.Goob_final,Checkered,B,2000,The winning team won on tiebreakers (cap,743224419
+20261002-164723-scrim-g_iter1-fill1790959639,12,us:g_iter1,ColtG5.Goob_final,Decision,A,1454,The winning team captured all flags.,103453884
+20261002-164723-scrim-g_iter1-fill1790959639,13,ColtG5.Goob_final,us:g_iter1,DefaultMedium,A,2000,The winning team won on tiebreakers (cap,106879794
+20261002-164723-scrim-g_iter1-fill1790959639,14,ColtG5.Goob_final,us:g_iter1,DefaultMedium,A,2000,The winning team won on tiebreakers (cap,202179285
+20261002-164723-scrim-g_iter1-fill1790959639,15,ColtG5.Goob_final,us:g_iter1,DefaultSmall,A,2000,The winning team won on tiebreakers (cap,196192265
+20261002-164723-scrim-g_iter1-fill1790959639,16,us:g_iter1,ColtG5.Goob_final,Duck,A,2000,The winning team won on tiebreakers (hig,825297435
+20261002-164723-scrim-g_iter1-fill1790959639,17,us:g_iter1,ColtG5.Goob_final,EndAround,A,2000,The winning team won on tiebreakers (hig,761414945
+20261002-164723-scrim-g_iter1-fill1790959639,18,ColtG5.Goob_final,us:g_iter1,FloodGates,B,2000,The winning team won on tiebreakers (cap,613009954
+20261002-164723-scrim-g_iter1-fill1790959639,19,us:g_iter1,ColtG5.Goob_final,Fountain,B,2000,The winning team won on tiebreakers (cap,528932565
+20261002-164723-scrim-g_iter1-fill1790959639,20,ColtG5.Goob_final,us:g_iter1,Foxes,A,2000,The winning team won on tiebreakers (cap,241360137
+20261002-164723-scrim-g_iter1-fill1790959639,21,us:g_iter1,ColtG5.Goob_final,Hockey,A,2000,The winning team won on tiebreakers (hig,742324798
+20261002-164723-scrim-g_iter1-fill1790959639,22,ColtG5.Goob_final,us:g_iter1,Hockey,B,1993,The winning team captured all flags.,526798572
+20261002-164723-scrim-g_iter1-fill1790959639,23,ColtG5.Goob_final,us:g_iter1,Intercontinental,A,2000,The winning team won on tiebreakers (cap,374738229
+20261002-164723-scrim-g_iter1-fill1790959639,24,ColtG5.Goob_final,us:g_iter1,Islands,B,2000,The winning team won on tiebreakers (hig,180421171
+20261002-164723-scrim-g_iter1-fill1790959639,25,us:g_iter1,ColtG5.Goob_final,Joker,B,2000,The winning team won on tiebreakers (cap,280112047
+20261002-164723-scrim-g_iter1-fill1790959639,26,us:g_iter1,ColtG5.Goob_final,Joker,B,479,The winning team captured all flags.,1021772663
+20261002-164723-scrim-g_iter1-fill1790959639,27,ColtG5.Goob_final,us:g_iter1,Joker,A,2000,The winning team won on tiebreakers (cap,473131860
+20261002-164723-scrim-g_iter1-fill1790959639,28,ColtG5.Goob_final,us:g_iter1,Pancakes,A,686,The winning team captured all flags.,469828524
+20261002-164723-scrim-g_iter1-fill1790959639,29,ColtG5.Goob_final,us:g_iter1,Puzzle,A,1247,The winning team captured all flags.,1059618311
+20261002-164723-scrim-g_iter1-fill1790959639,30,ColtG5.Goob_final,us:g_iter1,Puzzle,A,2000,The winning team won on tiebreakers (cap,105099443
+20261002-164723-scrim-g_iter1-fill1790959639,31,us:g_iter1,ColtG5.Goob_final,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,797802818
+20261002-164723-scrim-g_iter1-fill1790959639,32,us:g_iter1,ColtG5.Goob_final,QueenOfHearts,B,609,The winning team captured all flags.,437053803
+20261002-164723-scrim-g_iter1-fill1790959639,33,ColtG5.Goob_final,us:g_iter1,Racetrack,A,1072,The winning team captured all flags.,1057806064
+20261002-164723-scrim-g_iter1-fill1790959639,34,ColtG5.Goob_final,us:g_iter1,Racetrack,A,441,The winning team captured all flags.,912954655
+20261002-164723-scrim-g_iter1-fill1790959639,35,ColtG5.Goob_final,us:g_iter1,Racetrack,B,2000,The winning team won on tiebreakers (hig,287979255
+20261002-164723-scrim-g_iter1-fill1790959639,36,ColtG5.Goob_final,us:g_iter1,StarryNight,A,2000,The winning team won on tiebreakers (cap,520415949
+20261002-164723-scrim-g_iter1-fill1790959639,37,ColtG5.Goob_final,us:g_iter1,SteamboatMickey,B,2000,The winning team won on tiebreakers (hig,887851500
+20261002-164723-scrim-g_iter1-fill1790959639,38,ColtG5.Goob_final,us:g_iter1,Swoop,A,823,The winning team captured all flags.,996049221
+20261002-164723-scrim-g_iter1-fill1790959639,39,us:g_iter1,ColtG5.Goob_final,WheresMyWater,B,399,The winning team captured all flags.,644939668
+20261002-164723-scrim-g_iter1-fill1790959639,40,us:g_iter1,ColtG5.Goob_final,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,569168193
+20261002-165240-scrim-g_iter1-fill1790959956,1,ColtG5.Goob_final,us:g_iter1,AceOfSpades,A,544,The winning team captured all flags.,652264791
+20261002-165240-scrim-g_iter1-fill1790959956,2,us:g_iter1,ColtG5.Goob_final,Alligator,B,2000,The winning team won on tiebreakers (cap,274620091
+20261002-165240-scrim-g_iter1-fill1790959956,3,ColtG5.Goob_final,us:g_iter1,Alligator,A,2000,The winning team won on tiebreakers (cap,1025911843
+20261002-165240-scrim-g_iter1-fill1790959956,4,ColtG5.Goob_final,us:g_iter1,Asteroids,A,1862,The winning team captured all flags.,412506529
+20261002-165240-scrim-g_iter1-fill1790959956,5,ColtG5.Goob_final,us:g_iter1,Backslash,A,2000,The winning team won on tiebreakers (cap,643291763
+20261002-165240-scrim-g_iter1-fill1790959956,6,us:g_iter1,ColtG5.Goob_final,BedWars,B,2000,The winning team won on tiebreakers (cap,252168122
+20261002-165240-scrim-g_iter1-fill1790959956,7,ColtG5.Goob_final,us:g_iter1,Capacitance,B,2000,The winning team won on tiebreakers (hig,289599318
+20261002-165240-scrim-g_iter1-fill1790959956,8,ColtG5.Goob_final,us:g_iter1,Checkered,A,2000,The winning team won on tiebreakers (cap,233644250
+20261002-165240-scrim-g_iter1-fill1790959956,9,ColtG5.Goob_final,us:g_iter1,Checkered,B,2000,The winning team won on tiebreakers (hig,50186214
+20261002-165240-scrim-g_iter1-fill1790959956,10,us:g_iter1,ColtG5.Goob_final,DefaultLarge,A,2000,The winning team won on tiebreakers (cap,1004766518
+20261002-165240-scrim-g_iter1-fill1790959956,11,us:g_iter1,ColtG5.Goob_final,DefaultMedium,A,2000,The winning team won on tiebreakers (cap,270264775
+20261002-165240-scrim-g_iter1-fill1790959956,12,ColtG5.Goob_final,us:g_iter1,DefaultSmall,B,2000,The winning team won on tiebreakers (hig,551005
+20261002-165240-scrim-g_iter1-fill1790959956,13,us:g_iter1,ColtG5.Goob_final,Diagonal,A,2000,The winning team won on tiebreakers (hig,1068622359
+20261002-165240-scrim-g_iter1-fill1790959956,14,us:g_iter1,ColtG5.Goob_final,Digging,B,2000,The winning team won on tiebreakers (cap,199533388
+20261002-165240-scrim-g_iter1-fill1790959956,15,ColtG5.Goob_final,us:g_iter1,Divergent,A,2000,The winning team won on tiebreakers (cap,588604662
+20261002-165240-scrim-g_iter1-fill1790959956,16,ColtG5.Goob_final,us:g_iter1,Divergent,A,2000,The winning team won on tiebreakers (cap,895409498
+20261002-165240-scrim-g_iter1-fill1790959956,17,us:g_iter1,ColtG5.Goob_final,Duck,B,2000,The winning team won on tiebreakers (cap,163563240
+20261002-165240-scrim-g_iter1-fill1790959956,18,us:g_iter1,ColtG5.Goob_final,Duck,B,2000,The winning team won on tiebreakers (cap,912276849
+20261002-165240-scrim-g_iter1-fill1790959956,19,us:g_iter1,ColtG5.Goob_final,English,A,2000,The winning team won on tiebreakers (hig,1028280900
+20261002-165240-scrim-g_iter1-fill1790959956,20,ColtG5.Goob_final,us:g_iter1,EvilGrin,A,2000,The winning team won on tiebreakers (cap,435126272
+20261002-165240-scrim-g_iter1-fill1790959956,21,us:g_iter1,ColtG5.Goob_final,Fountain,B,2000,The winning team won on tiebreakers (cap,210670697
+20261002-165240-scrim-g_iter1-fill1790959956,22,us:g_iter1,ColtG5.Goob_final,Foxes,B,2000,The winning team won on tiebreakers (cap,161782996
+20261002-165240-scrim-g_iter1-fill1790959956,23,us:g_iter1,ColtG5.Goob_final,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,590934123
+20261002-165240-scrim-g_iter1-fill1790959956,24,ColtG5.Goob_final,us:g_iter1,GaltonBoard,A,2000,The winning team won on tiebreakers (cap,997472872
+20261002-165240-scrim-g_iter1-fill1790959956,25,ColtG5.Goob_final,us:g_iter1,Gated,A,2000,The winning team won on tiebreakers (cap,156444632
+20261002-165240-scrim-g_iter1-fill1790959956,26,ColtG5.Goob_final,us:g_iter1,Hockey,B,2000,The winning team won on tiebreakers (hig,254683994
+20261002-165240-scrim-g_iter1-fill1790959956,27,ColtG5.Goob_final,us:g_iter1,HungerGames,A,439,The winning team captured all flags.,681792715
+20261002-165240-scrim-g_iter1-fill1790959956,28,us:g_iter1,ColtG5.Goob_final,Hurricane,A,2000,The winning team won on tiebreakers (hig,299885844
+20261002-165240-scrim-g_iter1-fill1790959956,29,ColtG5.Goob_final,us:g_iter1,Klein,A,2000,The winning team won on tiebreakers (cap,644258183
+20261002-165240-scrim-g_iter1-fill1790959956,30,ColtG5.Goob_final,us:g_iter1,ORV,A,2000,The winning team won on tiebreakers (cap,1057173532
+20261002-165240-scrim-g_iter1-fill1790959956,31,us:g_iter1,ColtG5.Goob_final,Occulus,B,2000,The winning team won on tiebreakers (cap,419661604
+20261002-165240-scrim-g_iter1-fill1790959956,32,ColtG5.Goob_final,us:g_iter1,Pancakes,A,430,The winning team captured all flags.,541619259
+20261002-165240-scrim-g_iter1-fill1790959956,33,us:g_iter1,ColtG5.Goob_final,Skyline,B,605,The winning team captured all flags.,473527596
+20261002-165240-scrim-g_iter1-fill1790959956,34,ColtG5.Goob_final,us:g_iter1,Skyline,A,2000,The winning team won on tiebreakers (cap,136641398
+20261002-165240-scrim-g_iter1-fill1790959956,35,us:g_iter1,ColtG5.Goob_final,Starfish,A,1868,The winning team captured all flags.,182199182
+20261002-165240-scrim-g_iter1-fill1790959956,36,us:g_iter1,ColtG5.Goob_final,SteamboatMickey,B,564,The winning team captured all flags.,984033256
+20261002-165240-scrim-g_iter1-fill1790959956,37,us:g_iter1,ColtG5.Goob_final,Swoop,A,1924,The winning team captured all flags.,407533260
+20261002-165240-scrim-g_iter1-fill1790959956,38,ColtG5.Goob_final,us:g_iter1,Swoop,B,2000,The winning team won on tiebreakers (hig,544827880
+20261002-165240-scrim-g_iter1-fill1790959956,39,us:g_iter1,ColtG5.Goob_final,Tunnels,B,2000,The winning team won on tiebreakers (cap,140579525
+20261002-165240-scrim-g_iter1-fill1790959956,40,us:g_iter1,ColtG5.Goob_final,Waterworld,B,2000,The winning team won on tiebreakers (cap,442755470
+20261002-165812-scrim-g_iter1-fill1790960288,1,ColtG5.Goob_final,us:g_iter1,Alien,A,2000,The winning team won on tiebreakers (cap,238525022
+20261002-165812-scrim-g_iter1-fill1790960288,2,ColtG5.Goob_final,us:g_iter1,Alien,A,2000,The winning team won on tiebreakers (cap,710211586
+20261002-165812-scrim-g_iter1-fill1790960288,3,us:g_iter1,ColtG5.Goob_final,Battlefield,B,421,The winning team captured all flags.,449416881
+20261002-165812-scrim-g_iter1-fill1790960288,4,us:g_iter1,ColtG5.Goob_final,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,660941906
+20261002-165812-scrim-g_iter1-fill1790960288,5,ColtG5.Goob_final,us:g_iter1,BigDucksBigPond,B,1753,The winning team captured all flags.,41040186
+20261002-165812-scrim-g_iter1-fill1790960288,6,ColtG5.Goob_final,us:g_iter1,Capacitance,B,2000,The winning team won on tiebreakers (hig,56828578
+20261002-165812-scrim-g_iter1-fill1790960288,7,us:g_iter1,ColtG5.Goob_final,Decision,A,2000,The winning team won on tiebreakers (cap,292562251
+20261002-165812-scrim-g_iter1-fill1790960288,8,ColtG5.Goob_final,us:g_iter1,Decision,A,2000,The winning team won on tiebreakers (cap,277772317
+20261002-165812-scrim-g_iter1-fill1790960288,9,us:g_iter1,ColtG5.Goob_final,DefaultHuge,B,2000,The winning team won on tiebreakers (cap,191821986
+20261002-165812-scrim-g_iter1-fill1790960288,10,ColtG5.Goob_final,us:g_iter1,DefaultHuge,A,1525,The winning team captured all flags.,739343483
+20261002-165812-scrim-g_iter1-fill1790960288,11,ColtG5.Goob_final,us:g_iter1,DefaultHuge,B,2000,The winning team won on tiebreakers (hig,792122101
+20261002-165812-scrim-g_iter1-fill1790960288,12,ColtG5.Goob_final,us:g_iter1,DefaultLarge,B,2000,The winning team won on tiebreakers (cap,256713412
+20261002-165812-scrim-g_iter1-fill1790960288,13,ColtG5.Goob_final,us:g_iter1,DefaultLarge,B,2000,The winning team won on tiebreakers (hig,262385922
+20261002-165812-scrim-g_iter1-fill1790960288,14,ColtG5.Goob_final,us:g_iter1,DefaultSmall,B,2000,The winning team won on tiebreakers (hig,552755415
+20261002-165812-scrim-g_iter1-fill1790960288,15,us:g_iter1,ColtG5.Goob_final,Diagonal,B,2000,The winning team won on tiebreakers (cap,61486102
+20261002-165812-scrim-g_iter1-fill1790960288,16,ColtG5.Goob_final,us:g_iter1,Fountain,A,2000,The winning team won on tiebreakers (cap,448329681
+20261002-165812-scrim-g_iter1-fill1790960288,17,ColtG5.Goob_final,us:g_iter1,Fountain,B,2000,The winning team won on tiebreakers (hig,164870747
+20261002-165812-scrim-g_iter1-fill1790960288,18,us:g_iter1,ColtG5.Goob_final,Funnel,B,2000,The winning team won on tiebreakers (cap,437204353
+20261002-165812-scrim-g_iter1-fill1790960288,19,us:g_iter1,ColtG5.Goob_final,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,225737660
+20261002-165812-scrim-g_iter1-fill1790960288,20,ColtG5.Goob_final,us:g_iter1,GaltonBoard,A,2000,The winning team won on tiebreakers (cap,462799520
+20261002-165812-scrim-g_iter1-fill1790960288,21,us:g_iter1,ColtG5.Goob_final,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,679722154
+20261002-165812-scrim-g_iter1-fill1790960288,22,us:g_iter1,ColtG5.Goob_final,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,721020994
+20261002-165812-scrim-g_iter1-fill1790960288,23,us:g_iter1,ColtG5.Goob_final,Hockey,A,2000,The winning team won on tiebreakers (hig,859347615
+20261002-165812-scrim-g_iter1-fill1790960288,24,ColtG5.Goob_final,us:g_iter1,Islands,B,1845,The winning team captured all flags.,706894023
+20261002-165812-scrim-g_iter1-fill1790960288,25,us:g_iter1,ColtG5.Goob_final,KingQuacksCastle,B,2000,The winning team won on tiebreakers (cap,445722977
+20261002-165812-scrim-g_iter1-fill1790960288,26,ColtG5.Goob_final,us:g_iter1,Klein,B,2000,The winning team won on tiebreakers (hig,145020498
+20261002-165812-scrim-g_iter1-fill1790960288,27,us:g_iter1,ColtG5.Goob_final,MIT,B,2000,The winning team won on tiebreakers (cap,489059716
+20261002-165812-scrim-g_iter1-fill1790960288,28,ColtG5.Goob_final,us:g_iter1,MazeRunner,A,2000,The winning team won on tiebreakers (cap,463811676
+20261002-165812-scrim-g_iter1-fill1790960288,29,ColtG5.Goob_final,us:g_iter1,Pancakes,A,2000,The winning team won on tiebreakers (cap,407940540
+20261002-165812-scrim-g_iter1-fill1790960288,30,us:g_iter1,ColtG5.Goob_final,Puzzle,B,821,The winning team captured all flags.,598989547
+20261002-165812-scrim-g_iter1-fill1790960288,31,ColtG5.Goob_final,us:g_iter1,Rainbow,A,2000,The winning team won on tiebreakers (cap,272603159
+20261002-165812-scrim-g_iter1-fill1790960288,32,us:g_iter1,ColtG5.Goob_final,Randy,B,2000,The winning team won on tiebreakers (cap,819806984
+20261002-165812-scrim-g_iter1-fill1790960288,33,ColtG5.Goob_final,us:g_iter1,Randy,A,2000,The winning team won on tiebreakers (cap,525194035
+20261002-165812-scrim-g_iter1-fill1790960288,34,ColtG5.Goob_final,us:g_iter1,Randy,A,2000,The winning team won on tiebreakers (cap,906737545
+20261002-165812-scrim-g_iter1-fill1790960288,35,ColtG5.Goob_final,us:g_iter1,Soccer,A,2000,The winning team won on tiebreakers (cap,803591871
+20261002-165812-scrim-g_iter1-fill1790960288,36,us:g_iter1,ColtG5.Goob_final,StarryNight,B,497,The winning team captured all flags.,59649202
+20261002-165812-scrim-g_iter1-fill1790960288,37,us:g_iter1,ColtG5.Goob_final,Waterworld,A,2000,The winning team won on tiebreakers (cap,1025025691
+20261002-165812-scrim-g_iter1-fill1790960288,38,us:g_iter1,ColtG5.Goob_final,Waterworld,B,2000,The winning team won on tiebreakers (cap,70131861
+20261002-165812-scrim-g_iter1-fill1790960288,39,ColtG5.Goob_final,us:g_iter1,Whirlpool,A,2000,The winning team won on tiebreakers (cap,499353772
+20261002-165812-scrim-g_iter1-fill1790960288,40,ColtG5.Goob_final,us:g_iter1,Yinyang,A,2000,The winning team won on tiebreakers (cap,234301890
+20261002-170350-scrim-g_iter1-fill1790960625,1,ColtG5.Goob_final,us:g_iter1,Anchor,B,2000,The winning team won on tiebreakers (hig,695553968
+20261002-170350-scrim-g_iter1-fill1790960625,2,us:g_iter1,ColtG5.Goob_final,BigDucksBigPond,A,2000,The winning team won on tiebreakers (hig,1026161996
+20261002-170350-scrim-g_iter1-fill1790960625,3,ColtG5.Goob_final,us:g_iter1,BreadPudding,A,2000,The winning team won on tiebreakers (cap,536837209
+20261002-170350-scrim-g_iter1-fill1790960625,4,ColtG5.Goob_final,us:g_iter1,BreadPudding,A,2000,The winning team won on tiebreakers (cap,855926078
+20261002-170350-scrim-g_iter1-fill1790960625,5,ColtG5.Goob_final,us:g_iter1,Canals,B,2000,The winning team won on tiebreakers (hig,300846463
+20261002-170350-scrim-g_iter1-fill1790960625,6,us:g_iter1,ColtG5.Goob_final,Decision,B,1678,The winning team captured all flags.,290235252
+20261002-170350-scrim-g_iter1-fill1790960625,7,us:g_iter1,ColtG5.Goob_final,DefaultLarge,A,2000,The winning team won on tiebreakers (cap,273179451
+20261002-170350-scrim-g_iter1-fill1790960625,8,us:g_iter1,ColtG5.Goob_final,English,A,2000,The winning team won on tiebreakers (hig,896781006
+20261002-170350-scrim-g_iter1-fill1790960625,9,ColtG5.Goob_final,us:g_iter1,FloodGates,B,2000,The winning team won on tiebreakers (cap,714639217
+20261002-170350-scrim-g_iter1-fill1790960625,10,ColtG5.Goob_final,us:g_iter1,Fountain,A,2000,The winning team won on tiebreakers (cap,134675680
+20261002-170350-scrim-g_iter1-fill1790960625,11,us:g_iter1,ColtG5.Goob_final,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,163945738
+20261002-170350-scrim-g_iter1-fill1790960625,12,ColtG5.Goob_final,us:g_iter1,GaltonBoard,A,2000,The winning team won on tiebreakers (cap,364428499
+20261002-170350-scrim-g_iter1-fill1790960625,13,us:g_iter1,ColtG5.Goob_final,Gated,B,2000,The winning team won on tiebreakers (cap,769750333
+20261002-170350-scrim-g_iter1-fill1790960625,14,us:g_iter1,ColtG5.Goob_final,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,376520917
+20261002-170350-scrim-g_iter1-fill1790960625,15,us:g_iter1,ColtG5.Goob_final,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,508438682
+20261002-170350-scrim-g_iter1-fill1790960625,16,us:g_iter1,ColtG5.Goob_final,Intercontinental,B,596,The winning team captured all flags.,965612846
+20261002-170350-scrim-g_iter1-fill1790960625,17,ColtG5.Goob_final,us:g_iter1,Islands,A,2000,The winning team won on tiebreakers (cap,596850767
+20261002-170350-scrim-g_iter1-fill1790960625,18,ColtG5.Goob_final,us:g_iter1,MIT,A,2000,The winning team won on tiebreakers (cap,576595274
+20261002-170350-scrim-g_iter1-fill1790960625,19,ColtG5.Goob_final,us:g_iter1,MIT,A,2000,The winning team won on tiebreakers (cap,60149118
+20261002-170350-scrim-g_iter1-fill1790960625,20,us:g_iter1,ColtG5.Goob_final,Mountain,A,2000,The winning team won on tiebreakers (hig,222601577
+20261002-170350-scrim-g_iter1-fill1790960625,21,us:g_iter1,ColtG5.Goob_final,Occulus,B,2000,The winning team won on tiebreakers (cap,981601621
+20261002-170350-scrim-g_iter1-fill1790960625,22,ColtG5.Goob_final,us:g_iter1,OceanFloor,B,1820,The winning team captured all flags.,93684732
+20261002-170350-scrim-g_iter1-fill1790960625,23,ColtG5.Goob_final,us:g_iter1,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,677925612
+20261002-170350-scrim-g_iter1-fill1790960625,24,us:g_iter1,ColtG5.Goob_final,QuestionableChess,B,2000,The winning team won on tiebreakers (cap,937044416
+20261002-170350-scrim-g_iter1-fill1790960625,25,us:g_iter1,ColtG5.Goob_final,QuestionableChess,B,2000,The winning team won on tiebreakers (cap,964901329
+20261002-170350-scrim-g_iter1-fill1790960625,26,ColtG5.Goob_final,us:g_iter1,QuestionableChess,A,556,The winning team captured all flags.,520341401
+20261002-170350-scrim-g_iter1-fill1790960625,27,us:g_iter1,ColtG5.Goob_final,Racetrack,B,2000,The winning team won on tiebreakers (cap,455660778
+20261002-170350-scrim-g_iter1-fill1790960625,28,us:g_iter1,ColtG5.Goob_final,Rainbow,A,2000,The winning team won on tiebreakers (hig,985734353
+20261002-170350-scrim-g_iter1-fill1790960625,29,ColtG5.Goob_final,us:g_iter1,Rainbow,A,2000,The winning team won on tiebreakers (cap,79857265
+20261002-170350-scrim-g_iter1-fill1790960625,30,ColtG5.Goob_final,us:g_iter1,Rivers,A,2000,The winning team won on tiebreakers (cap,347167694
+20261002-170350-scrim-g_iter1-fill1790960625,31,us:g_iter1,ColtG5.Goob_final,Skyline,B,511,The winning team captured all flags.,698893588
+20261002-170350-scrim-g_iter1-fill1790960625,32,ColtG5.Goob_final,us:g_iter1,Skyline,A,2000,The winning team won on tiebreakers (cap,164714398
+20261002-170350-scrim-g_iter1-fill1790960625,33,us:g_iter1,ColtG5.Goob_final,Soccer,B,2000,The winning team won on tiebreakers (cap,323255048
+20261002-170350-scrim-g_iter1-fill1790960625,34,ColtG5.Goob_final,us:g_iter1,Soccer,A,2000,The winning team won on tiebreakers (cap,196458312
+20261002-170350-scrim-g_iter1-fill1790960625,35,ColtG5.Goob_final,us:g_iter1,Soccer,B,1937,The winning team captured all flags.,103853308
+20261002-170350-scrim-g_iter1-fill1790960625,36,us:g_iter1,ColtG5.Goob_final,StackGame,B,1480,The winning team captured all flags.,280162334
+20261002-170350-scrim-g_iter1-fill1790960625,37,us:g_iter1,ColtG5.Goob_final,Tunnels,A,2000,The winning team won on tiebreakers (hig,578350460
+20261002-170350-scrim-g_iter1-fill1790960625,38,us:g_iter1,ColtG5.Goob_final,Valentine,B,2000,The winning team won on tiebreakers (cap,192863935
+20261002-170350-scrim-g_iter1-fill1790960625,39,ColtG5.Goob_final,us:g_iter1,Waterworld,B,1838,The winning team captured all flags.,235314987
+20261002-170350-scrim-g_iter1-fill1790960625,40,us:g_iter1,ColtG5.Goob_final,Whirlpool,B,2000,The winning team won on tiebreakers (cap,922386154
