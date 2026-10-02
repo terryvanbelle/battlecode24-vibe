@@ -1056,3 +1056,13 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
   test-harness defects found by the tests themselves: Clock.getBytecodesLeft() returns 0 outside the engine (now
   G.bcLeft() with a test override) and BotTest's fake RobotController answered onTheMap=false (now in-bounds).
   Arms g1reach, g1nav; g1sym refreshed with A2. Diagnostic batch queued (7 cells each, paired with g1copy).
+- **A1 confirmed fixed** (g1alert vs g_iter1, 7 cells, paired with the byte-identical g1copy): alerts without a threat
+  305-2324 a game -> 0-81 (the residue is end-of-round vs mid-round positions); longest stand on our own flag tile
+  162-1466 rounds -> 1-121. Wins 6/7 vs 6/7; Battlecode24 won 1-0 where g_iter1 lost 0-2; Tunnels s4 first enemy-flag
+  sight r569 vs r958 and a capture win; DefaultLarge s5 lost where g_iter1 won.
+- **A5/A6 confirmed fixed** (g1reg, same cells): "carried by us" with no carrier of ours up to 1393 rounds a game (DefaultLarge
+  s4) -> at most 15 (about 1 per pickup: the death round before the jailed robot's next turn); stale registry location up
+  to 87 -> 0-1. Wins 6/7 vs 6/7.
+- Next: a combined basics build (ALERT_FIX + REG_FIX + REACH_FIX + NAV_FIX + observed symmetry with flag ids) judged
+  against g_iter1 on shared engine seeds: a fresh seeded g_iter1 band control (the old one drew random engine seeds),
+  then the band test, head-to-head and ColtG5 fillers.
