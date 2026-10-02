@@ -854,3 +854,5 @@ band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
   (CUT, two doses) -> M1 band -> S2 (one tuning arm) -> S3 (ESC) -> M2; falsifiers F1-F5, premise bars P1-P6, budget
   (<= 10 delivery blocks, 3 band runs, 9 arms) and closing criteria C1-C7 fixed before any number. Panel record:
   research/rewrite-panel.json.
+- Queued the S1 step-5(a) baseline early: g_iter1 vs the archetypes g1escrg (convoy with re-grabs) and arch_rush10 (fast
+  raid) on the design's 7 cells (diag/arch-base), so every later arm game pairs with g_iter1 on the same opponent and cell.
