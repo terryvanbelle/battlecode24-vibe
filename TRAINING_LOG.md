@@ -785,3 +785,8 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   s5 **0** / 51.7 / 0 vs 1 / 60.1 / 0. Means: stillPost 46.0 vs 51.9; inEnemy300 21.1 vs 8.7; their inEnemy300 14.7 vs
   15.1; wins 5/7 vs 6/7. The mechanism delivers (less parking, more forward presence).
   Step 5(b) pre-registered (BASE=g_iter1): rel:stillPost<=0.92 rel:inEnemy300>=1.2 rel:enemyCaptured<=1.2.
+- g1drift step 5(b): **FAIL** (BASE=g_iter1): stillPost 27.0 vs 31.85 (-4.85 +- 1.13, ok, strongly); inEnemy300 12.42 vs
+  12.67 (-0.25 +- 2.02) FAIL; enemyCaptured 1.92 vs 2.12 ok. Against the band, less parking does not buy ground (beaters
+  push back); against g_iter1 it doubled. Not band-tested. Same bars, stronger dose: g1drift80 (HOLD_DRIFT 80: above
+  the 50 safe-band bonus, far below the 1000 per threat), step 5(a) on 4 cells queued.
+- Filler: B1 vs g_iter1 123-155 over 1790 (-1.9 SE); B2 109-123 over 1433 (-0.9 SE); B3 62-82 over 955 (-1.7 SE).
