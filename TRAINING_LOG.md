@@ -790,3 +790,9 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   push back); against g_iter1 it doubled. Not band-tested. Same bars, stronger dose: g1drift80 (HOLD_DRIFT 80: above
   the 50 safe-band bonus, far below the 1000 per threat), step 5(a) on 4 cells queued.
 - Filler: B1 vs g_iter1 123-155 over 1790 (-1.9 SE); B2 109-123 over 1433 (-0.9 SE); B3 62-82 over 955 (-1.7 SE).
+- Ops 12:12 UTC: the VM disk filled (49 GB, gauntlet/ 35 GB of replays); the job write for drift80 failed and the queue
+  runner spun on failing fillers 11:55-12:13 (log lines only; no incomplete runs left). Under the owner's standing
+  delete permission (prompt 92): removed 14,728 replays (*.bc24 only, older than 30 min) from closed-arm scrim runs and
+  censused filler runs; kept every results.csv, summary, log and census file, the stack builds' runs (g_iter0/1, b1v2,
+  b1z2b, b2fs) and the dg909090 delivery-gate base runs (re-censused when a new column appears). VM disk 100% -> 45%.
+  The drift80 batch was re-queued. To do: a standing prune in tools/vm-queue.sh so this cannot recur.
