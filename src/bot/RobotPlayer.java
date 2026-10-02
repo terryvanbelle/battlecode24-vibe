@@ -14,8 +14,9 @@ public strictfp class RobotPlayer {
             int startRound = rc.getRoundNum();
             try {
                 G.startTurn();
-                if (Sym.OBSERVE) { Sym.update(); Sym.scout(); }   // observation-based symmetry; one scout while undecided
+                if (Sym.OBSERVE) Sym.scout();            // scouts move first while the symmetry is undecided
                 Duck.turn();
+                if (Sym.OBSERVE) Sym.update();           // observation after the turn, only with spare bytecode
             } catch (GameActionException e) {
                 G.exceptions++;
                 if (C.DEBUG) e.printStackTrace();

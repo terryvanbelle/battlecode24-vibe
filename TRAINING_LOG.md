@@ -933,3 +933,14 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   one candidate that is not an image under another; one look eliminates at least one). SymTest adds a Soccer-like case
   (geometry cannot separate ROT/FX; the scout target is distinguishing; one look decides FX). OK.
   Verification 2 queued: the rebuilt g1sym on 24 maps.
+- g1sym verification 2 (24 maps): 22 right at r250; Bunkers r292, Snake r270, Soccer r911. Spawn-centre error of the
+  wrong candidate (from round-1 boards): Soccer ROT 1 tile, Snake ROT 1 tile, Bunkers FX 3 tiles; Canals, DefaultLarge,
+  Hockey, Funnel have two candidates with error 0 (equivalent: nothing to observe). Changes: equivalent candidates
+  collapse (counted as decided); three scouts (idx 3-5) that stop once the distinguishing tile is in sight; O(1)
+  spawn-tile bitset (nested loops would cost ~35k bytecode).
+- Verification 3 (24 maps): 22/24 right at r250 (Snake decided r253, Soccer r863); equivalent maps decided at r1. **But
+  bytecode overruns: Bunkers r201 and Soccer r438**, and peaks 23.9-24.5k on Digging, HungerGames, MazeRunner, Snake (g_iter1
+  ~15k): update() ran before the turn and scanned the whole vision disk regardless of budget. Fix: scout() before the
+  turn (it needs the move), update() after it, only with >= 6000 left, every loop stops at 2500 left (partial memory is
+  fine); scout target recomputed only with budget. Also tools/diag-batch.sh now runs at most 8 games at once (24 at once
+  starved the VM's sshd for minutes: a task check hung). Verification 4 queued (10 maps incl. the overrun ones).

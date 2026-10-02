@@ -6,10 +6,12 @@
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"
 TAG="${1:?tag}"; shift; mkdir -p "diag/$TAG"
+PAR="${PAR:-8}"   # at most PAR games at once (2026-10-02: 24 at once on 8 vCPUs starved sshd for minutes)
 for spec in "$@"; do
   IFS=: read -r bot opp map seed <<< "$spec"
   if ! [ -d "src/$opp" ]; then echo "diag-batch: $opp is not one of our builds; refusing" >&2; exit 2; fi
   out="diag/$TAG/$bot-$map-s$seed"
+  while [ "$(jobs -rp | wc -l)" -ge "$PAR" ]; do sleep 2; done
   tools/run-dev.sh "$bot" "$opp" "$map" "$out.bc24" "-Dbc.game.seed=$seed" > "$out.out" 2>&1 &
 done
 wait

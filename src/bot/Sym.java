@@ -22,7 +22,8 @@ import battlecode.common.*;
  */
 public strictfp class Sym {
     public static final int ROT = 1, FX = 2, FY = 4;
-    public static final boolean OBSERVE = false;   // observation-based symmetry (default off: src/bot stays g_iter1)
+    public static final boolean OBSERVE = false;
+    public static final int BC_START = 6000, BC_STOP = 2500;   // observation runs after the turn, only with this much left   // observation-based symmetry (default off: src/bot stays g_iter1)
     public static int cands = 7;
     public static int conflicts, eliminations, equivalents, decidedRound = -1;
 
@@ -165,6 +166,7 @@ public strictfp class Sym {
     public static MapLocation scoutTarget(MapLocation from) {
         if (decided()) return null;
         if (scoutFor == cands && scoutT != null) return scoutT;
+        if (scoutT != null && Clock.getBytecodesLeft() < BC_START) return scoutT;   // recompute later
         scoutFor = cands; scoutT = null;
         int bd = Integer.MAX_VALUE;
         for (int s = 1; s <= 4; s <<= 1) {
@@ -202,9 +204,11 @@ public strictfp class Sym {
         seen = new long[n]; wall = new long[n]; spawn = new long[n];
     }
 
-    /** Per turn, spawned robots only, while undecided: geometry once, spawn-zone images, then terrain memory. */
+    /** After the turn's own work, spawned robots only, while undecided and only with BC_START bytecodes left: geometry
+     *  once, spawn-zone images, then terrain memory; every loop stops at BC_STOP (verification 3: run before the turn
+     *  it overran on Bunkers r201 and Soccer r438). */
     public static void update() throws GameActionException {
-        if (!OBSERVE) return;
+        if (!OBSERVE || Clock.getBytecodesLeft() < BC_START) return;
         RobotController rc = G.rc;
         if (seen == null) initMemory();
         if (!geoDone) { geometric(G.spawnCenters); geoDone = true; }
@@ -212,13 +216,16 @@ public strictfp class Sym {
         for (int s = 1; s <= 4; s <<= 1) {                 // every one of our spawn tiles maps onto one of theirs
             if ((cands & s) == 0) continue;
             for (MapLocation p : G.spawns) {
+                if (Clock.getBytecodesLeft() < BC_STOP) return;
                 MapLocation im = image(p, s);
                 if (!rc.canSenseLocation(im)) continue;
                 if (rc.senseMapInfo(im).getSpawnZoneTeamObject() != G.them) { observeSpawnImage(s, false); break; }
             }
         }
         if (decided()) return;
+        if (Clock.getBytecodesLeft() < BC_STOP + 400) return;
         for (MapInfo mi : rc.senseNearbyMapInfos()) {
+            if (Clock.getBytecodesLeft() < BC_STOP) return;  // partial memory is fine: the rest is seen again later
             MapLocation m = mi.getMapLocation();
             observeTile(m.x, m.y, mi.isWall(), mi.isSpawnZone());
             if (decided()) return;
