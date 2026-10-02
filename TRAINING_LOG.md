@@ -709,3 +709,8 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
   step: in a fight, a visible own carrier within dist2 20 makes its next homeward tile the fight goal; counter "et").
   Step 5(a) batch queued (6 cells + a DefaultLarge s5 mirror).
 - Filler: B1 vs g_iter1 97-126 over 1472 (-1.9 SE); B2 84-86 over 1075 (-0.2 SE); B3 33-55 over 597 (-2.3 SE).
+- g1esc step 5(a) vs mirrors (escorts20; et fires on 16-31 ducks where a carrier exists): DefaultLarge s4 3.43 vs 4.44,
+  s5 3.78 vs 5.20; Tunnels s4 3.79 vs 5.91, s5 3.21 vs 5.69; DefaultMedium s4 6.97 vs 6.51. Escort density went DOWN;
+  wins 4/7 vs the mirrors' 6/7. Reading: the goal "the carrier's next homeward tile" (roadmap block 6) puts escorts in
+  the carrier's path. **Not reproduced; not gated.** Variant g1esc2 (ESCORT_BEHIND: goal one tile behind the carrier, so
+  escorts trail and never block) queued for step 5(a).
