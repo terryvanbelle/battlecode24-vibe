@@ -869,3 +869,18 @@ programme; its S0a tools (in review) serve the study, and its stages return only
   converts (captures 0.45-0.81 vs g_iter1 0.68). Counter-raid closed for ColtG5. Trip study (165 g_iter1 games): 56% of
   their captured trips unopposed; 15+ round trips captured 82% with < 0.5 chasers vs 25% with 1.5-3. Crack chosen: CUT
   (REWRITE_DESIGN) aimed at ColtG5; premise, delivery and decision on ColtG5 scrims (research/CRACK.md).
+
+### 2026-10-02 — S0a instruments landed (workflow: implement, three-lens review, fix)
+- New: replay-dump --comm (stored shared array per round; our slot 0 = 50 at r1), --track (offline 2.4 tracker per
+  trip: unseenRounds, predErr/predErrSym, destHit/destHitSym, tKnow, reachAll/reachFree/reachInFight, escorts8,
+  defDied10; own trips ownEscorts20, convoyReachFree; game rows symOk), --track-log, --calc; --capabilities columns
+  enemyUnseenRounds, unopposedCaps, longTrips25, longCaps25, longCapRate, loneDeaths, trickleDeaths, symOk, psymOk,
+  maxBcK, overruns; --defense gains tKnow (appended). tools/premise.py computes P1-P4, P6, D with SEs and routing.
+  Review: 20 issues reproduced, 13 fixed, 6 duplicates, 1 partly (tracker-belief and responder columns need the bot's
+  slots 23-48: deferred to S0b/S1). Tests green; new fixture test/fixtures/bot-vs-example-DefaultSmall-b1.bc24.
+- **Readings pinned before any premise number** (premise.py prints the alternative beside each): a blank destHit counts
+  as 0 in P3; a trip with unseen rounds but no predErr counts as a P1 failure; chaser thresholds use the exact mean;
+  the home tile counts toward tKnow only while the belief is HOME; an empty group or both rates 0 is NO DATA (reported,
+  never routes a closure).
+- Premise runs queued: (1) design S0a as pinned: g_iter1 band runs 20261001-011402 + 20261001-021054; (2) the crack:
+  every g_iter1-vs-ColtG5 replay on the VM at run time (band runs, crack777001, filler runs), routing for CUT vs ColtG5.

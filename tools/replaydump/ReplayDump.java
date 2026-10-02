@@ -21,13 +21,50 @@ import java.util.zip.GZIPInputStream;
  *     --bytecode          per-team bytecode maxima and turns at the limit
  *     --navstats          movement statistics per team
  *     --flags             every flag event with round, flag team, actor and location
- *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome
+ *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome,
+ *                         tKnow (as --track, from the defending side; blank = never, or that side not tracked under --team)
+ *     --comm R[-R2]       the stored shared array: round,team,s0..s63 for rounds R..R2 [--team A|B]; a last line
+ *                         '# commStored K/N' counts the rounds whose Round carried a full CommTable (K < N: values were
+ *                         carried forward on the other rounds)
+ *     --track             S0a offline flag tracker (research/REWRITE_DESIGN.md 2.4/2.5/2.11), one CSV row per post-setup trip
+ *                         [--team A|B = the tracked ("our") side; default both, rows tagged]. See TRACK_COLS below.
+ *     --track-log         --track plus one '#' line per round per tracked flag away from home (belief vs truth)
+ *   ReplayDump --calc     (no replay) reads queries from stdin and prints the 2.4 prediction / 2.5 intercept time:
+ *                           P lx ly dx dy cls age            -> px py     (P(now) = step(L, D, min(N, movesDone(age))))
+ *                           T lx ly dx dy cls age mx my      -> t         (alive duck at m; -1 = infeasible or t > 30)
+ *                           J lx ly dx dy cls age left cx cy [cx cy..] -> t (jailed: spawn centre nearest Q + jail time left)
+ *                           W lx ly windowLeft mx my         -> t         (dropped flag inside its return window)
+ *                           N px py cx cy [cx cy..]          -> cx cy     (nearest centre; ties: lower x, then lower y)
+ *                           D r0 win rn                      -> 1|0       (a flag first seen dropped at r0 still lies there
+ *                                                                           at the end of round rn: rn < r0 + win)
+ *
+ * --capabilities columns appended for S0a (each describes the OTHER team's trips on this team's flags, like chasers20;
+ * blank when the event is absent, so tools/delivery-check.py skips the game):
+ *   enemyUnseenRounds  post-setup enemy carrier-rounds with none of ours within dist2 20 (blank: no enemy carrier-round)
+ *   unopposedCaps      enemy captures whose trip had mean chasers20 < 0.5, unrounded (blank: no finished enemy trip)
+ *   longTrips25, longCaps25, longCapRate  enemy trips of 25+ rounds, captures among them, and their share (all three blank
+ *                      without a 25+ round enemy trip, design 2.11)
+ *   loneDeaths         our deaths with at most 1 of ours (alive at the end of that round) within dist2 20 (blank: no deaths)
+ *   trickleDeaths      our deaths within 30 rounds of the robot's spawn with at most 2 of ours within dist2 20 (blank: no deaths)
+ *   symOk              1 if Sym.best() of this team's slot 16 at r250 (ROT > FX > FY; 0 = unwritten = all) maps this
+ *                      team's spawn centres onto the other team's; blank without a stored shared array. Meaningful for our
+ *                      builds only (other bots use slot 16 for something else or not at all).
+ *   psymOk             as symOk with slot 24 (PSYM; 0 = unwritten, read as slot 16) in place of slot 16; blank unless slot
+ *                      23 (RT_STAMP) was ever written, i.e. without the 2.3 tracker slots. Meaningful for our builds only,
+ *                      as symOk (an external bot may write slot 23 for its own purposes)
+ *   maxBcK             the team's largest bytecode count in one turn, in thousands (1 decimal)
+ *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
+ *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
+ *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
  *
  * Replay facts (engine 3.0.6, GameMaker.MatchMaker): every Round lists every spawned robot plus the robots that
  * died that round (at their death tile); jailed robots are absent. Team ids 1 = A, 2 = B. Location index =
  * x + y*width. PLACE_FLAG's action id is the FLAG id (not a robot); PICKUP/CAPTURE target the flag id; flag id =
  * location index of the flag's original spawn-zone centre; centres alternate A,B in GameMap.spawnLocations.
  * Robot stdout is NOT stored in 2024 replays (GameMaker line ~604 commented out); use indicator strings.
+ * Round.teamCommunication holds both teams' 64 shared-array slots after every round (CommTable team1/team2). Round 1's
+ * bytecode table lists all 100 robots in execution order A0,B0,A1,B1,..., which is the order our bot claims its index
+ * (slot 0), so robot idx = position / 2 there; idx 0-2 are the flag defenders.
  */
 public class ReplayDump {
     static final String[] ACTION = {"ATTACK", "HEAL", "DIG", "FILL", "EXPLOSIVE_TRAP", "WATER_TRAP", "STUN_TRAP",
@@ -102,6 +139,7 @@ public class ReplayDump {
 
     public static void main(String[] args) throws Exception {
         if (args.length < 1) { System.err.println("usage: ReplayDump <replay.bc24> [flags]"); System.exit(2); }
+        if (args[0].equals("--calc")) { calc(); return; }
         String file = args[0];
         for (int i = 1; i < args.length; i++) {
             String a = args[i];
@@ -121,6 +159,13 @@ public class ReplayDump {
                 case "--levels": levelsMode = true; summary = false; break;
                 case "--capabilities": capMode = true; summary = false; break;
                 case "--defense": defMode = true; summary = false; break;
+                case "--track": trackMode = true; summary = false; break;
+                case "--track-log": trackMode = trackLog = true; summary = false; break;
+                case "--comm": {
+                    String[] p = args[++i].split("-");
+                    commFrom = Integer.parseInt(p[0]); commTo = p.length > 1 ? Integer.parseInt(p[1]) : commFrom;
+                    commMode = true; summary = false; break;
+                }
                 case "--summary": summary = true; break;
                 default: System.err.println("unknown flag " + a); System.exit(2);   // unknown flags are hard errors
             }
@@ -191,6 +236,9 @@ public class ReplayDump {
                 if (x >= 0 && y >= 0 && x < W && y < H) spawnZone[idx(x, y)] = t;
             }
         }
+        List<int[]> cA = new ArrayList<>(), cB = new ArrayList<>();
+        for (int j = 0; j < sp.xsLength(); j++) (j % 2 == 0 ? cA : cB).add(new int[]{sp.xs(j), sp.ys(j)});
+        centres[1] = cA.toArray(new int[0][]); centres[2] = cB.toArray(new int[0][]);
         side = new int[n];
         for (int i = 0; i < n; i++) {
             int x = i % W, y = i / W, best = Integer.MAX_VALUE, bt = 0;
@@ -212,25 +260,71 @@ public class ReplayDump {
     }
 
     static boolean defHeader = false;
+    static boolean tripsOn() { return defMode || trackMode || capMode; }
+    /** The S0a offline tracker runs for --track and for --defense (its tKnow column). */
+    static boolean s0a() { return trackMode || defMode; }
     static void endTrip(int rn, int holder, String outcome) {
         int[] tr = trip.remove(holder);
         if (tr == null) return;
-        if (!defHeader) { out.println("round,carrierTeam,first,fx,fy,defNear20,defNear64,tripRounds,meanChasers20,outcome"); defHeader = true; }
-        out.printf("%d,%s,%d,%d,%d,%d,%d,%d,%.1f,%s%n", tr[0], tname(team.getOrDefault(holder, 0)), tr[1], tr[2], tr[3], tr[4], tr[5],
-                rn - tr[0], tr[7] > 0 ? (double) tr[6] / tr[7] : 0.0, outcome);
+        int ct = team.getOrDefault(holder, 0);
+        double mc = tr[7] > 0 ? (double) tr[6] / tr[7] : 0.0;
+        if (defMode) {
+            TripX tx = tripX.get(holder);
+            if (!defHeader) { out.println("round,carrierTeam,first,fx,fy,defNear20,defNear64,tripRounds,meanChasers20,outcome,tKnow"); defHeader = true; }
+            out.printf("%d,%s,%d,%d,%d,%d,%d,%d,%.1f,%s,%s%n", tr[0], tname(ct), tr[1], tr[2], tr[3], tr[4], tr[5], rn - tr[0], mc, outcome,
+                    tx != null && tx.tKnow >= 0 ? String.valueOf(tx.tKnow) : "");
+        }
+        if (capMode && ct > 0) {   // the defending team's view of this trip
+            int dt = 3 - ct; boolean capd = outcome.equals("CAPTURE");
+            kEnemyTrips[dt]++;
+            if (capd && mc < 0.5) kUnopposed[dt]++;
+            if (rn - tr[0] >= 25) { kLong25[dt]++; if (capd) kLongCaps25[dt]++; }
+        }
+        TripX x = tripX.remove(holder);
+        if (x != null) {
+            x.outcome = outcome; x.chasers = mc; x.chaserSum = tr[6]; x.chaserRounds = tr[7]; x.tripRounds = rn - tr[0]; x.defNear20 = tr[4];
+            int[] l = lastLoc.get(holder);
+            if (outcome.equals("CAPTURE") && l != null && centres[ct] != null) { int[] z = nearestOf(centres[ct], l[0], l[1]); x.zone = z[0] + z[1] * W; }
+            tripDone.add(x);
+        }
     }
 
     static boolean inWindow(int r) { return from >= 0 && r >= from && r <= to; }
 
     static void round(Round r) {
         int rn = r.roundId();
+        // shared array (stored after every round; carried forward if a round lacks it)
+        CommTable ct = r.teamCommunication();
+        if (ct != null && ct.team1Length() >= 64 && ct.team2Length() >= 64) commStored++;
+        if (ct != null) {
+            commSeen = true;
+            for (int k = 0; k < ct.team1Length() && k < 64; k++) comm[1][k] = ct.team1(k);
+            for (int k = 0; k < ct.team2Length() && k < 64; k++) comm[2][k] = ct.team2(k);
+        }
+        if (commSeen && rn <= 250) for (int t = 1; t <= 2; t++) { sym250[t] = comm[t][16]; psym250[t] = comm[t][24]; }
+        if (commSeen && rn > 1) for (int t = 1; t <= 2; t++) if (comm[t][23] != 0) trkSlots[t] = true;
+        if (commMode && commSeen && rn >= commFrom && rn <= commTo) {
+            if (!commHeader) { StringBuilder h = new StringBuilder("round,team"); for (int k = 0; k < 64; k++) h.append(",s").append(k); out.println(h); commHeader = true; }
+            for (int t = 1; t <= 2; t++) {
+                if (logTeam != 0 && logTeam != t) continue;
+                StringBuilder sb2 = new StringBuilder().append(rn).append(',').append(tname(t));
+                for (int k = 0; k < 64; k++) sb2.append(',').append(comm[t][k]);
+                out.println(sb2);
+            }
+        }
+        // execution order of the first round = creation order A0,B0,A1,B1,... = our bot's slot-0 index
+        if (!execDone && r.bytecodeIdsLength() > 0) {
+            for (int j = 0; j < r.bytecodeIdsLength(); j++) { execIdx.put(r.bytecodeIds(j), j / 2); execTeam.put(r.bytecodeIds(j), j % 2 == 0 ? 1 : 2); }
+            execDone = true;
+        }
         // team resources
         for (int j = 0; j < r.teamIdsLength(); j++) crumbsNow[r.teamIds(j)] = r.teamResourceAmounts(j);
         // spawns
         SpawnedBodyTable sb = r.spawnedBodies();
         if (sb != null) for (int j = 0; j < sb.robotIdsLength(); j++) {
             int id = sb.robotIds(j), t = sb.teamIds(j);
-            team.put(id, t); cSpawns[t]++;
+            team.put(id, t); cSpawns[t]++; lastSpawn.put(id, rn);
+            if (execDone && execTeam.containsKey(id) && execTeam.get(id) != t) execBroken = true;   // the A,B alternation did not hold
             if (inWindow(rn) || id == robot) out.printf("r%d SPAWN %s#%d at (%d,%d)%n", rn, tname(t), id, sb.locs().xs(j), sb.locs().ys(j));
         }
         // robot state
@@ -285,7 +379,7 @@ public class ReplayDump {
                 }
                 kEscortSum[t] += e;
             }
-            if (defMode && trip.containsKey(id)) {
+            if (tripsOn() && trip.containsKey(id)) {
                 int[] tr = trip.get(id); int c = 0;
                 for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
                     if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
@@ -335,7 +429,7 @@ public class ReplayDump {
                     }
                     if (rn <= 200) sOwnFlagPickupsSetup[t]++;
                     else if (sFirstPickup[t] == 0) sFirstPickup[t] = rn;
-                    if (defMode && rn > 200) {
+                    if (tripsOn() && rn > 200) {
                         int[] fl0 = flagLoc.get(tgt), fh0 = flagHome.get(tgt);
                         int[] at = fl0 != null ? fl0 : lastLoc.get(id);
                         int n20 = 0, n64 = 0;
@@ -346,6 +440,7 @@ public class ReplayDump {
                         }
                         boolean first = fl0 != null && fh0 != null && fl0[0] == fh0[0] && fl0[1] == fh0[1];
                         trip.put(id, new int[]{rn, first ? 1 : 0, at == null ? -1 : at[0], at == null ? -1 : at[1], n20, n64, 0, 0});
+                        if (s0a()) startTrack(rn, id, t, tgt, first, at);
                     }
                     cPickups[t]++; carrying.put(id, tgt); flagLoc.put(tgt, null);
                     desc = "picks up flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "PICKUP", id, tgt); break;
@@ -356,7 +451,7 @@ public class ReplayDump {
                     { for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) if (ce.getValue() == id && rn > 200) {
                         int holder = ce.getKey(); boolean dies = false;
                         for (int q = 0; q < r.diedIdsLength(); q++) if (r.diedIds(q) == holder) dies = true;
-                        if (defMode) endTrip(rn, holder, dies ? "DIED" : "DROP");
+                        if (tripsOn()) endTrip(rn, holder, dies ? "DIED" : "DROP");
                         if (!dies) sDrops[team.getOrDefault(holder, 0)]++;
                         else {
                             int ht = team.getOrDefault(holder, 0); kCarrierDeaths[ht]++;
@@ -375,10 +470,11 @@ public class ReplayDump {
                     break;
                 }
                 case Action.CAPTURE_FLAG:
-                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (defMode) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
+                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (tripsOn()) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
+                    capturedFlags.add(tgt);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
                     desc = "CAPTURES flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "CAPTURE", id, tgt); break;
-                case Action.GLOBAL_UPGRADE: sUpgrades[t] += (sUpgrades[t].isEmpty() ? "" : "+") + (tgt == 0 ? "ATK" : tgt == 1 ? "HEAL" : "CAP") + "@" + rn; cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
+                case Action.GLOBAL_UPGRADE: if (tgt == 2 && t > 0) hasCap[t] = true; sUpgrades[t] += (sUpgrades[t].isEmpty() ? "" : "+") + (tgt == 0 ? "ATK" : tgt == 1 ? "HEAL" : "CAP") + "@" + rn; cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
                 case Action.DIE_EXCEPTION: cExc[t]++; desc = "DIES OF EXCEPTION"; break;
                 default: desc = "action" + a;
             }
@@ -404,13 +500,27 @@ public class ReplayDump {
             trapLoc.remove(tid);
         }
         // deaths
+        Set<Integer> diedNow = new HashSet<>();
+        for (int j = 0; j < r.diedIdsLength(); j++) diedNow.add(r.diedIds(j));
         for (int j = 0; j < r.diedIdsLength(); j++) {
             int id = r.diedIds(j), t = team.getOrDefault(id, 0);
             cDeaths[t]++; if (firstDeath[t] < 0) firstDeath[t] = rn;
             Integer f = carrying.remove(id);
             if (f != null) kCarrierDeaths[t]++;   // only if no drop event preceded (normally the PLACE event counts it)
-            if (defMode && trip.containsKey(id)) endTrip(rn, id, "DIED");
+            if (tripsOn() && trip.containsKey(id)) endTrip(rn, id, "DIED");
             int[] l = lastLoc.get(id);
+            deathRound.put(id, rn);
+            if (capMode && t > 0 && l != null) {   // lone / trickle deaths: own robots alive at the end of the round within dist2 20
+                int nb = 0;
+                for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                    if (team.getOrDefault(re.getKey(), 0) != t || diedNow.contains(re.getKey())) continue;
+                    if (d2(re.getValue()[0], re.getValue()[1], l[0], l[1]) <= 20) nb++;
+                }
+                if (nb <= 1) kLoneDeaths[t]++;
+                Integer sp0 = lastSpawn.get(id);
+                if (sp0 != null && rn - sp0 <= 30 && nb <= 2) kTrickleDeaths[t]++;
+            }
+            if (s0a()) for (TripX x : witnessWatch) if (rn <= x.start + 10 && x.witnesses.contains(id)) x.defDied10++;
             if (f != null && l != null) flagLoc.put(f, l);
             if (inWindow(rn) || id == robot) out.printf("r%d DIES %s#%d at (%d,%d)%s%n", rn, tname(t), id, l == null ? -1 : l[0], l == null ? -1 : l[1], f != null ? " dropping flag" : "");
             lastLoc.remove(id); prevLoc.remove(id);
@@ -435,8 +545,446 @@ public class ReplayDump {
             if (near) kDamStage199[t]++;
         }
         for (int t = 1; t <= 2; t++) { kAliveSum[t] += alive[t]; if (rn == 200) kGathered200[t] = kGathered[t]; if (rn == 400) kGathered400[t] = kGathered[t]; }
+        if (s0a() || capMode) tick(rn);
+        if (s0a()) witnessWatch.removeIf(x -> rn >= x.start + 10);
         kRounds++;
         totalRounds = rn;
+    }
+
+    // =================================================================================================================
+    // S0a instruments (research/REWRITE_DESIGN.md 2.4, 2.5, 2.11): the shared array, and an offline replay of the
+    // 2.4 flag-track rules on what one team's robots could see (vision dist2 20 around every alive robot at the end of
+    // the round; a flag, carried or not, is seen when its tile is in vision). One belief per (tracked team, our flag),
+    // updated once per round after setup; a second belief takes destinations from Sym.best() of slot 16 instead of the
+    // true enemy spawn centres.
+    // =================================================================================================================
+    static final int S_HOME = 0, S_CARRIED = 1, S_DROPPED = 2, S_MISSING = 3, S_LOST = 4, S_GONE = 5;
+    static final String[] SNAME = {"HOME", "CARRIED", "DROPPED", "MISSING", "LOST", "GONE"};
+    static final int VISION2 = 20, HOME_CONFIRM = 8, TRK_MISS_R2 = 10, TRK_EXPIRE = 10, OBJ_FREE_R2 = 10, CUT_TMAX = 30,
+            JAIL_ROUNDS = 25, DEFENDERS = 3, ESC8 = 8;
+    /* --track columns. One row per finished post-setup trip (a carrier's pickup to its CAPTURE / DROP / DIED, as --defense),
+     * per tracked team ("us"), plus one kind=game row per tracked team (round = last round, outcome WON/LOST, symOk).
+     *  team            the tracked side; kind = their (the other team carries one of our flags) | own (we carry) | game
+     *  round, flag, first, outcome, tripRounds   as --defense (first = picked up from its home tile); meanChasers20 as
+     *                  --defense (robots of the non-carrying team within dist2 20, mean over carried rounds) but 4 decimals,
+     *                  which classifies exactly against 0.5 and 1 (n <= 2000 rounds); chaserSum / chaserRounds = the exact
+     *                  numerator and denominator, so any rounding (e.g. --defense's 1 decimal) can be reproduced
+     *  defNear20       robots of the non-carrying team within dist2 20 of the flag at the pickup; defDied10 = how many of
+     *                  those died (were jailed) within 10 rounds of the pickup
+     *  their rows only:
+     *  unseenRounds    carried rounds (end-of-round states, pickup round included) with none of ours within dist2 20
+     *  predErr         median Chebyshev error of the 2.4 prediction P(now) over ALL unseen rounds (blank only when there is
+     *                  none); while the belief is HOME, P(now) is the home tile (the bot has not noticed the trip).
+     *                  predErrSym = the same with destinations from Sym.best() of our slot 16. predN (diagnostic) = how
+     *                  many of those rounds had a belief away from HOME
+     *  destHit         CAPTURE only: the destination the belief held for most rounds from tKnow on, counting only rounds
+     *                  with a live 2.4 state (CARRIED, MISSING, DROPPED: the states responders act on; ties: the later), is
+     *                  the zone the carrier captured in; destHitSym = the same under Sym.best(); blank without such a round
+     *                  (premise.py counts blank as a miss)
+     *  tKnow           rounds after the pickup until one of ours is within dist2 20 of the carrier (tKnowBy = sight), or of
+     *                  the flag's home tile while the 2.4 belief was HOME at the start of that round, so that the sensing
+     *                  fires MISSING (tKnowBy = home); blank = never. An empty home tile while the belief is already away
+     *                  from HOME (a re-grab from a drop tile; a stale LOST/GONE track) carries no news about this trip.
+     *                  tKnowState = the 2.4 state then (CARRIED or MISSING by construction); tKnowLive = 1 when it was live
+     *  reachAll        at tKnow, our robots with idx >= 3 (the defenders never bid) with t <= 30 by the 2.5 rule on that
+     *                  belief; alive from their tile, jailed from the spawn centre nearest Q plus 25 - (round - death)
+     *  reachFree       those of them with no enemy within dist2 10, plus the jailed ones; reachInFight = (all - free) / all
+     *  escorts8        at tKnow, the carrier's team-mates within dist2 8 of it
+     *  own rows only:
+     *  ownEscorts20    mean of our robots within dist2 20 of our carrier per carried round
+     *  convoyReachFree at the end of the pickup round (every trip, also one that ends in that round): ours alive then
+     *                  within Chebyshev 10 of the carrier's tile, outside dist2 20, no enemy within dist2 10
+     *  symOk           as --capabilities, for the tracked team */
+    static final String TRACK_COLS = "team,kind,round,flag,first,outcome,tripRounds,meanChasers20,chaserSum,chaserRounds,defNear20,defDied10,"
+            + "unseenRounds,predN,predErr,predErrSym,destHit,destHitSym,tKnow,tKnowBy,tKnowState,tKnowLive,reachAll,reachFree,reachInFight,"
+            + "escorts8,ownEscorts20,convoyReachFree,symOk";
+    static final int N_TRACK = TRACK_COLS.split(",").length, N_THEIR = 14;   // N_THEIR: unseenRounds..escorts8
+    static int[][] comm = new int[3][64];
+    static boolean commSeen, commMode, commHeader, trackMode, trackLog, execDone, execBroken;
+    static int[] sym250 = {-1, -1, -1}, psym250 = {0, 0, 0};
+    static boolean[] trkSlots = new boolean[3];
+    static int commStored;
+    static int commFrom = -1, commTo = -1;
+    static Map<Integer, Integer> execIdx = new HashMap<>(), execTeam = new HashMap<>(), lastSpawn = new HashMap<>(), deathRound = new HashMap<>();
+    static boolean[] hasCap = new boolean[3];
+    static Set<Integer> capturedFlags = new HashSet<>();
+    static int[][][] centres = new int[3][][];
+    static int[] kEnemyCarried = new int[3], kEnemyUnseen = new int[3], kEnemyTrips = new int[3], kUnopposed = new int[3],
+            kLong25 = new int[3], kLongCaps25 = new int[3], kLoneDeaths = new int[3], kTrickleDeaths = new int[3];
+    static Map<Integer, Belief> bel = new HashMap<>(), belSym = new HashMap<>();   // flag id -> belief of the flag's team
+    static Map<Integer, TripX> tripX = new HashMap<>();                             // holder -> open trip
+    static List<TripX> tripDone = new ArrayList<>(), witnessWatch = new ArrayList<>(), startedNow = new ArrayList<>();
+
+    static boolean tracked(int t) { return logTeam == 0 || logTeam == t; }
+    static int cheb(int ax, int ay, int bx, int by) { return Math.max(Math.abs(ax - bx), Math.abs(ay - by)); }
+    static int d2(int ax, int ay, int bx, int by) { int dx = ax - bx, dy = ay - by; return dx * dx + dy * dy; }
+    /** movesDone(age, class) = age/2, age*5/6 or age (carrier move cooldown 20, 12 with CAPTURING, 10 for a relay). */
+    static int movesDone(int age, int cls) { if (age <= 0) return 0; return cls == 2 ? age : cls == 1 ? age * 5 / 6 : age / 2; }
+    /** ceil(n / v): rounds the carrier needs for n moves. */
+    static int roundsFor(int n, int cls) { return cls == 2 ? n : cls == 1 ? (6 * n + 4) / 5 : 2 * n; }
+    /** step(L, D, n): n greedy 8-way steps from L toward D, each axis capped at its distance. */
+    static int[] step(int lx, int ly, int dx, int dy, int n) {
+        return new int[]{lx + Integer.signum(dx - lx) * Math.min(Math.abs(dx - lx), n), ly + Integer.signum(dy - ly) * Math.min(Math.abs(dy - ly), n)};
+    }
+    /** P = step(L, D, min(N, movesDone(age))), N = cheb(L, D) - 1: stops on the zone tile next to the centre D. */
+    static int[] predictFrom(int lx, int ly, int dx, int dy, int cls, int age) {
+        return step(lx, ly, dx, dy, Math.min(Math.max(0, cheb(lx, ly, dx, dy) - 1), movesDone(age, cls)));
+    }
+    /** Tie-free order for the nearest-centre choices (2.9 Obj.nearestDet): equal distances go to the lower x, then the
+     *  lower y, so the choice never depends on array order (the true centres and the Sym.best() images list the same
+     *  centres in different orders when centres sit on a symmetry axis). */
+    static boolean better(int d, int[] c, int bd, int[] best) {
+        return best == null || d < bd || (d == bd && (c[0] < best[0] || (c[0] == best[0] && c[1] < best[1])));
+    }
+    static int[] nearestOf(int[][] cs, int x, int y) {
+        int[] best = null; int bd = Integer.MAX_VALUE;
+        for (int[] c : cs) { int d = d2(x, y, c[0], c[1]); if (better(d, c, bd, best)) { bd = d; best = c; } }
+        return best;
+    }
+    /** 2.5 step 4, carried flag: first n (from movesDone(age) to N, step max(1, N/12)) with tauD <= tauC gives t = tauD;
+     *  -1 when none, or when that t exceeds the CUT cap 30. jailLeft < 0: alive at m; else jailed, from the spawn centre
+     *  nearest Q plus the jail time left. */
+    static int interceptCarried(int lx, int ly, int dx, int dy, int cls, int age, int mx, int my, int jailLeft, int[][] spawnCentres) {
+        int nN = cheb(lx, ly, dx, dy) - 1, s = Math.max(1, nN / 12);
+        for (int n = movesDone(age, cls); n <= nN; n += s) {
+            int[] q = step(lx, ly, dx, dy, n);
+            int tc = roundsFor(n, cls) - age;
+            int[] me = jailLeft >= 0 ? nearestOf(spawnCentres, q[0], q[1]) : new int[]{mx, my};
+            int td = cheb(me[0], me[1], q[0], q[1]) * 6 / 5 + 1 + Math.max(0, jailLeft);
+            if (td <= tc) return td <= CUT_TMAX ? td : -1;
+        }
+        return -1;
+    }
+    /** 2.5 step 4, dropped inside the return window: t = cheb(me, L), a candidate only if t <= the window left. */
+    static int interceptDropped(int lx, int ly, int left, int mx, int my, int jailLeft, int[][] spawnCentres) {
+        int[] me = jailLeft >= 0 ? nearestOf(spawnCentres, lx, ly) : new int[]{mx, my};
+        int t = cheb(me[0], me[1], lx, ly) + Math.max(0, jailLeft);
+        return t <= left && t <= CUT_TMAX ? t : -1;
+    }
+
+    static int symBest(int mask) { if (mask <= 0) mask = 7; return (mask & 1) != 0 ? 1 : (mask & 2) != 0 ? 2 : (mask & 4) != 0 ? 4 : 1; }
+    static int[] image(int x, int y, int s) { return s == 1 ? new int[]{W - 1 - x, H - 1 - y} : s == 2 ? new int[]{W - 1 - x, y} : new int[]{x, H - 1 - y}; }
+    static int[][] imagesUnder(int t, int s) { int[][] r = new int[centres[t].length][]; for (int i = 0; i < r.length; i++) r[i] = image(centres[t][i][0], centres[t][i][1], s); return r; }
+    /** symOk: Sym.best() of team t's slot 16 at r250 maps t's centres onto the other team's; -1 without a stored array. */
+    static int symOk(int t) { return sym250[t] < 0 ? -1 : maskOk(t, sym250[t]); }
+    /** psymOk: the same with slot 24 (PSYM; 0 = unwritten -> slot 16); -1 unless the tracker slots were ever written. */
+    static int psymOk(int t) { return sym250[t] < 0 || !trkSlots[t] ? -1 : maskOk(t, psym250[t] != 0 ? psym250[t] & 7 : sym250[t]); }
+    static int maskOk(int t, int mask) {
+        if (centres[t] == null || centres[3 - t] == null) return -1;
+        Set<Integer> want = new HashSet<>(), got = new HashSet<>();
+        for (int[] c : centres[3 - t]) want.add(c[0] + c[1] * W);
+        for (int[] c : imagesUnder(t, symBest(mask))) got.add(c[0] + c[1] * W);
+        return want.equals(got) ? 1 : 0;
+    }
+
+    static class Belief {
+        final int us, flag; final boolean sym;
+        int state = S_HOME, startState = S_HOME, lx, ly, r0 = 200, dx = -1, dy = -1, cls, misses, missRound = -1, homeConf = 200;
+        boolean inferred;
+        Belief(int us, int flag, boolean sym) { this.us = us; this.flag = flag; this.sym = sym; int[] h = flagHome.get(flag); lx = h[0]; ly = h[1]; }
+    }
+    static int window(int carrierTeam) { return hasCap[carrierTeam] ? 25 : 4; }
+    static int[][] dests(Belief b) { return b.sym ? imagesUnder(b.us, symBest(commSeen ? comm[b.us][16] : 0)) : centres[3 - b.us]; }
+    static void setNearest(Belief b, int x, int y) { int[] c = nearestOf(dests(b), x, y); b.dx = c[0]; b.dy = c[1]; }
+    /** End-of-round model of the return window: a flag first seen dropped at the end of round r0 lies there at the end of
+     *  rounds r0 .. r0+win-1 and is back home at the end of r0+win (replays: PLACE r1060 -> home PLACE r1064). */
+    static boolean inDropWindow(int r0, int rn, int win) { return rn < r0 + win; }
+    /** The belief's P(now): HOME -> home; DROPPED inside the window -> the drop tile; a presumed re-grab after it -> the
+     *  2.4 formula from the window end; every other state -> the formula from (L, r0). */
+    static int[] predict(Belief b, int rn) {
+        if (b.state == S_HOME || b.dx < 0) return new int[]{b.lx, b.ly};
+        if (b.state == S_DROPPED) {
+            int win = window(3 - b.us), we = b.r0 + win;
+            return inDropWindow(b.r0, rn, win) ? new int[]{b.lx, b.ly} : predictFrom(b.lx, b.ly, b.dx, b.dy, b.cls, rn - we);
+        }
+        return predictFrom(b.lx, b.ly, b.dx, b.dy, b.cls, rn - b.r0);
+    }
+    static boolean near(List<int[]> al, int x, int y, int r2, int skipId) {
+        for (int[] a : al) if (a[2] != skipId && d2(a[0], a[1], x, y) <= r2) return true;
+        return false;
+    }
+    static int count(List<int[]> al, int x, int y, int r2, int skipId) {
+        int n = 0; for (int[] a : al) if (a[2] != skipId && d2(a[0], a[1], x, y) <= r2) n++;
+        return n;
+    }
+
+    /** One round of the 2.4 rules for flag b.flag. fl = the flag's true tile (the carrier's when carried), null once captured. */
+    static void beliefTick(Belief b, int rn, int[] fl, boolean carried, List<int[]> ours) {
+        int them = 3 - b.us, win = window(them);
+        int[] home = flagHome.get(b.flag);
+        b.startState = b.state;
+        // round start: GONE once the predicted arrival plus TRK_EXPIRE has passed
+        boolean predicting = b.state == S_CARRIED || b.state == S_MISSING || b.state == S_LOST || (b.state == S_DROPPED && !inDropWindow(b.r0, rn, win));
+        if (predicting && b.dx >= 0) {
+            int base = b.state == S_DROPPED ? b.r0 + win : b.r0;
+            if (rn > base + roundsFor(Math.max(0, cheb(b.lx, b.ly, b.dx, b.dy) - 1), b.cls) + TRK_EXPIRE) b.state = S_GONE;
+        }
+        if (fl != null && near(ours, fl[0], fl[1], VISION2, -1)) {   // a direct sighting
+            if (carried) {
+                if ((b.state == S_CARRIED || b.state == S_LOST) && !b.inferred && rn - b.r0 >= 4)   // speed over a gap of 4+ rounds
+                    b.cls = cheb(b.lx, b.ly, fl[0], fl[1]) >= 0.9 * (rn - b.r0) ? 2 : hasCap[them] ? 1 : 0;
+                else if (b.state == S_HOME || b.state == S_GONE) b.cls = hasCap[them] ? 1 : 0;
+                // destination: the enemy centre nearest the sighting, rejecting centres it moved away from since L
+                int[][] ds = dests(b); int[] best = null; int bd = Integer.MAX_VALUE;
+                boolean ref = b.state != S_GONE && (b.lx != fl[0] || b.ly != fl[1]);
+                for (int pass = 0; pass < 2 && best == null; pass++)
+                    for (int[] c : ds) {
+                        int d = d2(fl[0], fl[1], c[0], c[1]);
+                        if (pass == 0 && ref && d > d2(b.lx, b.ly, c[0], c[1])) continue;
+                        if (better(d, c, bd, best)) { bd = d; best = c; }
+                    }
+                b.dx = best[0]; b.dy = best[1];
+                b.state = S_CARRIED; b.lx = fl[0]; b.ly = fl[1]; b.r0 = rn; b.inferred = false; b.misses = 0;
+            } else if (home != null && fl[0] == home[0] && fl[1] == home[1]) {
+                if (b.state != S_HOME) { b.state = S_HOME; b.homeConf = rn; b.dx = b.dy = -1; }
+                else if (rn - b.homeConf >= HOME_CONFIRM) b.homeConf = rn;   // the home witness re-stamps every 8 rounds
+                b.lx = home[0]; b.ly = home[1]; b.r0 = b.homeConf; b.inferred = false; b.misses = 0;
+            } else {
+                if (b.state != S_DROPPED || b.lx != fl[0] || b.ly != fl[1]) { b.state = S_DROPPED; b.lx = fl[0]; b.ly = fl[1]; b.r0 = rn; }
+                if (b.dx < 0) setNearest(b, fl[0], fl[1]);
+                b.inferred = false; b.misses = 0;
+            }
+            return;
+        }
+        boolean homeSensed = home != null && near(ours, home[0], home[1], VISION2, -1);   // and the flag is not there
+        if (homeSensed && b.state == S_HOME) {                       // MISSING: departure kept at the last confirmation
+            b.state = S_MISSING; b.inferred = true; b.lx = home[0]; b.ly = home[1]; b.r0 = b.homeConf; b.misses = 0;
+            b.cls = hasCap[them] ? 1 : 0; setNearest(b, home[0], home[1]);
+        } else if (b.state == S_DROPPED) {
+            if (!inDropWindow(b.r0, rn, win)) { if (homeSensed) { b.state = S_CARRIED; b.inferred = true; b.r0 = b.r0 + win; b.misses = 0; } }
+            else if (near(ours, b.lx, b.ly, VISION2, -1)) { b.state = S_CARRIED; b.inferred = true; b.r0 = rn - 1; b.misses = 0; }
+        }
+        // negative sightings: one of ours within dist2 10 of P sees no flag; at 1 miss switch D, at 3 LOST
+        boolean neg = b.state == S_CARRIED || b.state == S_MISSING || (b.state == S_DROPPED && !inDropWindow(b.r0, rn, win));
+        if (neg && b.dx >= 0 && b.missRound != rn) {
+            int[] p = predict(b, rn);
+            if (near(ours, p[0], p[1], TRK_MISS_R2, -1)) {
+                b.misses++; b.missRound = rn;
+                if (b.misses == 1) {   // the other enemy centre most consistent with L: the nearest to L
+                    int[] best = null; int bd = Integer.MAX_VALUE;
+                    for (int[] c : dests(b)) { if (c[0] == b.dx && c[1] == b.dy) continue; int d = d2(b.lx, b.ly, c[0], c[1]); if (better(d, c, bd, best)) { bd = d; best = c; } }
+                    if (best != null) { b.dx = best[0]; b.dy = best[1]; }
+                }
+                if (b.misses >= 3) b.state = S_LOST;
+            }
+        }
+    }
+
+    static class TripX {
+        int holder, ct, flag, start, first, defNear20, defDied10, tripRounds, zone = -1, chaserSum, chaserRounds;
+        String outcome = ""; double chasers;
+        Set<Integer> witnesses = new HashSet<>();
+        int[] pickLoc;
+        int ticks, unseen, predN, tKnow = -1, tKnowLive = -1, reachAll, reachFree, escorts8; double reachInFight = Double.NaN;
+        String tKnowState = "", tKnowBy = "";
+        List<Integer> err = new ArrayList<>(), errSym = new ArrayList<>();
+        Map<Integer, int[]> votes = new HashMap<>(), votesSym = new HashMap<>();
+        long escSum; int escN, convoy = -1;
+    }
+    static void startTrack(int rn, int id, int t, int flag, boolean first, int[] at) {
+        TripX x = new TripX(); x.holder = id; x.ct = t; x.flag = flag; x.start = rn; x.first = first ? 1 : 0;
+        int[] pl = lastLoc.get(id); x.pickLoc = pl != null ? pl : at;   // the carrier's tile at the end of the pickup round
+        if (at != null) for (Map.Entry<Integer, int[]> re : lastLoc.entrySet())
+            if (team.getOrDefault(re.getKey(), 0) == 3 - t && d2(re.getValue()[0], re.getValue()[1], at[0], at[1]) <= 20) x.witnesses.add(re.getKey());
+        tripX.put(id, x); witnessWatch.add(x); startedNow.add(x);
+    }
+    static boolean live(Belief b) { return b != null && b.dx >= 0 && (b.state == S_CARRIED || b.state == S_MISSING || b.state == S_DROPPED); }
+    /** destHit votes: only rounds with a live 2.4 state (the states responders act on, 2.5 step 1). */
+    static void vote(Map<Integer, int[]> v, Belief b, int rn) {
+        if (!live(b)) return;
+        int[] e = v.computeIfAbsent(b.dx + b.dy * W, k -> new int[2]); e[0]++; e[1] = rn;
+    }
+    static int majority(Map<Integer, int[]> v) {   // most rounds; ties -> the more recent
+        int best = -1, bc = -1, br = -1;
+        for (Map.Entry<Integer, int[]> e : v.entrySet()) { int[] c = e.getValue(); if (c[0] > bc || (c[0] == bc && c[1] > br)) { best = e.getKey(); bc = c[0]; br = c[1]; } }
+        return best;
+    }
+
+    /** End of round rn (after every event of the round): alive robots per team as {x, y, id}. */
+    @SuppressWarnings("unchecked")
+    static List<int[]>[] aliveLists() {
+        List<int[]>[] al = new List[]{new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
+        for (Map.Entry<Integer, int[]> e : lastLoc.entrySet()) {
+            int t = team.getOrDefault(e.getKey(), 0);
+            if (t > 0) al[t].add(new int[]{e.getValue()[0], e.getValue()[1], e.getKey()});
+        }
+        return al;
+    }
+    static void tick(int rn) {
+        if (rn <= 200) return;
+        List<int[]>[] al = aliveLists();
+        if (capMode) for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) {
+            int h = ce.getKey(), ct = team.getOrDefault(h, 0); int[] c = lastLoc.get(h);
+            if (ct == 0 || c == null) continue;
+            kEnemyCarried[3 - ct]++;
+            if (!near(al[3 - ct], c[0], c[1], VISION2, -1)) kEnemyUnseen[3 - ct]++;
+        }
+        if (!s0a()) return;
+        Map<Integer, Integer> holderOf = new HashMap<>();
+        for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) holderOf.put(ce.getValue(), ce.getKey());
+        for (Map.Entry<Integer, Integer> fe : flagTeam.entrySet()) {
+            int f = fe.getKey(), us = fe.getValue();
+            if (!tracked(us) || !flagHome.containsKey(f)) continue;
+            int[] fl; boolean carried = false;
+            if (capturedFlags.contains(f)) fl = null;
+            else if (holderOf.containsKey(f)) { fl = lastLoc.get(holderOf.get(f)); carried = fl != null; }
+            else fl = flagLoc.get(f);
+            Belief b = bel.computeIfAbsent(f, k -> new Belief(us, k, false));
+            beliefTick(b, rn, fl, carried, al[us]);
+            beliefTick(belSym.computeIfAbsent(f, k -> new Belief(us, k, true)), rn, fl, carried, al[us]);
+            if (trackLog && (b.state != S_HOME || fl == null || carried)) {
+                int[] p = predict(b, rn);
+                out.printf("# r%d %s flag=%d %s%s L=(%d,%d) r0=%d D=(%d,%d) cls=%d miss=%d P=(%d,%d) truth=%s%s err=%s%n", rn, tname(us), f, SNAME[b.state],
+                        b.inferred ? "*" : "", b.lx, b.ly, b.r0, b.dx, b.dy, b.cls, b.misses, p[0], p[1],
+                        fl == null ? "gone" : "(" + fl[0] + "," + fl[1] + ")", carried ? (near(al[us], fl[0], fl[1], VISION2, -1) ? " carried,seen" : " carried,unseen") : "",
+                        fl == null ? "-" : String.valueOf(cheb(p[0], p[1], fl[0], fl[1])));
+            }
+        }
+        for (TripX x : startedNow) if (tracked(x.ct) && x.pickLoc != null) x.convoy = convoyAt(x, x.pickLoc, al);   // also trips that ended this round
+        startedNow.clear();
+        for (TripX x : tripX.values()) tripTick(x, rn, al);
+    }
+    /** convoyReachFree: the carrier's team-mates alive at the end of the pickup round within Chebyshev 10 of its tile, outside
+     *  dist2 20, with no enemy within dist2 10. */
+    static int convoyAt(TripX x, int[] c, List<int[]>[] al) {
+        int n = 0;
+        for (int[] a : al[x.ct]) {
+            if (a[2] == x.holder) continue;
+            if (cheb(a[0], a[1], c[0], c[1]) <= 10 && d2(a[0], a[1], c[0], c[1]) > 20 && !near(al[3 - x.ct], a[0], a[1], OBJ_FREE_R2, -1)) n++;
+        }
+        return n;
+    }
+    static void tripTick(TripX x, int rn, List<int[]>[] al) {
+        Integer f = carrying.get(x.holder); int[] c = lastLoc.get(x.holder);
+        if (f == null || c == null) return;
+        int ct = x.ct, us = 3 - ct;
+        x.ticks++;
+        if (tracked(us)) {                 // their trip, seen from the defending side
+            boolean seen = near(al[us], c[0], c[1], VISION2, -1);
+            Belief b = bel.get(f), bs = belSym.get(f);
+            int[] home = flagHome.get(f);
+            if (!seen) {                   // every unseen round is scored; a HOME belief predicts the home tile
+                x.unseen++;
+                if (b != null && b.state != S_HOME) x.predN++;
+                int[] p = b != null ? predict(b, rn) : home, ps = bs != null ? predict(bs, rn) : home;
+                if (p != null) x.err.add(cheb(p[0], p[1], c[0], c[1]));
+                if (ps != null) x.errSym.add(cheb(ps[0], ps[1], c[0], c[1]));
+            }
+            if (x.tKnow < 0) {             // home counts only when it is news: the belief was HOME, so the sensing fired MISSING
+                boolean byHome = !seen && b != null && b.startState == S_HOME && home != null && near(al[us], home[0], home[1], VISION2, -1);
+                if (seen || byHome) knowAt(x, rn, b, c, seen, al);
+            }
+            if (x.tKnow >= 0) { vote(x.votes, b, rn); vote(x.votesSym, bs, rn); }
+        }
+        if (tracked(ct)) {                 // our trip, seen from the carrying side
+            x.escSum += count(al[ct], c[0], c[1], 20, x.holder); x.escN++;
+        }
+    }
+    /** tKnow: reach counts by the 2.5 rule on the belief of that round. By construction that belief is live (a sighting
+     *  sets CARRIED, the home criterion requires the HOME -> MISSING transition); if it is not (no belief for the flag), a
+     *  fresh one is used, CARRIED at the carrier or MISSING with the true departure, and tKnowLive = 0. */
+    static void knowAt(TripX x, int rn, Belief b, int[] c, boolean seen, List<int[]>[] al) {
+        int us = 3 - x.ct;
+        x.tKnow = rn - x.start; x.tKnowBy = seen ? "sight" : "home";
+        boolean live = live(b);
+        x.tKnowState = b == null ? "" : SNAME[b.state]; x.tKnowLive = live ? 1 : 0;
+        Belief rb = b;
+        if (!live) {
+            rb = new Belief(us, x.flag, false);
+            if (seen) { rb.state = S_CARRIED; rb.lx = c[0]; rb.ly = c[1]; rb.r0 = rn; }
+            else { rb.state = S_MISSING; rb.r0 = x.start; }
+            rb.cls = hasCap[x.ct] ? 1 : 0; setNearest(rb, rb.lx, rb.ly);
+        }
+        int win = window(x.ct), all = 0, free = 0;
+        boolean byExec = !execTeam.isEmpty() && !execBroken;
+        Map<Integer, Integer> roster = byExec ? execTeam : team;
+        for (Map.Entry<Integer, Integer> e : roster.entrySet()) {
+            int id = e.getKey();
+            if (e.getValue() != us || (byExec && execIdx.getOrDefault(id, DEFENDERS) < DEFENDERS)) continue;   // defenders never bid
+            if (carrying.containsKey(id)) continue;                                                            // nor do carriers (2.5)
+            int[] l = lastLoc.get(id);
+            int jail = l != null ? -1 : Math.max(0, JAIL_ROUNDS - (rn - deathRound.getOrDefault(id, -100000)));
+            int mx = l != null ? l[0] : 0, my = l != null ? l[1] : 0, t;
+            if (rb.state == S_DROPPED && inDropWindow(rb.r0, rn, win)) t = interceptDropped(rb.lx, rb.ly, rb.r0 + win - rn, mx, my, jail, centres[us]);
+            else {
+                int r0 = rb.state == S_DROPPED ? rb.r0 + win : rb.r0;
+                t = interceptCarried(rb.lx, rb.ly, rb.dx, rb.dy, rb.cls, rn - r0, mx, my, jail, centres[us]);
+            }
+            if (t < 0) continue;
+            all++;
+            if (l == null || !near(al[x.ct], l[0], l[1], OBJ_FREE_R2, -1)) free++;
+        }
+        x.reachAll = all; x.reachFree = free; x.reachInFight = all > 0 ? (all - free) / (double) all : Double.NaN;
+        x.escorts8 = count(al[x.ct], c[0], c[1], ESC8, x.holder);
+    }
+    static String median(List<Integer> v) {
+        if (v.isEmpty()) return "";
+        List<Integer> s = new ArrayList<>(v); Collections.sort(s); int n = s.size();
+        double m = n % 2 == 1 ? (double) s.get(n / 2) : (s.get(n / 2 - 1) + s.get(n / 2)) / 2.0;
+        return String.format("%.1f", m);
+    }
+    static void printTrack() {
+        out.println(TRACK_COLS);
+        List<TripX> rows = new ArrayList<>(tripDone);
+        rows.sort((a, b) -> a.start != b.start ? Integer.compare(a.start, b.start) : Integer.compare(a.holder, b.holder));
+        for (int us = 1; us <= 2; us++) {
+            if (!tracked(us)) continue;
+            int so = symOk(us);
+            StringBuilder g = new StringBuilder(tname(us) + ",game," + totalRounds + ",,," + (winner == us ? "WON" : "LOST"));
+            for (int k = 6; k < N_TRACK - 1; k++) g.append(',');
+            out.println(g.append(',').append(so >= 0 ? String.valueOf(so) : ""));
+            for (TripX x : rows) {
+                boolean their = x.ct == 3 - us;
+                StringBuilder sb = new StringBuilder();
+                sb.append(tname(us)).append(',').append(their ? "their" : "own").append(',').append(x.start).append(',').append(x.flag).append(',')
+                  .append(x.first).append(',').append(x.outcome).append(',').append(x.tripRounds).append(',').append(String.format("%.4f", x.chasers)).append(',')
+                  .append(x.chaserSum).append(',').append(x.chaserRounds).append(',').append(x.defNear20).append(',').append(x.defDied10).append(',');
+                if (their) {
+                    boolean capd = x.outcome.equals("CAPTURE");
+                    int m = majority(x.votes), ms = majority(x.votesSym);
+                    sb.append(x.unseen).append(',').append(x.predN).append(',').append(median(x.err)).append(',').append(median(x.errSym)).append(',')
+                      .append(capd && m >= 0 ? (m == x.zone ? "1" : "0") : "").append(',').append(capd && ms >= 0 ? (ms == x.zone ? "1" : "0") : "").append(',');
+                    if (x.tKnow >= 0) sb.append(x.tKnow).append(',').append(x.tKnowBy).append(',').append(x.tKnowState).append(',').append(x.tKnowLive).append(',')
+                      .append(x.reachAll).append(',').append(x.reachFree).append(',').append(Double.isNaN(x.reachInFight) ? "" : String.format("%.2f", x.reachInFight))
+                      .append(',').append(x.escorts8).append(',');
+                    else sb.append(",,,,,,,,");
+                    sb.append(",,");
+                } else {
+                    for (int k = 0; k < N_THEIR; k++) sb.append(',');   // the their-trip columns unseenRounds..escorts8
+                    sb.append(x.escN > 0 ? String.format("%.2f", (double) x.escSum / x.escN) : "").append(',').append(x.convoy >= 0 ? String.valueOf(x.convoy) : "").append(',');
+                }
+                sb.append(so >= 0 ? String.valueOf(so) : "");
+                out.println(sb);
+            }
+        }
+    }
+
+    /** --calc: the prediction and intercept rules on synthetic inputs (tools/test_tools.py). */
+    static void calc() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        for (String line; (line = in.readLine()) != null; ) {
+            String[] p = line.trim().split("\\s+");
+            if (p.length == 0 || p[0].isEmpty()) continue;
+            int[] a = new int[p.length - 1];
+            for (int i = 1; i < p.length; i++) a[i - 1] = Integer.parseInt(p[i]);
+            switch (p[0]) {
+                case "P": { int[] q = predictFrom(a[0], a[1], a[2], a[3], a[4], a[5]); out.println(q[0] + " " + q[1]); break; }
+                case "T": out.println(interceptCarried(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], -1, null)); break;
+                case "J": {
+                    int[][] cs = new int[(a.length - 7) / 2][];
+                    for (int i = 0; i < cs.length; i++) cs[i] = new int[]{a[7 + 2 * i], a[8 + 2 * i]};
+                    out.println(interceptCarried(a[0], a[1], a[2], a[3], a[4], a[5], 0, 0, a[6], cs)); break;
+                }
+                case "W": out.println(interceptDropped(a[0], a[1], a[2], a[3], a[4], -1, null)); break;
+                case "N": {
+                    int[][] cs = new int[(a.length - 2) / 2][];
+                    for (int i = 0; i < cs.length; i++) cs[i] = new int[]{a[2 + 2 * i], a[3 + 2 * i]};
+                    int[] c = nearestOf(cs, a[0], a[1]); out.println(c[0] + " " + c[1]); break;
+                }
+                case "D": out.println(inDropWindow(a[0], a[2], a[1]) ? 1 : 0); break;
+                default: out.println("?");
+            }
+        }
     }
 
     static void surveyTick(int rn) {
@@ -551,7 +1099,8 @@ public class ReplayDump {
             }
         }
         if (capMode) {
-            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost");
+            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -563,9 +1112,17 @@ public class ReplayDump {
                         + "," + kPostPickups[t] + "," + kFirstGrabs[t] + "," + kRegrabs[t] + "," + kRelayPickups[t] + ","
                         + (kCarrierDeathN[t] > 0 ? String.format("%.1f", (double) kCarrierDeathDistSum[t] / kCarrierDeathN[t]) : "") + "," + kDamStage199[t]
                         + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o] + "," + String.format("%.2f", kChaseRounds[o] > 0 ? (double) kEscortSum[t] / kChaseRounds[o] : 0.0)
-                        + "," + String.format("%.1f", robotRoundsPost[t] > 0 ? 100.0 * stillPost[t] / robotRoundsPost[t] : 0.0));
+                        + "," + String.format("%.1f", robotRoundsPost[t] > 0 ? 100.0 * stillPost[t] / robotRoundsPost[t] : 0.0)
+                        + "," + (kEnemyCarried[t] > 0 ? String.valueOf(kEnemyUnseen[t]) : "") + "," + (kEnemyTrips[t] > 0 ? String.valueOf(kUnopposed[t]) : "")
+                        + "," + (kLong25[t] > 0 ? String.valueOf(kLong25[t]) : "") + "," + (kLong25[t] > 0 ? String.valueOf(kLongCaps25[t]) : "")
+                        + "," + (kLong25[t] > 0 ? String.format("%.3f", (double) kLongCaps25[t] / kLong25[t]) : "")
+                        + "," + (cDeaths[t] > 0 ? String.valueOf(kLoneDeaths[t]) : "") + "," + (cDeaths[t] > 0 ? String.valueOf(kTrickleDeaths[t]) : "")
+                        + "," + (symOk(t) >= 0 ? String.valueOf(symOk(t)) : "") + "," + (psymOk(t) >= 0 ? String.valueOf(psymOk(t)) : "")
+                        + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t]);
             }
         }
+        if (trackMode) printTrack();
+        if (commMode) out.println("# commStored " + commStored + "/" + kRounds);
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot
             Map<String, Integer> hist = new TreeMap<>(); int n = 0, atk4 = 0, heal4 = 0, build4 = 0, atkSum = 0, healSum = 0;
             for (Map.Entry<Integer, int[]> e : levels.entrySet()) {
