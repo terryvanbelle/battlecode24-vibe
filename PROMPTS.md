@@ -371,3 +371,11 @@ task check
 ## 88. 2026-10-02
 
 task check
+
+## 89. 2026-10-02
+
+It looks like we had some kind of reset.  Can you check to make sure everything's working ok?
+
+## 90. 2026-10-02
+
+/loop list

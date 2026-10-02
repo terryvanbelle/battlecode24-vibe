@@ -38,7 +38,7 @@ outcome of who wins the fight?), (2) payoff graph (count below-par root capabili
 | T1 | undetermined (composite on the graph) | C11 presence in the enemy half, C12 force division; signature is an outcome | cheap layer only | inEnemy250 >= 18 vs beaters, carrier deaths/pickup <= 0.70, first grabs against us down a third |
 | T2 | intermediate | C10b flag pressure (every uncarried flag is broadcast within dist2 100, so hiding cannot delay raiders) | completed, no effect (engine) | a home defence that works away from spawn exists |
 | T3 | composite | C11, flag pressure, path-distance navigation | defective: 219 drops per capture vs their 3-7 (dropper likely re-picks its own drop) | Phase 3: sparing hand-off, path distance |
-| T4 | intermediate | setup crumb budget (at par on B1); **C2 navigation**: our nav fills the water we dig (fills +44, bank -3800 in the B2 retry) | retry on B2 failed delivery (self-inflicted fills) | water-aware routing (C2) in the stack |
+| T4 | intermediate | setup crumb budget (at par on B1); **C2 navigation**: our nav fills the water we dig (fills +44, bank -3800 in the B2 retry) | B2 retry failed delivery (self-fills); b3own (dig behind spawn + never fill own dig signature) delivered (self-fills 46 -> ~0, level200 +10.5) but **lost the band 16-29**: every dig crumb is a stun not built (stun400 -21) | **closed on the current economy**: the bank is spent on stuns by r250 |
 | T5 | composite | setup budget, C11 | starved: bank gone by r250 | blocks 1, 3, 5 |
 | T6 | symptom (retired) | attack/heal mix follows fight state | - | - |
 | T7 | intermediate | setup budget (an additive moat needs crumbs) | wrong usage: we replaced a stun with a volume moat; beaters place a fixed 3-4 | block 1 base + usage trace |

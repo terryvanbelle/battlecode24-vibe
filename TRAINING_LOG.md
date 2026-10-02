@@ -568,3 +568,14 @@ arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B
   Every carrier still dies (carrierDeaths = pickups) against the g_iter1 defence; both games lost on level sum as before.
   Step 5(b) pre-registered (BASE=b1z2b): rel:regrabs>=1.5 rel:pickups>=1.0 rel:captured>=0.8 rel:inEnemy250>=0.9
   (captured bar loose: its 24-game noise is about +-0.25 of the mean).
+- b3own band (2 seeds, paired vs B3 b2fs, 234 games): **REJECTED**. Wins 39->38 and 45->33 (16 gained, 29 lost,
+  net -13; bar -5). Delivery held on the band: digs200 +91 (+28 SE), level200 +10.5 (+16.5 SE), fills200 +3.2 only.
+  The cost: crumbs200 -2219 and stun400 -20.8 (-14.6 SE); crumbs250 equal (the bank is spent by r250 either way, so
+  every dig crumb is a stun not built). captured -0.13 (-1.9 SE), inEnemy250 -1.0 (-1.8 SE).
+  Reading: T4's level-sum and trap-discount benefit does not pay for 20 stuns; stuns are load-bearing (ablation 16-26).
+  T4 is closed on the current economy. Reopen only if the bank is not spent by r250 (it is, on stuns), or for a
+  dig that also costs nothing in stuns (no such variant exists: each dig is 20 crumbs).
+### 2026-10-02 — ops check after a session reset (owner prompt 89)
+Driver: repo clean and in sync with origin; unit tests OK; cron loop 9c63c476 (task check, 30 min) alive. VM
+battlecode-dev2 RUNNING (up 1 d 12 h, load ~24, disk 86%); queue runner alive 23 h; filler running; b2rg queued.
+Driver disk 98% again (the b3own band replays). tools/vm-collect.sh now leaves replays on the VM unless REPLAYS=1.
