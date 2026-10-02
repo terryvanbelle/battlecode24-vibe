@@ -16,10 +16,16 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   from g_iter1 band replays, no bot code) being implemented by a workflow with three-lens review. g_iter1 control on the
   confirmation seeds finished. Replays for the premise are on the VM (2 pinned runs; 3 more for a descriptive check).
 
+- 16:00 UTC: **focus changed (owner prompt 120)**: one strategy, one goal: an unambiguous win over a higher-ranked bot.
+  Target ColtG5.Goob_final (rank 13, Elo 1909; g_iter1 38.6% over 220 games). Plan and pre-registered criterion:
+  research/CRACK.md (>= 60% of >= 120 scrims, random maps/sides, and paired net >= +2 SE vs g_iter1). ColtG5 profile:
+  it floods our half (25 ducks at r250 vs our 7 in theirs), loses fights 2.5:1, grabs our flags 6.5 times a game and
+  converts 1-2 early; games then freeze to r2000 and one flag decides them. Screen 1 queued: existing rush/flank builds
+  vs ColtG5 on identical cells. The filler now builds the g_iter1 vs ColtG5 baseline. Band-wide rewrite paused.
+
 ## Working
 
 ## Not working
 
 ## Open questions for the owner
-- The design picks one bet (unseen carriers walking home) and closes cheaply if its premise fails in S0a. Is a single
-  focused bet the right shape, or should a second line (e.g. economy, the +2000 crumbs) run in parallel?
+- (answered, prompt 120: one strategy, all energy on it; the crack against ColtG5.)
