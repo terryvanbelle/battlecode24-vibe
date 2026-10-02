@@ -530,3 +530,12 @@ rel:crumbs200>=0.5. If only the bank guard fails, the next arm is a lower dose (
 - Next arms (siting, dose kept at 5): b3site1 DIG_SITE=1 (only tiles with >= 3 wall/off-map neighbours) and
   b3site2 DIG_SITE=2 (only tiles farther from the enemy flag than our nearest spawn centre). Step 5(a) on Battlecode24
   vs g_iter1 (the delivery block's worst self-fill map: 128 own fills).
+- Step 5(a) siting, Battlecode24 s4 vs g_iter1 (digs200 / own-dig fills / fills200 / crumbs200 / level200):
+  b3dig5 235/133/193/1867/47; b3site1 (wall-hugging) 198/88/147/6607/34; b3site2 (behind spawn) 163/46/112/5515/26.
+  Siting alone halves the self-fill share (57% -> 28%) but leaves 46 per game: not enough for the fill bar.
+- New arm b3own = b3site2 + NO_FILL_OWN (Nav.fillToward, setup only: skip a tile matching our dig signature, even
+  parity and behind our spawn, unless 8 turns without progress; the checkerboard keeps a diagonal route). Step 5(a),
+  same cell: 139/8/65/6751/22; ownSkips counter fires (indicator f../../n); bytecode max 15.1k, 0 turns at limit.
+  Lost this one game on flag captures (single game; the block decides).
+  Step 5(b) pre-registered (BASE=b2fs), the same four bars: fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1
+  rel:crumbs200>=0.5.

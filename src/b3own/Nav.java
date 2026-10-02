@@ -1,4 +1,4 @@
-package bot;
+package b3own;
 
 import battlecode.common.*;
 
