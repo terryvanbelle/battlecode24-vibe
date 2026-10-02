@@ -32,3 +32,15 @@ Written before any rewrite code exists. Numbers decided here are not moved after
 - **Regression guard**: all-cell net <= -2 SE stops the milestone; the stage just added is ablated first.
 - Every milestone's numbers go into progress/REWRITE.md (a table: build, stages on, all / upper / rest wins and capture
   deltas, Elo when available) and TRAINING_LOG.md.
+
+## Curriculum (owner prompt 113: in a tournament, enemy systems arrive gradually; in practice they arrive mature)
+Added 2026-10-02 as process, not as decision bars (the bars above are unchanged).
+- **Rung slice** (descriptive): `tools/eval-paired.py ... --rung tools/next-rung.txt` reports the bots just above us
+  (1880-2110: ColtG5, kyleezz, winkelmantanner, CyrilSharma, hsmalladi). g_iter1 wins ~28% there (17/60 on the two seeds),
+  so those cells flip often: they show progress the top bots hide.
+- **Archetype sparring partners**: from what we SEE in field games (never their code), build one-component opponents
+  (e.g. a convoy raid with re-grab chains, an early raid at r220-270, a ground-taking push) at a weak, early strength,
+  and develop each rewrite stage against the matching archetype before the band. They replace self-play vs g_iter1 as
+  the step 5(a) opponent where self-play has misled (g1drift: ground x2 vs g_iter1, none vs the band).
+- **Order of opponents for a stage**: its archetype (does the counter work at all?) -> the rung (does it carry over to
+  real bots that do it imperfectly?) -> the band (the decision).

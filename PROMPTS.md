@@ -467,3 +467,7 @@ We seem to be having some trouble making progress past g_iter1.  Can you take a 
 ## 112. 2026-10-02
 
 I think it's worth trying something new, and that's the point of these practice sessions, to hone our game.   I would like you to try it out, but keep statistics to evaluate whether it's an improvement
+
+## 113. 2026-10-02
+
+Regarding your point #4 about what's going wrong:  I agree with this diagnosis, and it's worth thinking about big picture ways to deal with it some more.  In an actual tournament, these designs will evolve gradually, and there's a warning for us to ensure we keep up with enemy tactics as they develop, devising strategies against them while they're still weak, rather than having to deal with them as a unit near the end of the tournament.  But we don't have that luxury in practice sessions

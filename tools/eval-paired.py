@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Paired evaluation of an arm against a control on identical band cells, split by opponent tier (owner prompt 112).
     tools/eval-paired.py <ctl_census.csv> <arm_census.csv> <ctl_run>,<arm_run> [...] [--tier tools/upper-tier.txt]
+                         [--rung tools/next-rung.txt]   (descriptive slice: the bots just above us, owner prompt 113)
 Cells are paired by (seed index, replay basename) as in tools/arm-deltas.py. For each slice (all, upper tier, rest):
   wins: control, arm, gained / lost (discordant pairs), net, exact two-sided sign-test p;
   capture difference per game (our captures - theirs): control mean, arm mean, paired delta +- SE (t).
@@ -55,6 +56,9 @@ def summarize(name, P):
 
 def main(argv):
     tier_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upper-tier.txt')
+    rung = None
+    if '--rung' in argv:
+        i = argv.index('--rung'); rung = {l.strip() for l in open(argv[i + 1]) if l.strip()}; argv = argv[:i] + argv[i + 2:]
     if '--tier' in argv:
         i = argv.index('--tier'); tier_file = argv[i + 1]; argv = argv[:i] + argv[i + 2:]
     upper = {l.strip() for l in open(tier_file) if l.strip()}
@@ -64,6 +68,7 @@ def main(argv):
     print(summarize('all', P))
     print(summarize('upper', [p for p in P if p[0]['opp'] in upper]))
     print(summarize('rest', [p for p in P if p[0]['opp'] not in upper]))
+    if rung is not None: print(summarize('rung', [p for p in P if p[0]['opp'] in rung]))   # descriptive only
 
 if __name__ == '__main__':
     main(sys.argv[1:])

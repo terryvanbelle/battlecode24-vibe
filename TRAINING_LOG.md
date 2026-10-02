@@ -841,3 +841,8 @@ band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
   all: wins 82->69, 11 gained 24 lost, net -13 (sign p=0.041), capture diff delta -0.19 +- 0.09; upper: 11->6, capture
   delta -0.12 +- 0.11; rest: 71->63, capture delta -0.28 +- 0.16. inEnemy250 +2.3 (+4.3 SE) but inEnemy300 +0.6, kills
   -62 (-2.7 SE): drifting forward buys early ground that is gone by r300 and costs fights. Drift closed (ledger).
+- Owner prompt 113 (agrees with diagnosis point 4; in a tournament enemy systems grow gradually and can be countered
+  while weak, practice sessions present them mature): curriculum added to research/REWRITE_EVAL.md (process only, bars
+  unchanged): a rung slice in tools/eval-paired.py (--rung tools/next-rung.txt; g_iter1 17/60 there), one-component
+  archetype sparring partners built from observed field behaviour, and the opponent order archetype -> rung -> band.
+- Ops: tools/band-test.sh takes SEEDS and TAG; g_iter1 control queued on the confirmation seeds 717171 + 818181.
