@@ -998,3 +998,25 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   do look worse on wrong-symmetry maps (g_iter1 too: 1/11 wins vs 13/26), which is the map effect, not the symmetry.
   The fall in pickups on those cells is an interaction: the three scouts (idx 3-5) are rushers in these builds and leave
   the rush while the map is undecided (to fix if a rush build is ever used again: scouts outside the rusher range).
+
+### 2026-10-02 — correctness audit (research/AUDIT-2026-10-02.md; 5 lenses, 2 adversarial verifiers; 41 of 42 confirmed)
+Bot defects (g_iter1 and src/bot): **A1 critical**: the own-flag alert fires on any enemy seen by a duck near the flag
+(an enemy can be ~dist2 80 away), is fresh in 1057-1686 of 1800 post-setup rounds, switches off all three defenders'
+defend(), parks field ducks on the flag tile for up to 1238 rounds, sends every respawn to one zone, and stalls the
+offence on Tunnels (first enemy flag sight r1299-1674). A2: enemy flag ids are the exact enemy spawn-centre index and are
+never decoded (one id decides the symmetry in 418/468 cases). A3: symmetry guessed (fixed order) and handed to consumers
+while undecided. A4: any visible enemy, even behind a wall, takes the whole turn (16-36% of enemy-in-vision robot-rounds
+locked idle on walled maps). A5: EF_STATE 1 never expires when our carrier dies (a flag out of targeting for 1052 rounds).
+A6: EF_LOC keeps a drop tile after the flag returned home (up to 397 rounds). A7: Nav resets bug state whenever the target
+moves (chasers and escorts cannot round a wall). A8: dam and float traps never fire on most maps, so their ablations were
+no-ops. Minor: A9 edge ping-pong, A10-A15.
+Measurement defects: **B2 major**: paired tests never shared the engine seed (identical code flips 15-29% of cells; every
+gained/lost tally was mostly engine noise, the arms all sat at that floor). **B1**: symOk credits a guess; the g1sym gate
+passed at exactly 0.90. B3-B13 minor (repeated-cell name collisions, keys by package name, early census fetch, ...).
+Plan (owner prompt 140: "confirm the findings"): (1) measurement first: scrim cells now carry their engine seed (a second
+RNG stream, so a SEED's cell sequence is unchanged), filler-tally pairs only on shared seeds (legacy pairs reported
+separately), census columns symDecidedRound and symWrong (from replay truth), basics.py symmetry bars from the audit
+(symWrong 0; decided by r201 on setup-decidable maps in 95%; by r400 on the 15 post-setup maps in 90%; symOk descriptive);
+an identity control (g_iter1 vs a byte-identical copy on shared seeds must read 0 discordant). (2) Each bot defect is
+confirmed in a diagnostic replay, fixed behind its own switch with a unit test, measured, and the fixes then combined into
+one basics build judged against g_iter1 on shared seeds (head to head, band, ColtG5).
