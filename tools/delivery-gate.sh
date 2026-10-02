@@ -25,6 +25,15 @@ if [ -n "${BASE:-}" ]; then
     BRUN="$(ls -d gauntlet/*-scrim-"$BASE"-dg"$SEED" | tail -1)"
     P=7 tools/capability-census.sh "$BC" "$BRUN" >/dev/null; MODE=--survey P=7 tools/capability-census.sh "$BS" "$BRUN" >/dev/null
   fi
+  # a check on a column the cached base census predates (new ReplayDump columns): re-census the cached base run
+  for col in $(echo "$CHECKS" | grep -oE ':[A-Za-z0-9]+' | tr -d ':' | sort -u); do
+    if ! head -1 "$BC" | tr ',' '\n' | grep -qx "$col" && ! head -1 "$BS" | tr ',' '\n' | grep -qx "$col"; then
+      BRUN="$(ls -d gauntlet/*-scrim-"$BASE"-dg"$SEED" | tail -1)"
+      echo "delivery-gate: base census lacks $col; re-census $BRUN"
+      P=7 tools/capability-census.sh "$BC" "$BRUN" >/dev/null; MODE=--survey P=7 tools/capability-census.sh "$BS" "$BRUN" >/dev/null
+      break
+    fi
+  done
   BARGS="$BC $BS"
 fi
 python3 tools/delivery-check.py "$ARM" "$CHECKS" "gauntlet/dg-census-$ARM.csv" "gauntlet/dg-survey-$ARM.csv" "$RUN" $BARGS

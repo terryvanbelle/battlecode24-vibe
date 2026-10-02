@@ -620,3 +620,13 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   (a carrier there has a chance), or only with CAPTURING (b2rgu, now judged against B2, not b2rg).
 - Arm b2rgh = b2rg + REGRAB_HALF (re-grab only loose flags nearer our spawn centres than theirs, by Sym's mirror).
   Step 5(a) queued behind b2rgu's diagnostics (driver plays one game at a time, ~19 min each on large maps).
+- b2rgu step 5(a), Tunnels / Battlecode24 s4 vs g_iter1 (b2rgu vs b2rg): CAP bought at r1200 as intended. Tunnels:
+  b2rgu 1 late capture (0 for b2rg), the chain r1418 pickup, r1426 drop, r1428 re-grab, r1432 drop, r1433 re-grab,
+  r1446 capture: re-grabs within 1-2 rounds (the 4-round window would have done) but the last carrier went 11 tiles in
+  13 rounds (~22 without CAPTURING's cd 12). Battlecode24: no late re-grab by us; g_iter1 captured 2 vs 1.
+  Reading: the useful part of CAPTURING is carrier speed, and ordinary pickupFlags already re-grabs within 1-2 rounds,
+  so the upgrade does not need REGRAB (rejected). b2rgu parked; new arm **b2u = B2 + UPGRADE_ORDER 3** (one switch).
+- Tools: tools/delivery-gate.sh re-censuses a cached base run when a pre-registered check names a column the cache
+  predates (regrabsLate/capturedLate). New tools/diag-batch.sh: step 5(a) games in parallel through the VM queue,
+  own builds only as opponents (refuses others). Batch u-h queued: b2u vs b1z2b on Tunnels, Battlecode24,
+  DefaultLarge; b2rgh vs b2rg on DefaultLarge, DefaultMedium (all s4 vs g_iter1).
