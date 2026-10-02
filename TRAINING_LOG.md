@@ -953,3 +953,9 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   decided r253, Soccer r1059. But undecided ducks spent their spare budget every turn rescanning the vision disk
   (Soccer: mean 14.8k a turn, 309 turns near 90%, 56k robot turns vs ~100k). Fix: each tile is processed once per duck
   (a pair is compared when its second tile is first seen, so nothing is lost). Verification 6 queued.
+- Verification 6 (10 maps): 0 overruns; mean bytecode on undecided Soccer 6.3k a turn (was 14.8k), others 2.3-3.2k;
+  27 near-90% turns per map (the first full disk), all under the guard; symOk 8/10 at r250 (Snake decided r253, Soccer
+  r1059; both final answers correct). Soccer's 56k robot turns = the game ended ~r1100, not starvation.
+- Judging g1sym (symmetry repair) in play: the filler now pairs g1sym with g_iter1 on identical random cells vs ColtG5
+  (FILLPOOL=ColtG5.Goob_final, filler-pair g_iter1 g1sym). Band: delivery gate pre-registered (BASE=g_iter1):
+  mean:symOk>=0.9 mean:overruns<=0, then the band test, judged by REWRITE_EVAL's bars and eval-paired by tier.
