@@ -24,10 +24,23 @@ public strictfp class Sym {
     public static final int ROT = 1, FX = 2, FY = 4;
     public static final boolean OBSERVE = false;   // observation-based symmetry (default off: src/bot stays g_iter1)
     public static int cands = 7;
-    public static int conflicts, eliminations, decidedRound = -1;
+    public static int conflicts, eliminations, equivalents, decidedRound = -1;
 
     // per-duck terrain memory, one bit per tile (index x + y*W)
     static long[] seen, wall, spawn;
+    static long[] ours;                 // bitset of our 27 spawn tiles (O(1) membership; nested loops cost ~35k bytecode)
+
+    static boolean isOurs(MapLocation m) {
+        if (ours == null) buildOurs();
+        if (m.x < 0 || m.y < 0 || m.x >= G.W || m.y >= G.H) return false;
+        int i = m.x + m.y * G.W;
+        return (ours[i >>> 6] & (1L << (i & 63))) != 0;
+    }
+
+    static void buildOurs() {
+        ours = new long[(G.W * G.H + 63) >>> 6];
+        if (G.spawns != null) for (MapLocation q : G.spawns) { int i = q.x + q.y * G.W; ours[i >>> 6] |= 1L << (i & 63); }
+    }
     static boolean geoDone;
 
     public static MapLocation image(MapLocation m, int s) {
@@ -85,6 +98,7 @@ public strictfp class Sym {
         if ((cands & s) == 0) return;
         if ((cands & ~s) == 0) { conflicts++; return; }
         cands &= ~s; eliminations++;
+        collapseEquivalent();
         if (decided() && decidedRound < 0) decidedRound = G.round;
     }
 
@@ -101,6 +115,25 @@ public strictfp class Sym {
             }
             if (bad) eliminate(s);
         }
+        collapseEquivalent();
+    }
+
+    /** Candidates that map our spawn tiles onto the same set of tiles predict the same enemy spawn zones: there is
+     *  nothing to observe between them. Keep one (the lowest bit) so decided() holds and no scout is sent. */
+    public static void collapseEquivalent() {
+        if (G.spawns == null) return;
+        for (int s = 1; s <= 4; s <<= 1) {
+            if ((cands & s) == 0) continue;
+            for (int o = s << 1; o <= 4; o <<= 1) {
+                if ((cands & o) == 0) continue;
+                boolean same = true;
+                for (MapLocation p : G.spawns) {
+                    if (!isOurs(image(image(p, s), o))) { same = false; break; }   // image(p,s) is an image under o iff its o-image is ours
+                }
+                if (same) { cands &= ~o; equivalents++; }
+            }
+        }
+        if (decided() && decidedRound < 0) decidedRound = G.round;
     }
 
     /** (3) One sight of the tile image(c, s) of one of our spawn centres c: it must be their spawn zone under s. */
@@ -141,10 +174,7 @@ public strictfp class Sym {
                 boolean everywhere = true;                  // is im an image of some spawn tile under every other candidate?
                 for (int o = 1; o <= 4 && everywhere; o <<= 1) {
                     if (o == s || (cands & o) == 0) continue;
-                    MapLocation back = image(im, o);        // images are involutions: im = image(q, o) iff q = image(im, o)
-                    boolean found = false;
-                    for (MapLocation q : G.spawns) if (q.equals(back)) { found = true; break; }
-                    if (!found) everywhere = false;
+                    if (!isOurs(image(im, o))) everywhere = false;   // involutions: im = image(q, o) iff q = image(im, o)
                 }
                 if (everywhere) continue;
                 int d = from.distanceSquaredTo(im);
@@ -155,17 +185,19 @@ public strictfp class Sym {
     }
 
     /** The scout (one duck, idx SCOUT_IDX): after setup, while undecided, walk to the nearest distinguishing tile. */
-    public static final int SCOUT_IDX = 3;
+    public static final int SCOUT_FIRST = 3, SCOUTS = 3;        // idx 3..5: the first field ducks after the defenders
     public static int scoutTurns;
     public static boolean scout() throws GameActionException {
-        if (!OBSERVE || decided() || G.idx != SCOUT_IDX || G.round <= 200 || !G.rc.isSpawned() || !G.rc.isMovementReady()) return false;
+        if (!OBSERVE || decided() || G.idx < SCOUT_FIRST || G.idx >= SCOUT_FIRST + SCOUTS || G.round <= 200
+                || !G.rc.isSpawned() || !G.rc.isMovementReady()) return false;
         MapLocation t = scoutTarget(G.rc.getLocation());
-        if (t == null) return false;
+        if (t == null || G.rc.canSenseLocation(t)) return false;  // in sight: update() has observed it this turn
         scoutTurns++;
         return Nav.moveTo(t);
     }
 
     public static void initMemory() {
+        ours = null;
         int n = (G.W * G.H + 63) >>> 6;
         seen = new long[n]; wall = new long[n]; spawn = new long[n];
     }

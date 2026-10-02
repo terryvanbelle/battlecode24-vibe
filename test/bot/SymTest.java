@@ -126,6 +126,15 @@ public class SymTest {
         check(Sym.cands == Sym.FX, "Soccer-like: one look at the scout target decides FX (" + Sym.cands + ")");
         check(Sym.scoutTarget(new MapLocation(26, 14)) == null, "decided: no scout target");
 
+        // equivalent candidates (DefaultLarge-like: ROT and FX map our spawn tiles onto the same tiles) count as decided
+        G.W = 59; G.H = 31; reset(); Sym.cands = Sym.ROT | Sym.FX;
+        MapLocation[] dl = {new MapLocation(3, 3), new MapLocation(3, 27), new MapLocation(7, 15)};
+        G.spawns = new MapLocation[27]; k = 0;
+        for (MapLocation c : dl) for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) G.spawns[k++] = c.translate(dx, dy);
+        G.spawnCenters[0] = dl[0]; G.spawnCenters[1] = dl[1]; G.spawnCenters[2] = dl[2];
+        Sym.geometric(G.spawnCenters);
+        check(Sym.decided() && Sym.scoutTarget(new MapLocation(20, 15)) == null, "equivalent ROT/FX on a DefaultLarge-like map count as decided (" + Sym.cands + ")");
+
         System.out.println("SymTest: " + (fails == 0 ? "OK" : "FAILED " + fails) + " (" + trials + " random maps, worst " + worst + " disks)");
         if (fails > 0) System.exit(1);
     }
