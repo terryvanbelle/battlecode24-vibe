@@ -856,3 +856,12 @@ band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
   research/rewrite-panel.json.
 - Queued the S1 step-5(a) baseline early: g_iter1 vs the archetypes g1escrg (convoy with re-grabs) and arch_rush10 (fast
   raid) on the design's 7 cells (diag/arch-base), so every later arm game pairs with g_iter1 on the same opponent and cell.
+
+### 2026-10-02 — focus: one unambiguous win over a higher-ranked bot (owner prompt 120)
+Owner: pick one strategy, focus all energy on it; immediate goal a single, unambiguous victory over a higher-ranked
+opponent; the bots above are a wall, find a little crack to widen. Plan and pre-registered victory criterion:
+research/CRACK.md. Target **ColtG5.Goob_final** (rank 13, Elo 1909): g_iter1 85-135 (38.6%), and 102 of its 135 wins
+are the more-flags tiebreak at r2000 (one flag decides the game). Victory = >= 60% of >= 120 scrims (random maps and
+sides) and paired net >= +2 SE vs g_iter1 on the same cells. The filler now plays g_iter1 vs ColtG5 (FILLPOOL; "-" = no
+candidate) to build the baseline and the replays for study. The band-wide rewrite (REWRITE_DESIGN) is paused as a
+programme; its S0a tools (in review) serve the study, and its stages return only if they are the crack.
