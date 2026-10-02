@@ -972,3 +972,10 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   screen runs; then the g1sym band test. Code reading first: g_iter1 picks targets from known enemy flag positions,
   then the fuzzy broadcast hints, and only last from the symmetry; but its carrier interception sends far ducks to the
   carrier's destination = the enemy spawn centre by symmetry.
+- g1sym delivery gate (BASE=g_iter1, 24 band games): **PASS**: mean symOk 0.90 (bar 0.9), overruns 0.
+- Owner prompt 137 ("the basics -- symmetry, movement, combat, economy -- are the foundation; make sure they are and
+  remain solid; if progress stalls, check the basics"): new CLAUDE rule 15 and memory basics-first. tools/basics.py, the
+  basics battery: absolute bars (symOk >= 0.90, overruns 0, exceptions 0) and checks against a base (stillPost,
+  kill/death, trapsHit, gathered400, floating crumbs at r250; worse by > 2 SE = FAIL); new census column exceptions.
+  Tested on synthetic blocks (a clean block passes; a symmetry miss, an overrun and a kill/death collapse fail).
+  To run on every delivery block and band test; g_iter1 itself will fail the symmetry bar (0.66-0.72).

@@ -29,3 +29,7 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     tools/filler-pair.sh g_iter1 <candidate or -> 40` (random maps and sides). At every task check run
     `tools/collect-fillers.sh g_iter1 <candidates>` to record new filler runs. Update the filler's candidate whenever an
     arm against ColtG5 passes delivery.
+15. **Basics first** (PROMPTS 127, 137): symmetry, movement, combat and economy (plus bytecode and exceptions) are the
+    foundation. Every build and test block gets the basics battery; a failed basics bar stops work above it until fixed;
+    when progress stalls, check the basics first. Unit tests include the dead-code check (tools/deadcode.py) and the
+    arm-intent check (tools/arm-intent.txt). Symmetry must be decided by observation, never guessed.

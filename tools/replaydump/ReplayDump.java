@@ -1100,7 +1100,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1118,7 +1118,7 @@ public class ReplayDump {
                         + "," + (kLong25[t] > 0 ? String.format("%.3f", (double) kLongCaps25[t] / kLong25[t]) : "")
                         + "," + (cDeaths[t] > 0 ? String.valueOf(kLoneDeaths[t]) : "") + "," + (cDeaths[t] > 0 ? String.valueOf(kTrickleDeaths[t]) : "")
                         + "," + (symOk(t) >= 0 ? String.valueOf(symOk(t)) : "") + "," + (psymOk(t) >= 0 ? String.valueOf(psymOk(t)) : "")
-                        + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t]);
+                        + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]);
             }
         }
         if (trackMode) printTrack();

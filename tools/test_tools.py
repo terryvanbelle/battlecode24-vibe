@@ -131,6 +131,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
           'replay-dump --capabilities: enemyCaptured mirrors the other side; chasers20 >= 0')
     check(all(float(c['escorts20']) >= 0 for c in cap), 'replay-dump --capabilities: escorts20 >= 0')
     check(all(0 <= float(c['stillPost']) <= 100 for c in cap), 'replay-dump --capabilities: stillPost is a percentage')
+    check(all(c['exceptions'].isdigit() for c in cap), 'replay-dump --capabilities: exceptions is a count')
     dfn = outs['fix'].get(11, [])
     caps = {c['team']: int(c['captured']) for c in cap}
     check(dfn and all(d['outcome'] in ('DIED', 'DROP', 'CAPTURE') for d in dfn) and
@@ -512,6 +513,23 @@ for line in open(os.path.join(HERE, 'arm-intent.txt')):
     src = open(os.path.join(REPO_ROOT, 'src', arm, fname + '.java')).read()
     m = re.search(r'static final \w+\s+(?:\w+\s*=\s*[^,;]+,\s*)*' + const + r'\s*=\s*([^,;]+)', src)
     check(m is not None and m.group(1).strip() == val, 'arm intent: %s %s.%s should be %s, found %r' % (arm, fname, const, val, m.group(1).strip() if m else None))
+
+# basics battery: absolute bars (symmetry, overruns, exceptions) and relative checks against a base
+with tempfile.TemporaryDirectory() as td:
+    hdr = 'file,us,symOk,overruns,maxBcK,exceptions,stillPost,kills,deaths,trapsHit,gathered400\n'
+    def cen(path, rows):
+        with open(path, 'w') as f:
+            f.write(hdr)
+            for i, r in enumerate(rows): f.write(f'g{i},1,' + ','.join(str(x) for x in r) + '\n')
+    good = [(1, 0, 15.0, 0, 30, 400, 300, 200, 6000)] * 10
+    cen(os.path.join(td, 'base.csv'), [(0, 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
+    cen(os.path.join(td, 'ok.csv'), [(1, 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
+    cen(os.path.join(td, 'bad.csv'), [(1 if i < 8 else 0, 1 if i == 0 else 0, 25.0, 0, 30 + i % 3, 200 + i, 300, 200, 6000 + i) for i in range(10)])
+    run = lambda c: subprocess.run([sys.executable, os.path.join(HERE, 'basics.py'), os.path.join(td, c), '--base', os.path.join(td, 'base.csv')], capture_output=True, text=True)
+    r_ok, r_bad = run('ok.csv'), run('bad.csv')
+    check(r_ok.returncode == 0 and 'PASS' in r_ok.stdout, 'basics: a clean block passes: ' + r_ok.stdout)
+    check(r_bad.returncode == 1 and 'symOk 0.800' in r_bad.stdout and 'overruns 1' in r_bad.stdout and 'kill/death' in r_bad.stdout
+          and r_bad.stdout.count('FAIL') >= 4, 'basics: symmetry, an overrun and a kill/death collapse fail: ' + r_bad.stdout)
 
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

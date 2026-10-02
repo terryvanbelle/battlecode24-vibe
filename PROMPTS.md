@@ -559,3 +559,11 @@ I very much want to know how g_iter1 with the symmetry fix does against g_iter1.
 ## 135. 2026-10-02
 
 (owner pasted a summary of symmetry checking from Google: fixed features such as walls and ruins, elimination as tiles are sensed, track checked locations to save bytecode, bitmasks, default to rotation and scout toward the centre)
+
+## 136. 2026-10-02
+
+task check
+
+## 137. 2026-10-02
+
+OK, thanks for all the hard work.  A general point:  The basics (symmetry, movement, combat, economy) are the foundation for everything else.  If they're not solid, nothing built on them will be effective.  Make sure they are and remain solid.  If you're having trouble making progress, check your basics.
