@@ -797,3 +797,7 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   b1z2b, b2fs) and the dg909090 delivery-gate base runs (re-censused when a new column appears). VM disk 100% -> 45%.
   The drift80 batch was re-queued. Standing guard: tools/vm-prune.sh (disk > 80%: replays older than 60 min of censused
   arm and filler runs; keeps tools/keep-replays.txt builds and gate bases), run at the start of every filler; tested.
+- g1drift80 step 5(a), 4 cells vs the mirrors (stillPost / inEnemy300 / won / captured / enemyCaptured, means or sums):
+  43.5 / 23.8 / 3 of 4 / 3 / 3 vs drift40 46.5 / 24.5 / 2 / 1 / 1 and mirror 54.4 / 10.5 / 3 / 1 / 2. Stillness follows
+  the dose. Step 5(b) with drift40's bars unchanged: rel:stillPost<=0.92 rel:inEnemy300>=1.2 rel:enemyCaptured<=1.2.
+- Filler: B3 vs g_iter1 68-84 over 995 (-1.3 SE).
