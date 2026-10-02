@@ -30,3 +30,15 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
    that the band's top bots also do. Pick the narrowest crack with the largest share of flippable games.
 3. Arms aimed at that crack only, each through step 5 (diagnostic, then a delivery mini-block against ColtG5), then the
    victory test. Everything else (band-wide rewrite stages) waits unless it is the crack.
+
+## Study log
+- 2026-10-02, 128 g_iter1 games vs ColtG5 (VM replays; us / them per game): pickups 2.57 / 11.33 (first grabs 1.68 /
+  6.52, re-grabs 0.89 / 4.81); captured 0.65 / 1.51; inEnemy250 7.4 / 25.2; firstFlagSight r340 / r224; kills 994 / 391;
+  meanAlive 44.8 / 36.7; gathered400 5007 / 7742. ColtG5 pours its army into our half from the dam drop, loses the
+  fights 2.5:1, but grabs our flags again and again and converts 1-2, usually by r250-580; then the game freezes and
+  it wins the more-flags tiebreak at r2000. Every tied game we won on level sum. Its own half is thin.
+- Candidate cracks: (A) offence: a counter-raid while their army is in our half (+1 capture flips 0-1 / 1-2 losses into
+  level-sum wins); (B) defence: stop the one early capture. A is untested against this opponent (rush and flank squads
+  were closed band-wide, which says little about an all-in aggressor).
+- Screen 1 (not a gate; chooses the crack): g_iter1, arch_rush10, arch_rush20, fl6, fl10, fl15 vs ColtG5, 40 games
+  each, SEED 777001 (identical random cells), census per run.
