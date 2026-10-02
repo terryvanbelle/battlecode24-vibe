@@ -463,3 +463,7 @@ task check
 ## 111. 2026-10-02
 
 We seem to be having some trouble making progress past g_iter1.  Can you take a step back, look at the big picture, and give a diagnosis for why that might be?
+
+## 112. 2026-10-02
+
+I think it's worth trying something new, and that's the point of these practice sessions, to hone our game.   I would like you to try it out, but keep statistics to evaluate whether it's an improvement
