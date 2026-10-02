@@ -6628,3 +6628,83 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261002-041837-scrim-b2fs-fill1790913718,38,us:b2fs,quesswho.cretplayer2_3,DefaultSmall,A,1420,The winning team captured all flags.,179177256
 20261002-041837-scrim-b2fs-fill1790913718,39,winkelmantanner.waffle,us:b2fs,AceOfSpades,A,521,The winning team captured all flags.,402782675
 20261002-041837-scrim-b2fs-fill1790913718,40,winkelmantanner.waffle,us:b2fs,Randy,A,588,The winning team captured all flags.,844761909
+20261002-045715-scrim-g_iter1-fill1790917032,1,ColtG5.Goob_final,us:g_iter1,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,823849244
+20261002-045715-scrim-g_iter1-fill1790917032,2,us:g_iter1,ColtG5.Goob_final,Valentine,A,2000,The winning team won on tiebreakers (hig,845003248
+20261002-045715-scrim-g_iter1-fill1790917032,3,us:g_iter1,CyrilSharma.finalBot,Decision,B,1683,The winning team captured all flags.,28661949
+20261002-045715-scrim-g_iter1-fill1790917032,4,us:g_iter1,CyrilSharma.finalBot,GaltonBoard,B,430,The winning team captured all flags.,273768165
+20261002-045715-scrim-g_iter1-fill1790917032,5,Gymhgy.v10official,us:g_iter1,Intercontinental,A,2000,The winning team won on tiebreakers (cap,692555985
+20261002-045715-scrim-g_iter1-fill1790917032,6,us:g_iter1,Gymhgy.v10official,MIT,B,680,The winning team captured all flags.,755666766
+20261002-045715-scrim-g_iter1-fill1790917032,7,IvanGeffner.kuma,us:g_iter1,Canals,A,1735,The winning team captured all flags.,223991834
+20261002-045715-scrim-g_iter1-fill1790917032,8,us:g_iter1,IvanGeffner.kuma,DefaultHuge,B,516,The winning team captured all flags.,504026094
+20261002-045715-scrim-g_iter1-fill1790917032,9,NotLLeon.v3,us:g_iter1,DefaultSmall,A,1086,The winning team captured all flags.,831647228
+20261002-045715-scrim-g_iter1-fill1790917032,10,NotLLeon.v3,us:g_iter1,Joker,A,531,The winning team captured all flags.,130340669
+20261002-045715-scrim-g_iter1-fill1790917032,11,SampleProvider.TSPAARKSPRINT1,us:g_iter1,Battlecode24,B,2000,The winning team won on tiebreakers (hig,150178075
+20261002-045715-scrim-g_iter1-fill1790917032,12,us:g_iter1,SampleProvider.TSPAARKSPRINT1,StackGame,A,1369,The winning team captured all flags.,592389738
+20261002-045715-scrim-g_iter1-fill1790917032,13,us:g_iter1,Strequals.duck0127v5,EvilGrin,B,534,The winning team captured all flags.,564122294
+20261002-045715-scrim-g_iter1-fill1790917032,14,us:g_iter1,Strequals.duck0127v5,Racetrack,B,713,The winning team captured all flags.,591076626
+20261002-045715-scrim-g_iter1-fill1790917032,15,us:g_iter1,andli28.v9_USQuals_angle,Bunkers,A,940,The winning team captured all flags.,413484195
+20261002-045715-scrim-g_iter1-fill1790917032,16,andli28.v9_USQuals_angle,us:g_iter1,KingQuacksCastle,A,795,The winning team captured all flags.,334192552
+20261002-045715-scrim-g_iter1-fill1790917032,17,us:g_iter1,andrewgopher.player22,DefaultHuge,B,662,The winning team captured all flags.,879609248
+20261002-045715-scrim-g_iter1-fill1790917032,18,us:g_iter1,andrewgopher.player22,Digging,B,2000,The winning team won on tiebreakers (cap,495870519
+20261002-045715-scrim-g_iter1-fill1790917032,19,awu7.ExplosiveBot,us:g_iter1,Pancakes,B,736,The winning team captured all flags.,774927178
+20261002-045715-scrim-g_iter1-fill1790917032,20,us:g_iter1,awu7.ExplosiveBot,StarryNight,A,1387,The winning team captured all flags.,60421754
+20261002-045715-scrim-g_iter1-fill1790917032,21,us:g_iter1,chenyx512.flagbot_final,Diagonal,A,2000,The winning team won on tiebreakers (hig,704997933
+20261002-045715-scrim-g_iter1-fill1790917032,22,us:g_iter1,chenyx512.flagbot_final,Fusbol,B,1702,The winning team captured all flags.,867021127
+20261002-045715-scrim-g_iter1-fill1790917032,23,us:g_iter1,clbarrell.duck8,BigDucksBigPond,A,1470,The winning team captured all flags.,50054355
+20261002-045715-scrim-g_iter1-fill1790917032,24,us:g_iter1,clbarrell.duck8,Starfish,A,2000,The winning team won on tiebreakers (cap,562090931
+20261002-045715-scrim-g_iter1-fill1790917032,25,us:g_iter1,dmtrung14.defaultplayer_intlqualifier,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,524094410
+20261002-045715-scrim-g_iter1-fill1790917032,26,us:g_iter1,dmtrung14.defaultplayer_intlqualifier,Snake,A,2000,The winning team won on tiebreakers (hig,162721555
+20261002-045715-scrim-g_iter1-fill1790917032,27,us:g_iter1,hsmalladi.finalbot,Alien,B,1061,The winning team captured all flags.,577410874
+20261002-045715-scrim-g_iter1-fill1790917032,28,hsmalladi.finalbot,us:g_iter1,Whirlpool,A,625,The winning team captured all flags.,667109648
+20261002-045715-scrim-g_iter1-fill1790917032,29,us:g_iter1,jmerle.camel_case_v21_final,English,B,1112,The winning team captured all flags.,47230851
+20261002-045715-scrim-g_iter1-fill1790917032,30,us:g_iter1,jmerle.camel_case_v21_final,HeMustBeFreed,B,1698,The winning team captured all flags.,984404985
+20261002-045715-scrim-g_iter1-fill1790917032,31,jonters.bling3,us:g_iter1,Alligator,A,2000,The winning team won on tiebreakers (cap,349812691
+20261002-045715-scrim-g_iter1-fill1790917032,32,us:g_iter1,jonters.bling3,Islands,A,1216,The winning team captured all flags.,590247962
+20261002-045715-scrim-g_iter1-fill1790917032,33,us:g_iter1,justinottesen.sprint1,Hurricane,A,2000,The winning team won on tiebreakers (cap,444943608
+20261002-045715-scrim-g_iter1-fill1790917032,34,justinottesen.sprint1,us:g_iter1,Mountain,B,1061,The winning team captured all flags.,470543590
+20261002-045715-scrim-g_iter1-fill1790917032,35,kyleezz.jeeryfix3,us:g_iter1,Ambush,A,318,The winning team captured all flags.,796418535
+20261002-045715-scrim-g_iter1-fill1790917032,36,us:g_iter1,kyleezz.jeeryfix3,Puzzle,B,1502,The winning team captured all flags.,497904947
+20261002-045715-scrim-g_iter1-fill1790917032,37,us:g_iter1,quesswho.cretplayer2_3,Backslash,B,1160,The winning team captured all flags.,374286008
+20261002-045715-scrim-g_iter1-fill1790917032,38,quesswho.cretplayer2_3,us:g_iter1,Fountain,A,680,The winning team captured all flags.,280535847
+20261002-045715-scrim-g_iter1-fill1790917032,39,winkelmantanner.waffle,us:g_iter1,Alligator,A,443,The winning team captured all flags.,226801995
+20261002-045715-scrim-g_iter1-fill1790917032,40,winkelmantanner.waffle,us:g_iter1,TreeSearch,A,1220,The winning team captured all flags.,737751860
+20261002-050153-scrim-b1v2-fill1790917032,1,ColtG5.Goob_final,us:b1v2,QueenOfHearts,A,472,The winning team captured all flags.,582841457
+20261002-050153-scrim-b1v2-fill1790917032,2,us:b1v2,ColtG5.Goob_final,Valentine,A,2000,The winning team won on tiebreakers (hig,243751862
+20261002-050153-scrim-b1v2-fill1790917032,3,us:b1v2,CyrilSharma.finalBot,Decision,B,2000,The winning team won on tiebreakers (hig,184009205
+20261002-050153-scrim-b1v2-fill1790917032,4,us:b1v2,CyrilSharma.finalBot,GaltonBoard,B,454,The winning team captured all flags.,806568733
+20261002-050153-scrim-b1v2-fill1790917032,5,Gymhgy.v10official,us:b1v2,Intercontinental,A,2000,The winning team won on tiebreakers (hig,677427354
+20261002-050153-scrim-b1v2-fill1790917032,6,us:b1v2,Gymhgy.v10official,MIT,B,807,The winning team captured all flags.,414680814
+20261002-050153-scrim-b1v2-fill1790917032,7,IvanGeffner.kuma,us:b1v2,Canals,A,458,The winning team captured all flags.,453862265
+20261002-050153-scrim-b1v2-fill1790917032,8,us:b1v2,IvanGeffner.kuma,DefaultHuge,B,2000,The winning team won on tiebreakers (cap,457715961
+20261002-050153-scrim-b1v2-fill1790917032,9,NotLLeon.v3,us:b1v2,DefaultSmall,A,1711,The winning team captured all flags.,82068514
+20261002-050153-scrim-b1v2-fill1790917032,10,NotLLeon.v3,us:b1v2,Joker,A,664,The winning team captured all flags.,577593929
+20261002-050153-scrim-b1v2-fill1790917032,11,SampleProvider.TSPAARKSPRINT1,us:b1v2,Battlecode24,A,1818,The winning team captured all flags.,1019856923
+20261002-050153-scrim-b1v2-fill1790917032,12,us:b1v2,SampleProvider.TSPAARKSPRINT1,StackGame,A,1864,The winning team captured all flags.,96952917
+20261002-050153-scrim-b1v2-fill1790917032,13,us:b1v2,Strequals.duck0127v5,EvilGrin,B,751,The winning team captured all flags.,607877501
+20261002-050153-scrim-b1v2-fill1790917032,14,us:b1v2,Strequals.duck0127v5,Racetrack,B,636,The winning team captured all flags.,663852820
+20261002-050153-scrim-b1v2-fill1790917032,15,us:b1v2,andli28.v9_USQuals_angle,Bunkers,B,2000,The winning team won on tiebreakers (cap,132704314
+20261002-050153-scrim-b1v2-fill1790917032,16,andli28.v9_USQuals_angle,us:b1v2,KingQuacksCastle,A,1309,The winning team captured all flags.,27499188
+20261002-050153-scrim-b1v2-fill1790917032,17,us:b1v2,andrewgopher.player22,DefaultHuge,B,502,The winning team captured all flags.,630547578
+20261002-050153-scrim-b1v2-fill1790917032,18,us:b1v2,andrewgopher.player22,Digging,B,2000,The winning team won on tiebreakers (cap,914765429
+20261002-050153-scrim-b1v2-fill1790917032,19,awu7.ExplosiveBot,us:b1v2,Pancakes,B,878,The winning team captured all flags.,850933274
+20261002-050153-scrim-b1v2-fill1790917032,20,us:b1v2,awu7.ExplosiveBot,StarryNight,A,994,The winning team captured all flags.,360480998
+20261002-050153-scrim-b1v2-fill1790917032,21,us:b1v2,chenyx512.flagbot_final,Diagonal,B,2000,The winning team won on tiebreakers (hig,905080962
+20261002-050153-scrim-b1v2-fill1790917032,22,us:b1v2,chenyx512.flagbot_final,Fusbol,B,1586,The winning team captured all flags.,444249632
+20261002-050153-scrim-b1v2-fill1790917032,23,us:b1v2,clbarrell.duck8,BigDucksBigPond,A,2000,The winning team won on tiebreakers (hig,247837023
+20261002-050153-scrim-b1v2-fill1790917032,24,us:b1v2,clbarrell.duck8,Starfish,A,2000,The winning team won on tiebreakers (hig,234189890
+20261002-050153-scrim-b1v2-fill1790917032,25,us:b1v2,dmtrung14.defaultplayer_intlqualifier,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,900814844
+20261002-050153-scrim-b1v2-fill1790917032,26,us:b1v2,dmtrung14.defaultplayer_intlqualifier,Snake,B,2000,The winning team won on tiebreakers (cap,849684519
+20261002-050153-scrim-b1v2-fill1790917032,27,us:b1v2,hsmalladi.finalbot,Alien,B,888,The winning team captured all flags.,205860633
+20261002-050153-scrim-b1v2-fill1790917032,28,hsmalladi.finalbot,us:b1v2,Whirlpool,A,655,The winning team captured all flags.,518326125
+20261002-050153-scrim-b1v2-fill1790917032,29,us:b1v2,jmerle.camel_case_v21_final,English,B,800,The winning team captured all flags.,711384750
+20261002-050153-scrim-b1v2-fill1790917032,30,us:b1v2,jmerle.camel_case_v21_final,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,411393473
+20261002-050153-scrim-b1v2-fill1790917032,31,jonters.bling3,us:b1v2,Alligator,B,2000,The winning team won on tiebreakers (cap,320830518
+20261002-050153-scrim-b1v2-fill1790917032,32,us:b1v2,jonters.bling3,Islands,A,1736,The winning team captured all flags.,885926321
+20261002-050153-scrim-b1v2-fill1790917032,33,us:b1v2,justinottesen.sprint1,Hurricane,A,1839,The winning team captured all flags.,123132737
+20261002-050153-scrim-b1v2-fill1790917032,34,justinottesen.sprint1,us:b1v2,Mountain,B,902,The winning team captured all flags.,436963157
+20261002-050153-scrim-b1v2-fill1790917032,35,kyleezz.jeeryfix3,us:b1v2,Ambush,A,840,The winning team captured all flags.,666188624
+20261002-050153-scrim-b1v2-fill1790917032,36,us:b1v2,kyleezz.jeeryfix3,Puzzle,B,2000,The winning team won on tiebreakers (cap,75333022
+20261002-050153-scrim-b1v2-fill1790917032,37,us:b1v2,quesswho.cretplayer2_3,Backslash,B,1053,The winning team captured all flags.,342421851
+20261002-050153-scrim-b1v2-fill1790917032,38,quesswho.cretplayer2_3,us:b1v2,Fountain,B,1865,The winning team captured all flags.,848718501
+20261002-050153-scrim-b1v2-fill1790917032,39,winkelmantanner.waffle,us:b1v2,Alligator,A,1121,The winning team captured all flags.,601087973
+20261002-050153-scrim-b1v2-fill1790917032,40,winkelmantanner.waffle,us:b1v2,TreeSearch,A,479,The winning team captured all flags.,252157001

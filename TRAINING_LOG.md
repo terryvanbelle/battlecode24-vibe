@@ -380,6 +380,7 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
 | micro v2 (smooth scoring) | 1-25, 1-26 | refuted | a scored micro built from logged fight states |
 | cohesion | 20-23, gr8 4-18 | refuted | - |
 | upgrade order heal/capture first | 22-26, 14-33 | refuted (ATTACK first is load-bearing) | - |
+| re-grab loose flags in fights anywhere (b2rg) | 11-26 | refuted: regrabs +4.8 but each is a dead carrier, kills -37 | regrab on our half only; with CAPTURING |
 | combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
 - Phase 0 instrumentation (part 1): `--capabilities` adds postPickups split into firstGrabs (flag taken from its
   default spot), regrabs (after a carrier death) and relayPickups (after a voluntary drop), the mean distance of a
@@ -611,3 +612,9 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   ATTACK first is load-bearing, so it stays). New census columns regrabsLate / capturedLate (after r1200), tested.
   Step 5(a) on DefaultLarge: no enemy-flag pickup after r1200 by either build, so the cell cannot show it; re-run on
   Tunnels and Battlecode24 vs g_iter1 (the delivery block's maps with the most late pickups).
+- b2rg band (2 seeds, paired vs B2 b1z2b, 234 games): **REJECTED**. Wins 41->35 and 44->35 (11 gained, 26 lost,
+  net -15; bar -5). regrabs +4.8 (+9.1 SE), pickups +4.8, but carrierDeaths +4.8 (+5.9 SE) and captured -0.04:
+  every extra re-grab ends in a dead carrier. kills -37 (-1.9 SE): a duck holding a flag cannot fight, so re-grabbing
+  inside their base takes fighters out of the fight they were winning. First grabs and enemy grabs unchanged.
+  Ledger: "re-grab anywhere (REGRAB r2 13)" closed. Open variant: re-grab only flags that have reached our half
+  (a carrier there has a chance), or only with CAPTURING (b2rgu, now judged against B2, not b2rg).
