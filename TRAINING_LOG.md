@@ -884,3 +884,13 @@ programme; its S0a tools (in review) serve the study, and its stages return only
   never routes a closure).
 - Premise runs queued: (1) design S0a as pinned: g_iter1 band runs 20261001-011402 + 20261001-021054; (2) the crack:
   every g_iter1-vs-ColtG5 replay on the VM at run time (band runs, crack777001, filler runs), routing for CUT vs ColtG5.
+- **S0a premise, design sample** (g_iter1 band runs 011402 + 021054, 234 games; research/premise/premise-band.txt):
+  P1 median predErr 2.0 tiles PASS; P2 0.794 +- 0.033 PASS; **P3 destHit 0.761 +- 0.025 FAIL** (0.807 among trips with a
+  destination; under Sym.best() 0.491); P4 PASS (convoyReachFree 4; escort ratio 2.79); P6 0.44 +- 0.05 PASS.
+  D: 81% of U seen at pickup; witnesses forgot (95) far more often than died (30); symOk 0.662 (Sym.best() wrong in a
+  third of band games). Routing: one tracker revision (velocity, heading-led destination), then re-measure P1/P3.
+- **S0a premise, the crack** (every g_iter1-vs-ColtG5 replay on the VM: 515 games; one replay excluded as corrupt, written
+  at 11:54 during the disk-full incident, gzip "unexpected end of file"; research/premise/premise-colt.txt):
+  P1 1.0 tiles PASS; P2 295/389 = 0.758 +- 0.022 PASS; P3 0.892 +- 0.013 PASS (Sym.best() 0.655); P4 PASS (ratio 3.56);
+  P6 their 25+ round trips captured 0.506 with chasers >= 1 vs 0.882 with < 0.5 = 0.57 +- 0.05 PASS. symOk 0.720.
+  **ROUTING: all bars pass, S0b next.** psymOk >= 0.95 is an S0b bar (symOk < 0.9 in both samples).

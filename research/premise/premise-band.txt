@@ -1,0 +1,19 @@
+input gauntlet/20261001-011402-scrim-g_iter1: 116 replays; results.csv 116 distinct (opponent, map, side) cells, 116 with a replay
+input gauntlet/20261001-021054-scrim-g_iter1: 118 replays; results.csv 118 distinct (opponent, map, side) cells, 118 with a replay
+trips: 6887 rows -> gauntlet/premise-band-trips.csv
+replays: 234 found, 234 dumped, 0 failed
+games 234; their trips 4853, our trips 1800
+their trips >= 25 rounds: 507; captured: 285; U (captured, meanChasers20 < 0.5 unrounded): 155
+P1 median predErr (true symmetry) = 2.0 tiles (IQR 1.0-5.0, bootstrap SE 0.29) over 283/285 long captured trips with an unseen carried round (2 fully seen; 0 without predErr counted as failures); bar <= 4: PASS
+   P1 under Sym.best(): median predErrSym = 2.5 over 283 trips (0 without a value counted as failures)
+P2 share of U with reachFree >= 3 at tKnow: 123/155 = 0.794 +- 0.033; bar >= 0.5 both doses, 0.25-0.5 dose A only, < 0.25 close CUT: PASS  (U with tKnow 139: by sighting 117 (113 with reachFree >= 3), by the home tile 22 (10))
+P3 destHit on long captured trips: 217/285 = 0.761 +- 0.025 (no destination = a miss: 16 trips; among trips with one 217/269 = 0.807 +- 0.024); bar >= 0.8: FAIL
+   P3 under Sym.best(): destHitSym 140/285 = 0.491 +- 0.030 (among trips with one 140/269 = 0.520 +- 0.030)
+P4 (i) median convoyReachFree at pickup = 4.0 over 1800 of our 1800 trips; bar >= 2: ok
+P4 (ii) our trips >= 6 rounds: capture rate with ownEscorts20 >= 3 197/836 = 0.236 +- 0.015 vs < 1.5 17/201 = 0.085 +- 0.020; ratio 2.79; bar >= 1.5: ok  -> P4 PASS
+P6 their trips >= 25 rounds: capture rate with chasers20 >= 1 66/190 = 0.347 +- 0.035 / with < 0.5 155/195 = 0.795 +- 0.029 = 0.44 +- 0.05; bar <= 0.6: PASS
+   1-decimal chasers20 reading (--defense, B3 census): moves 31 of 507 long trips across 0.5 or 1; U 147; P2 115/147 = 0.782 +- 0.034 PASS; P6 PASS; same verdicts
+D  U seen at pickup (one of ours within dist2 20): 125/155 = 0.806 +- 0.032; of those 589 ducks, jailed within 10 rounds: 241/589 = 0.409 +- 0.020; trips where every witness died ("died") 30, others ("forgot") 95
+D  reachInFight on U (mean over 130 trips with a reacher): 0.36
+D  symOk: 155/234 = 0.662 +- 0.031 games (< 0.9: read P1/P3 under Sym.best() too; psymOk >= 0.95 becomes an S0b bar)
+ROUTING: one tracker revision (velocity from two sightings, heading-led destination), then re-measure P1/P3

@@ -59,3 +59,8 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
   g_iter1 required) started in parallel with S0a's fix step (separate files: src/ and test/ vs tools/), workflow with
   identity/safety, design-conformance and bytecode reviews. The S0a premise read on ColtG5 games still decides whether
   CUT is built (P2: enough free responders); S0b is the sensor CUT would read.
+- S0a premise on 515 g_iter1-vs-ColtG5 games: every bar passes (P1 1.0 tiles, P2 0.758, P3 0.892, P4, P6 0.57):
+  ColtG5's unopposed carriers convert 88%, contacted ones 51%; 76% of the unopposed captures had 3+ free ducks able to
+  reach the predicted path in time. CUT is built (both doses). The band sample fails P3 (0.761), which matters for
+  widening later, not for the crack. The bot's symmetry guess is wrong in 28% of ColtG5 games: the private symmetry
+  (PSYM, psymOk >= 0.95) is required in S0b.
