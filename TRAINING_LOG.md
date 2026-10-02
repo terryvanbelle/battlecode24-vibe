@@ -826,3 +826,13 @@ Field (progress/ELO.md): g_iter1 1811 +- 15, rank 23 of 71; a cliff above: 12 bo
 Implications (proposed): a staged rewrite of the decision layer (team roles and shared targets in the 64-slot array,
 micro taking a team objective), keeping nav/micro/traps/setup plumbing; judge it against the tier above as well as the
 band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
+- Correction to point 5 of the diagnosis: the band is not mostly peers. It holds 11 of the 12 bots rated 2050+
+  (tools/upper-tier.txt); we win ~9% of those cells, so both arms lose them alike and they yield few discordant pairs.
+  Wins there are an insensitive measure; capture difference per game is the sensitive one (SE ~0.11 per 128 games).
+
+### 2026-10-02 — decision-layer rewrite started (owner prompt 112: "try it out, but keep statistics")
+- Design by judge panel (workflow bc24-rewrite-design: four angles, three judge lenses, synthesis) -> research/REWRITE_DESIGN.md.
+- Evaluation protocol pre-registered before any code: research/REWRITE_EVAL.md; milestone table progress/REWRITE.md.
+- New tools/eval-paired.py (paired wins with exact sign test and capture-difference deltas, split all / upper tier /
+  rest; tested) and tools/upper-tier.txt. Baseline g_iter1 on the band seeds: all 82/234 (capture diff -0.88),
+  upper 11/128 (-2.04), rest 71/106 (+0.53). No earlier build reaches 2 SE vs g_iter1 on either measure.

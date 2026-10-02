@@ -178,5 +178,26 @@ with tempfile.TemporaryDirectory() as td:
           and all(os.path.exists(os.path.join(td, 'gauntlet', r, 'results.csv')) for r, d in runs.items() if d),
           'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs and results: %r %s' % (left, out))
 
+# eval-paired: pairing, tier split, sign test, capture difference
+spec = importlib.util.spec_from_file_location('evp', os.path.join(HERE, 'eval-paired.py')); evp = importlib.util.module_from_spec(spec); spec.loader.exec_module(evp)
+check(abs(evp.sign_p(0, 6) - 0.03125) < 1e-9 and evp.sign_p(3, 3) == 1.0, 'eval-paired: exact sign test')
+with tempfile.TemporaryDirectory() as td:
+    hdr = 'file,opp,us,team,name,won,captured\n'
+    def census(path, rows):
+        with open(path, 'w') as f:
+            f.write(hdr)
+            for run, base, opp, won, cap, ecap in rows:
+                fp = f'gauntlet/{run}/losses/{base}'
+                f.write(f'{fp},{opp},1,A,x,{won},{cap}\n{fp},{opp},0,B,{opp},{1 - won},{ecap}\n')
+    census(os.path.join(td, 'c.csv'), [('r1-ctl', 'a.bc24', 'top.bot', 0, 0, 3), ('r1-ctl', 'b.bc24', 'low.bot', 1, 2, 0)])
+    census(os.path.join(td, 'a.csv'), [('r1-arm', 'a.bc24', 'top.bot', 1, 1, 0), ('r1-arm', 'b.bc24', 'low.bot', 1, 3, 0)])
+    open(os.path.join(td, 'tier.txt'), 'w').write('top.bot\n')
+    out = subprocess.run([sys.executable, os.path.join(HERE, 'eval-paired.py'), os.path.join(td, 'c.csv'), os.path.join(td, 'a.csv'),
+                          'r1-ctl,r1-arm', '--tier', os.path.join(td, 'tier.txt')], capture_output=True, text=True).stdout
+    lines = out.splitlines()
+    check(len(lines) == 3 and 'n=   2' in lines[0] and 'gained 1 lost 0' in lines[0] and 'delta +2.50' in lines[0]
+          and 'n=   1' in lines[1] and 'delta +4.00' in lines[1] and 'delta +1.00' in lines[2],
+          'eval-paired: pairs cells, splits tiers, capture difference deltas: ' + out)
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)
