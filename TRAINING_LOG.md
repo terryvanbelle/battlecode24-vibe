@@ -1020,3 +1020,12 @@ separately), census columns symDecidedRound and symWrong (from replay truth), ba
 an identity control (g_iter1 vs a byte-identical copy on shared seeds must read 0 discordant). (2) Each bot defect is
 confirmed in a diagnostic replay, fixed behind its own switch with a unit test, measured, and the fixes then combined into
 one basics build judged against g_iter1 on shared seeds (head to head, band, ColtG5).
+- g1sym band test (2 seeds, legacy unseeded cells; eval-paired vs the g_iter1 control): all net -6 (17-23, sign p 0.43),
+  capture delta +0.01 +- 0.09; upper +1 (+0.08 +- 0.10); rest -7; rung 0. Neutral, as the head-to-head (63-57). The
+  symmetry repair is a foundation, not a win by itself in g_iter1 (which barely consumes symmetry).
+- Measurement fixes landed (audit B1/B2): scrim cells carry engine seeds (second RNG stream; DRY=1 prints cells);
+  filler-tally pairs on (opp, map, side, seed) and reports legacy pairs apart; census columns symDecidedRound and
+  symWrong; basics.py symmetry bars from the audit, and a basic that the census does not measure now FAILS ("not
+  measured") instead of passing silently. Tests: identical seeded cells for two bots on one SEED; legacy fallback;
+  basics on synthetic blocks. Queued: re-census of the g1sym band runs with the new columns; the identity control
+  (g_iter1 vs the byte-identical g1copy on shared seeds, 40 band + 40 ColtG5; expected 0 discordant).

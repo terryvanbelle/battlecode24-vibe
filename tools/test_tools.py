@@ -136,6 +136,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(all(float(c['escorts20']) >= 0 for c in cap), 'replay-dump --capabilities: escorts20 >= 0')
     check(all(0 <= float(c['stillPost']) <= 100 for c in cap), 'replay-dump --capabilities: stillPost is a percentage')
     check(all(c['exceptions'].isdigit() for c in cap), 'replay-dump --capabilities: exceptions is a count')
+    check(all(c['symWrong'] in ('', '0', '1') for c in cap), 'replay-dump --capabilities: symWrong is blank, 0 or 1')
     dfn = outs['fix'].get(11, [])
     caps = {c['team']: int(c['captured']) for c in cap}
     check(dfn and all(d['outcome'] in ('DIED', 'DROP', 'CAPTURE') for d in dfn) and
@@ -240,7 +241,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False
@@ -443,7 +444,19 @@ with tempfile.TemporaryDirectory() as d:
         rd = os.path.join(d, 'gauntlet', f'20260101-000000-scrim-{bot}-fill77'); os.makedirs(rd)
         open(os.path.join(rd, 'results.csv'), 'w').write(hdr + ''.join(f'o{i},M,A,A,9,{r},x,1\n' for i, r in enumerate(res)))
     out = subprocess.run([sys.executable, os.path.join(fake, 'filler-tally.py'), 'ctl', 'cand'], capture_output=True, text=True).stdout
-    check('1 seeds, 3 paired games, gained 1, lost 0, net +1' in out, 'filler-tally: one discordant pair in the candidate\'s favour: ' + out)
+    check('1 seeds (1 on shared engine seeds, 0 legacy), 3 paired games, gained 1, lost 0, net +1' in out, 'filler-tally: one discordant pair in the candidate\'s favour: ' + out)
+    # legacy: the same cells on different engine seeds pair on the cell only, and are reported as legacy
+    rd = os.path.join(d, 'gauntlet', '20260101-000000-scrim-cand-fill77')
+    open(os.path.join(rd, 'results.csv'), 'w').write(hdr + ''.join(f'o{i},M,A,A,9,{r},x,{5 + i}\n' for i, r in enumerate(['win', 'win', 'loss'])))
+    out = subprocess.run([sys.executable, os.path.join(fake, 'filler-tally.py'), 'ctl', 'cand'], capture_output=True, text=True).stdout
+    check('(0 on shared engine seeds, 1 legacy), 3 paired games' in out, 'filler-tally: unseeded runs fall back to cells and say so: ' + out)
+# scrim cells carry the engine seed, and the same SEED gives identical cells for any bot (audit B2)
+_env = dict(os.environ, DRY='1', N='12', SEED='4242', POOL='a.x b.y c.z')
+c1 = subprocess.run(['bash', os.path.join(HERE, 'scrim.sh')], env=dict(_env, BOT='g_iter1'), capture_output=True, text=True).stdout.split('\n')
+c2 = subprocess.run(['bash', os.path.join(HERE, 'scrim.sh')], env=dict(_env, BOT='g1sym'), capture_output=True, text=True).stdout.split('\n')
+c1 = [l for l in c1 if l.strip()]; c2 = [l for l in c2 if l.strip()]
+check(len(c1) == 12 and c1 == c2 and all(len(l.split()) == 4 and l.split()[3].isdigit() for l in c1),
+      'scrim: 12 cells with a 4th engine-seed field, identical for two bots on one SEED: %r' % (c1[:2],))
 
 # fill-origin: own/enemy/natural classification and dig->fill lag
 spec = importlib.util.spec_from_file_location('fo', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fill-origin.py'))
@@ -520,20 +533,21 @@ for line in open(os.path.join(HERE, 'arm-intent.txt')):
 
 # basics battery: absolute bars (symmetry, overruns, exceptions) and relative checks against a base
 with tempfile.TemporaryDirectory() as td:
-    hdr = 'file,us,symOk,overruns,maxBcK,exceptions,stillPost,kills,deaths,trapsHit,gathered400\n'
+    hdr = 'file,us,symOk,symWrong,symDecidedRound,overruns,maxBcK,exceptions,stillPost,kills,deaths,trapsHit,gathered400\n'
     def cen(path, rows):
         with open(path, 'w') as f:
             f.write(hdr)
             for i, r in enumerate(rows): f.write(f'g{i},1,' + ','.join(str(x) for x in r) + '\n')
     good = [(1, 0, 15.0, 0, 30, 400, 300, 200, 6000)] * 10
-    cen(os.path.join(td, 'base.csv'), [(0, 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
-    cen(os.path.join(td, 'ok.csv'), [(1, 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
-    cen(os.path.join(td, 'bad.csv'), [(1 if i < 8 else 0, 1 if i == 0 else 0, 25.0, 0, 30 + i % 3, 200 + i, 300, 200, 6000 + i) for i in range(10)])
+    cen(os.path.join(td, 'base.csv'), [(0, 0, '', 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
+    cen(os.path.join(td, 'ok.csv'), [(1, 0, 150, 0, 15.0, 0, 30 + i % 3, 400 + i, 300, 200, 6000 + i) for i in range(10)])
+    cen(os.path.join(td, 'bad.csv'), [(1, 1 if i < 2 else 0, 150 if i < 7 else '', 1 if i == 0 else 0, 25.0, 0, 30 + i % 3, 200 + i, 300, 200, 6000 + i) for i in range(10)])
     run = lambda c: subprocess.run([sys.executable, os.path.join(HERE, 'basics.py'), os.path.join(td, c), '--base', os.path.join(td, 'base.csv')], capture_output=True, text=True)
     r_ok, r_bad = run('ok.csv'), run('bad.csv')
     check(r_ok.returncode == 0 and 'PASS' in r_ok.stdout, 'basics: a clean block passes: ' + r_ok.stdout)
-    check(r_bad.returncode == 1 and 'symOk 0.800' in r_bad.stdout and 'overruns 1' in r_bad.stdout and 'kill/death' in r_bad.stdout
-          and r_bad.stdout.count('FAIL') >= 4, 'basics: symmetry, an overrun and a kill/death collapse fail: ' + r_bad.stdout)
+    check(r_bad.returncode == 1 and 'symWrong in 2 of 10' in r_bad.stdout and 'decided by r201 in 7/10' in r_bad.stdout
+          and 'overruns 1' in r_bad.stdout and r_bad.stdout.count('FAIL') >= 5,
+          'basics: a wrong symmetry, an undecided symmetry, an overrun and a kill/death collapse fail: ' + r_bad.stdout)
 
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

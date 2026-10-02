@@ -48,12 +48,16 @@ python3 - "$N" "$SEED" "$POOL" "$(tr '\n' ' ' < "$REPO/tools/bc24-maps.txt")" > 
 import random, sys, math
 n = int(sys.argv[1]); seed = int(sys.argv[2]); pool = sys.argv[3].split(); maps = sys.argv[4].split()
 random.seed(seed)
+rs = random.Random(seed ^ 0x5EED5EED)   # engine seeds from a second stream: the cell sequence for a SEED is unchanged
 per = math.ceil(n / len(pool)); counts = {o: 0 for o in pool}; last = None
 for _ in range(n):
     cands = [o for o in pool if counts[o] < per and o != last] or [o for o in pool if counts[o] < per]
     o = random.choice(cands); counts[o] += 1; last = o
-    print(o, random.choice(maps), random.choice("AB"))
+    # 4th field: the engine seed (audit B2, 2026-10-02: without it every build drew its own seed per cell, so identical
+    # code flipped 15-29% of cells and paired tests were mostly engine noise). Maps and sides stay random (rule 4).
+    print(o, random.choice(maps), random.choice("AB"), rs.randrange(1, 2**31 - 1))
 PY
+if [ "${DRY:-0}" = 1 ]; then cat "$CELLS"; rm -f "$CELLS"; exit 0; fi   # DRY=1: print the cells (with engine seeds) only
 echo "scrim block: bot=$BOT n=$N seed=$SEED pool=[$POOL]"
 SCRIM=1 KEEP_ALL=1 CELLS="$CELLS" BOT="$BOT" TAG="scrim-$BOT${RUNTAG:+-$RUNTAG}" MAXJOBS="$MAXJOBS" "$REPO/tools/gauntlet.sh"   # KEEP_ALL: wins are studied too (PROMPTS 43)
 rm -f "$CELLS"

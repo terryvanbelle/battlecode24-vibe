@@ -10,12 +10,21 @@ def runs(bot):
         m = re.search(r'-fill(\d+)$', d)
         if m and os.path.exists(os.path.join(d, 'results.csv')): out[m.group(1)] = d
     return out
-def res(d):
-    return {(r['opponent'], r['map'], r['bot_side']): r['bot_result'] for r in csv.DictReader(open(os.path.join(d, 'results.csv')))}
+def res(d, with_seed):
+    """Cell -> result. Seeded runs (audit B2: scrim.sh gives every cell its engine seed) are keyed by (opp, map, side,
+    seed), so only games on the same engine seed pair; legacy runs drew a seed per build and pair on the cell only."""
+    out = {}
+    for r in csv.DictReader(open(os.path.join(d, 'results.csv'))):
+        k = (r['opponent'], r['map'], r['bot_side']) + ((r.get('seed', ''),) if with_seed else ())
+        out[k] = r['bot_result']
+    return out
 C, K = runs(ctl), runs(cand)
-gained = lost = games = 0; seeds = 0
+gained = lost = games = 0; seeds = 0; legacy = 0
 for s in sorted(set(C) & set(K)):
-    a, b = res(C[s]), res(K[s]); seeds += 1
+    a, b = res(C[s], True), res(K[s], True)
+    if not set(a) & set(b):                       # no shared engine seeds: a legacy (unseeded) pair of runs
+        a, b = res(C[s], False), res(K[s], False); legacy += 1
+    seeds += 1
     for cell in set(a) & set(b):
         if a[cell] not in ('win', 'loss') or b[cell] not in ('win', 'loss'): continue
         games += 1
@@ -23,5 +32,5 @@ for s in sorted(set(C) & set(K)):
         elif a[cell] == 'win' and b[cell] == 'loss': lost += 1
 n = gained + lost
 se = math.sqrt(n) if n else 0.0
-print(f'filler tally {cand} vs {ctl}: {seeds} seeds, {games} paired games, gained {gained}, lost {lost}, net {gained - lost:+d}'
-      + (f' ({(gained - lost) / se:+.1f} SE)' if se else ''))
+print(f'filler tally {cand} vs {ctl}: {seeds} seeds ({seeds - legacy} on shared engine seeds, {legacy} legacy), {games} paired games, '
+      f'gained {gained}, lost {lost}, net {gained - lost:+d}' + (f' ({(gained - lost) / se:+.1f} SE)' if se else ''))

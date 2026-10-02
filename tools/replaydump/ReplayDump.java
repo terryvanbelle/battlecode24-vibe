@@ -302,6 +302,12 @@ public class ReplayDump {
             for (int k = 0; k < ct.team2Length() && k < 64; k++) comm[2][k] = ct.team2(k);
         }
         if (commSeen && rn <= 250) for (int t = 1; t <= 2; t++) { sym250[t] = comm[t][16]; psym250[t] = comm[t][24]; }
+        if (commSeen) for (int t = 1; t <= 2; t++) {   // audit B1: decided (every survivor correct) vs wrong (no survivor correct)
+            int m = comm[t][16] & 7, ok = correctSyms(t);
+            if (m == 0 || ok < 0) continue;
+            if ((m & ok) == 0) symWrongT[t] = 1;
+            else if ((m & ~ok) == 0 && symDecided[t] < 0) symDecided[t] = rn;
+        }
         if (commSeen && rn > 1) for (int t = 1; t <= 2; t++) if (comm[t][23] != 0) trkSlots[t] = true;
         if (commMode && commSeen && rn >= commFrom && rn <= commTo) {
             if (!commHeader) { StringBuilder h = new StringBuilder("round,team"); for (int k = 0; k < 64; k++) h.append(",s").append(k); out.println(h); commHeader = true; }
@@ -602,6 +608,14 @@ public class ReplayDump {
     static int[][] comm = new int[3][64];
     static boolean commSeen, commMode, commHeader, trackMode, trackLog, execDone, execBroken;
     static int[] sym250 = {-1, -1, -1}, psym250 = {0, 0, 0};
+    static int[] symDecided = {-1, -1, -1}, symWrongT = {0, 0, 0}, correctSymsCache = {-2, -2, -2};
+    /** Symmetries (bitmask ROT 1, FX 2, FY 4) that map team t's spawn centres exactly onto the other team's; -1 unknown. */
+    static int correctSyms(int t) {
+        if (correctSymsCache[t] != -2) return correctSymsCache[t];
+        if (centres[t] == null || centres[3 - t] == null) return -1;
+        int ok = 0; for (int s = 1; s <= 4; s <<= 1) if (maskOk(t, s) == 1) ok |= s;
+        return correctSymsCache[t] = ok;
+    }
     static boolean[] trkSlots = new boolean[3];
     static int commStored;
     static int commFrom = -1, commTo = -1;
@@ -1100,7 +1114,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1118,7 +1132,8 @@ public class ReplayDump {
                         + "," + (kLong25[t] > 0 ? String.format("%.3f", (double) kLongCaps25[t] / kLong25[t]) : "")
                         + "," + (cDeaths[t] > 0 ? String.valueOf(kLoneDeaths[t]) : "") + "," + (cDeaths[t] > 0 ? String.valueOf(kTrickleDeaths[t]) : "")
                         + "," + (symOk(t) >= 0 ? String.valueOf(symOk(t)) : "") + "," + (psymOk(t) >= 0 ? String.valueOf(psymOk(t)) : "")
-                        + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]);
+                        + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]
+                        + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : ""));
             }
         }
         if (trackMode) printTrack();

@@ -6,7 +6,9 @@ absolute bar where one is defined, and against a control build where none is (wo
     tools/basics.py <census.csv> [--survey survey.csv] [--base base_census.csv [--base-survey s.csv]] [--name NAME]
 
 Absolute bars (a failure stops work above it, CLAUDE rule 15):
-  symmetry   mean symOk >= 0.90            (the enemy spawn centres right at r250; g_iter1 measured 0.66-0.72)
+  sym wrong  symWrong == 0                 (the true enemy spawns never eliminated from slot 16)
+  sym setup  decided by r201 in >= 95% of games on setup-decidable maps (walls, spawn zones, setup dams)
+  sym late   decided by r400 in >= 90% of games on the 15 maps that need a post-setup sighting (audit A3)
   bytecode   overruns == 0                 (turns at the limit, every game)
   exceptions exceptions == 0               (caught exceptions abandon the rest of a turn)
 Relative to the base (paired by nothing: means over the block, SE of the difference of means):
@@ -15,6 +17,16 @@ Relative to the base (paired by nothing: means over the block, SE of the differe
   economy    gathered400 (map crumbs by r400); crumbs250 floating (survey)      gathered higher, floating lower
 Exit status 1 if any absolute bar or relative check fails."""
 import csv, math, sys
+
+# maps whose surviving wrong candidates differ only on their side: one post-setup sighting is needed (audit A3, from
+# all 78 engine maps); every other map is decidable by r201 from walls, spawn zones and setup dams.
+POST_SETUP_MAPS = {'Asteroids', 'Digging', 'FloodGates', 'Fountain', 'Gauntlet', 'HungerGames', 'MIT', 'MazeRunner', 'Puzzle',
+                   'Snake', 'Soccer', 'Tunnels', 'Valentine', 'Waterworld', 'Fusbol'}
+
+def mapname(f):
+    b = f.rsplit('/', 1)[-1]
+    parts = b.split('__')
+    return parts[1] if len(parts) >= 3 else ''
 
 def rows(path):
     if not path: return []
@@ -55,15 +67,32 @@ def main(argv):
     fails = 0
     print(f'basics {name}: {len(C)} games' + (f' (base {len(BC)} games)' if BC else ''))
 
-    def absolute(label, v, ok, show):
+    def absolute(label, v, ok, show, column=None):
         nonlocal fails
-        if not v: print(f'  {label:11s} NO DATA'); return
+        if not v:
+            if column and C and column not in C[0]:          # never measured: a basic that is not measured fails
+                fails += 1; print(f'  {label:11s} NOT MEASURED (census lacks {column}: re-census with the current tools) FAIL')
+            else: print(f'  {label:11s} NO DATA')
+            return
         good = ok(v)
         if not good: fails += 1
         print(f'  {label:11s} {show(v):40s} {"ok" if good else "FAIL"}')
-    absolute('symmetry', vals(C, 'symOk'), lambda v: sum(v) / len(v) >= 0.90, lambda v: f'symOk {sum(v)/len(v):.3f} over {len(v)} games (bar >= 0.90)')
-    absolute('bytecode', vals(C, 'overruns'), lambda v: sum(v) == 0, lambda v: f'overruns {int(sum(v))} (bar 0); max {max(vals(C, "maxBcK") or [0]):.1f}k')
-    absolute('exceptions', vals(C, 'exceptions'), lambda v: sum(v) == 0, lambda v: f'exceptions {int(sum(v))} (bar 0)')
+    # symmetry (audit B1: symOk credits a fixed-order guess): never wrong, and DECIDED by observation in time
+    absolute('sym wrong', vals(C, 'symWrong'), lambda v: sum(v) == 0, lambda v: f'symWrong in {int(sum(v))} of {len(v)} games (bar 0)', 'symWrong')
+    setup, late = [], []
+    for r in (C if C and 'symDecidedRound' in C[0] else []):   # a census made before the column existed: NO DATA
+        m = mapname(r.get('file', ''))
+        d = r.get('symDecidedRound', '')
+        dec = float(d) if d not in ('', None) else float('inf')
+        (late if m in POST_SETUP_MAPS else setup).append(dec)
+    absolute('sym setup', setup, lambda v: sum(x <= 201 for x in v) / len(v) >= 0.95,
+             lambda v: f'decided by r201 in {sum(x <= 201 for x in v)}/{len(v)} setup-decidable games (bar 95%)', 'symDecidedRound')
+    absolute('sym late', late, lambda v: sum(x <= 400 for x in v) / len(v) >= 0.90,
+             lambda v: f'decided by r400 in {sum(x <= 400 for x in v)}/{len(v)} post-setup maps (bar 90%)')
+    v = vals(C, 'symOk')
+    if v: print(f'  {"(symOk)":11s} {sum(v)/len(v):.3f} descriptive only: a correct guess scores 1')
+    absolute('bytecode', vals(C, 'overruns'), lambda v: sum(v) == 0, lambda v: f'overruns {int(sum(v))} (bar 0); max {max(vals(C, "maxBcK") or [0]):.1f}k', 'overruns')
+    absolute('exceptions', vals(C, 'exceptions'), lambda v: sum(v) == 0, lambda v: f'exceptions {int(sum(v))} (bar 0)', 'exceptions')
 
     def relative(label, va, vb, better):
         nonlocal fails
