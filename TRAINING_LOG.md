@@ -539,3 +539,11 @@ rel:crumbs200>=0.5. If only the bank guard fails, the next arm is a lower dose (
   Lost this one game on flag captures (single game; the block decides).
   Step 5(b) pre-registered (BASE=b2fs), the same four bars: fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1
   rel:crumbs200>=0.5.
+
+### 2026-10-02 — warning on B3 (b2fs) from the filler
+On the 3 filler seeds where all four builds played the same 120 cells: B3 vs g_iter1 3-15; B2 vs g_iter1 10-11;
+B3 vs B2 6-17 (net -11, -2.3 SE); B1 vs g_iter1 5-13 (these seeds are hard on B1 too). Band + filler together, B3 vs B2:
+24-36 (-1.5 SE). Not conclusive; B3 advanced on non-inferiority (band net -1 of 234).
+Pre-registered demotion rule: at 6 filler seeds (240 paired games) of B3 vs B2 (`tools/filler-tally.py b1z2b b2fs`),
+if net <= -2 SE, B3 is demoted (FILL_SMART leaves the stack), the filler candidate list drops b2fs, and the digging
+arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B3 stays.
