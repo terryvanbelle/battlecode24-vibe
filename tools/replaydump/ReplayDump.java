@@ -21,6 +21,7 @@ import java.util.zip.GZIPInputStream;
  *     --bytecode          per-team bytecode maxima and turns at the limit
  *     --navstats          movement statistics per team
  *     --flags             every flag event with round, flag team, actor and location
+ *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome
  *
  * Replay facts (engine 3.0.6, GameMaker.MatchMaker): every Round lists every spawned robot plus the robots that
  * died that round (at their death tile); jailed robots are absent. Team ids 1 = A, 2 = B. Location index =
@@ -75,6 +76,8 @@ public class ReplayDump {
     // ---- options
     static int every = 0, metricsEvery = 0, from = -1, to = -1, robot = Integer.MIN_VALUE, mapAt = -1;   // robot: MIN_VALUE = none (water-trap digs have actor id -1)
     static Pattern logs = null; static int logTeam = 0;
+    static boolean defMode = false;
+    static Map<Integer, int[]> trip = new HashMap<>();   // --defense: holder -> {startRound, first(1/0), fx, fy, near20, near64, chaserSum, rounds}
     static boolean bytecode = false, navstats = false, flagsMode = false, summary = true, survey = false, levelsMode = false, capMode = false;
     // --capabilities: basic-capability census per team (research/TACTIC_LEVELS.md)
     static int[] side;                                   // tile -> team whose spawn centres are nearer (1/2)
@@ -85,7 +88,7 @@ public class ReplayDump {
     // Phase 0 (research/TACTIC_LEVELS.md): post-setup pickups split by kind; carrier-death distance; dam staging
     static int[] kPostPickups = new int[3], kFirstGrabs = new int[3], kRegrabs = new int[3], kRelayPickups = new int[3],
             kDamStage199 = new int[3], kCarrierDeathDistSum = new int[3], kCarrierDeathN = new int[3],
-            kRegrabsLate = new int[3], kCapturedLate = new int[3];   // after r1200 (the CAPTURING window of upgrade order 3)
+            kRegrabsLate = new int[3], kCapturedLate = new int[3], kChaseSum = new int[3], kChaseRounds = new int[3];   // after r1200 (the CAPTURING window of upgrade order 3)
     static Map<Integer, int[]> flagHome = new HashMap<>();     // flag -> default location (set at r200 and on returns)
     static Map<Integer, Boolean> lastDropByDeath = new HashMap<>();
     // --survey: per-team tactic features (TACTICS.md survey, tools/tactics-survey.py)
@@ -117,6 +120,7 @@ public class ReplayDump {
                 case "--survey": survey = true; summary = false; break;
                 case "--levels": levelsMode = true; summary = false; break;
                 case "--capabilities": capMode = true; summary = false; break;
+                case "--defense": defMode = true; summary = false; break;
                 case "--summary": summary = true; break;
                 default: System.err.println("unknown flag " + a); System.exit(2);   // unknown flags are hard errors
             }
@@ -207,6 +211,15 @@ public class ReplayDump {
         }
     }
 
+    static boolean defHeader = false;
+    static void endTrip(int rn, int holder, String outcome) {
+        int[] tr = trip.remove(holder);
+        if (tr == null) return;
+        if (!defHeader) { out.println("round,carrierTeam,first,fx,fy,defNear20,defNear64,tripRounds,meanChasers20,outcome"); defHeader = true; }
+        out.printf("%d,%s,%d,%d,%d,%d,%d,%d,%.1f,%s%n", tr[0], tname(team.getOrDefault(holder, 0)), tr[1], tr[2], tr[3], tr[4], tr[5],
+                rn - tr[0], tr[7] > 0 ? (double) tr[6] / tr[7] : 0.0, outcome);
+    }
+
     static boolean inWindow(int r) { return from >= 0 && r >= from && r <= to; }
 
     static void round(Round r) {
@@ -244,6 +257,24 @@ public class ReplayDump {
             if (hp > 0 && rn > 200 && side[ci] == 3 - t && kFirstEnemySide[t] == 0) kFirstEnemySide[t] = rn;
             if (hp > 0 && side[ci] == 3 - t && (rn == 250 || rn == 300)) { if (rn == 250) kInEnemy250[t]++; else kInEnemy300[t]++; }
             if (carrying.containsKey(id)) { kCarrierRounds[t]++; if (moved) kCarrierMoves[t]++; }
+            if (capMode && carrying.containsKey(id) && rn > 200) {   // chasers: the other team's robots within dist2 20 of a carrier
+                int c = 0;
+                for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                    if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
+                    int dx = re.getValue()[0] - x, dy = re.getValue()[1] - y;
+                    if (dx * dx + dy * dy <= 20) c++;
+                }
+                kChaseSum[3 - t] += c; kChaseRounds[3 - t]++;
+            }
+            if (defMode && trip.containsKey(id)) {
+                int[] tr = trip.get(id); int c = 0;
+                for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                    if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
+                    int dx = re.getValue()[0] - x, dy = re.getValue()[1] - y;
+                    if (dx * dx + dy * dy <= 20) c++;
+                }
+                tr[6] += c; tr[7]++;
+            }
             if (hp > 0 && rn > 200 && kFirstFlagSight[t] == 0) for (Map.Entry<Integer, int[]> fe : flagLoc.entrySet()) {
                 int[] fl = fe.getValue();
                 if (fl != null && flagTeam.getOrDefault(fe.getKey(), 0) == 3 - t && (fl[0] - x) * (fl[0] - x) + (fl[1] - y) * (fl[1] - y) <= 20) { kFirstFlagSight[t] = rn; break; }
@@ -285,6 +316,18 @@ public class ReplayDump {
                     }
                     if (rn <= 200) sOwnFlagPickupsSetup[t]++;
                     else if (sFirstPickup[t] == 0) sFirstPickup[t] = rn;
+                    if (defMode && rn > 200) {
+                        int[] fl0 = flagLoc.get(tgt), fh0 = flagHome.get(tgt);
+                        int[] at = fl0 != null ? fl0 : lastLoc.get(id);
+                        int n20 = 0, n64 = 0;
+                        if (at != null) for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                            if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
+                            int dx = re.getValue()[0] - at[0], dy = re.getValue()[1] - at[1], d2 = dx * dx + dy * dy;
+                            if (d2 <= 20) n20++; if (d2 <= 64) n64++;
+                        }
+                        boolean first = fl0 != null && fh0 != null && fl0[0] == fh0[0] && fl0[1] == fh0[1];
+                        trip.put(id, new int[]{rn, first ? 1 : 0, at == null ? -1 : at[0], at == null ? -1 : at[1], n20, n64, 0, 0});
+                    }
                     cPickups[t]++; carrying.put(id, tgt); flagLoc.put(tgt, null);
                     desc = "picks up flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "PICKUP", id, tgt); break;
                 case Action.PLACE_FLAG: {    // id is the FLAG id
@@ -294,6 +337,7 @@ public class ReplayDump {
                     { for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) if (ce.getValue() == id && rn > 200) {
                         int holder = ce.getKey(); boolean dies = false;
                         for (int q = 0; q < r.diedIdsLength(); q++) if (r.diedIds(q) == holder) dies = true;
+                        if (defMode) endTrip(rn, holder, dies ? "DIED" : "DROP");
                         if (!dies) sDrops[team.getOrDefault(holder, 0)]++;
                         else {
                             int ht = team.getOrDefault(holder, 0); kCarrierDeaths[ht]++;
@@ -312,7 +356,7 @@ public class ReplayDump {
                     break;
                 }
                 case Action.CAPTURE_FLAG:
-                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; carrying.remove(id); flagLoc.put(tgt, null);
+                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (defMode) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
                     desc = "CAPTURES flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "CAPTURE", id, tgt); break;
                 case Action.GLOBAL_UPGRADE: sUpgrades[t] += (sUpgrades[t].isEmpty() ? "" : "+") + (tgt == 0 ? "ATK" : tgt == 1 ? "HEAL" : "CAP") + "@" + rn; cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
@@ -346,6 +390,7 @@ public class ReplayDump {
             cDeaths[t]++; if (firstDeath[t] < 0) firstDeath[t] = rn;
             Integer f = carrying.remove(id);
             if (f != null) kCarrierDeaths[t]++;   // only if no drop event preceded (normally the PLACE event counts it)
+            if (defMode && trip.containsKey(id)) endTrip(rn, id, "DIED");
             int[] l = lastLoc.get(id);
             if (f != null && l != null) flagLoc.put(f, l);
             if (inWindow(rn) || id == robot) out.printf("r%d DIES %s#%d at (%d,%d)%s%n", rn, tname(t), id, l == null ? -1 : l[0], l == null ? -1 : l[1], f != null ? " dropping flag" : "");
@@ -487,7 +532,7 @@ public class ReplayDump {
             }
         }
         if (capMode) {
-            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate");
+            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -498,7 +543,7 @@ public class ReplayDump {
                         + (cTraps[t][0] + cTraps[t][1] + cTraps[t][2]) + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + String.format("%.1f", kRounds > 0 ? (double) kAliveSum[t] / kRounds : 0.0)
                         + "," + kPostPickups[t] + "," + kFirstGrabs[t] + "," + kRegrabs[t] + "," + kRelayPickups[t] + ","
                         + (kCarrierDeathN[t] > 0 ? String.format("%.1f", (double) kCarrierDeathDistSum[t] / kCarrierDeathN[t]) : "") + "," + kDamStage199[t]
-                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t]);
+                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o]);
             }
         }
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot

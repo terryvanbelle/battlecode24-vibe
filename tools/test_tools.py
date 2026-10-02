@@ -106,6 +106,13 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(int(cap[0]['enemyCarrierKills']) == int(cap[1]['carrierDeaths']) and int(cap[1]['enemyCarrierKills']) == int(cap[0]['carrierDeaths']),
           'replay-dump --capabilities: one side\'s carrier kills are the other side\'s carrier deaths')
     check(all(0 <= float(c['meanAlive']) <= 50 for c in cap), 'replay-dump --capabilities: mean alive in [0,50]')
+    check(all(float(c['chasers20']) >= 0 for c in cap) and cap[0]['enemyCaptured'] == cap[1]['captured'] and cap[1]['enemyCaptured'] == cap[0]['captured'],
+          'replay-dump --capabilities: enemyCaptured mirrors the other side; chasers20 >= 0')
+    dfn = [l for l in dump('--defense').splitlines() if l and not l.startswith('round,')]
+    caps = {c['team']: int(c['captured']) for c in cap}
+    check(all(l.split(',')[-1] in ('DIED', 'DROP', 'CAPTURE') for l in dfn) and
+          all(sum(1 for l in dfn if l.split(',')[1] == t and l.endswith('CAPTURE')) <= caps.get(t, 0) for t in 'AB'),
+          'replay-dump --defense: outcomes are DIED/DROP/CAPTURE; capture trips never exceed captures')
     check(all(int(c['regrabsLate']) <= int(c['regrabs']) and int(c['capturedLate']) <= int(c['captured']) for c in cap),
           'replay-dump --capabilities: late re-grabs/captures are subsets of all re-grabs/captures')
     check(all(int(c['firstGrabs']) + int(c['regrabs']) + int(c['relayPickups']) == int(c['postPickups']) <= int(c['pickups']) for c in cap),

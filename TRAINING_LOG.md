@@ -658,3 +658,20 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   6.04 vs 6.46 ok. Not band-tested. Next arm with the same bars, not a looser bar: g1z2w (escort radius dist2 13,
   untried; 2 failed, 8 passed on B1). Step 5(a) batch queued.
 - Filler: B2 vs g_iter1 72-72 over 877 (0.0 SE); B1 77-102 over 1234 (-1.9 SE); B3 14-37 over 359 (-3.2 SE).
+
+### 2026-10-02 — how they capture: the carrier walks home unopposed (new --defense mode, B3 band, 234 games)
+New `replay-dump --defense` (one line per post-setup flag trip: defenders near the flag at pickup, mean chasers within
+dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py. Raw trips: research/trips-b2fs.csv.
+- Capture losses (106 of 151 losses): their first pickup median r268, first capture median r365, end median r749.
+- Their trips on our flags: 4402, 10.3% captured (ours on theirs: 13.8%). First grabs with no defender within dist2 20
+  at the pickup: 18%, captured 16%; with 1-2 defenders 5%; with 3+ 9%.
+- Their 453 captured trips: 64% start from a re-grab or relay, not a first grab; median 39 rounds carried (~20 tiles);
+  **47% had on average under 0.5 of our ducks within dist2 20 of the carrier**; failed trips last a median 3 rounds.
+  We kill most carriers at once; the ones that get clear walk home with nobody following.
+- Code reason: Duck's chase (carrierTarget from the OF carry slots) runs only in fieldTarget, i.e. when no enemy is in
+  view. A duck in any fight ignores the carrier alert.
+- Arm g1icpt = g_iter1 + INTERCEPT (in a fight, a fresh carrier alert within dist2 225 makes the fight goal-directed
+  toward the carrier or its interception point: Micro.fight(enemies, allies, goal), the rushers' pushing fight; strikes
+  in reach and a visible carrier keep priority). Counter "ch<chases>/<intercepts>".
+- New census columns chasers20 (our mean ducks within dist2 20 of an enemy carrier per carried round) and
+  enemyCaptured (their captures, on our row, for rel: checks). Step 5(a) batch queued: 4 maps s4 vs g_iter1 mirror.

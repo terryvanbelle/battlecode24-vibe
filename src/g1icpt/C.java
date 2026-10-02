@@ -1,4 +1,4 @@
-package bot;
+package g1icpt;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -32,7 +32,7 @@ public strictfp class C {
     public static final boolean REGRAB_HALF = false;   // REGRAB only for loose flags nearer our spawn centres than theirs (a carrier there has a chance)
     public static final boolean CARRY_SAFE = false;    // C9: with enemies in view, the carrier takes the homeward step with the fewest enemies able to reach it
     public static final boolean CARRIER_HEAL = false;  // C9: a hurt allied carrier in heal range is healed before anyone else
-    public static final boolean INTERCEPT = false;     // C10a: in a fight, a fresh carrier alert within INTERCEPT_R2 turns the fight goal-directed toward the carrier
+    public static final boolean INTERCEPT = true;      // C10a: in a fight, a fresh carrier alert within INTERCEPT_R2 turns the fight goal-directed toward the carrier
     public static final int INTERCEPT_R2 = 225;
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
