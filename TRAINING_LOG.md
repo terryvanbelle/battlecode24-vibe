@@ -699,3 +699,13 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
 - INTERCEPT acts only inside fights, DEST_CAMP only outside them, and our ducks are nearly always in a fight: arm
   **g1icamp** = g_iter1 + INTERCEPT + DEST_CAMP (in a fight, a stale alert's destination within dist2 225 becomes the
   fight's goal). Step 5(a) batch queued (4 maps s4 + DefaultMedium/Tunnels s5 with g1copy mirrors).
+- g1icamp step 5(a) vs mirrors (enemyCaptured, chasers20): Battlecode24 s4 1 vs 2, 1.55 vs 1.71; DefaultLarge s4 0/0,
+  1.06 vs 1.36; DefaultMedium s4 1 vs 0, 2.75 vs 3.04; Tunnels s4 0/0, 7.00 vs 7.16; DefaultMedium s5 0/0, 7.64 vs 5.25;
+  Tunnels s5 0/0, 9.67 vs 7.43. Enemy captures 2 vs 2. **Not reproduced; not gated.** Interception family (g1icpt,
+  g1camp, g1icamp) closed for now: the unopposed carriers are not reachable by local rules that only see a fight.
+- Mirror image of their method: escorts. New census column escorts20 (own robots within dist2 20 of an own carrier per
+  carried round; tested). B3 band (232 games; 2 lost to a parallel-compile race): ours 4.85, theirs 6.76, with their
+  pickups 20.0 vs 8.2 and captures 1.93 vs 1.12. Arm **g1esc** = g_iter1 + ESCORT_CARRIER (roadmap block 6's first
+  step: in a fight, a visible own carrier within dist2 20 makes its next homeward tile the fight goal; counter "et").
+  Step 5(a) batch queued (6 cells + a DefaultLarge s5 mirror).
+- Filler: B1 vs g_iter1 97-126 over 1472 (-1.9 SE); B2 84-86 over 1075 (-0.2 SE); B3 33-55 over 597 (-2.3 SE).

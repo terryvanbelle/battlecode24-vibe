@@ -108,6 +108,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(all(0 <= float(c['meanAlive']) <= 50 for c in cap), 'replay-dump --capabilities: mean alive in [0,50]')
     check(all(float(c['chasers20']) >= 0 for c in cap) and cap[0]['enemyCaptured'] == cap[1]['captured'] and cap[1]['enemyCaptured'] == cap[0]['captured'],
           'replay-dump --capabilities: enemyCaptured mirrors the other side; chasers20 >= 0')
+    check(all(float(c['escorts20']) >= 0 for c in cap), 'replay-dump --capabilities: escorts20 >= 0')
     dfn = [l for l in dump('--defense').splitlines() if l and not l.startswith('round,')]
     caps = {c['team']: int(c['captured']) for c in cap}
     check(all(l.split(',')[-1] in ('DIED', 'DROP', 'CAPTURE') for l in dfn) and

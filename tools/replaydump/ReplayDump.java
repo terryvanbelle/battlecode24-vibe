@@ -88,7 +88,7 @@ public class ReplayDump {
     // Phase 0 (research/TACTIC_LEVELS.md): post-setup pickups split by kind; carrier-death distance; dam staging
     static int[] kPostPickups = new int[3], kFirstGrabs = new int[3], kRegrabs = new int[3], kRelayPickups = new int[3],
             kDamStage199 = new int[3], kCarrierDeathDistSum = new int[3], kCarrierDeathN = new int[3],
-            kRegrabsLate = new int[3], kCapturedLate = new int[3], kChaseSum = new int[3], kChaseRounds = new int[3];   // after r1200 (the CAPTURING window of upgrade order 3)
+            kRegrabsLate = new int[3], kCapturedLate = new int[3], kChaseSum = new int[3], kChaseRounds = new int[3], kEscortSum = new int[3];   // after r1200 (the CAPTURING window of upgrade order 3)
     static Map<Integer, int[]> flagHome = new HashMap<>();     // flag -> default location (set at r200 and on returns)
     static Map<Integer, Boolean> lastDropByDeath = new HashMap<>();
     // --survey: per-team tactic features (TACTICS.md survey, tools/tactics-survey.py)
@@ -265,6 +265,13 @@ public class ReplayDump {
                     if (dx * dx + dy * dy <= 20) c++;
                 }
                 kChaseSum[3 - t] += c; kChaseRounds[3 - t]++;
+                int e = 0;                                         // escorts: own robots within dist2 20 of the carrier
+                for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                    if (re.getKey() == id || team.getOrDefault(re.getKey(), 0) != t) continue;
+                    int dx = re.getValue()[0] - x, dy = re.getValue()[1] - y;
+                    if (dx * dx + dy * dy <= 20) e++;
+                }
+                kEscortSum[t] += e;
             }
             if (defMode && trip.containsKey(id)) {
                 int[] tr = trip.get(id); int c = 0;
@@ -532,7 +539,7 @@ public class ReplayDump {
             }
         }
         if (capMode) {
-            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured");
+            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -543,7 +550,7 @@ public class ReplayDump {
                         + (cTraps[t][0] + cTraps[t][1] + cTraps[t][2]) + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + String.format("%.1f", kRounds > 0 ? (double) kAliveSum[t] / kRounds : 0.0)
                         + "," + kPostPickups[t] + "," + kFirstGrabs[t] + "," + kRegrabs[t] + "," + kRelayPickups[t] + ","
                         + (kCarrierDeathN[t] > 0 ? String.format("%.1f", (double) kCarrierDeathDistSum[t] / kCarrierDeathN[t]) : "") + "," + kDamStage199[t]
-                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o]);
+                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o] + "," + String.format("%.2f", kChaseRounds[o] > 0 ? (double) kEscortSum[t] / kChaseRounds[o] : 0.0));
             }
         }
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot

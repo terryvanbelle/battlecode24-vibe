@@ -1,4 +1,4 @@
-package bot;
+package g1esc;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -35,7 +35,7 @@ public strictfp class C {
     public static final boolean INTERCEPT = false;     // C10a: in a fight, a fresh carrier alert within INTERCEPT_R2 turns the fight goal-directed toward the carrier
     public static final int INTERCEPT_R2 = 225;
     public static final boolean DEST_CAMP = false;     // C10a: after a carrier slips out of sight, ducks that can beat it there wait at its destination spawn
-    public static final boolean ESCORT_CARRIER = false; // C9: in a fight, a visible own carrier within ESCORT_R2 makes its next homeward tile the fight goal
+    public static final boolean ESCORT_CARRIER = true;  // C9: in a fight, a visible own carrier within ESCORT_R2 makes its next homeward tile the fight goal
     public static final int ESCORT_R2 = 20;
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
