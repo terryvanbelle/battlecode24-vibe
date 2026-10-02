@@ -846,3 +846,11 @@ band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
   unchanged): a rung slice in tools/eval-paired.py (--rung tools/next-rung.txt; g_iter1 17/60 there), one-component
   archetype sparring partners built from observed field behaviour, and the opponent order archetype -> rung -> band.
 - Ops: tools/band-test.sh takes SEEDS and TAG; g_iter1 control queued on the confirmation seeds 717171 + 818181.
+- Design panel finished (8 agents): designs Situation Board (24/30 combined), Objective-Driven Micro (23.5), Task-claimed
+  squads (19.5), Tide (12). Synthesis -> research/REWRITE_DESIGN.md ("shared flag tracks and bounded responders"):
+  persistent flag-keyed tracks with prediction in slots 23-48; a capped auction of free or jailed responders (CUT) that
+  cut off the predicted carrier path; later an escort convoy (ESC, conditional on its premise). Every duck without an
+  objective plays g_iter1. Stages S0a (premise from replay truth, no bot code) -> S0b (sensor only, identity) -> S1
+  (CUT, two doses) -> M1 band -> S2 (one tuning arm) -> S3 (ESC) -> M2; falsifiers F1-F5, premise bars P1-P6, budget
+  (<= 10 delivery blocks, 3 band runs, 9 arms) and closing criteria C1-C7 fixed before any number. Panel record:
+  research/rewrite-panel.json.
