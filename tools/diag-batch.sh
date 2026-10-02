@@ -15,7 +15,7 @@ done
 wait
 { for f in diag/"$TAG"/*.bc24; do
     echo "== $(basename "$f" .bc24)"
-    tools/replay-dump.sh "$f" --capabilities | cut -d, -f1-5,12-15,25,31,32
+    tools/replay-dump.sh "$f" --capabilities | cut -d, -f1-5,12-15,25,31-34
     tools/replay-dump.sh "$f" --survey | cut -d, -f2,13,14,16,18,24,28 | tail -2
   done; } > "diag/$TAG/summary.txt" 2>&1
 echo "diag-batch: $(ls diag/"$TAG"/*.bc24 | wc -l) games -> diag/$TAG/summary.txt"
