@@ -550,3 +550,16 @@ arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B
 - b3own step 5(b): **PASS** (BASE=b2fs, 24 games): digs fire 92%; level200 11.9; fills200 59.3 vs 58.3 (+1.0 +- 4.1,
   the self-fill cost is gone: b3dig5 was +41); crumbs200 2874 vs 5014 (-2140 +- 500; above the 0.5 bar, the dig cost
   itself, ~140 digs x 20). Band test started (gauntlet/20261002-031317-scrim-b3own = seed 1).
+
+### 2026-10-02 — B3 band profile: where the games are lost (census/survey of the b2fs band block, 234 games)
+- Fights are won: kills 453 vs 256, stun400 82 vs 63 (block 5's target of 72 is already met through B1's bank:
+  crumbs200 5453 vs 3517, spent to 261 by r250 while opponents still hold 3510).
+- Flags are lost: captured 1.11 vs 1.94; we lose 106 of 151 losses by CAPTURE. First grabs are close (6.3 vs 7.7);
+  persistence is not: re-grabs 1.9 vs 6.8, relay pickups 0 vs 4.4, carrier deaths per pickup 0.85 vs 0.62.
+- Rule check (RULES.md): a flag dropped at a carrier's death returns after 4 rounds and cannot be picked up the
+  round it drops, so a re-grab needs a duck within reach in rounds 1-4. Our Micro.fight never moves toward a loose
+  flag (it only closes on enemy carriers).
+- Arm b2rg = B2 + REGRAB (Micro.fight: a visible enemy flag on the ground within dist2 13 becomes the movement goal,
+  just below an enemy carrier; pick it up before striking; counter rg in the indicator). Based on B2, not B3, while
+  B3's demotion rule is pending. Step 5(a): DefaultMedium and DefaultLarge s4 vs g_iter1, against b1z2b.
+- Also fixed: research/census-b2fs.csv and survey-b2fs.csv had been committed empty (copied while the disk was full).

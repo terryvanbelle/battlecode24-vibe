@@ -1,4 +1,4 @@
-package bot;
+package b2rg;
 
 import battlecode.common.*;
 
@@ -37,7 +37,7 @@ public strictfp class G {
     }
 
     public static void endTurn() {
-        rc.setIndicatorString("bc" + maxBc / 1000 + "k o" + overruns + " x" + exceptions + " adv" + Micro.advances + " ch" + Duck.chases + " ct" + Duck.combatTraps + " zh" + Duck.holdTurns + " es" + Micro.escortHits + " rg" + Micro.regrabTries + " f" + Nav.fills + "/" + Nav.avoidableFills + "/" + Nav.ownSkips + " " + note);
+        rc.setIndicatorString("bc" + maxBc / 1000 + "k o" + overruns + " x" + exceptions + " adv" + Micro.advances + " ch" + Duck.chases + " ct" + Duck.combatTraps + " zh" + Duck.holdTurns + " es" + Micro.escortHits + " rg" + Micro.regrabTries + " " + note);
     }
 
     /** xorshift; per-robot seeded from the id so identical code on both sides never shares a sequence. */
