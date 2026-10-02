@@ -512,3 +512,10 @@ Band, 2 seeds, paired against B2 (b1z2b) on identical cells, 234 games.
 - Next: T4 setup-digging retry on B3, now that the navigator avoids needless fills (b2dig5 failed because we filled our own digs).
 Ops: local disk hit 100% (gauntlet replays 2.6 GB). 2026-09-30 replays copied to the VM at ~/archive/bc24-local (1111 files, count verified);
 local copies deleted with the user's approval (prompt 84); 1.5 GB free afterwards.
+
+## T4 retry on B3 (b3dig5: B3 + SETUP_DIGS 5, DIG_RESERVE 1000)
+Step 5(a) vs b2fs, g_iter1 opponent, DefaultMedium s4: digs200 101 vs 0 (fires); fills200 102 vs 104 (the self-fill
+problem that failed b2dig5, +44 fills, does not appear with FILL_SMART); level200 1 vs 0; crumbs200 229 vs 2180 (the dose
+still eats the bank); our pickups 0 vs 8. Both won on level sum.
+Step 5(b) pre-registered (BASE=b2fs), same bars as b2dig5: fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1
+rel:crumbs200>=0.5. If only the bank guard fails, the next arm is a lower dose (SETUP_DIGS 2), not a looser bar.
