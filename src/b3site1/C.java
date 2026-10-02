@@ -1,4 +1,4 @@
-package bot;
+package b3site1;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -23,9 +23,9 @@ public strictfp class C {
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
     public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
-    public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
+    public static final int SETUP_DIGS = 5;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
-    public static final int DIG_SITE = 0;               // T4 siting: 0 any, 1 wall-hugging (>=3 wall/off-map nbrs), 2 behind our spawn (away from the enemy)
+    public static final int DIG_SITE = 1;               // T4 siting: 0 any, 1 wall-hugging, 2 behind our spawn
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
     public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
     public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
@@ -45,12 +45,12 @@ public strictfp class C {
     public static final int GROUP_MIN = 0;               // cohesion: push only with this many allies in view, else regroup (0 = off)
     public static final boolean RUSH_FLANK = false;     // T12 adoption: rushers raid the enemy flag farthest from the army's target
     public static final boolean HINT_SWEEP = false;      // block 2: sweep the dist2-100 disc of a broadcast hint instead of idling on it
-    public static final boolean BUDGET_V1 = false;      // block 1: no discretionary spending in setup, paced floor after
-    public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 3;
+    public static final boolean BUDGET_V1 = true;       // block 1: no discretionary spending in setup, paced floor after
+    public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 0;
     public static final boolean Z1HOLD = false;          // block 4: converge on our dropped flag (re-grabs 9.8/game vs beaters)
     public static final int Z1_RADIUS2 = 20;
-    public static final boolean Z2ESCORT = false;        // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
-    public static final int Z2_ESC_R2 = 2;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
-    public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
+    public static final boolean Z2ESCORT = true;         // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
+    public static final int Z2_ESC_R2 = 8;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
+    public static final boolean FILL_SMART = true;      // C2: take a free land step that does not lose distance instead of filling
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

@@ -1,4 +1,4 @@
-package bot;
+package b3site2;
 
 import battlecode.common.*;
 

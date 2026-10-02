@@ -140,5 +140,13 @@ with tempfile.TemporaryDirectory() as d:
     out = subprocess.run([sys.executable, os.path.join(fake, 'filler-tally.py'), 'ctl', 'cand'], capture_output=True, text=True).stdout
     check('1 seeds, 3 paired games, gained 1, lost 0, net +1' in out, 'filler-tally: one discordant pair in the candidate\'s favour: ' + out)
 
+# fill-origin: own/enemy/natural classification and dig->fill lag
+spec = importlib.util.spec_from_file_location('fo', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fill-origin.py'))
+fo = importlib.util.module_from_spec(spec); spec.loader.exec_module(fo)
+r = fo.classify(['r3 A#10 digs (1,1)', 'r5 B#11 digs (2,2)', 'r9 A#12 fills (1,1)', 'r10 A#12 fills (2,2)',
+                 'r11 A#12 fills (3,3)', 'r12 A#12 fills (1,1)', 'r12 B#-1 fills (9,9)'])
+check(r['A'][:4] == [4, 1, 1, 2] and r['A'][4] == [6], 'fill-origin: A fills own/enemy/natural: %r' % (r['A'],))
+check(r['B'][:4] == [1, 0, 0, 1], 'fill-origin: B one natural fill: %r' % (r['B'],))
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

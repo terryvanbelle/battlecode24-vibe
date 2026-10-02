@@ -519,3 +519,14 @@ problem that failed b2dig5, +44 fills, does not appear with FILL_SMART); level20
 still eats the bank); our pickups 0 vs 8. Both won on level sum.
 Step 5(b) pre-registered (BASE=b2fs), same bars as b2dig5: fire:digs200>0>=0.9 mean:level200>=3 rel:fills200<=1.1
 rel:crumbs200>=0.5. If only the bank guard fails, the next arm is a lower dose (SETUP_DIGS 2), not a looser bar.
+- b3dig5 step 5(b): **FAIL** (2 of 4 bars). digs fire 92%, level200 15.4 (ok); fills200 99.3 vs 58.3 (+41 +- 10) and
+  crumbs200 1261 vs 5014 (-3753 +- 604). FILL_SMART did not stop the self-fills; the single diagnostic cell (+0 fills)
+  was not representative. Not band-tested (band-test.sh refused, as designed).
+- Measurement (new tools/fill-origin.py: every fill classified by the tile's origin), the 24 delivery games:
+  b3dig5 fills 99.3 = own digs 45.9 + natural 53.4; B3 fills 58.3 = natural 58.2. Half of our ~92 digs are filled back by
+  our own ducks, median ~25 rounds later (later traffic, not the digger), at 20+30 crumbs per round trip for nothing.
+  Natural fills are unchanged, so the cost is purely siting: setupDig digs the first even tile next to the duck, often
+  on the lane every duck walks from spawn to the dam.
+- Next arms (siting, dose kept at 5): b3site1 DIG_SITE=1 (only tiles with >= 3 wall/off-map neighbours) and
+  b3site2 DIG_SITE=2 (only tiles farther from the enemy flag than our nearest spawn centre). Step 5(a) on Battlecode24
+  vs g_iter1 (the delivery block's worst self-fill map: 128 own fills).
