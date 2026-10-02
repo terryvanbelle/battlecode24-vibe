@@ -1,4 +1,4 @@
-package g1sym;
+package fl10s;
 
 import battlecode.common.*;
 
@@ -22,14 +22,13 @@ import battlecode.common.*;
  */
 public strictfp class Sym {
     public static final int ROT = 1, FX = 2, FY = 4;
-    public static final boolean OBSERVE = true;    // observation-based symmetry (arm g1sym)
+    public static final boolean OBSERVE = true;    // observation-based symmetry (arm fl10s)
     public static final int BC_START = 6000, BC_STOP = 2500;   // observation runs after the turn, only with this much left
     public static int cands = 7;
     public static int conflicts, eliminations, equivalents, decidedRound = -1;
 
     // per-duck terrain memory, one bit per tile (index x + y*W)
     static long[] seen, wall, spawn;
-    static long[] setupSeen, dam;       // the dam is a fixed feature until r200: compared only between two setup sightings
     static long[] ours;                 // bitset of our 27 spawn tiles (O(1) membership; nested loops cost ~35k bytecode)
 
     static boolean isOurs(MapLocation m) {
@@ -144,24 +143,18 @@ public strictfp class Sym {
     }
 
     /** (4) One sensed tile: remember it, and compare it with its remembered image under every surviving symmetry. */
-    public static void observeTile(int x, int y, boolean isWall, boolean isSpawn) { observeTile(x, y, isWall, isSpawn, false, false); }
-
-    /** As above; during setup (inSetup) the dam is a fixed feature too: dam(t) must equal dam(image) when both tiles were
-     *  seen in setup (the dam vanishes at r200, so a later sighting says nothing about it). */
-    public static void observeTile(int x, int y, boolean isWall, boolean isSpawn, boolean isDam, boolean inSetup) {
+    public static void observeTile(int x, int y, boolean isWall, boolean isSpawn) {
         int i = x + y * G.W, w = i >>> 6;
         long b = 1L << (i & 63);
         seen[w] |= b;
         if (isWall) wall[w] |= b;
         if (isSpawn) spawn[w] |= b;
-        if (inSetup) { setupSeen[w] |= b; if (isDam) dam[w] |= b; }
         for (int s = 1; s <= 4; s <<= 1) {
             if ((cands & s) == 0) continue;
             int j = imageIndex(x, y, s), v = j >>> 6;
             long c = 1L << (j & 63);
             if ((seen[v] & c) == 0) continue;
-            if (((wall[v] & c) != 0) != isWall || ((spawn[v] & c) != 0) != isSpawn) { eliminate(s); continue; }
-            if (inSetup && (setupSeen[v] & c) != 0 && ((dam[v] & c) != 0) != isDam) eliminate(s);
+            if (((wall[v] & c) != 0) != isWall || ((spawn[v] & c) != 0) != isSpawn) eliminate(s);
         }
     }
 
@@ -208,7 +201,7 @@ public strictfp class Sym {
     public static void initMemory() {
         ours = null;
         int n = (G.W * G.H + 63) >>> 6;
-        seen = new long[n]; wall = new long[n]; spawn = new long[n]; setupSeen = new long[n]; dam = new long[n];
+        seen = new long[n]; wall = new long[n]; spawn = new long[n];
     }
 
     /** After the turn's own work, spawned robots only, while undecided and only with BC_START bytecodes left: geometry
@@ -236,7 +229,7 @@ public strictfp class Sym {
             MapLocation m = mi.getMapLocation();
             int i = m.x + m.y * G.W;
             if ((seen[i >>> 6] & (1L << (i & 63))) != 0) continue;   // each tile once: a pair is compared when its
-            observeTile(m.x, m.y, mi.isWall(), mi.isSpawnZone(), mi.isDam(), G.round <= 200);   // second tile first seen (v5:
+            observeTile(m.x, m.y, mi.isWall(), mi.isSpawnZone());    // second tile is first seen (verification 5:
             if (decided()) return;                                    // rescanning cost 14.8k a turn on Soccer)
         }
     }

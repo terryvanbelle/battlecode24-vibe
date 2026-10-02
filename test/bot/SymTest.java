@@ -135,6 +135,17 @@ public class SymTest {
         Sym.geometric(G.spawnCenters);
         check(Sym.decided() && Sym.scoutTarget(new MapLocation(20, 15)) == null, "equivalent ROT/FX on a DefaultLarge-like map count as decided (" + Sym.cands + ")");
 
+        // the dam during setup: a dam tile whose image under FY is open (both seen in setup) eliminates FY; a dam seen
+        // only after r200 says nothing
+        G.W = 40; G.H = 30; reset(); Sym.cands = Sym.ROT | Sym.FY;
+        Sym.observeTile(20, 5, false, false, true, true);          // dam at (20,5) in setup
+        Sym.observeTile(20, 24, false, false, false, true);        // FY image (20,24): no dam, seen in setup -> FY out
+        check(Sym.cands == Sym.ROT, "a setup dam without a dam at its FY image eliminates FY (" + Sym.cands + ")");
+        reset(); Sym.cands = Sym.ROT | Sym.FY;
+        Sym.observeTile(20, 5, false, false, true, true);
+        Sym.observeTile(20, 24, false, false, false, false);       // seen after setup: the dam is gone, no evidence
+        check(Sym.cands == (Sym.ROT | Sym.FY), "a post-setup sighting never compares dams (" + Sym.cands + ")");
+
         System.out.println("SymTest: " + (fails == 0 ? "OK" : "FAILED " + fails) + " (" + trials + " random maps, worst " + worst + " disks)");
         if (fails > 0) System.exit(1);
     }

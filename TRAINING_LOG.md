@@ -959,3 +959,16 @@ of observations, else it is a bug; audit for anything else broken; add tests")
 - Judging g1sym (symmetry repair) in play: the filler now pairs g1sym with g_iter1 on identical random cells vs ColtG5
   (FILLPOOL=ColtG5.Goob_final, filler-pair g_iter1 g1sym). Band: delivery gate pre-registered (BASE=g_iter1):
   mean:symOk>=0.9 mean:overruns<=0, then the band test, judged by REWRITE_EVAL's bars and eval-paired by tier.
+- Owner pasted a summary of symmetry checking (fixed features such as walls and ruins; eliminate as tiles are sensed;
+  track checked locations; bitmasks; rotation first and scouts toward the centre). Ours already eliminates on walls and
+  spawn zones, processes each tile once, uses bitmasks, and keeps rotation only as the last-resort default. Ruins do not
+  exist in 2024. Added the one fixed feature we ignored: **the dam during setup** (dam(t) must equal dam(image) when
+  both tiles were seen before r200; ducks stand at the dam from r150, i.e. the centre). SymTest: a setup dam vs an open
+  FY image eliminates FY; a post-setup sighting never compares dams. Synced: the head-to-head and band test use this
+  version; the g1sym delivery gate already running used the version without the dam check (information only, setup).
+- Owner prompt 134 jobs (queue order): g1sym delivery gate (gate only); **head-to-head g1sym vs g_iter1, 120 games,
+  random maps and sides** (tools/mirror.sh PAIRED=0, replays kept); rush question: arch_rush10s and fl10s (the screen's
+  rush/flank builds + the symmetry repair) on the screen's exact 37 cells vs ColtG5, plus a symOk re-census of all six
+  screen runs; then the g1sym band test. Code reading first: g_iter1 picks targets from known enemy flag positions,
+  then the fuzzy broadcast hints, and only last from the symmetry; but its carrier interception sends far ducks to the
+  carrier's destination = the enemy spawn centre by symmetry.

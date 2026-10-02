@@ -551,3 +551,11 @@ task check
 ## 133. 2026-10-02
 
 task check
+
+## 134. 2026-10-02
+
+I very much want to know how g_iter1 with the symmetry fix does against g_iter1.  Can you also check whether our past rush attempts failed because the faulty symmetry checking sent them to the wrong spot?
+
+## 135. 2026-10-02
+
+(owner pasted a summary of symmetry checking from Google: fixed features such as walls and ruins, elimination as tiles are sensed, track checked locations to save bytecode, bitmasks, default to rotation and scout toward the centre)

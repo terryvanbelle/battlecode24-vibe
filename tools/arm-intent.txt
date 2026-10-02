@@ -2,3 +2,5 @@
 # (2026-10-02: a text edit moved a comment and the sed that turned g1sym's switch on silently missed; the arm ran OFF).
 g1sym Sym.OBSERVE=true
 g1sym Sym.BC_START=6000
+arch_rush10s Sym.OBSERVE=true
+fl10s Sym.OBSERVE=true
