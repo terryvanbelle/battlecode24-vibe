@@ -499,3 +499,7 @@ task check
 ## 120. 2026-10-02
 
 I can answer your question about whether to try a second line of work in parallel:  I'd like you to pick a strategy and focus all your energies on it.  Your immediate goal is to achieve a single, unambiguous victory over a higher-ranked opponent on the ladder.  If you can achieve that, then you can try it more broadly.  Think of the bots above you as a wall that you're having difficulty getting through.  You only need to find a little crack to widen
+
+## 121. 2026-10-02
+
+task check
