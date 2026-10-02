@@ -384,6 +384,7 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
 | CAPTURING at r1200 instead of HEALING (b2u) | step 5(a): late captures 0 vs 3 over 3 cells | refuted before a gate: HEALING at r1200 is load-bearing | - |
 | flag-pressure family (re-grab, carrier step/heal, intercept, dest camp, escort, escort+re-grab pair) | no delivery or 11-26 | closed by the 3-rejects rule | shared carrier tracking with prediction, or a dedicated group |
 | hold a front line instead of marching on flags (S1) | stage A 0/7, 1/7 | refuted | - |
+| forward drift in the hold branch (g1drift 40/80) | 40: delivery fail; 80: band 11-24 (p 0.04), kills -62 | refuted | - |
 | combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
 - Phase 0 instrumentation (part 1): `--capabilities` adds postPickups split into firstGrabs (flag taken from its
   default spot), regrabs (after a carrier death) and relayPickups (after a voluntary drop), the mean distance of a
@@ -836,3 +837,7 @@ band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
 - New tools/eval-paired.py (paired wins with exact sign test and capture-difference deltas, split all / upper tier /
   rest; tested) and tools/upper-tier.txt. Baseline g_iter1 on the band seeds: all 82/234 (capture diff -0.88),
   upper 11/128 (-2.04), rest 71/106 (+0.53). No earlier build reaches 2 SE vs g_iter1 on either measure.
+- g1drift80 band (2 seeds vs the g_iter1 control on identical cells, tools/eval-paired.py): **REJECTED**.
+  all: wins 82->69, 11 gained 24 lost, net -13 (sign p=0.041), capture diff delta -0.19 +- 0.09; upper: 11->6, capture
+  delta -0.12 +- 0.11; rest: 71->63, capture delta -0.28 +- 0.16. inEnemy250 +2.3 (+4.3 SE) but inEnemy300 +0.6, kills
+  -62 (-2.7 SE): drifting forward buys early ground that is gone by r300 and costs fights. Drift closed (ledger).
