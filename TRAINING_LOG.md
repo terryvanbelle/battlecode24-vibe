@@ -738,3 +738,11 @@ swing (none in the last 4 attempts).
   base); ESCORT_BEHIND alone moved nothing (nobody acts on the drop). Together they are the enemy's own convoy (64% of
   their captures come from re-grab/relay chains; escorts 6.76 vs our 4.85). Arm g1escrg = g_iter1 + ESCORT_CARRIER +
   ESCORT_BEHIND + REGRAB; per-half counters et and rg. Step 5(a) batch queued (7 cells vs g_iter1).
+- g1escrg step 5(a) vs the g_iter1 mirrors, 7 cells (pickups / captured / regrabs / escorts20 / enemyCaptured / won):
+  DefaultLarge s4 16/0/14/4.63/0/0 vs 13/0/5/4.44/0/1; s5 19/1/12/3.27/0/1 vs 7/0/1/5.20/0/1; DefaultMedium s4
+  13/0/10/6.81/0/1 vs 12/2/4/6.51/0/1; s5 27/3/24/7.18/0/1 vs 1/0/0/-/0/1; Tunnels s4 15/1/11/10.45/1/1 vs 8/0/3/5.91/0/1;
+  s5 22/0/15/6.52/1/0 vs 6/1/2/5.69/0/1; Battlecode24 s4 identical (no carrier). Both halves fire (et on 21-43 ducks,
+  rg on 3-12). Totals: regrabs 86 vs 15, captured 5 vs 3, enemyCaptured 4 vs 2, wins 4/7 vs 6/7; escorts 6.34 vs 5.55
+  on the 5 cells where both carried. First flag-pressure arm whose behaviour shows; the cost shows too (enemy captures).
+  Step 5(b) pre-registered (BASE=g_iter1): rel:regrabs>=2.0 rel:escorts20>=1.1 rel:captured>=1.0 rel:enemyCaptured<=1.3.
+- Filler: B1 vs g_iter1 113-138 over 1631 (-1.6 SE); B2 98-104 over 1274 (-0.4 SE); B3 45-68 over 757 (-2.2 SE).
