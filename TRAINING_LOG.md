@@ -579,3 +579,7 @@ arms are re-based on B2 (NO_FILL_OWN does not depend on FILL_SMART). Otherwise B
 Driver: repo clean and in sync with origin; unit tests OK; cron loop 9c63c476 (task check, 30 min) alive. VM
 battlecode-dev2 RUNNING (up 1 d 12 h, load ~24, disk 86%); queue runner alive 23 h; filler running; b2rg queued.
 Driver disk 98% again (the b3own band replays). tools/vm-collect.sh now leaves replays on the VM unless REPLAYS=1.
+- Ops (owner prompt 92, standing permission to delete what we no longer need, never anything on GitHub): all 928
+  local replays deleted after a path+size check against the VM (gauntlet/ and ~/archive/bc24-local). Driver disk
+  98% -> 92% (2.4 GB free). gauntlet/ is gitignored; nothing tracked was touched.
+- Filler, 4 seeds: B3 vs B2 10-21 (-2.0 SE); B1 vs g_iter1 now 69-86 over 1034 (-1.4 SE); B2 vs g_iter1 55-47 (+0.8 SE).
