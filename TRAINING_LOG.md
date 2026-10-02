@@ -381,6 +381,7 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
 | cohesion | 20-23, gr8 4-18 | refuted | - |
 | upgrade order heal/capture first | 22-26, 14-33 | refuted (ATTACK first is load-bearing) | - |
 | re-grab loose flags in fights anywhere (b2rg) | 11-26 | refuted: regrabs +4.8 but each is a dead carrier, kills -37 | regrab on our half only; with CAPTURING |
+| CAPTURING at r1200 instead of HEALING (b2u) | step 5(a): late captures 0 vs 3 over 3 cells | refuted before a gate: HEALING at r1200 is load-bearing | - |
 | combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
 - Phase 0 instrumentation (part 1): `--capabilities` adds postPickups split into firstGrabs (flag taken from its
   default spot), regrabs (after a carrier death) and relayPickups (after a voluntary drop), the mean distance of a
@@ -641,3 +642,15 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   src/bot (behaviourally g_iter1) + Z2ESCORT r2 8, without BUDGET_V1. Step 5(a) batch queued (g1z2 vs the g_iter1
   mirror on DefaultMedium, DefaultLarge, Tunnels s4), plus a byte-identity control g1copy (snapshot of src/bot, all
   switches off) to confirm src/bot still plays as g_iter1 after today's switch additions.
+- Identity control: g1copy (snapshot of src/bot, all switches off) reproduces the g_iter1 mirror exactly on
+  DefaultMedium and Tunnels s4 (every census and survey value equal). src/bot is still behaviourally g_iter1.
+- b2u step 5(a) (b2u vs b1z2b, s4 vs g_iter1; captured / capturedLate): Battlecode24 0/0 vs 2/2, DefaultLarge 0/0 vs
+  0/0, Tunnels 0/0 vs 1/1. The builds are identical to r1200; after it, swapping HEALING for CAPTURING cost the late
+  captures instead of adding them. **Closed without a delivery block**: HEALING at r1200 is load-bearing for late fights.
+- b2rgh step 5(a): DefaultLarge identical to B2 (no loose flag on our half, never fires); DefaultMedium regrabs 5,
+  pickups 13, carrier deaths 13, captured 0 (g_iter1 1). Fires, but no conversion shows; **parked**.
+- g1z2 step 5(a) (vs the g_iter1 mirror): escort hits fire (es up to 8 per duck; 20 and 14 ducks on DefaultLarge and
+  DefaultMedium, 1 on Tunnels). Enemy re-grabs small either way (g_iter1 re-grabs little). Step 5(b) pre-registered
+  with BASE=g_iter1, the bars B2's escort block passed: rel:enemyRegrabs<=0.7 rel:postPickups>=0.8. Queued with the
+  band test.
+- Filler: B3 vs g_iter1 now 11-35 over 319 (-3.5 SE).
