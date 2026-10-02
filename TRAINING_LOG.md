@@ -682,3 +682,12 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
   (up to 88 per duck). Chasing up on 2 of 4; enemy pickups up on 2 (ducks pulled off flags?).
   Step 5(b) pre-registered (BASE=g_iter1): rel:chasers20>=1.2 rel:enemyFirstGrabs<=1.2. Queued with the band test.
 - Filler: B3 vs g_iter1 19-44 over 439 (-3.1 SE).
+- g1icpt step 5(b): **FAIL** (BASE=g_iter1): chasers20 2.40 vs 2.31 (+0.09 +- 0.43; bar x1.2); enemyFirstGrabs 7.67 vs
+  8.00 ok. Intercepts fire constantly but do not put more ducks near carriers. Reason: the carrier alert is fresh only
+  while someone sees the carrier, which is exactly when ducks are already near; the unopposed carriers (47% of their
+  captures) are the ones nobody sees, and their alert is stale after CARRY_FRESH = 5 rounds. Not band-tested.
+- Arm g1camp = g_iter1 + DEST_CAMP: a stale carrier alert (age > 5) still names the destination (enemy spawn centre
+  nearest the last sighting). The carrier needs ~2 rounds a tile, so a duck that can reach that centre first waits there
+  while age <= 2*dist + 10. Applies where carrierTarget applies (no enemy in view). Counter "ch../../<camps>".
+  Comms.carriedAge/carriedLast added. Step 5(a) batch queued (4 maps vs g_iter1, with g1copy mirrors).
+- Filler: B2 vs g_iter1 78-76 over 957 (+0.2 SE); B1 87-113 over 1354 (-1.8 SE); B3 22-47 over 479 (-3.0 SE).
