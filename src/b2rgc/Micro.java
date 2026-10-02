@@ -1,4 +1,4 @@
-package bot;
+package b2rgc;
 
 import battlecode.common.*;
 

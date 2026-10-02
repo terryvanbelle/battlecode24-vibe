@@ -583,3 +583,18 @@ Driver disk 98% again (the b3own band replays). tools/vm-collect.sh now leaves r
   local replays deleted after a path+size check against the VM (gauntlet/ and ~/archive/bc24-local). Driver disk
   98% -> 92% (2.4 GB free). gauntlet/ is gitignored; nothing tracked was touched.
 - Filler, 4 seeds: B3 vs B2 10-21 (-2.0 SE); B1 vs g_iter1 now 69-86 over 1034 (-1.4 SE); B2 vs g_iter1 55-47 (+0.8 SE).
+- b2rg step 5(b): **PASS** (BASE=b1z2b, 24 games): regrabs 7.62 vs 1.46 (+6.2 +- 1.3); pickups 14.5 vs 7.6;
+  captured 1.12 vs 1.12 (+0.00 +- 0.17); inEnemy250 15.2 vs 12.4. Band test started (gauntlet/20261002-04*-scrim-b2rg).
+  Pickups doubled but captures did not move: the extra carriers die before home. Conversion per pickup is the gap.
+- Filler, 5 seeds: B3 vs B2 15-26 (-1.7 SE).
+
+### 2026-10-02 — C9 carrier protection, first arm (b2rgc = b2rg + CARRY_SAFE + CARRIER_HEAL)
+Rules (RULES.md): a carrier cannot act, only move; its move cooldown is +20 (two rounds a tile; 12 with CAPTURING).
+Duck.carryFlag stepped by Nav.moveTo with no threat term; Micro.tryHeal healed the lowest HP, carrier or not.
+- CARRY_SAFE: with enemies in view, among steps that shorten the way home, the one with the fewest enemies within
+  dist2 10, only when safer than the straight step (counter safeSteps).
+- CARRIER_HEAL: a hurt allied carrier in heal range is healed before anyone else (counter carrierHeals).
+- Indicator: "zh" (Z1HOLD, off in the stack) replaced by "cs<safeSteps>/<carrierHeals>".
+Step 5(a): DefaultLarge and DefaultMedium s4 vs g_iter1, against b2rg (19 and 12 pickups there, every carrier died).
+Noted for later: CAPTURING also stretches a dropped flag's return from 4 to 25 rounds, which multiplies the re-grab
+window; capture-first lost 14-33 before re-grabbing existed, so it is worth a retry on a REGRAB base.
