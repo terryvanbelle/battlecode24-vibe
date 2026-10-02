@@ -924,3 +924,12 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   To be wired into unit-tests.sh for src/bot once the S0b workflow (editing src/bot now) has finished.
 - Correctness audit launched (workflow: five lenses: dead code, rules/API, comms, behaviour in replays, measurement tools;
   two adversarial verifiers; ranked report with fixes and regression tests). Read-only on src/g_iter1 and tools.
+- g1sym verification 1 (16 maps vs g_iter1, s4): symOk 14/16; decided at r1 on 4 maps, r5-62 on 6, r204-206 on 3; never
+  on DefaultLarge (correct anyway); **Snake decided r269 and Soccer r1807** (both correct in the end, wrong at r250).
+  Cause (Soccer board): terrain symmetric under ROT and FX alike; the candidates differ only by one row of the middle
+  spawn-zone image, deep on their side, so no passive observation on our side can decide it. Fixes: (a) the spawn check
+  covers all 27 of our spawn tiles (each must map onto THEIR spawn tile), not just centres; (b) **a scout**: after
+  setup, while undecided, duck idx 3 walks to the nearest distinguishing tile (an image of one of our spawn tiles under
+  one candidate that is not an image under another; one look eliminates at least one). SymTest adds a Soccer-like case
+  (geometry cannot separate ROT/FX; the scout target is distinguishing; one look decides FX). OK.
+  Verification 2 queued: the rebuilt g1sym on 24 maps.

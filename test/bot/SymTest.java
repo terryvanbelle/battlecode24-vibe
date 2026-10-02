@@ -101,6 +101,31 @@ public class SymTest {
         Sym.geometric(G.spawnCenters);
         check((Sym.cands & Sym.FX) == 0, "a centre on the FX axis rules FX out (" + Sym.cands + ")");
 
+        // Soccer-like (53x30, terrain symmetric under ROT and FX alike): the two candidates differ only in the middle
+        // zone, one row, deep on their side. The scout target must distinguish them, and one look there must decide it.
+        G.W = 53; G.H = 30; reset(); Sym.cands = Sym.ROT | Sym.FX;
+        MapLocation[] centres = {new MapLocation(11, 26), new MapLocation(6, 14), new MapLocation(11, 3)};
+        G.spawnCenters[0] = centres[0]; G.spawnCenters[1] = centres[1]; G.spawnCenters[2] = centres[2];
+        G.spawns = new MapLocation[27];
+        int k = 0;
+        for (MapLocation c : centres) for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) G.spawns[k++] = c.translate(dx, dy);
+        Sym.geometric(G.spawnCenters);
+        check(Sym.cands == (Sym.ROT | Sym.FX), "Soccer-like: geometry alone cannot separate ROT and FX (" + Sym.cands + ")");
+        MapLocation t = Sym.scoutTarget(new MapLocation(26, 14));
+        boolean underFX = false, underROT = false;
+        for (MapLocation q : G.spawns) { if (Sym.image(q, Sym.FX).equals(t)) underFX = true; if (Sym.image(q, Sym.ROT).equals(t)) underROT = true; }
+        check(t != null && underFX != underROT, "Soccer-like: the scout target is a tile the candidates disagree on (" + t + ")");
+        // truth FX: our side seen (spawn tiles are spawn, others not), then the scout sees t
+        for (int x = 0; x < 26; x++) for (int y = 0; y < 30; y++) {
+            boolean sp = false; for (MapLocation q : G.spawns) if (q.x == x && q.y == y) sp = true;
+            Sym.observeTile(x, y, false, sp);
+        }
+        boolean tSpawnUnderTruth = underFX;
+        Sym.observeTile(t.x, t.y, false, tSpawnUnderTruth);
+        if (!tSpawnUnderTruth) Sym.observeSpawnImage(Sym.ROT, false);
+        check(Sym.cands == Sym.FX, "Soccer-like: one look at the scout target decides FX (" + Sym.cands + ")");
+        check(Sym.scoutTarget(new MapLocation(26, 14)) == null, "decided: no scout target");
+
         System.out.println("SymTest: " + (fails == 0 ? "OK" : "FAILED " + fails) + " (" + trials + " random maps, worst " + worst + " disks)");
         if (fails > 0) System.exit(1);
     }

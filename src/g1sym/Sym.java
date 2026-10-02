@@ -124,6 +124,47 @@ public strictfp class Sym {
         }
     }
 
+    static MapLocation scoutT; static int scoutFor = -1;
+
+    /** A tile where the surviving symmetries disagree about THEIR spawn zones (one sight eliminates at least one):
+     *  the image of one of our spawn tiles under one candidate that is not an image under another. Nearest to `from`.
+     *  Recomputed only when the candidate set changes. Pure given G.spawns, G.W, G.H. */
+    public static MapLocation scoutTarget(MapLocation from) {
+        if (decided()) return null;
+        if (scoutFor == cands && scoutT != null) return scoutT;
+        scoutFor = cands; scoutT = null;
+        int bd = Integer.MAX_VALUE;
+        for (int s = 1; s <= 4; s <<= 1) {
+            if ((cands & s) == 0) continue;
+            for (MapLocation p : G.spawns) {
+                MapLocation im = image(p, s);
+                boolean everywhere = true;                  // is im an image of some spawn tile under every other candidate?
+                for (int o = 1; o <= 4 && everywhere; o <<= 1) {
+                    if (o == s || (cands & o) == 0) continue;
+                    MapLocation back = image(im, o);        // images are involutions: im = image(q, o) iff q = image(im, o)
+                    boolean found = false;
+                    for (MapLocation q : G.spawns) if (q.equals(back)) { found = true; break; }
+                    if (!found) everywhere = false;
+                }
+                if (everywhere) continue;
+                int d = from.distanceSquaredTo(im);
+                if (d < bd) { bd = d; scoutT = im; }
+            }
+        }
+        return scoutT;
+    }
+
+    /** The scout (one duck, idx SCOUT_IDX): after setup, while undecided, walk to the nearest distinguishing tile. */
+    public static final int SCOUT_IDX = 3;
+    public static int scoutTurns;
+    public static boolean scout() throws GameActionException {
+        if (!OBSERVE || decided() || G.idx != SCOUT_IDX || G.round <= 200 || !G.rc.isSpawned() || !G.rc.isMovementReady()) return false;
+        MapLocation t = scoutTarget(G.rc.getLocation());
+        if (t == null) return false;
+        scoutTurns++;
+        return Nav.moveTo(t);
+    }
+
     public static void initMemory() {
         int n = (G.W * G.H + 63) >>> 6;
         seen = new long[n]; wall = new long[n]; spawn = new long[n];
@@ -136,14 +177,12 @@ public strictfp class Sym {
         if (seen == null) initMemory();
         if (!geoDone) { geometric(G.spawnCenters); geoDone = true; }
         if (decided() || !rc.isSpawned()) return;
-        for (int s = 1; s <= 4; s <<= 1) {
+        for (int s = 1; s <= 4; s <<= 1) {                 // every one of our spawn tiles maps onto one of theirs
             if ((cands & s) == 0) continue;
-            for (MapLocation c : G.spawnCenters) {
-                if (c == null) continue;
-                MapLocation im = image(c, s);
+            for (MapLocation p : G.spawns) {
+                MapLocation im = image(p, s);
                 if (!rc.canSenseLocation(im)) continue;
-                observeSpawnImage(s, rc.senseMapInfo(im).getSpawnZoneTeamObject() == G.them);
-                break;
+                if (rc.senseMapInfo(im).getSpawnZoneTeamObject() != G.them) { observeSpawnImage(s, false); break; }
             }
         }
         if (decided()) return;
