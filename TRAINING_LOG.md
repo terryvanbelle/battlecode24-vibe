@@ -691,3 +691,11 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
   while age <= 2*dist + 10. Applies where carrierTarget applies (no enemy in view). Counter "ch../../<camps>".
   Comms.carriedAge/carriedLast added. Step 5(a) batch queued (4 maps vs g_iter1, with g1copy mirrors).
 - Filler: B2 vs g_iter1 78-76 over 957 (+0.2 SE); B1 87-113 over 1354 (-1.8 SE); B3 22-47 over 479 (-3.0 SE).
+- g1camp step 5(a) vs the g1copy/g_iter1 mirror (enemyCaptured, chasers20): Battlecode24 1 vs 2, 1.93 vs 1.71 (a carrier
+  unseen for 45 rounds died at r1859 where the mirror's scored at r1829); DefaultLarge 0 vs 0, 0.82 vs 1.36;
+  DefaultMedium 0 vs 0, 3.04 vs 3.29; Tunnels 1 vs 0, 1.30 vs 7.16. Camps fire (33-50 ducks per game). Tunnels trace:
+  the carrier re-grabbed our flag at (12,21) and walked 12 tiles east to (23,22) in 28 rounds with no chaser; our ducks
+  near the pickup were fighting (enemies in view), so neither carrierTarget nor campTarget ran. Not reproduced: not gated.
+- INTERCEPT acts only inside fights, DEST_CAMP only outside them, and our ducks are nearly always in a fight: arm
+  **g1icamp** = g_iter1 + INTERCEPT + DEST_CAMP (in a fight, a stale alert's destination within dist2 225 becomes the
+  fight's goal). Step 5(a) batch queued (4 maps s4 + DefaultMedium/Tunnels s5 with g1copy mirrors).
