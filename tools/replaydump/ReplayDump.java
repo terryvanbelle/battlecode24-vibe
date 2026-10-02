@@ -70,7 +70,7 @@ public class ReplayDump {
 
     // ---- nav stats
     static Map<Integer, int[]> prevLoc = new HashMap<>(), prev2Loc = new HashMap<>();
-    static int[] osc = new int[3], robotRounds = new int[3], stillRounds = new int[3];
+    static int[] osc = new int[3], robotRounds = new int[3], stillRounds = new int[3], robotRoundsPost = new int[3], stillPost = new int[3], stillPostNoEnemy = new int[3];
     static boolean[][] visited = new boolean[3][];
 
     // ---- options
@@ -250,8 +250,20 @@ public class ReplayDump {
                 int[] p2 = prevLoc.get(id);
                 if (p2 != null && p2[0] == x && p2[1] == y) osc[t]++;
                 prevLoc.put(id, pl);
-            } else if (pl != null && hp > 0) stillRounds[t]++;
-            if (hp > 0) robotRounds[t]++;
+            } else if (pl != null && hp > 0) {
+                stillRounds[t]++;
+                if (rn > 200) {
+                    stillPost[t]++;
+                    boolean seen = false;                       // an enemy within vision (dist2 20) last we knew
+                    for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
+                        if (team.getOrDefault(re.getKey(), 0) != 3 - t) continue;
+                        int dx = re.getValue()[0] - x, dy = re.getValue()[1] - y;
+                        if (dx * dx + dy * dy <= 20) { seen = true; break; }
+                    }
+                    if (!seen) stillPostNoEnemy[t]++;
+                }
+            }
+            if (hp > 0) { robotRounds[t]++; if (rn > 200) robotRoundsPost[t]++; }
             visited[t][idx(x, y)] = true;
             int ci = idx(x, y); if (crumbs[ci] > 0) { kGathered[t] += crumbs[ci]; crumbs[ci] = 0; }   // stepping on crumbs collects them
             if (hp > 0 && rn > 200 && side[ci] == 3 - t && kFirstEnemySide[t] == 0) kFirstEnemySide[t] = rn;
@@ -539,7 +551,7 @@ public class ReplayDump {
             }
         }
         if (capMode) {
-            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20");
+            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -550,7 +562,8 @@ public class ReplayDump {
                         + (cTraps[t][0] + cTraps[t][1] + cTraps[t][2]) + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + String.format("%.1f", kRounds > 0 ? (double) kAliveSum[t] / kRounds : 0.0)
                         + "," + kPostPickups[t] + "," + kFirstGrabs[t] + "," + kRegrabs[t] + "," + kRelayPickups[t] + ","
                         + (kCarrierDeathN[t] > 0 ? String.format("%.1f", (double) kCarrierDeathDistSum[t] / kCarrierDeathN[t]) : "") + "," + kDamStage199[t]
-                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o] + "," + String.format("%.2f", kChaseRounds[o] > 0 ? (double) kEscortSum[t] / kChaseRounds[o] : 0.0));
+                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t] + "," + String.format("%.2f", kChaseRounds[t] > 0 ? (double) kChaseSum[t] / kChaseRounds[t] : 0.0) + "," + cCaptures[o] + "," + String.format("%.2f", kChaseRounds[o] > 0 ? (double) kEscortSum[t] / kChaseRounds[o] : 0.0)
+                        + "," + String.format("%.1f", robotRoundsPost[t] > 0 ? 100.0 * stillPost[t] / robotRoundsPost[t] : 0.0));
             }
         }
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot
@@ -571,10 +584,12 @@ public class ReplayDump {
             int passable = 0; for (int i = 0; i < W * H; i++) if (!wall[i]) passable++;
             for (int t = 1; t <= 2; t++) {
                 int cov = 0; for (boolean v : visited[t]) if (v) cov++;
-                out.printf("nav %s: moves=%d robotRounds=%d movesPerRobotRound=%.3f oscillationABA=%.1f%% stillRounds=%.1f%% coverage=%.1f%%%n",
+                out.printf("nav %s: moves=%d robotRounds=%d movesPerRobotRound=%.3f oscillationABA=%.1f%% stillRounds=%.1f%% coverage=%.1f%% stillPost=%.1f%% stillPostNoEnemy=%.1f%%%n",
                         tname(t), cMoves[t], robotRounds[t], robotRounds[t] > 0 ? (double) cMoves[t] / robotRounds[t] : 0.0,
                         cMoves[t] > 0 ? 100.0 * osc[t] / cMoves[t] : 0.0, robotRounds[t] > 0 ? 100.0 * stillRounds[t] / robotRounds[t] : 0.0,
-                        100.0 * cov / Math.max(1, passable));
+                        100.0 * cov / Math.max(1, passable),
+                        robotRoundsPost[t] > 0 ? 100.0 * stillPost[t] / robotRoundsPost[t] : 0.0,
+                        robotRoundsPost[t] > 0 ? 100.0 * stillPostNoEnemy[t] / robotRoundsPost[t] : 0.0);
             }
         }
     }

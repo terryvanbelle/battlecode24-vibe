@@ -768,3 +768,13 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   A static line does not stop an advancing opponent: it walks into our half (inEnemy300 25-36 vs the usual ~16) and we
   lose the level-sum tiebreaks too. **S1 closed at stage A** (premise failure, stronger than the written criterion).
   Ledger: "hold a front line instead of marching on flags" refuted 0-7 / 1-7 in stage A.
+
+### 2026-10-02 — defect source: stillness in fights
+- navstats over the B3 band (234 games; us / them): moves per robot-round 0.668 / 0.762; still rounds 32.7% / 23.2%;
+  **after setup 36.1% / 22.0%**, of which with no enemy within dist2 20 only 4.6% / 6.2%. Our stillness is in fights:
+  the kite/hold branch parks out of reach (minD 11-20 band, +1 for CENTER) while opponents keep moving, consistent with
+  them gaining ground in our half (inEnemy300 21.8 vs 15.7 in our losses). New navstats fields stillPost /
+  stillPostNoEnemy and census column stillPost (tested).
+- Arm g1drift = g_iter1 + HOLD_DRIFT 40: in the kite/hold branch only, +40 for a tile closer to the field target, -40
+  for one farther (below the 50 safe-band bonus and far below the 1000 per threat: a safe forward creep).
+  Micro.objective = fieldTarget() in fights when on. Step 5(a) batch queued (7 cells).

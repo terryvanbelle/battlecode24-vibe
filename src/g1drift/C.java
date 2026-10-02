@@ -1,4 +1,4 @@
-package bot;
+package g1drift;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -40,7 +40,7 @@ public strictfp class C {
     public static final boolean HOLD_LINE = false;     // structural: the army holds front points (midpoints spawn centre - its mirror) instead of marching on enemy flags
     public static final int HOLD_UNTIL = 2001;            // round after which the army marches on flags again
     public static final int HOLD_DEPTH_TENTHS = 5;        // front point at this fraction of the way from our spawn centre to its mirror (5 = midline)
-    public static final int HOLD_DRIFT = 0;               // fight kite/hold branch: +this for a step toward the field target, -this away (0 off; < the 50 safe-band bonus)
+    public static final int HOLD_DRIFT = 40;               // fight kite/hold branch: +this for a step toward the field target, -this away (0 off; < the 50 safe-band bonus)
     public static final boolean ESCORT_BEHIND = false; // escort goal one tile behind the carrier (never in its path) instead of its next tile
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
