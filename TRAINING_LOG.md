@@ -636,3 +636,8 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   New arms are built on B2 (b2u, b2rgh) because B3's value is unresolved.
 - Filler vs g_iter1: B1 72-97 over 1114 (-1.9 SE); B2 64-59 over 757 (+0.5 SE); B3 11-32 over 279 (-3.2 SE). The stack
   has not yet beaten the incumbent g_iter1 on paired games; B2 is level with it.
+- Filler B2 vs B1: 83-56 over 757 paired games (**+2.3 SE**): Z2ESCORT is a real gain on top of B1. B1 itself vs g_iter1
+  is 72-97 (-1.9 SE). So B1's budget change (BUDGET_V1) looks negative and Z2ESCORT positive. New arm **g1z2** =
+  src/bot (behaviourally g_iter1) + Z2ESCORT r2 8, without BUDGET_V1. Step 5(a) batch queued (g1z2 vs the g_iter1
+  mirror on DefaultMedium, DefaultLarge, Tunnels s4), plus a byte-identity control g1copy (snapshot of src/bot, all
+  switches off) to confirm src/bot still plays as g_iter1 after today's switch additions.
