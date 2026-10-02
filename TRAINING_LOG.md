@@ -382,6 +382,8 @@ Queued (blocks12): b12, b2hint, b1budget on the band (2 seeds) with census and s
 | upgrade order heal/capture first | 22-26, 14-33 | refuted (ATTACK first is load-bearing) | - |
 | re-grab loose flags in fights anywhere (b2rg) | 11-26 | refuted: regrabs +4.8 but each is a dead carrier, kills -37 | regrab on our half only; with CAPTURING |
 | CAPTURING at r1200 instead of HEALING (b2u) | step 5(a): late captures 0 vs 3 over 3 cells | refuted before a gate: HEALING at r1200 is load-bearing | - |
+| flag-pressure family (re-grab, carrier step/heal, intercept, dest camp, escort, escort+re-grab pair) | no delivery or 11-26 | closed by the 3-rejects rule | shared carrier tracking with prediction, or a dedicated group |
+| hold a front line instead of marching on flags (S1) | stage A 0/7, 1/7 | refuted | - |
 | combat-trap quantity/aim | 20-22, 16-18, 15-23 | priced ~0 at today's bank | block 1 base (block 5) |
 - Phase 0 instrumentation (part 1): `--capabilities` adds postPickups split into firstGrabs (flag taken from its
   default spot), regrabs (after a carrier death) and relayPickups (after a voluntary drop), the mean distance of a
@@ -761,3 +763,8 @@ Stage budget: A diagnostic (army at the line; enemy pickups/captures down) -> B 
 (rel:enemyCaptured<=0.7, rel:enemyFirstGrabs<=0.8, pre-registered then) -> C band test. Closing criterion (written
 now): two stage-B failures across depth variants close S1.
 Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batch queued (7 cells each).
+- S1 stage A (7 cells each vs g_iter1; won / our pickups / enemy pickups / their inEnemy300): g1line5 0/7 wins, 0 pickups
+  on all cells, enemy pickups 2-20, their inEnemy300 25-36; g1line4 1/7 wins, 3 pickups in total, enemy pickups 2-27.
+  A static line does not stop an advancing opponent: it walks into our half (inEnemy300 25-36 vs the usual ~16) and we
+  lose the level-sum tiebreaks too. **S1 closed at stage A** (premise failure, stronger than the written criterion).
+  Ledger: "hold a front line instead of marching on flags" refuted 0-7 / 1-7 in stage A.
