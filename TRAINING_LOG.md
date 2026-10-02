@@ -675,3 +675,10 @@ dist2 20 of the carrier per round, outcome; tested) and tools/defense-profile.py
   in reach and a visible carrier keep priority). Counter "ch<chases>/<intercepts>".
 - New census columns chasers20 (our mean ducks within dist2 20 of an enemy carrier per carried round) and
   enemyCaptured (their captures, on our row, for rel: checks). Step 5(a) batch queued: 4 maps s4 vs g_iter1 mirror.
+- g1z2w step 5(a): escort hits fire on 20 / 9 / 1 ducks (DefaultLarge / DefaultMedium / Tunnels) vs g1z2's 20 / 14 / 1.
+  Radius 13 does not deliver more than radius 8, so it cannot be expected to clear the bar g1z2 missed. **Parked.**
+- g1icpt step 5(a) vs the g_iter1 mirror (chasers20 / enemyCaptured / enemy pickups): Battlecode24 2.86/1/5 vs 1.71/2/6;
+  DefaultMedium 4.77/0/7 vs 3.04/0/3; DefaultLarge 1.21/0/15 vs 1.36/0/5; Tunnels 5.30/1/10 vs 7.16/0/9. Intercepts fire
+  (up to 88 per duck). Chasing up on 2 of 4; enemy pickups up on 2 (ducks pulled off flags?).
+  Step 5(b) pre-registered (BASE=g_iter1): rel:chasers20>=1.2 rel:enemyFirstGrabs<=1.2. Queued with the band test.
+- Filler: B3 vs g_iter1 19-44 over 439 (-3.1 SE).
