@@ -1,4 +1,4 @@
-package bot;
+package g1reach;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -28,7 +28,7 @@ public strictfp class C {
     public static final int ALERT_THREAT_R2 = 20;
     public static final boolean REG_FIX = false;        // audit A5/A6: our dead carrier's flag is "dropped", not "carried by us" forever;
                                                         // a drop tile expires to the flag's home after the return window
-    public static final boolean REACH_FIX = false;      // audit A4: an enemy takes the turn only if within dist2 8 or reachable in 3 moves
+    public static final boolean REACH_FIX = true;       // audit A4: an enemy takes the turn only if within dist2 8 or reachable in 3 moves
     public static final boolean NAV_FIX = false;        // audit A7/A9: bug state survives small target moves; one edge flip per call
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this

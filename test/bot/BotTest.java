@@ -42,6 +42,7 @@ public class BotTest {
                     case "getRoundNum": return G.round;
                     case "getLocation": return G.me;
                     case "isSpawned": return G.me != null;
+                    case "onTheMap": { MapLocation l = (MapLocation) args[0]; return l.x >= 0 && l.y >= 0 && l.x < G.W && l.y < G.H; }
                     case "hashCode": return 1;
                     case "equals": return proxy == args[0];
                     case "toString": return "fakeRc";

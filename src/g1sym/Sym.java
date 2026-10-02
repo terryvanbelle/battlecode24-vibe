@@ -143,6 +143,19 @@ public strictfp class Sym {
         if (!theirSpawnZone) eliminate(s);
     }
 
+    /** Audit A2: an enemy flag's id is the location index (x + y*W) of THEIR spawn centre; a symmetry under which none of
+     *  our centres maps exactly onto it is impossible. One id decides the symmetry on most maps. */
+    public static void observeEnemyCentre(int flagId) {
+        if (decided() || flagId < 0) return;
+        int cx = flagId % G.W, cy = flagId / G.W;
+        for (int s = 1; s <= 4; s <<= 1) {
+            if ((cands & s) == 0) continue;
+            boolean hit = false;
+            for (MapLocation c : G.spawnCenters) if (c != null) { MapLocation im = image(c, s); if (im.x == cx && im.y == cy) hit = true; }
+            if (!hit) eliminate(s);
+        }
+    }
+
     /** (4) One sensed tile: remember it, and compare it with its remembered image under every surviving symmetry. */
     public static void observeTile(int x, int y, boolean isWall, boolean isSpawn) { observeTile(x, y, isWall, isSpawn, false, false); }
 
@@ -219,6 +232,8 @@ public strictfp class Sym {
         RobotController rc = G.rc;
         if (seen == null) initMemory();
         if (!geoDone) { geometric(G.spawnCenters); geoDone = true; }
+        if (decided()) return;
+        for (int i = 0; i < 3; i++) { int v = rc.readSharedArray(Comms.EF_ID + i); if (v > 0) observeEnemyCentre(v - 1); }   // A2
         if (decided() || !rc.isSpawned()) return;
         for (int s = 1; s <= 4; s <<= 1) {                 // every one of our spawn tiles maps onto one of theirs
             if ((cands & s) == 0) continue;

@@ -7,3 +7,5 @@ fl10s Sym.OBSERVE=true
 g1trk C.TRACK=true
 g1alert C.ALERT_FIX=true
 g1reg C.REG_FIX=true
+g1reach C.REACH_FIX=true
+g1nav C.NAV_FIX=true

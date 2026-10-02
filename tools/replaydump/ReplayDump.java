@@ -429,6 +429,20 @@ public class ReplayDump {
                 if (run > kMaxPark[t]) kMaxPark[t] = run;
             }
         }
+        // audit A5/A6 contracts on the enemy-flag registry (slots EF_ID 1-3, EF_LOC 4-6, EF_STATE 7-9)
+        if (rn > 200 && commSeen) for (int t = 1; t <= 2; t++) for (int i = 0; i < 3; i++) {
+            int fid = comm[t][1 + i] - 1, st = comm[t][7 + i], enc = comm[t][4 + i];
+            if (fid < 0 || flagTeam.getOrDefault(fid, 0) != 3 - t) continue;
+            int holder = -1; for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) if (ce.getValue() == fid) holder = ce.getKey();
+            boolean ourCarrier = holder >= 0 && team.getOrDefault(holder, 0) == t;
+            if (st == 1 && !ourCarrier) kEfStaleCarry[t]++;
+            if (st == 0 && enc != 0) {
+                int[] truth = holder >= 0 ? lastLoc.get(holder) : flagLoc.get(fid);
+                if (truth == null) truth = flagHome.get(fid);
+                int ex = (enc - 1) / 64, ey = (enc - 1) % 64;
+                if (truth != null && Math.max(Math.abs(truth[0] - ex), Math.abs(truth[1] - ey)) > 2) kEfStaleLoc[t]++;
+            }
+        }
         // bytecodes
         for (int j = 0; j < r.bytecodeIdsLength(); j++) {
             int id = r.bytecodeIds(j), t = team.getOrDefault(id, 0), bc = r.bytecodesUsed(j);
@@ -633,6 +647,7 @@ public class ReplayDump {
     static int[][] comm = new int[3][64];
     static boolean commSeen, commMode, commHeader, trackMode, trackLog, execDone, execBroken;
     static int[] sym250 = {-1, -1, -1}, psym250 = {0, 0, 0};
+    static int[] kEfStaleCarry = new int[3], kEfStaleLoc = new int[3];
     static int[] kAlertWrites = new int[3], kAlertNoThreat = new int[3], kMaxPark = new int[3];
     static Map<Integer, Integer> parkRun = new HashMap<>();
     static int[] symDecided = {-1, -1, -1}, symWrongT = {0, 0, 0}, correctSymsCache = {-2, -2, -2};
@@ -1141,7 +1156,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1161,7 +1176,8 @@ public class ReplayDump {
                         + "," + (symOk(t) >= 0 ? String.valueOf(symOk(t)) : "") + "," + (psymOk(t) >= 0 ? String.valueOf(psymOk(t)) : "")
                         + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]
                         + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : "")
-                        + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]);
+                        + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]
+                        + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : ""));
             }
         }
         if (trackMode) printTrack();

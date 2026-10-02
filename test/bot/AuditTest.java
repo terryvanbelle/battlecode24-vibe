@@ -37,7 +37,31 @@ public class AuditTest {
             Comms.expireDrops();
             check(BotTest.shared[Comms.EF_LOC] == 0, "A6: with no known home the stale tile is cleared (targeting falls back to the hints)");
         } catch (GameActionException e) { check(false, "A5/A6: unexpected " + e); }
-        check(C.REG_FIX == false && C.ALERT_FIX == false, "src/bot keeps g_iter1 behaviour: fixes are off by default");
+        check(C.REG_FIX == false && C.ALERT_FIX == false && C.REACH_FIX == false && C.NAV_FIX == false && !Sym.OBSERVE,
+              "src/bot keeps g_iter1 behaviour: fixes are off by default");
+
+        // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
+        G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;
+        G.spawnCenters[0] = new MapLocation(32, 6); G.spawnCenters[1] = new MapLocation(17, 16); G.spawnCenters[2] = new MapLocation(45, 20);
+        Sym.observeEnemyCentre(17 + 42 * 59);
+        check(Sym.cands == Sym.FY && Sym.conflicts == 0, "A2: flag id (17,42) leaves only FY (" + Sym.cands + ")");
+
+        // A7: only a real change of goal resets bug-following
+        MapLocation g0 = new MapLocation(10, 26);
+        check(!Nav.resetNeeded(g0, new MapLocation(11, 26), true) && Nav.resetNeeded(g0, new MapLocation(20, 26), true),
+              "A7: a one-tile target move keeps the bug state; a new goal resets it");
+        check(Nav.resetNeeded(g0, new MapLocation(11, 26), false) && Nav.resetNeeded(null, g0, true), "A7: g_iter1 reset on any move; no target resets");
+
+        // A4: an enemy behind a wall is not engageable; in the open, or close, it is
+        G.W = 40; G.H = 30; G.rc = BotTest.fakeRc(); G.me = new MapLocation(10, 10); G.testBc = 25000;
+        BotTest.walls.clear();
+        for (int y = 0; y < 30; y++) { BotTest.walls.add(new MapLocation(12, y)); BotTest.walls.add(new MapLocation(13, y)); }
+        try {
+            check(!Micro.engageable(new RobotInfo[]{enemy(9, 14, 12)}), "A4: an enemy behind a 2-wide wall (dist2 20) does not take the turn");
+            check(Micro.engageable(new RobotInfo[]{enemy(9, 12, 12)}), "A4: an enemy within dist2 8 always does");
+            BotTest.walls.clear();
+            check(Micro.engageable(new RobotInfo[]{enemy(9, 14, 12)}), "A4: the same enemy in the open is engageable");
+        } catch (GameActionException e) { check(false, "A4: unexpected " + e); }
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

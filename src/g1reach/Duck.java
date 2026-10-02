@@ -1,4 +1,4 @@
-package bot;
+package g1reach;
 
 import battlecode.common.*;
 

@@ -1045,3 +1045,14 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
   once is reported as captured; after the return window (4, or 25 with our CAPTURING) the drop tile becomes the learned
   home (slots 55-57) or is cleared (targeting falls back to the hints); a drop tile seen empty is cleared. AuditTest:
   dropped not carried; window kept; home after the window; cleared without a home. Arm g1reg.
+- A5/A6 confirmed on replays with new census columns efStaleCarry / efStaleLoc: b2rg on Battlecode24 1056 rounds of
+  "carried by us" with no carrier of ours (the audit's 1052); g_iter1 games 2-5 stale-carry rounds and 23-42 rounds
+  with the registry location > 2 tiles from the flag. g1reg diagnostic queued (paired with the A1 batch's g1copy games).
+- A4 fix C.REACH_FIX (Micro.engageable: an enemy takes the turn only if within dist2 8 or reachable in 3 moves by a
+  BFS over passable sensed tiles; falls back to "yes" under 8000 bytecode left), A7/A9 fix C.NAV_FIX (Nav.resetNeeded:
+  bug state kept when the target moves <= dist2 8; one edge flip per call), A2 (Sym.observeEnemyCentre: a flag id is
+  their spawn-centre index; under Sym.OBSERVE, from sightings and the registry). AuditTest: A2 (the audit's 59x59
+  example leaves FY), A7 (reset only on a real goal change), A4 (wall: not engageable; open or close: engageable). Two
+  test-harness defects found by the tests themselves: Clock.getBytecodesLeft() returns 0 outside the engine (now
+  G.bcLeft() with a test override) and BotTest's fake RobotController answered onTheMap=false (now in-bounds).
+  Arms g1reach, g1nav; g1sym refreshed with A2. Diagnostic batch queued (7 cells each, paired with g1copy).
