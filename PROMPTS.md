@@ -455,3 +455,11 @@ task check
 ## 109. 2026-10-02
 
 task check
+
+## 110. 2026-10-02
+
+task check
+
+## 111. 2026-10-02
+
+We seem to be having some trouble making progress past g_iter1.  Can you take a step back, look at the big picture, and give a diagnosis for why that might be?

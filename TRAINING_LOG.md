@@ -801,3 +801,28 @@ Arms g1line5 (midline) and g1line4 (0.4 of the way), hold all game; stage A batc
   43.5 / 23.8 / 3 of 4 / 3 / 3 vs drift40 46.5 / 24.5 / 2 / 1 / 1 and mirror 54.4 / 10.5 / 3 / 1 / 2. Stillness follows
   the dose. Step 5(b) with drift40's bars unchanged: rel:stillPost<=0.92 rel:inEnemy300>=1.2 rel:enemyCaptured<=1.2.
 - Filler: B3 vs g_iter1 68-84 over 995 (-1.3 SE).
+- g1drift80 step 5(b): **PASS** (BASE=g_iter1): stillPost 27.61 vs 31.85 (-4.24 +- 1.87); inEnemy300 15.46 vs 12.67
+  (+2.79 +- 2.73); enemyCaptured 2.12 vs 2.12. Band test started (gauntlet/20261002-125637-scrim-g1drift80 = seed 1).
+
+### 2026-10-02 — big-picture diagnosis: why nothing has passed g_iter1 (owner prompt 111)
+Field (progress/ELO.md): g_iter1 1811 +- 15, rank 23 of 71; a cliff above: 12 bots at 2058-2415 beat B3 83-100%
+(top three 0-2%); the 20-bot band is mostly peers at 1800-1910 where we are already about even.
+1. Test power vs effect size: a band test (234 paired games, ~40 discordant) has 1 SE ~ 6.5 net games ~ 2.8 points of
+   win rate ~ 20 Elo; only changes worth ~40+ Elo are visible. Elementary changes are smaller. The non-inferiority rule
+   then admitted blocks that were slightly negative: B1 is -30 over 1870 paired games vs g_iter1 (-1.8 SE), and B2/B3
+   inherited it, so the stack drifted down (B1 1783, B2 1804, B3 1789 vs g_iter1 1811).
+2. Proxies that do not convert: regrabs x6 (b2rg), levels +10 (b3own), stillness -4 points (g1drift), inEnemy250 +3
+   (b1v2) all delivered and none moved wins. Delivery checks that a behaviour happens, not that it is the binding term;
+   the proxies came from "beaters have more X" correlations.
+3. Architecture ceiling: g_iter1 is local reactive rules; after setup our ducks have an enemy in view ~95% of the time
+   they stand still (stillPostNoEnemy 4.6 of 36.1 points), so most strategic levers (chase, camp, line, escort outside
+   fights, crumbs, hint sweep) act on the rare turns with no fight. Micro.fight has no team objective, knows flags only
+   when a carrier is visible, and nothing is tracked once unseen (alerts stale after 5 rounds).
+4. The deficit vs the tier above is many-sided at once (fights at parity, ~2000 fewer crumbs gathered, less ground,
+   re-grab/relay chains and escorts 4.9 vs 6.8, early raids): a coordinated system, not a missing tactic. Pieces added
+   one at a time onto local rules cannot reproduce it; they are jointly necessary and need shared state.
+5. Instruments aimed at the wrong place: the band and the step 5(a) games vs g_iter1 measure us against peers or
+   ourselves (g1drift doubled ground vs g_iter1, none vs the band); the bots that define the gap are a small share of cells.
+Implications (proposed): a staged rewrite of the decision layer (team roles and shared targets in the 64-slot array,
+micro taking a team objective), keeping nav/micro/traps/setup plumbing; judge it against the tier above as well as the
+band; stop stacking on non-inferiority and drop B1 (base new work on g_iter1).
