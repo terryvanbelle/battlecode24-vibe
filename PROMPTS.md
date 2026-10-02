@@ -567,3 +567,11 @@ task check
 ## 137. 2026-10-02
 
 OK, thanks for all the hard work.  A general point:  The basics (symmetry, movement, combat, economy) are the foundation for everything else.  If they're not solid, nothing built on them will be effective.  Make sure they are and remain solid.  If you're having trouble making progress, check your basics.
+
+## 138. 2026-10-02
+
+Is it possible that g_iter1 wasn't relying much on symmetry calculations (perhaps because they were unreliable)?
+
+## 139. 2026-10-02
+
+task check

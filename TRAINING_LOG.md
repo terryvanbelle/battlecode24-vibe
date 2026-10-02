@@ -979,3 +979,22 @@ of observations, else it is a bug; audit for anything else broken; add tests")
   kill/death, trapsHit, gathered400, floating crumbs at r250; worse by > 2 SE = FAIL); new census column exceptions.
   Tested on synthetic blocks (a clean block passes; a symmetry miss, an overrun and a kill/death collapse fail).
   To run on every delivery block and band test; g_iter1 itself will fail the symmetry bar (0.66-0.72).
+- **Head-to-head g1sym vs g_iter1** (owner prompt 134; tools/mirror.sh unpaired, 120 games, random maps and sides):
+  **63-57 (52.5%)**, SPRT inconclusive (LLR -0.59). Split by g_iter1's own symOk in each game (86 replays matched):
+  g_iter1 wrong: g1sym won 15/29 (52%); g_iter1 right: 28/57 (49%). The repair does not change results head to head.
+- Owner question 138 ("was g_iter1 relying much on symmetry?"): no. In g_iter1 the symmetry is used in two places only:
+  carrierTarget's interception destination for far ducks (Duck.java:183) and fieldTargetFrom's last resort after known
+  enemy flag positions and the broadcast hints (Duck.java:216). The army and rushers target known flags and the hints,
+  which exist whenever an enemy flag is on the ground. Hence the head-to-head shows no dependence on symOk, and the
+  earlier 25% vs 40% split vs ColtG5 was a map effect (the always-ambiguous maps are also harder maps). The repair is
+  still the foundation for anything that uses destinations (the crack's CUT predicts the carrier's destination spawn).
+- Test fix: test_tools selected the --capabilities section of the shared dump by field count (47); the exceptions column
+  made it 48 and the section came back empty. It now picks the section by a column name.
+- **Rush question** (owner prompt 134): did the faulty symmetry send rushes to the wrong spot? Code: rushers target known
+  flags, then the broadcast hints; symmetry only last. Data: (1) the screen's rush/flank builds + the repair, same 37
+  cells vs ColtG5: arch_rush10s 13 vs 12 wins (net +1, capture delta +0.08 +- 0.19), fl10s 14 vs 12 (net +2, +0.22 +- 0.23);
+  (2) on the 14 cells where the original guessed wrong, the repair did not raise rush pickups (arch_rush10 34.8 -> 12.4,
+  fl10 26.1 -> 18.6), captures 0.50 -> 0.43 and 0.64 -> 0.64, wins 3 -> 4 and 5 -> 4. **Answer: no.** The original builds
+  do look worse on wrong-symmetry maps (g_iter1 too: 1/11 wins vs 13/26), which is the map effect, not the symmetry.
+  The fall in pickups on those cells is an interaction: the three scouts (idx 3-5) are rushers in these builds and leave
+  the rush while the map is undecided (to fix if a rush build is ever used again: scouts outside the rusher range).

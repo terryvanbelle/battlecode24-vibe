@@ -87,6 +87,10 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
             if not ln or ln.startswith('#'): continue
             f = next(csv.reader([ln])); out.setdefault(len(f), []).append(f)
         return {n: [dict(zip(v[0], r)) for r in v[1:]] for n, v in out.items()}
+    def _pick(sec, column):   # the section whose header has `column` (field counts change when columns are added)
+        for rows in sec.values():
+            if rows and column in rows[0]: return rows
+        return []
     dump('--summary')   # compile once before the parallel dumps
     # OWN: a committed game of our own build (src/bot of 2026-09-30, team A) against examplefuncsplayer, DefaultSmall, won by
     # capture at r746; it carries our shared array (slot 0 = 50 after round 1). The design's fixture test runs on it, so a
@@ -121,7 +125,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     check(not any(l.startswith('r') and ' digs ' in l for l in s.splitlines()), 'replay-dump: the summary prints no events (actor -1 is not the default --robot)')
     raw = {k: p.communicate()[0] for k, p in _procs.items()}
     outs = {k: _sections(raw[k]) for k in ('fix', 'own', 'colt') if k in raw}
-    cap = outs['fix'].get(47, [])
+    cap = _pick(outs['fix'], 'enemyCarrierKills')
     check(len(cap) == 2 and all(int(c['captured']) + int(c['carrierDeaths']) <= int(c['pickups']) for c in cap),
           'replay-dump --capabilities: captures + carrier deaths never exceed pickups')
     check(int(cap[0]['enemyCarrierKills']) == int(cap[1]['carrierDeaths']) and int(cap[1]['enemyCarrierKills']) == int(cap[0]['carrierDeaths']),
@@ -241,7 +245,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
         try: return v == '' or float(v) >= 0
         except ValueError: return False
     for name, o in outs.items():
-        cap = o.get(47, []); trk = o.get(29, []); dfn = o.get(11, []); cm = o.get(66, [])
+        cap = _pick(o, 'enemyCarrierKills'); trk = o.get(29, []); dfn = o.get(11, []); cm = o.get(66, [])
         check(len(cap) == 2 and list(cap[0].keys()) == OLD_CAP + NEW_CAP, f'replay-dump --capabilities ({name}): existing columns kept in order, S0a columns appended')
         check(all(num_or_blank(c[k]) for c in cap for k in NEW_CAP), f'replay-dump --capabilities ({name}): new columns blank or numeric')
         check(all(c['longCapRate'] == '' or abs(float(c['longCapRate']) - int(c['longCaps25']) / int(c['longTrips25'])) < 1e-3 for c in cap),
