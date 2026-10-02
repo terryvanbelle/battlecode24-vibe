@@ -1066,3 +1066,6 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
 - Next: a combined basics build (ALERT_FIX + REG_FIX + REACH_FIX + NAV_FIX + observed symmetry with flag ids) judged
   against g_iter1 on shared engine seeds: a fresh seeded g_iter1 band control (the old one drew random engine seeds),
   then the band test, head-to-head and ColtG5 fillers.
+- Identity control complete: g_iter1 vs g1copy on shared engine seeds, 40 band + 40 ColtG5 games: 0 discordant (ColtG5
+  also replays identically on a shared seed). g1sym vs g_iter1 on ColtG5, shared seeds only: 120 pairs, 2 gained, 7 lost
+  (9 discordant, n.s.); possible cost of the three scouts while undecided.

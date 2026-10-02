@@ -28,14 +28,35 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   Crack = CUT (intercept the carrier walking home). S0a premise on 515 g_iter1-vs-ColtG5 games: all bars pass.
   S0b (sensor) being implemented; then S1 (responders) against ColtG5.
 
+- 00:00 UTC (Oct 3): **basics overhaul** after the owner's symmetry question. (1) Symmetry repaired: decided by
+  observation (walls, spawn zones, setup dam, enemy flag ids, scouts), never guessed; 0 overruns; head-to-head vs
+  g_iter1 63-57 and band neutral, because g_iter1 barely uses symmetry. (2) A correctness audit (8 agents, 41 of 42
+  findings confirmed) found basic defects; the biggest are confirmed in our own replays and fixed behind switches:
+  A1 the own-flag alert was on ~all game, switching off defenders and parking ducks on the flag tile for up to 1466
+  rounds (fixed: false alerts 305-2324 -> 0-81, parking -> 1-121 rounds); A5/A6 stale enemy-flag registry (up to 1393
+  rounds a flag marked "carried by us" -> 15). A2, A4, A7/A9 fixed and unit-tested, diagnostics running. (3) The audit
+  also found our paired tests never shared the engine seed: identical code flipped 15-29% of games, so most past
+  verdicts were noise-bound. Fixed: g_iter1 vs an exact copy now differs in 0 of 80 paired games. (4) Running: the
+  combined build g1basics (all fixes) through its gate and a seeded band test; ColtG5 fillers pair it with g_iter1.
+
 ## Working
+- The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
+- Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
+- Basics battery and contract columns (symWrong, symDecidedRound, alertNoThreat, maxParkOnHome, efStale*, exceptions) in
+  every census; dead-code and arm-intent checks in the unit tests.
 - Measuring before building: the premise tools answered "can it work against ColtG5?" from 515 replays with no bot change.
 - The ColtG5 focus gives a sensitive target: one flag decides most games (102/135 of its wins are 1-flag tiebreaks).
 
 ## Not working
+- Most of yesterday's arms were judged with unseeded pairs: their verdicts were mostly engine noise (re-test candidates).
+- Process slips today, each caught: a switch silently left off in a test arm (now an arm-intent test), commits before the
+  test suite finished (twice), a mis-paired evaluation from empty run names.
+- g1sym on ColtG5 (seeded, 120 pairs): 2 gained, 7 lost (n.s.); the three scouts may cost fights while undecided.
 - Raids against ColtG5 (5 builds): flags reached, never brought home.
 - Bot symmetry guess wrong in 28% of ColtG5 games and 34% of band games: the sensor must fix this (PSYM).
 - Band premise fails P3 (destination 0.76): widening beyond ColtG5 will need the tracker revision.
 
 ## Open questions for the owner
+- Once g1basics is measured: adopt it as the new base (g_iter2) if it is non-inferior, even without a clear gain,
+  because it is correct where g_iter1 is broken? Then re-test the most promising old arms on it with seeded pairs.
 - (answered, prompt 120: one strategy, all energy on it; the crack against ColtG5.)
