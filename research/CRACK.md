@@ -55,3 +55,7 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
   predicted flag track; a few committed responders on the predicted path), aimed at ColtG5. Stages as designed (S0a
   premise, S0b sensor, S1 CUT), with these changes for the crack: the premise and the delivery blocks use ColtG5 games
   (scrims, random maps and sides); the decision is this file's victory criterion, not the band bars.
+- 17:15 UTC: baseline g_iter1 vs ColtG5 168-294 (36.4%) over 462 games. S0b (the track sensor, no consumer, identity to
+  g_iter1 required) started in parallel with S0a's fix step (separate files: src/ and test/ vs tools/), workflow with
+  identity/safety, design-conformance and bytecode reviews. The S0a premise read on ColtG5 games still decides whether
+  CUT is built (P2: enough free responders); S0b is the sensor CUT would read.
