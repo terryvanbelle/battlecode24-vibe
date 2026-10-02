@@ -1,4 +1,4 @@
-package bot;
+package b2rgh;
 
 import battlecode.common.*;
 
@@ -55,11 +55,6 @@ public strictfp class Micro {
 
     public static boolean tryHeal(RobotInfo[] allies) throws GameActionException {
         if (!G.rc.isActionReady() || isAttacker()) return false;
-        if (C.CARRIER_HEAL) {
-            for (RobotInfo a : allies) {
-                if (a.hasFlag && a.health < GameConstants.DEFAULT_HEALTH && G.rc.canHeal(a.location)) { G.rc.heal(a.location); heals++; carrierHeals++; return true; }
-            }
-        }
         RobotInfo best = null; int bh = C.HEAL_HP_BELOW;
         for (RobotInfo a : allies) {
             if (a.health < bh && G.rc.canHeal(a.location)) { bh = a.health; best = a; }
@@ -218,7 +213,7 @@ public strictfp class Micro {
         return true;
     }
 
-    public static int regrabTries, carrierHeals;
+    public static int regrabTries;
 
     /** Nearer our closest spawn centre than any enemy spawn centre (Sym's most likely symmetry). */
     static boolean ourHalf(MapLocation l) {

@@ -1,4 +1,4 @@
-package bot;
+package b2rgh;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -25,14 +25,9 @@ public strictfp class C {
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
-    public static final int DIG_SITE = 0;               // T4 siting: 0 any, 1 wall-hugging (>=3 wall/off-map nbrs), 2 behind our spawn (away from the enemy)
-    public static final boolean NO_FILL_OWN = false;   // T4: in setup, never fill a tile matching our dig signature (even, DIG_SITE 2) unless stalled
-    public static final boolean REGRAB = false;        // C9/C10: in a fight, a visible enemy flag on the ground within REGRAB_R2 is the movement goal; pick it up before striking
+    public static final boolean REGRAB = true;         // C9/C10: in a fight, go for a visible loose enemy flag within REGRAB_R2; pick it up before striking
     public static final int REGRAB_R2 = 13;
-    public static final boolean REGRAB_HALF = false;   // REGRAB only for loose flags nearer our spawn centres than theirs (a carrier there has a chance)
-    public static final boolean CARRY_SAFE = false;    // C9: with enemies in view, the carrier takes the homeward step with the fewest enemies able to reach it
-    public static final boolean CARRIER_HEAL = false;  // C9: a hurt allied carrier in heal range is healed before anyone else
-    public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
+    public static final boolean REGRAB_HALF = true;    // REGRAB only for loose flags on our half
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
     public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
     public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
@@ -46,18 +41,17 @@ public strictfp class C {
     public static final int V2_SUPPORT = 6, V2_REACH = 100, V2_KILL = 60, V2_GOAL = 20;
     public static final boolean FLAG_TILE_STUN = false; // T1 neutralization: keep a stun trap on each home flag tile (rebuilt when triggered)
     public static final boolean POST_SETUP_CRUMBS = false; // T10 adoption: after setup, idle ducks pick up visible crumbs (g_iter1 never does)
-    public static final int UPGRADE_ORDER = 0;           // 0 attack>heal>capture (g_iter1), 1 heal first, 2 capture first, 3 attack>capture>heal
+    public static final int UPGRADE_ORDER = 0;           // 0 attack>heal>capture (g_iter1), 1 heal first, 2 capture first
     public static final boolean TRAP_TOWARD_NEAREST = false; // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
     public static final int ATTACKER_TENTHS = 0;         // specialisation: ducks with idx%10 below this never heal (attack mastery)
     public static final int GROUP_MIN = 0;               // cohesion: push only with this many allies in view, else regroup (0 = off)
     public static final boolean RUSH_FLANK = false;     // T12 adoption: rushers raid the enemy flag farthest from the army's target
     public static final boolean HINT_SWEEP = false;      // block 2: sweep the dist2-100 disc of a broadcast hint instead of idling on it
-    public static final boolean BUDGET_V1 = false;      // block 1: no discretionary spending in setup, paced floor after
-    public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 3;
+    public static final boolean BUDGET_V1 = true;       // block 1: no discretionary spending in setup, paced floor after
+    public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 0;
     public static final boolean Z1HOLD = false;          // block 4: converge on our dropped flag (re-grabs 9.8/game vs beaters)
     public static final int Z1_RADIUS2 = 20;
-    public static final boolean Z2ESCORT = false;        // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
-    public static final int Z2_ESC_R2 = 2;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
-    public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
+    public static final boolean Z2ESCORT = true;         // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
+    public static final int Z2_ESC_R2 = 8;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
 }

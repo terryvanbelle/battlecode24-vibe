@@ -618,3 +618,5 @@ window; capture-first lost 14-33 before re-grabbing existed, so it is worth a re
   inside their base takes fighters out of the fight they were winning. First grabs and enemy grabs unchanged.
   Ledger: "re-grab anywhere (REGRAB r2 13)" closed. Open variant: re-grab only flags that have reached our half
   (a carrier there has a chance), or only with CAPTURING (b2rgu, now judged against B2, not b2rg).
+- Arm b2rgh = b2rg + REGRAB_HALF (re-grab only loose flags nearer our spawn centres than theirs, by Sym's mirror).
+  Step 5(a) queued behind b2rgu's diagnostics (driver plays one game at a time, ~19 min each on large maps).
