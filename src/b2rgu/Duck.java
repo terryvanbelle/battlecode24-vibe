@@ -1,4 +1,4 @@
-package bot;
+package b2rgu;
 
 import battlecode.common.*;
 
@@ -210,30 +210,8 @@ public strictfp class Duck {
             boolean nearFlag = false;
             for (int i = 0; i < 3; i++) { MapLocation h = G.spawnCenters[i]; if (h != null && h.distanceSquaredTo(t) <= 8) nearFlag = true; }
             if (nearFlag) continue;
-            if (C.DIG_SITE == 1 && !wallHugging(t)) continue;
-            if (C.DIG_SITE == 2 && !behindSpawn(t)) continue;
             rc.dig(t); digs++; return;
         }
-    }
-
-    /** DIG_SITE 1: a tile with at least 3 of its 8 neighbours wall or off the map lies off the walking lanes. */
-    static boolean wallHugging(MapLocation t) throws GameActionException {
-        int n = 0;
-        for (Direction d : G.DIRS) {
-            MapLocation x = t.add(d);
-            if (!G.rc.onTheMap(x)) n++;
-            else if (G.rc.canSenseLocation(x) && G.rc.senseMapInfo(x).isWall()) n++;
-        }
-        return n >= 3;
-    }
-
-    /** DIG_SITE 2: farther from the enemy (believed flag) than our nearest spawn centre, i.e. behind the line our
-     *  ducks walk from spawn to the dam. */
-    static boolean behindSpawn(MapLocation t) throws GameActionException {
-        MapLocation s = G.nearest(G.me, G.spawnCenters);
-        if (s == null) return false;
-        MapLocation e = fieldTargetFrom(s);
-        return e != null && t.distanceSquaredTo(e) > s.distanceSquaredTo(e);
     }
 
     static boolean nextToDam() throws GameActionException {
@@ -298,33 +276,9 @@ public strictfp class Duck {
         }
         MapLocation home = G.nearest(G.me, G.spawns);
         G.note = "carry";
-        if (!(C.CARRY_SAFE && enemies.length > 0 && safeCarryStep(home))) Nav.moveTo(home);
+        Nav.moveTo(home);
         if (!rc.hasFlag() && carriedFlagId >= 0) { Comms.enemyFlagCaptured(carriedFlagId); carriedFlagId = -1; return; }
         if (C.RELAY && rc.hasFlag()) relay(home);
-    }
-
-    static int safeSteps;
-
-    /** CARRY_SAFE: among the steps that bring the carrier closer to home, the one with the fewest enemies within
-     *  dist2 10 (able to strike next turn), ties to the nearer tile. Only when it is safer than the plain homeward step. */
-    static boolean safeCarryStep(MapLocation home) throws GameActionException {
-        RobotController rc = G.rc;
-        if (!rc.isMovementReady()) return false;
-        int d0 = G.me.distanceSquaredTo(home);
-        Direction best = null; int bs = Integer.MAX_VALUE, direct = Integer.MAX_VALUE;
-        Direction straight = G.me.directionTo(home);
-        for (Direction d : G.DIRS) {
-            if (!rc.canMove(d)) continue;
-            MapLocation l = G.me.add(d);
-            int dh = l.distanceSquaredTo(home);
-            if (dh >= d0) continue;
-            int sc = Micro.threat(l, enemies) * 100000 + dh;
-            if (d == straight) direct = sc;
-            if (sc < bs) { bs = sc; best = d; }
-        }
-        if (best == null || best == G.me.directionTo(home) || bs / 100000 >= direct / 100000) return false;
-        rc.move(best); G.me = rc.getLocation(); safeSteps++;
-        return true;
     }
 
     // ------------------------------------------------------------------ targets

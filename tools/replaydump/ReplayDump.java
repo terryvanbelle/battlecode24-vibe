@@ -84,7 +84,8 @@ public class ReplayDump {
     static long[] kAliveSum = new long[3]; static int kRounds;
     // Phase 0 (research/TACTIC_LEVELS.md): post-setup pickups split by kind; carrier-death distance; dam staging
     static int[] kPostPickups = new int[3], kFirstGrabs = new int[3], kRegrabs = new int[3], kRelayPickups = new int[3],
-            kDamStage199 = new int[3], kCarrierDeathDistSum = new int[3], kCarrierDeathN = new int[3];
+            kDamStage199 = new int[3], kCarrierDeathDistSum = new int[3], kCarrierDeathN = new int[3],
+            kRegrabsLate = new int[3], kCapturedLate = new int[3];   // after r1200 (the CAPTURING window of upgrade order 3)
     static Map<Integer, int[]> flagHome = new HashMap<>();     // flag -> default location (set at r200 and on returns)
     static Map<Integer, Boolean> lastDropByDeath = new HashMap<>();
     // --survey: per-team tactic features (TACTICS.md survey, tools/tactics-survey.py)
@@ -279,7 +280,7 @@ public class ReplayDump {
                         kPostPickups[t]++;
                         int[] fl = flagLoc.get(tgt), fh = flagHome.get(tgt);
                         if (fl != null && fh != null && fl[0] == fh[0] && fl[1] == fh[1]) kFirstGrabs[t]++;
-                        else if (Boolean.TRUE.equals(lastDropByDeath.get(tgt))) kRegrabs[t]++;
+                        else if (Boolean.TRUE.equals(lastDropByDeath.get(tgt))) { kRegrabs[t]++; if (rn > 1200) kRegrabsLate[t]++; }
                         else kRelayPickups[t]++;
                     }
                     if (rn <= 200) sOwnFlagPickupsSetup[t]++;
@@ -311,7 +312,7 @@ public class ReplayDump {
                     break;
                 }
                 case Action.CAPTURE_FLAG:
-                    cCaptures[t]++; carrying.remove(id); flagLoc.put(tgt, null);
+                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; carrying.remove(id); flagLoc.put(tgt, null);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
                     desc = "CAPTURES flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "CAPTURE", id, tgt); break;
                 case Action.GLOBAL_UPGRADE: sUpgrades[t] += (sUpgrades[t].isEmpty() ? "" : "+") + (tgt == 0 ? "ATK" : tgt == 1 ? "HEAL" : "CAP") + "@" + rn; cUpgrades[t]++; desc = "buys upgrade " + tgt; break;
@@ -486,7 +487,7 @@ public class ReplayDump {
             }
         }
         if (capMode) {
-            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs");
+            out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -497,7 +498,7 @@ public class ReplayDump {
                         + (cTraps[t][0] + cTraps[t][1] + cTraps[t][2]) + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + String.format("%.1f", kRounds > 0 ? (double) kAliveSum[t] / kRounds : 0.0)
                         + "," + kPostPickups[t] + "," + kFirstGrabs[t] + "," + kRegrabs[t] + "," + kRelayPickups[t] + ","
                         + (kCarrierDeathN[t] > 0 ? String.format("%.1f", (double) kCarrierDeathDistSum[t] / kCarrierDeathN[t]) : "") + "," + kDamStage199[t]
-                        + "," + kRegrabs[o] + "," + kFirstGrabs[o]);
+                        + "," + kRegrabs[o] + "," + kFirstGrabs[o] + "," + kRegrabsLate[t] + "," + kCapturedLate[t]);
             }
         }
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot

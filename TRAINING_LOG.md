@@ -598,3 +598,16 @@ Duck.carryFlag stepped by Nav.moveTo with no threat term; Micro.tryHeal healed t
 Step 5(a): DefaultLarge and DefaultMedium s4 vs g_iter1, against b2rg (19 and 12 pickups there, every carrier died).
 Noted for later: CAPTURING also stretches a dropped flag's return from 4 to 25 rounds, which multiplies the re-grab
 window; capture-first lost 14-33 before re-grabbing existed, so it is worth a retry on a REGRAB base.
+- b2rgc step 5(a), DefaultLarge / DefaultMedium s4 vs g_iter1 (b2rgc vs b2rg): counters fire (safeSteps up to 9 per
+  duck, carrierHeals up to 4), but the intended effect does not appear: carrier deaths per pickup 1.0 in all four games,
+  0 captures; rounds carried per pickup 5.8 vs 8.9 and 3.5 vs 4.4; moves carried per pickup 2.7 vs 3.6 and 1.1 vs 1.7.
+  Pickups doubled again (38 vs 19, 17 vs 12). carrierDeathDist (to the carrier's own nearest spawn) 40.8 vs 33.2:
+  more pickups deep in their base. Reading: our carriers die within ~3 moves of a pickup, inside the enemy's respawn
+  zone; no step choice or heal saves a carrier there. **Parked without a delivery block** (step 5: the behaviour,
+  not just the counter, has to show).
+- The lever that fits this: CAPTURING (dropped flag returns in 25 rounds, not 4; carrier move cd 12, not 20). On the
+  B3 band 52% of games pass r1200, 82% pass r600. b2rg's delivery games: 56 of 349 enemy-flag pickups and 8 of 27
+  captures came after r1200. Arm b2rgu = b2rg + UPGRADE_ORDER 3 (ATTACK r600 > CAPTURING r1200 > HEALING r1800;
+  ATTACK first is load-bearing, so it stays). New census columns regrabsLate / capturedLate (after r1200), tested.
+  Step 5(a) on DefaultLarge: no enemy-flag pickup after r1200 by either build, so the cell cannot show it; re-run on
+  Tunnels and Battlecode24 vs g_iter1 (the delivery block's maps with the most late pickups).
