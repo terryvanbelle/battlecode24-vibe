@@ -1205,3 +1205,14 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   carrying at r200, the engine's unchecked drop broke the 36 spacing). Fixed: coarser grid with > 3 centres; an illegal
   spot walks to the nearest legal tile in view (senseLegalStartingFlagPlacement) instead of back to spawn. Round 2 queued
   (12 maps, g_iter2 mirrors alongside).
+- g2reloc 5(a), rounds 3-4: RELOC_V2 redesigned after two traced failures. Round 3 (most exposed flag first, spot within
+  15 tiles of its spawn, staying put allowed) fixed DefaultMedium but Whirlpool and Gated got worse: an earlier flag took
+  a spot beside a later flag's spawn and forced it closer (25.6 -> 23.0 tiles), and a stalled carrier dropped short.
+  Fixes: moved spots stay 8+ tiles from every unplaced flag's spawn (so each later flag can stay), a stalled carrier walks
+  home. AuditTest gained DefaultMedium and Whirlpool layout tests (the Whirlpool one verified to fail without the fix).
+  Round 4 (12 maps vs the g_iter2 mirror): nearest-flag distance up on 8 maps (Fountain +9.7, Tunnels +8.3, Soccer +6.7,
+  Puzzle +6.0, DefaultLarge +5.2), worse on none; sum 315 vs 272 tiles (x1.16); 0 overruns, no r200 resets. Waffle
+  delivery block and band delivery queued (pre-registered in research/CRACK-WAFFLE.md).
+- progress/ONSET.md and onset-ladder.png regenerated from g_iter2's band (112 games; the VM lacks matplotlib, so
+  onset.py ran on the driver from the VM's study.tsv). Ladder refit with 200 waffle filler games: g_iter2 1915 +- 27
+  (rank 14 of 75), waffle 1977 directly above; g_iter2 vs waffle 96-128 (43%).
