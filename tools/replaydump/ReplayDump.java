@@ -57,6 +57,8 @@ import java.util.zip.GZIPInputStream;
  *   carrierStunBuilds  post-setup stun traps we built within dist2 8 of an enemy carrying our flag; carrierStunned: our
  *                      triggered stuns that caught such a carrier (within dist2 13)
  *   captured600        flags captured by the end of r600 (enemyCaptured600: the other team's)
+ *   defNearAtGrab20    mean of our robots within dist2 20 of our flag at each enemy first grab (blank: no grabs)
+ *   capturedHomeRounds robot-rounds our robots spend within dist2 8 of a captured own flag's home
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -283,6 +285,7 @@ public class ReplayDump {
             kEnemyTrips[dt]++;
             if (capd && mc < 0.5) kUnopposed[dt]++;
             if (rn - tr[0] >= 25) { kLong25[dt]++; if (capd) kLongCaps25[dt]++; }
+            if (tr[1] == 1) { kDefAtGrabSum[dt] += tr[4]; kDefAtGrabN[dt]++; }   // defNearAtGrab20 (audit 2026-10-03 BOT2)
         }
         TripX x = tripX.remove(holder);
         if (x != null) {
@@ -369,6 +372,9 @@ public class ReplayDump {
             }
             if (hp > 0) { robotRounds[t]++; if (rn > 200) robotRoundsPost[t]++; }
             visited[t][idx(x, y)] = true;
+            if (capMode && hp > 0 && rn > 200) for (int[] h : capturedHomes[t]) {   // capturedHomeRounds (audit BOT1)
+                int dx = h[0] - x, dy = h[1] - y; if (dx * dx + dy * dy <= 8) kCapturedHomeRounds[t]++;
+            }
             int ci = idx(x, y); if (crumbs[ci] > 0) { kGathered[t] += crumbs[ci]; crumbs[ci] = 0; }   // stepping on crumbs collects them
             if (hp > 0 && rn > 200 && side[ci] == 3 - t && kFirstEnemySide[t] == 0) kFirstEnemySide[t] = rn;
             if (hp > 0 && side[ci] == 3 - t && (rn == 250 || rn == 300)) { if (rn == 250) kInEnemy250[t]++; else kInEnemy300[t]++; }
@@ -519,6 +525,7 @@ public class ReplayDump {
                     break;
                 }
                 case Action.CAPTURE_FLAG:
+                    { int ft = flagTeam.getOrDefault(tgt, 0); int[] hm = flagHome.get(tgt); if (ft >= 1 && ft <= 2 && hm != null) capturedHomes[ft].add(hm); }
                     cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (rn <= 600) kCaptured600[t]++; if (tripsOn()) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
                     capturedFlags.add(tgt);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
@@ -1059,6 +1066,10 @@ public class ReplayDump {
     static int[] kCarrierStunBuilds = new int[3], kCarrierStunned = new int[3];
     /** captured600 / enemyCaptured600: flags captured by the end of r600 (a slowed relay chain shows here first). */
     static int[] kCaptured600 = new int[3];
+    /** defNearAtGrab20: mean of our robots within dist2 20 of our flag at each enemy first grab (from home).
+     *  capturedHomeRounds: robot-rounds our robots spend within dist2 8 of the home of one of our captured flags. */
+    static int[] kDefAtGrabSum = new int[3], kDefAtGrabN = new int[3], kCapturedHomeRounds = new int[3];
+    @SuppressWarnings("unchecked") static List<int[]>[] capturedHomes = new List[]{new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
     static boolean carrierNear(int carrierTeam, int x, int y, int r2) {
         for (Map.Entry<Integer, Integer> c : carrying.entrySet()) {
             if (team.getOrDefault(c.getKey(), 0) != carrierTeam) continue;
@@ -1199,7 +1210,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1222,7 +1233,8 @@ public class ReplayDump {
                         + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]
                         + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : "")
                         + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : "")
-                        + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t] + "," + kCaptured600[t] + "," + kCaptured600[o]);
+                        + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t] + "," + kCaptured600[t] + "," + kCaptured600[o]
+                        + "," + (kDefAtGrabN[t] > 0 ? String.format("%.2f", (double) kDefAtGrabSum[t] / kDefAtGrabN[t]) : "") + "," + kCapturedHomeRounds[t]);
             }
         }
         if (trackMode) printTrack();

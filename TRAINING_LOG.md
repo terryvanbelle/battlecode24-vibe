@@ -1371,3 +1371,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   basics FAILs a check its base did not measure (MEAS12); keep-replays protects g_iter3 / g2cr (MEAS12). Corrections
   appended to HANDOFF, RETEST.md and CRACK-CYRIL.md. MEAS3 (replay names without the seed) is on the open list: nine
   consumers parse the name and cached bases use the old one.
+- Audit BOT1/BOT2 as switches with unit tests: C.FLAG_LOST (shared lost bits in slot 58, last-seen rounds 59-61; lost
+  flags skipped by alerts, spawn choice and responders; defenders re-home) and C.DEF_TETHER (defenders fight within
+  dist2 20 of home unless closing on their own flag's carrier; chase only their own flag). Arms g3lost and g3tether fire
+  at 5(a) vs Cyril. New census columns defNearAtGrab20 and capturedHomeRounds (unit-tested). Cyril deliveries queued.

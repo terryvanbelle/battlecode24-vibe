@@ -136,3 +136,13 @@ relocation V2, A11/A12 fixes, new census columns, nw: guards), with the open fin
 **Correction (second audit, research/AUDIT-2026-10-03.md, MEAS1).** Three of the five Cyril closures failed inside 1 SE
 (g3def2 enemyFirstGrabs -0.65 SE, g3camp enemyUnseenRounds -0.34 SE, g3camp2 -0.23 / -0.32 SE): they are INCONCLUSIVE,
 not neutral, and the plateau is not established. g2crb never delivered its premise (BOT11: the bank is gone by r205).
+
+**Audit fixes as arms (second audit, BOT1 / BOT2).**
+- g3lost (C.FLAG_LOST): 5(a) vs Cyril fires (HungerGames: flag 1 captured r327, last seen r315, lost bit set at r376,
+  no alerts for it afterwards). Delivery: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh
+  g3lost 'rel:capturedHomeRounds<=0.5 nw:kills>=0.95 mean:overruns<=0'` (new census column: our robot-rounds within
+  dist2 8 of a captured own flag's home).
+- g3tether (C.DEF_TETHER): 5(a) vs Cyril fires (123-311 tether turns a game). Delivery: `DGPOOL=CyrilSharma.finalBot
+  DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3tether 'rel:defNearAtGrab20>=1.15 nw:kills>=0.95 mean:overruns<=0'`
+  (new column: our robots within dist2 20 of our flag at enemy first grabs).
+Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the block to 48 / 96 cells).
