@@ -150,3 +150,8 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
   14%). Descriptive: wins 14 vs 12 (gained 4, lost 2), Cyril's captures 1.42 vs 1.62. The filler now pairs g3lost with
   g_iter3 vs Cyril toward 240 games; band guard + band test queued.
 - g3tether: INCONCLUSIVE at 24 cells (defNearAtGrab20 5.29 vs 5.31) and 48 (6.30 vs 5.90, +7%, bar +15%); extending to 96.
+- **g3tether Cyril delivery: FAIL** at 96 cells (68 shared): defNearAtGrab20 5.60 vs 5.64, margin -2.3 SE (24 and 48
+  cells had been INCONCLUSIVE). Tethering defenders in fights does not put more bodies at the flag when Cyril grabs.
+  Closed.
+- g3lost band guard: INCONCLUSIVE at 24, PASS at 48 cells (kills 580 vs 488, enemyCaptured 1.44 vs 1.69); band test
+  running.

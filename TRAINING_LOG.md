@@ -1379,3 +1379,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   filler pairs it with g_iter3 vs Cyril; band guard + test queued. g3tether INCONCLUSIVE at 24 and 48 cells (defenders
   near the flag at Cyril's first grabs +7%, bar +15%), auto-extending to 96. Fixed delivery-gate's extension tag (the
   48-cell block was labelled n96).
+- g3tether Cyril delivery FAIL at 96 cells (defenders near the flag at Cyril's first grabs 5.60 vs 5.64, -2.3 SE): a
+  powered failure, closed. g3lost band guard PASS after one extension (48 cells: kills +19%, enemy captures -15%); band
+  test running.
