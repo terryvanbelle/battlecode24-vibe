@@ -1300,3 +1300,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   on the same 160 cells (net +22, +2.8 SE); the 240-game read finishes with the g_iter3 package.
 - Waffle ranks below us: new target (CLAUDE rule 14) **CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14, the best
   record against any bot above us). CLAUDE rules 14/16, HANDOFF, README, REWRITE.md, TACTICS (T13 accepted), memory.
+- CyrilSharma study started (research/CRACK-CYRIL.md): fast raids like waffle but a weaker relay (re-grab share 75% in
+  our losses, 72% in our wins); distance gradient of our flags' capture rate 82% (< 20 tiles) -> 39% (36+); its flag
+  guards beat our carriers; it banks ~3900 crumbs at r250. First candidate g2crb (g_iter3 + BUDGET_V1), 5(a) queued.
