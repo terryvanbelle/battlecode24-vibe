@@ -5,6 +5,7 @@
 # Checks are space-separated `stat:column op value` over OUR rows of the mini-block (census + survey columns):
 #   median:crumbs200>=2500   mean:traps200<=6   fire:digs200>0>=0.9   (fire: share of games where column > 0)
 #   rel:enemyRegrabs<=0.7   (with BASE=<bot>: arm mean <= 0.7 x base mean on the same cells)
+#   nw:kills>=0.95          (guards: as rel:, but fails only if the arm misses the ratio by more than 2 paired SE)
 # Writes gauntlet/delivery-<arm>.PASS or .FAIL with the measured values; tools/band-test.sh refuses without PASS.
 # DGPOOL="ColtG5.Goob_final" DGTAG=-colt: a one-opponent block (the crack, research/CRACK.md); random maps and sides as
 # always; the base cache and run tags carry DGTAG so band and crack bases never mix.

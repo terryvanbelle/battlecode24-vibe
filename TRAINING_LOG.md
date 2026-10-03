@@ -1268,3 +1268,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   trickle deaths 18.5-25 vs 12.8: a flag moved away from our spawn loses the free defence of respawns and the
   defenders spend setup carrying. Against waffle the longer chain wins; against light raiders it costs. Next: g2cstun's
   band guard alone (information only, no band test chained), and a relocation that moves only the exposed flag.
+- g2cstun band guard (information): kills 454 vs 486 (-6.5% +- 15%) "FAIL" with k/d 2.93 vs 2.92, wins 2-1, enemy
+  captures unchanged: band-neutral. The point guard rel:kills>=0.95 on 24 cells fails about a third of neutral arms.
+  Tool: delivery-check.py gains `nw:` (not worse by more than 2 paired SE) for guards, unit-tested; used from now on, not
+  to re-judge past blocks. g2cr band guard second attempt pre-registered on fresh seed 939393 with nw: guards, band test
+  chained.

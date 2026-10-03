@@ -20,12 +20,14 @@ def vals(col):
     return out
 ok_all, lines = True, []
 for c in checks.split():
-    m = re.fullmatch(r'(median|mean|fire|rel):(\w+)(>=|<=|>|<)(-?[\d.]+)(?:(>=)([\d.]+))?', c)
+    m = re.fullmatch(r'(median|mean|fire|rel|nw):(\w+)(>=|<=|>|<)(-?[\d.]+)(?:(>=)([\d.]+))?', c)
     if not m: print('!! bad check', c); sys.exit(2)
     stat, col, op, val = m.group(1), m.group(2), m.group(3), float(m.group(4))
     v = vals(col)
     if not v: lines.append(f'{c}: NO DATA'); ok_all = False; continue
-    if stat == 'rel':   # paired: arm mean on cells shared with the base <= / >= ratio x base mean on those cells
+    if stat in ('rel', 'nw'):   # paired: arm mean on cells shared with the base <= / >= ratio x base mean on those cells
+        # nw: (not worse, for guards; 2026-10-03): fail only if the arm misses the ratio by more than 2 paired SE. A point
+        # bar like rel:kills>=0.95 on 24 cells (SE ~15%) fails about a third of truly neutral arms.
         pairs = []
         for k, g in rows.items():
             b = base.get(k)
@@ -35,8 +37,9 @@ for c in checks.split():
         ma = st.mean(a for a, _ in pairs); mb = st.mean(b for _, b in pairs)
         d = [a - b for a, b in pairs]; se = st.stdev(d) / math.sqrt(len(d)) if len(d) > 1 else float('nan')
         target = val * mb
-        ok = {'>=': ma >= target, '<=': ma <= target, '>': ma > target, '<': ma < target}[op]
-        lines.append(f'{c}: arm {ma:.2f} vs base {mb:.2f} on {len(pairs)} shared cells (target {op} {target:.2f}; diff {ma - mb:+.2f} +- {se:.2f}) {"ok" if ok else "FAIL"}')
+        slack = 2 * se if stat == 'nw' and se == se else 0.0
+        ok = {'>=': ma >= target - slack, '<=': ma <= target + slack, '>': ma > target - slack, '<': ma < target + slack}[op]
+        lines.append(f'{c}: arm {ma:.2f} vs base {mb:.2f} on {len(pairs)} shared cells (target {op} {target:.2f}{" within 2 SE" if stat == "nw" else ""}; diff {ma - mb:+.2f} +- {se:.2f}) {"ok" if ok else "FAIL"}')
     elif stat == 'fire':
         x = sum(1 for a in v if (a > val if op == '>' else a >= val if op == '>=' else a < val if op == '<' else a <= val)) / len(v)
         need = float(m.group(6) or 0.9); ok = x >= need; lines.append(f'{c}: fired in {x:.0%} of {len(v)} (need {need:.0%}) {"ok" if ok else "FAIL"}')

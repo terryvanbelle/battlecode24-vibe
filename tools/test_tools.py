@@ -438,6 +438,11 @@ with tempfile.TemporaryDirectory() as d:
     open(bc, 'w').write('file,opp,us,team,crumbs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n'); open(bs, 'w').write('file,opp,us,team,digs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n')
     r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zr', 'rel:digs200<=0.7', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
     check('delivery zr: PASS' in r.stdout and '2 shared cells' in r.stdout, 'delivery-check rel: arm 2.5 vs base 10 on the 2 shared cells passes <=0.7: ' + r.stdout)
+    open(bs, 'w').write('file,opp,us,team,digs200\nx/f1,o,1,A,7\nx/f2,o,1,A,0\n')   # arm 5 and 0 vs base 7 and 0: diff -1.0 +- 1.0
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zn', 'nw:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
+    check('delivery zn: PASS' in r.stdout and 'within 2 SE' in r.stdout, 'delivery-check nw: a miss inside 2 SE passes: ' + r.stdout)
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zq', 'rel:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
+    check('delivery zq: FAIL' in r.stdout, 'delivery-check rel: the same miss fails a point bar: ' + r.stdout)
 r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
 check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
 

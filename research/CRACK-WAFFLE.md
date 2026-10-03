@@ -131,3 +131,10 @@ maps (both mechanisms fire), then the waffle block on fresh seed 929292:
 flagDistMin 29.7 vs 25.5; enemyCaptured600 1.27 vs 1.59, -20%, at the bar). Descriptive: wins 12 vs 8 (gained 6, lost
 2), our captures 2.00 vs 1.55, enemyCaptured 2.05 vs 2.41. Now: the waffle filler pairs g2cr with g_iter2 on fresh seeds
 toward 240 games (victory read: >= 60% wins, p < 0.05, paired net >= +2 SE); band delivery and band test queued.
+
+**g2cr band guard: FAIL** (kills 390 vs 486, -20% +- 14%; enemyCaptured ok; wins 11 vs 9). Trace: a point bar on 24
+cells is noise-dominated (g2cstun alone, k/d 2.93 vs 2.92, failed it too at -6.5% +- 15%). New guard form `nw:` (fails
+only beyond 2 paired SE), used from now on, never to re-judge a past block. Second attempt, fresh seed 939393:
+`SEED=939393 DGTAG=-seeded2 BASE=g_iter2 tools/delivery-gate.sh g2cr 'nw:kills>=0.95 nw:enemyCaptured<=1.1
+mean:overruns<=0'`, then the band test (`SEEDS='515151 616161' TAG=-seeded`). Note the real band costs of relocation
+seen in that block (enemy first grabs 7.7 vs 5.5, k/d 2.56 vs 2.92): the band test decides whether they matter.
