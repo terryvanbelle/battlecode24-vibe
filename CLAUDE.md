@@ -26,15 +26,16 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     for an arm until its delivery mini-block passes (`tools/delivery-gate.sh`; `tools/band-test.sh` refuses otherwise).
 14. **Ladder target and idle filler** (PROMPTS 73, 120, 157-159): one ladder opponent at a time, usually the bot just
     above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking.
-    ColtG5 was declared defeated on 2026-10-03 (g_iter2 83-61); the target is now **winkelmantanner.waffle** (1997,
-    rank 12). queue/filler.job plays the target on fresh seeds: `FILLPOOL=winkelmantanner.waffle tools/filler-pair.sh
-    g_iter2 <candidate or -> 40` (random maps and sides). At every task check run `tools/collect-fillers.sh g_iter2
-    <candidates>` to record new filler runs. Update the filler's candidate whenever an arm against the target passes
-    delivery.
+    Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
+    crack in research/CRACK-WAFFLE.md). Target now: **CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14). The filler
+    plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
+    maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
+    candidate whenever an arm against the target passes delivery.
 15. **Basics first** (PROMPTS 127, 137): symmetry, movement, combat and economy (plus bytecode and exceptions) are the
     foundation. Every build and test block gets the basics battery; a failed basics bar stops work above it until fixed;
     when progress stalls, check the basics first. Unit tests include the dead-code check (tools/deadcode.py) and the
     arm-intent check (tools/arm-intent.txt). Symmetry must be decided by observation, never guessed.
-16. **Incumbent g_iter2 since 2026-10-03** (g1basics: the audit fixes A1 A2 A4 A5 A6 A7 A9 + observed symmetry; seeded band
-    pairs vs g_iter1 +33 then +29 on fresh seeds, p < 0.001). src/bot with its defaults plays as g_iter2 (src/g_iter2 is
-    the frozen copy); new arms flip switches from these defaults and are paired against g_iter2 on shared engine seeds.
+16. **Incumbent g_iter3 since 2026-10-03** (g2cr: g_iter2 + carrier stun + flag relocation V2; seeded band pairs vs
+    g_iter2 net +11 then +11 on fresh seeds, pooled +22 of 473, sign p 0.017, capture delta +0.25 +- 0.07; basics PASS).
+    src/bot with its defaults plays as g_iter3 (src/g_iter3 is the frozen copy); new arms flip switches from these
+    defaults and are paired against g_iter3 on shared engine seeds.

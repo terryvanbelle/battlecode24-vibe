@@ -1288,3 +1288,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   lands (15-20 stun builds r200-400). Arm g2crb = g2cr + C.BUDGET_V1 (nothing discretionary in setup, fills only when
   stalled, a floor from 1500 at r200 falling 10 a round holds back rings and idle traps; combat and carrier stuns draw
   on the bank at once). BUDGET_V1 was last judged unseeded on the buggy base. 5(a) queued behind g2cr's confirmation.
+
+### 2026-10-03 10:30 UTC — **g2cr confirmed; promoted to incumbent g_iter3; waffle ranks below us**
+- Confirmation seeds 717171 + 818181 vs g_iter2's confirmation runs: net +11 (25-14), capture delta +0.17 +- 0.09, upper
+  +0.07 +- 0.13; basics PASS. Pooled over 4 seeds (473 pairs): **net +22 (sign p 0.017)**, capture delta **+0.25 +- 0.07
+  (t 3.8)**, upper +0.18 +- 0.09 (t 2.0), rest +15 (+0.33 +- 0.10): REWRITE_EVAL criterion (a) on the pooled result.
+- Promotion: src/bot defaults CARRIER_STUN, RELOCATE_FLAGS, RELOC_V2 on; src/g_iter3 snapshotted (identical to g2cr but
+  comments); AuditTest's incumbent check updated. Ladder: band runs recorded as g_iter3, the 160 g2cr filler games
+  relabelled g_iter3, the 120 "g1basics" ColtG5 filler games relabelled g_iter2 (same code); refit: **g_iter3 1977 +-
+  33, rank 12 of 75**, waffle 1964 (rank 13), g_iter2 1920. Waffle filler: g2cr 95-65 (59.4%, p 0.022) vs g_iter2 73-87
+  on the same 160 cells (net +22, +2.8 SE); the 240-game read finishes with the g_iter3 package.
+- Waffle ranks below us: new target (CLAUDE rule 14) **CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14, the best
+  record against any bot above us). CLAUDE rules 14/16, HANDOFF, README, REWRITE.md, TACTICS (T13 accepted), memory.

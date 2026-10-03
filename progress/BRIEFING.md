@@ -70,6 +70,11 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   wins 12 vs 8 of 22. Now the decisive paired test: g2cr vs g_iter2 against waffle on fresh seeds toward 240 games
   (victory read >= 60%, p < 0.05), plus the band test so nothing regresses elsewhere.
 
+- 10:30 UTC: **g_iter3 promoted; waffle beaten on the ladder.** g2cr confirmed: pooled over 473 seeded band pairs vs
+  g_iter2, net +22 (p 0.017) and capture difference +0.25 per game (t 3.8), basics PASS. Against waffle on the filler
+  95-65 (59%) where g_iter2 went 73-87 on the same games. Ladder: g_iter3 1977 (rank 12) above waffle 1964. Next
+  target: CyrilSharma.finalBot (2020; g_iter3 10-14).
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
@@ -91,7 +96,7 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   bugs were real but these ideas were not what held us back.
 
 ## Open questions for the owner
-- **Carrier stun vs waffle (g2cstun): delivery bar or wins?** Freezing waffle's carriers (stun built beside a carrier of
+- (Superseded by g_iter3, which carries the carrier stun, but the principle stands.) **Carrier stun vs waffle (g2cstun): delivery bar or wins?** Freezing waffle's carriers (stun built beside a carrier of
   our flag) delivered its mechanism in both blocks (carriers caught x3) and won 13 discordant pairs to 1 over two blocks
   (p ~ 0.002), but missed both pre-registered capture bars (waffle captures -7% and -11% by r600; bars -15% / -20%).
   TRAINING_ALGORITHM §3.5 says a failed delivery is never judged on wins, so it is not delivered and the paired filler

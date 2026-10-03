@@ -138,3 +138,12 @@ only beyond 2 paired SE), used from now on, never to re-judge a past block. Seco
 `SEED=939393 DGTAG=-seeded2 BASE=g_iter2 tools/delivery-gate.sh g2cr 'nw:kills>=0.95 nw:enemyCaptured<=1.1
 mean:overruns<=0'`, then the band test (`SEEDS='515151 616161' TAG=-seeded`). Note the real band costs of relocation
 seen in that block (enemy first grabs 7.7 vs 5.5, k/d 2.56 vs 2.92): the band test decides whether they matter.
+
+## Result (2026-10-03 10:30 UTC): g2cr promoted to g_iter3; waffle ranks below us
+
+- Band vs g_iter2: +11 (seeds 515151 + 616161), confirmation +11 (717171 + 818181); pooled 473 pairs net +22 (sign p
+  0.017), capture delta +0.25 +- 0.07 (t 3.8), upper +0.18 +- 0.09; basics PASS. REWRITE_EVAL criterion (a) on the
+  pooled result.
+- Against waffle: paired filler 160 games g2cr 95-65 (59.4%, p 0.022) vs g_iter2 73-87 on the same cells, paired net
+  +22 (+2.8 SE); ladder g_iter3 1977 +- 33 vs waffle 1964. The pre-registered 240-game read finishes on the filler with
+  the g_iter3 package (same code).
