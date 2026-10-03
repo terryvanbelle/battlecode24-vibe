@@ -699,3 +699,7 @@ So it seems that the audit that found those bugs yesterday was the high level br
 ## 170. 2026-10-03
 
 task check
+
+## 171. 2026-10-03
+
+By the way, you don't need to log any prompt that comes from a /loop

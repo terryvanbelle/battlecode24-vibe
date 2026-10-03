@@ -4,7 +4,8 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
 
 1. **Games in volume run only on the VM `battlecode-dev`** (`tools/vm-run.sh`). The driver (2 vCPU, 2 GB)
    hosts this session and may play one diagnostic game at a time.
-2. **Push after every commit**; **record every user prompt verbatim in `PROMPTS.md`**.
+2. **Push after every commit**; **record every user prompt verbatim in `PROMPTS.md`**, except the prompts a `/loop` fires (e.g.
+   "task check"; owner, PROMPTS 171).
 3. **External bots' source is never read** (`BENCHMARK.md`). Their games may be reviewed.
 4. **External bots are played only as scrimmages** (`tools/scrim.sh`). Never choose a map or side against one.
 5. **No gate before a diagnostic game shows the mechanism firing.**
