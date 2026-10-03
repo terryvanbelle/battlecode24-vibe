@@ -54,6 +54,8 @@ import java.util.zip.GZIPInputStream;
  *                      as symOk (an external bot may write slot 23 for its own purposes)
  *   maxBcK             the team's largest bytecode count in one turn, in thousands (1 decimal)
  *   flagDistMin/Mean   at r200, own flags' distance in tiles to the nearest enemy spawn centre (min, mean over the 3)
+ *   carrierStunBuilds  post-setup stun traps we built within dist2 8 of an enemy carrying our flag; carrierStunned: our
+ *                      triggered stuns that caught such a carrier (within dist2 13)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -538,11 +540,14 @@ public class ReplayDump {
             trapTeam.put(tid, tt); trapType.put(tid, ty); trapLoc.put(tid, new int[]{tl.xs(j), tl.ys(j)});
             if (tt >= 1 && tt <= 2 && ty >= 0 && ty < 3) cTraps[tt][ty]++;
             if (inWindow(rn)) out.printf("r%d TRAP %s builds %s at (%d,%d)%n", rn, tname(tt), BUILD[ty], tl.xs(j), tl.ys(j));
+            if (capMode && rn > 200 && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[ty]) && carrierNear(3 - tt, tl.xs(j), tl.ys(j), 8)) kCarrierStunBuilds[tt]++;
         }
         for (int j = 0; j < r.trapTriggeredIdsLength(); j++) {
             int tid = r.trapTriggeredIds(j);
             if (inWindow(rn)) { int[] l = trapLoc.get(tid); out.printf("r%d TRAP %s %s at (%d,%d) triggered%n", rn,
                     tname(trapTeam.getOrDefault(tid, 0)), BUILD[trapType.getOrDefault(tid, 0)], l == null ? -1 : l[0], l == null ? -1 : l[1]); }
+            if (capMode && rn > 200) { int[] l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0);
+                if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)]) && carrierNear(3 - tt, l[0], l[1], 13)) kCarrierStunned[tt]++; }
             trapLoc.remove(tid);
         }
         // deaths
@@ -1048,6 +1053,18 @@ public class ReplayDump {
     /** flagDistMin / flagDistMean: at r200, each own flag's distance (tiles) to the nearest enemy spawn centre (a flag id
      *  is the location index of its spawn centre). Far flags need longer enemy relay chains (2026-10-03, waffle). */
     static double[] kFlagDistMin = {-1, -1, -1}, kFlagDistMean = {-1, -1, -1};
+    /** carrierStunBuilds / carrierStunned: our stun traps built within dist2 8 of an enemy robot carrying our flag, and our
+     *  triggered stuns that caught one (within dist2 13), post-setup (2026-10-03, waffle: a frozen carrier cannot move). */
+    static int[] kCarrierStunBuilds = new int[3], kCarrierStunned = new int[3];
+    static boolean carrierNear(int carrierTeam, int x, int y, int r2) {
+        for (Map.Entry<Integer, Integer> c : carrying.entrySet()) {
+            if (team.getOrDefault(c.getKey(), 0) != carrierTeam) continue;
+            int[] l = lastLoc.get(c.getKey()); if (l == null) continue;
+            int dx = l[0] - x, dy = l[1] - y; if (dx * dx + dy * dy <= r2) return true;
+        }
+        return false;
+    }
+
     static void flagDistTick() {
         for (int t = 1; t <= 2; t++) {
             double mn = Double.MAX_VALUE, sum = 0; int n = 0;
@@ -1179,7 +1196,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1201,7 +1218,8 @@ public class ReplayDump {
                         + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : "")
                         + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]
                         + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : "")
-                        + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : ""));
+                        + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : "")
+                        + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t]);
             }
         }
         if (trackMode) printTrack();

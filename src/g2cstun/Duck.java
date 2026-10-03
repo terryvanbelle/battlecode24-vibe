@@ -1,4 +1,4 @@
-package bot;
+package g2cstun;
 
 import battlecode.common.*;
 

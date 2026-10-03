@@ -1,4 +1,4 @@
-package bot;
+package g2cstun;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -82,7 +82,7 @@ public strictfp class C {
     public static final boolean Z2ESCORT = false;        // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
     public static final int Z2_ESC_R2 = 2;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
     public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
-    public static final boolean CARRIER_STUN = false;   // waffle crack: stun within dist2 8 of an enemy carrying our flag, ahead of it (arm g2cstun)
+    public static final boolean CARRIER_STUN = true;   // waffle crack: stun within dist2 8 of an enemy carrying our flag, ahead of it (arm g2cstun)
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer
     public static final boolean TRACK = false;          // S0b switch (g1trk): off, javac drops every Track hook and play is g_iter1 exactly

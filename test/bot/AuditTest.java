@@ -71,7 +71,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && !C.RELOCATE_FLAGS && !C.DEST_CAMP,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && !C.RELOCATE_FLAGS && !C.DEST_CAMP && !C.CARRIER_STUN,
               "src/bot plays as the incumbent g_iter2 (the audit fixes and observed symmetry on, the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
