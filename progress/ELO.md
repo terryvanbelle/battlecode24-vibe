@@ -1,82 +1,82 @@
 # Ladder
 
-17029 scrimmages (ours only), 17029 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+17109 scrimmages (ours only), 17109 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter3 | 1951 +- 24 | 12 of 76 | 1040 | 490-550 | 80.3% | 20.5% (vs 11) |
-| g2cr | 1942 +- 107 | 13 of 76 | 40 | 21-19 | 80.0% | 19.7% (vs 11) |
-| g_iter2 | 1898 +- 15 | 15 of 76 | 2200 | 1032-1168 | 78.5% | 18.5% (vs 12) |
-| arch_rush10 | 1816 +- 131 | 17 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
-| a3dig5 | 1816 +- 131 | 18 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
-| g_iter1_c2 | 1816 +- 131 | 19 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
+| g_iter3 | 1947 +- 23 | 12 of 76 | 1120 | 510-610 | 80.1% | 20.1% (vs 11) |
+| g2cr | 1940 +- 107 | 13 of 76 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
+| g_iter2 | 1897 +- 15 | 15 of 76 | 2200 | 1032-1168 | 78.5% | 18.4% (vs 12) |
+| a3dig5 | 1815 +- 131 | 17 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
+| g_iter1_c2 | 1815 +- 131 | 18 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
+| arch_rush10 | 1815 +- 131 | 19 of 76 | 110 | 84-26 | 75.7% | 15.5% (vs 13) |
 | e1aggr | 1790 +- 130 | 21 of 76 | 110 | 83-27 | 74.8% | 16.2% (vs 14) |
-| a3dig10 | 1765 +- 129 | 22 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
-| c5bank | 1765 +- 129 | 23 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
-| c6pair | 1765 +- 129 | 24 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
-| a2reloc | 1740 +- 128 | 26 of 76 | 110 | 81-29 | 73.1% | 15.3% (vs 15) |
-| e2aggr | 1740 +- 128 | 27 of 76 | 110 | 81-29 | 73.1% | 15.3% (vs 15) |
+| c6pair | 1765 +- 129 | 22 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
+| a3dig10 | 1765 +- 129 | 23 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
+| c5bank | 1765 +- 129 | 24 of 76 | 110 | 82-28 | 74.0% | 14.6% (vs 14) |
+| e2aggr | 1740 +- 128 | 26 of 76 | 110 | 81-29 | 73.1% | 15.3% (vs 15) |
+| a2reloc | 1740 +- 128 | 27 of 76 | 110 | 81-29 | 73.1% | 15.3% (vs 15) |
 | a2relay | 1740 +- 128 | 28 of 76 | 110 | 81-29 | 73.1% | 15.3% (vs 15) |
 | b1z2b | 1730 +- 24 | 29 of 76 | 1760 | 620-1140 | 72.7% | 14.7% (vs 15) |
-| g_iter1 | 1724 +- 10 | 30 of 76 | 6990 | 2485-4505 | 72.5% | 14.3% (vs 15) |
-| g1copy | 1717 +- 91 | 31 of 76 | 80 | 28-52 | 72.2% | 13.9% (vs 15) |
+| g_iter1 | 1723 +- 10 | 30 of 76 | 6990 | 2485-4505 | 72.5% | 14.3% (vs 15) |
+| g1copy | 1716 +- 91 | 31 of 76 | 80 | 28-52 | 72.2% | 13.9% (vs 15) |
 | b2fs | 1716 +- 28 | 32 of 76 | 1280 | 439-841 | 72.2% | 13.9% (vs 15) |
-| g1sym | 1712 +- 51 | 33 of 76 | 200 | 68-132 | 72.1% | 13.6% (vs 15) |
-| b1v2 | 1705 +- 22 | 35 of 76 | 2120 | 711-1409 | 71.8% | 15.5% (vs 16) |
+| g1sym | 1711 +- 51 | 33 of 76 | 200 | 68-132 | 72.1% | 13.6% (vs 15) |
+| b1v2 | 1704 +- 22 | 35 of 76 | 2120 | 711-1409 | 71.8% | 15.5% (vs 16) |
 | arch_rush | 1389 +- 94 | 38 of 76 | 110 | 62-48 | 56.6% | 6.5% (vs 18) |
-| g_iter0 | 1325 +- 89 | 41 of 76 | 109 | 56-53 | 52.1% | 8.9% (vs 20) |
+| g_iter0 | 1324 +- 89 | 41 of 76 | 109 | 56-53 | 52.1% | 8.9% (vs 20) |
 
 Our last run = OUR win rate (our W-L) against the bot, by the most recent of our builds that played it 30+ times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).
 
 | rank | player | rating | +- 95% | games | W-L | our last run |
 |---|---|---|---|---|---|---|
-| 1 | Strequals.duck0127v5 | 2350 | 84 | 556 | 540-16 | 3% (g_iter1 7-217) |
-| 2 | jmerle.camel_case_v21_final | 2350 | 84 | 556 | 540-16 | 4% (g_iter1 10-214) |
-| 3 | IvanGeffner.kuma | 2312 | 76 | 556 | 536-20 | 4% (g_iter1 9-215) |
+| 1 | Strequals.duck0127v5 | 2349 | 84 | 556 | 540-16 | 3% (g_iter1 7-217) |
+| 2 | jmerle.camel_case_v21_final | 2349 | 84 | 556 | 540-16 | 4% (g_iter1 10-214) |
+| 3 | IvanGeffner.kuma | 2311 | 76 | 556 | 536-20 | 4% (g_iter1 9-215) |
 | 4 | uravt.Version18Final | 2308 | 348 | 26 | 26-0 |  |
-| 5 | chenyx512.flagbot_final | 2241 | 63 | 556 | 526-30 | 6% (g_iter1 13-211) |
-| 6 | NotLLeon.v3 | 2193 | 56 | 556 | 517-39 | 8% (g_iter1 17-207) |
-| 7 | andli28.v9_USQuals_angle | 2184 | 55 | 556 | 515-41 | 6% (g_iter1 13-211) |
-| 8 | Gymhgy.v10official | 2121 | 48 | 556 | 499-57 | 11% (g_iter1 25-199) |
-| 9 | andrewgopher.player22 | 2108 | 46 | 556 | 495-61 | 11% (g_iter1 24-200) |
-| 10 | hsmalladi.finalbot | 2053 | 41 | 556 | 476-80 | 12% (g_iter1 27-197) |
-| 11 | CyrilSharma.finalBot | 2049 | 29 | 876 | 678-198 | 31% (g_iter3 108-236) |
-| 12 | **us:g_iter3** | 1951 | 24 | 1040 | 490-550 |  |
-| 13 | **us:g2cr** | 1942 | 107 | 40 | 21-19 |  |
-| 14 | winkelmantanner.waffle | 1939 | 15 | 2276 | 1362-914 | 62% (g_iter3 163-101) |
-| 15 | **us:g_iter2** | 1898 | 15 | 2200 | 1032-1168 |  |
+| 5 | chenyx512.flagbot_final | 2240 | 63 | 556 | 526-30 | 6% (g_iter1 13-211) |
+| 6 | NotLLeon.v3 | 2192 | 56 | 556 | 517-39 | 8% (g_iter1 17-207) |
+| 7 | andli28.v9_USQuals_angle | 2183 | 55 | 556 | 515-41 | 6% (g_iter1 13-211) |
+| 8 | Gymhgy.v10official | 2120 | 48 | 556 | 499-57 | 11% (g_iter1 25-199) |
+| 9 | andrewgopher.player22 | 2107 | 46 | 556 | 495-61 | 11% (g_iter1 24-200) |
+| 10 | CyrilSharma.finalBot | 2055 | 27 | 956 | 738-218 | 30% (g_iter3 128-296) |
+| 11 | hsmalladi.finalbot | 2052 | 41 | 556 | 476-80 | 12% (g_iter1 27-197) |
+| 12 | **us:g_iter3** | 1947 | 23 | 1120 | 510-610 |  |
+| 13 | **us:g2cr** | 1940 | 107 | 40 | 21-19 |  |
+| 14 | winkelmantanner.waffle | 1938 | 15 | 2276 | 1362-914 | 62% (g_iter3 163-101) |
+| 15 | **us:g_iter2** | 1897 | 15 | 2200 | 1032-1168 |  |
 | 16 | ColtG5.Goob_final | 1829 | 12 | 3516 | 2201-1315 | 67% (g_iter2 203-101) |
-| 17 | **us:arch_rush10** | 1816 | 131 | 110 | 84-26 |  |
-| 18 | **us:a3dig5** | 1816 | 131 | 110 | 84-26 |  |
-| 19 | **us:g_iter1_c2** | 1816 | 131 | 110 | 84-26 |  |
+| 17 | **us:a3dig5** | 1815 | 131 | 110 | 84-26 |  |
+| 18 | **us:g_iter1_c2** | 1815 | 131 | 110 | 84-26 |  |
+| 19 | **us:arch_rush10** | 1815 | 131 | 110 | 84-26 |  |
 | 20 | kyleezz.jeeryfix3 | 1809 | 30 | 556 | 335-221 | 41% (g_iter1 91-133) |
 | 21 | **us:e1aggr** | 1790 | 130 | 110 | 83-27 |  |
-| 22 | **us:a3dig10** | 1765 | 129 | 110 | 82-28 |  |
-| 23 | **us:c5bank** | 1765 | 129 | 110 | 82-28 |  |
-| 24 | **us:c6pair** | 1765 | 129 | 110 | 82-28 |  |
+| 22 | **us:c6pair** | 1765 | 129 | 110 | 82-28 |  |
+| 23 | **us:a3dig10** | 1765 | 129 | 110 | 82-28 |  |
+| 24 | **us:c5bank** | 1765 | 129 | 110 | 82-28 |  |
 | 25 | quesswho.cretplayer2_3 | 1763 | 29 | 556 | 300-256 | 40% (g_iter1 90-134) |
-| 26 | **us:a2reloc** | 1740 | 128 | 110 | 81-29 |  |
-| 27 | **us:e2aggr** | 1740 | 128 | 110 | 81-29 |  |
+| 26 | **us:e2aggr** | 1740 | 128 | 110 | 81-29 |  |
+| 27 | **us:a2reloc** | 1740 | 128 | 110 | 81-29 |  |
 | 28 | **us:a2relay** | 1740 | 128 | 110 | 81-29 |  |
 | 29 | **us:b1z2b** | 1730 | 24 | 1760 | 620-1140 |  |
-| 30 | **us:g_iter1** | 1724 | 10 | 6990 | 2485-4505 |  |
-| 31 | **us:g1copy** | 1717 | 91 | 80 | 28-52 |  |
+| 30 | **us:g_iter1** | 1723 | 10 | 6990 | 2485-4505 |  |
+| 31 | **us:g1copy** | 1716 | 91 | 80 | 28-52 |  |
 | 32 | **us:b2fs** | 1716 | 28 | 1280 | 439-841 |  |
-| 33 | **us:g1sym** | 1712 | 51 | 200 | 68-132 |  |
-| 34 | SampleProvider.TSPAARKSPRINT1 | 1707 | 29 | 556 | 256-300 | 50% (g_iter1 112-112) |
-| 35 | **us:b1v2** | 1705 | 22 | 2120 | 711-1409 |  |
+| 33 | **us:g1sym** | 1711 | 51 | 200 | 68-132 |  |
+| 34 | SampleProvider.TSPAARKSPRINT1 | 1706 | 29 | 556 | 256-300 | 50% (g_iter1 112-112) |
+| 35 | **us:b1v2** | 1704 | 22 | 2120 | 711-1409 |  |
 | 36 | dmtrung14.defaultplayer_intlqualifier | 1543 | 33 | 556 | 141-415 | 69% (g_iter1 155-69) |
-| 37 | clbarrell.duck8 | 1521 | 35 | 556 | 128-428 | 78% (g_iter1 175-49) |
+| 37 | clbarrell.duck8 | 1520 | 35 | 556 | 128-428 | 78% (g_iter1 175-49) |
 | 38 | **us:arch_rush** | 1389 | 94 | 110 | 62-48 |  |
 | 39 | jonters.bling3 | 1371 | 46 | 556 | 63-493 | 89% (g_iter1 200-24) |
 | 40 | HugoIngelsson.Bot21 | 1328 | 201 | 26 | 3-23 |  |
-| 41 | **us:g_iter0** | 1325 | 89 | 109 | 56-53 |  |
+| 41 | **us:g_iter0** | 1324 | 89 | 109 | 56-53 |  |
 | 42 | Metta-AI.bc24scenario | 1261 | 224 | 26 | 2-24 |  |
 | 43 | noahzemlin.honeyducklings | 1261 | 224 | 26 | 2-24 |  |
 | 44 | sivakovivan.NewHide | 1261 | 224 | 26 | 2-24 |  |
-| 45 | awu7.ExplosiveBot | 1255 | 60 | 556 | 34-522 | 97% (g_iter1 217-7) |
+| 45 | awu7.ExplosiveBot | 1254 | 60 | 556 | 34-522 | 97% (g_iter1 217-7) |
 | 46 | JeffLegendPower.v11 | 1173 | 264 | 26 | 1-25 |  |
 | 47 | MiloAkerman.v1 | 1173 | 264 | 26 | 1-25 |  |
 | 48 | PerishoJ.tx | 1173 | 264 | 26 | 1-25 |  |
@@ -89,22 +89,22 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 55 | lukerhoads.warrior_2nd_comp | 1173 | 264 | 26 | 1-25 |  |
 | 56 | neilhuang007.baseline | 1173 | 264 | 26 | 1-25 |  |
 | 57 | polyllc.polyv4 | 1173 | 264 | 26 | 1-25 |  |
-| 58 | andrearante12.turtle | 1069 | 357 | 25 | 0-25 |  |
-| 59 | AlexYu84.smartPlayer | 1036 | 357 | 26 | 0-26 |  |
-| 60 | H4ffliger.keyboardcrusader_v1 | 1036 | 357 | 26 | 0-26 |  |
-| 61 | Lithanium.AttackingBot | 1036 | 357 | 26 | 0-26 |  |
-| 62 | Rubrasum.version_3 | 1036 | 357 | 26 | 0-26 |  |
-| 63 | SriLakshmiPolavarapu.ducks | 1036 | 357 | 26 | 0-26 |  |
-| 64 | VarunVejalla.alexander | 1036 | 357 | 26 | 0-26 |  |
-| 65 | abdullah8a0.crayBasic | 1036 | 357 | 26 | 0-26 |  |
-| 66 | adamseth2.moveBot1 | 1036 | 357 | 26 | 0-26 |  |
-| 67 | dylanconklin.Team3 | 1036 | 357 | 26 | 0-26 |  |
-| 68 | itswin.MPAttack | 1036 | 357 | 26 | 0-26 |  |
-| 69 | joelcrouch.ducks | 1036 | 357 | 26 | 0-26 |  |
-| 70 | lcforges.funkyguy3 | 1036 | 357 | 26 | 0-26 |  |
-| 71 | qpwoeirut.tournament_sprint1 | 1036 | 357 | 26 | 0-26 |  |
-| 72 | reeceyang.v5 | 1036 | 357 | 26 | 0-26 |  |
-| 73 | samithShetty.combustiblelemon | 1036 | 357 | 26 | 0-26 |  |
-| 74 | sayam-goyal.SimpleBot | 1036 | 357 | 26 | 0-26 |  |
-| 75 | tlevietpdx.Sprint2 | 1036 | 357 | 26 | 0-26 |  |
+| 58 | andrearante12.turtle | 1068 | 357 | 25 | 0-25 |  |
+| 59 | AlexYu84.smartPlayer | 1035 | 357 | 26 | 0-26 |  |
+| 60 | H4ffliger.keyboardcrusader_v1 | 1035 | 357 | 26 | 0-26 |  |
+| 61 | Lithanium.AttackingBot | 1035 | 357 | 26 | 0-26 |  |
+| 62 | Rubrasum.version_3 | 1035 | 357 | 26 | 0-26 |  |
+| 63 | SriLakshmiPolavarapu.ducks | 1035 | 357 | 26 | 0-26 |  |
+| 64 | VarunVejalla.alexander | 1035 | 357 | 26 | 0-26 |  |
+| 65 | abdullah8a0.crayBasic | 1035 | 357 | 26 | 0-26 |  |
+| 66 | adamseth2.moveBot1 | 1035 | 357 | 26 | 0-26 |  |
+| 67 | dylanconklin.Team3 | 1035 | 357 | 26 | 0-26 |  |
+| 68 | itswin.MPAttack | 1035 | 357 | 26 | 0-26 |  |
+| 69 | joelcrouch.ducks | 1035 | 357 | 26 | 0-26 |  |
+| 70 | lcforges.funkyguy3 | 1035 | 357 | 26 | 0-26 |  |
+| 71 | qpwoeirut.tournament_sprint1 | 1035 | 357 | 26 | 0-26 |  |
+| 72 | reeceyang.v5 | 1035 | 357 | 26 | 0-26 |  |
+| 73 | samithShetty.combustiblelemon | 1035 | 357 | 26 | 0-26 |  |
+| 74 | sayam-goyal.SimpleBot | 1035 | 357 | 26 | 0-26 |  |
+| 75 | tlevietpdx.Sprint2 | 1035 | 357 | 26 | 0-26 |  |
 | 76 | justinottesen.sprint1 | 904 | 153 | 556 | 4-552 | 100% (g_iter1 224-0) |
