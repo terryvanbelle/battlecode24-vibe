@@ -1146,3 +1146,39 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   updated; the ColtG5 filler now plays the g_iter2 package so new games carry the right label. Still stale and being
   regenerated on the VM: progress/SURVEY.md and survey.csv (tactics survey queued) and progress/ONSET.md and
   onset-ladder.png (onset on a g_iter2 band run queued). Memory: promotion checklist.
+- g2z2 delivery **FAIL** (enemyRegrabs 7.38 vs 8.88, bar 6.21; postPickups ok). Parked; a second attempt needs a 5(a)
+  trace and a fresh seed (RETEST rule).
+- Step 5(a) judged for arms 2-8 (8 diagnostic games each, indicator counters summed per robot from the replays):
+  - fire: g2escrg (rg 14/16, et 731/201), g2alert400 (chases 474-3201 vs 0-2894; park <= 18), g2water (14 water traps
+    on Battlecode24), g2fstun (home-tile stuns rebuilt after r400 on 3 of 4 maps and triggered 4-6 times), g2up3
+    (CAPTURING at r1200; no late re-grab in 4 games: 12 more diagnostic games queued before its gate).
+  - **g2rgh does not fire** (rg 0 on all 4 maps): our carriers die within a few tiles of the pickup (DefaultMedium: every
+    drop at x 36-41 on a 44-wide map), so a loose enemy flag on our half never happens against the mirror. Parked: no
+    premise, not a bug. This also says conversion dies at the enemy base, not on the way home.
+  - **g2icamp: A11(a) confirmed and fixed.** Pre-fix, camps ran 14137 / 10889 robot-turns on DefaultLarge / Medium, and
+    most came after our flag was home (flag home r379, then 1361 camp-turns in r400-449). Fix behind C.DEST_CAMP (g_iter2
+    play unchanged): a duck that sees our flag i not carried clears OF_CARRY/OF_LOC (Comms.clearCarried), with the audit's
+    regression test in AuditTest. Rebuilt g2icamp, 8 more games: camps 0 everywhere, intercepts 9-3441 a game. One
+    carrier walked 26 rounds unseen and captured (Battlecode24 s5): never seen, so camps cannot trigger; DEST_CAMP as
+    designed only covers carriers that are seen and then lost. Gates queued (ColtG5 block recorded, then band gate).
+  - Tool fix: diag-batch.sh output names now carry the opponent (bot-vs-opp-map-seed): the arch_rush10 games had
+    overwritten the mirror games of the same bot, map and seed (g_iter2/g2fstun/g2alert400 on DefaultMedium and Tunnels).
+- Delivery gates (24 seeded cells vs g_iter2): **g2escrg FAIL** (regrabs 12.1 vs 1.8 ok; escorts20 5.06 vs 4.76, bar
+  5.23; captured 1.42 vs 1.46, bar 1.46), **g2alert400 FAIL** (enemyFirstGrabs 4.88 vs 5.54, bar 4.71; chasers20 +51% ok),
+  **g2water FAIL** (fired in 42% of games, need 50%; kills -15.6%, -2.6 SE), **g2fstun FAIL** (enemyCarrierKills 11.5 vs
+  12.4, bar 13.6; kills -13%). All parked under the RETEST rule (second attempt only after a trace explains the failure).
+- g2bc2 (BFS bail-out at 13000) band vs g_iter2, 234 seeded pairs: net +7 (23-16, p 0.34), capture delta +0.02 +- 0.09;
+  overruns 0. **Basics FAIL: stillPost 29.99 vs 28.08 (+1.91 +- 0.89)**: the bail-out answers "engage" in crowded fights,
+  which sends ducks into the hold branch. Not promoted.
+- Replacement: C.REACH_FAST (arm g2fast), the same search at a fraction of the bytecode. Tiles in attack range of an
+  enemy are marked once (13 offsets per enemy) instead of testing every enemy at every reached tile, and onTheMap /
+  canSenseLocation become a bounds test (the 7x7 grid is inside vision). AuditTest checks it against the reference on
+  3000 random wall/enemy layouts (all agree). 5(a): per-game peak bytecode fell on 5 of 6 maps (Divergent 21.0k -> 17.7k
+  and 20.9k -> 18.2k, DefaultMedium 22.6k -> 19.0k, Tunnels 20.5k -> 18.1k) and the mean fell 5-10%. Gate queued
+  (overruns 0, maxBcK <= 0.95, stillPost <= 1.05, kills >= 0.95), then band.
+- **ColtG5 declared defeated by the owner** (PROMPTS 157; g_iter2 83-61 = 58% on the ladder, rated 1918 vs 1877). New
+  standing rule (PROMPTS 158-159): when the target ranks below us, pick the next target, usually the bot just above.
+  **New target: winkelmantanner.waffle** (1997, rank 12): g_iter2 10-14 against it, and **all 14 losses were by all three
+  flags** (median r715); g_iter1 was 47-177. It is both the nearest bot above and the one we do best against (CyrilSharma
+  7-17, hsmalladi 5-19). The filler now plays it (`FILLPOOL=winkelmantanner.waffle filler-pair.sh g_iter2 - 40`);
+  CLAUDE.md rule 14 and tools/next-rung.txt updated. The final ColtG5 filler pair (g_iter2 vs g_iter1, 40 games): +16 (17-1).

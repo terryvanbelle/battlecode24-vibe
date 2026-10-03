@@ -140,6 +140,11 @@ public strictfp class Comms {
         if (G.rc.readSharedArray(OF_CARRY + i) != G.round) G.rc.writeSharedArray(OF_CARRY + i, G.round);
     }
 
+    /** Audit A11(a): our flag i is in view and not carried, so no enemy carries it now; forget the stale carry. */
+    public static void clearCarried(int i) throws GameActionException {
+        if (G.rc.readSharedArray(OF_CARRY + i) != 0) { G.rc.writeSharedArray(OF_CARRY + i, 0); G.rc.writeSharedArray(OF_LOC + i, 0); }
+    }
+
     /** Location of an enemy carrying our flag i, if seen in the last `fresh` rounds; else null. */
     public static MapLocation carried(int i, int fresh) throws GameActionException {
         int r = G.rc.readSharedArray(OF_CARRY + i);

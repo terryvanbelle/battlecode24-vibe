@@ -31,6 +31,7 @@ public strictfp class C {
     public static final boolean REACH_FIX = true;       // audit A4: an enemy takes the turn only if within dist2 8 or reachable in 3 moves
     public static final int REACH_BC = 8000;               // A4: the reachability search runs only with this many bytecodes left (else "engage")
     public static final int REACH_BC_STOP = 0;             // A4: the search gives up ("engage") once fewer bytecodes are left (0 = never; arm g2bc2: 13000)
+    public static final boolean REACH_FAST = false;     // A4 search at a fraction of the bytecode, same answer (arm g2fast; AuditTest compares)
     public static final boolean NAV_FIX = true;         // audit A7/A9: bug state survives small target moves; one edge flip per call
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this

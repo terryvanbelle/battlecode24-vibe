@@ -226,6 +226,10 @@ public strictfp class Micro {
      *  so without this a duck facing an enemy across a wall or water stood still for 100+ rounds (Tunnels). Falls back to
      *  "yes" when bytecode is short. */
     static boolean engageable(RobotInfo[] enemies) throws GameActionException {
+        return C.REACH_FAST ? engageableFast(enemies) : engageableRef(enemies);
+    }
+
+    static boolean engageableRef(RobotInfo[] enemies) throws GameActionException {
         MapLocation me = G.me;
         for (RobotInfo e : enemies) if (me.distanceSquaredTo(e.location) <= 8) return true;
         if (G.bcLeft() < C.REACH_BC) return true;
@@ -249,6 +253,50 @@ public strictfp class Micro {
                 seen[k] = true;
                 MapLocation nl = new MapLocation(nx, ny);
                 if (!G.rc.onTheMap(nl) || !G.rc.canSenseLocation(nl) || !G.rc.senseMapInfo(nl).isPassable()) continue;
+                q[tail] = k; dep[tail++] = d + 1;
+            }
+        }
+        return false;
+    }
+
+    static final int[] NEAR_DX = {0, 1, -1, 0, 0, 1, 1, -1, -1, 2, -2, 0, 0}, NEAR_DY = {0, 0, 0, 1, -1, 1, -1, 1, -1, 0, 0, 2, -2};
+
+    /** C.REACH_FAST: engageableRef's answer at a fraction of its bytecode (overrun r1887: the search plus a crowded
+     *  fight). Tiles within attack range of an enemy are marked once (13 offsets per enemy) instead of testing every
+     *  enemy at every reached tile, and the onTheMap/canSenseLocation calls become a bounds test: the whole 7x7 grid
+     *  is inside vision (corner dist2 18 <= 20). */
+    static boolean engageableFast(RobotInfo[] enemies) throws GameActionException {
+        MapLocation me = G.me;
+        for (RobotInfo e : enemies) if (me.distanceSquaredTo(e.location) <= 8) return true;
+        if (G.bcLeft() < C.REACH_BC) return true;
+        final int R = 3, N = 2 * R + 1;
+        int ox = me.x - R, oy = me.y - R;
+        boolean[] near = new boolean[N * N];
+        for (RobotInfo e : enemies) {
+            int ex = e.location.x - ox, ey = e.location.y - oy;
+            if (ex < -2 || ey < -2 || ex > N + 1 || ey > N + 1) continue;
+            for (int j = 12; j >= 0; j--) {
+                int gx = ex + NEAR_DX[j], gy = ey + NEAR_DY[j];
+                if (gx >= 0 && gy >= 0 && gx < N && gy < N) near[gy * N + gx] = true;
+            }
+        }
+        boolean[] seen = new boolean[N * N];
+        int[] q = new int[N * N], dep = new int[N * N];
+        int head = 0, tail = 0, W = G.W, H = G.H;
+        q[tail] = R * N + R; dep[tail++] = 0; seen[R * N + R] = true;
+        while (head < tail) {
+            int c = q[head], d = dep[head++];
+            if (near[c]) return true;
+            if (d == R) continue;
+            int gx0 = c % N, gy0 = c / N;
+            for (Direction dir : G.DIRS) {
+                int gx = gx0 + dir.dx, gy = gy0 + dir.dy;
+                if (gx < 0 || gy < 0 || gx >= N || gy >= N) continue;
+                int k = gy * N + gx;
+                if (seen[k]) continue;
+                seen[k] = true;
+                int nx = gx + ox, ny = gy + oy;
+                if (nx < 0 || ny < 0 || nx >= W || ny >= H || !G.rc.senseMapInfo(new MapLocation(nx, ny)).isPassable()) continue;
                 q[tail] = k; dep[tail++] = d + 1;
             }
         }

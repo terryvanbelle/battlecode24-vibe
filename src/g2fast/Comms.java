@@ -1,4 +1,4 @@
-package bot;
+package g2fast;
 
 import battlecode.common.*;
 

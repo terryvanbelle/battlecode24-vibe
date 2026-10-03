@@ -145,6 +145,9 @@ public strictfp class Duck {
             if (f.getTeam() == G.us && f.isPickedUp()) {
                 int i = Comms.ourFlagIndex(f.getID());
                 if (i >= 0) Comms.reportCarried(i, f.getLocation());
+            } else if (C.DEST_CAMP && f.getTeam() == G.us) {   // audit A11(a): a camp must not outlive the carry
+                int i = Comms.ourFlagIndex(f.getID());
+                if (i >= 0) Comms.clearCarried(i);
             }
             if (f.getTeam() == G.them) Comms.reportEnemyFlag(f);
             if (Sym.OBSERVE && f.getTeam() == G.them) Sym.observeEnemyCentre(f.getID());   // audit A2: a flag id is its spawn centre

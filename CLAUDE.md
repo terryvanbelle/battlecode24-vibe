@@ -24,11 +24,13 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     between runs; the queue and filler remove that gap.
 13. **TRAINING_ALGORITHM §3 step 5 is mandatory, no shortcuts** (PROMPTS 66-67): no band test, gate or ladder block
     for an arm until its delivery mini-block passes (`tools/delivery-gate.sh`; `tools/band-test.sh` refuses otherwise).
-14. **Idle filler** (PROMPTS 73, 120): queue/filler.job runs `tools/filler-pair.sh <control> <candidates> 40` on fresh
-    seeds. Since 2026-10-02 (the crack, research/CRACK.md) it plays against ColtG5 only: `FILLPOOL=ColtG5.Goob_final
-    tools/filler-pair.sh g_iter1 <candidate or -> 40` (random maps and sides). At every task check run
-    `tools/collect-fillers.sh g_iter1 <candidates>` to record new filler runs. Update the filler's candidate whenever an
-    arm against ColtG5 passes delivery.
+14. **Ladder target and idle filler** (PROMPTS 73, 120, 157-159): one ladder opponent at a time, usually the bot just
+    above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking.
+    ColtG5 was declared defeated on 2026-10-03 (g_iter2 83-61); the target is now **winkelmantanner.waffle** (1997,
+    rank 12). queue/filler.job plays the target on fresh seeds: `FILLPOOL=winkelmantanner.waffle tools/filler-pair.sh
+    g_iter2 <candidate or -> 40` (random maps and sides). At every task check run `tools/collect-fillers.sh g_iter2
+    <candidates>` to record new filler runs. Update the filler's candidate whenever an arm against the target passes
+    delivery.
 15. **Basics first** (PROMPTS 127, 137): symmetry, movement, combat and economy (plus bytecode and exceptions) are the
     foundation. Every build and test block gets the basics battery; a failed basics bar stops work above it until fixed;
     when progress stalls, check the basics first. Unit tests include the dead-code check (tools/deadcode.py) and the

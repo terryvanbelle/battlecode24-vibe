@@ -10,7 +10,7 @@ PAR="${PAR:-8}"   # at most PAR games at once (2026-10-02: 24 at once on 8 vCPUs
 for spec in "$@"; do
   IFS=: read -r bot opp map seed <<< "$spec"
   if ! [ -d "src/$opp" ]; then echo "diag-batch: $opp is not one of our builds; refusing" >&2; exit 2; fi
-  out="diag/$TAG/$bot-$map-s$seed"
+  out="diag/$TAG/$bot-vs-$opp-$map-s$seed"   # opponent in the name: two opponents on one map/seed overwrote each other (2026-10-03)
   while [ "$(jobs -rp | wc -l)" -ge "$PAR" ]; do sleep 2; done
   tools/run-dev.sh "$bot" "$opp" "$map" "$out.bc24" "-Dbc.game.seed=$seed" > "$out.out" 2>&1 &
 done

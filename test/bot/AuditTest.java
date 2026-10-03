@@ -37,6 +37,19 @@ public class AuditTest {
             Comms.expireDrops();
             check(BotTest.shared[Comms.EF_LOC] == 0, "A6: with no known home the stale tile is cleared (targeting falls back to the hints)");
         } catch (GameActionException e) { check(false, "A5/A6: unexpected " + e); }
+        // A11(a): a carry sighting is forgotten once our flag is seen not carried (sense() calls this under C.DEST_CAMP)
+        java.util.Arrays.fill(BotTest.shared, 0);
+        G.spawnCenters[0] = new MapLocation(5, 7); G.spawnCenters[1] = new MapLocation(5, 20); G.spawnCenters[2] = new MapLocation(12, 25);
+        MapLocation[] ec = {new MapLocation(34, 22), new MapLocation(34, 9), new MapLocation(27, 4)};
+        try {
+            G.round = 100; Comms.reportCarried(0, new MapLocation(15, 12));
+            G.round = 110;
+            check(Comms.carriedAge(0) == 10 && Duck.campTarget(new MapLocation(20, 15), ec) != null, "A11(a): a young carry sighting sets a camp");
+            G.round = 103; Comms.clearCarried(0);
+            G.round = 110;
+            check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
+                  "A11(a): after our flag is seen not carried there is no carry and no camp");
+        } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
         check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.NAV_FIX && Sym.OBSERVE && !C.TRACK,
               "src/bot plays as the incumbent g_iter2 (the audit fixes and observed symmetry on, the track sensor off)");
 
@@ -62,6 +75,32 @@ public class AuditTest {
             BotTest.walls.clear();
             check(Micro.engageable(new RobotInfo[]{enemy(9, 14, 12)}), "A4: the same enemy in the open is engageable");
         } catch (GameActionException e) { check(false, "A4: unexpected " + e); }
+        // C.REACH_FAST: the cheap search gives the reference search's answer (random walls, enemies in view, map edges)
+        java.util.Random rnd = new java.util.Random(4242);
+        int agree = 0, yes = 0, trials = 3000;
+        try {
+            for (int t = 0; t < trials; t++) {
+                G.W = 20 + rnd.nextInt(41); G.H = 20 + rnd.nextInt(41);
+                G.me = new MapLocation(rnd.nextInt(G.W), rnd.nextInt(G.H));
+                BotTest.walls.clear();
+                double dens = 0.3 + rnd.nextDouble() * 0.6;
+                for (int x = G.me.x - 5; x <= G.me.x + 5; x++) for (int y = G.me.y - 5; y <= G.me.y + 5; y++)
+                    if (rnd.nextDouble() < dens && (x != G.me.x || y != G.me.y)) BotTest.walls.add(new MapLocation(x, y));
+                RobotInfo[] es = new RobotInfo[1 + (rnd.nextInt(4) == 0 ? rnd.nextInt(15) : rnd.nextInt(3))];
+                for (int i = 0; i < es.length; i++) {
+                    MapLocation l;
+                    do { l = new MapLocation(G.me.x - 4 + rnd.nextInt(9), G.me.y - 4 + rnd.nextInt(9)); }
+                    while (G.me.distanceSquaredTo(l) <= 8 || G.me.distanceSquaredTo(l) > 20 || l.x < 0 || l.y < 0 || l.x >= G.W || l.y >= G.H);
+                    es[i] = enemy(100 + i, l.x, l.y);
+                }
+                boolean r = Micro.engageableRef(es), f = Micro.engageableFast(es);
+                if (r == f) agree++;
+                if (r) yes++;
+            }
+        } catch (GameActionException e) { check(false, "REACH_FAST: unexpected " + e); }
+        check(agree == trials && yes > trials / 10 && yes < trials * 9 / 10,
+              "REACH_FAST: fast and reference searches agree (" + agree + "/" + trials + ", " + yes + " engageable)");
+        G.testBc = -1;
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

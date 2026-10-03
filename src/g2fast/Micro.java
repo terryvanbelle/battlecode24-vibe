@@ -1,4 +1,4 @@
-package g2icamp;
+package g2fast;
 
 import battlecode.common.*;
 

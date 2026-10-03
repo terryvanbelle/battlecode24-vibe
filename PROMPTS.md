@@ -639,3 +639,19 @@ I don't see g_iter2 in github.  Are you sure everything has been synced?
 ## 155. 2026-10-03
 
 I see it in the src, but nothing in progress is updated
+
+## 156. 2026-10-03
+
+task check
+
+## 157. 2026-10-03
+
+It's fine to keep working on ColtG5, but you are now free to take on the next opponent.  ColtG5 is defeated, good work
+
+## 158. 2026-10-03
+
+From now on, if the opponent you've been working on ranks below you, you can choose a new opponent
+
+## 159. 2026-10-03
+
+Doesn't have to be the bot immediately above you if you think another one is better, but yes, the next one is often the best choice
