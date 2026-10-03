@@ -1097,3 +1097,16 @@ net >= +2 SE: the paired part is met; the win rate is 57.5% over 80 so far (the 
   15-29% of cells). research/TACTIC_LEVELS.md annotated. Earlier "closed" directions judged on unseeded pairs are
   re-test candidates on the new base. Tools: gauntlet.sh run-id guard fixed (B13); vm-queue logs the job's exit status (B12)
   -- both take effect on the VM at the next sync, after the confirmation run.
+
+### 2026-10-03 02:15 UTC — **g1basics confirmed; promoted to incumbent g_iter2**
+Confirmation seeds 717171 + 818181 (fresh, seeded, both builds): all 239 pairs: wins 78 -> 107, gained 35 lost 6, net +29
+(p < 0.001), capture delta +0.68 +- 0.10; upper 132: 12 -> 21, net +9 (p 0.049), capture delta +0.46 +- 0.12 (t +3.8);
+rung 60: 12 -> 22, net +10 (p 0.006). Pooled 4 seeds (473 pairs): gained 79, lost 17, net +62. REWRITE_EVAL (a) and (b)
+hold on the pool: g1basics replaces g_iter1. src/bot defaults now play as g_iter2 (ALERT_FIX, REG_FIX, REACH_FIX,
+NAV_FIX, Sym.OBSERVE on; TRACK off); src/g_iter2 frozen (identical to src/g1basics but for one comment); CLAUDE rule 16.
+Ladder (4 band runs + ColtG5 fillers recorded; elo.py): **g1basics 1918 +- 35, rank 13 of 74**, above ColtG5 (1877, rank 14;
+record vs g1basics 61-83); g_iter1 1762 +- 11, rank 28. Next above: winkelmantanner 1997, CyrilSharma 2040, hsmalladi 2072.
+ColtG5 victory criterion at 120 games: 71/120 = 59.2% (p 0.055 vs 50%), paired vs g_iter1 +31 (+4.3 SE): one win short of
+the 60% bar. Pre-registered now, before more data: the final evaluation is at 240 ColtG5 games with the same bars
+(>= 60% and two-sided p < 0.05; paired net >= +2 SE). Open: A7 (NAV_FIX) showed no gain alone; to ablate on seeded pairs;
+peak bytecode 24.7k (A4 BFS) to bring down.

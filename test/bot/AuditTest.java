@@ -37,8 +37,8 @@ public class AuditTest {
             Comms.expireDrops();
             check(BotTest.shared[Comms.EF_LOC] == 0, "A6: with no known home the stale tile is cleared (targeting falls back to the hints)");
         } catch (GameActionException e) { check(false, "A5/A6: unexpected " + e); }
-        check(C.REG_FIX == false && C.ALERT_FIX == false && C.REACH_FIX == false && C.NAV_FIX == false && !Sym.OBSERVE,
-              "src/bot keeps g_iter1 behaviour: fixes are off by default");
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.NAV_FIX && Sym.OBSERVE && !C.TRACK,
+              "src/bot plays as the incumbent g_iter2 (the audit fixes and observed symmetry on, the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
         G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;

@@ -44,6 +44,10 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   met; confirmation seeds running. Against ColtG5: 57.5% wins (g_iter1 35%), paired +18 of 80 (+3.1 SE); the
   "unambiguous victory" needs >= 60% over >= 120 games -- close.
 
+- 02:15 UTC: **confirmed on fresh seeds (+29, p < 0.001; upper tier +3.8 SE) and promoted: g_iter2.** Ladder: 1918, rank
+  13 of 74 (g_iter1 1762, rank 28), now above ColtG5. ColtG5: 71/120 = 59.2%, one win short of the 60% bar; final read at
+  240 games, pre-registered.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.

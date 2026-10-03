@@ -33,3 +33,6 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     foundation. Every build and test block gets the basics battery; a failed basics bar stops work above it until fixed;
     when progress stalls, check the basics first. Unit tests include the dead-code check (tools/deadcode.py) and the
     arm-intent check (tools/arm-intent.txt). Symmetry must be decided by observation, never guessed.
+16. **Incumbent g_iter2 since 2026-10-03** (g1basics: the audit fixes A1 A2 A4 A5 A6 A7 A9 + observed symmetry; seeded band
+    pairs vs g_iter1 +33 then +29 on fresh seeds, p < 0.001). src/bot with its defaults plays as g_iter2 (src/g_iter2 is
+    the frozen copy); new arms flip switches from these defaults and are paired against g_iter2 on shared engine seeds.

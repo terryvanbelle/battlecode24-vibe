@@ -68,3 +68,6 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
   seeded filler pairs with g_iter1: 80 pairs, gained 26 lost 8 (+3.1 SE); g1basics won 46/80 = 57.5% (g_iter1 35.0%).
   Victory criterion: paired part met; win rate needs >= 60% over >= 120 (filler continuing). The crack was in our own
   basics: a constantly-on alert, frozen ducks, stale flag targets.
+- 2026-10-03 02:15 UTC: g1basics confirmed and promoted to g_iter2; ladder rank 13 (1918), **above ColtG5** (rank 14, 1877).
+  ColtG5 at 120 games: 71/120 = 59.2% (p 0.055), paired +31 vs g_iter1 (+4.3 SE): one win short of the 60% bar. Final
+  evaluation pre-registered at 240 ColtG5 games (same bars).
