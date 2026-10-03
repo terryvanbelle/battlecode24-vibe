@@ -1138,3 +1138,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   many robots. Fix: an in-search bail-out (C.REACH_BC_STOP, default 0 = g_iter2) so the search never leaves the fight
   with less than 13000; arm g2bc2 (REACH_BC 15000, REACH_BC_STOP 13000) queued (gate: overruns 0, stillPost <= 1.1).
   Note: the g_iter2 per-game peak is ~22k by design (symmetry observation spends spare budget while undecided).
+- Owner noticed progress/ did not show g_iter2 (prompts 154-155): the promoted build's games were recorded under its arm
+  name g1basics, and progress.png / accepted_builds only plot us:g_iterN; HANDOFF.md still named g_iter1 and README named
+  no bot. Fixed: the 600 g1basics games relabelled us:g_iter2 in progress/games.csv (same code; run ids keep g1basics),
+  ladder refit (g_iter2 1918 +- 35, rank 13 of 74), progress.png / elo.png / field-score charts regenerated (accepted
+  builds g_iter0 -> g_iter1 -> g_iter2: ~1350 -> 1762 -> 1918; field score 52 -> 73 -> 78%); HANDOFF.md and README.md
+  updated; the ColtG5 filler now plays the g_iter2 package so new games carry the right label. Still stale and being
+  regenerated on the VM: progress/SURVEY.md and survey.csv (tactics survey queued) and progress/ONSET.md and
+  onset-ladder.png (onset on a g_iter2 band run queued). Memory: promotion checklist.

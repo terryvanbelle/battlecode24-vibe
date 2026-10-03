@@ -631,3 +631,11 @@ task check
 ## 153. 2026-10-03
 
 task check
+
+## 154. 2026-10-03
+
+I don't see g_iter2 in github.  Are you sure everything has been synced?
+
+## 155. 2026-10-03
+
+I see it in the src, but nothing in progress is updated
