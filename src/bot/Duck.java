@@ -145,6 +145,9 @@ public strictfp class Duck {
             if (f.getTeam() == G.us && f.isPickedUp()) {
                 int i = Comms.ourFlagIndex(f.getID());
                 if (i >= 0) Comms.reportCarried(i, f.getLocation());
+            } else if (C.RELOCATE_FLAGS && G.round > C.SETUP_ROUNDS && G.round <= C.SETUP_ROUNDS + 3 && f.getTeam() == G.us) {
+                int i = Comms.ourFlagIndex(f.getID());       // audit A12: the engine's r200 placement is the home
+                if (i >= 0 && G.rc.readSharedArray(Comms.OF_HOME + i) != Comms.enc(f.getLocation())) G.rc.writeSharedArray(Comms.OF_HOME + i, Comms.enc(f.getLocation()));
             } else if (C.DEST_CAMP && f.getTeam() == G.us) {   // audit A11(a): a camp must not outlive the carry
                 int i = Comms.ourFlagIndex(f.getID());
                 if (i >= 0) Comms.clearCarried(i);
@@ -505,6 +508,7 @@ public strictfp class Duck {
     /** Target spots for our flags, one per call (bytecode): far from the enemy, 8+ apart (engine needs > 6).
      *  Deterministic, so every defender computes the same list. Returns null until spot i is ready. */
     static MapLocation relocTarget(int i) {
+        if (C.RELOC_V2) return relocTargetV2(i);
         if (rex < 0) {
             MapLocation[] ec = Sym.enemyCenters();
             int ex = 0, ey = 0, n = 0;
@@ -523,6 +527,36 @@ public strictfp class Duck {
                 if (!ok) continue;
                 int dex = x - rex, dey = y - rey, dsx = x - sx, dsy = y - sy;
                 int sc = dex * dex + dey * dey - (dsx * dsx + dsy * dsy) / 2;   // far from the enemy, not far from our spawn
+                if (sc > bs) { bs = sc; bx = x; by = y; }
+            }
+            rcx[k] = bx; rcy[k] = by; relocK++;
+            if (relocK <= i) return null;
+        }
+        return rcx[i] < 0 ? G.spawnCenters[i] : new MapLocation(rcx[i], rcy[i]);
+    }
+
+    /** RELOC_V2 (2026-10-03, waffle crack: our flags within 20 tiles of its spawns fell 88% of the time, median r358;
+     *  28-36 tiles 50%). The spot waits for observed symmetry (or C.RELOC_DECIDE), then maximises the distance to the
+     *  NEAREST enemy spawn centre under every symmetry still possible (the iteration-2 version used one guessed
+     *  symmetry's centroid, wrong on about a third of map-sides), less half the squared walk from our own spawn. */
+    static MapLocation relocTargetV2(int i) {
+        if (!Sym.decided() && G.round < C.RELOC_DECIDE) return null;
+        if (relocK <= i) {
+            int k = relocK;
+            MapLocation[] ec = new MapLocation[9]; int ne = 0;
+            for (int sym = Sym.ROT; sym <= Sym.FY; sym <<= 1)
+                if ((Sym.cands & sym) != 0) for (MapLocation c : G.spawnCenters) if (c != null) ec[ne++] = Sym.image(c, sym);
+            int step = Math.max(3, Math.max(G.W, G.H) / 9);           // at most ~100 grid points per call
+            int bx = -1, by = -1, bs = Integer.MIN_VALUE;
+            int sx = G.spawnCenters[k].x, sy = G.spawnCenters[k].y;
+            for (int x = 2; x < G.W - 2; x += step) for (int y = 2; y < G.H - 2; y += step) {
+                boolean ok = true;
+                for (int j = 0; j < k; j++) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < 64) { ok = false; break; } }
+                if (!ok) continue;
+                int near = Integer.MAX_VALUE;
+                for (int j = 0; j < ne; j++) { int dx = ec[j].x - x, dy = ec[j].y - y; near = Math.min(near, dx * dx + dy * dy); }
+                int dsx = x - sx, dsy = y - sy;
+                int sc = near - (dsx * dsx + dsy * dsy) / 2;
                 if (sc > bs) { bs = sc; bx = x; by = y; }
             }
             rcx[k] = bx; rcy[k] = by; relocK++;

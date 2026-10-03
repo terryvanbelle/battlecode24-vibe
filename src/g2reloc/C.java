@@ -1,4 +1,4 @@
-package g_iter2;
+package g2reloc;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -18,8 +18,8 @@ public strictfp class C {
     public static final int FLOAT_CRUMBS = 1500;        // above this bank an idle duck spends on traps (self-play floated 13k by r1500)
     public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
-    public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
-    public static final boolean RELOC_V2 = false;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
+    public static final boolean RELOCATE_FLAGS = true;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
+    public static final boolean RELOC_V2 = true;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
     public static final int RELOC_DECIDE = 40;          // RELOC_V2: wait this long for observed symmetry before choosing spots
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand

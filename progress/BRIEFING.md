@@ -48,6 +48,14 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   13 of 74 (g_iter1 1762, rank 28), now above ColtG5. ColtG5: 71/120 = 59.2%, one win short of the 60% bar; final read at
   240 games, pre-registered.
 
+- 05:45 UTC: **ColtG5 declared defeated by the owner (prompt 157); new target winkelmantanner.waffle** (1997, rank 12;
+  g_iter2 10-14, every loss by three flags). Its game, from 24 replays (research/CRACK-WAFFLE.md): it loses the fight
+  1:2 but relays our flag home by re-grabbing it the round after each carrier dies (87% of drops in our losses, 77% in
+  our wins). Our flags near its spawn fall first (< 20 tiles: 88%, median r358; 28-36 tiles: 50%). First crack:
+  g2reloc, flags moved in setup far from its nearest spawn under every live symmetry (iteration 2's relocation used
+  the broken guess). Re-test of discarded arms on the fixed base (prompt 150), so far: 5 delivery failures, 1 with no
+  premise, 1 closed after a second failure (an audit bug, A11(a), fixed on the way); one bytecode fix folded in.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
@@ -64,6 +72,9 @@ research/REWRITE_DESIGN.md (when the design panel returns).
 - Raids against ColtG5 (5 builds): flags reached, never brought home.
 - Bot symmetry guess wrong in 28% of ColtG5 games and 34% of band games: the sensor must fix this (PSYM).
 - Band premise fails P3 (destination 0.76): widening beyond ColtG5 will need the tracker revision.
+
+- Re-testing discarded arms on the fixed base: none of the seven delivered its pre-registered mechanism so far; the
+  bugs were real but these ideas were not what held us back.
 
 ## Open questions for the owner
 - Once g1basics is measured: adopt it as the new base (g_iter2) if it is non-inferior, even without a clear gain,

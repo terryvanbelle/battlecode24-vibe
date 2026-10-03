@@ -19,6 +19,8 @@ public strictfp class C {
     public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
     public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
+    public static final boolean RELOC_V2 = false;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
+    public static final int RELOC_DECIDE = 40;          // RELOC_V2: wait this long for observed symmetry before choosing spots
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
     public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
@@ -31,7 +33,7 @@ public strictfp class C {
     public static final boolean REACH_FIX = true;       // audit A4: an enemy takes the turn only if within dist2 8 or reachable in 3 moves
     public static final int REACH_BC = 8000;               // A4: the reachability search runs only with this many bytecodes left (else "engage")
     public static final int REACH_BC_STOP = 0;             // A4: the search gives up ("engage") once fewer bytecodes are left (0 = never; arm g2bc2: 13000)
-    public static final boolean REACH_FAST = false;     // A4 search at a fraction of the bytecode, same answer (arm g2fast; AuditTest compares)
+    public static final boolean REACH_FAST = true;      // A4 search at a fraction of the bytecode, same answer (AuditTest compares); g2fast band: 0 of 234 cells differ, so folded into g_iter2 2026-10-03
     public static final boolean NAV_FIX = true;         // audit A7/A9: bug state survives small target moves; one edge flip per call
     public static final int SETUP_DIGS = 0;             // T4 copy dose: checkerboard digs per duck in setup (arm ladder 0/5/10)
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this

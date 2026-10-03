@@ -50,7 +50,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.NAV_FIX && Sym.OBSERVE && !C.TRACK,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && !C.RELOCATE_FLAGS && !C.DEST_CAMP,
               "src/bot plays as the incumbent g_iter2 (the audit fixes and observed symmetry on, the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -101,6 +101,27 @@ public class AuditTest {
         check(agree == trials && yes > trials / 10 && yes < trials * 9 / 10,
               "REACH_FAST: fast and reference searches agree (" + agree + "/" + trials + ", " + yes + " engageable)");
         G.testBc = -1;
+
+        // RELOC_V2: spots far from the nearest enemy centre under every live symmetry, 8+ tiles apart, waiting for symmetry
+        G.W = 60; G.H = 40; Sym.cands = Sym.ROT | Sym.FX;
+        G.spawnCenters[0] = new MapLocation(10, 8); G.spawnCenters[1] = new MapLocation(12, 20); G.spawnCenters[2] = new MapLocation(9, 31);
+        Duck.relocK = 0; G.round = 10;
+        check(Duck.relocTargetV2(0) == null, "RELOC_V2: undecided before RELOC_DECIDE: no spot yet");
+        G.round = C.RELOC_DECIDE;
+        MapLocation[] spot = new MapLocation[3];
+        for (int i = 0; i < 3; i++) { MapLocation m = null; for (int t = 0; t < 4 && m == null; t++) m = Duck.relocTargetV2(i); spot[i] = m; }
+        boolean far = true, apart = true;
+        for (int i = 0; i < 3 && spot[i] != null; i++) {
+            int nearSpot = Integer.MAX_VALUE, nearHome = Integer.MAX_VALUE;
+            for (int sym : new int[]{Sym.ROT, Sym.FX}) for (MapLocation c : G.spawnCenters) {
+                MapLocation e = Sym.image(c, sym);
+                nearSpot = Math.min(nearSpot, spot[i].distanceSquaredTo(e)); nearHome = Math.min(nearHome, G.spawnCenters[i].distanceSquaredTo(e));
+            }
+            if (nearSpot <= nearHome) far = false;
+            for (int j = 0; j < i; j++) if (spot[i].distanceSquaredTo(spot[j]) < 64) apart = false;
+        }
+        check(spot[0] != null && spot[1] != null && spot[2] != null && far && apart,
+              "RELOC_V2: three spots, each farther from every candidate enemy centre than its spawn, 8+ tiles apart");
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

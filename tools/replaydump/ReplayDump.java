@@ -53,6 +53,7 @@ import java.util.zip.GZIPInputStream;
  *                      23 (RT_STAMP) was ever written, i.e. without the 2.3 tracker slots. Meaningful for our builds only,
  *                      as symOk (an external bot may write slot 23 for its own purposes)
  *   maxBcK             the team's largest bytecode count in one turn, in thousands (1 decimal)
+ *   flagDistMin/Mean   at r200, own flags' distance in tiles to the nearest enemy spawn centre (min, mean over the 3)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -581,6 +582,7 @@ public class ReplayDump {
         if (metricsEvery > 0 && rn % metricsEvery == 0) for (int t = 1; t <= 2; t++) out.println(metricRow(rn, t));
         if (rn == mapAt) printMap(rn);
         if (survey) surveyTick(rn);
+        if (rn == 200 && capMode) flagDistTick();
         if (rn == 199 && capMode) for (Map.Entry<Integer, int[]> e : lastLoc.entrySet()) {
             int t = team.getOrDefault(e.getKey(), 0); if (t == 0) continue;
             int[] l = e.getValue(); boolean near = false;
@@ -1043,6 +1045,27 @@ public class ReplayDump {
         }
     }
 
+    /** flagDistMin / flagDistMean: at r200, each own flag's distance (tiles) to the nearest enemy spawn centre (a flag id
+     *  is the location index of its spawn centre). Far flags need longer enemy relay chains (2026-10-03, waffle). */
+    static double[] kFlagDistMin = {-1, -1, -1}, kFlagDistMean = {-1, -1, -1};
+    static void flagDistTick() {
+        for (int t = 1; t <= 2; t++) {
+            double mn = Double.MAX_VALUE, sum = 0; int n = 0;
+            for (Map.Entry<Integer, int[]> e : flagLoc.entrySet()) {
+                if (flagTeam.getOrDefault(e.getKey(), 0) != t || e.getValue() == null) continue;
+                int[] l = e.getValue(); double best = Double.MAX_VALUE;
+                for (Integer k : flagTeam.keySet()) {
+                    if (flagTeam.get(k) != 3 - t) continue;
+                    int cx = k % W, cy = k / W;
+                    best = Math.min(best, Math.sqrt((l[0] - cx) * (l[0] - cx) + (l[1] - cy) * (l[1] - cy)));
+                }
+                if (best == Double.MAX_VALUE) continue;
+                mn = Math.min(mn, best); sum += best; n++;
+            }
+            if (n > 0) { kFlagDistMin[t] = mn; kFlagDistMean[t] = sum / n; }
+        }
+    }
+
     static void surveyTick(int rn) {
         for (int t = 1; t <= 2; t++) {
             if (rn == 200) {
@@ -1156,7 +1179,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1177,7 +1200,8 @@ public class ReplayDump {
                         + "," + String.format("%.1f", maxBc[t] / 1000.0) + "," + turnsAtLimit[t] + "," + cExc[t]
                         + "," + (commSeen && symDecided[t] >= 0 ? String.valueOf(symDecided[t]) : "") + "," + (commSeen ? String.valueOf(symWrongT[t]) : "")
                         + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]
-                        + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : ""));
+                        + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : "")
+                        + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : ""));
             }
         }
         if (trackMode) printTrack();

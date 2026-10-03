@@ -1,4 +1,4 @@
-package g_iter2;
+package g2reloc;
 
 import battlecode.common.*;
 
