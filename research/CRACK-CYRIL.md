@@ -112,3 +112,9 @@ carriers are rarely seen and then lost, so camps never fired legitimately (0 in 
 INTERCEPT pulled fighters off and raised first grabs against us (+26%). Against Cyril the premise is specific: its
 carrier is seen at the grab (our defenders are there) and then walks ~71 rounds unwatched toward a spawn our ducks can
 reach first (1 tile a round vs its 0.5). INTERCEPT stays off.
+g3camp 5(a) (6 scrimmages vs Cyril, random maps/sides): camps fire (174-3711 camp turns a game) but 0-6, Cyril's carriers
+still walk unwatched (85-679 rounds a game) and capture unopposed up to 3 times (Joker). Trace (Joker r815): four pairs of
+our campers wait 7-9 tiles out around Cyril's top-right spawn while its carrier is beside our flag on the far left and
+captures 6 rounds later: campers go to a spawn, not to where the carrier goes. Delivery block (signature bars):
+`DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3camp 'rel:enemyUnseenRounds<=0.8
+rel:unopposedCaps<=0.8 nw:kills>=0.95 mean:overruns<=0'`.
