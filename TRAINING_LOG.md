@@ -1326,3 +1326,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3escrg2 band test vs g_iter3: net +6 (p 0.39), capture delta +0.18 +- 0.08, upper +0.20 +- 0.12: no criterion met.
   Basics FAIL on kill/death (2.13 vs 3.11, -2.8 SE): the convoy's price in bodies. Not promotable; the Cyril paired
   filler continues for information.
+- Owner (PROMPTS 168): cracking an opponent overrides the basics veto. Recorded as CLAUDE.md rule 15's exception: an arm
+  that passes its pre-registered victory read against the target is not vetoed by a relative basics check its tactic
+  pays by design (g3escrg2's kill/death); the absolute bars (symmetry, overruns, exceptions) still stop it. Memory added.

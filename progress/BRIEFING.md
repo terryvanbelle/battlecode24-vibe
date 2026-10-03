@@ -100,6 +100,8 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   bugs were real but these ideas were not what held us back.
 
 ## Open questions for the owner
+- (answered, prompt 168: cracking the target overrides the relative basics checks such as kill/death; the absolute
+  bars, which are bugs, still stop an arm.)
 - (Superseded by g_iter3, which carries the carrier stun, but the principle stands.) **Carrier stun vs waffle (g2cstun): delivery bar or wins?** Freezing waffle's carriers (stun built beside a carrier of
   our flag) delivered its mechanism in both blocks (carriers caught x3) and won 13 discordant pairs to 1 over two blocks
   (p ~ 0.002), but missed both pre-registered capture bars (waffle captures -7% and -11% by r600; bars -15% / -20%).

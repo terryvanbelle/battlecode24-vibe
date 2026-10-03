@@ -35,6 +35,10 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     foundation. Every build and test block gets the basics battery; a failed basics bar stops work above it until fixed;
     when progress stalls, check the basics first. Unit tests include the dead-code check (tools/deadcode.py) and the
     arm-intent check (tools/arm-intent.txt). Symmetry must be decided by observation, never guessed.
+    **Exception (PROMPTS 168): cracking the target overrides the relative basics checks.** An arm that passes its
+    pre-registered victory read against the ladder target is not vetoed by a relative check (kill/death, trapsHit,
+    stillPost, gathered400, floating250) that its tactic pays by design (e.g. a convoy trading bodies for re-grabs);
+    log the cost. The absolute bars (symWrong, symmetry decided in time, overruns, exceptions) are bugs and still stop it.
 16. **Incumbent g_iter3 since 2026-10-03** (g2cr: g_iter2 + carrier stun + flag relocation V2; seeded band pairs vs
     g_iter2 net +11 then +11 on fresh seeds, pooled +22 of 473, sign p 0.017, capture delta +0.25 +- 0.07; basics PASS).
     src/bot with its defaults plays as g_iter3 (src/g_iter3 is the frozen copy); new arms flip switches from these

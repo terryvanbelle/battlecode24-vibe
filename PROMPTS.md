@@ -687,3 +687,7 @@ task check
 ## 167. 2026-10-03
 
 I see you took down Waffle overnight and are now working on cracking CyrilSharma, nice work!  How is the fight going?
+
+## 168. 2026-10-03
+
+Yes, cracking an opponent should override
