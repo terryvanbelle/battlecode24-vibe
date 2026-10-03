@@ -1342,3 +1342,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   one paragraph at the top of §29 "The plateau": audit correctness of the bot and the instruments before any
   escalation (lenses, evidence + fix + regression test, refutation, instruments first with an identity control, fixes
   behind switches, exact paired tests, confirmation, permanent checks). No year or this-year document references.
+- g3escrg2 closed: 240 paired filler games vs Cyril, net +8 (+1.0 SE), 32% vs g_iter3's 30%. Filler back to the g_iter3
+  baseline vs Cyril. Next: a measurement study of Cyril's flag defence before any new arm.

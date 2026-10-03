@@ -77,3 +77,8 @@ capture delta +0.18 +- 0.08 (t 2.1), upper +0.20 +- 0.12 (t 1.7): neither REWRIT
 kill/death 2.13 vs 3.11 (-0.97 +- 0.35)**: the convoy trades bodies for flag progress (carrier deaths roughly double),
 which the k/d check reads as a combat loss. Not promotable; the Cyril filler continues to learn whether it cracks
 Cyril, and any conflict with the k/d check goes to the owner, not around the rule.
+
+**g3escrg2 paired filler vs Cyril, closed at 240 games:** gained 38, lost 30, net +8 (+1.0 SE); g3escrg2 78-162 (32%)
+vs the g_iter3 baseline 198-466 (30%). The convoy doubles pickups and re-grabs but also carrier deaths: more attempts,
+not more captures. Next: measure Cyril's flag defence before building (who kills our carriers and where; its traps
+around its flags; guards per flag over time).
