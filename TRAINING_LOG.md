@@ -1223,3 +1223,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   distance gradient predicts about -10% captures for that, which is what was measured. Second attempt (RETEST rule):
   g2reloc2, walk bound 25 tiles (C.RELOC_R2 625; grid step scales with the radius to bound bytecode), 5(a) queued; its
   gates will run on a fresh seed.
+- g2reloc2 5(a): no larger dose (nearest-flag sum 310 vs 315 tiles over 12 maps; the limit is geometry, spacing and
+  keeping each unplaced flag's own spot, not the walk bound). Not gated; relocation parked as a modest lever.
+- g2rush10 (RUSHERS 10 on g_iter2) 5(a): does not fire (enemy-half presence at r250 8/20/25/21/2/12/6/1 vs the mirror's
+  8/20/28/26/2/11/18/0): g_iter2's army already heads for their flags and rushers stop to fight what they meet. Parked.
+- Waffle blocks pre-registered and queued: g2z2w (escort-first targeting rebuilt on g_iter2; 5(a) diag first, gate
+  held until it shows the es counter firing) and g2alert400 (alert radius 400) on the waffle pool.

@@ -73,3 +73,22 @@ Escort-first targeting (C.Z2ESCORT) attacks the same chain but failed its band d
 
 **g2rush10** (RUSHERS=10 on g_iter2; crack 3, queued behind g2reloc): the same waffle block with
 `'rel:firstGrabs>=1.3 rel:captured>=1.15 rel:enemyCaptured<=1.15 mean:overruns<=0'`.
+
+**Results so far** (2026-10-03): g2reloc delivery FAIL (waffle block: flags +18% farther, enemyCaptured -9%, bar -15%;
+wins 8 vs 5 of 24); second attempt g2reloc2 with a 25-tile walk bound. g2rush10 does not fire at 5(a) (no added
+presence in the enemy half: g_iter2's army already heads for their flags, and rushers stop to fight what they meet).
+
+**g2z2w** (escort-first targeting, C.Z2ESCORT, rebuilt on the current g_iter2; its band delivery failed with enemyRegrabs
+-17% where re-grabs are rare; waffle re-grabs ~22 times a game, so this is the fair test of chain breaking):
+`DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh g2z2w 'rel:enemyRegrabs<=0.8
+rel:enemyCaptured<=0.85 mean:overruns<=0'`.
+
+g2reloc2 (25-tile walk bound): 5(a) shows no larger dose (sum of nearest-flag distances 310 vs g2reloc 315 tiles over
+12 maps): the binding limits are geometry, spacing and keeping each unplaced flag's own spot. Not gated; relocation
+parked as a modest lever (+18% distance -> -9% waffle captures).
+
+**g2alert400w** (C.ALERT_RADIUS2 400 on g_iter2, the existing g2alert400 build; fired at 5(a) with chases 474-3201 vs
+0-2894; its band delivery failed on first grabs -12%, bar -15%). Against a deathball the question is whether a wider
+response net masses on the threatened flag:
+`DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh g2alert400 'rel:enemyCaptured<=0.85
+rel:chasers20>=1.1 mean:overruns<=0'`.
