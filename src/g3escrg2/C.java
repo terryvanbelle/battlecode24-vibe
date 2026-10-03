@@ -85,6 +85,7 @@ public strictfp class C {
     public static final boolean CARRIER_STUN = true;    // waffle crack: stun within dist2 8 of an enemy carrying our flag, ahead of it (g_iter3, 2026-10-03)
     public static final boolean ESCORT_TIGHT = true;   // escorts fight only from tiles within ESCORT_TIGHT_R2 of our carrier (Cyril crack)
     public static final int ESCORT_TIGHT_R2 = 8;        // a duck this close can step in and re-grab the same turn
+    public static final int ESCORT_FAR_R2 = 225;          // > 0: out of a fight, join our carrier (registry location) within this dist2
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer
     public static final boolean TRACK = false;          // S0b switch (g1trk): off, javac drops every Track hook and play is g_iter1 exactly

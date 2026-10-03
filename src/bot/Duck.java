@@ -389,6 +389,11 @@ public strictfp class Duck {
         for (FlagInfo f : flags) if (f.getTeam() == G.them && !f.isPickedUp()) return f.getLocation();
         // escort a friendly carrier we can see
         for (RobotInfo r : allies) if (r.hasFlag) return r.location;
+        if (C.ESCORT_FAR_R2 > 0) for (int s = 0; s < 3; s++) {   // a friendly carrier beyond vision, from the registry
+            if (G.rc.readSharedArray(Comms.EF_STATE + s) != 1) continue;
+            MapLocation l = Comms.dec(G.rc.readSharedArray(Comms.EF_LOC + s));
+            if (l != null && G.me.distanceSquaredTo(l) <= C.ESCORT_FAR_R2) { G.note = "escortfar"; return l; }
+        }
         if (C.HOLD_LINE && G.round < C.HOLD_UNTIL) { MapLocation fp = frontPoint(); if (fp != null) { holdTurns++; return fp; } }
         return fieldTargetFrom(G.me);
     }
