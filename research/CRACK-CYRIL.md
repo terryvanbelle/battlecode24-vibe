@@ -55,3 +55,10 @@ rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
 **Baseline (filler, fresh seeds):** g_iter3 vs Cyril 42-102 over all games (29%); the 12-12 delivery-base block was a
 lucky draw. Ladder: Cyril 2040, g_iter3 1959. Still the best target above us (hsmalladi, andrewgopher, andli28 3-21,
 NotLLeon 4-20, Gymhgy 8-16 on the band seeds).
+
+**g3escrg Cyril delivery: FAIL** (regrabs 8.67 vs 1.54 ok; escorts20 3.06 vs 3.71, bar x1.1). Descriptive: wins 13 vs
+12 (gained 6, lost 5), our captures 1.50 vs 1.21, pickups 20.4 vs 11.0, carrier deaths 15.8 vs 6.7. Trace: the escort
+branch hands control to the fight micro, where the engage score (10000) beats the goal pull, so escorts stop to fight
+and the carrier walks on alone (the same failure as g2escrg on the band). Fix: C.ESCORT_TIGHT (escorts' moves stay
+within dist2 8 of our carrier, or close in, while they fight). Second attempt g3escrg2: 5(a) queued, then the Cyril
+block on fresh seed 919191 with the same bars.

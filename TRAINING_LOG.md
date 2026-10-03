@@ -1314,3 +1314,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3def2 Cyril delivery FAIL (enemyFirstGrabs -6%, bar -15%; wins 8 vs 12, our captures halved): closed. Our offense vs
   Cyril: our carriers die alone (at our drops, ours within dist2 8: 1.14, Cyril's 3.53) and we re-grab 19% of drops
   (Cyril re-grabs 75% of its). g3escrg (convoy + re-grab on g_iter3) built; 5(a) queued.
+- g3escrg Cyril delivery FAIL (regrabs x5.6 ok; escorts20 3.06 vs 3.71, bar x1.1); descriptive wins 13 vs 12, captures
+  1.50 vs 1.21. Trace: escorts hand control to fight micro and fall behind. New switch C.ESCORT_TIGHT (fight moves stay
+  within dist2 8 of our carrier, or close in); second attempt g3escrg2, 5(a) queued.

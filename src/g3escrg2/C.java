@@ -1,4 +1,4 @@
-package bot;
+package g3escrg2;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -40,7 +40,7 @@ public strictfp class C {
     public static final int DIG_RESERVE = 1000;         // setup digging never takes the bank below this
     public static final int DIG_SITE = 0;               // T4 siting: 0 any, 1 wall-hugging (>=3 wall/off-map nbrs), 2 behind our spawn (away from the enemy)
     public static final boolean NO_FILL_OWN = false;   // T4: in setup, never fill a tile matching our dig signature (even, DIG_SITE 2) unless stalled
-    public static final boolean REGRAB = false;        // C9/C10: in a fight, a visible enemy flag on the ground within REGRAB_R2 is the movement goal; pick it up before striking
+    public static final boolean REGRAB = true;        // C9/C10: in a fight, a visible enemy flag on the ground within REGRAB_R2 is the movement goal; pick it up before striking
     public static final int REGRAB_R2 = 13;
     public static final boolean REGRAB_HALF = false;   // REGRAB only for loose flags nearer our spawn centres than theirs (a carrier there has a chance)
     public static final boolean CARRY_SAFE = false;    // C9: with enemies in view, the carrier takes the homeward step with the fewest enemies able to reach it
@@ -48,13 +48,13 @@ public strictfp class C {
     public static final boolean INTERCEPT = false;     // C10a: in a fight, a fresh carrier alert within INTERCEPT_R2 turns the fight goal-directed toward the carrier
     public static final int INTERCEPT_R2 = 225;
     public static final boolean DEST_CAMP = false;     // C10a: after a carrier slips out of sight, ducks that can beat it there wait at its destination spawn
-    public static final boolean ESCORT_CARRIER = false; // C9: in a fight, a visible own carrier within ESCORT_R2 makes its next homeward tile the fight goal
+    public static final boolean ESCORT_CARRIER = true; // C9: in a fight, a visible own carrier within ESCORT_R2 makes its next homeward tile the fight goal
     public static final int ESCORT_R2 = 20;
     public static final boolean HOLD_LINE = false;     // structural: the army holds front points (midpoints spawn centre - its mirror) instead of marching on enemy flags
     public static final int HOLD_UNTIL = 2001;            // round after which the army marches on flags again
     public static final int HOLD_DEPTH_TENTHS = 5;        // front point at this fraction of the way from our spawn centre to its mirror (5 = midline)
     public static final int HOLD_DRIFT = 0;               // fight kite/hold branch: +this for a step toward the field target, -this away (0 off; < the 50 safe-band bonus)
-    public static final boolean ESCORT_BEHIND = false; // escort goal one tile behind the carrier (never in its path) instead of its next tile
+    public static final boolean ESCORT_BEHIND = true; // escort goal one tile behind the carrier (never in its path) instead of its next tile
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
     public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
     public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
@@ -83,7 +83,7 @@ public strictfp class C {
     public static final int Z2_ESC_R2 = 2;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
     public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
     public static final boolean CARRIER_STUN = true;    // waffle crack: stun within dist2 8 of an enemy carrying our flag, ahead of it (g_iter3, 2026-10-03)
-    public static final boolean ESCORT_TIGHT = false;   // escorts fight only from tiles within ESCORT_TIGHT_R2 of our carrier (Cyril crack)
+    public static final boolean ESCORT_TIGHT = true;   // escorts fight only from tiles within ESCORT_TIGHT_R2 of our carrier (Cyril crack)
     public static final int ESCORT_TIGHT_R2 = 8;        // a duck this close can step in and re-grab the same turn
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer
