@@ -1245,3 +1245,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   our triggered stuns that caught one). Baseline vs waffle: carriers caught 4.7 a game in losses, 7.6 in wins, almost
   all by traps already in place (0-4 built for it). Arm g2cstun (C.CARRIER_STUN): a duck with a carrier within dist2 18
   builds a stun within dist2 8 of it, ahead on its way home (a frozen carrier cannot move for ~4 turns). 5(a) queued.
+- **g2cstun waffle block: FAIL** on enemyCaptured (2.29 vs 2.46, -7%, bar -15%) with the mechanism delivered (carriers
+  caught 15.0 vs 4.8) and **wins 13 vs 5 of 24 (gained 8, lost 0; sign p ~ 0.008)**, our captures 1.62 vs 1.04, kills
+  585 vs 402, games 1269 vs 951 rounds. Trace: freezing carriers delays waffle's captures more than it prevents them.
+  New census columns captured600 / enemyCaptured600 (unit-tested). Second attempt pre-registered before looking at the
+  new column (research/CRACK-WAFFLE.md): fresh seed 919191, bars carrierStunned >= 1.3 and enemyCaptured600 <= 0.8.

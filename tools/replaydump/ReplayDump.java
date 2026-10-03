@@ -56,6 +56,7 @@ import java.util.zip.GZIPInputStream;
  *   flagDistMin/Mean   at r200, own flags' distance in tiles to the nearest enemy spawn centre (min, mean over the 3)
  *   carrierStunBuilds  post-setup stun traps we built within dist2 8 of an enemy carrying our flag; carrierStunned: our
  *                      triggered stuns that caught such a carrier (within dist2 13)
+ *   captured600        flags captured by the end of r600 (enemyCaptured600: the other team's)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -518,7 +519,7 @@ public class ReplayDump {
                     break;
                 }
                 case Action.CAPTURE_FLAG:
-                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (tripsOn()) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
+                    cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (rn <= 600) kCaptured600[t]++; if (tripsOn()) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
                     capturedFlags.add(tgt);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
                     desc = "CAPTURES flag " + tname(flagTeam.getOrDefault(tgt, 0)) + tgt; flagEvent(rn, "CAPTURE", id, tgt); break;
@@ -1056,6 +1057,8 @@ public class ReplayDump {
     /** carrierStunBuilds / carrierStunned: our stun traps built within dist2 8 of an enemy robot carrying our flag, and our
      *  triggered stuns that caught one (within dist2 13), post-setup (2026-10-03, waffle: a frozen carrier cannot move). */
     static int[] kCarrierStunBuilds = new int[3], kCarrierStunned = new int[3];
+    /** captured600 / enemyCaptured600: flags captured by the end of r600 (a slowed relay chain shows here first). */
+    static int[] kCaptured600 = new int[3];
     static boolean carrierNear(int carrierTeam, int x, int y, int r2) {
         for (Map.Entry<Integer, Integer> c : carrying.entrySet()) {
             if (team.getOrDefault(c.getKey(), 0) != carrierTeam) continue;
@@ -1196,7 +1199,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1219,7 +1222,7 @@ public class ReplayDump {
                         + "," + (commSeen ? String.valueOf(kAlertWrites[t]) : "") + "," + (commSeen ? String.valueOf(kAlertNoThreat[t]) : "") + "," + kMaxPark[t]
                         + "," + (commSeen ? String.valueOf(kEfStaleCarry[t]) : "") + "," + (commSeen ? String.valueOf(kEfStaleLoc[t]) : "")
                         + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : "")
-                        + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t]);
+                        + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t] + "," + kCaptured600[t] + "," + kCaptured600[o]);
             }
         }
         if (trackMode) printTrack();

@@ -242,7 +242,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False
@@ -254,6 +254,8 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
               f'replay-dump --capabilities ({name}): longCapRate = longCaps25 / longTrips25')
         check(all((c['longTrips25'] == '') == (c['longCaps25'] == '') == (c['longCapRate'] == '') and c['longTrips25'] != '0' for c in cap),
               f'replay-dump --capabilities ({name}): longTrips25, longCaps25, longCapRate are all blank without a 25+ round trip (2.11), never 0')
+        check(all(int(c['captured600']) <= int(c['captured']) and capd0[c['team']]['enemyCaptured600'] == capd0['B' if c['team'] == 'A' else 'A']['captured600'] for c in cap) if (capd0 := {c['team']: c for c in cap}) else True,
+              f'replay-dump --capabilities ({name}): captured600 <= captured; enemyCaptured600 is the other row\'s captured600')
         check(all(c['flagDistMin'] != '' and 0 < float(c['flagDistMin']) <= float(c['flagDistMean']) for c in cap),
               f'replay-dump --capabilities ({name}): flagDistMin (r200 own flag to nearest enemy spawn centre) > 0 and <= flagDistMean')
         ours = [c for c in cap if name != 'colt' or c['team'] == 'A']   # an external bot may use slot 23 for its own purposes

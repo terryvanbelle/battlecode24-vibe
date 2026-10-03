@@ -101,3 +101,17 @@ it, ahead on its way home; a frozen carrier cannot move for ~4 turns). 5(a): car
 carriers caught up on most maps (Islands 16 vs 7, DefaultMedium 10 vs 1). Waffle block:
 `DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh g2cstun 'rel:carrierStunned>=1.3
 rel:enemyCaptured<=0.85 mean:overruns<=0'`.
+
+**g2cstun first waffle block: FAIL on its pre-registered bar** (enemyCaptured 2.29 vs 2.46, -7%, bar -15%), with the
+mechanism delivered (carriers caught 15.0 vs 4.8 a game) and the strongest outcome so far: **wins 13 vs 5 of 24, gained
+8, lost 0** (sign p ~ 0.008; on the same cells g2reloc read 5-2, g2z2w 3-1, g2alert400 3-1), our captures 1.62 vs 1.04,
+kills 585 vs 402, games 1269 vs 951 rounds. Trace: a frozen carrier delays waffle's captures more than it prevents them,
+and the time goes to our offense; enemyCaptured over the whole game was the wrong proximate metric for a mechanism that
+slows the chain.
+
+**Second attempt (pre-registered before looking at the new column on the first block), fresh seed 919191:**
+`SEED=919191 DGPOOL=winkelmantanner.waffle DGTAG=-waffle2 BASE=g_iter2 tools/delivery-gate.sh g2cstun
+'rel:carrierStunned>=1.3 rel:enemyCaptured600<=0.8 mean:overruns<=0'` (enemyCaptured600: waffle's captures by r600, a
+new census column). If it passes: band delivery `DGTAG=-seeded BASE=g_iter2 tools/delivery-gate.sh g2cstun
+'rel:kills>=0.95 rel:enemyCaptured<=1.1 mean:overruns<=0'`, then the waffle filler pairs it with g_iter2 to 240 games
+(victory read: >= 60% and p < 0.05, paired net >= +2 SE), and the band test for non-inferiority.
