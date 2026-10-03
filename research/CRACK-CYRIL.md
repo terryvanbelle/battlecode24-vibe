@@ -36,3 +36,7 @@ captures first by ~r277-440, mostly on small maps (AceOfSpades, Asteroids, Hunge
 where relocation cannot add distance and carrier stuns cannot slow a short chain enough. Next arm: **g3def2** (g_iter3
 with 2 defenders per flag, RETEST arm 9; Sym.SCOUT_FIRST 6 so the scouts are not defenders). 5(a) on 8 mirror maps
 including two small ones (defend300 must rise).
+g3def2 5(a): all six defenders defend at r150 and r300 (fires); defend300 4-18 (noisy: carried flags are not
+counted); it lost all 8 mirror games to g_iter3 (no weight at 5(a), a warning that three fewer field ducks cost).
+Cyril delivery (RETEST arm 9 bars, kills guard SE-aware): `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3
+tools/delivery-gate.sh g3def2 'rel:defend300>=1.25 rel:enemyFirstGrabs<=0.85 nw:kills>=0.95 mean:overruns<=0'`.
