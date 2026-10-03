@@ -25,3 +25,8 @@ the bank spent by r250 (210-660 left), stuns by r400 50-196 (g2cr 30-192); carri
 downstream effect is for the paired filler and band tests, the lesson of g2cstun's capture bars):
 `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g2crb 'fire:crumbs200>2000>=0.9
 rel:stun400>=1.3 rel:carrierStunned>=1.2 nw:kills>=0.95 mean:overruns<=0'`.
+
+**g2crb Cyril delivery: FAIL** (bank at r200 in 100% of games ok; stun400 +12%, bar +30%; carriers caught 12.6 vs 13.5,
+bar +20%). Without setup traps the bank only replaces g_iter3's setup stuns. Descriptive: wins 9 vs 12 (gained 4, lost
+7), our captures 0.83 vs 1.21, traps hit 174 vs 203: banking hurts here. Parked. Base note: g_iter3 went 12-12 vs Cyril
+on these 24 cells. The filler now builds the g_iter3 vs Cyril baseline on fresh seeds.

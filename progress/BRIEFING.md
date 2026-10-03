@@ -75,6 +75,10 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   95-65 (59%) where g_iter2 went 73-87 on the same games. Ladder: g_iter3 1977 (rank 12) above waffle 1964. Next
   target: CyrilSharma.finalBot (2020; g_iter3 10-14).
 
+- 10:45 UTC: **unambiguous victory over waffle** (pre-registered read: >= 60% over 240 games, p < 0.05, paired net >= +2
+  SE): g_iter3 146-94 (60.8%, p = 0.001) where g_iter2 went 108-132 on the same games. On to CyrilSharma: a setup bank
+  (g2crb) did not help there (wins 9 vs 12 of 24); g_iter3 itself went 12-12 on that block.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.

@@ -1303,3 +1303,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - CyrilSharma study started (research/CRACK-CYRIL.md): fast raids like waffle but a weaker relay (re-grab share 75% in
   our losses, 72% in our wins); distance gradient of our flags' capture rate 82% (< 20 tiles) -> 39% (36+); its flag
   guards beat our carriers; it banks ~3900 crumbs at r250. First candidate g2crb (g_iter3 + BUDGET_V1), 5(a) queued.
+- **Waffle victory read PASSED** (pre-registered in research/CRACK-WAFFLE.md): 240 games on six fresh filler seeds,
+  g_iter3 (g2cr code) **146-94 = 60.8%, p = 0.001**; g_iter2 on the same cells 108-132 (45.0%), paired net +38.
+- g2crb (g_iter3 + BUDGET_V1) Cyril delivery FAIL: the bank arrives (100% of games) but stuns by r400 +12% (bar +30%)
+  and carriers caught 12.6 vs 13.5; descriptive wins 9 vs 12, our captures 0.83 vs 1.21. Parked. g_iter3 12-12 vs Cyril
+  on those cells. Filler switched to the Cyril pool (g_iter3 baseline on fresh seeds).

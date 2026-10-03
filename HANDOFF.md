@@ -18,7 +18,7 @@
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
-  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=winkelmantanner.waffle tools/filler-pair.sh g_iter2 g_iter3 40`
+  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=CyrilSharma.finalBot tools/filler-pair.sh g_iter3 - 40`
   (finishing the waffle read; next: the CyrilSharma pool), collected with `tools/collect-fillers.sh g_iter2 g_iter3`.
 - Every build and test block gets `tools/basics.py` (CLAUDE rule 15); unit tests include the dead-code and arm-intent
   checks.

@@ -147,3 +147,6 @@ seen in that block (enemy first grabs 7.7 vs 5.5, k/d 2.56 vs 2.92): the band te
 - Against waffle: paired filler 160 games g2cr 95-65 (59.4%, p 0.022) vs g_iter2 73-87 on the same cells, paired net
   +22 (+2.8 SE); ladder g_iter3 1977 +- 33 vs waffle 1964. The pre-registered 240-game read finishes on the filler with
   the g_iter3 package (same code).
+- **Victory read (pre-registered: >= 60% over 240 games, two-sided p < 0.05, paired net >= +2 SE): PASSED.** Six fresh
+  filler seeds, 240 games: g_iter3 (g2cr code) **146-94 vs waffle = 60.8%, p = 0.001**; g_iter2 on the same cells
+  108-132 (45.0%): paired net +38 wins.
