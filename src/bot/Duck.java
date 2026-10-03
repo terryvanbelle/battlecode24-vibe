@@ -557,11 +557,11 @@ public strictfp class Duck {
             int k = relocOrder[relocK];
             MapLocation sc0 = G.spawnCenters[k];
             int sx = sc0.x, sy = sc0.y, step = relocNe > 3 ? 4 : 3, r = (int) Math.sqrt(C.RELOC_R2);   // <= ~85 points x centres
-            int bx = sx, by = sy, bs = spotFree(sx, sy) ? nearestEnemy2(sx, sy) : Integer.MIN_VALUE, bw = 0;
+            int bx = sx, by = sy, bs = spotFree(sx, sy, k, 36) ? nearestEnemy2(sx, sy) : Integer.MIN_VALUE, bw = 0;
             for (int x = Math.max(1, sx - r); x <= Math.min(G.W - 2, sx + r); x += step)
                 for (int y = Math.max(1, sy - r); y <= Math.min(G.H - 2, sy + r); y += step) {
                     int w = (x - sx) * (x - sx) + (y - sy) * (y - sy);
-                    if (w > C.RELOC_R2 || !spotFree(x, y)) continue;
+                    if (w > C.RELOC_R2 || !spotFree(x, y, k, 64)) continue;
                     int sc = nearestEnemy2(x, y);
                     if (sc > bs || (sc == bs && w < bw)) { bs = sc; bx = x; by = y; bw = w; }
                 }
@@ -582,9 +582,16 @@ public strictfp class Duck {
         return near;
     }
 
-    /** At least 8 tiles from every spot already taken (the engine resets all flags if two are within dist2 36). */
-    static boolean spotFree(int x, int y) {
-        for (int j = 0; j < 3; j++) if (rcx[j] >= 0) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < 64) return false; }
+    /** A spot for flag k: at least min2 from every spot already taken (the engine resets all flags if two are within
+     *  dist2 36), and a moved spot also 8+ tiles from the spawn centre of every flag not yet placed, so each later flag
+     *  can still stay where it is (Whirlpool: an earlier flag took a spot beside another's spawn and forced it closer). */
+    static boolean spotFree(int x, int y, int k, int min2) {
+        for (int j = 0; j < 3; j++) {
+            if (rcx[j] >= 0) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < min2) return false; }
+            else if (j != k && min2 > 36 && G.spawnCenters[j] != null) {
+                int dx = G.spawnCenters[j].x - x, dy = G.spawnCenters[j].y - y; if (dx * dx + dy * dy < 64) return false;
+            }
+        }
         return true;
     }
 
@@ -608,6 +615,9 @@ public strictfp class Duck {
         if (!there && G.round < C.RELOC_DEADLINE) {
             Nav.moveTo(flagTarget);
             if (G.rc.getLocation().distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0;
+            if (C.RELOC_V2 && relocStall >= C.RELOC_STALL && !flagTarget.equals(G.spawnCenters[i])) {   // cannot get there:
+                flagTarget = G.spawnCenters[i]; relocStall = 0; return;                                  // go home, never drop short
+            }
             if (relocStall < C.RELOC_STALL) return;
         }
         // drop here if the engine will accept it as a default location
