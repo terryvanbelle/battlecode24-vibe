@@ -13,3 +13,4 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | **g2cr** (seeded pairs vs g_iter2, waffle crack) | carrier stun + flag relocation (C.CARRIER_STUN, RELOCATE_FLAGS + RELOC_V2) | 111 -> 122, +11 (p 0.11) | **+0.33 +- 0.10** | 21 -> 25, +4 | **+0.30 +- 0.13** | +7 | +0.37 +- 0.14 | criterion (b) met |
 | g2cr confirmation (seeds 717171 + 818181) | same | 107 -> 118, +11 (p 0.11) | +0.17 +- 0.09 | 21 -> 24, +3 | +0.07 +- 0.13 | +8 | +0.30 +- 0.13 | - |
 | **g2cr pooled (4 seeds, 473 pairs)** | same | 218 -> 240, **+22 (p 0.017)** | **+0.25 +- 0.07** | 42 -> 49, +7 | +0.18 +- 0.09 | +15 | +0.33 +- 0.10 | promoted: **g_iter3**, 1977 +- 33 (rank 12) |
+| g3escrg2 (vs g_iter3, Cyril crack) | g_iter3 + convoy (ESCORT_CARRIER/BEHIND/TIGHT, ESCORT_FAR_R2 225, REGRAB) | 122 -> 128, +6 (0.39) | +0.18 +- 0.08 | 25 -> 28, +3 | +0.20 +- 0.12 | +3 | +0.14 +- 0.11 | basics FAIL (k/d 2.13 vs 3.11) |

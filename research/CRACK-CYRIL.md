@@ -71,3 +71,9 @@ rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
 **g3escrg2 Cyril delivery (second attempt, seed 919191, 21 cells): PASS** (regrabs 11.2 vs 3.3; escorts20 5.34 vs 3.10;
 kills 541 vs 543). Descriptive: wins 7 vs 9 (gained 1, lost 3), our captures 0.95 vs 0.86, pickups 20.0 vs 12.7,
 carrier deaths 15.8 vs 8.8. Now: the Cyril filler pairs it with g_iter3 toward 240 games; band guard + band test queued.
+
+**g3escrg2 band test vs g_iter3** (234 seeded pairs; control = g2cr's band runs, the same code): net +6 (20-14, p 0.39),
+capture delta +0.18 +- 0.08 (t 2.1), upper +0.20 +- 0.12 (t 1.7): neither REWRITE_EVAL criterion. **Basics FAIL:
+kill/death 2.13 vs 3.11 (-0.97 +- 0.35)**: the convoy trades bodies for flag progress (carrier deaths roughly double),
+which the k/d check reads as a combat loss. Not promotable; the Cyril filler continues to learn whether it cracks
+Cyril, and any conflict with the k/d check goes to the owner, not around the rule.

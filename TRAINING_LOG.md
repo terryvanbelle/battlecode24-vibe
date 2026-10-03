@@ -1323,3 +1323,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3escrg2 Cyril delivery PASS (second attempt, seed 919191): regrabs 11.2 vs 3.3, escorts20 5.34 vs 3.10, kills
   unchanged; descriptive wins 7 vs 9 of 21, captures 0.95 vs 0.86. Filler now pairs g3escrg2 with g_iter3 vs Cyril;
   band guard (nw: guards, BASE g_iter3) + band test queued. g_iter3 vs Cyril baseline 108-236 (31%).
+- g3escrg2 band test vs g_iter3: net +6 (p 0.39), capture delta +0.18 +- 0.08, upper +0.20 +- 0.12: no criterion met.
+  Basics FAIL on kill/death (2.13 vs 3.11, -2.8 SE): the convoy's price in bodies. Not promotable; the Cyril paired
+  filler continues for information.
