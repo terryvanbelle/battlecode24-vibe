@@ -63,6 +63,13 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   Also today: the cheap reachability search folded into g_iter2 (identical play, less bytecode); g_iter2 vs waffle is
   96-128 (43%) over 224 games, ladder 1915 (rank 14), waffle 1977 directly above.
 
+- 08:30 UTC: **a crack in waffle.** Its relay chain cannot be denied (1-9 escorts beside every drop), but it can be
+  slowed: a duck next to a carrier of our flag builds a stun beside it, ahead on its way home, and a frozen carrier
+  cannot move. Alone (g2cstun) it won 13 discordant pairs to 1 over two blocks but missed its capture bars; combined
+  with flag relocation (g2cr) it passed delivery on a fresh seed: waffle's captures by r600 -20%, carriers caught x4.6,
+  wins 12 vs 8 of 22. Now the decisive paired test: g2cr vs g_iter2 against waffle on fresh seeds toward 240 games
+  (victory read >= 60%, p < 0.05), plus the band test so nothing regresses elsewhere.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
