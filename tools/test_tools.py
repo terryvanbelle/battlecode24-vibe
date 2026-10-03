@@ -436,13 +436,30 @@ with tempfile.TemporaryDirectory() as d:
     check('delivery zy: FAIL' in r.stdout and os.path.exists(os.path.join(d, 'gauntlet', 'delivery-zy.FAIL')), 'delivery-check: a 67% fire rate fails a 90% bar')
     bc = os.path.join(d, 'bc.csv'); bs = os.path.join(d, 'bs.csv')
     open(bc, 'w').write('file,opp,us,team,crumbs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n'); open(bs, 'w').write('file,opp,us,team,digs200\nx/f1,o,1,A,10\nx/f2,o,1,A,10\n')
-    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zr', 'rel:digs200<=0.7', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
+    env2 = dict(os.environ, MIN_PAIRS='2')
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zr', 'rel:digs200<=0.7', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True, env=env2)
     check('delivery zr: PASS' in r.stdout and '2 shared cells' in r.stdout, 'delivery-check rel: arm 2.5 vs base 10 on the 2 shared cells passes <=0.7: ' + r.stdout)
     open(bs, 'w').write('file,opp,us,team,digs200\nx/f1,o,1,A,7\nx/f2,o,1,A,0\n')   # arm 5 and 0 vs base 7 and 0: diff -1.0 +- 1.0
-    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zn', 'nw:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
-    check('delivery zn: PASS' in r.stdout and 'within 2 SE' in r.stdout, 'delivery-check nw: a miss inside 2 SE passes: ' + r.stdout)
-    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zq', 'rel:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True)
-    check('delivery zq: FAIL' in r.stdout, 'delivery-check rel: the same miss fails a point bar: ' + r.stdout)
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zn', 'nw:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True, env=env2)
+    check('delivery zn: INCONCLUSIVE' in r.stdout and 'detectable drop 57%' in r.stdout, 'delivery-check nw: a guard that cannot see a 20% drop is INCONCLUSIVE: ' + r.stdout)
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'zq', 'rel:digs200>=1.0', c, sv, 'run', bc, bs], cwd=d, capture_output=True, text=True, env=env2)
+    check('delivery zq: INCONCLUSIVE' in r.stdout and r.returncode == 3, 'delivery-check rel: a miss inside 2 SE is INCONCLUSIVE, exit 3 (audit 2026-10-03 MEAS1): ' + r.stdout)
+    # three-way verdicts on 20 synthetic pairs (base 10 each; arm = base * ratio + alternating noise of +-1)
+    def block(name, ratio, n=20):
+        cc = os.path.join(d, name + '_c.csv'); cs = os.path.join(d, name + '_s.csv')
+        open(cc, 'w').write('file,opp,us,team,kills\n' + ''.join(f'g{i},o,1,A,{10 * ratio + (1 if i % 2 else -1)}\n' for i in range(n)))
+        open(cs, 'w').write('file,opp,us,team,x\n' + ''.join(f'g{i},o,1,A,0\n' for i in range(n)))
+        return cc, cs
+    bcc = os.path.join(d, 'b3_c.csv'); bcs = os.path.join(d, 'b3_s.csv')
+    open(bcc, 'w').write('file,opp,us,team,kills\n' + ''.join(f'g{i},o,1,A,10\n' for i in range(20)))
+    open(bcs, 'w').write('file,opp,us,team,x\n' + ''.join(f'g{i},o,1,A,0\n' for i in range(20)))
+    for name, ratio, want in (('at', 1.2, 'INCONCLUSIVE'), ('over', 1.2 + 0.034, 'PASS'), ('short', 1.2 - 0.07, 'FAIL')):
+        cc, cs = block(name, ratio)
+        r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), name, 'rel:kills>=1.2', cc, cs, 'run', bcc, bcs], cwd=d, capture_output=True, text=True)
+        check(f'delivery {name}: {want}' in r.stdout, f'delivery-check three-way: {name} -> {want}: ' + r.stdout)
+    cc, cs = block('few', 1.5, n=10)
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'few', 'rel:kills>=1.2', cc, cs, 'run', bcc, bcs], cwd=d, capture_output=True, text=True)
+    check('delivery few: INCONCLUSIVE' in r.stdout and 'only 10 shared cells' in r.stdout, 'delivery-check: fewer than 18 shared cells is INCONCLUSIVE: ' + r.stdout)
 r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
 check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
 
@@ -558,6 +575,11 @@ with tempfile.TemporaryDirectory() as td:
     check(r_bad.returncode == 1 and 'symWrong in 2 of 10' in r_bad.stdout and 'decided by r201 in 7/10' in r_bad.stdout
           and 'overruns 1' in r_bad.stdout and r_bad.stdout.count('FAIL') >= 5,
           'basics: a wrong symmetry, an undecided symmetry, an overrun and a kill/death collapse fail: ' + r_bad.stdout)
+    with open(os.path.join(td, 'base_nostill.csv'), 'w') as f:   # audit 2026-10-03 MEAS12: a base lacking a column is not a pass
+        f.write('file,us,symOk,symWrong,symDecidedRound,overruns,maxBcK,exceptions,kills,deaths,trapsHit,gathered400\n')
+        for i in range(10): f.write(f'g{i},1,0,0,,0,15.0,0,{30 + i % 3},{400 + i},300,{6000 + i}\n')
+    r_nb = subprocess.run([sys.executable, os.path.join(HERE, 'basics.py'), os.path.join(td, 'ok.csv'), '--base', os.path.join(td, 'base_nostill.csv')], capture_output=True, text=True)
+    check(r_nb.returncode == 1 and 'base not measured' in r_nb.stdout, 'basics: a base census without a column fails that check: ' + r_nb.stdout)
 
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

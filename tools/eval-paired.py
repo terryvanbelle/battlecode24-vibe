@@ -21,7 +21,7 @@ def load(path):
         if 'us' not in v: continue
         u = v['us']; t = v.get('them')
         try:
-            out[k] = {'won': int(u['won']), 'cap': int(u['captured']), 'opp': u['opp'],
+            out[k] = {'won': int(u['won']), 'cap': int(u['captured']), 'opp': u['opp'], 'rounds': u.get('rounds', ''),
                       'ecap': int(t['captured']) if t else int(u.get('enemyCaptured') or 0)}
         except (KeyError, ValueError):
             continue
@@ -51,8 +51,9 @@ def summarize(name, P):
     m = sum(d) / n
     se = math.sqrt(sum((x - m) ** 2 for x in d) / (n - 1) / n) if n > 1 else float('nan')
     t = m / se if se and se > 0 else float('nan')
+    same = sum(1 for c, a in P if (c['won'], c['rounds'], c['cap'], c['ecap']) == (a['won'], a['rounds'], a['cap'], a['ecap']))
     return (f'{name:6s} n={n:4d}  wins {cw}->{aw}  gained {g} lost {l} net {g - l:+d} (sign p={sign_p(g, l):.3f})  '
-            f'capture diff {sum(cd) / n:+.2f} -> {sum(ad) / n:+.2f}  delta {m:+.2f} +- {se:.2f} (t={t:+.1f})')
+            f'capture diff {sum(cd) / n:+.2f} -> {sum(ad) / n:+.2f}  delta {m:+.2f} +- {se:.2f} (t={t:+.1f})  identical {same}/{n}')
 
 def main(argv):
     tier_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upper-tier.txt')

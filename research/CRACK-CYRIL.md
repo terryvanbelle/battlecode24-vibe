@@ -132,3 +132,7 @@ failures).
 **Plateau against Cyril** (five lines near neutral: bank, two defenders, convoy, camp, camp-split). Per AUDIT_PLAYBOOK.md
 §1 the next step is a correctness audit of g_iter3 and the tools (much is new since the 2026-10-02 audit: carrier stun,
 relocation V2, A11/A12 fixes, new census columns, nw: guards), with the open findings of the first audit in scope.
+
+**Correction (second audit, research/AUDIT-2026-10-03.md, MEAS1).** Three of the five Cyril closures failed inside 1 SE
+(g3def2 enemyFirstGrabs -0.65 SE, g3camp enemyUnseenRounds -0.34 SE, g3camp2 -0.23 / -0.32 SE): they are INCONCLUSIVE,
+not neutral, and the plateau is not established. g2crb never delivered its premise (BOT11: the bank is gone by r205).

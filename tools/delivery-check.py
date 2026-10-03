@@ -18,28 +18,41 @@ def vals(col):
         try: out.append(float(g[col]))
         except (KeyError, ValueError, TypeError): pass
     return out
-ok_all, lines = True, []
+RANK = {'PASS': 0, 'INCONCLUSIVE': 1, 'FAIL': 2}
+MIN_PAIRS = int(os.environ.get('MIN_PAIRS', 18)); NW_MAX_DROP = float(os.environ.get('NW_MAX_DROP', 0.20))
+worst, lines = 0, []
 for c in checks.split():
     m = re.fullmatch(r'(median|mean|fire|rel|nw):(\w+)(>=|<=|>|<)(-?[\d.]+)(?:(>=)([\d.]+))?', c)
     if not m: print('!! bad check', c); sys.exit(2)
     stat, col, op, val = m.group(1), m.group(2), m.group(3), float(m.group(4))
     v = vals(col)
-    if not v: lines.append(f'{c}: NO DATA'); ok_all = False; continue
-    if stat in ('rel', 'nw'):   # paired: arm mean on cells shared with the base <= / >= ratio x base mean on those cells
-        # nw: (not worse, for guards; 2026-10-03): fail only if the arm misses the ratio by more than 2 paired SE. A point
-        # bar like rel:kills>=0.95 on 24 cells (SE ~15%) fails about a third of truly neutral arms.
+    if not v: lines.append(f'{c}: NO DATA FAIL'); worst = max(worst, 2); continue
+    if stat in ('rel', 'nw'):   # paired: arm mean on cells shared with the base vs ratio x base mean on those cells
+        # Three-way verdict (audit 2026-10-03 MEAS1: point bars decided 16 of 28 FAILs inside 1 SE). Per pair e = arm - ratio*base;
+        # margin = mean(e) on the good side of the bar. rel: PASS when margin >= 1 SE, FAIL when margin <= -2 SE, else
+        # INCONCLUSIVE. nw: (guards) FAIL when margin <= -2 SE, INCONCLUSIVE when it cannot see a drop below NW_MAX_DROP
+        # (2 SE as a share of the base), else PASS. Fewer than MIN_PAIRS shared cells is INCONCLUSIVE.
         pairs = []
         for k, g in rows.items():
             b = base.get(k)
             try: pairs.append((float(g[col]), float(b[col])))
             except (TypeError, KeyError, ValueError): pass
-        if not pairs: lines.append(f'{c}: NO PAIRED DATA (base missing?)'); ok_all = False; continue
+        if not pairs: lines.append(f'{c}: NO PAIRED DATA (base missing?)'); state = 'FAIL'; worst = max(worst, RANK[state]); continue
         ma = st.mean(a for a, _ in pairs); mb = st.mean(b for _, b in pairs)
-        d = [a - b for a, b in pairs]; se = st.stdev(d) / math.sqrt(len(d)) if len(d) > 1 else float('nan')
         target = val * mb
-        slack = 2 * se if stat == 'nw' and se == se else 0.0
-        ok = {'>=': ma >= target - slack, '<=': ma <= target + slack, '>': ma > target - slack, '<': ma < target + slack}[op]
-        lines.append(f'{c}: arm {ma:.2f} vs base {mb:.2f} on {len(pairs)} shared cells (target {op} {target:.2f}{" within 2 SE" if stat == "nw" else ""}; diff {ma - mb:+.2f} +- {se:.2f}) {"ok" if ok else "FAIL"}')
+        e = [(a - val * b) * (1 if op in ('>=', '>') else -1) for a, b in pairs]
+        margin = st.mean(e); se = st.stdev(e) / math.sqrt(len(e)) if len(e) > 1 else float('inf')
+        if len(pairs) < MIN_PAIRS: state = 'INCONCLUSIVE'; why = f'only {len(pairs)} shared cells (< {MIN_PAIRS})'
+        elif stat == 'rel':
+            state = 'PASS' if margin >= se else 'FAIL' if margin < -2 * se else 'INCONCLUSIVE'
+            why = f'margin {margin / se:+.1f} SE' if se > 0 else 'no variance'
+        else:
+            drop = 2 * se / abs(mb) if mb else float('inf')
+            state = 'FAIL' if margin < -2 * se else 'INCONCLUSIVE' if drop > NW_MAX_DROP else 'PASS'
+            why = f'detectable drop {drop:.0%}'
+        lines.append(f'{c}: arm {ma:.2f} vs base {mb:.2f} on {len(pairs)} shared cells (target {op} {target:.2f}; diff {ma - mb:+.2f}, '
+                     f'margin {margin:+.2f} +- {se:.2f}; {why}) {state}')
+        worst = max(worst, RANK[state]); continue
     elif stat == 'fire':
         x = sum(1 for a in v if (a > val if op == '>' else a >= val if op == '>=' else a < val if op == '<' else a <= val)) / len(v)
         need = float(m.group(6) or 0.9); ok = x >= need; lines.append(f'{c}: fired in {x:.0%} of {len(v)} (need {need:.0%}) {"ok" if ok else "FAIL"}')
@@ -47,7 +60,11 @@ for c in checks.split():
         x = st.median(v) if stat == 'median' else st.mean(v)
         ok = {'>=': x >= val, '<=': x <= val, '>': x > val, '<': x < val}[op]
         lines.append(f'{c}: {stat} {x:.1f} over {len(v)} games {"ok" if ok else "FAIL"}')
-    ok_all &= ok
-verdict = 'PASS' if ok_all else 'FAIL'
+    worst = max(worst, 0 if ok else 2)
+verdict = ['PASS', 'INCONCLUSIVE', 'FAIL'][worst]
+for v in ('PASS', 'INCONCLUSIVE', 'FAIL'):              # one verdict file per arm: drop stale ones
+    try: os.remove(f'gauntlet/delivery-{arm}.{v}')
+    except OSError: pass
 open(f'gauntlet/delivery-{arm}.{verdict}', 'w').write(f'{run}\n' + '\n'.join(lines) + '\n')
 print(f'delivery {arm}: {verdict}'); print('\n'.join(lines))
+sys.exit(0 if verdict == 'PASS' else 3 if verdict == 'INCONCLUSIVE' else 1)

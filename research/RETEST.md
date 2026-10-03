@@ -273,3 +273,7 @@ Order: the sum of the three lens priorities, with ties going to the cheaper arm.
 | Aggression (ADVANCE_MARGIN, ENGAGE_MAX_THREAT) | 83, 81 vs 84/110 (field, unseeded) | the numbers say nothing, but there is no bug link either: `Micro.fight` still counts every visible enemy (`nearEnemies = enemies.length`), so REACH_FIX changed whether a fight starts, not what the margin means. Re-open if stillPost regresses |
 | Hint sweep (HINT_SWEEP) | 21-25; firstFlagSight -1 +- 10 | nothing measurable to gain (firstFlagSight is already 279) |
 | Dam / float trap ablations (ab1nodam, ab3nofloat) | VOID (audit A8) | the mechanisms rarely fire (bank < 700 in setup on 64 of 75 maps), so a re-run measures a no-op |
+**Correction (audit 2026-10-03, MEAS1/MEAS2).** Seeded pairs are exact only for code that changes no decision; arms that
+change behaviour disagree with the control on ~17-29% of pairs, so the re-tests were not much stronger than unseeded
+ones. And the delivery `rel:` bars were point estimates: of the failures above, g2z2, g2icamp, g2fstun, g2escrg,
+g2alert400 and g2cstun (and the reloc/waffle blocks) missed by less than 1 SE. Read them as INCONCLUSIVE, not closed.

@@ -1355,3 +1355,19 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3camp2 (CAMP_SPLIT) Cyril second attempt FAIL (unseen -15%, unopposed caps -8%, Cyril captures equal, wins 8 vs 9):
   camp line closed. Five lines vs Cyril near neutral: per AUDIT_PLAYBOOK §1, run the correctness audit (second one) on
   g_iter3 and the tools, open findings of the first audit in scope.
+
+### 2026-10-03 21:00 UTC — second correctness audit (AUDIT_PLAYBOOK.md)
+- Workflow: five lenses, two verifiers matched by id, synthesis; 56 findings, all 56 reproduced (0 rejected, 0
+  unverified): 20 bot and 17 tool defects after dedup. research/AUDIT-2026-10-03.md.
+- **MEAS1 (critical):** delivery `rel:` was a point bar: 16 of 28 FAILs (3 of 5 Cyril closures) and 7 of 15 PASSes were
+  decided inside 1 SE. **MEAS2:** the claim "seeded pairing is exact" (this log, 2026-10-02) holds only for code that
+  changes nothing; behaviour-changing arms disagree on ~17-29% of pairs.
+- **Bot:** BOT1 captured own flags never recognised (defenders, rings, alerts and respawns serve an empty home in 82% of
+  Cyril games); BOT2 defenders leave their flag in fights (17% of Cyril first grabs with the defender > dist2 20 away);
+  BOT3 relocation abandons ~20% of flags; BOT4 post-setup economy a third of Cyril's; BOT5 pickup only at turn start.
+- Fixed so far (tools first, with tests): delivery-check three-way verdict (PASS >= +1 SE, FAIL < -2 SE, else
+  INCONCLUSIVE; nw: guards INCONCLUSIVE when blind to a 20% drop; < 18 shared cells INCONCLUSIVE; exit 3) and
+  delivery-gate auto-extension 24 -> 48 -> 96 cells; eval-paired and filler-tally print identical games and discordance;
+  basics FAILs a check its base did not measure (MEAS12); keep-replays protects g_iter3 / g2cr (MEAS12). Corrections
+  appended to HANDOFF, RETEST.md and CRACK-CYRIL.md. MEAS3 (replay names without the seed) is on the open list: nine
+  consumers parse the name and cached bases use the old one.

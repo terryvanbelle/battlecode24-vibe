@@ -5,8 +5,11 @@
 # Checks are space-separated `stat:column op value` over OUR rows of the mini-block (census + survey columns):
 #   median:crumbs200>=2500   mean:traps200<=6   fire:digs200>0>=0.9   (fire: share of games where column > 0)
 #   rel:enemyRegrabs<=0.7   (with BASE=<bot>: arm mean <= 0.7 x base mean on the same cells)
-#   nw:kills>=0.95          (guards: as rel:, but fails only if the arm misses the ratio by more than 2 paired SE)
-# Writes gauntlet/delivery-<arm>.PASS or .FAIL with the measured values; tools/band-test.sh refuses without PASS.
+#   nw:kills>=0.95          (guards: fail only if the arm misses the ratio by more than 2 paired SE)
+# Three-way verdicts (audit 2026-10-03 MEAS1): rel: PASSes only 1 paired SE beyond its bar and FAILs only 2 SE short;
+# in between, and for a guard that cannot see a 20% drop or a block with < 18 shared cells, the check is INCONCLUSIVE and
+# the gate re-runs itself on twice the cells (24 -> 48 -> 96, NMAX) under its own base cache; a line is never closed on
+# INCONCLUSIVE. Writes gauntlet/delivery-<arm>.PASS, .INCONCLUSIVE or .FAIL; tools/band-test.sh refuses without PASS.
 # DGPOOL="ColtG5.Goob_final" DGTAG=-colt: a one-opponent block (the crack, research/CRACK.md); random maps and sides as
 # always; the base cache and run tags carry DGTAG so band and crack bases never mix.
 set -euo pipefail
@@ -43,4 +46,9 @@ if [ -n "${BASE:-}" ]; then
   done
   BARGS="$BC $BS"
 fi
-python3 tools/delivery-check.py "$ARM$OTAG" "$CHECKS" "gauntlet/dg-census-$ARM$OTAG.csv" "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" $BARGS
+rc=0; python3 tools/delivery-check.py "$ARM$OTAG" "$CHECKS" "gauntlet/dg-census-$ARM$OTAG.csv" "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" $BARGS || rc=$?
+if [ "$rc" -eq 3 ] && [ "$N" -lt "${NMAX:-96}" ]; then
+  echo "delivery-gate: INCONCLUSIVE on $N cells; extending to $((2 * N))"
+  N=$((2 * N)) DGTAG="${DGTAG:-}-n$((2 * N))" exec "$0" "$ARM" "$CHECKS"
+fi
+exit "$rc"

@@ -11,8 +11,12 @@
   Previous: g_iter2 1920 (audit fixes + observed symmetry, research/AUDIT-2026-10-02.md), g_iter1 1736, g_iter0.
 - **Ladder target: CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14; CLAUDE rule 14). Defeated: ColtG5 (declared by
   the owner, PROMPTS 157), winkelmantanner.waffle (g_iter3 ranks above it; paired waffle read finishing on the filler).
-- Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC; an
-  identity control reads 0 of 80 discordant. Verdicts before that were mostly engine noise (research/RETEST.md).
+- Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC.
+  That makes a pair exact only for code that changes no decision (identity control 0 of 80 discordant); arms that change
+  behaviour still disagree with the control on ~17-29% of pairs (audit 2026-10-03 MEAS2), so size blocks from that.
+  Delivery checks are three-way since the second audit: PASS 1 SE beyond the bar, FAIL 2 SE short, else INCONCLUSIVE
+  (auto-extended 24 -> 48 -> 96 cells, never a closure). Open findings of research/AUDIT-2026-10-03.md are tracked
+  below.
 - In flight: the **second correctness audit** (AUDIT_PLAYBOOK.md; g_iter3, src/bot and its arms, tools; five lenses,
   id-matched refutation) after five near-neutral lines against CyrilSharma (research/CRACK-CYRIL.md: bank, two
   defenders, convoy, camp, camp-split all closed). The filler builds the g_iter3 vs Cyril baseline (30%).

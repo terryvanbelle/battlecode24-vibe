@@ -94,11 +94,13 @@ def main(argv):
     absolute('bytecode', vals(C, 'overruns'), lambda v: sum(v) == 0, lambda v: f'overruns {int(sum(v))} (bar 0); max {max(vals(C, "maxBcK") or [0]):.1f}k', 'overruns')
     absolute('exceptions', vals(C, 'exceptions'), lambda v: sum(v) == 0, lambda v: f'exceptions {int(sum(v))} (bar 0)', 'exceptions')
 
-    def relative(label, va, vb, better):
+    def relative(label, va, vb, better, given=None):
         nonlocal fails
         ma, sa = mean_se(va)
         if ma is None: print(f'  {label:11s} NO DATA'); return
         if not vb:
+            if (BC if given is None else given):             # a base was given but lacks this column: a basic not measured fails
+                fails += 1; print(f'  {label:11s} {ma:10.2f} +- {sa:.2f}  base not measured (re-census the base) FAIL'); return
             print(f'  {label:11s} {ma:10.2f} +- {sa:.2f}  (no base: reported)'); return
         mb, sb = mean_se(vb)
         d = ma - mb; se = math.sqrt((sa or 0) ** 2 + (sb or 0) ** 2)
@@ -110,7 +112,7 @@ def main(argv):
     relative('kill/death', kd(C), kd(BC), 'higher')
     relative('trapsHit', vals(C, 'trapsHit'), vals(BC, 'trapsHit'), 'higher')
     relative('gathered400', vals(C, 'gathered400'), vals(BC, 'gathered400'), 'higher')
-    relative('floating250', vals(S, 'crumbs250'), vals(BS, 'crumbs250'), 'lower')
+    relative('floating250', vals(S, 'crumbs250'), vals(BS, 'crumbs250'), 'lower', given=BS)
     print(f'basics {name}: {"PASS" if fails == 0 else f"FAIL ({fails})"}')
     return 1 if fails else 0
 
