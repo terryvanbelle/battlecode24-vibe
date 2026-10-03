@@ -691,3 +691,7 @@ I see you took down Waffle overnight and are now working on cracking CyrilSharma
 ## 168. 2026-10-03
 
 Yes, cracking an opponent should override
+
+## 169. 2026-10-03
+
+So it seems that the audit that found those bugs yesterday was the high level breakthrough that allowed things to progress again.  Can you give me a prompt that would encapsulate what you did to get that audit?  I want to make sure it's carried over for future years
