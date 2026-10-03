@@ -1261,3 +1261,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   carriers caught 27.3 vs 5.9, flagDistMin 29.7 vs 25.5 (bar 29.3), enemyCaptured600 1.27 vs 1.59 (-20%, bar -20%), 0
   overruns; descriptive: wins 12 vs 8 (gained 6, lost 2), our captures 2.00 vs 1.55. Filler now pairs g2cr with g_iter2
   against waffle (CLAUDE rule 14); band delivery + band test queued.
+- **g2cr band delivery FAIL** (guard): kills 390 vs 486 (-20%, 1.4 SE); enemyCaptured 1.88 vs 1.96 ok; wins 11 vs 9
+  (gained 2, lost 0). Per round kills -9%, k/d 2.56 vs 2.92, games shorter (1070 vs 1239 rounds). The band test stays
+  blocked; the waffle filler (its own delivery passed) continues. Relocation's band cost, from the same blocks
+  (g2reloc alike): enemy first grabs 7.7-8.2 vs 5.5, defenders near flags at r300 5-7 vs 10, setup traps 36 vs 41,
+  trickle deaths 18.5-25 vs 12.8: a flag moved away from our spawn loses the free defence of respawns and the
+  defenders spend setup carrying. Against waffle the longer chain wins; against light raiders it costs. Next: g2cstun's
+  band guard alone (information only, no band test chained), and a relocation that moves only the exposed flag.
