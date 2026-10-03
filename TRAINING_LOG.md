@@ -1283,3 +1283,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   confirmation seeds 717171 + 818181 queued against g_iter2's confirmation runs. The band cost feared from relocation
   (first grabs +40% in one 24-cell block) does not show in the outcome over 234 pairs.
 - Waffle filler: 120 paired games, g2cr 66-54 (55.0%) vs g_iter2 55-65 on the same cells, paired net +11 (+1.7 SE).
+- g2cr's fast losses to waffle (all three flags by r262-500, small maps): at r200 waffle banks 1830-4260 crumbs and
+  spends ~3000 in the next 75 rounds; we hold ~190 and hover at 50-240, so carrier stuns are starved when the raid
+  lands (15-20 stun builds r200-400). Arm g2crb = g2cr + C.BUDGET_V1 (nothing discretionary in setup, fills only when
+  stalled, a floor from 1500 at r200 falling 10 a round holds back rings and idle traps; combat and carrier stuns draw
+  on the bank at once). BUDGET_V1 was last judged unseeded on the buggy base. 5(a) queued behind g2cr's confirmation.

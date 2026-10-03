@@ -50,3 +50,7 @@ g2cstun C.CARRIER_STUN=true
 g2cr C.CARRIER_STUN=true
 g2cr C.RELOCATE_FLAGS=true
 g2cr C.RELOC_V2=true
+g2crb C.CARRIER_STUN=true
+g2crb C.RELOCATE_FLAGS=true
+g2crb C.RELOC_V2=true
+g2crb C.BUDGET_V1=true
