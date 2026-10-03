@@ -67,3 +67,7 @@ matter (the carrier must be in vision, dist2 20). Added C.ESCORT_FAR_R2 225 (out
 registry, EF_STATE 1 / EF_LOC): escorts20 4.35-8.65 (mean 6.1 vs 4.0), regrabs 7-57, 0 overruns. Second attempt:
 `SEED=919191 DGPOOL=CyrilSharma.finalBot DGTAG=-cyril2 BASE=g_iter3 tools/delivery-gate.sh g3escrg2 'rel:regrabs>=2.0
 rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
+
+**g3escrg2 Cyril delivery (second attempt, seed 919191, 21 cells): PASS** (regrabs 11.2 vs 3.3; escorts20 5.34 vs 3.10;
+kills 541 vs 543). Descriptive: wins 7 vs 9 (gained 1, lost 3), our captures 0.95 vs 0.86, pickups 20.0 vs 12.7,
+carrier deaths 15.8 vs 8.8. Now: the Cyril filler pairs it with g_iter3 toward 240 games; band guard + band test queued.

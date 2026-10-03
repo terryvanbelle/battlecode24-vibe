@@ -1320,3 +1320,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3escrg2 5(a): ESCORT_TIGHT alone left escorts20 flat (3.80 vs 4.04); ESCORT_R2 > 20 is inert (carrier must be in
   vision); C.ESCORT_FAR_R2 225 (join our carrier from the registry out of fights) lifts escorts20 to 4.35-8.65 (mean
   6.1 vs 4.0). Cyril second attempt queued on fresh seed 919191.
+- g3escrg2 Cyril delivery PASS (second attempt, seed 919191): regrabs 11.2 vs 3.3, escorts20 5.34 vs 3.10, kills
+  unchanged; descriptive wins 7 vs 9 of 21, captures 0.95 vs 0.86. Filler now pairs g3escrg2 with g_iter3 vs Cyril;
+  band guard (nw: guards, BASE g_iter3) + band test queued. g_iter3 vs Cyril baseline 108-236 (31%).
