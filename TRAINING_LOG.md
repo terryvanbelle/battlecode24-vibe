@@ -1132,3 +1132,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   never overwrites the band block that band-test.sh reads (found by the triage).
 - Arms 2-8 built (arm-intent lines added); one step-5(a) batch queued: each vs the g_iter2 mirror on 4 maps, the two
   flag-defence arms also vs arch_rush10, with the g_iter2 baselines on the same seeds.
+- g2bc (REACH_BC 11000): gate PASS and band test **identical to g_iter2** (0 discordant of 234; same max 22.0/22.8/24.7k
+  per-game peaks): the BFS start threshold never mattered. The overrun (g2nonav, Divergent vs Strequals, r1887, robot
+  B#11972) was a crowded late fight: the BFS (started with >= 8000 left, up to ~6k) followed by Micro.fight's loops over
+  many robots. Fix: an in-search bail-out (C.REACH_BC_STOP, default 0 = g_iter2) so the search never leaves the fight
+  with less than 13000; arm g2bc2 (REACH_BC 15000, REACH_BC_STOP 13000) queued (gate: overruns 0, stillPost <= 1.1).
+  Note: the g_iter2 per-game peak is ~22k by design (symmetry observation spends spare budget while undecided).
