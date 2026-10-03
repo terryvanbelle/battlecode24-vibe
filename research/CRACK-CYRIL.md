@@ -146,3 +146,7 @@ not neutral, and the plateau is not established. g2crb never delivered its premi
   DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3tether 'rel:defNearAtGrab20>=1.15 nw:kills>=0.95 mean:overruns<=0'`
   (new column: our robots within dist2 20 of our flag at enemy first grabs).
 Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the block to 48 / 96 cells).
+- **g3lost Cyril delivery: PASS** (capturedHomeRounds 597 vs 2234, margin +2.7 SE; kills guard PASS, detectable drop
+  14%). Descriptive: wins 14 vs 12 (gained 4, lost 2), Cyril's captures 1.42 vs 1.62. The filler now pairs g3lost with
+  g_iter3 vs Cyril toward 240 games; band guard + band test queued.
+- g3tether: INCONCLUSIVE at 24 cells (defNearAtGrab20 5.29 vs 5.31) and 48 (6.30 vs 5.90, +7%, bar +15%); extending to 96.

@@ -1375,3 +1375,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   flags skipped by alerts, spawn choice and responders; defenders re-home) and C.DEF_TETHER (defenders fight within
   dist2 20 of home unless closing on their own flag's carrier; chase only their own flag). Arms g3lost and g3tether fire
   at 5(a) vs Cyril. New census columns defNearAtGrab20 and capturedHomeRounds (unit-tested). Cyril deliveries queued.
+- g3lost Cyril delivery PASS (three-way: capturedHomeRounds -73%, +2.7 SE; wins 14 vs 12, Cyril captures 1.42 vs 1.62):
+  filler pairs it with g_iter3 vs Cyril; band guard + test queued. g3tether INCONCLUSIVE at 24 and 48 cells (defenders
+  near the flag at Cyril's first grabs +7%, bar +15%), auto-extending to 96. Fixed delivery-gate's extension tag (the
+  48-cell block was labelled n96).

@@ -49,6 +49,6 @@ fi
 rc=0; python3 tools/delivery-check.py "$ARM$OTAG" "$CHECKS" "gauntlet/dg-census-$ARM$OTAG.csv" "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" $BARGS || rc=$?
 if [ "$rc" -eq 3 ] && [ "$N" -lt "${NMAX:-96}" ]; then
   echo "delivery-gate: INCONCLUSIVE on $N cells; extending to $((2 * N))"
-  N=$((2 * N)) DGTAG="${DGTAG:-}-n$((2 * N))" exec "$0" "$ARM" "$CHECKS"
+  N2=$((2 * N)); N=$N2 DGTAG="${DGTAG:-}-n$N2" exec "$0" "$ARM" "$CHECKS"
 fi
 exit "$rc"
