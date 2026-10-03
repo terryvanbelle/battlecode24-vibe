@@ -1329,3 +1329,4 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Owner (PROMPTS 168): cracking an opponent overrides the basics veto. Recorded as CLAUDE.md rule 15's exception: an arm
   that passes its pre-registered victory read against the target is not vetoed by a relative basics check its tactic
   pays by design (g3escrg2's kill/death); the absolute bars (symmetry, overruns, exceptions) still stop it. Memory added.
+- Cyril filler, g3escrg2 vs g_iter3: 80 paired games, gained 16, lost 13, net +3 (+0.6 SE): not cracking Cyril so far.
