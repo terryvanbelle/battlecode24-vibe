@@ -64,3 +64,4 @@ g3escrg2 C.ESCORT_BEHIND=true
 g3escrg2 C.REGRAB=true
 g3escrg2 C.ESCORT_TIGHT=true
 g3escrg2 C.ESCORT_FAR_R2=225
+g3camp C.DEST_CAMP=true
