@@ -51,3 +51,7 @@ Next: **g3escrg** (convoy: ESCORT_CARRIER + ESCORT_BEHIND + REGRAB on g_iter3; T
 g3escrg 5(a) (4 mirror maps): escort turns 407-1386, re-grab tries 11-41, regrabs 10-38 a game, 0 overruns: fires.
 Cyril delivery: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3escrg 'rel:regrabs>=2.0
 rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
+
+**Baseline (filler, fresh seeds):** g_iter3 vs Cyril 42-102 over all games (29%); the 12-12 delivery-base block was a
+lucky draw. Ladder: Cyril 2040, g_iter3 1959. Still the best target above us (hsmalladi, andrewgopher, andli28 3-21,
+NotLLeon 4-20, Gymhgy 8-16 on the band seeds).
