@@ -1338,3 +1338,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   paired tests and confirmed, permanent guards, open findings, re-tests). TRAINING_ALGORITHM.md amended: the audit is
   the first plateau-escalation step; the mirror gate shares one engine seed per cell; Phase 0 adds the identity
   control and the basics battery; step 4 runs the basics battery and the dead-code/switch-intent checks.
+- Owner (PROMPTS 173): cross-year ADVICE.md updated (battlecode-vibe, commit 11faab4 on its default branch and main):
+  one paragraph at the top of §29 "The plateau": audit correctness of the bot and the instruments before any
+  escalation (lenses, evidence + fix + regression test, refutation, instruments first with an identity control, fixes
+  behind switches, exact paired tests, confirmation, permanent checks). No year or this-year document references.

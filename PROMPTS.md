@@ -218,3 +218,7 @@ By the way, you don't need to log any prompt that comes from a /loop
 ## 172. 2026-10-03
 
 Please remove the "task check" prompts
+
+## 173. 2026-10-03
+
+Yes, please update ADVICE.md, but please make it much much more concise, and eliminate any references to the current year and current year's documents.  Try to get it down to a small paragraph summary that contains only the most important information
