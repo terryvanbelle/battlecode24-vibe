@@ -1119,3 +1119,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   unseeded (15-29% engine noise) and many ran on top of the fixed defects. A triage workflow (three lenses: bug
   interaction, statistical noise, strategic fit; one synthesis) is building research/RETEST.md: a re-test queue on g_iter2
   with switch settings and pre-registered delivery bars.
+- g2nonav (NAV_FIX off) vs g_iter2, 234 seeded pairs: net -1 (21-22), capture delta +0.04 +- 0.09; upper +2 (+0.17 +- 0.12).
+  A7/A9 is neutral in play; kept (it repairs a documented defect at no cost). **Basics: 1 overrun (max 25.0k) in this
+  block**: g_iter2's bytecode margin is too thin (A4's BFS on top of symmetry observation); g2bc (REACH_BC 11000) running.
