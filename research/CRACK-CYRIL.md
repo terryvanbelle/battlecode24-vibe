@@ -30,3 +30,9 @@ rel:stun400>=1.3 rel:carrierStunned>=1.2 nw:kills>=0.95 mean:overruns<=0'`.
 bar +20%). Without setup traps the bank only replaces g_iter3's setup stuns. Descriptive: wins 9 vs 12 (gained 4, lost
 7), our captures 0.83 vs 1.21, traps hit 174 vs 203: banking hurts here. Parked. Base note: g_iter3 went 12-12 vs Cyril
 on these 24 cells. The filler now builds the g_iter3 vs Cyril baseline on fresh seeds.
+
+**g_iter3 vs Cyril (48 replays, 22-26):** the losses look like waffle's fast losses: Cyril grabs at r218-331 and
+captures first by ~r277-440, mostly on small maps (AceOfSpades, Asteroids, HungerGames, Randy, Checkered, StackGame)
+where relocation cannot add distance and carrier stuns cannot slow a short chain enough. Next arm: **g3def2** (g_iter3
+with 2 defenders per flag, RETEST arm 9; Sym.SCOUT_FIRST 6 so the scouts are not defenders). 5(a) on 8 mirror maps
+including two small ones (defend300 must rise).

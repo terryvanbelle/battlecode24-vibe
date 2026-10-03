@@ -54,3 +54,5 @@ g2crb C.CARRIER_STUN=true
 g2crb C.RELOCATE_FLAGS=true
 g2crb C.RELOC_V2=true
 g2crb C.BUDGET_V1=true
+g3def2 C.DEFENDERS_PER_FLAG=2
+g3def2 Sym.SCOUT_FIRST=6

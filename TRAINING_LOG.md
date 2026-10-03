@@ -1308,3 +1308,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g2crb (g_iter3 + BUDGET_V1) Cyril delivery FAIL: the bank arrives (100% of games) but stuns by r400 +12% (bar +30%)
   and carriers caught 12.6 vs 13.5; descriptive wins 9 vs 12, our captures 0.83 vs 1.21. Parked. g_iter3 12-12 vs Cyril
   on those cells. Filler switched to the Cyril pool (g_iter3 baseline on fresh seeds).
+- g_iter3 vs Cyril, 48 replays (22-26): losses are fast captures on small maps (first grab r218-331, first capture
+  ~r277-440), where relocation and carrier stuns have little room. Arm g3def2 (2 defenders per flag, scouts moved to
+  idx 6-8) built on g_iter3, 5(a) queued.
