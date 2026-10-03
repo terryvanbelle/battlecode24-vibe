@@ -1229,3 +1229,19 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   8/20/28/26/2/11/18/0): g_iter2's army already heads for their flags and rushers stop to fight what they meet. Parked.
 - Waffle blocks pre-registered and queued: g2z2w (escort-first targeting rebuilt on g_iter2; 5(a) diag first, gate
   held until it shows the es counter firing) and g2alert400 (alert radius 400) on the waffle pool.
+- Waffle pool, delivery blocks (24 scrims, same cells as the g_iter2 base): **g2alert400 FAIL** (enemyCaptured 2.42 vs
+  2.46; chasers20 +6%, bar +10%) and **g2z2w FAIL** (escort-first fired on all 6 diagnostic maps, es 8-44, but waffle's
+  re-grabs were unchanged, 21.1 vs 21.1; enemyCaptured 2.58 vs 2.46). Caution on reading these blocks: every arm
+  "gained" (7-8 wins vs 5 of 24) because the base scored low on these cells (21% vs 43% overall) and any code change
+  re-draws the games: regression to the mean, not effect.
+- Why chain-breaking by attack fails: at each waffle drop (30 drops in 3 losses) it has 0-5 ducks within dist2 2 of the
+  flag and 1-9 within dist2 8 (step in and pick up the same turn); killing the ball in the 1-round window is beyond
+  attacks. One stun does not cover the 4-round reset window either (escorts thaw at +4, a stunned carrier needs 2-3
+  rounds to kill). Waffle can afford its 2:1 losses: respawn sustains ~2 deaths a round and the chain costs ~1 carrier
+  per 2 tiles. What decides the race is time: its first two captures come by ~r275-550 in our losses.
+- Waffle's first grab is our nearest flag in 276 of 563 games, the second nearest in 160, the farthest in 127: not
+  predictable enough to pre-position on.
+- New census columns carrierStunBuilds / carrierStunned (our stuns built within dist2 8 of an enemy carrying our flag;
+  our triggered stuns that caught one). Baseline vs waffle: carriers caught 4.7 a game in losses, 7.6 in wins, almost
+  all by traps already in place (0-4 built for it). Arm g2cstun (C.CARRIER_STUN): a duck with a carrier within dist2 18
+  builds a stun within dist2 8 of it, ahead on its way home (a frozen carrier cannot move for ~4 turns). 5(a) queued.
