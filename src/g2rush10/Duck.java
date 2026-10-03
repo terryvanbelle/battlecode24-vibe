@@ -1,4 +1,4 @@
-package bot;
+package g2rush10;
 
 import battlecode.common.*;
 
@@ -536,56 +536,33 @@ public strictfp class Duck {
     }
 
     /** RELOC_V2 (2026-10-03, waffle crack: our flags within 20 tiles of its spawns fell 88% of the time, median r358;
-     *  28-36 tiles 50%). Waits for observed symmetry (or C.RELOC_DECIDE). Then, most exposed flag first, each flag takes
-     *  the spot within C.RELOC_R2 of its spawn centre (the centre itself included, so no flag ends up closer) that
-     *  maximises the distance to the NEAREST enemy spawn centre under every symmetry still possible, 8+ tiles from the
-     *  spots already taken. (Iteration 2 used one guessed symmetry's centroid; a greedy version without the walk bound
-     *  moved a corner flag first and pushed another toward the centre, DefaultMedium 32 -> 27 tiles.) */
+     *  28-36 tiles 50%). The spot waits for observed symmetry (or C.RELOC_DECIDE), then maximises the distance to the
+     *  NEAREST enemy spawn centre under every symmetry still possible (the iteration-2 version used one guessed
+     *  symmetry's centroid, wrong on about a third of map-sides), less half the squared walk from our own spawn. */
     static MapLocation relocTargetV2(int i) {
         if (!Sym.decided() && G.round < C.RELOC_DECIDE) return null;
-        if (relocK == 0) {                                   // live enemy centres, and the order: most exposed first
-            relocNe = 0;
+        if (relocK <= i) {
+            int k = relocK;
+            MapLocation[] ec = new MapLocation[9]; int ne = 0;
             for (int sym = Sym.ROT; sym <= Sym.FY; sym <<= 1)
-                if ((Sym.cands & sym) != 0) for (MapLocation c : G.spawnCenters) if (c != null) relocEc[relocNe++] = Sym.image(c, sym);
-            int[] ex = new int[3];
-            for (int k = 0; k < 3; k++) { relocOrder[k] = k; ex[k] = G.spawnCenters[k] == null ? Integer.MAX_VALUE : nearestEnemy2(G.spawnCenters[k].x, G.spawnCenters[k].y); }
-            for (int p = 0; p < 3; p++) for (int q = p + 1; q < 3; q++)
-                if (ex[relocOrder[q]] < ex[relocOrder[p]]) { int t = relocOrder[p]; relocOrder[p] = relocOrder[q]; relocOrder[q] = t; }
-            for (int k = 0; k < 3; k++) rcx[k] = -1;
-        }
-        while (relocK < 3 && rcx[i] < 0) {                   // one flag per call (bytecode)
-            int k = relocOrder[relocK];
-            MapLocation sc0 = G.spawnCenters[k];
-            int sx = sc0.x, sy = sc0.y, step = relocNe > 3 ? 4 : 3, r = (int) Math.sqrt(C.RELOC_R2);   // <= ~85 points x centres
-            int bx = sx, by = sy, bs = spotFree(sx, sy) ? nearestEnemy2(sx, sy) : Integer.MIN_VALUE, bw = 0;
-            for (int x = Math.max(1, sx - r); x <= Math.min(G.W - 2, sx + r); x += step)
-                for (int y = Math.max(1, sy - r); y <= Math.min(G.H - 2, sy + r); y += step) {
-                    int w = (x - sx) * (x - sx) + (y - sy) * (y - sy);
-                    if (w > C.RELOC_R2 || !spotFree(x, y)) continue;
-                    int sc = nearestEnemy2(x, y);
-                    if (sc > bs || (sc == bs && w < bw)) { bs = sc; bx = x; by = y; bw = w; }
-                }
+                if ((Sym.cands & sym) != 0) for (MapLocation c : G.spawnCenters) if (c != null) ec[ne++] = Sym.image(c, sym);
+            int step = Math.max(3, Math.max(G.W, G.H) / (ne > 3 ? 6 : 9));   // grid points x centres <= ~450 (r41 overruns at 9 x 9)
+            int bx = -1, by = -1, bs = Integer.MIN_VALUE;
+            int sx = G.spawnCenters[k].x, sy = G.spawnCenters[k].y;
+            for (int x = 2; x < G.W - 2; x += step) for (int y = 2; y < G.H - 2; y += step) {
+                boolean ok = true;
+                for (int j = 0; j < k; j++) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < 64) { ok = false; break; } }
+                if (!ok) continue;
+                int near = Integer.MAX_VALUE;
+                for (int j = 0; j < ne; j++) { int dx = ec[j].x - x, dy = ec[j].y - y; near = Math.min(near, dx * dx + dy * dy); }
+                int dsx = x - sx, dsy = y - sy;
+                int sc = near - (dsx * dsx + dsy * dsy) / 2;
+                if (sc > bs) { bs = sc; bx = x; by = y; }
+            }
             rcx[k] = bx; rcy[k] = by; relocK++;
-            if (rcx[i] < 0) return null;
+            if (relocK <= i) return null;
         }
-        return new MapLocation(rcx[i], rcy[i]);
-    }
-
-    static MapLocation[] relocEc = new MapLocation[9];
-    static int relocNe;
-    static int[] relocOrder = new int[3];
-
-    /** Squared distance from (x, y) to the nearest live enemy spawn centre (RELOC_V2). */
-    static int nearestEnemy2(int x, int y) {
-        int near = Integer.MAX_VALUE;
-        for (int j = 0; j < relocNe; j++) { int dx = relocEc[j].x - x, dy = relocEc[j].y - y; near = Math.min(near, dx * dx + dy * dy); }
-        return near;
-    }
-
-    /** At least 8 tiles from every spot already taken (the engine resets all flags if two are within dist2 36). */
-    static boolean spotFree(int x, int y) {
-        for (int j = 0; j < 3; j++) if (rcx[j] >= 0) { int dx = rcx[j] - x, dy = rcy[j] - y; if (dx * dx + dy * dy < 64) return false; }
-        return true;
+        return rcx[i] < 0 ? G.spawnCenters[i] : new MapLocation(rcx[i], rcy[i]);
     }
 
     static int relocs;

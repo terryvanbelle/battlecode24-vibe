@@ -58,3 +58,18 @@ Escort-first targeting (C.Z2ESCORT) attacks the same chain but failed its band d
   (both builds on the same seed and cells), tallied by `tools/collect-fillers.sh g_iter2 <arm>`.
 - Victory read, pre-registered as for ColtG5: g_iter2-line build vs waffle at least 60% over 240 games, two-sided
   p < 0.05, paired net >= +2 SE.
+
+## Pre-registered tests (written before any waffle block of the arm)
+
+**g2reloc** (after step 5(a) shows flags moved without overruns or r200 resets):
+1. Waffle delivery block, which gates: `DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh
+   g2reloc 'rel:flagDistMin>=1.15 rel:enemyCaptured<=0.85 mean:overruns<=0'` (24 scrims, random maps and sides, both
+   builds on the same cells).
+2. Band delivery (guard, so the band test may run): `DGTAG=-seeded BASE=g_iter2 tools/delivery-gate.sh g2reloc
+   'rel:flagDistMin>=1.15 rel:kills>=0.95 mean:overruns<=0'`.
+3. Then the filler pairs it with g_iter2 against waffle on fresh seeds to 240 games; adopt as the waffle candidate at
+   paired net >= +2 SE, close at <= -2 SE. The band test (`SEEDS='515151 616161' TAG=-seeded`) must not be worse than
+   net -5 before any promotion.
+
+**g2rush10** (RUSHERS=10 on g_iter2; crack 3, queued behind g2reloc): the same waffle block with
+`'rel:firstGrabs>=1.3 rel:captured>=1.15 rel:enemyCaptured<=1.15 mean:overruns<=0'`.

@@ -41,3 +41,4 @@ g2bc2 C.REACH_BC_STOP=13000
 g2fast C.REACH_FAST=true
 g2reloc C.RELOCATE_FLAGS=true
 g2reloc C.RELOC_V2=true
+g2rush10 C.RUSHERS=10

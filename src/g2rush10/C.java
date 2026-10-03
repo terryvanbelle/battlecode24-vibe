@@ -1,4 +1,4 @@
-package g2reloc;
+package g2rush10;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -18,9 +18,8 @@ public strictfp class C {
     public static final int FLOAT_CRUMBS = 1500;        // above this bank an idle duck spends on traps (self-play floated 13k by r1500)
     public static final int CARRY_FRESH = 5;            // rounds a carrier sighting stays actionable
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
-    public static final boolean RELOCATE_FLAGS = true;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
-    public static final boolean RELOC_V2 = true;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
-    public static final int RELOC_R2 = 225;             // RELOC_V2: a flag's spot is within 15 tiles of its spawn centre
+    public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
+    public static final boolean RELOC_V2 = false;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
     public static final int RELOC_DECIDE = 40;          // RELOC_V2: wait this long for observed symmetry before choosing spots
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
@@ -56,7 +55,7 @@ public strictfp class C {
     public static final int HOLD_DRIFT = 0;               // fight kite/hold branch: +this for a step toward the field target, -this away (0 off; < the 50 safe-band bonus)
     public static final boolean ESCORT_BEHIND = false; // escort goal one tile behind the carrier (never in its path) instead of its next tile
     public static final int OWN_FILL_STALL = 8;           // turns without progress before an own-signature tile may be filled
-    public static final int RUSHERS = 0;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
+    public static final int RUSHERS = 10;                // T1 offence copy: ducks after the defenders that rush flags (arch_rush: 47)
     public static final int RUSH_THREAT_COST = 150;     // rush micro: score cost per enemy threatening a tile (kiting uses 1000)
     public static final int RING_RADIUS2 = 8;           // defenders ring their flag with traps out to this dist2 (iteration 0 value)
     public static final int TRAP_ENEMY_DIST2 = 20;      // combat trap only with an enemy this close (iteration 0: any in vision)

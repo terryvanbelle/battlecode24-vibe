@@ -20,6 +20,7 @@ public strictfp class C {
     public static final int CHASE_RADIUS2 = 225;        // chase a carrier within dist 15; farther ducks intercept at its destination
     public static final boolean RELOCATE_FLAGS = false;  // T2 offence copy: carry flags in setup to far spots (iteration 2)
     public static final boolean RELOC_V2 = false;       // waffle crack: spot far from the NEAREST enemy spawn under every live symmetry (arm g2reloc)
+    public static final int RELOC_R2 = 225;             // RELOC_V2: a flag's spot is within 15 tiles of its spawn centre
     public static final int RELOC_DECIDE = 40;          // RELOC_V2: wait this long for observed symmetry before choosing spots
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
