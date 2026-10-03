@@ -118,3 +118,10 @@ our campers wait 7-9 tiles out around Cyril's top-right spawn while its carrier 
 captures 6 rounds later: campers go to a spawn, not to where the carrier goes. Delivery block (signature bars):
 `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3camp 'rel:enemyUnseenRounds<=0.8
 rel:unopposedCaps<=0.8 nw:kills>=0.95 mean:overruns<=0'`.
+
+**g3camp Cyril delivery: FAIL** (enemyUnseenRounds 114 vs 135, -15%, bar -20%; unopposedCaps 0.39 vs 0.78, ok; kills ok).
+Descriptive: Cyril's captures 1.33 vs 1.62 (-18%), wins 12-12 (4-4). Trace: on Joker the carrier of our flag at (1,2)
+captured at Cyril's spawn (33,19), 36.2 tiles, not the straight-line nearest (36,8), 35.5; our campers went to the
+nearest. Fix C.CAMP_SPLIT: campers split by id over every enemy spawn within 1.3x the nearest distance (AuditTest).
+Second attempt g3camp2: 5(a) (6 scrimmages) then `SEED=919191 DGPOOL=CyrilSharma.finalBot DGTAG=-cyril2 BASE=g_iter3
+tools/delivery-gate.sh g3camp2 'rel:enemyUnseenRounds<=0.8 rel:unopposedCaps<=0.8 nw:kills>=0.95 mean:overruns<=0'`.

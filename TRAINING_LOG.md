@@ -1349,3 +1349,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   18%); its captures come from relays (70% re-grab legs) and long unwatched carries (159 vs 87 carrier-rounds per game in
   losses vs wins; capturing trips ~71 rounds with ~1 of ours near). The critic refuted the jail gate and flagged the
   respawn-stream premise as inflated. Next arm g3camp (DEST_CAMP alone on g_iter3) aimed at the unwatched walk.
+- g3camp (DEST_CAMP on g_iter3) Cyril delivery FAIL: unwatched carrier-rounds -15% (bar -20%), unopposed captures halved
+  (ok), Cyril captures -18%, wins 12-12. Trace: campers pick the straight-line nearest enemy spawn while Cyril's carrier
+  heads to another nearly equidistant one. C.CAMP_SPLIT (split over spawns within 1.3x) + AuditTest; g3camp2 5(a) queued.

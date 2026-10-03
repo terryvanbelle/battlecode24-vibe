@@ -1,4 +1,4 @@
-package bot;
+package g3camp2;
 
 import battlecode.common.*;
 
