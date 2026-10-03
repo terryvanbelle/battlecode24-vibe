@@ -1069,3 +1069,9 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
 - Identity control complete: g_iter1 vs g1copy on shared engine seeds, 40 band + 40 ColtG5 games: 0 discordant (ColtG5
   also replays identically on a shared seed). g1sym vs g_iter1 on ColtG5, shared seeds only: 120 pairs, 2 gained, 7 lost
   (9 discordant, n.s.); possible cost of the three scouts while undecided.
+- A4/A7 diagnostics (7 cells each, exact seed-paired with g1copy): **g1reach (A4)**: post-setup stillness Tunnels
+  37.1/26.6 vs 58.9/60.1, DefaultMedium 31.2/30.8 vs 48.7/58.6, Battlecode24 49.1 vs 63.6 (mechanism confirmed); wins
+  1 gained 2 lost (Battlecode24 won where the copy lost; DefaultMedium s5 and Tunnels s5 lost 0-1); peak bytecode 23.5k
+  (the BFS; 0 overruns, guarded at 8000 left). **g1nav (A7/A9)**: stillness unchanged; 0 gained 2 lost (DefaultLarge s4,
+  Tunnels s4); Tunnels s5 first enemy-flag sight r1526 vs r642. No improvement visible; suspect until measured at power.
+  The combined g1basics band test (seeded) decides; its overrun bar matters with A4 near the limit.
