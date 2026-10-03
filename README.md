@@ -3,6 +3,9 @@
 A practice run at **Battlecode 2024 ("Breadwars")**: a bot trained by an AI agent (Claude Code) under an
 evidence-driven loop, measured against every publicly available 2024 competitor bot on a simulated ladder.
 
+**Current bot: `src/g_iter2`** (incumbent since 2026-10-03; ladder 1918, rank 13 of 74). See `HANDOFF.md` for the state,
+`research/AUDIT-2026-10-02.md` for the basics audit that produced it, and `progress/REWRITE.md` for its statistics.
+
 - `TRAINING_ALGORITHM.md`: the loop (year-agnostic).
 - `RULES.md`: the game, checked against the engine source.
 - `TACTICS.md`: tactics opponents used against us, and our offensive and defensive progress on each.
