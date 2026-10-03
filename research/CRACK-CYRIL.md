@@ -40,3 +40,11 @@ g3def2 5(a): all six defenders defend at r150 and r300 (fires); defend300 4-18 (
 counted); it lost all 8 mirror games to g_iter3 (no weight at 5(a), a warning that three fewer field ducks cost).
 Cyril delivery (RETEST arm 9 bars, kills guard SE-aware): `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3
 tools/delivery-gate.sh g3def2 'rel:defend300>=1.25 rel:enemyFirstGrabs<=0.85 nw:kills>=0.95 mean:overruns<=0'`.
+
+**g3def2 Cyril delivery: FAIL** (defend300 8.1 vs 6.5 ok; enemyFirstGrabs 7.42 vs 7.88, -6%, bar -15%). Descriptive:
+wins 8 vs 12 (gained 3, lost 7), our captures 0.62 vs 1.21. Closed (as T1's 2-defender test, 9-25).
+
+**Our offense vs Cyril:** wins 11.4 pickups -> 1.50 captures (13%), losses 9.4 -> 0.65 (7%); our ducks in its half at
+r300 18.3 vs 9.5. When our carrier dies (74 drops, 16 games) we re-grab 19%: at the drop ours within dist2 2 / 8 average
+0.26 / 1.14, Cyril's 1.64 / 3.53 (97% of drops have one of its ducks within dist2 8). Our carriers travel alone.
+Next: **g3escrg** (convoy: ESCORT_CARRIER + ESCORT_BEHIND + REGRAB on g_iter3; T13 adoption).

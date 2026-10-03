@@ -56,3 +56,6 @@ g2crb C.RELOC_V2=true
 g2crb C.BUDGET_V1=true
 g3def2 C.DEFENDERS_PER_FLAG=2
 g3def2 Sym.SCOUT_FIRST=6
+g3escrg C.ESCORT_CARRIER=true
+g3escrg C.ESCORT_BEHIND=true
+g3escrg C.REGRAB=true
