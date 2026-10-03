@@ -47,3 +47,6 @@ g2reloc2 C.RELOC_V2=true
 g2reloc2 C.RELOC_R2=625
 g2z2w C.Z2ESCORT=true
 g2cstun C.CARRIER_STUN=true
+g2cr C.CARRIER_STUN=true
+g2cr C.RELOCATE_FLAGS=true
+g2cr C.RELOC_V2=true

@@ -84,6 +84,12 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   bugs were real but these ideas were not what held us back.
 
 ## Open questions for the owner
+- **Carrier stun vs waffle (g2cstun): delivery bar or wins?** Freezing waffle's carriers (stun built beside a carrier of
+  our flag) delivered its mechanism in both blocks (carriers caught x3) and won 13 discordant pairs to 1 over two blocks
+  (p ~ 0.002), but missed both pre-registered capture bars (waffle captures -7% and -11% by r600; bars -15% / -20%).
+  TRAINING_ALGORITHM §3.5 says a failed delivery is never judged on wins, so it is not delivered and the paired filler
+  test is not running. Should delivery for a mechanism like this be judged on its own signature (frozen carriers)
+  instead of a downstream outcome? Meanwhile: g2cr (carrier stun + relocation) aims at the same capture bar.
 - Once g1basics is measured: adopt it as the new base (g_iter2) if it is non-inferior, even without a clear gain,
   because it is correct where g_iter1 is broken? Then re-test the most promising old arms on it with seeded pairs.
 - (answered, prompt 120: one strategy, all energy on it; the crack against ColtG5.)

@@ -1250,3 +1250,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   585 vs 402, games 1269 vs 951 rounds. Trace: freezing carriers delays waffle's captures more than it prevents them.
   New census columns captured600 / enemyCaptured600 (unit-tested). Second attempt pre-registered before looking at the
   new column (research/CRACK-WAFFLE.md): fresh seed 919191, bars carrierStunned >= 1.3 and enemyCaptured600 <= 0.8.
+- **g2cstun second attempt: FAIL** (seed 919191, 21 cells): carriers caught 15.0 vs 5.0 ok; enemyCaptured600 1.19 vs
+  1.33 (-11%, bar -20%). Wins 14 vs 10 (gained 5, lost 1); pooled over both blocks 13 gained, 1 lost (sign p ~ 0.002).
+  Under TRAINING_ALGORITHM §3.5 a failed delivery is never judged on wins: logged as not delivered. Question for the
+  owner (BRIEFING): judge delivery on the mechanism's own signature (frozen carriers, passed twice at x3) rather than on
+  a downstream capture bar? Fix and re-diagnose: g2cr = carrier stun + relocation, 5(a) queued, waffle block
+  pre-registered on fresh seed 929292.

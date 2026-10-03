@@ -115,3 +115,14 @@ slows the chain.
 new census column). If it passes: band delivery `DGTAG=-seeded BASE=g_iter2 tools/delivery-gate.sh g2cstun
 'rel:kills>=0.95 rel:enemyCaptured<=1.1 mean:overruns<=0'`, then the waffle filler pairs it with g_iter2 to 240 games
 (victory read: >= 60% and p < 0.05, paired net >= +2 SE), and the band test for non-inferiority.
+
+**g2cstun second attempt: FAIL** (seed 919191, 21 cells: carriers caught 15.0 vs 5.0 ok; enemyCaptured600 1.19 vs
+1.33, -11%, bar -20%). Wins 14 vs 10 (gained 5, lost 1); pooled with the first block 13 gained, 1 lost. Under
+TRAINING_ALGORITHM §3.5 a failed delivery is never judged on wins: not delivered. Open question for the owner: whether
+a mechanism's delivery should be judged on its own signature (carriers frozen: passed both times, x3) rather than on a
+downstream outcome bar.
+
+**Fix and re-diagnose: g2cr** = carrier stun + relocation (two independent slowdowns of the chain). 5(a) on 8 mirror
+maps (both mechanisms fire), then the waffle block on fresh seed 929292:
+`SEED=929292 DGPOOL=winkelmantanner.waffle DGTAG=-waffle3 BASE=g_iter2 tools/delivery-gate.sh g2cr
+'fire:carrierStunBuilds>0>=0.9 rel:carrierStunned>=1.3 rel:flagDistMin>=1.15 rel:enemyCaptured600<=0.8 mean:overruns<=0'`.
