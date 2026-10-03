@@ -14708,3 +14708,1123 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261003-060805-scrim-g_iter2-fill1791007680,38,winkelmantanner.waffle,us:g_iter2,WheresMyWater,B,1339,The winning team captured all flags.,1140895835
 20261003-060805-scrim-g_iter2-fill1791007680,39,us:g_iter2,winkelmantanner.waffle,Whirlpool,B,421,The winning team captured all flags.,2040260051
 20261003-060805-scrim-g_iter2-fill1791007680,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,1627673208
+20261003-061226-scrim-g_iter2-fill1791007941,1,winkelmantanner.waffle,us:g_iter2,Alien,A,1408,The winning team captured all flags.,1778236005
+20261003-061226-scrim-g_iter2-fill1791007941,2,us:g_iter2,winkelmantanner.waffle,Ambush,B,479,The winning team captured all flags.,1093145759
+20261003-061226-scrim-g_iter2-fill1791007941,3,winkelmantanner.waffle,us:g_iter2,Anchor,B,1321,The winning team captured all flags.,1429888566
+20261003-061226-scrim-g_iter2-fill1791007941,4,winkelmantanner.waffle,us:g_iter2,Anchor,B,1615,The winning team captured all flags.,2030039178
+20261003-061226-scrim-g_iter2-fill1791007941,5,winkelmantanner.waffle,us:g_iter2,Battlefield,A,281,The winning team captured all flags.,744882240
+20261003-061226-scrim-g_iter2-fill1791007941,6,us:g_iter2,winkelmantanner.waffle,BedWars,A,1007,The winning team captured all flags.,345072115
+20261003-061226-scrim-g_iter2-fill1791007941,7,us:g_iter2,winkelmantanner.waffle,BedWars,A,564,The winning team captured all flags.,880446824
+20261003-061226-scrim-g_iter2-fill1791007941,8,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,1411,The winning team captured all flags.,283425941
+20261003-061226-scrim-g_iter2-fill1791007941,9,us:g_iter2,winkelmantanner.waffle,Bunkers,B,1485,The winning team captured all flags.,696199981
+20261003-061226-scrim-g_iter2-fill1791007941,10,winkelmantanner.waffle,us:g_iter2,Bunkers,A,565,The winning team captured all flags.,1635569847
+20261003-061226-scrim-g_iter2-fill1791007941,11,winkelmantanner.waffle,us:g_iter2,Capacitance,A,670,The winning team captured all flags.,155507048
+20261003-061226-scrim-g_iter2-fill1791007941,12,us:g_iter2,winkelmantanner.waffle,Decision,B,685,The winning team captured all flags.,1422633672
+20261003-061226-scrim-g_iter2-fill1791007941,13,us:g_iter2,winkelmantanner.waffle,Diagonal,A,2000,The winning team won on tiebreakers (hig,156776522
+20261003-061226-scrim-g_iter2-fill1791007941,14,winkelmantanner.waffle,us:g_iter2,Divergent,A,2000,The winning team won on tiebreakers (cap,579775470
+20261003-061226-scrim-g_iter2-fill1791007941,15,us:g_iter2,winkelmantanner.waffle,Gated,B,534,The winning team captured all flags.,1124730904
+20261003-061226-scrim-g_iter2-fill1791007941,16,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,595,The winning team captured all flags.,1511044816
+20261003-061226-scrim-g_iter2-fill1791007941,17,us:g_iter2,winkelmantanner.waffle,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,940958276
+20261003-061226-scrim-g_iter2-fill1791007941,18,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,700791598
+20261003-061226-scrim-g_iter2-fill1791007941,19,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (hig,1910070702
+20261003-061226-scrim-g_iter2-fill1791007941,20,winkelmantanner.waffle,us:g_iter2,Hockey,B,1375,The winning team captured all flags.,1998859229
+20261003-061226-scrim-g_iter2-fill1791007941,21,us:g_iter2,winkelmantanner.waffle,HungerGames,B,361,The winning team captured all flags.,1748914087
+20261003-061226-scrim-g_iter2-fill1791007941,22,winkelmantanner.waffle,us:g_iter2,HungerGames,A,564,The winning team captured all flags.,577423418
+20261003-061226-scrim-g_iter2-fill1791007941,23,winkelmantanner.waffle,us:g_iter2,HungerGames,A,832,The winning team captured all flags.,502278741
+20261003-061226-scrim-g_iter2-fill1791007941,24,us:g_iter2,winkelmantanner.waffle,Hurricane,A,2000,The winning team won on tiebreakers (hig,952632032
+20261003-061226-scrim-g_iter2-fill1791007941,25,winkelmantanner.waffle,us:g_iter2,Hurricane,B,2000,The winning team won on tiebreakers (hig,1245529573
+20261003-061226-scrim-g_iter2-fill1791007941,26,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,504,The winning team captured all flags.,790882485
+20261003-061226-scrim-g_iter2-fill1791007941,27,us:g_iter2,winkelmantanner.waffle,MIT,A,936,The winning team captured all flags.,1335374781
+20261003-061226-scrim-g_iter2-fill1791007941,28,us:g_iter2,winkelmantanner.waffle,MazeRunner,A,2000,The winning team won on tiebreakers (hig,1951310878
+20261003-061226-scrim-g_iter2-fill1791007941,29,winkelmantanner.waffle,us:g_iter2,Occulus,A,565,The winning team captured all flags.,875019899
+20261003-061226-scrim-g_iter2-fill1791007941,30,winkelmantanner.waffle,us:g_iter2,Occulus,B,1395,The winning team captured all flags.,243300625
+20261003-061226-scrim-g_iter2-fill1791007941,31,winkelmantanner.waffle,us:g_iter2,Occulus,B,1462,The winning team captured all flags.,355701027
+20261003-061226-scrim-g_iter2-fill1791007941,32,us:g_iter2,winkelmantanner.waffle,Pancakes,B,622,The winning team captured all flags.,1462651677
+20261003-061226-scrim-g_iter2-fill1791007941,33,us:g_iter2,winkelmantanner.waffle,Racetrack,A,1570,The winning team captured all flags.,663928671
+20261003-061226-scrim-g_iter2-fill1791007941,34,us:g_iter2,winkelmantanner.waffle,Rainbow,A,2000,The winning team won on tiebreakers (hig,1971291364
+20261003-061226-scrim-g_iter2-fill1791007941,35,winkelmantanner.waffle,us:g_iter2,Randy,A,620,The winning team captured all flags.,1674403012
+20261003-061226-scrim-g_iter2-fill1791007941,36,us:g_iter2,winkelmantanner.waffle,Starfish,A,1911,The winning team captured all flags.,1527928609
+20261003-061226-scrim-g_iter2-fill1791007941,37,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,482,The winning team captured all flags.,953459486
+20261003-061226-scrim-g_iter2-fill1791007941,38,us:g_iter2,winkelmantanner.waffle,Tunnels,A,1911,The winning team captured all flags.,1672995632
+20261003-061226-scrim-g_iter2-fill1791007941,39,us:g_iter2,winkelmantanner.waffle,Waterworld,A,1518,The winning team captured all flags.,1844476723
+20261003-061226-scrim-g_iter2-fill1791007941,40,winkelmantanner.waffle,us:g_iter2,Yinyang,A,496,The winning team captured all flags.,2097593034
+20261003-061945-scrim-g_iter2-fill1791008380,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,401,The winning team captured all flags.,1739683266
+20261003-061945-scrim-g_iter2-fill1791008380,2,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,577,The winning team captured all flags.,1266043040
+20261003-061945-scrim-g_iter2-fill1791008380,3,winkelmantanner.waffle,us:g_iter2,Alligator,A,664,The winning team captured all flags.,402260228
+20261003-061945-scrim-g_iter2-fill1791008380,4,winkelmantanner.waffle,us:g_iter2,Alligator,B,2000,The winning team won on tiebreakers (hig,942330455
+20261003-061945-scrim-g_iter2-fill1791008380,5,us:g_iter2,winkelmantanner.waffle,Anchor,A,1829,The winning team captured all flags.,863319846
+20261003-061945-scrim-g_iter2-fill1791008380,6,us:g_iter2,winkelmantanner.waffle,Battlefield,B,290,The winning team captured all flags.,1697289004
+20261003-061945-scrim-g_iter2-fill1791008380,7,winkelmantanner.waffle,us:g_iter2,Battlefield,A,432,The winning team captured all flags.,2040491400
+20261003-061945-scrim-g_iter2-fill1791008380,8,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,1176,The winning team captured all flags.,220004024
+20261003-061945-scrim-g_iter2-fill1791008380,9,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1066846614
+20261003-061945-scrim-g_iter2-fill1791008380,10,us:g_iter2,winkelmantanner.waffle,Bunkers,B,1107,The winning team captured all flags.,1718219177
+20261003-061945-scrim-g_iter2-fill1791008380,11,winkelmantanner.waffle,us:g_iter2,Bunkers,A,672,The winning team captured all flags.,561339712
+20261003-061945-scrim-g_iter2-fill1791008380,12,us:g_iter2,winkelmantanner.waffle,Checkered,A,615,The winning team captured all flags.,1619211492
+20261003-061945-scrim-g_iter2-fill1791008380,13,us:g_iter2,winkelmantanner.waffle,DefaultLarge,A,1507,The winning team captured all flags.,266377678
+20261003-061945-scrim-g_iter2-fill1791008380,14,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,1945,The winning team captured all flags.,1475914505
+20261003-061945-scrim-g_iter2-fill1791008380,15,us:g_iter2,winkelmantanner.waffle,Diagonal,B,2000,The winning team won on tiebreakers (cap,1712498098
+20261003-061945-scrim-g_iter2-fill1791008380,16,winkelmantanner.waffle,us:g_iter2,Diagonal,B,2000,The winning team won on tiebreakers (hig,1034026589
+20261003-061945-scrim-g_iter2-fill1791008380,17,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,1146744052
+20261003-061945-scrim-g_iter2-fill1791008380,18,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,309482985
+20261003-061945-scrim-g_iter2-fill1791008380,19,us:g_iter2,winkelmantanner.waffle,Fountain,B,1073,The winning team captured all flags.,1372950776
+20261003-061945-scrim-g_iter2-fill1791008380,20,winkelmantanner.waffle,us:g_iter2,Fountain,B,2000,The winning team won on tiebreakers (hig,979335609
+20261003-061945-scrim-g_iter2-fill1791008380,21,winkelmantanner.waffle,us:g_iter2,Foxes,A,1920,The winning team captured all flags.,1193463267
+20261003-061945-scrim-g_iter2-fill1791008380,22,winkelmantanner.waffle,us:g_iter2,Foxes,B,2000,The winning team won on tiebreakers (hig,1803583280
+20261003-061945-scrim-g_iter2-fill1791008380,23,us:g_iter2,winkelmantanner.waffle,Gated,B,374,The winning team captured all flags.,1946684581
+20261003-061945-scrim-g_iter2-fill1791008380,24,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,659,The winning team captured all flags.,735089642
+20261003-061945-scrim-g_iter2-fill1791008380,25,us:g_iter2,winkelmantanner.waffle,HungerGames,A,807,The winning team captured all flags.,613119019
+20261003-061945-scrim-g_iter2-fill1791008380,26,us:g_iter2,winkelmantanner.waffle,Joker,A,890,The winning team captured all flags.,1461369556
+20261003-061945-scrim-g_iter2-fill1791008380,27,us:g_iter2,winkelmantanner.waffle,Joker,B,831,The winning team captured all flags.,377220824
+20261003-061945-scrim-g_iter2-fill1791008380,28,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,333705246
+20261003-061945-scrim-g_iter2-fill1791008380,29,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1301,The winning team captured all flags.,807999635
+20261003-061945-scrim-g_iter2-fill1791008380,30,winkelmantanner.waffle,us:g_iter2,OceanFloor,A,577,The winning team captured all flags.,486890474
+20261003-061945-scrim-g_iter2-fill1791008380,31,winkelmantanner.waffle,us:g_iter2,Pancakes,B,492,The winning team captured all flags.,493279857
+20261003-061945-scrim-g_iter2-fill1791008380,32,us:g_iter2,winkelmantanner.waffle,QueenOfHearts,B,751,The winning team captured all flags.,1388870266
+20261003-061945-scrim-g_iter2-fill1791008380,33,us:g_iter2,winkelmantanner.waffle,Rainbow,A,1814,The winning team captured all flags.,1804612167
+20261003-061945-scrim-g_iter2-fill1791008380,34,winkelmantanner.waffle,us:g_iter2,Rainbow,B,2000,The winning team won on tiebreakers (hig,1162243878
+20261003-061945-scrim-g_iter2-fill1791008380,35,winkelmantanner.waffle,us:g_iter2,StackGame,A,349,The winning team captured all flags.,355426952
+20261003-061945-scrim-g_iter2-fill1791008380,36,winkelmantanner.waffle,us:g_iter2,StackGame,A,403,The winning team captured all flags.,775726778
+20261003-061945-scrim-g_iter2-fill1791008380,37,us:g_iter2,winkelmantanner.waffle,Starfish,A,1723,The winning team captured all flags.,460970989
+20261003-061945-scrim-g_iter2-fill1791008380,38,us:g_iter2,winkelmantanner.waffle,StarryNight,B,534,The winning team captured all flags.,86620605
+20261003-061945-scrim-g_iter2-fill1791008380,39,us:g_iter2,winkelmantanner.waffle,Valentine,B,2000,The winning team won on tiebreakers (cap,465694841
+20261003-061945-scrim-g_iter2-fill1791008380,40,us:g_iter2,winkelmantanner.waffle,Waterworld,A,1663,The winning team captured all flags.,940795440
+20261003-062324-scrim-g_iter2-fill1791008599,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,374,The winning team captured all flags.,1911187775
+20261003-062324-scrim-g_iter2-fill1791008599,2,us:g_iter2,winkelmantanner.waffle,Alien,B,497,The winning team captured all flags.,1523575130
+20261003-062324-scrim-g_iter2-fill1791008599,3,us:g_iter2,winkelmantanner.waffle,Alligator,A,1503,The winning team captured all flags.,177336251
+20261003-062324-scrim-g_iter2-fill1791008599,4,us:g_iter2,winkelmantanner.waffle,Alligator,B,529,The winning team captured all flags.,409355288
+20261003-062324-scrim-g_iter2-fill1791008599,5,us:g_iter2,winkelmantanner.waffle,Ambush,B,457,The winning team captured all flags.,884980559
+20261003-062324-scrim-g_iter2-fill1791008599,6,us:g_iter2,winkelmantanner.waffle,Ambush,B,461,The winning team captured all flags.,1821950573
+20261003-062324-scrim-g_iter2-fill1791008599,7,us:g_iter2,winkelmantanner.waffle,Anchor,A,1437,The winning team captured all flags.,1029885260
+20261003-062324-scrim-g_iter2-fill1791008599,8,us:g_iter2,winkelmantanner.waffle,Anchor,A,1462,The winning team captured all flags.,1322203527
+20261003-062324-scrim-g_iter2-fill1791008599,9,winkelmantanner.waffle,us:g_iter2,Anchor,B,1527,The winning team captured all flags.,1542779553
+20261003-062324-scrim-g_iter2-fill1791008599,10,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,1365,The winning team captured all flags.,386176080
+20261003-062324-scrim-g_iter2-fill1791008599,11,winkelmantanner.waffle,us:g_iter2,BreadPudding,A,2000,The winning team won on tiebreakers (cap,1044925987
+20261003-062324-scrim-g_iter2-fill1791008599,12,us:g_iter2,winkelmantanner.waffle,Checkered,B,495,The winning team captured all flags.,877036220
+20261003-062324-scrim-g_iter2-fill1791008599,13,winkelmantanner.waffle,us:g_iter2,Decision,A,773,The winning team captured all flags.,2034626747
+20261003-062324-scrim-g_iter2-fill1791008599,14,winkelmantanner.waffle,us:g_iter2,DefaultHuge,A,747,The winning team captured all flags.,1607048265
+20261003-062324-scrim-g_iter2-fill1791008599,15,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,548,The winning team captured all flags.,432386275
+20261003-062324-scrim-g_iter2-fill1791008599,16,us:g_iter2,winkelmantanner.waffle,Digging,A,1330,The winning team captured all flags.,964793698
+20261003-062324-scrim-g_iter2-fill1791008599,17,winkelmantanner.waffle,us:g_iter2,Digging,B,1304,The winning team captured all flags.,1224895938
+20261003-062324-scrim-g_iter2-fill1791008599,18,winkelmantanner.waffle,us:g_iter2,Digging,B,1597,The winning team captured all flags.,224174164
+20261003-062324-scrim-g_iter2-fill1791008599,19,winkelmantanner.waffle,us:g_iter2,EvilGrin,A,446,The winning team captured all flags.,1524953897
+20261003-062324-scrim-g_iter2-fill1791008599,20,us:g_iter2,winkelmantanner.waffle,Foxes,B,2000,The winning team won on tiebreakers (cap,2141185085
+20261003-062324-scrim-g_iter2-fill1791008599,21,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,2000,The winning team won on tiebreakers (cap,917264021
+20261003-062324-scrim-g_iter2-fill1791008599,22,us:g_iter2,winkelmantanner.waffle,Gated,A,1856,The winning team captured all flags.,1316971231
+20261003-062324-scrim-g_iter2-fill1791008599,23,winkelmantanner.waffle,us:g_iter2,Gauntlet,B,1753,The winning team captured all flags.,1514220923
+20261003-062324-scrim-g_iter2-fill1791008599,24,us:g_iter2,winkelmantanner.waffle,Hockey,A,1496,The winning team captured all flags.,1303163967
+20261003-062324-scrim-g_iter2-fill1791008599,25,winkelmantanner.waffle,us:g_iter2,Hockey,B,1335,The winning team captured all flags.,264411440
+20261003-062324-scrim-g_iter2-fill1791008599,26,us:g_iter2,winkelmantanner.waffle,Hurricane,B,2000,The winning team won on tiebreakers (cap,293878902
+20261003-062324-scrim-g_iter2-fill1791008599,27,us:g_iter2,winkelmantanner.waffle,Joker,B,835,The winning team captured all flags.,1733735001
+20261003-062324-scrim-g_iter2-fill1791008599,28,us:g_iter2,winkelmantanner.waffle,Occulus,A,1843,The winning team captured all flags.,1979604269
+20261003-062324-scrim-g_iter2-fill1791008599,29,us:g_iter2,winkelmantanner.waffle,Occulus,B,2000,The winning team won on tiebreakers (cap,405569116
+20261003-062324-scrim-g_iter2-fill1791008599,30,us:g_iter2,winkelmantanner.waffle,OceanFloor,B,1095,The winning team captured all flags.,1500588919
+20261003-062324-scrim-g_iter2-fill1791008599,31,us:g_iter2,winkelmantanner.waffle,OceanFloor,B,576,The winning team captured all flags.,1198544323
+20261003-062324-scrim-g_iter2-fill1791008599,32,us:g_iter2,winkelmantanner.waffle,Randy,B,505,The winning team captured all flags.,403680773
+20261003-062324-scrim-g_iter2-fill1791008599,33,us:g_iter2,winkelmantanner.waffle,StackGame,B,366,The winning team captured all flags.,311363871
+20261003-062324-scrim-g_iter2-fill1791008599,34,us:g_iter2,winkelmantanner.waffle,StarryNight,B,1700,The winning team captured all flags.,2022937127
+20261003-062324-scrim-g_iter2-fill1791008599,35,winkelmantanner.waffle,us:g_iter2,Swoop,B,1031,The winning team captured all flags.,219847847
+20261003-062324-scrim-g_iter2-fill1791008599,36,winkelmantanner.waffle,us:g_iter2,Tunnels,A,2000,The winning team won on tiebreakers (cap,742379701
+20261003-062324-scrim-g_iter2-fill1791008599,37,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1078,The winning team captured all flags.,517150665
+20261003-062324-scrim-g_iter2-fill1791008599,38,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1857,The winning team captured all flags.,1990304389
+20261003-062324-scrim-g_iter2-fill1791008599,39,winkelmantanner.waffle,us:g_iter2,Waterworld,B,1479,The winning team captured all flags.,1234365600
+20261003-062324-scrim-g_iter2-fill1791008599,40,us:g_iter2,winkelmantanner.waffle,YearOfTheDragon,A,2000,The winning team won on tiebreakers (hig,266207468
+20261003-062713-scrim-g_iter2-fill1791008828,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,1384,The winning team captured all flags.,20072868
+20261003-062713-scrim-g_iter2-fill1791008828,2,us:g_iter2,winkelmantanner.waffle,Anchor,B,1343,The winning team captured all flags.,65592203
+20261003-062713-scrim-g_iter2-fill1791008828,3,winkelmantanner.waffle,us:g_iter2,Anchor,B,1314,The winning team captured all flags.,1996985623
+20261003-062713-scrim-g_iter2-fill1791008828,4,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,A,1283,The winning team captured all flags.,1973799859
+20261003-062713-scrim-g_iter2-fill1791008828,5,winkelmantanner.waffle,us:g_iter2,Canals,B,1582,The winning team captured all flags.,1806919935
+20261003-062713-scrim-g_iter2-fill1791008828,6,winkelmantanner.waffle,us:g_iter2,Capacitance,A,444,The winning team captured all flags.,1715109139
+20261003-062713-scrim-g_iter2-fill1791008828,7,winkelmantanner.waffle,us:g_iter2,Diagonal,A,2000,The winning team won on tiebreakers (cap,1490888587
+20261003-062713-scrim-g_iter2-fill1791008828,8,us:g_iter2,winkelmantanner.waffle,Digging,A,1715,The winning team captured all flags.,147517307
+20261003-062713-scrim-g_iter2-fill1791008828,9,winkelmantanner.waffle,us:g_iter2,Digging,B,1430,The winning team captured all flags.,1587144287
+20261003-062713-scrim-g_iter2-fill1791008828,10,winkelmantanner.waffle,us:g_iter2,Duck,B,1396,The winning team captured all flags.,1292943895
+20261003-062713-scrim-g_iter2-fill1791008828,11,us:g_iter2,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (hig,317314273
+20261003-062713-scrim-g_iter2-fill1791008828,12,winkelmantanner.waffle,us:g_iter2,FloodGates,A,2000,The winning team won on tiebreakers (cap,200825471
+20261003-062713-scrim-g_iter2-fill1791008828,13,us:g_iter2,winkelmantanner.waffle,Fountain,A,1662,The winning team captured all flags.,325461050
+20261003-062713-scrim-g_iter2-fill1791008828,14,winkelmantanner.waffle,us:g_iter2,Fountain,B,2000,The winning team won on tiebreakers (hig,347516977
+20261003-062713-scrim-g_iter2-fill1791008828,15,us:g_iter2,winkelmantanner.waffle,Funnel,B,2000,The winning team won on tiebreakers (cap,1582511749
+20261003-062713-scrim-g_iter2-fill1791008828,16,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,1374460832
+20261003-062713-scrim-g_iter2-fill1791008828,17,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,59065981
+20261003-062713-scrim-g_iter2-fill1791008828,18,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,444,The winning team captured all flags.,1774971371
+20261003-062713-scrim-g_iter2-fill1791008828,19,us:g_iter2,winkelmantanner.waffle,Gauntlet,B,775,The winning team captured all flags.,631216320
+20261003-062713-scrim-g_iter2-fill1791008828,20,us:g_iter2,winkelmantanner.waffle,GravitationalWaves,A,2000,The winning team won on tiebreakers (hig,1287404961
+20261003-062713-scrim-g_iter2-fill1791008828,21,winkelmantanner.waffle,us:g_iter2,Hurricane,B,2000,The winning team won on tiebreakers (hig,600408245
+20261003-062713-scrim-g_iter2-fill1791008828,22,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,498,The winning team captured all flags.,142317357
+20261003-062713-scrim-g_iter2-fill1791008828,23,winkelmantanner.waffle,us:g_iter2,MIT,A,975,The winning team captured all flags.,527173615
+20261003-062713-scrim-g_iter2-fill1791008828,24,us:g_iter2,winkelmantanner.waffle,Mountain,B,2000,The winning team won on tiebreakers (cap,1241614414
+20261003-062713-scrim-g_iter2-fill1791008828,25,us:g_iter2,winkelmantanner.waffle,Mountain,B,627,The winning team captured all flags.,923520402
+20261003-062713-scrim-g_iter2-fill1791008828,26,winkelmantanner.waffle,us:g_iter2,Occulus,A,435,The winning team captured all flags.,1058794891
+20261003-062713-scrim-g_iter2-fill1791008828,27,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1090,The winning team captured all flags.,1199977674
+20261003-062713-scrim-g_iter2-fill1791008828,28,us:g_iter2,winkelmantanner.waffle,Rainbow,A,2000,The winning team won on tiebreakers (cap,1144754034
+20261003-062713-scrim-g_iter2-fill1791008828,29,us:g_iter2,winkelmantanner.waffle,Randy,B,1208,The winning team captured all flags.,2005895557
+20261003-062713-scrim-g_iter2-fill1791008828,30,winkelmantanner.waffle,us:g_iter2,Randy,B,1623,The winning team captured all flags.,1868180420
+20261003-062713-scrim-g_iter2-fill1791008828,31,us:g_iter2,winkelmantanner.waffle,Rivers,A,1978,The winning team captured all flags.,1019932531
+20261003-062713-scrim-g_iter2-fill1791008828,32,us:g_iter2,winkelmantanner.waffle,Rivers,B,1049,The winning team captured all flags.,515941158
+20261003-062713-scrim-g_iter2-fill1791008828,33,us:g_iter2,winkelmantanner.waffle,Snake,A,1762,The winning team captured all flags.,1329821202
+20261003-062713-scrim-g_iter2-fill1791008828,34,winkelmantanner.waffle,us:g_iter2,Snake,B,1254,The winning team captured all flags.,1231887819
+20261003-062713-scrim-g_iter2-fill1791008828,35,winkelmantanner.waffle,us:g_iter2,StarryNight,A,436,The winning team captured all flags.,737899904
+20261003-062713-scrim-g_iter2-fill1791008828,36,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,614,The winning team captured all flags.,472181091
+20261003-062713-scrim-g_iter2-fill1791008828,37,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1713,The winning team captured all flags.,253588512
+20261003-062713-scrim-g_iter2-fill1791008828,38,us:g_iter2,winkelmantanner.waffle,WheresMyWater,A,1467,The winning team captured all flags.,1453535407
+20261003-062713-scrim-g_iter2-fill1791008828,39,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,367209817
+20261003-062713-scrim-g_iter2-fill1791008828,40,us:g_iter2,winkelmantanner.waffle,Yinyang,A,1260,The winning team captured all flags.,411500784
+20261003-063455-scrim-g_iter2-fill1791009290,1,us:g_iter2,winkelmantanner.waffle,Battlecode24,A,1803,The winning team captured all flags.,1637140548
+20261003-063455-scrim-g_iter2-fill1791009290,2,winkelmantanner.waffle,us:g_iter2,Battlecode24,B,1905,The winning team captured all flags.,1641621925
+20261003-063455-scrim-g_iter2-fill1791009290,3,us:g_iter2,winkelmantanner.waffle,Battlefield,B,276,The winning team captured all flags.,1479171858
+20261003-063455-scrim-g_iter2-fill1791009290,4,us:g_iter2,winkelmantanner.waffle,Canals,A,944,The winning team captured all flags.,1553810641
+20261003-063455-scrim-g_iter2-fill1791009290,5,winkelmantanner.waffle,us:g_iter2,Canals,B,1593,The winning team captured all flags.,829246463
+20261003-063455-scrim-g_iter2-fill1791009290,6,us:g_iter2,winkelmantanner.waffle,Capacitance,B,586,The winning team captured all flags.,876488841
+20261003-063455-scrim-g_iter2-fill1791009290,7,us:g_iter2,winkelmantanner.waffle,Capacitance,B,651,The winning team captured all flags.,13562354
+20261003-063455-scrim-g_iter2-fill1791009290,8,winkelmantanner.waffle,us:g_iter2,Digging,B,1441,The winning team captured all flags.,1400337018
+20261003-063455-scrim-g_iter2-fill1791009290,9,winkelmantanner.waffle,us:g_iter2,Duck,B,1594,The winning team captured all flags.,2119377753
+20261003-063455-scrim-g_iter2-fill1791009290,10,us:g_iter2,winkelmantanner.waffle,Foxes,B,926,The winning team captured all flags.,641565517
+20261003-063455-scrim-g_iter2-fill1791009290,11,us:g_iter2,winkelmantanner.waffle,Funnel,B,1521,The winning team captured all flags.,1669529330
+20261003-063455-scrim-g_iter2-fill1791009290,12,winkelmantanner.waffle,us:g_iter2,Gated,A,718,The winning team captured all flags.,92195966
+20261003-063455-scrim-g_iter2-fill1791009290,13,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,1342,The winning team captured all flags.,1596113095
+20261003-063455-scrim-g_iter2-fill1791009290,14,us:g_iter2,winkelmantanner.waffle,Hockey,A,1562,The winning team captured all flags.,1907274680
+20261003-063455-scrim-g_iter2-fill1791009290,15,winkelmantanner.waffle,us:g_iter2,Hockey,B,1510,The winning team captured all flags.,2009026402
+20261003-063455-scrim-g_iter2-fill1791009290,16,us:g_iter2,winkelmantanner.waffle,HungerGames,B,375,The winning team captured all flags.,12960188
+20261003-063455-scrim-g_iter2-fill1791009290,17,us:g_iter2,winkelmantanner.waffle,HungerGames,B,579,The winning team captured all flags.,658582327
+20261003-063455-scrim-g_iter2-fill1791009290,18,winkelmantanner.waffle,us:g_iter2,Islands,A,378,The winning team captured all flags.,582948937
+20261003-063455-scrim-g_iter2-fill1791009290,19,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,A,1557,The winning team captured all flags.,1221911588
+20261003-063455-scrim-g_iter2-fill1791009290,20,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,628,The winning team captured all flags.,1554307520
+20261003-063455-scrim-g_iter2-fill1791009290,21,us:g_iter2,winkelmantanner.waffle,Mountain,B,2000,The winning team won on tiebreakers (cap,1719737473
+20261003-063455-scrim-g_iter2-fill1791009290,22,winkelmantanner.waffle,us:g_iter2,Mountain,B,2000,The winning team won on tiebreakers (hig,494309331
+20261003-063455-scrim-g_iter2-fill1791009290,23,winkelmantanner.waffle,us:g_iter2,Mountain,B,2000,The winning team won on tiebreakers (hig,735861100
+20261003-063455-scrim-g_iter2-fill1791009290,24,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1266,The winning team captured all flags.,470979227
+20261003-063455-scrim-g_iter2-fill1791009290,25,us:g_iter2,winkelmantanner.waffle,Pancakes,B,467,The winning team captured all flags.,1183760919
+20261003-063455-scrim-g_iter2-fill1791009290,26,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,445,The winning team captured all flags.,1748430403
+20261003-063455-scrim-g_iter2-fill1791009290,27,winkelmantanner.waffle,us:g_iter2,Racetrack,B,1788,The winning team captured all flags.,1963727766
+20261003-063455-scrim-g_iter2-fill1791009290,28,us:g_iter2,winkelmantanner.waffle,Randy,B,598,The winning team captured all flags.,718442288
+20261003-063455-scrim-g_iter2-fill1791009290,29,winkelmantanner.waffle,us:g_iter2,Randy,A,415,The winning team captured all flags.,827644279
+20261003-063455-scrim-g_iter2-fill1791009290,30,winkelmantanner.waffle,us:g_iter2,Randy,A,592,The winning team captured all flags.,809620818
+20261003-063455-scrim-g_iter2-fill1791009290,31,winkelmantanner.waffle,us:g_iter2,Rivers,A,520,The winning team captured all flags.,1351546039
+20261003-063455-scrim-g_iter2-fill1791009290,32,winkelmantanner.waffle,us:g_iter2,Starfish,B,1736,The winning team captured all flags.,1072922321
+20261003-063455-scrim-g_iter2-fill1791009290,33,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,893,The winning team captured all flags.,177101203
+20261003-063455-scrim-g_iter2-fill1791009290,34,us:g_iter2,winkelmantanner.waffle,Swoop,A,1213,The winning team captured all flags.,1263782786
+20261003-063455-scrim-g_iter2-fill1791009290,35,us:g_iter2,winkelmantanner.waffle,Tunnels,B,2000,The winning team won on tiebreakers (cap,405083744
+20261003-063455-scrim-g_iter2-fill1791009290,36,winkelmantanner.waffle,us:g_iter2,Valentine,A,2000,The winning team won on tiebreakers (cap,1571122138
+20261003-063455-scrim-g_iter2-fill1791009290,37,winkelmantanner.waffle,us:g_iter2,Waterworld,B,2000,The winning team won on tiebreakers (cap,137257438
+20261003-063455-scrim-g_iter2-fill1791009290,38,winkelmantanner.waffle,us:g_iter2,Whirlpool,A,2000,The winning team won on tiebreakers (cap,1172627587
+20261003-063455-scrim-g_iter2-fill1791009290,39,us:g_iter2,winkelmantanner.waffle,YearOfTheDragon,B,636,The winning team captured all flags.,1448792599
+20261003-063455-scrim-g_iter2-fill1791009290,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,927157333
+20261003-064752-scrim-g_iter2-fill1791010067,1,us:g_iter2,winkelmantanner.waffle,Alligator,B,530,The winning team captured all flags.,1387642043
+20261003-064752-scrim-g_iter2-fill1791010067,2,us:g_iter2,winkelmantanner.waffle,Asteroids,B,1422,The winning team captured all flags.,1466169524
+20261003-064752-scrim-g_iter2-fill1791010067,3,winkelmantanner.waffle,us:g_iter2,Backslash,B,1353,The winning team captured all flags.,1687940210
+20261003-064752-scrim-g_iter2-fill1791010067,4,us:g_iter2,winkelmantanner.waffle,BedWars,A,539,The winning team captured all flags.,1721060921
+20261003-064752-scrim-g_iter2-fill1791010067,5,us:g_iter2,winkelmantanner.waffle,BedWars,A,665,The winning team captured all flags.,420364790
+20261003-064752-scrim-g_iter2-fill1791010067,6,winkelmantanner.waffle,us:g_iter2,BedWars,A,588,The winning team captured all flags.,765177276
+20261003-064752-scrim-g_iter2-fill1791010067,7,us:g_iter2,winkelmantanner.waffle,Canals,A,1127,The winning team captured all flags.,564491119
+20261003-064752-scrim-g_iter2-fill1791010067,8,us:g_iter2,winkelmantanner.waffle,Checkered,B,680,The winning team captured all flags.,1403613345
+20261003-064752-scrim-g_iter2-fill1791010067,9,winkelmantanner.waffle,us:g_iter2,Checkered,A,566,The winning team captured all flags.,1457345134
+20261003-064752-scrim-g_iter2-fill1791010067,10,us:g_iter2,winkelmantanner.waffle,Decision,B,1401,The winning team captured all flags.,1224713315
+20261003-064752-scrim-g_iter2-fill1791010067,11,us:g_iter2,winkelmantanner.waffle,Decision,B,597,The winning team captured all flags.,175776452
+20261003-064752-scrim-g_iter2-fill1791010067,12,us:g_iter2,winkelmantanner.waffle,Decision,B,652,The winning team captured all flags.,1464608957
+20261003-064752-scrim-g_iter2-fill1791010067,13,winkelmantanner.waffle,us:g_iter2,Decision,A,995,The winning team captured all flags.,1391581844
+20261003-064752-scrim-g_iter2-fill1791010067,14,winkelmantanner.waffle,us:g_iter2,Diagonal,B,2000,The winning team won on tiebreakers (hig,433854066
+20261003-064752-scrim-g_iter2-fill1791010067,15,winkelmantanner.waffle,us:g_iter2,Digging,B,1557,The winning team captured all flags.,869899625
+20261003-064752-scrim-g_iter2-fill1791010067,16,winkelmantanner.waffle,us:g_iter2,FloodGates,A,2000,The winning team won on tiebreakers (cap,1203985914
+20261003-064752-scrim-g_iter2-fill1791010067,17,us:g_iter2,winkelmantanner.waffle,Fountain,B,772,The winning team captured all flags.,9715505
+20261003-064752-scrim-g_iter2-fill1791010067,18,winkelmantanner.waffle,us:g_iter2,Fountain,A,816,The winning team captured all flags.,334837792
+20261003-064752-scrim-g_iter2-fill1791010067,19,us:g_iter2,winkelmantanner.waffle,Foxes,A,2000,The winning team won on tiebreakers (hig,2019750500
+20261003-064752-scrim-g_iter2-fill1791010067,20,us:g_iter2,winkelmantanner.waffle,Fusbol,A,2000,The winning team won on tiebreakers (cap,1993082327
+20261003-064752-scrim-g_iter2-fill1791010067,21,winkelmantanner.waffle,us:g_iter2,Gated,B,1849,The winning team captured all flags.,1473815542
+20261003-064752-scrim-g_iter2-fill1791010067,22,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,1672951088
+20261003-064752-scrim-g_iter2-fill1791010067,23,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,1621179419
+20261003-064752-scrim-g_iter2-fill1791010067,24,us:g_iter2,winkelmantanner.waffle,Hockey,A,1799,The winning team captured all flags.,597400356
+20261003-064752-scrim-g_iter2-fill1791010067,25,winkelmantanner.waffle,us:g_iter2,Hockey,B,1331,The winning team captured all flags.,23799332
+20261003-064752-scrim-g_iter2-fill1791010067,26,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,534,The winning team captured all flags.,367934273
+20261003-064752-scrim-g_iter2-fill1791010067,27,winkelmantanner.waffle,us:g_iter2,Islands,A,972,The winning team captured all flags.,1717685776
+20261003-064752-scrim-g_iter2-fill1791010067,28,winkelmantanner.waffle,us:g_iter2,MIT,A,694,The winning team captured all flags.,1634527461
+20261003-064752-scrim-g_iter2-fill1791010067,29,winkelmantanner.waffle,us:g_iter2,MIT,B,1596,The winning team captured all flags.,341385010
+20261003-064752-scrim-g_iter2-fill1791010067,30,us:g_iter2,winkelmantanner.waffle,Mountain,B,1072,The winning team captured all flags.,963983115
+20261003-064752-scrim-g_iter2-fill1791010067,31,winkelmantanner.waffle,us:g_iter2,ORV,A,522,The winning team captured all flags.,1486044595
+20261003-064752-scrim-g_iter2-fill1791010067,32,winkelmantanner.waffle,us:g_iter2,OceanFloor,A,1193,The winning team captured all flags.,1988477740
+20261003-064752-scrim-g_iter2-fill1791010067,33,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,646,The winning team captured all flags.,1483577380
+20261003-064752-scrim-g_iter2-fill1791010067,34,winkelmantanner.waffle,us:g_iter2,Rainbow,A,2000,The winning team won on tiebreakers (cap,1989528605
+20261003-064752-scrim-g_iter2-fill1791010067,35,us:g_iter2,winkelmantanner.waffle,Rivers,B,2000,The winning team won on tiebreakers (cap,125187135
+20261003-064752-scrim-g_iter2-fill1791010067,36,us:g_iter2,winkelmantanner.waffle,Skyline,B,382,The winning team captured all flags.,1703859872
+20261003-064752-scrim-g_iter2-fill1791010067,37,winkelmantanner.waffle,us:g_iter2,Snake,A,991,The winning team captured all flags.,1994008935
+20261003-064752-scrim-g_iter2-fill1791010067,38,winkelmantanner.waffle,us:g_iter2,Tunnels,A,2000,The winning team won on tiebreakers (cap,1604792373
+20261003-064752-scrim-g_iter2-fill1791010067,39,winkelmantanner.waffle,us:g_iter2,Tunnels,A,436,The winning team captured all flags.,1058268542
+20261003-064752-scrim-g_iter2-fill1791010067,40,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,1796584025
+20261003-065135-scrim-g_iter2-fill1791010290,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,376,The winning team captured all flags.,832985739
+20261003-065135-scrim-g_iter2-fill1791010290,2,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,943,The winning team captured all flags.,1063243380
+20261003-065135-scrim-g_iter2-fill1791010290,3,us:g_iter2,winkelmantanner.waffle,Alien,B,2000,The winning team won on tiebreakers (cap,21551956
+20261003-065135-scrim-g_iter2-fill1791010290,4,us:g_iter2,winkelmantanner.waffle,Ambush,A,543,The winning team captured all flags.,153368251
+20261003-065135-scrim-g_iter2-fill1791010290,5,winkelmantanner.waffle,us:g_iter2,Ambush,A,352,The winning team captured all flags.,1307454423
+20261003-065135-scrim-g_iter2-fill1791010290,6,winkelmantanner.waffle,us:g_iter2,Anchor,B,1245,The winning team captured all flags.,1399529168
+20261003-065135-scrim-g_iter2-fill1791010290,7,us:g_iter2,winkelmantanner.waffle,Backslash,A,1238,The winning team captured all flags.,621581880
+20261003-065135-scrim-g_iter2-fill1791010290,8,us:g_iter2,winkelmantanner.waffle,Backslash,A,1451,The winning team captured all flags.,1102871198
+20261003-065135-scrim-g_iter2-fill1791010290,9,winkelmantanner.waffle,us:g_iter2,Battlecode24,B,1914,The winning team captured all flags.,133375595
+20261003-065135-scrim-g_iter2-fill1791010290,10,winkelmantanner.waffle,us:g_iter2,Battlefield,A,250,The winning team captured all flags.,832557592
+20261003-065135-scrim-g_iter2-fill1791010290,11,us:g_iter2,winkelmantanner.waffle,Canals,A,1214,The winning team captured all flags.,616279701
+20261003-065135-scrim-g_iter2-fill1791010290,12,winkelmantanner.waffle,us:g_iter2,Decision,B,804,The winning team captured all flags.,859767506
+20261003-065135-scrim-g_iter2-fill1791010290,13,us:g_iter2,winkelmantanner.waffle,DefaultHuge,A,644,The winning team captured all flags.,574657065
+20261003-065135-scrim-g_iter2-fill1791010290,14,us:g_iter2,winkelmantanner.waffle,DefaultLarge,B,889,The winning team captured all flags.,1020754604
+20261003-065135-scrim-g_iter2-fill1791010290,15,us:g_iter2,winkelmantanner.waffle,DefaultSmall,B,320,The winning team captured all flags.,5383795
+20261003-065135-scrim-g_iter2-fill1791010290,16,us:g_iter2,winkelmantanner.waffle,Divergent,A,1510,The winning team captured all flags.,1172335419
+20261003-065135-scrim-g_iter2-fill1791010290,17,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,486988579
+20261003-065135-scrim-g_iter2-fill1791010290,18,us:g_iter2,winkelmantanner.waffle,Duck,A,1023,The winning team captured all flags.,1804026209
+20261003-065135-scrim-g_iter2-fill1791010290,19,us:g_iter2,winkelmantanner.waffle,English,B,1132,The winning team captured all flags.,419729934
+20261003-065135-scrim-g_iter2-fill1791010290,20,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,675483126
+20261003-065135-scrim-g_iter2-fill1791010290,21,us:g_iter2,winkelmantanner.waffle,Fountain,A,1691,The winning team captured all flags.,1852352590
+20261003-065135-scrim-g_iter2-fill1791010290,22,winkelmantanner.waffle,us:g_iter2,Foxes,A,533,The winning team captured all flags.,526902323
+20261003-065135-scrim-g_iter2-fill1791010290,23,us:g_iter2,winkelmantanner.waffle,Funnel,B,2000,The winning team won on tiebreakers (cap,1552733108
+20261003-065135-scrim-g_iter2-fill1791010290,24,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,510,The winning team captured all flags.,87259399
+20261003-065135-scrim-g_iter2-fill1791010290,25,us:g_iter2,winkelmantanner.waffle,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1481982823
+20261003-065135-scrim-g_iter2-fill1791010290,26,winkelmantanner.waffle,us:g_iter2,HungerGames,A,547,The winning team captured all flags.,210870043
+20261003-065135-scrim-g_iter2-fill1791010290,27,us:g_iter2,winkelmantanner.waffle,Hurricane,B,614,The winning team captured all flags.,1029574141
+20261003-065135-scrim-g_iter2-fill1791010290,28,us:g_iter2,winkelmantanner.waffle,Mountain,B,2000,The winning team won on tiebreakers (cap,518944531
+20261003-065135-scrim-g_iter2-fill1791010290,29,us:g_iter2,winkelmantanner.waffle,ORV,B,782,The winning team captured all flags.,2104047600
+20261003-065135-scrim-g_iter2-fill1791010290,30,us:g_iter2,winkelmantanner.waffle,Occulus,A,2000,The winning team won on tiebreakers (hig,2122164243
+20261003-065135-scrim-g_iter2-fill1791010290,31,us:g_iter2,winkelmantanner.waffle,QueenOfHearts,A,1810,The winning team captured all flags.,393506941
+20261003-065135-scrim-g_iter2-fill1791010290,32,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,649,The winning team captured all flags.,402054430
+20261003-065135-scrim-g_iter2-fill1791010290,33,us:g_iter2,winkelmantanner.waffle,Rainbow,A,2000,The winning team won on tiebreakers (hig,373939893
+20261003-065135-scrim-g_iter2-fill1791010290,34,us:g_iter2,winkelmantanner.waffle,Rainbow,B,2000,The winning team won on tiebreakers (cap,1459892352
+20261003-065135-scrim-g_iter2-fill1791010290,35,winkelmantanner.waffle,us:g_iter2,Soccer,B,1429,The winning team captured all flags.,184448876
+20261003-065135-scrim-g_iter2-fill1791010290,36,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,A,1530,The winning team captured all flags.,1001382166
+20261003-065135-scrim-g_iter2-fill1791010290,37,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1639,The winning team captured all flags.,1451934204
+20261003-065135-scrim-g_iter2-fill1791010290,38,winkelmantanner.waffle,us:g_iter2,Valentine,B,2000,The winning team won on tiebreakers (cap,795038745
+20261003-065135-scrim-g_iter2-fill1791010290,39,winkelmantanner.waffle,us:g_iter2,Waterworld,B,2000,The winning team won on tiebreakers (cap,30099467
+20261003-065135-scrim-g_iter2-fill1791010290,40,winkelmantanner.waffle,us:g_iter2,WheresMyWater,B,1611,The winning team captured all flags.,992433296
+20261003-065820-scrim-g_iter2-fill1791010695,1,winkelmantanner.waffle,us:g_iter2,Ambush,A,396,The winning team captured all flags.,742427373
+20261003-065820-scrim-g_iter2-fill1791010695,2,winkelmantanner.waffle,us:g_iter2,Anchor,B,1087,The winning team captured all flags.,976853550
+20261003-065820-scrim-g_iter2-fill1791010695,3,us:g_iter2,winkelmantanner.waffle,Asteroids,B,726,The winning team captured all flags.,1242282606
+20261003-065820-scrim-g_iter2-fill1791010695,4,winkelmantanner.waffle,us:g_iter2,Backslash,B,1210,The winning team captured all flags.,1127979114
+20261003-065820-scrim-g_iter2-fill1791010695,5,us:g_iter2,winkelmantanner.waffle,Battlecode24,B,1195,The winning team captured all flags.,942207334
+20261003-065820-scrim-g_iter2-fill1791010695,6,winkelmantanner.waffle,us:g_iter2,Battlefield,A,405,The winning team captured all flags.,472439670
+20261003-065820-scrim-g_iter2-fill1791010695,7,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,B,1399,The winning team captured all flags.,156422119
+20261003-065820-scrim-g_iter2-fill1791010695,8,winkelmantanner.waffle,us:g_iter2,Bunkers,A,464,The winning team captured all flags.,2033245826
+20261003-065820-scrim-g_iter2-fill1791010695,9,us:g_iter2,winkelmantanner.waffle,Canals,A,1325,The winning team captured all flags.,1933163293
+20261003-065820-scrim-g_iter2-fill1791010695,10,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,546,The winning team captured all flags.,7617647
+20261003-065820-scrim-g_iter2-fill1791010695,11,us:g_iter2,winkelmantanner.waffle,DefaultSmall,B,2000,The winning team won on tiebreakers (cap,1072125260
+20261003-065820-scrim-g_iter2-fill1791010695,12,winkelmantanner.waffle,us:g_iter2,DefaultSmall,B,1419,The winning team captured all flags.,1738891285
+20261003-065820-scrim-g_iter2-fill1791010695,13,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,1894747898
+20261003-065820-scrim-g_iter2-fill1791010695,14,us:g_iter2,winkelmantanner.waffle,Fountain,B,762,The winning team captured all flags.,894020869
+20261003-065820-scrim-g_iter2-fill1791010695,15,winkelmantanner.waffle,us:g_iter2,Fountain,B,1967,The winning team captured all flags.,13663341
+20261003-065820-scrim-g_iter2-fill1791010695,16,winkelmantanner.waffle,us:g_iter2,Funnel,B,1265,The winning team captured all flags.,1273038831
+20261003-065820-scrim-g_iter2-fill1791010695,17,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,333,The winning team captured all flags.,1037858934
+20261003-065820-scrim-g_iter2-fill1791010695,18,us:g_iter2,winkelmantanner.waffle,Gated,B,583,The winning team captured all flags.,1191707317
+20261003-065820-scrim-g_iter2-fill1791010695,19,winkelmantanner.waffle,us:g_iter2,Gated,B,2000,The winning team won on tiebreakers (hig,2046857529
+20261003-065820-scrim-g_iter2-fill1791010695,20,winkelmantanner.waffle,us:g_iter2,Gated,B,2000,The winning team won on tiebreakers (hig,671466530
+20261003-065820-scrim-g_iter2-fill1791010695,21,winkelmantanner.waffle,us:g_iter2,Gauntlet,B,1874,The winning team captured all flags.,1195118086
+20261003-065820-scrim-g_iter2-fill1791010695,22,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,711,The winning team captured all flags.,560746458
+20261003-065820-scrim-g_iter2-fill1791010695,23,winkelmantanner.waffle,us:g_iter2,Hockey,B,1342,The winning team captured all flags.,2037723047
+20261003-065820-scrim-g_iter2-fill1791010695,24,us:g_iter2,winkelmantanner.waffle,Intercontinental,B,1080,The winning team captured all flags.,642736328
+20261003-065820-scrim-g_iter2-fill1791010695,25,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,558,The winning team captured all flags.,1875458478
+20261003-065820-scrim-g_iter2-fill1791010695,26,us:g_iter2,winkelmantanner.waffle,Islands,B,503,The winning team captured all flags.,2116490617
+20261003-065820-scrim-g_iter2-fill1791010695,27,winkelmantanner.waffle,us:g_iter2,Occulus,A,359,The winning team captured all flags.,714558346
+20261003-065820-scrim-g_iter2-fill1791010695,28,winkelmantanner.waffle,us:g_iter2,OceanFloor,A,1121,The winning team captured all flags.,356332782
+20261003-065820-scrim-g_iter2-fill1791010695,29,winkelmantanner.waffle,us:g_iter2,OceanFloor,B,519,The winning team captured all flags.,1582931858
+20261003-065820-scrim-g_iter2-fill1791010695,30,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,490,The winning team captured all flags.,2031479298
+20261003-065820-scrim-g_iter2-fill1791010695,31,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,965,The winning team captured all flags.,865502419
+20261003-065820-scrim-g_iter2-fill1791010695,32,us:g_iter2,winkelmantanner.waffle,Rivers,A,1677,The winning team captured all flags.,1951387497
+20261003-065820-scrim-g_iter2-fill1791010695,33,us:g_iter2,winkelmantanner.waffle,Skyline,B,756,The winning team captured all flags.,118911608
+20261003-065820-scrim-g_iter2-fill1791010695,34,us:g_iter2,winkelmantanner.waffle,Snake,A,1300,The winning team captured all flags.,997539959
+20261003-065820-scrim-g_iter2-fill1791010695,35,winkelmantanner.waffle,us:g_iter2,TreeSearch,A,491,The winning team captured all flags.,951414856
+20261003-065820-scrim-g_iter2-fill1791010695,36,winkelmantanner.waffle,us:g_iter2,TreeSearch,B,958,The winning team captured all flags.,1840545972
+20261003-065820-scrim-g_iter2-fill1791010695,37,winkelmantanner.waffle,us:g_iter2,Valentine,A,1469,The winning team captured all flags.,486261495
+20261003-065820-scrim-g_iter2-fill1791010695,38,us:g_iter2,winkelmantanner.waffle,Whirlpool,B,623,The winning team captured all flags.,300772163
+20261003-065820-scrim-g_iter2-fill1791010695,39,winkelmantanner.waffle,us:g_iter2,Whirlpool,B,2000,The winning team won on tiebreakers (cap,1596305419
+20261003-065820-scrim-g_iter2-fill1791010695,40,us:g_iter2,winkelmantanner.waffle,Yinyang,B,414,The winning team captured all flags.,993464838
+20261003-070828-scrim-g_iter2-fill1791011302,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,504,The winning team captured all flags.,1881607967
+20261003-070828-scrim-g_iter2-fill1791011302,2,us:g_iter2,winkelmantanner.waffle,Alien,B,476,The winning team captured all flags.,983839767
+20261003-070828-scrim-g_iter2-fill1791011302,3,winkelmantanner.waffle,us:g_iter2,Alien,A,2000,The winning team won on tiebreakers (cap,134481982
+20261003-070828-scrim-g_iter2-fill1791011302,4,us:g_iter2,winkelmantanner.waffle,Alligator,B,634,The winning team captured all flags.,449301097
+20261003-070828-scrim-g_iter2-fill1791011302,5,winkelmantanner.waffle,us:g_iter2,Ambush,A,692,The winning team captured all flags.,1757291839
+20261003-070828-scrim-g_iter2-fill1791011302,6,us:g_iter2,winkelmantanner.waffle,Asteroids,B,993,The winning team captured all flags.,996774397
+20261003-070828-scrim-g_iter2-fill1791011302,7,winkelmantanner.waffle,us:g_iter2,Battlefield,A,315,The winning team captured all flags.,2037248786
+20261003-070828-scrim-g_iter2-fill1791011302,8,winkelmantanner.waffle,us:g_iter2,Battlefield,A,620,The winning team captured all flags.,1817491278
+20261003-070828-scrim-g_iter2-fill1791011302,9,us:g_iter2,winkelmantanner.waffle,BedWars,B,842,The winning team captured all flags.,344684142
+20261003-070828-scrim-g_iter2-fill1791011302,10,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,A,1219,The winning team captured all flags.,578429620
+20261003-070828-scrim-g_iter2-fill1791011302,11,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1412502230
+20261003-070828-scrim-g_iter2-fill1791011302,12,us:g_iter2,winkelmantanner.waffle,Canals,A,1193,The winning team captured all flags.,2020087245
+20261003-070828-scrim-g_iter2-fill1791011302,13,winkelmantanner.waffle,us:g_iter2,Capacitance,A,1017,The winning team captured all flags.,2065112287
+20261003-070828-scrim-g_iter2-fill1791011302,14,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1560,The winning team captured all flags.,1514267005
+20261003-070828-scrim-g_iter2-fill1791011302,15,winkelmantanner.waffle,us:g_iter2,DefaultMedium,B,2000,The winning team won on tiebreakers (hig,2097096320
+20261003-070828-scrim-g_iter2-fill1791011302,16,us:g_iter2,winkelmantanner.waffle,Diagonal,B,2000,The winning team won on tiebreakers (cap,1413694525
+20261003-070828-scrim-g_iter2-fill1791011302,17,us:g_iter2,winkelmantanner.waffle,Duck,B,782,The winning team captured all flags.,1931403208
+20261003-070828-scrim-g_iter2-fill1791011302,18,us:g_iter2,winkelmantanner.waffle,EvilGrin,A,1488,The winning team captured all flags.,1610611532
+20261003-070828-scrim-g_iter2-fill1791011302,19,us:g_iter2,winkelmantanner.waffle,EvilGrin,B,2000,The winning team won on tiebreakers (cap,1984049561
+20261003-070828-scrim-g_iter2-fill1791011302,20,winkelmantanner.waffle,us:g_iter2,EvilGrin,A,554,The winning team captured all flags.,572235379
+20261003-070828-scrim-g_iter2-fill1791011302,21,us:g_iter2,winkelmantanner.waffle,Fusbol,B,2000,The winning team won on tiebreakers (cap,1716729352
+20261003-070828-scrim-g_iter2-fill1791011302,22,winkelmantanner.waffle,us:g_iter2,Gauntlet,B,1361,The winning team captured all flags.,1801665361
+20261003-070828-scrim-g_iter2-fill1791011302,23,us:g_iter2,winkelmantanner.waffle,Hockey,A,1709,The winning team captured all flags.,291125860
+20261003-070828-scrim-g_iter2-fill1791011302,24,winkelmantanner.waffle,us:g_iter2,Hockey,B,1294,The winning team captured all flags.,465709312
+20261003-070828-scrim-g_iter2-fill1791011302,25,winkelmantanner.waffle,us:g_iter2,Hurricane,B,1962,The winning team captured all flags.,1746280468
+20261003-070828-scrim-g_iter2-fill1791011302,26,winkelmantanner.waffle,us:g_iter2,Islands,A,487,The winning team captured all flags.,227232083
+20261003-070828-scrim-g_iter2-fill1791011302,27,winkelmantanner.waffle,us:g_iter2,Islands,A,881,The winning team captured all flags.,1023228858
+20261003-070828-scrim-g_iter2-fill1791011302,28,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,378399914
+20261003-070828-scrim-g_iter2-fill1791011302,29,us:g_iter2,winkelmantanner.waffle,MIT,B,1079,The winning team captured all flags.,2047394057
+20261003-070828-scrim-g_iter2-fill1791011302,30,winkelmantanner.waffle,us:g_iter2,MIT,B,871,The winning team captured all flags.,263118822
+20261003-070828-scrim-g_iter2-fill1791011302,31,us:g_iter2,winkelmantanner.waffle,Mountain,B,2000,The winning team won on tiebreakers (cap,1427077802
+20261003-070828-scrim-g_iter2-fill1791011302,32,winkelmantanner.waffle,us:g_iter2,Pancakes,A,762,The winning team captured all flags.,1995545504
+20261003-070828-scrim-g_iter2-fill1791011302,33,us:g_iter2,winkelmantanner.waffle,QueenOfHearts,A,1674,The winning team captured all flags.,118103940
+20261003-070828-scrim-g_iter2-fill1791011302,34,winkelmantanner.waffle,us:g_iter2,Racetrack,B,2000,The winning team won on tiebreakers (hig,846518178
+20261003-070828-scrim-g_iter2-fill1791011302,35,winkelmantanner.waffle,us:g_iter2,Rivers,A,473,The winning team captured all flags.,1544160233
+20261003-070828-scrim-g_iter2-fill1791011302,36,winkelmantanner.waffle,us:g_iter2,Skyline,A,456,The winning team captured all flags.,1965279112
+20261003-070828-scrim-g_iter2-fill1791011302,37,us:g_iter2,winkelmantanner.waffle,Snake,B,1807,The winning team captured all flags.,1691559771
+20261003-070828-scrim-g_iter2-fill1791011302,38,winkelmantanner.waffle,us:g_iter2,TreeSearch,A,1101,The winning team captured all flags.,773147014
+20261003-070828-scrim-g_iter2-fill1791011302,39,winkelmantanner.waffle,us:g_iter2,Tunnels,A,2000,The winning team won on tiebreakers (cap,160173103
+20261003-070828-scrim-g_iter2-fill1791011302,40,us:g_iter2,winkelmantanner.waffle,Yinyang,A,1262,The winning team captured all flags.,61005201
+20261003-071300-scrim-g_iter2-fill1791011573,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,373,The winning team captured all flags.,1411915234
+20261003-071300-scrim-g_iter2-fill1791011573,2,winkelmantanner.waffle,us:g_iter2,Alien,A,835,The winning team captured all flags.,1399251945
+20261003-071300-scrim-g_iter2-fill1791011573,3,us:g_iter2,winkelmantanner.waffle,Ambush,B,313,The winning team captured all flags.,1444383660
+20261003-071300-scrim-g_iter2-fill1791011573,4,us:g_iter2,winkelmantanner.waffle,Anchor,A,1375,The winning team captured all flags.,2068825480
+20261003-071300-scrim-g_iter2-fill1791011573,5,winkelmantanner.waffle,us:g_iter2,BedWars,A,1344,The winning team captured all flags.,435133670
+20261003-071300-scrim-g_iter2-fill1791011573,6,winkelmantanner.waffle,us:g_iter2,BedWars,A,777,The winning team captured all flags.,1984701045
+20261003-071300-scrim-g_iter2-fill1791011573,7,winkelmantanner.waffle,us:g_iter2,BedWars,B,831,The winning team captured all flags.,681262785
+20261003-071300-scrim-g_iter2-fill1791011573,8,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,423803152
+20261003-071300-scrim-g_iter2-fill1791011573,9,winkelmantanner.waffle,us:g_iter2,BreadPudding,B,2000,The winning team won on tiebreakers (hig,1908596935
+20261003-071300-scrim-g_iter2-fill1791011573,10,us:g_iter2,winkelmantanner.waffle,Bunkers,B,850,The winning team captured all flags.,1072046272
+20261003-071300-scrim-g_iter2-fill1791011573,11,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,989,The winning team captured all flags.,1728513583
+20261003-071300-scrim-g_iter2-fill1791011573,12,winkelmantanner.waffle,us:g_iter2,Digging,B,1526,The winning team captured all flags.,1333325455
+20261003-071300-scrim-g_iter2-fill1791011573,13,winkelmantanner.waffle,us:g_iter2,Divergent,A,1158,The winning team captured all flags.,1928625073
+20261003-071300-scrim-g_iter2-fill1791011573,14,winkelmantanner.waffle,us:g_iter2,English,B,2000,The winning team won on tiebreakers (hig,58332591
+20261003-071300-scrim-g_iter2-fill1791011573,15,us:g_iter2,winkelmantanner.waffle,EvilGrin,A,1642,The winning team captured all flags.,1954124454
+20261003-071300-scrim-g_iter2-fill1791011573,16,winkelmantanner.waffle,us:g_iter2,FloodGates,A,2000,The winning team won on tiebreakers (cap,539182347
+20261003-071300-scrim-g_iter2-fill1791011573,17,us:g_iter2,winkelmantanner.waffle,Funnel,B,2000,The winning team won on tiebreakers (cap,1594467039
+20261003-071300-scrim-g_iter2-fill1791011573,18,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,701972698
+20261003-071300-scrim-g_iter2-fill1791011573,19,winkelmantanner.waffle,us:g_iter2,GaltonBoard,B,1586,The winning team captured all flags.,1168590482
+20261003-071300-scrim-g_iter2-fill1791011573,20,us:g_iter2,winkelmantanner.waffle,Gated,B,2000,The winning team won on tiebreakers (cap,336224118
+20261003-071300-scrim-g_iter2-fill1791011573,21,winkelmantanner.waffle,us:g_iter2,Gated,B,1561,The winning team captured all flags.,1552947890
+20261003-071300-scrim-g_iter2-fill1791011573,22,us:g_iter2,winkelmantanner.waffle,Gauntlet,A,1376,The winning team captured all flags.,1918094875
+20261003-071300-scrim-g_iter2-fill1791011573,23,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,635,The winning team captured all flags.,1459296789
+20261003-071300-scrim-g_iter2-fill1791011573,24,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,429,The winning team captured all flags.,2112520003
+20261003-071300-scrim-g_iter2-fill1791011573,25,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (cap,777632639
+20261003-071300-scrim-g_iter2-fill1791011573,26,us:g_iter2,winkelmantanner.waffle,Klein,B,1380,The winning team captured all flags.,848934493
+20261003-071300-scrim-g_iter2-fill1791011573,27,us:g_iter2,winkelmantanner.waffle,Klein,B,1874,The winning team captured all flags.,329967334
+20261003-071300-scrim-g_iter2-fill1791011573,28,winkelmantanner.waffle,us:g_iter2,MazeRunner,B,2000,The winning team won on tiebreakers (hig,1387979805
+20261003-071300-scrim-g_iter2-fill1791011573,29,winkelmantanner.waffle,us:g_iter2,ORV,A,355,The winning team captured all flags.,509550762
+20261003-071300-scrim-g_iter2-fill1791011573,30,winkelmantanner.waffle,us:g_iter2,ORV,B,1831,The winning team captured all flags.,495351373
+20261003-071300-scrim-g_iter2-fill1791011573,31,us:g_iter2,winkelmantanner.waffle,Occulus,A,1904,The winning team captured all flags.,1113090815
+20261003-071300-scrim-g_iter2-fill1791011573,32,winkelmantanner.waffle,us:g_iter2,OceanFloor,B,549,The winning team captured all flags.,485302309
+20261003-071300-scrim-g_iter2-fill1791011573,33,winkelmantanner.waffle,us:g_iter2,QueenOfHearts,B,1729,The winning team captured all flags.,1971492722
+20261003-071300-scrim-g_iter2-fill1791011573,34,us:g_iter2,winkelmantanner.waffle,Randy,B,515,The winning team captured all flags.,607736007
+20261003-071300-scrim-g_iter2-fill1791011573,35,winkelmantanner.waffle,us:g_iter2,StackGame,A,395,The winning team captured all flags.,2077691256
+20261003-071300-scrim-g_iter2-fill1791011573,36,winkelmantanner.waffle,us:g_iter2,StarryNight,A,1141,The winning team captured all flags.,1523180552
+20261003-071300-scrim-g_iter2-fill1791011573,37,winkelmantanner.waffle,us:g_iter2,Swoop,B,834,The winning team captured all flags.,86338050
+20261003-071300-scrim-g_iter2-fill1791011573,38,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,100686014
+20261003-071300-scrim-g_iter2-fill1791011573,39,winkelmantanner.waffle,us:g_iter2,Valentine,A,1063,The winning team captured all flags.,1376869677
+20261003-071300-scrim-g_iter2-fill1791011573,40,us:g_iter2,winkelmantanner.waffle,YearOfTheDragon,B,516,The winning team captured all flags.,1500377465
+20261003-071752-scrim-g_iter2-fill1791011866,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,399,The winning team captured all flags.,160773434
+20261003-071752-scrim-g_iter2-fill1791011866,2,winkelmantanner.waffle,us:g_iter2,Ambush,A,450,The winning team captured all flags.,553461944
+20261003-071752-scrim-g_iter2-fill1791011866,3,us:g_iter2,winkelmantanner.waffle,Battlefield,B,475,The winning team captured all flags.,1213592755
+20261003-071752-scrim-g_iter2-fill1791011866,4,winkelmantanner.waffle,us:g_iter2,Bunkers,A,471,The winning team captured all flags.,870906465
+20261003-071752-scrim-g_iter2-fill1791011866,5,winkelmantanner.waffle,us:g_iter2,Bunkers,A,510,The winning team captured all flags.,1553241786
+20261003-071752-scrim-g_iter2-fill1791011866,6,us:g_iter2,winkelmantanner.waffle,CH3353C4K3F4CT0RY,A,1453,The winning team captured all flags.,254435424
+20261003-071752-scrim-g_iter2-fill1791011866,7,us:g_iter2,winkelmantanner.waffle,Canals,A,1096,The winning team captured all flags.,577295062
+20261003-071752-scrim-g_iter2-fill1791011866,8,winkelmantanner.waffle,us:g_iter2,Canals,B,1688,The winning team captured all flags.,518204230
+20261003-071752-scrim-g_iter2-fill1791011866,9,us:g_iter2,winkelmantanner.waffle,Checkered,A,509,The winning team captured all flags.,854798511
+20261003-071752-scrim-g_iter2-fill1791011866,10,us:g_iter2,winkelmantanner.waffle,DefaultLarge,A,1441,The winning team captured all flags.,2030591355
+20261003-071752-scrim-g_iter2-fill1791011866,11,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,1399,The winning team captured all flags.,275280259
+20261003-071752-scrim-g_iter2-fill1791011866,12,us:g_iter2,winkelmantanner.waffle,Digging,A,1627,The winning team captured all flags.,284165478
+20261003-071752-scrim-g_iter2-fill1791011866,13,us:g_iter2,winkelmantanner.waffle,Digging,A,1679,The winning team captured all flags.,1051285918
+20261003-071752-scrim-g_iter2-fill1791011866,14,winkelmantanner.waffle,us:g_iter2,Duck,B,2000,The winning team won on tiebreakers (hig,2141468273
+20261003-071752-scrim-g_iter2-fill1791011866,15,us:g_iter2,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (hig,283358347
+20261003-071752-scrim-g_iter2-fill1791011866,16,winkelmantanner.waffle,us:g_iter2,EndAround,B,2000,The winning team won on tiebreakers (hig,1480109906
+20261003-071752-scrim-g_iter2-fill1791011866,17,winkelmantanner.waffle,us:g_iter2,English,A,2000,The winning team won on tiebreakers (cap,311573114
+20261003-071752-scrim-g_iter2-fill1791011866,18,winkelmantanner.waffle,us:g_iter2,Foxes,A,1744,The winning team captured all flags.,342271195
+20261003-071752-scrim-g_iter2-fill1791011866,19,winkelmantanner.waffle,us:g_iter2,Funnel,A,1813,The winning team captured all flags.,1692305721
+20261003-071752-scrim-g_iter2-fill1791011866,20,winkelmantanner.waffle,us:g_iter2,Funnel,A,1873,The winning team captured all flags.,805214103
+20261003-071752-scrim-g_iter2-fill1791011866,21,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,347938622
+20261003-071752-scrim-g_iter2-fill1791011866,22,winkelmantanner.waffle,us:g_iter2,Gated,B,2000,The winning team won on tiebreakers (hig,799385778
+20261003-071752-scrim-g_iter2-fill1791011866,23,winkelmantanner.waffle,us:g_iter2,Hockey,B,1408,The winning team captured all flags.,1595009189
+20261003-071752-scrim-g_iter2-fill1791011866,24,us:g_iter2,winkelmantanner.waffle,Islands,B,578,The winning team captured all flags.,1537371771
+20261003-071752-scrim-g_iter2-fill1791011866,25,winkelmantanner.waffle,us:g_iter2,Islands,A,526,The winning team captured all flags.,1121620621
+20261003-071752-scrim-g_iter2-fill1791011866,26,us:g_iter2,winkelmantanner.waffle,Joker,A,1564,The winning team captured all flags.,669536541
+20261003-071752-scrim-g_iter2-fill1791011866,27,winkelmantanner.waffle,us:g_iter2,MazeRunner,A,1087,The winning team captured all flags.,1397390440
+20261003-071752-scrim-g_iter2-fill1791011866,28,winkelmantanner.waffle,us:g_iter2,ORV,A,530,The winning team captured all flags.,256390379
+20261003-071752-scrim-g_iter2-fill1791011866,29,us:g_iter2,winkelmantanner.waffle,Occulus,B,2000,The winning team won on tiebreakers (cap,1172951182
+20261003-071752-scrim-g_iter2-fill1791011866,30,winkelmantanner.waffle,us:g_iter2,QuestionableChess,A,501,The winning team captured all flags.,558544657
+20261003-071752-scrim-g_iter2-fill1791011866,31,winkelmantanner.waffle,us:g_iter2,Racetrack,A,2000,The winning team won on tiebreakers (cap,423089666
+20261003-071752-scrim-g_iter2-fill1791011866,32,winkelmantanner.waffle,us:g_iter2,Rainbow,B,2000,The winning team won on tiebreakers (hig,742454872
+20261003-071752-scrim-g_iter2-fill1791011866,33,us:g_iter2,winkelmantanner.waffle,Randy,B,454,The winning team captured all flags.,1924546974
+20261003-071752-scrim-g_iter2-fill1791011866,34,winkelmantanner.waffle,us:g_iter2,Skyline,A,741,The winning team captured all flags.,784052331
+20261003-071752-scrim-g_iter2-fill1791011866,35,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,A,1100,The winning team captured all flags.,1334516550
+20261003-071752-scrim-g_iter2-fill1791011866,36,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,560,The winning team captured all flags.,486961524
+20261003-071752-scrim-g_iter2-fill1791011866,37,winkelmantanner.waffle,us:g_iter2,TreeSearch,A,453,The winning team captured all flags.,1772831347
+20261003-071752-scrim-g_iter2-fill1791011866,38,us:g_iter2,winkelmantanner.waffle,Valentine,B,1163,The winning team captured all flags.,199589838
+20261003-071752-scrim-g_iter2-fill1791011866,39,winkelmantanner.waffle,us:g_iter2,Valentine,B,1142,The winning team captured all flags.,856447168
+20261003-071752-scrim-g_iter2-fill1791011866,40,us:g_iter2,winkelmantanner.waffle,WheresMyWater,A,1648,The winning team captured all flags.,1678611924
+20261003-072236-scrim-g_iter2-fill1791012150,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,700,The winning team captured all flags.,891441505
+20261003-072236-scrim-g_iter2-fill1791012150,2,winkelmantanner.waffle,us:g_iter2,Ambush,A,331,The winning team captured all flags.,1835524324
+20261003-072236-scrim-g_iter2-fill1791012150,3,winkelmantanner.waffle,us:g_iter2,Ambush,A,497,The winning team captured all flags.,1146142594
+20261003-072236-scrim-g_iter2-fill1791012150,4,us:g_iter2,winkelmantanner.waffle,Anchor,A,1500,The winning team captured all flags.,1037959181
+20261003-072236-scrim-g_iter2-fill1791012150,5,us:g_iter2,winkelmantanner.waffle,Anchor,B,1312,The winning team captured all flags.,696766872
+20261003-072236-scrim-g_iter2-fill1791012150,6,us:g_iter2,winkelmantanner.waffle,Backslash,B,1991,The winning team captured all flags.,1857576328
+20261003-072236-scrim-g_iter2-fill1791012150,7,winkelmantanner.waffle,us:g_iter2,Battlefield,A,431,The winning team captured all flags.,1683542463
+20261003-072236-scrim-g_iter2-fill1791012150,8,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,A,1703,The winning team captured all flags.,341938643
+20261003-072236-scrim-g_iter2-fill1791012150,9,us:g_iter2,winkelmantanner.waffle,Bunkers,B,1037,The winning team captured all flags.,1709466337
+20261003-072236-scrim-g_iter2-fill1791012150,10,us:g_iter2,winkelmantanner.waffle,Checkered,B,352,The winning team captured all flags.,412399033
+20261003-072236-scrim-g_iter2-fill1791012150,11,winkelmantanner.waffle,us:g_iter2,Checkered,A,934,The winning team captured all flags.,152421424
+20261003-072236-scrim-g_iter2-fill1791012150,12,winkelmantanner.waffle,us:g_iter2,DefaultHuge,A,402,The winning team captured all flags.,1640466725
+20261003-072236-scrim-g_iter2-fill1791012150,13,us:g_iter2,winkelmantanner.waffle,Diagonal,A,2000,The winning team won on tiebreakers (hig,830533882
+20261003-072236-scrim-g_iter2-fill1791012150,14,us:g_iter2,winkelmantanner.waffle,Digging,A,1591,The winning team captured all flags.,2126386885
+20261003-072236-scrim-g_iter2-fill1791012150,15,winkelmantanner.waffle,us:g_iter2,Digging,B,1311,The winning team captured all flags.,187993642
+20261003-072236-scrim-g_iter2-fill1791012150,16,us:g_iter2,winkelmantanner.waffle,Duck,A,640,The winning team captured all flags.,1981339574
+20261003-072236-scrim-g_iter2-fill1791012150,17,us:g_iter2,winkelmantanner.waffle,EvilGrin,A,1674,The winning team captured all flags.,1473392751
+20261003-072236-scrim-g_iter2-fill1791012150,18,winkelmantanner.waffle,us:g_iter2,FloodGates,A,2000,The winning team won on tiebreakers (cap,44464249
+20261003-072236-scrim-g_iter2-fill1791012150,19,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (hig,43478529
+20261003-072236-scrim-g_iter2-fill1791012150,20,us:g_iter2,winkelmantanner.waffle,Hurricane,A,2000,The winning team won on tiebreakers (hig,221046481
+20261003-072236-scrim-g_iter2-fill1791012150,21,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,659,The winning team captured all flags.,1171089389
+20261003-072236-scrim-g_iter2-fill1791012150,22,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,A,431,The winning team captured all flags.,619355384
+20261003-072236-scrim-g_iter2-fill1791012150,23,us:g_iter2,winkelmantanner.waffle,Klein,B,1533,The winning team captured all flags.,629911863
+20261003-072236-scrim-g_iter2-fill1791012150,24,us:g_iter2,winkelmantanner.waffle,Klein,B,2000,The winning team won on tiebreakers (cap,1565226066
+20261003-072236-scrim-g_iter2-fill1791012150,25,winkelmantanner.waffle,us:g_iter2,MazeRunner,B,2000,The winning team won on tiebreakers (cap,1160184759
+20261003-072236-scrim-g_iter2-fill1791012150,26,us:g_iter2,winkelmantanner.waffle,Occulus,A,2000,The winning team won on tiebreakers (hig,1336244759
+20261003-072236-scrim-g_iter2-fill1791012150,27,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1099,The winning team captured all flags.,1450189487
+20261003-072236-scrim-g_iter2-fill1791012150,28,winkelmantanner.waffle,us:g_iter2,Randy,A,430,The winning team captured all flags.,1323820993
+20261003-072236-scrim-g_iter2-fill1791012150,29,winkelmantanner.waffle,us:g_iter2,Randy,A,580,The winning team captured all flags.,1259471410
+20261003-072236-scrim-g_iter2-fill1791012150,30,winkelmantanner.waffle,us:g_iter2,Rivers,B,1284,The winning team captured all flags.,1344616836
+20261003-072236-scrim-g_iter2-fill1791012150,31,us:g_iter2,winkelmantanner.waffle,Soccer,A,1427,The winning team captured all flags.,46452850
+20261003-072236-scrim-g_iter2-fill1791012150,32,us:g_iter2,winkelmantanner.waffle,StackGame,B,364,The winning team captured all flags.,1587142710
+20261003-072236-scrim-g_iter2-fill1791012150,33,winkelmantanner.waffle,us:g_iter2,Starfish,B,1355,The winning team captured all flags.,1020282828
+20261003-072236-scrim-g_iter2-fill1791012150,34,us:g_iter2,winkelmantanner.waffle,StarryNight,B,592,The winning team captured all flags.,1177262481
+20261003-072236-scrim-g_iter2-fill1791012150,35,winkelmantanner.waffle,us:g_iter2,StarryNight,A,411,The winning team captured all flags.,23450479
+20261003-072236-scrim-g_iter2-fill1791012150,36,winkelmantanner.waffle,us:g_iter2,StarryNight,A,479,The winning team captured all flags.,1987679035
+20261003-072236-scrim-g_iter2-fill1791012150,37,us:g_iter2,winkelmantanner.waffle,TreeSearch,B,526,The winning team captured all flags.,1825692668
+20261003-072236-scrim-g_iter2-fill1791012150,38,winkelmantanner.waffle,us:g_iter2,Whirlpool,A,962,The winning team captured all flags.,1452718547
+20261003-072236-scrim-g_iter2-fill1791012150,39,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,300651251
+20261003-072236-scrim-g_iter2-fill1791012150,40,winkelmantanner.waffle,us:g_iter2,Yinyang,B,1530,The winning team captured all flags.,648100409
+20261003-072702-scrim-g_iter2-fill1791012417,1,us:g_iter2,winkelmantanner.waffle,Anchor,B,1189,The winning team captured all flags.,271581202
+20261003-072702-scrim-g_iter2-fill1791012417,2,us:g_iter2,winkelmantanner.waffle,Anchor,B,1639,The winning team captured all flags.,567602577
+20261003-072702-scrim-g_iter2-fill1791012417,3,us:g_iter2,winkelmantanner.waffle,Anchor,B,619,The winning team captured all flags.,1457264185
+20261003-072702-scrim-g_iter2-fill1791012417,4,us:g_iter2,winkelmantanner.waffle,Backslash,B,1651,The winning team captured all flags.,29214815
+20261003-072702-scrim-g_iter2-fill1791012417,5,winkelmantanner.waffle,us:g_iter2,Battlefield,A,500,The winning team captured all flags.,985621353
+20261003-072702-scrim-g_iter2-fill1791012417,6,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,1061,The winning team captured all flags.,1961856113
+20261003-072702-scrim-g_iter2-fill1791012417,7,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1078511978
+20261003-072702-scrim-g_iter2-fill1791012417,8,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,780498049
+20261003-072702-scrim-g_iter2-fill1791012417,9,winkelmantanner.waffle,us:g_iter2,Bunkers,A,347,The winning team captured all flags.,1527911131
+20261003-072702-scrim-g_iter2-fill1791012417,10,winkelmantanner.waffle,us:g_iter2,Checkered,A,484,The winning team captured all flags.,184119300
+20261003-072702-scrim-g_iter2-fill1791012417,11,winkelmantanner.waffle,us:g_iter2,Decision,B,1849,The winning team captured all flags.,412709684
+20261003-072702-scrim-g_iter2-fill1791012417,12,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1411,The winning team captured all flags.,1151180295
+20261003-072702-scrim-g_iter2-fill1791012417,13,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1552,The winning team captured all flags.,168725938
+20261003-072702-scrim-g_iter2-fill1791012417,14,winkelmantanner.waffle,us:g_iter2,Diagonal,A,2000,The winning team won on tiebreakers (cap,1354294831
+20261003-072702-scrim-g_iter2-fill1791012417,15,us:g_iter2,winkelmantanner.waffle,Divergent,A,2000,The winning team won on tiebreakers (hig,1135631347
+20261003-072702-scrim-g_iter2-fill1791012417,16,us:g_iter2,winkelmantanner.waffle,Duck,B,1770,The winning team captured all flags.,627192389
+20261003-072702-scrim-g_iter2-fill1791012417,17,us:g_iter2,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (hig,1887657080
+20261003-072702-scrim-g_iter2-fill1791012417,18,us:g_iter2,winkelmantanner.waffle,English,A,1151,The winning team captured all flags.,958754378
+20261003-072702-scrim-g_iter2-fill1791012417,19,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,2043809625
+20261003-072702-scrim-g_iter2-fill1791012417,20,us:g_iter2,winkelmantanner.waffle,Fountain,B,1540,The winning team captured all flags.,1910016694
+20261003-072702-scrim-g_iter2-fill1791012417,21,us:g_iter2,winkelmantanner.waffle,Fusbol,A,2000,The winning team won on tiebreakers (cap,1044763014
+20261003-072702-scrim-g_iter2-fill1791012417,22,winkelmantanner.waffle,us:g_iter2,GaltonBoard,B,1508,The winning team captured all flags.,1888158610
+20261003-072702-scrim-g_iter2-fill1791012417,23,winkelmantanner.waffle,us:g_iter2,Hockey,B,1283,The winning team captured all flags.,584964702
+20261003-072702-scrim-g_iter2-fill1791012417,24,winkelmantanner.waffle,us:g_iter2,HungerGames,A,453,The winning team captured all flags.,1717043014
+20261003-072702-scrim-g_iter2-fill1791012417,25,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,424,The winning team captured all flags.,1314162141
+20261003-072702-scrim-g_iter2-fill1791012417,26,us:g_iter2,winkelmantanner.waffle,ORV,B,620,The winning team captured all flags.,526228668
+20261003-072702-scrim-g_iter2-fill1791012417,27,us:g_iter2,winkelmantanner.waffle,Occulus,A,1721,The winning team captured all flags.,555309269
+20261003-072702-scrim-g_iter2-fill1791012417,28,winkelmantanner.waffle,us:g_iter2,Occulus,A,420,The winning team captured all flags.,958575622
+20261003-072702-scrim-g_iter2-fill1791012417,29,us:g_iter2,winkelmantanner.waffle,Pancakes,B,1116,The winning team captured all flags.,185512736
+20261003-072702-scrim-g_iter2-fill1791012417,30,winkelmantanner.waffle,us:g_iter2,Pancakes,B,650,The winning team captured all flags.,1467560206
+20261003-072702-scrim-g_iter2-fill1791012417,31,winkelmantanner.waffle,us:g_iter2,Puzzle,A,833,The winning team captured all flags.,824434062
+20261003-072702-scrim-g_iter2-fill1791012417,32,us:g_iter2,winkelmantanner.waffle,Racetrack,A,1669,The winning team captured all flags.,965203712
+20261003-072702-scrim-g_iter2-fill1791012417,33,us:g_iter2,winkelmantanner.waffle,Rainbow,A,1926,The winning team captured all flags.,609880372
+20261003-072702-scrim-g_iter2-fill1791012417,34,winkelmantanner.waffle,us:g_iter2,Skyline,B,1625,The winning team captured all flags.,1632636320
+20261003-072702-scrim-g_iter2-fill1791012417,35,winkelmantanner.waffle,us:g_iter2,Snake,B,1547,The winning team captured all flags.,685069363
+20261003-072702-scrim-g_iter2-fill1791012417,36,winkelmantanner.waffle,us:g_iter2,Soccer,B,1462,The winning team captured all flags.,1457067959
+20261003-072702-scrim-g_iter2-fill1791012417,37,us:g_iter2,winkelmantanner.waffle,Starfish,A,1613,The winning team captured all flags.,2087186043
+20261003-072702-scrim-g_iter2-fill1791012417,38,winkelmantanner.waffle,us:g_iter2,Waterworld,B,1564,The winning team captured all flags.,1794579665
+20261003-072702-scrim-g_iter2-fill1791012417,39,winkelmantanner.waffle,us:g_iter2,WheresMyWater,A,396,The winning team captured all flags.,1885157827
+20261003-072702-scrim-g_iter2-fill1791012417,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,879928657
+20261003-073102-scrim-g_iter2-fill1791012656,1,us:g_iter2,winkelmantanner.waffle,Ambush,B,383,The winning team captured all flags.,751228309
+20261003-073102-scrim-g_iter2-fill1791012656,2,winkelmantanner.waffle,us:g_iter2,Ambush,A,549,The winning team captured all flags.,1245725528
+20261003-073102-scrim-g_iter2-fill1791012656,3,us:g_iter2,winkelmantanner.waffle,Anchor,A,1494,The winning team captured all flags.,377860389
+20261003-073102-scrim-g_iter2-fill1791012656,4,us:g_iter2,winkelmantanner.waffle,Asteroids,B,794,The winning team captured all flags.,1578939494
+20261003-073102-scrim-g_iter2-fill1791012656,5,us:g_iter2,winkelmantanner.waffle,Backslash,B,1683,The winning team captured all flags.,1158645389
+20261003-073102-scrim-g_iter2-fill1791012656,6,winkelmantanner.waffle,us:g_iter2,BedWars,A,994,The winning team captured all flags.,1844013821
+20261003-073102-scrim-g_iter2-fill1791012656,7,winkelmantanner.waffle,us:g_iter2,BedWars,B,637,The winning team captured all flags.,1812970602
+20261003-073102-scrim-g_iter2-fill1791012656,8,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,755,The winning team captured all flags.,1275284641
+20261003-073102-scrim-g_iter2-fill1791012656,9,us:g_iter2,winkelmantanner.waffle,CH3353C4K3F4CT0RY,A,655,The winning team captured all flags.,1683187173
+20261003-073102-scrim-g_iter2-fill1791012656,10,us:g_iter2,winkelmantanner.waffle,CH3353C4K3F4CT0RY,A,902,The winning team captured all flags.,599721658
+20261003-073102-scrim-g_iter2-fill1791012656,11,winkelmantanner.waffle,us:g_iter2,Checkered,A,517,The winning team captured all flags.,118077231
+20261003-073102-scrim-g_iter2-fill1791012656,12,us:g_iter2,winkelmantanner.waffle,DefaultHuge,A,901,The winning team captured all flags.,1002560175
+20261003-073102-scrim-g_iter2-fill1791012656,13,winkelmantanner.waffle,us:g_iter2,DefaultHuge,A,616,The winning team captured all flags.,2041623939
+20261003-073102-scrim-g_iter2-fill1791012656,14,us:g_iter2,winkelmantanner.waffle,Digging,A,2000,The winning team won on tiebreakers (cap,274398647
+20261003-073102-scrim-g_iter2-fill1791012656,15,winkelmantanner.waffle,us:g_iter2,Digging,B,1517,The winning team captured all flags.,649883837
+20261003-073102-scrim-g_iter2-fill1791012656,16,winkelmantanner.waffle,us:g_iter2,Divergent,B,1894,The winning team captured all flags.,1046769013
+20261003-073102-scrim-g_iter2-fill1791012656,17,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,95981454
+20261003-073102-scrim-g_iter2-fill1791012656,18,winkelmantanner.waffle,us:g_iter2,Fountain,B,1923,The winning team captured all flags.,1571185507
+20261003-073102-scrim-g_iter2-fill1791012656,19,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,1516290496
+20261003-073102-scrim-g_iter2-fill1791012656,20,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,373,The winning team captured all flags.,619784971
+20261003-073102-scrim-g_iter2-fill1791012656,21,us:g_iter2,winkelmantanner.waffle,Gauntlet,B,1086,The winning team captured all flags.,305610322
+20261003-073102-scrim-g_iter2-fill1791012656,22,winkelmantanner.waffle,us:g_iter2,MIT,A,812,The winning team captured all flags.,422867453
+20261003-073102-scrim-g_iter2-fill1791012656,23,us:g_iter2,winkelmantanner.waffle,MazeRunner,A,2000,The winning team won on tiebreakers (hig,200702109
+20261003-073102-scrim-g_iter2-fill1791012656,24,winkelmantanner.waffle,us:g_iter2,Mountain,A,766,The winning team captured all flags.,1203666640
+20261003-073102-scrim-g_iter2-fill1791012656,25,winkelmantanner.waffle,us:g_iter2,ORV,A,487,The winning team captured all flags.,1791537363
+20261003-073102-scrim-g_iter2-fill1791012656,26,winkelmantanner.waffle,us:g_iter2,OceanFloor,B,1455,The winning team captured all flags.,1786306064
+20261003-073102-scrim-g_iter2-fill1791012656,27,us:g_iter2,winkelmantanner.waffle,Racetrack,A,1480,The winning team captured all flags.,16182164
+20261003-073102-scrim-g_iter2-fill1791012656,28,us:g_iter2,winkelmantanner.waffle,Rainbow,A,1837,The winning team captured all flags.,414867114
+20261003-073102-scrim-g_iter2-fill1791012656,29,winkelmantanner.waffle,us:g_iter2,Rainbow,B,2000,The winning team won on tiebreakers (cap,142490740
+20261003-073102-scrim-g_iter2-fill1791012656,30,us:g_iter2,winkelmantanner.waffle,Rivers,B,2000,The winning team won on tiebreakers (cap,5775411
+20261003-073102-scrim-g_iter2-fill1791012656,31,winkelmantanner.waffle,us:g_iter2,Rivers,B,1319,The winning team captured all flags.,734513352
+20261003-073102-scrim-g_iter2-fill1791012656,32,us:g_iter2,winkelmantanner.waffle,Skyline,B,440,The winning team captured all flags.,1361135240
+20261003-073102-scrim-g_iter2-fill1791012656,33,winkelmantanner.waffle,us:g_iter2,Snake,B,1609,The winning team captured all flags.,1740076783
+20261003-073102-scrim-g_iter2-fill1791012656,34,winkelmantanner.waffle,us:g_iter2,StackGame,A,354,The winning team captured all flags.,388309125
+20261003-073102-scrim-g_iter2-fill1791012656,35,us:g_iter2,winkelmantanner.waffle,Swoop,B,1184,The winning team captured all flags.,174308192
+20261003-073102-scrim-g_iter2-fill1791012656,36,us:g_iter2,winkelmantanner.waffle,Tunnels,B,462,The winning team captured all flags.,1549740116
+20261003-073102-scrim-g_iter2-fill1791012656,37,winkelmantanner.waffle,us:g_iter2,Tunnels,A,355,The winning team captured all flags.,1475365634
+20261003-073102-scrim-g_iter2-fill1791012656,38,winkelmantanner.waffle,us:g_iter2,Valentine,B,2000,The winning team won on tiebreakers (cap,1613352852
+20261003-073102-scrim-g_iter2-fill1791012656,39,us:g_iter2,winkelmantanner.waffle,Whirlpool,B,953,The winning team captured all flags.,1026475008
+20261003-073102-scrim-g_iter2-fill1791012656,40,winkelmantanner.waffle,us:g_iter2,Yinyang,A,602,The winning team captured all flags.,1630304401
+20261003-073450-scrim-g_iter2-fill1791012885,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,387,The winning team captured all flags.,187642967
+20261003-073450-scrim-g_iter2-fill1791012885,2,us:g_iter2,winkelmantanner.waffle,Battlecode24,B,2000,The winning team won on tiebreakers (cap,364468159
+20261003-073450-scrim-g_iter2-fill1791012885,3,winkelmantanner.waffle,us:g_iter2,Battlefield,A,258,The winning team captured all flags.,987019675
+20261003-073450-scrim-g_iter2-fill1791012885,4,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1160195102
+20261003-073450-scrim-g_iter2-fill1791012885,5,us:g_iter2,winkelmantanner.waffle,Capacitance,B,621,The winning team captured all flags.,1353048592
+20261003-073450-scrim-g_iter2-fill1791012885,6,us:g_iter2,winkelmantanner.waffle,Capacitance,B,903,The winning team captured all flags.,17582403
+20261003-073450-scrim-g_iter2-fill1791012885,7,winkelmantanner.waffle,us:g_iter2,Capacitance,B,1458,The winning team captured all flags.,135810936
+20261003-073450-scrim-g_iter2-fill1791012885,8,winkelmantanner.waffle,us:g_iter2,Checkered,A,496,The winning team captured all flags.,2034414948
+20261003-073450-scrim-g_iter2-fill1791012885,9,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,575,The winning team captured all flags.,142787023
+20261003-073450-scrim-g_iter2-fill1791012885,10,winkelmantanner.waffle,us:g_iter2,DefaultSmall,B,1924,The winning team captured all flags.,1102342148
+20261003-073450-scrim-g_iter2-fill1791012885,11,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,1644281904
+20261003-073450-scrim-g_iter2-fill1791012885,12,us:g_iter2,winkelmantanner.waffle,EvilGrin,A,1888,The winning team captured all flags.,1778616959
+20261003-073450-scrim-g_iter2-fill1791012885,13,us:g_iter2,winkelmantanner.waffle,Fountain,B,512,The winning team captured all flags.,1849826025
+20261003-073450-scrim-g_iter2-fill1791012885,14,winkelmantanner.waffle,us:g_iter2,Fusbol,B,2000,The winning team won on tiebreakers (cap,1875577002
+20261003-073450-scrim-g_iter2-fill1791012885,15,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,379,The winning team captured all flags.,984262767
+20261003-073450-scrim-g_iter2-fill1791012885,16,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,941,The winning team captured all flags.,118551149
+20261003-073450-scrim-g_iter2-fill1791012885,17,winkelmantanner.waffle,us:g_iter2,Hockey,B,1191,The winning team captured all flags.,725571167
+20261003-073450-scrim-g_iter2-fill1791012885,18,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,696,The winning team captured all flags.,836653225
+20261003-073450-scrim-g_iter2-fill1791012885,19,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,B,931,The winning team captured all flags.,537155936
+20261003-073450-scrim-g_iter2-fill1791012885,20,winkelmantanner.waffle,us:g_iter2,Klein,B,2000,The winning team won on tiebreakers (cap,1967766732
+20261003-073450-scrim-g_iter2-fill1791012885,21,winkelmantanner.waffle,us:g_iter2,OceanFloor,B,1115,The winning team captured all flags.,1165771306
+20261003-073450-scrim-g_iter2-fill1791012885,22,us:g_iter2,winkelmantanner.waffle,Puzzle,A,1441,The winning team captured all flags.,692886557
+20261003-073450-scrim-g_iter2-fill1791012885,23,us:g_iter2,winkelmantanner.waffle,Puzzle,B,594,The winning team captured all flags.,88469532
+20261003-073450-scrim-g_iter2-fill1791012885,24,us:g_iter2,winkelmantanner.waffle,QuestionableChess,B,1961,The winning team captured all flags.,1303720297
+20261003-073450-scrim-g_iter2-fill1791012885,25,winkelmantanner.waffle,us:g_iter2,QuestionableChess,A,561,The winning team captured all flags.,1309311146
+20261003-073450-scrim-g_iter2-fill1791012885,26,winkelmantanner.waffle,us:g_iter2,Racetrack,B,2000,The winning team won on tiebreakers (hig,1526910419
+20261003-073450-scrim-g_iter2-fill1791012885,27,winkelmantanner.waffle,us:g_iter2,Skyline,A,454,The winning team captured all flags.,1062493792
+20261003-073450-scrim-g_iter2-fill1791012885,28,us:g_iter2,winkelmantanner.waffle,Snake,A,1651,The winning team captured all flags.,602616159
+20261003-073450-scrim-g_iter2-fill1791012885,29,us:g_iter2,winkelmantanner.waffle,Snake,B,1088,The winning team captured all flags.,1100986733
+20261003-073450-scrim-g_iter2-fill1791012885,30,us:g_iter2,winkelmantanner.waffle,Soccer,B,510,The winning team captured all flags.,406011073
+20261003-073450-scrim-g_iter2-fill1791012885,31,us:g_iter2,winkelmantanner.waffle,Starfish,A,1762,The winning team captured all flags.,556881527
+20261003-073450-scrim-g_iter2-fill1791012885,32,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,607,The winning team captured all flags.,369295031
+20261003-073450-scrim-g_iter2-fill1791012885,33,winkelmantanner.waffle,us:g_iter2,Swoop,A,997,The winning team captured all flags.,280623160
+20261003-073450-scrim-g_iter2-fill1791012885,34,us:g_iter2,winkelmantanner.waffle,TreeSearch,B,770,The winning team captured all flags.,1011513626
+20261003-073450-scrim-g_iter2-fill1791012885,35,winkelmantanner.waffle,us:g_iter2,TreeSearch,A,558,The winning team captured all flags.,1974220266
+20261003-073450-scrim-g_iter2-fill1791012885,36,winkelmantanner.waffle,us:g_iter2,WheresMyWater,A,494,The winning team captured all flags.,1169841244
+20261003-073450-scrim-g_iter2-fill1791012885,37,winkelmantanner.waffle,us:g_iter2,Whirlpool,A,2000,The winning team won on tiebreakers (cap,1484842162
+20261003-073450-scrim-g_iter2-fill1791012885,38,winkelmantanner.waffle,us:g_iter2,Whirlpool,B,2000,The winning team won on tiebreakers (hig,411623876
+20261003-073450-scrim-g_iter2-fill1791012885,39,us:g_iter2,winkelmantanner.waffle,YearOfTheDragon,B,1744,The winning team captured all flags.,112842451
+20261003-073450-scrim-g_iter2-fill1791012885,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,545303339
+20261003-073842-scrim-g_iter2-fill1791013116,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,562,The winning team captured all flags.,2117628996
+20261003-073842-scrim-g_iter2-fill1791013116,2,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,425,The winning team captured all flags.,1799338002
+20261003-073842-scrim-g_iter2-fill1791013116,3,us:g_iter2,winkelmantanner.waffle,Alligator,B,688,The winning team captured all flags.,1296845707
+20261003-073842-scrim-g_iter2-fill1791013116,4,us:g_iter2,winkelmantanner.waffle,Asteroids,B,602,The winning team captured all flags.,786290157
+20261003-073842-scrim-g_iter2-fill1791013116,5,winkelmantanner.waffle,us:g_iter2,Battlefield,A,437,The winning team captured all flags.,599398400
+20261003-073842-scrim-g_iter2-fill1791013116,6,us:g_iter2,winkelmantanner.waffle,Capacitance,B,1813,The winning team captured all flags.,196097954
+20261003-073842-scrim-g_iter2-fill1791013116,7,us:g_iter2,winkelmantanner.waffle,Capacitance,B,632,The winning team captured all flags.,1058961447
+20261003-073842-scrim-g_iter2-fill1791013116,8,winkelmantanner.waffle,us:g_iter2,Decision,A,698,The winning team captured all flags.,2048573148
+20261003-073842-scrim-g_iter2-fill1791013116,9,us:g_iter2,winkelmantanner.waffle,DefaultLarge,A,2000,The winning team won on tiebreakers (hig,780341771
+20261003-073842-scrim-g_iter2-fill1791013116,10,winkelmantanner.waffle,us:g_iter2,Diagonal,A,2000,The winning team won on tiebreakers (cap,858265588
+20261003-073842-scrim-g_iter2-fill1791013116,11,winkelmantanner.waffle,us:g_iter2,Digging,B,1212,The winning team captured all flags.,297305312
+20261003-073842-scrim-g_iter2-fill1791013116,12,winkelmantanner.waffle,us:g_iter2,EvilGrin,A,658,The winning team captured all flags.,195896716
+20261003-073842-scrim-g_iter2-fill1791013116,13,winkelmantanner.waffle,us:g_iter2,Fountain,A,478,The winning team captured all flags.,1929190521
+20261003-073842-scrim-g_iter2-fill1791013116,14,winkelmantanner.waffle,us:g_iter2,Funnel,B,2000,The winning team won on tiebreakers (hig,26621330
+20261003-073842-scrim-g_iter2-fill1791013116,15,winkelmantanner.waffle,us:g_iter2,Gated,A,1520,The winning team captured all flags.,32580050
+20261003-073842-scrim-g_iter2-fill1791013116,16,winkelmantanner.waffle,us:g_iter2,Hockey,B,1290,The winning team captured all flags.,502092213
+20261003-073842-scrim-g_iter2-fill1791013116,17,us:g_iter2,winkelmantanner.waffle,Hurricane,A,2000,The winning team won on tiebreakers (hig,1009427356
+20261003-073842-scrim-g_iter2-fill1791013116,18,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,966,The winning team captured all flags.,19345115
+20261003-073842-scrim-g_iter2-fill1791013116,19,winkelmantanner.waffle,us:g_iter2,Joker,B,340,The winning team captured all flags.,486339244
+20261003-073842-scrim-g_iter2-fill1791013116,20,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,B,1394,The winning team captured all flags.,1839996495
+20261003-073842-scrim-g_iter2-fill1791013116,21,winkelmantanner.waffle,us:g_iter2,Klein,A,1874,The winning team captured all flags.,2063193526
+20261003-073842-scrim-g_iter2-fill1791013116,22,winkelmantanner.waffle,us:g_iter2,MIT,A,687,The winning team captured all flags.,1965196840
+20261003-073842-scrim-g_iter2-fill1791013116,23,us:g_iter2,winkelmantanner.waffle,Mountain,A,2000,The winning team won on tiebreakers (hig,437553954
+20261003-073842-scrim-g_iter2-fill1791013116,24,winkelmantanner.waffle,us:g_iter2,Mountain,A,734,The winning team captured all flags.,111325424
+20261003-073842-scrim-g_iter2-fill1791013116,25,us:g_iter2,winkelmantanner.waffle,ORV,B,512,The winning team captured all flags.,609328831
+20261003-073842-scrim-g_iter2-fill1791013116,26,us:g_iter2,winkelmantanner.waffle,ORV,B,540,The winning team captured all flags.,449172342
+20261003-073842-scrim-g_iter2-fill1791013116,27,us:g_iter2,winkelmantanner.waffle,Occulus,B,2000,The winning team won on tiebreakers (cap,617467645
+20261003-073842-scrim-g_iter2-fill1791013116,28,us:g_iter2,winkelmantanner.waffle,Occulus,B,2000,The winning team won on tiebreakers (cap,888199015
+20261003-073842-scrim-g_iter2-fill1791013116,29,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,420,The winning team captured all flags.,1708036270
+20261003-073842-scrim-g_iter2-fill1791013116,30,winkelmantanner.waffle,us:g_iter2,OceanFloor,A,589,The winning team captured all flags.,831868362
+20261003-073842-scrim-g_iter2-fill1791013116,31,us:g_iter2,winkelmantanner.waffle,Racetrack,A,995,The winning team captured all flags.,200839016
+20261003-073842-scrim-g_iter2-fill1791013116,32,winkelmantanner.waffle,us:g_iter2,Rivers,A,709,The winning team captured all flags.,313000159
+20261003-073842-scrim-g_iter2-fill1791013116,33,winkelmantanner.waffle,us:g_iter2,Snake,A,1284,The winning team captured all flags.,960659209
+20261003-073842-scrim-g_iter2-fill1791013116,34,winkelmantanner.waffle,us:g_iter2,Starfish,B,1633,The winning team captured all flags.,990836381
+20261003-073842-scrim-g_iter2-fill1791013116,35,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,1678,The winning team captured all flags.,236868189
+20261003-073842-scrim-g_iter2-fill1791013116,36,winkelmantanner.waffle,us:g_iter2,SteamboatMickey,A,1223,The winning team captured all flags.,371570971
+20261003-073842-scrim-g_iter2-fill1791013116,37,winkelmantanner.waffle,us:g_iter2,Valentine,B,2000,The winning team won on tiebreakers (hig,2018252479
+20261003-073842-scrim-g_iter2-fill1791013116,38,us:g_iter2,winkelmantanner.waffle,Waterworld,A,1507,The winning team captured all flags.,2000536643
+20261003-073842-scrim-g_iter2-fill1791013116,39,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,B,2000,The winning team won on tiebreakers (hig,851815747
+20261003-073842-scrim-g_iter2-fill1791013116,40,us:g_iter2,winkelmantanner.waffle,Yinyang,B,465,The winning team captured all flags.,1139580675
+20261003-074217-scrim-g_iter2-fill1791013332,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,889,The winning team captured all flags.,851858713
+20261003-074217-scrim-g_iter2-fill1791013332,2,winkelmantanner.waffle,us:g_iter2,Alien,A,534,The winning team captured all flags.,108610461
+20261003-074217-scrim-g_iter2-fill1791013332,3,winkelmantanner.waffle,us:g_iter2,Alien,A,627,The winning team captured all flags.,641899933
+20261003-074217-scrim-g_iter2-fill1791013332,4,winkelmantanner.waffle,us:g_iter2,Alligator,A,522,The winning team captured all flags.,1435936535
+20261003-074217-scrim-g_iter2-fill1791013332,5,us:g_iter2,winkelmantanner.waffle,Ambush,A,1050,The winning team captured all flags.,233886664
+20261003-074217-scrim-g_iter2-fill1791013332,6,winkelmantanner.waffle,us:g_iter2,Ambush,A,362,The winning team captured all flags.,1074013176
+20261003-074217-scrim-g_iter2-fill1791013332,7,us:g_iter2,winkelmantanner.waffle,Asteroids,B,882,The winning team captured all flags.,563883469
+20261003-074217-scrim-g_iter2-fill1791013332,8,us:g_iter2,winkelmantanner.waffle,Backslash,A,1811,The winning team captured all flags.,1058243145
+20261003-074217-scrim-g_iter2-fill1791013332,9,winkelmantanner.waffle,us:g_iter2,Backslash,B,1300,The winning team captured all flags.,7604468
+20261003-074217-scrim-g_iter2-fill1791013332,10,winkelmantanner.waffle,us:g_iter2,Battlefield,A,258,The winning team captured all flags.,1914626178
+20261003-074217-scrim-g_iter2-fill1791013332,11,winkelmantanner.waffle,us:g_iter2,BedWars,A,784,The winning team captured all flags.,2083748202
+20261003-074217-scrim-g_iter2-fill1791013332,12,us:g_iter2,winkelmantanner.waffle,Checkered,B,532,The winning team captured all flags.,1798996325
+20261003-074217-scrim-g_iter2-fill1791013332,13,us:g_iter2,winkelmantanner.waffle,DefaultHuge,B,687,The winning team captured all flags.,1739264295
+20261003-074217-scrim-g_iter2-fill1791013332,14,winkelmantanner.waffle,us:g_iter2,DefaultHuge,B,1152,The winning team captured all flags.,2144509028
+20261003-074217-scrim-g_iter2-fill1791013332,15,us:g_iter2,winkelmantanner.waffle,DefaultLarge,A,1819,The winning team captured all flags.,495421883
+20261003-074217-scrim-g_iter2-fill1791013332,16,us:g_iter2,winkelmantanner.waffle,Divergent,A,2000,The winning team won on tiebreakers (cap,666377084
+20261003-074217-scrim-g_iter2-fill1791013332,17,winkelmantanner.waffle,us:g_iter2,EvilGrin,B,1467,The winning team captured all flags.,707882646
+20261003-074217-scrim-g_iter2-fill1791013332,18,winkelmantanner.waffle,us:g_iter2,Fusbol,B,1858,The winning team captured all flags.,2098832976
+20261003-074217-scrim-g_iter2-fill1791013332,19,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,1935,The winning team captured all flags.,405963175
+20261003-074217-scrim-g_iter2-fill1791013332,20,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,2092961987
+20261003-074217-scrim-g_iter2-fill1791013332,21,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,341,The winning team captured all flags.,1662928815
+20261003-074217-scrim-g_iter2-fill1791013332,22,winkelmantanner.waffle,us:g_iter2,GaltonBoard,B,1427,The winning team captured all flags.,814756785
+20261003-074217-scrim-g_iter2-fill1791013332,23,winkelmantanner.waffle,us:g_iter2,Gated,B,2000,The winning team won on tiebreakers (hig,149977262
+20261003-074217-scrim-g_iter2-fill1791013332,24,winkelmantanner.waffle,us:g_iter2,Gated,B,2000,The winning team won on tiebreakers (hig,2112908182
+20261003-074217-scrim-g_iter2-fill1791013332,25,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,532,The winning team captured all flags.,1328726037
+20261003-074217-scrim-g_iter2-fill1791013332,26,us:g_iter2,winkelmantanner.waffle,HungerGames,B,510,The winning team captured all flags.,830474064
+20261003-074217-scrim-g_iter2-fill1791013332,27,winkelmantanner.waffle,us:g_iter2,Islands,B,933,The winning team captured all flags.,190058075
+20261003-074217-scrim-g_iter2-fill1791013332,28,us:g_iter2,winkelmantanner.waffle,MIT,A,1048,The winning team captured all flags.,1486456846
+20261003-074217-scrim-g_iter2-fill1791013332,29,winkelmantanner.waffle,us:g_iter2,Mountain,B,1580,The winning team captured all flags.,1130230301
+20261003-074217-scrim-g_iter2-fill1791013332,30,winkelmantanner.waffle,us:g_iter2,ORV,A,584,The winning team captured all flags.,1064029804
+20261003-074217-scrim-g_iter2-fill1791013332,31,winkelmantanner.waffle,us:g_iter2,Occulus,A,417,The winning team captured all flags.,2000787415
+20261003-074217-scrim-g_iter2-fill1791013332,32,us:g_iter2,winkelmantanner.waffle,Puzzle,B,453,The winning team captured all flags.,1871658923
+20261003-074217-scrim-g_iter2-fill1791013332,33,winkelmantanner.waffle,us:g_iter2,QueenOfHearts,B,938,The winning team captured all flags.,1586840813
+20261003-074217-scrim-g_iter2-fill1791013332,34,us:g_iter2,winkelmantanner.waffle,Rainbow,B,2000,The winning team won on tiebreakers (cap,473091020
+20261003-074217-scrim-g_iter2-fill1791013332,35,winkelmantanner.waffle,us:g_iter2,Rivers,A,1118,The winning team captured all flags.,897822908
+20261003-074217-scrim-g_iter2-fill1791013332,36,winkelmantanner.waffle,us:g_iter2,Snake,B,1514,The winning team captured all flags.,1450583864
+20261003-074217-scrim-g_iter2-fill1791013332,37,winkelmantanner.waffle,us:g_iter2,Snake,B,715,The winning team captured all flags.,354317398
+20261003-074217-scrim-g_iter2-fill1791013332,38,us:g_iter2,winkelmantanner.waffle,StackGame,B,407,The winning team captured all flags.,1464189753
+20261003-074217-scrim-g_iter2-fill1791013332,39,winkelmantanner.waffle,us:g_iter2,Swoop,B,1346,The winning team captured all flags.,703197129
+20261003-074217-scrim-g_iter2-fill1791013332,40,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,1486,The winning team captured all flags.,1867393656
+20261003-074741-scrim-g_iter2-fill1791013656,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,529,The winning team captured all flags.,2084322270
+20261003-074741-scrim-g_iter2-fill1791013656,2,winkelmantanner.waffle,us:g_iter2,Alien,A,445,The winning team captured all flags.,1798424044
+20261003-074741-scrim-g_iter2-fill1791013656,3,us:g_iter2,winkelmantanner.waffle,Alligator,A,1614,The winning team captured all flags.,1557448585
+20261003-074741-scrim-g_iter2-fill1791013656,4,us:g_iter2,winkelmantanner.waffle,Alligator,B,476,The winning team captured all flags.,260137581
+20261003-074741-scrim-g_iter2-fill1791013656,5,us:g_iter2,winkelmantanner.waffle,Ambush,B,391,The winning team captured all flags.,618915995
+20261003-074741-scrim-g_iter2-fill1791013656,6,winkelmantanner.waffle,us:g_iter2,Battlecode24,A,588,The winning team captured all flags.,1330672517
+20261003-074741-scrim-g_iter2-fill1791013656,7,us:g_iter2,winkelmantanner.waffle,Battlefield,B,437,The winning team captured all flags.,111752441
+20261003-074741-scrim-g_iter2-fill1791013656,8,winkelmantanner.waffle,us:g_iter2,BedWars,A,909,The winning team captured all flags.,1843744403
+20261003-074741-scrim-g_iter2-fill1791013656,9,winkelmantanner.waffle,us:g_iter2,Bunkers,A,394,The winning team captured all flags.,368039358
+20261003-074741-scrim-g_iter2-fill1791013656,10,us:g_iter2,winkelmantanner.waffle,Canals,A,1001,The winning team captured all flags.,2102270387
+20261003-074741-scrim-g_iter2-fill1791013656,11,us:g_iter2,winkelmantanner.waffle,DefaultLarge,A,1084,The winning team captured all flags.,175375525
+20261003-074741-scrim-g_iter2-fill1791013656,12,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,651,The winning team captured all flags.,1656874067
+20261003-074741-scrim-g_iter2-fill1791013656,13,winkelmantanner.waffle,us:g_iter2,Diagonal,B,2000,The winning team won on tiebreakers (hig,2105882708
+20261003-074741-scrim-g_iter2-fill1791013656,14,winkelmantanner.waffle,us:g_iter2,Duck,A,1465,The winning team captured all flags.,528175063
+20261003-074741-scrim-g_iter2-fill1791013656,15,winkelmantanner.waffle,us:g_iter2,English,B,1055,The winning team captured all flags.,690491830
+20261003-074741-scrim-g_iter2-fill1791013656,16,winkelmantanner.waffle,us:g_iter2,Gated,B,1745,The winning team captured all flags.,1727002752
+20261003-074741-scrim-g_iter2-fill1791013656,17,winkelmantanner.waffle,us:g_iter2,HungerGames,B,574,The winning team captured all flags.,1657719998
+20261003-074741-scrim-g_iter2-fill1791013656,18,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,561,The winning team captured all flags.,625453150
+20261003-074741-scrim-g_iter2-fill1791013656,19,us:g_iter2,winkelmantanner.waffle,Islands,B,401,The winning team captured all flags.,2049853925
+20261003-074741-scrim-g_iter2-fill1791013656,20,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,A,448,The winning team captured all flags.,761147478
+20261003-074741-scrim-g_iter2-fill1791013656,21,winkelmantanner.waffle,us:g_iter2,Klein,B,2000,The winning team won on tiebreakers (cap,510856824
+20261003-074741-scrim-g_iter2-fill1791013656,22,winkelmantanner.waffle,us:g_iter2,MIT,A,1304,The winning team captured all flags.,1112139442
+20261003-074741-scrim-g_iter2-fill1791013656,23,winkelmantanner.waffle,us:g_iter2,Mountain,B,2000,The winning team won on tiebreakers (hig,1178807578
+20261003-074741-scrim-g_iter2-fill1791013656,24,us:g_iter2,winkelmantanner.waffle,ORV,B,567,The winning team captured all flags.,1539244477
+20261003-074741-scrim-g_iter2-fill1791013656,25,winkelmantanner.waffle,us:g_iter2,Occulus,B,1541,The winning team captured all flags.,1537225641
+20261003-074741-scrim-g_iter2-fill1791013656,26,us:g_iter2,winkelmantanner.waffle,OceanFloor,B,1018,The winning team captured all flags.,887746898
+20261003-074741-scrim-g_iter2-fill1791013656,27,winkelmantanner.waffle,us:g_iter2,QueenOfHearts,B,1677,The winning team captured all flags.,169295350
+20261003-074741-scrim-g_iter2-fill1791013656,28,winkelmantanner.waffle,us:g_iter2,Racetrack,A,552,The winning team captured all flags.,1059266127
+20261003-074741-scrim-g_iter2-fill1791013656,29,winkelmantanner.waffle,us:g_iter2,Racetrack,B,1923,The winning team captured all flags.,249319689
+20261003-074741-scrim-g_iter2-fill1791013656,30,winkelmantanner.waffle,us:g_iter2,Rainbow,B,2000,The winning team won on tiebreakers (hig,627465097
+20261003-074741-scrim-g_iter2-fill1791013656,31,us:g_iter2,winkelmantanner.waffle,StackGame,B,345,The winning team captured all flags.,1548771766
+20261003-074741-scrim-g_iter2-fill1791013656,32,us:g_iter2,winkelmantanner.waffle,StackGame,B,726,The winning team captured all flags.,1439753458
+20261003-074741-scrim-g_iter2-fill1791013656,33,winkelmantanner.waffle,us:g_iter2,StarryNight,B,1596,The winning team captured all flags.,234317369
+20261003-074741-scrim-g_iter2-fill1791013656,34,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,A,1132,The winning team captured all flags.,609239527
+20261003-074741-scrim-g_iter2-fill1791013656,35,winkelmantanner.waffle,us:g_iter2,SteamboatMickey,A,625,The winning team captured all flags.,1635654097
+20261003-074741-scrim-g_iter2-fill1791013656,36,winkelmantanner.waffle,us:g_iter2,SteamboatMickey,B,1323,The winning team captured all flags.,1951683490
+20261003-074741-scrim-g_iter2-fill1791013656,37,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,1344,The winning team captured all flags.,505580327
+20261003-074741-scrim-g_iter2-fill1791013656,38,winkelmantanner.waffle,us:g_iter2,Valentine,B,1906,The winning team captured all flags.,2067840171
+20261003-074741-scrim-g_iter2-fill1791013656,39,us:g_iter2,winkelmantanner.waffle,Whirlpool,A,2000,The winning team won on tiebreakers (hig,712697722
+20261003-074741-scrim-g_iter2-fill1791013656,40,us:g_iter2,winkelmantanner.waffle,YearOfTheDragon,B,849,The winning team captured all flags.,1150690970
+20261003-075357-scrim-g_iter2-fill1791014031,1,us:g_iter2,winkelmantanner.waffle,Anchor,A,1411,The winning team captured all flags.,1709604700
+20261003-075357-scrim-g_iter2-fill1791014031,2,us:g_iter2,winkelmantanner.waffle,Anchor,B,850,The winning team captured all flags.,1172861304
+20261003-075357-scrim-g_iter2-fill1791014031,3,winkelmantanner.waffle,us:g_iter2,Asteroids,A,710,The winning team captured all flags.,1191413234
+20261003-075357-scrim-g_iter2-fill1791014031,4,winkelmantanner.waffle,us:g_iter2,Battlecode24,B,1838,The winning team captured all flags.,1377371356
+20261003-075357-scrim-g_iter2-fill1791014031,5,us:g_iter2,winkelmantanner.waffle,Bunkers,B,1464,The winning team captured all flags.,1343219356
+20261003-075357-scrim-g_iter2-fill1791014031,6,winkelmantanner.waffle,us:g_iter2,Bunkers,A,1438,The winning team captured all flags.,2039268138
+20261003-075357-scrim-g_iter2-fill1791014031,7,us:g_iter2,winkelmantanner.waffle,Decision,B,962,The winning team captured all flags.,379150062
+20261003-075357-scrim-g_iter2-fill1791014031,8,us:g_iter2,winkelmantanner.waffle,DefaultHuge,A,1010,The winning team captured all flags.,193500844
+20261003-075357-scrim-g_iter2-fill1791014031,9,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,1779,The winning team captured all flags.,1512887624
+20261003-075357-scrim-g_iter2-fill1791014031,10,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,1880,The winning team captured all flags.,2084310983
+20261003-075357-scrim-g_iter2-fill1791014031,11,us:g_iter2,winkelmantanner.waffle,DefaultSmall,B,2000,The winning team won on tiebreakers (cap,302537553
+20261003-075357-scrim-g_iter2-fill1791014031,12,winkelmantanner.waffle,us:g_iter2,DefaultSmall,A,2000,The winning team won on tiebreakers (cap,435077371
+20261003-075357-scrim-g_iter2-fill1791014031,13,winkelmantanner.waffle,us:g_iter2,Diagonal,B,2000,The winning team won on tiebreakers (cap,950615310
+20261003-075357-scrim-g_iter2-fill1791014031,14,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,1606432651
+20261003-075357-scrim-g_iter2-fill1791014031,15,winkelmantanner.waffle,us:g_iter2,FloodGates,B,2000,The winning team won on tiebreakers (hig,248001568
+20261003-075357-scrim-g_iter2-fill1791014031,16,winkelmantanner.waffle,us:g_iter2,Foxes,A,2000,The winning team won on tiebreakers (cap,294855279
+20261003-075357-scrim-g_iter2-fill1791014031,17,winkelmantanner.waffle,us:g_iter2,Funnel,A,1369,The winning team captured all flags.,1340763661
+20261003-075357-scrim-g_iter2-fill1791014031,18,winkelmantanner.waffle,us:g_iter2,Funnel,B,1827,The winning team captured all flags.,1403973950
+20261003-075357-scrim-g_iter2-fill1791014031,19,us:g_iter2,winkelmantanner.waffle,Gauntlet,B,569,The winning team captured all flags.,1567497214
+20261003-075357-scrim-g_iter2-fill1791014031,20,winkelmantanner.waffle,us:g_iter2,Hockey,B,1325,The winning team captured all flags.,217703760
+20261003-075357-scrim-g_iter2-fill1791014031,21,winkelmantanner.waffle,us:g_iter2,HungerGames,A,417,The winning team captured all flags.,176362596
+20261003-075357-scrim-g_iter2-fill1791014031,22,us:g_iter2,winkelmantanner.waffle,Joker,A,1793,The winning team captured all flags.,2018404048
+20261003-075357-scrim-g_iter2-fill1791014031,23,winkelmantanner.waffle,us:g_iter2,Joker,A,639,The winning team captured all flags.,1368477591
+20261003-075357-scrim-g_iter2-fill1791014031,24,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,1055671249
+20261003-075357-scrim-g_iter2-fill1791014031,25,winkelmantanner.waffle,us:g_iter2,MIT,A,928,The winning team captured all flags.,114628138
+20261003-075357-scrim-g_iter2-fill1791014031,26,winkelmantanner.waffle,us:g_iter2,MazeRunner,A,602,The winning team captured all flags.,1161822159
+20261003-075357-scrim-g_iter2-fill1791014031,27,winkelmantanner.waffle,us:g_iter2,Mountain,A,2000,The winning team won on tiebreakers (cap,467053794
+20261003-075357-scrim-g_iter2-fill1791014031,28,us:g_iter2,winkelmantanner.waffle,ORV,B,489,The winning team captured all flags.,2108710200
+20261003-075357-scrim-g_iter2-fill1791014031,29,us:g_iter2,winkelmantanner.waffle,Occulus,A,2000,The winning team won on tiebreakers (cap,200082539
+20261003-075357-scrim-g_iter2-fill1791014031,30,us:g_iter2,winkelmantanner.waffle,Rainbow,A,2000,The winning team won on tiebreakers (cap,647020133
+20261003-075357-scrim-g_iter2-fill1791014031,31,winkelmantanner.waffle,us:g_iter2,Rivers,A,449,The winning team captured all flags.,201997585
+20261003-075357-scrim-g_iter2-fill1791014031,32,winkelmantanner.waffle,us:g_iter2,Rivers,A,734,The winning team captured all flags.,417299702
+20261003-075357-scrim-g_iter2-fill1791014031,33,winkelmantanner.waffle,us:g_iter2,Rivers,B,1043,The winning team captured all flags.,1385056973
+20261003-075357-scrim-g_iter2-fill1791014031,34,us:g_iter2,winkelmantanner.waffle,Soccer,B,854,The winning team captured all flags.,617941334
+20261003-075357-scrim-g_iter2-fill1791014031,35,us:g_iter2,winkelmantanner.waffle,Starfish,A,1860,The winning team captured all flags.,1616879802
+20261003-075357-scrim-g_iter2-fill1791014031,36,us:g_iter2,winkelmantanner.waffle,StarryNight,B,553,The winning team captured all flags.,498054977
+20261003-075357-scrim-g_iter2-fill1791014031,37,winkelmantanner.waffle,us:g_iter2,Swoop,B,1041,The winning team captured all flags.,167191903
+20261003-075357-scrim-g_iter2-fill1791014031,38,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,510248427
+20261003-075357-scrim-g_iter2-fill1791014031,39,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,860592751
+20261003-075357-scrim-g_iter2-fill1791014031,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,B,2000,The winning team won on tiebreakers (hig,1562578586
+20261003-075809-scrim-g_iter2-fill1791014283,1,us:g_iter2,winkelmantanner.waffle,Ambush,B,390,The winning team captured all flags.,1443082909
+20261003-075809-scrim-g_iter2-fill1791014283,2,winkelmantanner.waffle,us:g_iter2,Ambush,A,418,The winning team captured all flags.,1300420128
+20261003-075809-scrim-g_iter2-fill1791014283,3,us:g_iter2,winkelmantanner.waffle,Backslash,A,1600,The winning team captured all flags.,62375238
+20261003-075809-scrim-g_iter2-fill1791014283,4,winkelmantanner.waffle,us:g_iter2,Backslash,A,899,The winning team captured all flags.,1044693774
+20261003-075809-scrim-g_iter2-fill1791014283,5,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,A,1866,The winning team captured all flags.,1644367566
+20261003-075809-scrim-g_iter2-fill1791014283,6,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,B,1863,The winning team captured all flags.,1098731510
+20261003-075809-scrim-g_iter2-fill1791014283,7,winkelmantanner.waffle,us:g_iter2,CH3353C4K3F4CT0RY,A,675,The winning team captured all flags.,1989973474
+20261003-075809-scrim-g_iter2-fill1791014283,8,us:g_iter2,winkelmantanner.waffle,DefaultHuge,A,1310,The winning team captured all flags.,1433112654
+20261003-075809-scrim-g_iter2-fill1791014283,9,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,1200,The winning team captured all flags.,1221161958
+20261003-075809-scrim-g_iter2-fill1791014283,10,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,2000,The winning team won on tiebreakers (cap,1204607293
+20261003-075809-scrim-g_iter2-fill1791014283,11,us:g_iter2,winkelmantanner.waffle,DefaultSmall,A,2000,The winning team won on tiebreakers (hig,1059536953
+20261003-075809-scrim-g_iter2-fill1791014283,12,us:g_iter2,winkelmantanner.waffle,DefaultSmall,B,2000,The winning team won on tiebreakers (cap,1444980542
+20261003-075809-scrim-g_iter2-fill1791014283,13,us:g_iter2,winkelmantanner.waffle,DefaultSmall,B,2000,The winning team won on tiebreakers (cap,281656716
+20261003-075809-scrim-g_iter2-fill1791014283,14,us:g_iter2,winkelmantanner.waffle,Diagonal,B,2000,The winning team won on tiebreakers (cap,823701315
+20261003-075809-scrim-g_iter2-fill1791014283,15,us:g_iter2,winkelmantanner.waffle,Divergent,A,2000,The winning team won on tiebreakers (hig,473748915
+20261003-075809-scrim-g_iter2-fill1791014283,16,winkelmantanner.waffle,us:g_iter2,Duck,B,938,The winning team captured all flags.,2021397394
+20261003-075809-scrim-g_iter2-fill1791014283,17,winkelmantanner.waffle,us:g_iter2,EndAround,B,2000,The winning team won on tiebreakers (hig,949479435
+20261003-075809-scrim-g_iter2-fill1791014283,18,us:g_iter2,winkelmantanner.waffle,Fountain,B,397,The winning team captured all flags.,250437396
+20261003-075809-scrim-g_iter2-fill1791014283,19,us:g_iter2,winkelmantanner.waffle,Foxes,A,2000,The winning team won on tiebreakers (hig,912343302
+20261003-075809-scrim-g_iter2-fill1791014283,20,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,337,The winning team captured all flags.,416932081
+20261003-075809-scrim-g_iter2-fill1791014283,21,us:g_iter2,winkelmantanner.waffle,Gauntlet,A,1263,The winning team captured all flags.,514178871
+20261003-075809-scrim-g_iter2-fill1791014283,22,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,555,The winning team captured all flags.,217359658
+20261003-075809-scrim-g_iter2-fill1791014283,23,us:g_iter2,winkelmantanner.waffle,Hurricane,B,523,The winning team captured all flags.,571888245
+20261003-075809-scrim-g_iter2-fill1791014283,24,winkelmantanner.waffle,us:g_iter2,Hurricane,A,1091,The winning team captured all flags.,266708773
+20261003-075809-scrim-g_iter2-fill1791014283,25,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,747,The winning team captured all flags.,1731488734
+20261003-075809-scrim-g_iter2-fill1791014283,26,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,A,363,The winning team captured all flags.,1421338911
+20261003-075809-scrim-g_iter2-fill1791014283,27,us:g_iter2,winkelmantanner.waffle,Occulus,A,2000,The winning team won on tiebreakers (hig,87091340
+20261003-075809-scrim-g_iter2-fill1791014283,28,winkelmantanner.waffle,us:g_iter2,Puzzle,A,629,The winning team captured all flags.,234597869
+20261003-075809-scrim-g_iter2-fill1791014283,29,us:g_iter2,winkelmantanner.waffle,Racetrack,B,559,The winning team captured all flags.,1375315882
+20261003-075809-scrim-g_iter2-fill1791014283,30,winkelmantanner.waffle,us:g_iter2,Rainbow,B,1815,The winning team captured all flags.,389466512
+20261003-075809-scrim-g_iter2-fill1791014283,31,us:g_iter2,winkelmantanner.waffle,Randy,B,427,The winning team captured all flags.,1866588637
+20261003-075809-scrim-g_iter2-fill1791014283,32,us:g_iter2,winkelmantanner.waffle,Randy,B,467,The winning team captured all flags.,325565243
+20261003-075809-scrim-g_iter2-fill1791014283,33,winkelmantanner.waffle,us:g_iter2,Rivers,B,1378,The winning team captured all flags.,1149626126
+20261003-075809-scrim-g_iter2-fill1791014283,34,us:g_iter2,winkelmantanner.waffle,Soccer,B,801,The winning team captured all flags.,1998320848
+20261003-075809-scrim-g_iter2-fill1791014283,35,winkelmantanner.waffle,us:g_iter2,Soccer,A,926,The winning team captured all flags.,1278701494
+20261003-075809-scrim-g_iter2-fill1791014283,36,winkelmantanner.waffle,us:g_iter2,StackGame,A,327,The winning team captured all flags.,93904124
+20261003-075809-scrim-g_iter2-fill1791014283,37,winkelmantanner.waffle,us:g_iter2,Swoop,A,1499,The winning team captured all flags.,1544273551
+20261003-075809-scrim-g_iter2-fill1791014283,38,winkelmantanner.waffle,us:g_iter2,TreeSearch,A,1130,The winning team captured all flags.,584800368
+20261003-075809-scrim-g_iter2-fill1791014283,39,us:g_iter2,winkelmantanner.waffle,Valentine,B,749,The winning team captured all flags.,108670941
+20261003-075809-scrim-g_iter2-fill1791014283,40,winkelmantanner.waffle,us:g_iter2,WheresMyWater,A,721,The winning team captured all flags.,1981590473
+20261003-080733-scrim-g_iter2-fill1791014848,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,334,The winning team captured all flags.,1845405980
+20261003-080733-scrim-g_iter2-fill1791014848,2,winkelmantanner.waffle,us:g_iter2,Alien,A,409,The winning team captured all flags.,2008646139
+20261003-080733-scrim-g_iter2-fill1791014848,3,us:g_iter2,winkelmantanner.waffle,Alligator,B,389,The winning team captured all flags.,1353618914
+20261003-080733-scrim-g_iter2-fill1791014848,4,winkelmantanner.waffle,us:g_iter2,Ambush,B,447,The winning team captured all flags.,431108512
+20261003-080733-scrim-g_iter2-fill1791014848,5,winkelmantanner.waffle,us:g_iter2,Asteroids,A,1849,The winning team captured all flags.,621658186
+20261003-080733-scrim-g_iter2-fill1791014848,6,us:g_iter2,winkelmantanner.waffle,Battlefield,B,316,The winning team captured all flags.,436991955
+20261003-080733-scrim-g_iter2-fill1791014848,7,us:g_iter2,winkelmantanner.waffle,Canals,A,1119,The winning team captured all flags.,39756566
+20261003-080733-scrim-g_iter2-fill1791014848,8,us:g_iter2,winkelmantanner.waffle,Checkered,A,763,The winning team captured all flags.,666596168
+20261003-080733-scrim-g_iter2-fill1791014848,9,us:g_iter2,winkelmantanner.waffle,Decision,A,846,The winning team captured all flags.,1278667758
+20261003-080733-scrim-g_iter2-fill1791014848,10,us:g_iter2,winkelmantanner.waffle,Decision,B,1559,The winning team captured all flags.,8253773
+20261003-080733-scrim-g_iter2-fill1791014848,11,winkelmantanner.waffle,us:g_iter2,Decision,B,970,The winning team captured all flags.,1564767936
+20261003-080733-scrim-g_iter2-fill1791014848,12,winkelmantanner.waffle,us:g_iter2,DefaultHuge,A,547,The winning team captured all flags.,1668411785
+20261003-080733-scrim-g_iter2-fill1791014848,13,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1867,The winning team captured all flags.,2113421177
+20261003-080733-scrim-g_iter2-fill1791014848,14,us:g_iter2,winkelmantanner.waffle,English,B,1533,The winning team captured all flags.,265314456
+20261003-080733-scrim-g_iter2-fill1791014848,15,us:g_iter2,winkelmantanner.waffle,Fountain,B,983,The winning team captured all flags.,1697641612
+20261003-080733-scrim-g_iter2-fill1791014848,16,us:g_iter2,winkelmantanner.waffle,Funnel,B,1969,The winning team captured all flags.,1254716361
+20261003-080733-scrim-g_iter2-fill1791014848,17,winkelmantanner.waffle,us:g_iter2,Fusbol,B,2000,The winning team won on tiebreakers (cap,1945693759
+20261003-080733-scrim-g_iter2-fill1791014848,18,us:g_iter2,winkelmantanner.waffle,Gauntlet,A,1640,The winning team captured all flags.,930314482
+20261003-080733-scrim-g_iter2-fill1791014848,19,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,509428829
+20261003-080733-scrim-g_iter2-fill1791014848,20,winkelmantanner.waffle,us:g_iter2,Hockey,B,1369,The winning team captured all flags.,210980667
+20261003-080733-scrim-g_iter2-fill1791014848,21,winkelmantanner.waffle,us:g_iter2,HungerGames,A,489,The winning team captured all flags.,1529764500
+20261003-080733-scrim-g_iter2-fill1791014848,22,us:g_iter2,winkelmantanner.waffle,Intercontinental,B,632,The winning team captured all flags.,835359858
+20261003-080733-scrim-g_iter2-fill1791014848,23,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,530,The winning team captured all flags.,1233965242
+20261003-080733-scrim-g_iter2-fill1791014848,24,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,A,338,The winning team captured all flags.,1178933783
+20261003-080733-scrim-g_iter2-fill1791014848,25,us:g_iter2,winkelmantanner.waffle,Klein,B,1822,The winning team captured all flags.,1079970349
+20261003-080733-scrim-g_iter2-fill1791014848,26,us:g_iter2,winkelmantanner.waffle,MazeRunner,A,1944,The winning team captured all flags.,1187436834
+20261003-080733-scrim-g_iter2-fill1791014848,27,us:g_iter2,winkelmantanner.waffle,Mountain,A,2000,The winning team won on tiebreakers (hig,1972548932
+20261003-080733-scrim-g_iter2-fill1791014848,28,winkelmantanner.waffle,us:g_iter2,Mountain,A,2000,The winning team won on tiebreakers (cap,1181441471
+20261003-080733-scrim-g_iter2-fill1791014848,29,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1485,The winning team captured all flags.,1850831259
+20261003-080733-scrim-g_iter2-fill1791014848,30,winkelmantanner.waffle,us:g_iter2,Pancakes,A,447,The winning team captured all flags.,1410110374
+20261003-080733-scrim-g_iter2-fill1791014848,31,winkelmantanner.waffle,us:g_iter2,Rainbow,B,2000,The winning team won on tiebreakers (hig,1386555728
+20261003-080733-scrim-g_iter2-fill1791014848,32,winkelmantanner.waffle,us:g_iter2,Randy,A,453,The winning team captured all flags.,1893189373
+20261003-080733-scrim-g_iter2-fill1791014848,33,us:g_iter2,winkelmantanner.waffle,Rivers,B,2000,The winning team won on tiebreakers (cap,1536994587
+20261003-080733-scrim-g_iter2-fill1791014848,34,winkelmantanner.waffle,us:g_iter2,Rivers,A,537,The winning team captured all flags.,808070305
+20261003-080733-scrim-g_iter2-fill1791014848,35,us:g_iter2,winkelmantanner.waffle,Snake,B,1255,The winning team captured all flags.,1435375902
+20261003-080733-scrim-g_iter2-fill1791014848,36,winkelmantanner.waffle,us:g_iter2,Snake,B,1526,The winning team captured all flags.,689354520
+20261003-080733-scrim-g_iter2-fill1791014848,37,winkelmantanner.waffle,us:g_iter2,StarryNight,B,1546,The winning team captured all flags.,303998799
+20261003-080733-scrim-g_iter2-fill1791014848,38,winkelmantanner.waffle,us:g_iter2,Swoop,A,1186,The winning team captured all flags.,1739393495
+20261003-080733-scrim-g_iter2-fill1791014848,39,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1809,The winning team captured all flags.,114886645
+20261003-080733-scrim-g_iter2-fill1791014848,40,winkelmantanner.waffle,us:g_iter2,Waterworld,B,2000,The winning team won on tiebreakers (cap,1519926029
+20261003-081120-scrim-g_iter2-fill1791015074,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,A,665,The winning team captured all flags.,1480673285
+20261003-081120-scrim-g_iter2-fill1791015074,2,us:g_iter2,winkelmantanner.waffle,Alligator,B,427,The winning team captured all flags.,353725482
+20261003-081120-scrim-g_iter2-fill1791015074,3,winkelmantanner.waffle,us:g_iter2,Ambush,A,287,The winning team captured all flags.,2143757574
+20261003-081120-scrim-g_iter2-fill1791015074,4,winkelmantanner.waffle,us:g_iter2,Ambush,A,350,The winning team captured all flags.,1467232475
+20261003-081120-scrim-g_iter2-fill1791015074,5,us:g_iter2,winkelmantanner.waffle,Backslash,A,1214,The winning team captured all flags.,860540913
+20261003-081120-scrim-g_iter2-fill1791015074,6,winkelmantanner.waffle,us:g_iter2,Backslash,A,864,The winning team captured all flags.,1854194734
+20261003-081120-scrim-g_iter2-fill1791015074,7,winkelmantanner.waffle,us:g_iter2,Battlecode24,A,2000,The winning team won on tiebreakers (cap,1877391045
+20261003-081120-scrim-g_iter2-fill1791015074,8,winkelmantanner.waffle,us:g_iter2,Battlefield,A,247,The winning team captured all flags.,1965721333
+20261003-081120-scrim-g_iter2-fill1791015074,9,us:g_iter2,winkelmantanner.waffle,BedWars,A,678,The winning team captured all flags.,1034826292
+20261003-081120-scrim-g_iter2-fill1791015074,10,winkelmantanner.waffle,us:g_iter2,Bunkers,A,610,The winning team captured all flags.,56148380
+20261003-081120-scrim-g_iter2-fill1791015074,11,us:g_iter2,winkelmantanner.waffle,CH3353C4K3F4CT0RY,A,1352,The winning team captured all flags.,228084522
+20261003-081120-scrim-g_iter2-fill1791015074,12,winkelmantanner.waffle,us:g_iter2,Decision,B,1226,The winning team captured all flags.,786945687
+20261003-081120-scrim-g_iter2-fill1791015074,13,us:g_iter2,winkelmantanner.waffle,DefaultLarge,B,1380,The winning team captured all flags.,1297165215
+20261003-081120-scrim-g_iter2-fill1791015074,14,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,1067145737
+20261003-081120-scrim-g_iter2-fill1791015074,15,winkelmantanner.waffle,us:g_iter2,Fountain,B,1668,The winning team captured all flags.,1062211983
+20261003-081120-scrim-g_iter2-fill1791015074,16,us:g_iter2,winkelmantanner.waffle,Funnel,B,504,The winning team captured all flags.,1723885010
+20261003-081120-scrim-g_iter2-fill1791015074,17,winkelmantanner.waffle,us:g_iter2,Fusbol,B,2000,The winning team won on tiebreakers (cap,676492325
+20261003-081120-scrim-g_iter2-fill1791015074,18,us:g_iter2,winkelmantanner.waffle,GaltonBoard,A,1804,The winning team captured all flags.,550089408
+20261003-081120-scrim-g_iter2-fill1791015074,19,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,446,The winning team captured all flags.,1215641800
+20261003-081120-scrim-g_iter2-fill1791015074,20,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,1169,The winning team captured all flags.,2035411087
+20261003-081120-scrim-g_iter2-fill1791015074,21,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,418,The winning team captured all flags.,542380039
+20261003-081120-scrim-g_iter2-fill1791015074,22,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,A,811,The winning team captured all flags.,120433905
+20261003-081120-scrim-g_iter2-fill1791015074,23,us:g_iter2,winkelmantanner.waffle,Hockey,A,1566,The winning team captured all flags.,40843542
+20261003-081120-scrim-g_iter2-fill1791015074,24,winkelmantanner.waffle,us:g_iter2,Hockey,B,1531,The winning team captured all flags.,1249211940
+20261003-081120-scrim-g_iter2-fill1791015074,25,us:g_iter2,winkelmantanner.waffle,HungerGames,A,471,The winning team captured all flags.,667444766
+20261003-081120-scrim-g_iter2-fill1791015074,26,winkelmantanner.waffle,us:g_iter2,HungerGames,A,1158,The winning team captured all flags.,1460994482
+20261003-081120-scrim-g_iter2-fill1791015074,27,winkelmantanner.waffle,us:g_iter2,Islands,B,1071,The winning team captured all flags.,2037458640
+20261003-081120-scrim-g_iter2-fill1791015074,28,winkelmantanner.waffle,us:g_iter2,Occulus,A,321,The winning team captured all flags.,727348394
+20261003-081120-scrim-g_iter2-fill1791015074,29,winkelmantanner.waffle,us:g_iter2,QuestionableChess,A,1770,The winning team captured all flags.,1376406159
+20261003-081120-scrim-g_iter2-fill1791015074,30,winkelmantanner.waffle,us:g_iter2,Racetrack,B,1570,The winning team captured all flags.,921465971
+20261003-081120-scrim-g_iter2-fill1791015074,31,us:g_iter2,winkelmantanner.waffle,Rainbow,A,2000,The winning team won on tiebreakers (hig,111136764
+20261003-081120-scrim-g_iter2-fill1791015074,32,winkelmantanner.waffle,us:g_iter2,Rainbow,B,1551,The winning team captured all flags.,1325265168
+20261003-081120-scrim-g_iter2-fill1791015074,33,us:g_iter2,winkelmantanner.waffle,Skyline,B,684,The winning team captured all flags.,1510172880
+20261003-081120-scrim-g_iter2-fill1791015074,34,winkelmantanner.waffle,us:g_iter2,Skyline,A,508,The winning team captured all flags.,1357130802
+20261003-081120-scrim-g_iter2-fill1791015074,35,us:g_iter2,winkelmantanner.waffle,Snake,B,675,The winning team captured all flags.,1329859667
+20261003-081120-scrim-g_iter2-fill1791015074,36,us:g_iter2,winkelmantanner.waffle,StackGame,B,351,The winning team captured all flags.,1061468789
+20261003-081120-scrim-g_iter2-fill1791015074,37,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1999,The winning team captured all flags.,869885588
+20261003-081120-scrim-g_iter2-fill1791015074,38,winkelmantanner.waffle,us:g_iter2,Whirlpool,B,1816,The winning team captured all flags.,151025487
+20261003-081120-scrim-g_iter2-fill1791015074,39,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,910010824
+20261003-081120-scrim-g_iter2-fill1791015074,40,us:g_iter2,winkelmantanner.waffle,Yinyang,B,354,The winning team captured all flags.,1088742724
+20261003-081636-scrim-g_iter2-fill1791015390,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,405,The winning team captured all flags.,1546067528
+20261003-081636-scrim-g_iter2-fill1791015390,2,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,505,The winning team captured all flags.,2082598840
+20261003-081636-scrim-g_iter2-fill1791015390,3,us:g_iter2,winkelmantanner.waffle,Ambush,B,450,The winning team captured all flags.,117411462
+20261003-081636-scrim-g_iter2-fill1791015390,4,us:g_iter2,winkelmantanner.waffle,Ambush,B,480,The winning team captured all flags.,610007848
+20261003-081636-scrim-g_iter2-fill1791015390,5,winkelmantanner.waffle,us:g_iter2,Anchor,B,1908,The winning team captured all flags.,382658771
+20261003-081636-scrim-g_iter2-fill1791015390,6,winkelmantanner.waffle,us:g_iter2,Backslash,B,1224,The winning team captured all flags.,1732725242
+20261003-081636-scrim-g_iter2-fill1791015390,7,winkelmantanner.waffle,us:g_iter2,Battlecode24,B,1229,The winning team captured all flags.,1999766793
+20261003-081636-scrim-g_iter2-fill1791015390,8,us:g_iter2,winkelmantanner.waffle,Battlefield,B,409,The winning team captured all flags.,455005174
+20261003-081636-scrim-g_iter2-fill1791015390,9,us:g_iter2,winkelmantanner.waffle,BedWars,B,1028,The winning team captured all flags.,1799808588
+20261003-081636-scrim-g_iter2-fill1791015390,10,winkelmantanner.waffle,us:g_iter2,BedWars,B,780,The winning team captured all flags.,975474000
+20261003-081636-scrim-g_iter2-fill1791015390,11,us:g_iter2,winkelmantanner.waffle,DefaultHuge,B,1349,The winning team captured all flags.,398338645
+20261003-081636-scrim-g_iter2-fill1791015390,12,winkelmantanner.waffle,us:g_iter2,DefaultHuge,B,1038,The winning team captured all flags.,1075785318
+20261003-081636-scrim-g_iter2-fill1791015390,13,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1120,The winning team captured all flags.,374387649
+20261003-081636-scrim-g_iter2-fill1791015390,14,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1898,The winning team captured all flags.,513196010
+20261003-081636-scrim-g_iter2-fill1791015390,15,winkelmantanner.waffle,us:g_iter2,DefaultSmall,B,1625,The winning team captured all flags.,19607306
+20261003-081636-scrim-g_iter2-fill1791015390,16,us:g_iter2,winkelmantanner.waffle,Diagonal,A,2000,The winning team won on tiebreakers (hig,330595167
+20261003-081636-scrim-g_iter2-fill1791015390,17,us:g_iter2,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (cap,1561310743
+20261003-081636-scrim-g_iter2-fill1791015390,18,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,1032210945
+20261003-081636-scrim-g_iter2-fill1791015390,19,winkelmantanner.waffle,us:g_iter2,HeMustBeFreed,B,2000,The winning team won on tiebreakers (hig,390930617
+20261003-081636-scrim-g_iter2-fill1791015390,20,winkelmantanner.waffle,us:g_iter2,Hockey,B,1311,The winning team captured all flags.,1051503899
+20261003-081636-scrim-g_iter2-fill1791015390,21,us:g_iter2,winkelmantanner.waffle,Islands,A,1080,The winning team captured all flags.,968457307
+20261003-081636-scrim-g_iter2-fill1791015390,22,us:g_iter2,winkelmantanner.waffle,KingQuacksCastle,B,411,The winning team captured all flags.,23424523
+20261003-081636-scrim-g_iter2-fill1791015390,23,winkelmantanner.waffle,us:g_iter2,MazeRunner,B,1629,The winning team captured all flags.,351665311
+20261003-081636-scrim-g_iter2-fill1791015390,24,winkelmantanner.waffle,us:g_iter2,Mountain,B,1641,The winning team captured all flags.,66358267
+20261003-081636-scrim-g_iter2-fill1791015390,25,us:g_iter2,winkelmantanner.waffle,Occulus,B,517,The winning team captured all flags.,473500713
+20261003-081636-scrim-g_iter2-fill1791015390,26,us:g_iter2,winkelmantanner.waffle,OceanFloor,A,1163,The winning team captured all flags.,853796285
+20261003-081636-scrim-g_iter2-fill1791015390,27,winkelmantanner.waffle,us:g_iter2,Puzzle,A,584,The winning team captured all flags.,1358623533
+20261003-081636-scrim-g_iter2-fill1791015390,28,winkelmantanner.waffle,us:g_iter2,QueenOfHearts,A,647,The winning team captured all flags.,219833928
+20261003-081636-scrim-g_iter2-fill1791015390,29,us:g_iter2,winkelmantanner.waffle,Rivers,B,817,The winning team captured all flags.,1219630168
+20261003-081636-scrim-g_iter2-fill1791015390,30,winkelmantanner.waffle,us:g_iter2,Rivers,A,1023,The winning team captured all flags.,187636570
+20261003-081636-scrim-g_iter2-fill1791015390,31,winkelmantanner.waffle,us:g_iter2,Rivers,A,493,The winning team captured all flags.,561983302
+20261003-081636-scrim-g_iter2-fill1791015390,32,winkelmantanner.waffle,us:g_iter2,Skyline,B,1235,The winning team captured all flags.,1605088931
+20261003-081636-scrim-g_iter2-fill1791015390,33,us:g_iter2,winkelmantanner.waffle,Snake,A,1531,The winning team captured all flags.,875831899
+20261003-081636-scrim-g_iter2-fill1791015390,34,winkelmantanner.waffle,us:g_iter2,Snake,B,1743,The winning team captured all flags.,904772527
+20261003-081636-scrim-g_iter2-fill1791015390,35,us:g_iter2,winkelmantanner.waffle,StackGame,B,352,The winning team captured all flags.,50779406
+20261003-081636-scrim-g_iter2-fill1791015390,36,winkelmantanner.waffle,us:g_iter2,StarryNight,B,1511,The winning team captured all flags.,1864496057
+20261003-081636-scrim-g_iter2-fill1791015390,37,winkelmantanner.waffle,us:g_iter2,Swoop,B,1409,The winning team captured all flags.,1885993228
+20261003-081636-scrim-g_iter2-fill1791015390,38,us:g_iter2,winkelmantanner.waffle,TreeSearch,B,564,The winning team captured all flags.,477309958
+20261003-081636-scrim-g_iter2-fill1791015390,39,winkelmantanner.waffle,us:g_iter2,Waterworld,A,722,The winning team captured all flags.,673213801
+20261003-081636-scrim-g_iter2-fill1791015390,40,winkelmantanner.waffle,us:g_iter2,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,337518940
+20261003-082528-scrim-g_iter2-fill1791015922,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,590,The winning team captured all flags.,1724111360
+20261003-082528-scrim-g_iter2-fill1791015922,2,us:g_iter2,winkelmantanner.waffle,Alien,B,560,The winning team captured all flags.,1868768214
+20261003-082528-scrim-g_iter2-fill1791015922,3,winkelmantanner.waffle,us:g_iter2,Alligator,A,468,The winning team captured all flags.,1648330604
+20261003-082528-scrim-g_iter2-fill1791015922,4,us:g_iter2,winkelmantanner.waffle,Anchor,B,1338,The winning team captured all flags.,121070622
+20261003-082528-scrim-g_iter2-fill1791015922,5,winkelmantanner.waffle,us:g_iter2,Anchor,A,1319,The winning team captured all flags.,1480698321
+20261003-082528-scrim-g_iter2-fill1791015922,6,winkelmantanner.waffle,us:g_iter2,Anchor,B,1159,The winning team captured all flags.,1735932934
+20261003-082528-scrim-g_iter2-fill1791015922,7,winkelmantanner.waffle,us:g_iter2,Backslash,A,763,The winning team captured all flags.,2089445867
+20261003-082528-scrim-g_iter2-fill1791015922,8,winkelmantanner.waffle,us:g_iter2,Battlecode24,A,571,The winning team captured all flags.,43543546
+20261003-082528-scrim-g_iter2-fill1791015922,9,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,A,1813,The winning team captured all flags.,1204861401
+20261003-082528-scrim-g_iter2-fill1791015922,10,us:g_iter2,winkelmantanner.waffle,BigDucksBigPond,B,1419,The winning team captured all flags.,812212744
+20261003-082528-scrim-g_iter2-fill1791015922,11,us:g_iter2,winkelmantanner.waffle,CH3353C4K3F4CT0RY,A,854,The winning team captured all flags.,906870277
+20261003-082528-scrim-g_iter2-fill1791015922,12,winkelmantanner.waffle,us:g_iter2,Capacitance,A,646,The winning team captured all flags.,1205728466
+20261003-082528-scrim-g_iter2-fill1791015922,13,us:g_iter2,winkelmantanner.waffle,Decision,B,1602,The winning team captured all flags.,106109219
+20261003-082528-scrim-g_iter2-fill1791015922,14,us:g_iter2,winkelmantanner.waffle,DefaultHuge,B,638,The winning team captured all flags.,303307251
+20261003-082528-scrim-g_iter2-fill1791015922,15,winkelmantanner.waffle,us:g_iter2,DefaultLarge,B,1875,The winning team captured all flags.,254983405
+20261003-082528-scrim-g_iter2-fill1791015922,16,winkelmantanner.waffle,us:g_iter2,Diagonal,A,2000,The winning team won on tiebreakers (cap,94473342
+20261003-082528-scrim-g_iter2-fill1791015922,17,us:g_iter2,winkelmantanner.waffle,Divergent,A,2000,The winning team won on tiebreakers (cap,498680844
+20261003-082528-scrim-g_iter2-fill1791015922,18,winkelmantanner.waffle,us:g_iter2,Duck,A,1447,The winning team captured all flags.,1570512181
+20261003-082528-scrim-g_iter2-fill1791015922,19,winkelmantanner.waffle,us:g_iter2,Funnel,A,2000,The winning team won on tiebreakers (cap,1473847320
+20261003-082528-scrim-g_iter2-fill1791015922,20,us:g_iter2,winkelmantanner.waffle,GaltonBoard,A,1904,The winning team captured all flags.,1370320590
+20261003-082528-scrim-g_iter2-fill1791015922,21,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,1312040413
+20261003-082528-scrim-g_iter2-fill1791015922,22,winkelmantanner.waffle,us:g_iter2,GaltonBoard,A,394,The winning team captured all flags.,2022191654
+20261003-082528-scrim-g_iter2-fill1791015922,23,us:g_iter2,winkelmantanner.waffle,Gauntlet,B,634,The winning team captured all flags.,920743556
+20261003-082528-scrim-g_iter2-fill1791015922,24,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,1319,The winning team captured all flags.,999688550
+20261003-082528-scrim-g_iter2-fill1791015922,25,us:g_iter2,winkelmantanner.waffle,Islands,B,561,The winning team captured all flags.,611889331
+20261003-082528-scrim-g_iter2-fill1791015922,26,winkelmantanner.waffle,us:g_iter2,Islands,A,579,The winning team captured all flags.,1581909403
+20261003-082528-scrim-g_iter2-fill1791015922,27,winkelmantanner.waffle,us:g_iter2,KingQuacksCastle,A,529,The winning team captured all flags.,1335048982
+20261003-082528-scrim-g_iter2-fill1791015922,28,us:g_iter2,winkelmantanner.waffle,MazeRunner,A,2000,The winning team won on tiebreakers (cap,1935233045
+20261003-082528-scrim-g_iter2-fill1791015922,29,us:g_iter2,winkelmantanner.waffle,Occulus,A,1899,The winning team captured all flags.,1168515835
+20261003-082528-scrim-g_iter2-fill1791015922,30,us:g_iter2,winkelmantanner.waffle,Occulus,A,2000,The winning team won on tiebreakers (hig,43970708
+20261003-082528-scrim-g_iter2-fill1791015922,31,us:g_iter2,winkelmantanner.waffle,Pancakes,B,1004,The winning team captured all flags.,2146121576
+20261003-082528-scrim-g_iter2-fill1791015922,32,winkelmantanner.waffle,us:g_iter2,Rainbow,B,1703,The winning team captured all flags.,574619020
+20261003-082528-scrim-g_iter2-fill1791015922,33,us:g_iter2,winkelmantanner.waffle,Randy,A,1275,The winning team captured all flags.,979060090
+20261003-082528-scrim-g_iter2-fill1791015922,34,winkelmantanner.waffle,us:g_iter2,Rivers,A,607,The winning team captured all flags.,1787518407
+20261003-082528-scrim-g_iter2-fill1791015922,35,us:g_iter2,winkelmantanner.waffle,Skyline,B,442,The winning team captured all flags.,964238592
+20261003-082528-scrim-g_iter2-fill1791015922,36,us:g_iter2,winkelmantanner.waffle,Soccer,A,1393,The winning team captured all flags.,1798660496
+20261003-082528-scrim-g_iter2-fill1791015922,37,winkelmantanner.waffle,us:g_iter2,Starfish,B,1739,The winning team captured all flags.,2117441255
+20261003-082528-scrim-g_iter2-fill1791015922,38,us:g_iter2,winkelmantanner.waffle,SteamboatMickey,B,1282,The winning team captured all flags.,89808295
+20261003-082528-scrim-g_iter2-fill1791015922,39,winkelmantanner.waffle,us:g_iter2,Valentine,A,2000,The winning team won on tiebreakers (cap,2125145037
+20261003-082528-scrim-g_iter2-fill1791015922,40,winkelmantanner.waffle,us:g_iter2,Yinyang,B,1308,The winning team captured all flags.,832310122
+20261003-083157-scrim-g_iter2-fill1791016311,1,us:g_iter2,winkelmantanner.waffle,AceOfSpades,B,382,The winning team captured all flags.,532464740
+20261003-083157-scrim-g_iter2-fill1791016311,2,us:g_iter2,winkelmantanner.waffle,Anchor,A,1497,The winning team captured all flags.,1887032437
+20261003-083157-scrim-g_iter2-fill1791016311,3,us:g_iter2,winkelmantanner.waffle,Backslash,A,1509,The winning team captured all flags.,682440827
+20261003-083157-scrim-g_iter2-fill1791016311,4,us:g_iter2,winkelmantanner.waffle,Backslash,A,1781,The winning team captured all flags.,867871902
+20261003-083157-scrim-g_iter2-fill1791016311,5,us:g_iter2,winkelmantanner.waffle,BedWars,A,592,The winning team captured all flags.,1530491994
+20261003-083157-scrim-g_iter2-fill1791016311,6,us:g_iter2,winkelmantanner.waffle,BedWars,B,966,The winning team captured all flags.,2005683410
+20261003-083157-scrim-g_iter2-fill1791016311,7,winkelmantanner.waffle,us:g_iter2,BreadPudding,A,2000,The winning team won on tiebreakers (cap,2118490703
+20261003-083157-scrim-g_iter2-fill1791016311,8,winkelmantanner.waffle,us:g_iter2,BreadPudding,A,339,The winning team captured all flags.,1663832568
+20261003-083157-scrim-g_iter2-fill1791016311,9,winkelmantanner.waffle,us:g_iter2,Bunkers,A,340,The winning team captured all flags.,401291696
+20261003-083157-scrim-g_iter2-fill1791016311,10,winkelmantanner.waffle,us:g_iter2,CH3353C4K3F4CT0RY,B,678,The winning team captured all flags.,182066764
+20261003-083157-scrim-g_iter2-fill1791016311,11,winkelmantanner.waffle,us:g_iter2,Canals,B,1478,The winning team captured all flags.,753709853
+20261003-083157-scrim-g_iter2-fill1791016311,12,winkelmantanner.waffle,us:g_iter2,Checkered,A,499,The winning team captured all flags.,1032790058
+20261003-083157-scrim-g_iter2-fill1791016311,13,us:g_iter2,winkelmantanner.waffle,DefaultMedium,B,1538,The winning team captured all flags.,459689554
+20261003-083157-scrim-g_iter2-fill1791016311,14,winkelmantanner.waffle,us:g_iter2,DefaultMedium,A,1102,The winning team captured all flags.,1229144847
+20261003-083157-scrim-g_iter2-fill1791016311,15,winkelmantanner.waffle,us:g_iter2,Duck,A,1503,The winning team captured all flags.,1607763075
+20261003-083157-scrim-g_iter2-fill1791016311,16,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,1995978188
+20261003-083157-scrim-g_iter2-fill1791016311,17,us:g_iter2,winkelmantanner.waffle,Foxes,A,2000,The winning team won on tiebreakers (hig,1727727615
+20261003-083157-scrim-g_iter2-fill1791016311,18,us:g_iter2,winkelmantanner.waffle,Foxes,B,2000,The winning team won on tiebreakers (cap,891469829
+20261003-083157-scrim-g_iter2-fill1791016311,19,us:g_iter2,winkelmantanner.waffle,Fusbol,A,2000,The winning team won on tiebreakers (cap,382417213
+20261003-083157-scrim-g_iter2-fill1791016311,20,winkelmantanner.waffle,us:g_iter2,Fusbol,B,2000,The winning team won on tiebreakers (cap,1235552231
+20261003-083157-scrim-g_iter2-fill1791016311,21,winkelmantanner.waffle,us:g_iter2,GravitationalWaves,A,852,The winning team captured all flags.,1228852269
+20261003-083157-scrim-g_iter2-fill1791016311,22,us:g_iter2,winkelmantanner.waffle,Hurricane,B,2000,The winning team won on tiebreakers (cap,2146731199
+20261003-083157-scrim-g_iter2-fill1791016311,23,winkelmantanner.waffle,us:g_iter2,Intercontinental,A,788,The winning team captured all flags.,1207479226
+20261003-083157-scrim-g_iter2-fill1791016311,24,us:g_iter2,winkelmantanner.waffle,Islands,A,1256,The winning team captured all flags.,1422419124
+20261003-083157-scrim-g_iter2-fill1791016311,25,winkelmantanner.waffle,us:g_iter2,Joker,A,994,The winning team captured all flags.,599468955
+20261003-083157-scrim-g_iter2-fill1791016311,26,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (cap,849793960
+20261003-083157-scrim-g_iter2-fill1791016311,27,winkelmantanner.waffle,us:g_iter2,Klein,B,2000,The winning team won on tiebreakers (hig,1610296411
+20261003-083157-scrim-g_iter2-fill1791016311,28,winkelmantanner.waffle,us:g_iter2,MIT,A,748,The winning team captured all flags.,418152458
+20261003-083157-scrim-g_iter2-fill1791016311,29,us:g_iter2,winkelmantanner.waffle,Pancakes,A,478,The winning team captured all flags.,426761034
+20261003-083157-scrim-g_iter2-fill1791016311,30,winkelmantanner.waffle,us:g_iter2,Puzzle,A,1418,The winning team captured all flags.,605090842
+20261003-083157-scrim-g_iter2-fill1791016311,31,winkelmantanner.waffle,us:g_iter2,QuestionableChess,A,517,The winning team captured all flags.,1109709276
+20261003-083157-scrim-g_iter2-fill1791016311,32,winkelmantanner.waffle,us:g_iter2,Racetrack,B,1368,The winning team captured all flags.,679315796
+20261003-083157-scrim-g_iter2-fill1791016311,33,winkelmantanner.waffle,us:g_iter2,Rivers,B,1483,The winning team captured all flags.,878735154
+20261003-083157-scrim-g_iter2-fill1791016311,34,us:g_iter2,winkelmantanner.waffle,Snake,A,1776,The winning team captured all flags.,1915863890
+20261003-083157-scrim-g_iter2-fill1791016311,35,winkelmantanner.waffle,us:g_iter2,StackGame,A,406,The winning team captured all flags.,1341342593
+20261003-083157-scrim-g_iter2-fill1791016311,36,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,1858,The winning team captured all flags.,1042917103
+20261003-083157-scrim-g_iter2-fill1791016311,37,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,971,The winning team captured all flags.,1706457986
+20261003-083157-scrim-g_iter2-fill1791016311,38,winkelmantanner.waffle,us:g_iter2,Valentine,A,931,The winning team captured all flags.,482209286
+20261003-083157-scrim-g_iter2-fill1791016311,39,us:g_iter2,winkelmantanner.waffle,WheresMyWater,A,1893,The winning team captured all flags.,8387166
+20261003-083157-scrim-g_iter2-fill1791016311,40,us:g_iter2,winkelmantanner.waffle,Yinyang,A,804,The winning team captured all flags.,282811225
+20261003-083554-scrim-g2cr-fill1791016311,1,us:g2cr,winkelmantanner.waffle,AceOfSpades,B,623,The winning team captured all flags.,532464740
+20261003-083554-scrim-g2cr-fill1791016311,2,us:g2cr,winkelmantanner.waffle,Anchor,A,1170,The winning team captured all flags.,1887032437
+20261003-083554-scrim-g2cr-fill1791016311,3,us:g2cr,winkelmantanner.waffle,Backslash,A,1042,The winning team captured all flags.,867871902
+20261003-083554-scrim-g2cr-fill1791016311,4,us:g2cr,winkelmantanner.waffle,Backslash,B,1391,The winning team captured all flags.,682440827
+20261003-083554-scrim-g2cr-fill1791016311,5,us:g2cr,winkelmantanner.waffle,BedWars,B,612,The winning team captured all flags.,1530491994
+20261003-083554-scrim-g2cr-fill1791016311,6,us:g2cr,winkelmantanner.waffle,BedWars,B,850,The winning team captured all flags.,2005683410
+20261003-083554-scrim-g2cr-fill1791016311,7,winkelmantanner.waffle,us:g2cr,BreadPudding,A,2000,The winning team won on tiebreakers (cap,1663832568
+20261003-083554-scrim-g2cr-fill1791016311,8,winkelmantanner.waffle,us:g2cr,BreadPudding,A,474,The winning team captured all flags.,2118490703
+20261003-083554-scrim-g2cr-fill1791016311,9,winkelmantanner.waffle,us:g2cr,Bunkers,B,1013,The winning team captured all flags.,401291696
+20261003-083554-scrim-g2cr-fill1791016311,10,winkelmantanner.waffle,us:g2cr,CH3353C4K3F4CT0RY,B,768,The winning team captured all flags.,182066764
+20261003-083554-scrim-g2cr-fill1791016311,11,winkelmantanner.waffle,us:g2cr,Canals,B,1603,The winning team captured all flags.,753709853
+20261003-083554-scrim-g2cr-fill1791016311,12,winkelmantanner.waffle,us:g2cr,Checkered,B,589,The winning team captured all flags.,1032790058
+20261003-083554-scrim-g2cr-fill1791016311,13,us:g2cr,winkelmantanner.waffle,DefaultMedium,B,2000,The winning team won on tiebreakers (cap,459689554
+20261003-083554-scrim-g2cr-fill1791016311,14,winkelmantanner.waffle,us:g2cr,DefaultMedium,B,1960,The winning team captured all flags.,1229144847
+20261003-083554-scrim-g2cr-fill1791016311,15,winkelmantanner.waffle,us:g2cr,Duck,A,1036,The winning team captured all flags.,1607763075
+20261003-083554-scrim-g2cr-fill1791016311,16,us:g2cr,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,1995978188
+20261003-083554-scrim-g2cr-fill1791016311,17,us:g2cr,winkelmantanner.waffle,Foxes,A,2000,The winning team won on tiebreakers (hig,891469829
+20261003-083554-scrim-g2cr-fill1791016311,18,us:g2cr,winkelmantanner.waffle,Foxes,B,2000,The winning team won on tiebreakers (cap,1727727615
+20261003-083554-scrim-g2cr-fill1791016311,19,us:g2cr,winkelmantanner.waffle,Fusbol,A,2000,The winning team won on tiebreakers (cap,382417213
+20261003-083554-scrim-g2cr-fill1791016311,20,winkelmantanner.waffle,us:g2cr,Fusbol,B,2000,The winning team won on tiebreakers (cap,1235552231
+20261003-083554-scrim-g2cr-fill1791016311,21,winkelmantanner.waffle,us:g2cr,GravitationalWaves,A,652,The winning team captured all flags.,1228852269
+20261003-083554-scrim-g2cr-fill1791016311,22,us:g2cr,winkelmantanner.waffle,Hurricane,A,2000,The winning team won on tiebreakers (hig,2146731199
+20261003-083554-scrim-g2cr-fill1791016311,23,winkelmantanner.waffle,us:g2cr,Intercontinental,A,800,The winning team captured all flags.,1207479226
+20261003-083554-scrim-g2cr-fill1791016311,24,us:g2cr,winkelmantanner.waffle,Islands,A,1499,The winning team captured all flags.,1422419124
+20261003-083554-scrim-g2cr-fill1791016311,25,winkelmantanner.waffle,us:g2cr,Joker,A,666,The winning team captured all flags.,599468955
+20261003-083554-scrim-g2cr-fill1791016311,26,us:g2cr,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,849793960
+20261003-083554-scrim-g2cr-fill1791016311,27,winkelmantanner.waffle,us:g2cr,Klein,A,1333,The winning team captured all flags.,1610296411
+20261003-083554-scrim-g2cr-fill1791016311,28,winkelmantanner.waffle,us:g2cr,MIT,A,1011,The winning team captured all flags.,418152458
+20261003-083554-scrim-g2cr-fill1791016311,29,us:g2cr,winkelmantanner.waffle,Pancakes,A,727,The winning team captured all flags.,426761034
+20261003-083554-scrim-g2cr-fill1791016311,30,winkelmantanner.waffle,us:g2cr,Puzzle,A,918,The winning team captured all flags.,605090842
+20261003-083554-scrim-g2cr-fill1791016311,31,winkelmantanner.waffle,us:g2cr,QuestionableChess,B,2000,The winning team won on tiebreakers (hig,1109709276
+20261003-083554-scrim-g2cr-fill1791016311,32,winkelmantanner.waffle,us:g2cr,Racetrack,A,624,The winning team captured all flags.,679315796
+20261003-083554-scrim-g2cr-fill1791016311,33,winkelmantanner.waffle,us:g2cr,Rivers,A,463,The winning team captured all flags.,878735154
+20261003-083554-scrim-g2cr-fill1791016311,34,us:g2cr,winkelmantanner.waffle,Snake,A,1008,The winning team captured all flags.,1915863890
+20261003-083554-scrim-g2cr-fill1791016311,35,winkelmantanner.waffle,us:g2cr,StackGame,B,1383,The winning team captured all flags.,1341342593
+20261003-083554-scrim-g2cr-fill1791016311,36,us:g2cr,winkelmantanner.waffle,TwistedTreeline,A,1223,The winning team captured all flags.,1706457986
+20261003-083554-scrim-g2cr-fill1791016311,37,us:g2cr,winkelmantanner.waffle,TwistedTreeline,A,1845,The winning team captured all flags.,1042917103
+20261003-083554-scrim-g2cr-fill1791016311,38,winkelmantanner.waffle,us:g2cr,Valentine,B,2000,The winning team won on tiebreakers (hig,482209286
+20261003-083554-scrim-g2cr-fill1791016311,39,us:g2cr,winkelmantanner.waffle,WheresMyWater,A,1895,The winning team captured all flags.,8387166
+20261003-083554-scrim-g2cr-fill1791016311,40,us:g2cr,winkelmantanner.waffle,Yinyang,A,900,The winning team captured all flags.,282811225
+20261003-084249-scrim-g_iter2-fill1791016963,1,winkelmantanner.waffle,us:g_iter2,AceOfSpades,A,649,The winning team captured all flags.,3915418
+20261003-084249-scrim-g_iter2-fill1791016963,2,us:g_iter2,winkelmantanner.waffle,Ambush,A,361,The winning team captured all flags.,620250576
+20261003-084249-scrim-g_iter2-fill1791016963,3,us:g_iter2,winkelmantanner.waffle,Ambush,B,392,The winning team captured all flags.,397199239
+20261003-084249-scrim-g_iter2-fill1791016963,4,winkelmantanner.waffle,us:g_iter2,Anchor,B,1210,The winning team captured all flags.,814608912
+20261003-084249-scrim-g_iter2-fill1791016963,5,winkelmantanner.waffle,us:g_iter2,Backslash,A,1460,The winning team captured all flags.,740966467
+20261003-084249-scrim-g_iter2-fill1791016963,6,us:g_iter2,winkelmantanner.waffle,Battlefield,B,476,The winning team captured all flags.,332667014
+20261003-084249-scrim-g_iter2-fill1791016963,7,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,1034,The winning team captured all flags.,464542700
+20261003-084249-scrim-g_iter2-fill1791016963,8,winkelmantanner.waffle,us:g_iter2,BigDucksBigPond,B,963,The winning team captured all flags.,1773828268
+20261003-084249-scrim-g_iter2-fill1791016963,9,us:g_iter2,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1138209272
+20261003-084249-scrim-g_iter2-fill1791016963,10,winkelmantanner.waffle,us:g_iter2,BreadPudding,A,2000,The winning team won on tiebreakers (cap,658298689
+20261003-084249-scrim-g_iter2-fill1791016963,11,winkelmantanner.waffle,us:g_iter2,BreadPudding,A,564,The winning team captured all flags.,57336437
+20261003-084249-scrim-g_iter2-fill1791016963,12,winkelmantanner.waffle,us:g_iter2,Bunkers,B,769,The winning team captured all flags.,1924119898
+20261003-084249-scrim-g_iter2-fill1791016963,13,us:g_iter2,winkelmantanner.waffle,Capacitance,B,721,The winning team captured all flags.,239959016
+20261003-084249-scrim-g_iter2-fill1791016963,14,winkelmantanner.waffle,us:g_iter2,DefaultHuge,A,629,The winning team captured all flags.,2098887552
+20261003-084249-scrim-g_iter2-fill1791016963,15,winkelmantanner.waffle,us:g_iter2,Diagonal,B,2000,The winning team won on tiebreakers (hig,406445821
+20261003-084249-scrim-g_iter2-fill1791016963,16,winkelmantanner.waffle,us:g_iter2,Divergent,B,2000,The winning team won on tiebreakers (hig,709415668
+20261003-084249-scrim-g_iter2-fill1791016963,17,us:g_iter2,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (hig,1950804957
+20261003-084249-scrim-g_iter2-fill1791016963,18,us:g_iter2,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,106754585
+20261003-084249-scrim-g_iter2-fill1791016963,19,winkelmantanner.waffle,us:g_iter2,Foxes,B,2000,The winning team won on tiebreakers (hig,801377251
+20261003-084249-scrim-g_iter2-fill1791016963,20,us:g_iter2,winkelmantanner.waffle,GaltonBoard,A,1412,The winning team captured all flags.,1069814463
+20261003-084249-scrim-g_iter2-fill1791016963,21,us:g_iter2,winkelmantanner.waffle,GaltonBoard,B,318,The winning team captured all flags.,733473003
+20261003-084249-scrim-g_iter2-fill1791016963,22,us:g_iter2,winkelmantanner.waffle,Gauntlet,A,1851,The winning team captured all flags.,183499343
+20261003-084249-scrim-g_iter2-fill1791016963,23,winkelmantanner.waffle,us:g_iter2,Gauntlet,A,535,The winning team captured all flags.,893977893
+20261003-084249-scrim-g_iter2-fill1791016963,24,us:g_iter2,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,977789837
+20261003-084249-scrim-g_iter2-fill1791016963,25,us:g_iter2,winkelmantanner.waffle,Mountain,B,1919,The winning team captured all flags.,83384123
+20261003-084249-scrim-g_iter2-fill1791016963,26,us:g_iter2,winkelmantanner.waffle,Mountain,B,2000,The winning team won on tiebreakers (cap,255646214
+20261003-084249-scrim-g_iter2-fill1791016963,27,winkelmantanner.waffle,us:g_iter2,Occulus,A,369,The winning team captured all flags.,893718139
+20261003-084249-scrim-g_iter2-fill1791016963,28,us:g_iter2,winkelmantanner.waffle,OceanFloor,B,614,The winning team captured all flags.,570644973
+20261003-084249-scrim-g_iter2-fill1791016963,29,winkelmantanner.waffle,us:g_iter2,QueenOfHearts,B,830,The winning team captured all flags.,1253428092
+20261003-084249-scrim-g_iter2-fill1791016963,30,us:g_iter2,winkelmantanner.waffle,Randy,B,602,The winning team captured all flags.,1129428626
+20261003-084249-scrim-g_iter2-fill1791016963,31,winkelmantanner.waffle,us:g_iter2,Soccer,A,1180,The winning team captured all flags.,1547557103
+20261003-084249-scrim-g_iter2-fill1791016963,32,winkelmantanner.waffle,us:g_iter2,StackGame,A,455,The winning team captured all flags.,478853705
+20261003-084249-scrim-g_iter2-fill1791016963,33,us:g_iter2,winkelmantanner.waffle,Swoop,B,697,The winning team captured all flags.,123153703
+20261003-084249-scrim-g_iter2-fill1791016963,34,us:g_iter2,winkelmantanner.waffle,Swoop,B,949,The winning team captured all flags.,768180381
+20261003-084249-scrim-g_iter2-fill1791016963,35,us:g_iter2,winkelmantanner.waffle,TwistedTreeline,A,1357,The winning team captured all flags.,1991411755
+20261003-084249-scrim-g_iter2-fill1791016963,36,winkelmantanner.waffle,us:g_iter2,TwistedTreeline,B,1414,The winning team captured all flags.,419453884
+20261003-084249-scrim-g_iter2-fill1791016963,37,winkelmantanner.waffle,us:g_iter2,Waterworld,B,2000,The winning team won on tiebreakers (hig,1413395472
+20261003-084249-scrim-g_iter2-fill1791016963,38,us:g_iter2,winkelmantanner.waffle,WheresMyWater,A,1890,The winning team captured all flags.,456698449
+20261003-084249-scrim-g_iter2-fill1791016963,39,us:g_iter2,winkelmantanner.waffle,Whirlpool,B,759,The winning team captured all flags.,622226918
+20261003-084249-scrim-g_iter2-fill1791016963,40,winkelmantanner.waffle,us:g_iter2,Yinyang,B,1435,The winning team captured all flags.,1648199542
+20261003-084629-scrim-g2cr-fill1791016963,1,winkelmantanner.waffle,us:g2cr,AceOfSpades,A,474,The winning team captured all flags.,3915418
+20261003-084629-scrim-g2cr-fill1791016963,2,us:g2cr,winkelmantanner.waffle,Ambush,A,306,The winning team captured all flags.,620250576
+20261003-084629-scrim-g2cr-fill1791016963,3,us:g2cr,winkelmantanner.waffle,Ambush,A,419,The winning team captured all flags.,397199239
+20261003-084629-scrim-g2cr-fill1791016963,4,winkelmantanner.waffle,us:g2cr,Anchor,A,985,The winning team captured all flags.,814608912
+20261003-084629-scrim-g2cr-fill1791016963,5,winkelmantanner.waffle,us:g2cr,Backslash,B,1821,The winning team captured all flags.,740966467
+20261003-084629-scrim-g2cr-fill1791016963,6,us:g2cr,winkelmantanner.waffle,Battlefield,A,1504,The winning team captured all flags.,332667014
+20261003-084629-scrim-g2cr-fill1791016963,7,winkelmantanner.waffle,us:g2cr,BigDucksBigPond,A,1154,The winning team captured all flags.,464542700
+20261003-084629-scrim-g2cr-fill1791016963,8,winkelmantanner.waffle,us:g2cr,BigDucksBigPond,B,991,The winning team captured all flags.,1773828268
+20261003-084629-scrim-g2cr-fill1791016963,9,us:g2cr,winkelmantanner.waffle,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1138209272
+20261003-084629-scrim-g2cr-fill1791016963,10,winkelmantanner.waffle,us:g2cr,BreadPudding,A,2000,The winning team won on tiebreakers (cap,57336437
+20261003-084629-scrim-g2cr-fill1791016963,11,winkelmantanner.waffle,us:g2cr,BreadPudding,A,2000,The winning team won on tiebreakers (cap,658298689
+20261003-084629-scrim-g2cr-fill1791016963,12,winkelmantanner.waffle,us:g2cr,Bunkers,B,480,The winning team captured all flags.,1924119898
+20261003-084629-scrim-g2cr-fill1791016963,13,us:g2cr,winkelmantanner.waffle,Capacitance,A,1453,The winning team captured all flags.,239959016
+20261003-084629-scrim-g2cr-fill1791016963,14,winkelmantanner.waffle,us:g2cr,DefaultHuge,A,752,The winning team captured all flags.,2098887552
+20261003-084629-scrim-g2cr-fill1791016963,15,winkelmantanner.waffle,us:g2cr,Diagonal,B,2000,The winning team won on tiebreakers (hig,406445821
+20261003-084629-scrim-g2cr-fill1791016963,16,winkelmantanner.waffle,us:g2cr,Divergent,B,1443,The winning team captured all flags.,709415668
+20261003-084629-scrim-g2cr-fill1791016963,17,us:g2cr,winkelmantanner.waffle,EndAround,A,2000,The winning team won on tiebreakers (hig,1950804957
+20261003-084629-scrim-g2cr-fill1791016963,18,us:g2cr,winkelmantanner.waffle,FloodGates,B,2000,The winning team won on tiebreakers (cap,106754585
+20261003-084629-scrim-g2cr-fill1791016963,19,winkelmantanner.waffle,us:g2cr,Foxes,B,2000,The winning team won on tiebreakers (hig,801377251
+20261003-084629-scrim-g2cr-fill1791016963,20,us:g2cr,winkelmantanner.waffle,GaltonBoard,A,1639,The winning team captured all flags.,1069814463
+20261003-084629-scrim-g2cr-fill1791016963,21,us:g2cr,winkelmantanner.waffle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,733473003
+20261003-084629-scrim-g2cr-fill1791016963,22,us:g2cr,winkelmantanner.waffle,Gauntlet,B,2000,The winning team won on tiebreakers (cap,183499343
+20261003-084629-scrim-g2cr-fill1791016963,23,winkelmantanner.waffle,us:g2cr,Gauntlet,B,1480,The winning team captured all flags.,893977893
+20261003-084629-scrim-g2cr-fill1791016963,24,us:g2cr,winkelmantanner.waffle,Klein,A,2000,The winning team won on tiebreakers (hig,977789837
+20261003-084629-scrim-g2cr-fill1791016963,25,us:g2cr,winkelmantanner.waffle,Mountain,A,1686,The winning team captured all flags.,255646214
+20261003-084629-scrim-g2cr-fill1791016963,26,us:g2cr,winkelmantanner.waffle,Mountain,A,1835,The winning team captured all flags.,83384123
+20261003-084629-scrim-g2cr-fill1791016963,27,winkelmantanner.waffle,us:g2cr,Occulus,A,404,The winning team captured all flags.,893718139
+20261003-084629-scrim-g2cr-fill1791016963,28,us:g2cr,winkelmantanner.waffle,OceanFloor,A,1689,The winning team captured all flags.,570644973
+20261003-084629-scrim-g2cr-fill1791016963,29,winkelmantanner.waffle,us:g2cr,QueenOfHearts,A,830,The winning team captured all flags.,1253428092
+20261003-084629-scrim-g2cr-fill1791016963,30,us:g2cr,winkelmantanner.waffle,Randy,A,1931,The winning team captured all flags.,1129428626
+20261003-084629-scrim-g2cr-fill1791016963,31,winkelmantanner.waffle,us:g2cr,Soccer,B,1472,The winning team captured all flags.,1547557103
+20261003-084629-scrim-g2cr-fill1791016963,32,winkelmantanner.waffle,us:g2cr,StackGame,A,341,The winning team captured all flags.,478853705
+20261003-084629-scrim-g2cr-fill1791016963,33,us:g2cr,winkelmantanner.waffle,Swoop,A,1495,The winning team captured all flags.,123153703
+20261003-084629-scrim-g2cr-fill1791016963,34,us:g2cr,winkelmantanner.waffle,Swoop,B,1711,The winning team captured all flags.,768180381
+20261003-084629-scrim-g2cr-fill1791016963,35,us:g2cr,winkelmantanner.waffle,TwistedTreeline,A,1852,The winning team captured all flags.,1991411755
+20261003-084629-scrim-g2cr-fill1791016963,36,winkelmantanner.waffle,us:g2cr,TwistedTreeline,B,830,The winning team captured all flags.,419453884
+20261003-084629-scrim-g2cr-fill1791016963,37,winkelmantanner.waffle,us:g2cr,Waterworld,A,1072,The winning team captured all flags.,1413395472
+20261003-084629-scrim-g2cr-fill1791016963,38,us:g2cr,winkelmantanner.waffle,WheresMyWater,A,1664,The winning team captured all flags.,456698449
+20261003-084629-scrim-g2cr-fill1791016963,39,us:g2cr,winkelmantanner.waffle,Whirlpool,B,2000,The winning team won on tiebreakers (cap,622226918
+20261003-084629-scrim-g2cr-fill1791016963,40,winkelmantanner.waffle,us:g2cr,Yinyang,B,1355,The winning team captured all flags.,1648199542

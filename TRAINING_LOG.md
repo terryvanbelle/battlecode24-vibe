@@ -1273,3 +1273,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   Tool: delivery-check.py gains `nw:` (not worse by more than 2 paired SE) for guards, unit-tested; used from now on, not
   to re-judge past blocks. g2cr band guard second attempt pre-registered on fresh seed 939393 with nw: guards, band test
   chained.
+- Waffle filler, first g2cr pairs (2 fresh seeds, 80 paired games): g2cr 46-34 (57.5%) vs waffle, g_iter2 38-42 on the
+  same cells; paired gained 19, lost 11, net +8 (+1.5 SE). Ladder refit: g2cr 1999 +- 77 (80 games), waffle 1955.
+  Victory read at 240 paired games (>= 60%, p < 0.05, net >= +2 SE).
