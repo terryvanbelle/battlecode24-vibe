@@ -1,4 +1,4 @@
-package bot;
+package g3lost;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -47,7 +47,7 @@ public strictfp class C {
     public static final boolean CARRIER_HEAL = false;  // C9: a hurt allied carrier in heal range is healed before anyone else
     public static final boolean INTERCEPT = false;     // C10a: in a fight, a fresh carrier alert within INTERCEPT_R2 turns the fight goal-directed toward the carrier
     public static final int INTERCEPT_R2 = 225;
-    public static final boolean FLAG_LOST = false;      // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); arm g3lost
+    public static final boolean FLAG_LOST = true;      // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); arm g3lost
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
     public static final boolean DEF_TETHER = false;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
     public static final int TETHER_R2 = 20;

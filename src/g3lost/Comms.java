@@ -1,4 +1,4 @@
-package bot;
+package g3lost;
 
 import battlecode.common.*;
 

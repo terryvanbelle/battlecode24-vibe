@@ -1,4 +1,4 @@
-package bot;
+package g3tether;
 
 import battlecode.common.*;
 

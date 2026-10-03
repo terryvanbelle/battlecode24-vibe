@@ -1,4 +1,4 @@
-package bot;
+package g3tether;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -49,7 +49,7 @@ public strictfp class C {
     public static final int INTERCEPT_R2 = 225;
     public static final boolean FLAG_LOST = false;      // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); arm g3lost
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
-    public static final boolean DEF_TETHER = false;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
+    public static final boolean DEF_TETHER = true;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
     public static final int TETHER_R2 = 20;
     public static final boolean CAMP_SPLIT = false;     // DEST_CAMP: split campers over the enemy spawns within 1.3x the nearest distance (arm g3camp2)
     public static final boolean DEST_CAMP = false;     // C10a: after a carrier slips out of sight, ducks that can beat it there wait at its destination spawn
