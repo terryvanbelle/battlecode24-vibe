@@ -1330,3 +1330,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   that passes its pre-registered victory read against the target is not vetoed by a relative basics check its tactic
   pays by design (g3escrg2's kill/death); the absolute bars (symmetry, overruns, exceptions) still stop it. Memory added.
 - Cyril filler, g3escrg2 vs g_iter3: 80 paired games, gained 16, lost 13, net +3 (+0.6 SE): not cracking Cyril so far.
+- Owner (PROMPTS 169): a prompt that captures the correctness audit, for future years. Written by two workflows
+  (three drafts from different angles, two judges, synthesis, an adversarial completeness critic: 13 gaps and 9 errors,
+  all applied and verified, 3 residual overstatements fixed by hand): `AUDIT_PROMPT.md` (a ~530-word paste-in) and
+  `AUDIT_PLAYBOOK.md` (the full procedure: parameters, triggers, the five-lens read-only audit with adversarial
+  verification, then tools first with identity controls, bot fixes behind switches, one combined build judged by exact
+  paired tests and confirmed, permanent guards, open findings, re-tests). TRAINING_ALGORITHM.md amended: the audit is
+  the first plateau-escalation step; the mirror gate shares one engine seed per cell; Phase 0 adds the identity
+  control and the basics battery; step 4 runs the basics battery and the dead-code/switch-intent checks.

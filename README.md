@@ -8,6 +8,7 @@ evidence-driven loop, measured against every publicly available 2024 competitor 
 and `progress/REWRITE.md` for its statistics.
 
 - `TRAINING_ALGORITHM.md`: the loop (year-agnostic).
+- `AUDIT_PROMPT.md` / `AUDIT_PLAYBOOK.md`: the correctness audit that ended the 2024 plateau, as a reusable prompt and procedure (year-agnostic).
 - `RULES.md`: the game, checked against the engine source.
 - `TACTICS.md`: tactics opponents used against us, and our offensive and defensive progress on each.
 - `TRAINING_LOG.md`: append-only record of every attempt.
