@@ -611,3 +611,11 @@ task check
 ## 148. 2026-10-03
 
 task check
+
+## 149. 2026-10-03
+
+This is fantastic, glad to hear you made progress.  I'm expecting you'll continue to work until our meeting, and beyond
+
+## 150. 2026-10-03
+
+I'm imagining that now that you've fixed some bugs, old approaches that you discarded are worth revisiting 

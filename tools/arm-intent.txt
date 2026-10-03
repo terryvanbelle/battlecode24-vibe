@@ -21,3 +21,7 @@ g_iter2 C.REACH_FIX=true
 g_iter2 C.NAV_FIX=true
 g_iter2 Sym.OBSERVE=true
 g_iter2 C.TRACK=false
+g2nonav C.NAV_FIX=false
+g2bc C.REACH_BC=11000
+g2z2 C.Z2ESCORT=true
+g2z2 C.Z2_ESC_R2=8

@@ -1,4 +1,4 @@
-package bot;
+package g2nonav;
 
 import battlecode.common.*;
 

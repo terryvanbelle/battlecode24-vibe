@@ -1,4 +1,4 @@
-package bot;
+package g2z2;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -74,8 +74,8 @@ public strictfp class C {
     public static final int BANK_FLOOR0 = 1500, BANK_PACE = 10, FILL_STALL = 3;
     public static final boolean Z1HOLD = false;          // block 4: converge on our dropped flag (re-grabs 9.8/game vs beaters)
     public static final int Z1_RADIUS2 = 20;
-    public static final boolean Z2ESCORT = false;        // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
-    public static final int Z2_ESC_R2 = 2;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
+    public static final boolean Z2ESCORT = true;         // block 4 v2: hit a carrier's escorts first (re-grab within 1-5 rounds otherwise)
+    public static final int Z2_ESC_R2 = 8;               // escort radius around a carrier (8: a raider can step in and pick up the same turn)
     public static final boolean FILL_SMART = false;     // C2: take a free land step that does not lose distance instead of filling
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer

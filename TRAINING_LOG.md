@@ -1110,3 +1110,12 @@ ColtG5 victory criterion at 120 games: 71/120 = 59.2% (p 0.055 vs 50%), paired v
 the 60% bar. Pre-registered now, before more data: the final evaluation is at 240 ColtG5 games with the same bars
 (>= 60% and two-sided p < 0.05; paired net >= +2 SE). Open: A7 (NAV_FIX) showed no gain alone; to ablate on seeded pairs;
 peak bytecode 24.7k (A4 BFS) to bring down.
+- First arms on the new base g_iter2 (all paired on seeded band cells against g_iter2's own seeded runs = the g1basics
+  band runs): g2nonav (NAV_FIX off: is A7/A9 earning its place? ablation, band test directly), g2bc (REACH_BC 8000 ->
+  11000: buy back bytecode headroom from the 24.7k peak; gate mean:overruns<=0 rel:stillPost<=1.05), g2z2 (Z2ESCORT on,
+  radius 8: B2's escort-first targeting, +2.3 SE vs B1 on unseeded pairs; gate rel:enemyRegrabs<=0.7 rel:postPickups>=0.8).
+  The A4 guard is now the named constant C.REACH_BC (no behaviour change; AuditTest OK).
+- Owner prompt 150 ("old approaches you discarded are worth revisiting"): every verdict before 2026-10-02 23:00 UTC was
+  unseeded (15-29% engine noise) and many ran on top of the fixed defects. A triage workflow (three lenses: bug
+  interaction, statistical noise, strategic fit; one synthesis) is building research/RETEST.md: a re-test queue on g_iter2
+  with switch settings and pre-registered delivery bars.
