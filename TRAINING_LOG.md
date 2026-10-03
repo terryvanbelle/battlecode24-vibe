@@ -1344,3 +1344,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   behind switches, exact paired tests, confirmation, permanent checks). No year or this-year document references.
 - g3escrg2 closed: 240 paired filler games vs Cyril, net +8 (+1.0 SE), 32% vs g_iter3's 30%. Filler back to the g_iter3
   baseline vs Cyril. Next: a measurement study of Cyril's flag defence before any new arm.
+- Cyril defence study (workflow, 5 lenses + synthesis + critic; research/CRACK-CYRIL.md): the kill box at its flags is
+  symmetric (not its edge); no trap ring, equal guards; its offense decides games (no Cyril capture -> 84% wins, any ->
+  18%); its captures come from relays (70% re-grab legs) and long unwatched carries (159 vs 87 carrier-rounds per game in
+  losses vs wins; capturing trips ~71 rounds with ~1 of ours near). The critic refuted the jail gate and flagged the
+  respawn-stream premise as inflated. Next arm g3camp (DEST_CAMP alone on g_iter3) aimed at the unwatched walk.

@@ -82,3 +82,33 @@ Cyril, and any conflict with the k/d check goes to the owner, not around the rul
 vs the g_iter3 baseline 198-466 (30%). The convoy doubles pickups and re-grabs but also carrier deaths: more attempts,
 not more captures. Next: measure Cyril's flag defence before building (who kills our carriers and where; its traps
 around its flags; guards per flag over time).
+
+## Defence study (workflow: 5 measurement lenses over 630-750 g_iter3/g2cr replays vs Cyril, synthesis, critic)
+
+Robust after the critic (overlapping analyses of the same game pool; event counts are clustered within games):
+- **Our carriers die at once next to its flag** (median 5 rounds, 2 moves, 4 tiles from its home; 90% of trips in losses
+  end with a dead carrier; attacks, not traps: 95% of deaths have hits, only 17% follow a Cyril stun). Its flags never
+  move (all on spawn centres) and ~80% of its respawns go to the threatened flag's zone. But this kill box is
+  **symmetric**: its carriers die just as fast at our flags (median 3 rounds, 1 move). Not its edge.
+- **No ring of traps, no extra guards, no hard geometry** at its flags (83-89% of our first grabs have no live Cyril trap
+  within 4 tiles; defend300 6.56 vs our 6.76; capture rate equal for all three of its flags).
+- **Its offense decides the games:** no Cyril capture -> we win 84% (119-23); any -> 18% (107-501). Its chains start
+  more often (0.67 vs 0.38 per 100 post-setup rounds) and capture twice as often (24% vs 12%); 70% of its captures are
+  re-grab legs; capturing trips carry 7.2 of its escorts within dist2 20 vs our 3.8.
+- **Long unwatched carries:** its carrier-rounds with none of ours within dist2 20: 159 per loss vs 87 per win
+  (within-map AUC 0.19); unopposed captures 1.00 vs 0.38 per game; its capturing trips last ~71 rounds with ~1 of ours
+  within dist2 20.
+- **Stun grenades:** 96% of its stun builds trigger, each freezing ~5.8 of our ducks (equal in wins and losses).
+- **Earliest within-map separator:** our deaths in our own half r250-400, 16.3 (wins) vs 24.4 (losses), kills equal.
+- One extra capture would turn 126 of 498 losses into flag ties (we win ties ~63% on level sum).
+
+Not supported after the critic: the jail-timing gate (predicts only an escape proxy, not captures); the respawn-stream
+dose-response as stated (inflated by respawns after the carrier was already dead; needs a recompute with respawns
+counted only while the carrier lives). Already tried: INTERCEPT + DEST_CAMP (g2icamp, band delivery FAIL x2),
+CAPTURING second (g2up3 FAIL).
+
+**Next arm: g3camp** (g_iter3 + C.DEST_CAMP alone, A11(a) fixed). Trace of g2icamp's failure: on the band and in mirrors
+carriers are rarely seen and then lost, so camps never fired legitimately (0 in 8 mirror games after the fix), while
+INTERCEPT pulled fighters off and raised first grabs against us (+26%). Against Cyril the premise is specific: its
+carrier is seen at the grab (our defenders are there) and then walks ~71 rounds unwatched toward a spawn our ducks can
+reach first (1 tile a round vs its 0.5). INTERCEPT stays off.
