@@ -1382,3 +1382,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3tether Cyril delivery FAIL at 96 cells (defenders near the flag at Cyril's first grabs 5.60 vs 5.64, -2.3 SE): a
   powered failure, closed. g3lost band guard PASS after one extension (48 cells: kills +19%, enemy captures -15%); band
   test running.
+- g3lost band test vs g_iter3: net +1, capture delta +0.14 +- 0.06 (t 2.2), upper tier +0.22 +- 0.09 (t 2.5): criterion
+  (b) met; basics PASS (identical games 86/234: it changes play only after a capture). Confirmation seeds queued.

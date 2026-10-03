@@ -14,3 +14,4 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | g2cr confirmation (seeds 717171 + 818181) | same | 107 -> 118, +11 (p 0.11) | +0.17 +- 0.09 | 21 -> 24, +3 | +0.07 +- 0.13 | +8 | +0.30 +- 0.13 | - |
 | **g2cr pooled (4 seeds, 473 pairs)** | same | 218 -> 240, **+22 (p 0.017)** | **+0.25 +- 0.07** | 42 -> 49, +7 | +0.18 +- 0.09 | +15 | +0.33 +- 0.10 | promoted: **g_iter3**, 1977 +- 33 (rank 12) |
 | g3escrg2 (vs g_iter3, Cyril crack) | g_iter3 + convoy (ESCORT_CARRIER/BEHIND/TIGHT, ESCORT_FAR_R2 225, REGRAB) | 122 -> 128, +6 (0.39) | +0.18 +- 0.08 | 25 -> 28, +3 | +0.20 +- 0.12 | +3 | +0.14 +- 0.11 | basics FAIL (k/d 2.13 vs 3.11) |
+| **g3lost** (vs g_iter3; second-audit fix BOT1) | g_iter3 + C.FLAG_LOST (captured own flags recognised) | 122 -> 123, +1 (1.00) | **+0.14 +- 0.06** | 25 -> 27, +2 | **+0.22 +- 0.09** | -1 | +0.04 +- 0.09 | criterion (b) met; basics PASS; confirmation queued |

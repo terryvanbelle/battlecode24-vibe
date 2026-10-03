@@ -155,3 +155,6 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
   Closed.
 - g3lost band guard: INCONCLUSIVE at 24, PASS at 48 cells (kills 580 vs 488, enemyCaptured 1.44 vs 1.69); band test
   running.
+- **g3lost band test vs g_iter3** (234 seeded pairs; identical 86/234): net +1, capture delta +0.14 +- 0.06 (t 2.2), upper
+  +0.22 +- 0.09 (t 2.5): REWRITE_EVAL criterion (b) met; basics PASS. Confirmation seeds queued; the Cyril paired filler
+  follows when the queue is idle.
