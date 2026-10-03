@@ -546,7 +546,7 @@ public strictfp class Duck {
             MapLocation[] ec = new MapLocation[9]; int ne = 0;
             for (int sym = Sym.ROT; sym <= Sym.FY; sym <<= 1)
                 if ((Sym.cands & sym) != 0) for (MapLocation c : G.spawnCenters) if (c != null) ec[ne++] = Sym.image(c, sym);
-            int step = Math.max(3, Math.max(G.W, G.H) / 9);           // at most ~100 grid points per call
+            int step = Math.max(3, Math.max(G.W, G.H) / (ne > 3 ? 6 : 9));   // grid points x centres <= ~450 (r41 overruns at 9 x 9)
             int bx = -1, by = -1, bs = Integer.MIN_VALUE;
             int sx = G.spawnCenters[k].x, sy = G.spawnCenters[k].y;
             for (int x = 2; x < G.W - 2; x += step) for (int y = 2; y < G.H - 2; y += step) {
@@ -592,7 +592,22 @@ public strictfp class Duck {
             rc.dropFlag(G.me);
             rc.writeSharedArray(Comms.OF_HOME + i, Comms.enc(G.me));
             placed = true; relocs++;
+        } else if (C.RELOC_V2) {                // illegal here (another flag placed within dist2 36): walk to a legal tile in
+            MapLocation alt = legalDropNear();   // view; spawn may be the illegal area (Tunnels: still carrying at r200, the
+            Nav.moveTo(alt != null ? alt : G.spawnCenters[i]);   // engine's unchecked drop reset all three flags)
         } else Nav.moveTo(G.spawnCenters[i]);   // illegal spot: walk back toward spawn and try again
+    }
+
+    /** RELOC_V2: the legal starting-flag tile within dist2 13 nearest the target (else farthest from our spawn centres). */
+    static MapLocation legalDropNear() throws GameActionException {
+        MapLocation best = null; int bs = Integer.MAX_VALUE;
+        for (MapInfo m : G.rc.senseNearbyMapInfos(13)) {
+            MapLocation l = m.getMapLocation();
+            if (!m.isPassable() || !G.rc.senseLegalStartingFlagPlacement(l)) continue;
+            int sc = flagTarget != null ? l.distanceSquaredTo(flagTarget) : G.me.distanceSquaredTo(l);
+            if (sc < bs) { bs = sc; best = l; }
+        }
+        return best;
     }
 
     static int ringStep;

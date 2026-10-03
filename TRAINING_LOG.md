@@ -1182,3 +1182,26 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   flags** (median r715); g_iter1 was 47-177. It is both the nearest bot above and the one we do best against (CyrilSharma
   7-17, hsmalladi 5-19). The filler now plays it (`FILLPOOL=winkelmantanner.waffle filler-pair.sh g_iter2 - 40`);
   CLAUDE.md rule 14 and tools/next-rung.txt updated. The final ColtG5 filler pair (g_iter2 vs g_iter1, 40 games): +16 (17-1).
+- g2icamp (A11(a) fixed) delivery **FAIL twice** (ColtG5 block: chasers20 +12%, bar +20%; band: enemyFirstGrabs 7.00 vs
+  5.54, +26%, bar +20%; enemyUnseenRounds not down): closed under the RETEST rule.
+- g2fast delivery PASS and band **identical to g_iter2 on all 234 cells** (0 gained, 0 lost; basics PASS, 0 overruns,
+  per-game peak 23.0k): the cheap search changes bytecode only. Folded into src/bot (C.REACH_FAST default true) and
+  src/g_iter2 re-snapshotted (same play; delivery base caches stay valid).
+- g2up3 (CAPTURING second): 12 more diagnostic games showed late re-grabs (Battlecode24 s6: 4, with a late capture), so
+  it went to its gate: **FAIL** (48 cells: regrabsLate 1.69 vs 1.12 ok, capturedLate 0.33 vs 0.44, kills -6.6% = -2.9 SE).
+  HEALING at r1200 is load-bearing, as the original 3-game read said. Re-test arms 2-8 are done: none delivered.
+- **waffle study** (research/CRACK-WAFFLE.md): death-relay re-grab chains (87% of its drops of our flags re-grabbed in
+  our losses, 77% in our wins, mostly the next round); it loses fights 1:2 and still converts; local balance at its first
+  grab is the same in wins and losses; our stuns near drops do not raise resets (17% vs 18%); capture rate of our flags
+  falls with distance to its spawn (< 20 tiles 88%, median r358; 28-36 tiles 50%). TACTICS.md T13 (re-grab chain) added,
+  T2 (relocation) re-opened; tactics survey regenerated on g_iter2's band (2012 games) and spliced into TACTICS.md;
+  progress/SURVEY.md and survey.csv updated.
+- g2reloc (C.RELOCATE_FLAGS + C.RELOC_V2): spots wait for observed symmetry (or r40) and maximise the distance to the
+  nearest enemy spawn under every live symmetry; audit A12 fixed with it (OF_HOME rewritten from the r200 placement).
+  New census columns flagDistMin / flagDistMean (r200 own flags to the nearest enemy spawn centre; unit-tested).
+  5(a) round 1 (8 maps): flags farther on Islands (min 19.8 -> 32.2 tiles) and Fountain (17.0 -> 22.4), but **3
+  overruns at r41-43 on Battlecode24** (symmetry undecided until r50: grid search over 9 candidate centres) and **all
+  flags reset on Tunnels** (a stall-drop 4 tiles from another flag's spawn left that defender with no legal drop; still
+  carrying at r200, the engine's unchecked drop broke the 36 spacing). Fixed: coarser grid with > 3 centres; an illegal
+  spot walks to the nearest legal tile in view (senseLegalStartingFlagPlacement) instead of back to spawn. Round 2 queued
+  (12 maps, g_iter2 mirrors alongside).
