@@ -56,6 +56,13 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   the broken guess). Re-test of discarded arms on the fixed base (prompt 150), so far: 5 delivery failures, 1 with no
   premise, 1 closed after a second failure (an audit bug, A11(a), fixed on the way); one bytecode fix folded in.
 
+- 07:10 UTC: waffle, first cracks. Relocation (g2reloc) delivered flags 18% farther from its spawns but cut its captures
+  only 9% (bar 15%; wins 8 vs 5 of 24, not significant) and a bigger walk bound did not raise the dose: parked as a
+  modest lever. Rushers (g2rush10) add no presence in its half: parked. Now on the waffle pool: escort-first targeting
+  (breaks the re-grab chain; fires on all 6 diagnostic maps) and a wider alert net (masses on the threatened flag).
+  Also today: the cheap reachability search folded into g_iter2 (identical play, less bytecode); g_iter2 vs waffle is
+  96-128 (43%) over 224 games, ladder 1915 (rank 14), waffle 1977 directly above.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
