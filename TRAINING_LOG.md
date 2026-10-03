@@ -1352,3 +1352,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3camp (DEST_CAMP on g_iter3) Cyril delivery FAIL: unwatched carrier-rounds -15% (bar -20%), unopposed captures halved
   (ok), Cyril captures -18%, wins 12-12. Trace: campers pick the straight-line nearest enemy spawn while Cyril's carrier
   heads to another nearly equidistant one. C.CAMP_SPLIT (split over spawns within 1.3x) + AuditTest; g3camp2 5(a) queued.
+- g3camp2 (CAMP_SPLIT) Cyril second attempt FAIL (unseen -15%, unopposed caps -8%, Cyril captures equal, wins 8 vs 9):
+  camp line closed. Five lines vs Cyril near neutral: per AUDIT_PLAYBOOK §1, run the correctness audit (second one) on
+  g_iter3 and the tools, open findings of the first audit in scope.

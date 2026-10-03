@@ -125,3 +125,10 @@ captured at Cyril's spawn (33,19), 36.2 tiles, not the straight-line nearest (36
 nearest. Fix C.CAMP_SPLIT: campers split by id over every enemy spawn within 1.3x the nearest distance (AuditTest).
 Second attempt g3camp2: 5(a) (6 scrimmages) then `SEED=919191 DGPOOL=CyrilSharma.finalBot DGTAG=-cyril2 BASE=g_iter3
 tools/delivery-gate.sh g3camp2 'rel:enemyUnseenRounds<=0.8 rel:unopposedCaps<=0.8 nw:kills>=0.95 mean:overruns<=0'`.
+**g3camp2 second attempt: FAIL** (seed 919191, 21 cells: unseen 114 vs 134, -15%, bar -20%; unopposedCaps 0.57 vs 0.62,
+bar -20%; kills ok). Descriptive: Cyril's captures 1.57 vs 1.57, wins 8 vs 9. The camp line is closed (two delivery
+failures).
+
+**Plateau against Cyril** (five lines near neutral: bank, two defenders, convoy, camp, camp-split). Per AUDIT_PLAYBOOK.md
+§1 the next step is a correctness audit of g_iter3 and the tools (much is new since the 2026-10-02 audit: carrier stun,
+relocation V2, A11/A12 fixes, new census columns, nw: guards), with the open findings of the first audit in scope.
