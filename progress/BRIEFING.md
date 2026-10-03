@@ -79,6 +79,12 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   SE): g_iter3 146-94 (60.8%, p = 0.001) where g_iter2 went 108-132 on the same games. On to CyrilSharma: a setup bank
   (g2crb) did not help there (wins 9 vs 12 of 24); g_iter3 itself went 12-12 on that block.
 
+- 17:15 UTC: **CyrilSharma not cracked; second audit started.** g_iter3 wins ~30% against it. Five lines came out near
+  neutral (setup bank, two defenders, convoy, destination camp, camp split over near spawns). A replay study (five
+  lenses, critic) showed its offense decides games (no Cyril capture -> we win 84%), with relays and long unwatched
+  carries. Following the new AUDIT_PLAYBOOK (a plateau across several areas is its first trigger), a second correctness
+  audit of g_iter3 and the tools is running.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.

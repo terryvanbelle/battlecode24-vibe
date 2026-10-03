@@ -13,8 +13,9 @@
   the owner, PROMPTS 157), winkelmantanner.waffle (g_iter3 ranks above it; paired waffle read finishing on the filler).
 - Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC; an
   identity control reads 0 of 80 discordant. Verdicts before that were mostly engine noise (research/RETEST.md).
-- In flight: the last waffle filler seeds (g_iter2 vs g_iter3, victory read at 240 paired games), then the CyrilSharma
-  study; g2crb (g_iter3 + BUDGET_V1 setup bank for carrier stuns) 5(a) queued. Re-test arms 2-8 (RETEST.md) all closed.
+- In flight: the **second correctness audit** (AUDIT_PLAYBOOK.md; g_iter3, src/bot and its arms, tools; five lenses,
+  id-matched refutation) after five near-neutral lines against CyrilSharma (research/CRACK-CYRIL.md: bank, two
+  defenders, convoy, camp, camp-split all closed). The filler builds the g_iter3 vs Cyril baseline (30%).
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
