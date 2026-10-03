@@ -1075,3 +1075,19 @@ one basics build judged against g_iter1 on shared seeds (head to head, band, Col
   (the BFS; 0 overruns, guarded at 8000 left). **g1nav (A7/A9)**: stillness unchanged; 0 gained 2 lost (DefaultLarge s4,
   Tunnels s4); Tunnels s5 first enemy-flag sight r1526 vs r642. No improvement visible; suspect until measured at power.
   The combined g1basics band test (seeded) decides; its overrun bar matters with A4 near the limit.
+
+### 2026-10-03 00:45 UTC — **g1basics (all audit fixes + observed symmetry) beats g_iter1** (seeded pairs, band)
+Delivery gate PASS (BASE=g_iter1, seeded): symWrong 0, overruns 0, alertNoThreat 23 vs 549 a game, efStaleCarry 18 vs
+498. Band test, 2 seeds, exact seed-paired with the seeded g_iter1 control (eval-paired):
+  all   234: wins 78 -> 111, gained 44 lost 11, **net +33 (sign p < 0.001)**, capture diff -0.89 -> -0.23, delta +0.66 +- 0.11
+  upper 128: wins 13 -> 21, net +8 (p 0.115), capture delta **+0.34 +- 0.12 (t +2.8)**
+  rest  106: wins 65 -> 90, net +25 (p < 0.001), capture delta +1.04 +- 0.17
+  rung   60: wins 15 -> 25, net +10 (p 0.041), capture delta +0.55 +- 0.23
+REWRITE_EVAL criteria: (a) all-cell net >= +2 SE: +33 = +4.4 SE, met; (b) upper capture delta >= +2 SE with all-cell
+non-inferior: +2.8 SE, met. Confirmation (two more seeds for both, seeded) queued before g1basics replaces g_iter1.
+Basics battery: g1basics PASS every bar (symmetry decided by r201 in 194/196 setup-decidable games and by r400 on 38/38
+post-setup maps; 0 overruns, max 24.7k -- a thin margin, the A4 BFS; 0 exceptions; stillPost 28.1 vs 36.0; floating
+crumbs at r250 177 vs 231); g_iter1 FAILS the symmetry bars (decided by r201 in 123/196, r400 on 5/38).
+ColtG5 (the crack), seeded filler pairs: g1basics vs g_iter1 80 pairs, gained 26 lost 8, net +18 (+3.1 SE); g1basics
+won 46/80 = 57.5% vs g_iter1 35.0% on the same seeds. Victory criterion (research/CRACK.md): >= 60% of >= 120 and paired
+net >= +2 SE: the paired part is met; the win rate is 57.5% over 80 so far (the filler continues).

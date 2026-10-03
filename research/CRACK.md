@@ -64,3 +64,7 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
   reach the predicted path in time. CUT is built (both doses). The band sample fails P3 (0.761), which matters for
   widening later, not for the crack. The bot's symmetry guess is wrong in 28% of ColtG5 games: the private symmetry
   (PSYM, psymOk >= 0.95) is required in S0b.
+- 2026-10-03 00:45 UTC: **g1basics** (the audit's basic fixes + observed symmetry; no ColtG5-specific change) vs ColtG5,
+  seeded filler pairs with g_iter1: 80 pairs, gained 26 lost 8 (+3.1 SE); g1basics won 46/80 = 57.5% (g_iter1 35.0%).
+  Victory criterion: paired part met; win rate needs >= 60% over >= 120 (filler continuing). The crack was in our own
+  basics: a constantly-on alert, frozen ducks, stale flag targets.

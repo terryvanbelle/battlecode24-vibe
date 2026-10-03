@@ -39,6 +39,11 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   verdicts were noise-bound. Fixed: g_iter1 vs an exact copy now differs in 0 of 80 paired games. (4) Running: the
   combined build g1basics (all fixes) through its gate and a seeded band test; ColtG5 fillers pair it with g_iter1.
 
+- 01:15 UTC: **the basics moved the needle.** g1basics vs g_iter1 on exact seeded band pairs: wins 78 -> 111 of 234
+  (+33, p < 0.001); upper tier capture difference +0.34 +- 0.12 (+2.8 SE); rung 15 -> 25. Both pre-registered criteria
+  met; confirmation seeds running. Against ColtG5: 57.5% wins (g_iter1 35%), paired +18 of 80 (+3.1 SE); the
+  "unambiguous victory" needs >= 60% over >= 120 games -- close.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
