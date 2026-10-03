@@ -1311,3 +1311,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g_iter3 vs Cyril, 48 replays (22-26): losses are fast captures on small maps (first grab r218-331, first capture
   ~r277-440), where relocation and carrier stuns have little room. Arm g3def2 (2 defenders per flag, scouts moved to
   idx 6-8) built on g_iter3, 5(a) queued.
+- g3def2 Cyril delivery FAIL (enemyFirstGrabs -6%, bar -15%; wins 8 vs 12, our captures halved): closed. Our offense vs
+  Cyril: our carriers die alone (at our drops, ours within dist2 8: 1.14, Cyril's 3.53) and we re-grab 19% of drops
+  (Cyril re-grabs 75% of its). g3escrg (convoy + re-grab on g_iter3) built; 5(a) queued.

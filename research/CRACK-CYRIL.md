@@ -48,3 +48,6 @@ wins 8 vs 12 (gained 3, lost 7), our captures 0.62 vs 1.21. Closed (as T1's 2-de
 r300 18.3 vs 9.5. When our carrier dies (74 drops, 16 games) we re-grab 19%: at the drop ours within dist2 2 / 8 average
 0.26 / 1.14, Cyril's 1.64 / 3.53 (97% of drops have one of its ducks within dist2 8). Our carriers travel alone.
 Next: **g3escrg** (convoy: ESCORT_CARRIER + ESCORT_BEHIND + REGRAB on g_iter3; T13 adoption).
+g3escrg 5(a) (4 mirror maps): escort turns 407-1386, re-grab tries 11-41, regrabs 10-38 a game, 0 overruns: fires.
+Cyril delivery: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter3 tools/delivery-gate.sh g3escrg 'rel:regrabs>=2.0
+rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
