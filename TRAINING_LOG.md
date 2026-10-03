@@ -1276,3 +1276,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Waffle filler, first g2cr pairs (2 fresh seeds, 80 paired games): g2cr 46-34 (57.5%) vs waffle, g_iter2 38-42 on the
   same cells; paired gained 19, lost 11, net +8 (+1.5 SE). Ladder refit: g2cr 1999 +- 77 (80 games), waffle 1955.
   Victory read at 240 paired games (>= 60%, p < 0.05, net >= +2 SE).
+- **g2cr band test vs g_iter2** (234 seeded pairs, seeds 515151 + 616161): wins 111 -> 122 (gained 25, lost 14, net +11,
+  p 0.11); capture difference -0.23 -> +0.10, **delta +0.33 +- 0.10 (t 3.4)**; upper tier net +4, **capture delta +0.30
+  +- 0.13 (t 2.3)**; rest net +7 (+0.37 +- 0.14). Basics PASS (symWrong 0, sym setup 196/196, late 37/38, 0 overruns, 0
+  exceptions, all relative checks ok). REWRITE_EVAL criterion (b) met (upper capture >= +2 SE with net >= -5):
+  confirmation seeds 717171 + 818181 queued against g_iter2's confirmation runs. The band cost feared from relocation
+  (first grabs +40% in one 24-cell block) does not show in the outcome over 234 pairs.
+- Waffle filler: 120 paired games, g2cr 66-54 (55.0%) vs g_iter2 55-65 on the same cells, paired net +11 (+1.7 SE).
