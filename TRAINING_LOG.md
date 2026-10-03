@@ -1256,3 +1256,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   owner (BRIEFING): judge delivery on the mechanism's own signature (frozen carriers, passed twice at x3) rather than on
   a downstream capture bar? Fix and re-diagnose: g2cr = carrier stun + relocation, 5(a) queued, waffle block
   pre-registered on fresh seed 929292.
+- g2cr 5(a): both mechanisms fire on 8 mirror maps (carrier-stun builds 2-42, carriers caught 3-24, flags placed as in
+  g2reloc, 0 overruns). **g2cr waffle delivery PASS** (seed 929292, 22 cells): carrier stuns built in 100% of games,
+  carriers caught 27.3 vs 5.9, flagDistMin 29.7 vs 25.5 (bar 29.3), enemyCaptured600 1.27 vs 1.59 (-20%, bar -20%), 0
+  overruns; descriptive: wins 12 vs 8 (gained 6, lost 2), our captures 2.00 vs 1.55. Filler now pairs g2cr with g_iter2
+  against waffle (CLAUDE rule 14); band delivery + band test queued.

@@ -13,15 +13,15 @@
   (PROMPTS 157). Evidence and plan: research/CRACK-WAFFLE.md (death-relay re-grab chains; our near flags fall first).
 - Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC; an
   identity control reads 0 of 80 discordant. Verdicts before that were mostly engine noise (research/RETEST.md).
-- In flight: g2reloc (flags far from the nearest enemy spawn under every live symmetry; step 5(a) running), g2up3
-  (gate queued). Re-test results so far (research/RETEST.md arms 2-8): g2z2, g2escrg, g2alert400, g2water, g2fstun
+- In flight: **g2cr** (carrier stun + flag relocation) passed its waffle delivery block (research/CRACK-WAFFLE.md);
+  the filler pairs it with g_iter2 against waffle toward 240 games, band delivery + band test queued. g2up3 closed. Re-test results so far (research/RETEST.md arms 2-8): g2z2, g2escrg, g2alert400, g2water, g2fstun
   delivery FAIL (parked); g2icamp FAIL twice (closed; A11(a) fixed on the way); g2rgh has no premise (never fires);
   g2bc2 failed the basics (stillPost); g2fast folded in.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
-  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=winkelmantanner.waffle tools/filler-pair.sh g_iter2 - 40`
-  (the target on fresh seeds; put the best arm in place of "-"), collected with `tools/collect-fillers.sh g_iter2 <arm>`.
+  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=winkelmantanner.waffle tools/filler-pair.sh g_iter2 g2cr 40`
+  (the target on fresh seeds, paired with the candidate g2cr), collected with `tools/collect-fillers.sh g_iter2 g2cr`.
 - Every build and test block gets `tools/basics.py` (CLAUDE rule 15); unit tests include the dead-code and arm-intent
   checks.
 

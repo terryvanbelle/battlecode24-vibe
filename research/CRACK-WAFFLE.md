@@ -126,3 +126,8 @@ downstream outcome bar.
 maps (both mechanisms fire), then the waffle block on fresh seed 929292:
 `SEED=929292 DGPOOL=winkelmantanner.waffle DGTAG=-waffle3 BASE=g_iter2 tools/delivery-gate.sh g2cr
 'fire:carrierStunBuilds>0>=0.9 rel:carrierStunned>=1.3 rel:flagDistMin>=1.15 rel:enemyCaptured600<=0.8 mean:overruns<=0'`.
+
+**g2cr waffle block (seed 929292, 22 cells): PASS** (carrier-stun builds in 100% of games; carriers caught 27.3 vs 5.9;
+flagDistMin 29.7 vs 25.5; enemyCaptured600 1.27 vs 1.59, -20%, at the bar). Descriptive: wins 12 vs 8 (gained 6, lost
+2), our captures 2.00 vs 1.55, enemyCaptured 2.05 vs 2.41. Now: the waffle filler pairs g2cr with g_iter2 on fresh seeds
+toward 240 games (victory read: >= 60% wins, p < 0.05, paired net >= +2 SE); band delivery and band test queued.
