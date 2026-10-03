@@ -21,7 +21,7 @@ while true; do
     N="$(basename "$J" .job)"; mv "$J" "$Q/running/$N.job"
     echo "$(date -u +%FT%TZ) start $N"
     bash "$Q/running/$N.job" > "gauntlet/$N.log" 2>&1 < /dev/null
-    echo "$(date -u +%FT%TZ) done $N (exit $?)"; mv "$Q/running/$N.job" "$Q/done/$N.job"
+    rc=$?; echo "$(date -u +%FT%TZ) done $N (exit $rc)"; mv "$Q/running/$N.job" "$Q/done/$N.job"   # audit B12: $? was the date's
   elif [ -f "$Q/filler.job" ]; then
     N="filler-$(date -u +%Y%m%d-%H%M%S)"; echo "$(date -u +%FT%TZ) idle: $N"
     bash "$Q/filler.job" > "gauntlet/$N.log" 2>&1 < /dev/null

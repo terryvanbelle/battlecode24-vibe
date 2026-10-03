@@ -1091,3 +1091,9 @@ crumbs at r250 177 vs 231); g_iter1 FAILS the symmetry bars (decided by r201 in 
 ColtG5 (the crack), seeded filler pairs: g1basics vs g_iter1 80 pairs, gained 26 lost 8, net +18 (+3.1 SE); g1basics
 won 46/80 = 57.5% vs g_iter1 35.0% on the same seeds. Victory criterion (research/CRACK.md): >= 60% of >= 120 and paired
 net >= +2 SE: the paired part is met; the win rate is 57.5% over 80 so far (the filler continues).
+- Corrections (rule 8, audit A8/B2): the ablations ab1nodam (dam-front traps, 20-16) and ab3nofloat (idle-bank stun traps,
+  19-20) are VOID: the mechanisms rarely fire (bank < 700 in setup on 64 of 75 maps; bank > 1500 after setup almost never),
+  so those blocks compared near-identical builds; and every pair before 2026-10-02 23:00 UTC was unseeded (engine noise
+  15-29% of cells). research/TACTIC_LEVELS.md annotated. Earlier "closed" directions judged on unseeded pairs are
+  re-test candidates on the new base. Tools: gauntlet.sh run-id guard fixed (B13); vm-queue logs the job's exit status (B12)
+  -- both take effect on the VM at the next sync, after the confirmation run.

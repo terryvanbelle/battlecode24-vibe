@@ -201,7 +201,9 @@ When the range of b spans two labels, report both and act on the higher one. Eve
    - Iteration 1 stacked symmetry, trap rings, the advance rule, float spending and carrier chase.
    - It targeted (a) a self-play standoff in g_iter0 and (b) a T1 flag-rush defence. Chase and rings are T1 *neutralizations*, and the symmetry served the carrier intercept (C10), not flag search.
    - The log says "attribution between them is open."
-   - On the band, rings (20-19), float traps (19-20) and dam traps (20-16) ablate to about 0.
+   - On the band, rings (20-19), float traps (19-20) and dam traps (20-16) ablate to about 0. **VOID for dam and float
+     traps (audit A8, 2026-10-03): neither fires on most maps (bank < 700 in setup on 64 of 75 maps; bank > 1500 after
+     setup on almost none), so those ablations compared near-identical builds. Re-ablate only on cells where they fire.**
 2. **No early basic has a large win gradient inside beater games.**
    - Territory: 0.15 / 0.16 / 0.17 by tercile, rho 0.06 with winning, Mantel-Haenszel difference +0.08 [0.00, 0.17]. Our wins over beaters are still 11.5 vs 22 [C](s).
    - First flag sighting: flat [C](s).
@@ -322,7 +324,9 @@ Method column: D = decomposition, then PDG, XO, FRCD. "comp" = composite, "int" 
 - **Gap.**
   - Bank at r200: 175 vs 2909. At r250: 250 vs 1910 [S](s).
   - We spend the setup crumbs on 34 setup traps and 33 fills (medians) [S](s); they build 0.5 traps.
-  - Setup dam traps (20-16), the flag ring (20-19) and float traps (19-20) all ablate to about 0 (< 1 SE).
+  - Setup dam traps (20-16), the flag ring (20-19) and float traps (19-20) all ablate to about 0 (< 1 SE). **VOID for dam
+    and float traps (audit A8): the mechanisms rarely fire, so the ablations measured no-ops; all pairs were also unseeded
+    (audit B2).**
   - The bank arms reached about 1065 at r200 and lost it by r250 (273, 277, 50 on beater cells (s)); c4bank also carried the contaminated trap placement.
   - Fills are a named spender: c4bank's diagnostic made 99 fills (about 3000 crumbs), and c6pair's made 77 (about 2300) above the 500 reserve.
 - **Not a lever on its own:** c5bank and c6pair each read 82 vs 84 on 110 field cells.

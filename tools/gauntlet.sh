@@ -65,7 +65,9 @@ if [ "${SKIP_COMPILE:-0}" = 1 ] && [ -d "$CLASSES" ]; then echo "reusing $CLASSE
 else rm -rf "$CLASSES" && compile_src "$REPO/src" "$CLASSES" || { echo "!! compile failed" >&2; exit 1; }; fi
 
 RUN_ID="$(date +%Y%m%d-%H%M%S)${TAG:+-$TAG}"
-while ! mkdir -p "$REPO/gauntlet" && mkdir "$REPO/gauntlet/$RUN_ID" 2>/dev/null; do RUN_ID="$(date +%Y%m%d-%H%M%S)-$$"; done
+mkdir -p "$REPO/gauntlet"
+# audit B13: the old guard parsed as (! mkdir -p) && mkdir and never looped; retry until a fresh directory exists, keeping TAG
+until mkdir "$REPO/gauntlet/$RUN_ID" 2>/dev/null; do sleep 1; RUN_ID="$(date +%Y%m%d-%H%M%S)${TAG:+-$TAG}"; done
 OUT="$REPO/gauntlet/$RUN_ID"; mkdir -p "$OUT/losses" "$OUT/replays"
 printf '%s\n' $MAPS > "$OUT/maps.txt"
 # CELLS=<file>: play exactly these "opponent map side" lines instead of the OPPONENTS x MAPS x sides product
