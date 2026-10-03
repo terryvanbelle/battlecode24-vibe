@@ -11,12 +11,15 @@
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"
 ARM="${1:?arm}"; CHECKS="${2:?checks}"; N="${N:-24}"; SEED="${SEED:-909090}"
+# a block on an explicit pool (e.g. ColtG5) writes tagged outputs, so it never overwrites the band block's PASS/FAIL and
+# census (RETEST.md: band-test.sh reads gauntlet/delivery-<arm>.PASS, which must be the band block's)
+OTAG=""; [ -n "${DGPOOL:-}" ] && OTAG="${DGTAG:-}"
 DGPOOL="${DGPOOL:-$(cat tools/band-20261001.txt)}"; DGTAG="${DGTAG:-}"
-rm -f "gauntlet/delivery-$ARM.PASS" "gauntlet/delivery-$ARM.FAIL"
+rm -f "gauntlet/delivery-$ARM$OTAG.PASS" "gauntlet/delivery-$ARM$OTAG.FAIL"
 BOT="$ARM" N="$N" SEED="$SEED" RUNTAG="dga$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$ARM" POOL="$DGPOOL" tools/scrim.sh | tail -1
 RUN="$(ls -d gauntlet/*-scrim-"$ARM"-dga"$DGTAG" | tail -1)"
-P=7 tools/capability-census.sh "gauntlet/dg-census-$ARM.csv" "$RUN" >/dev/null
-MODE=--survey P=7 tools/capability-census.sh "gauntlet/dg-survey-$ARM.csv" "$RUN" >/dev/null
+P=7 tools/capability-census.sh "gauntlet/dg-census-$ARM$OTAG.csv" "$RUN" >/dev/null
+MODE=--survey P=7 tools/capability-census.sh "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" >/dev/null
 # BASE=<bot>: the stack base this arm is built on; its mini-block on the same seed is played once and cached, and
 # rel: checks compare the arm with it cell by cell (2026-10-01: absolute bars against the band-wide control mean were
 # too noisy and compared against the wrong build).
@@ -39,4 +42,4 @@ if [ -n "${BASE:-}" ]; then
   done
   BARGS="$BC $BS"
 fi
-python3 tools/delivery-check.py "$ARM" "$CHECKS" "gauntlet/dg-census-$ARM.csv" "gauntlet/dg-survey-$ARM.csv" "$RUN" $BARGS
+python3 tools/delivery-check.py "$ARM$OTAG" "$CHECKS" "gauntlet/dg-census-$ARM$OTAG.csv" "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" $BARGS

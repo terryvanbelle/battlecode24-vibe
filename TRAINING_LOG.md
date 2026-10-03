@@ -1122,3 +1122,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g2nonav (NAV_FIX off) vs g_iter2, 234 seeded pairs: net -1 (21-22), capture delta +0.04 +- 0.09; upper +2 (+0.17 +- 0.12).
   A7/A9 is neutral in play; kept (it repairs a documented defect at no cost). **Basics: 1 overrun (max 25.0k) in this
   block**: g_iter2's bytecode margin is too thin (A4's BFS on top of symmetry observation); g2bc (REACH_BC 11000) running.
+- Re-test triage done (workflow: three lenses + synthesis): research/RETEST.md, a 12-arm queue on g_iter2 with switch
+  settings, pre-registered delivery bars, and the decision rule (adopt as a stack candidate at all-cell net >= +2 SE or
+  upper capture delta >= +2 SE with net >= -5; close for good after two delivery failures or band net <= -2 SE; else park;
+  confirmation seeds before stacking). Top: g2z2 (queued), g2icamp (INTERCEPT + DEST_CAMP), g2fstun, g2escrg, g2rgh,
+  g2alert400, g2water, g2up3, g2def2, g2fort, g2csafe, g2z1. It notes exact-harness verdicts (shared seeds) stand as
+  measurements except where A1 changed what the switch does (defence knobs).
+- Tool: delivery-gate.sh tags its outputs (PASS/FAIL, census) when an explicit pool is given (DGPOOL), so a ColtG5 block
+  never overwrites the band block that band-test.sh reads (found by the triage).
+- Arms 2-8 built (arm-intent lines added); one step-5(a) batch queued: each vs the g_iter2 mirror on 4 maps, the two
+  flag-defence arms also vs arch_rush10, with the g_iter2 baselines on the same seeds.
