@@ -92,3 +92,12 @@ parked as a modest lever (+18% distance -> -9% waffle captures).
 response net masses on the threatened flag:
 `DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh g2alert400 'rel:enemyCaptured<=0.85
 rel:chasers20>=1.1 mean:overruns<=0'`.
+
+g2z2w and g2alert400 failed on the waffle pool (re-grabs unchanged 21.1 vs 21.1; captures 2.42 vs 2.46). At each drop
+waffle has 1-9 ducks within dist2 8, so attacks cannot deny a re-grab; what matters is how fast the chain moves.
+
+**g2cstun** (C.CARRIER_STUN: a duck with an enemy carrier of our flag within dist2 18 builds a stun within dist2 8 of
+it, ahead on its way home; a frozen carrier cannot move for ~4 turns). 5(a): carrier-stun builds 2-32 a game vs 0-1,
+carriers caught up on most maps (Islands 16 vs 7, DefaultMedium 10 vs 1). Waffle block:
+`DGPOOL=winkelmantanner.waffle DGTAG=-waffle BASE=g_iter2 tools/delivery-gate.sh g2cstun 'rel:carrierStunned>=1.3
+rel:enemyCaptured<=0.85 mean:overruns<=0'`.
