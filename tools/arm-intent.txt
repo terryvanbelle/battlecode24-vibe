@@ -42,3 +42,6 @@ g2fast C.REACH_FAST=true
 g2reloc C.RELOCATE_FLAGS=true
 g2reloc C.RELOC_V2=true
 g2rush10 C.RUSHERS=10
+g2reloc2 C.RELOCATE_FLAGS=true
+g2reloc2 C.RELOC_V2=true
+g2reloc2 C.RELOC_R2=625

@@ -1,4 +1,4 @@
-package bot;
+package g2reloc2;
 
 import battlecode.common.*;
 

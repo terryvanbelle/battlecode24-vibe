@@ -1216,3 +1216,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - progress/ONSET.md and onset-ladder.png regenerated from g_iter2's band (112 games; the VM lacks matplotlib, so
   onset.py ran on the driver from the VM's study.tsv). Ladder refit with 200 waffle filler games: g_iter2 1915 +- 27
   (rank 14 of 75), waffle 1977 directly above; g_iter2 vs waffle 96-128 (43%).
+- **g2reloc delivery FAIL** (pre-registered, research/CRACK-WAFFLE.md). Waffle block (24 scrims, same cells): flagDistMin
+  25.5 vs 21.7 (+18%, ok); enemyCaptured 2.25 vs 2.46 (-9% +- 11%, bar -15%) FAIL. Band delivery: flagDistMin +20% ok,
+  kills 425 vs 486 (-12.5%, 1.0 SE) FAIL. Descriptive, waffle block: wins 8 vs 5 of 24 (gained 5, lost 2), our captures
+  1.50 vs 1.04, games 1318 vs 951 rounds. Trace: the dose was small (+4 tiles under the 15-tile walk bound); the
+  distance gradient predicts about -10% captures for that, which is what was measured. Second attempt (RETEST rule):
+  g2reloc2, walk bound 25 tiles (C.RELOC_R2 625; grid step scales with the radius to bound bytecode), 5(a) queued; its
+  gates will run on a fresh seed.
