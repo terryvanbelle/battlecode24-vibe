@@ -62,3 +62,8 @@ branch hands control to the fight micro, where the engage score (10000) beats th
 and the carrier walks on alone (the same failure as g2escrg on the band). Fix: C.ESCORT_TIGHT (escorts' moves stay
 within dist2 8 of our carrier, or close in, while they fight). Second attempt g3escrg2: 5(a) queued, then the Cyril
 block on fresh seed 919191 with the same bars.
+g3escrg2 5(a): ESCORT_TIGHT alone did not raise escorts20 (3.80 vs 4.04 on the same 4 maps); a wider ESCORT_R2 cannot
+matter (the carrier must be in vision, dist2 20). Added C.ESCORT_FAR_R2 225 (out of a fight, join our carrier from the
+registry, EF_STATE 1 / EF_LOC): escorts20 4.35-8.65 (mean 6.1 vs 4.0), regrabs 7-57, 0 overruns. Second attempt:
+`SEED=919191 DGPOOL=CyrilSharma.finalBot DGTAG=-cyril2 BASE=g_iter3 tools/delivery-gate.sh g3escrg2 'rel:regrabs>=2.0
+rel:escorts20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.

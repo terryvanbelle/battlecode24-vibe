@@ -1317,3 +1317,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g3escrg Cyril delivery FAIL (regrabs x5.6 ok; escorts20 3.06 vs 3.71, bar x1.1); descriptive wins 13 vs 12, captures
   1.50 vs 1.21. Trace: escorts hand control to fight micro and fall behind. New switch C.ESCORT_TIGHT (fight moves stay
   within dist2 8 of our carrier, or close in); second attempt g3escrg2, 5(a) queued.
+- g3escrg2 5(a): ESCORT_TIGHT alone left escorts20 flat (3.80 vs 4.04); ESCORT_R2 > 20 is inert (carrier must be in
+  vision); C.ESCORT_FAR_R2 225 (join our carrier from the registry out of fights) lifts escorts20 to 4.35-8.65 (mean
+  6.1 vs 4.0). Cyril second attempt queued on fresh seed 919191.
