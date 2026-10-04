@@ -85,6 +85,12 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   carries. Following the new AUDIT_PLAYBOOK (a plateau across several areas is its first trigger), a second correctness
   audit of g_iter3 and the tools is running.
 
+- 00:15 UTC (Oct 4): **second audit paid off: g_iter4 promoted.** 56 findings, all reproduced. The tool fixes came first
+  (delivery checks are now three-way: three of the five Cyril "closures" were coin flips inside 1 SE). The first bot fix,
+  recognising our captured flags (their defender, alerts and respawns kept serving an empty home in 82% of Cyril games),
+  passed delivery and the band test and its confirmation: upper-tier capture difference +0.24 per game (t 3.8). The
+  defender tether failed with power and is closed. Next: relocation abandoning ~20% of flags, pickup timing, economy.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.

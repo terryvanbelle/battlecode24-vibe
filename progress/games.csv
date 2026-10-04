@@ -19588,43 +19588,523 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261003-232559-scrim-g_iter3-fill1791069953,38,us:g_iter3,CyrilSharma.finalBot,Tunnels,A,2000,The winning team won on tiebreakers (hig,688399620
 20261003-232559-scrim-g_iter3-fill1791069953,39,us:g_iter3,CyrilSharma.finalBot,TwistedTreeline,A,1491,The winning team captured all flags.,1546928622
 20261003-232559-scrim-g_iter3-fill1791069953,40,us:g_iter3,CyrilSharma.finalBot,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,650666251
-20261003-233321-scrim-g3lost-fill1791069953,1,us:g3lost,CyrilSharma.finalBot,Alien,B,1668,The winning team captured all flags.,1552867795
-20261003-233321-scrim-g3lost-fill1791069953,2,CyrilSharma.finalBot,us:g3lost,Alien,B,2000,The winning team won on tiebreakers (hig,1655035799
-20261003-233321-scrim-g3lost-fill1791069953,3,CyrilSharma.finalBot,us:g3lost,Asteroids,A,950,The winning team captured all flags.,1847574569
-20261003-233321-scrim-g3lost-fill1791069953,4,us:g3lost,CyrilSharma.finalBot,Battlecode24,B,2000,The winning team won on tiebreakers (cap,1038594401
-20261003-233321-scrim-g3lost-fill1791069953,5,CyrilSharma.finalBot,us:g3lost,BedWars,B,2000,The winning team won on tiebreakers (cap,2043620044
-20261003-233321-scrim-g3lost-fill1791069953,6,CyrilSharma.finalBot,us:g3lost,BreadPudding,B,2000,The winning team won on tiebreakers (hig,1640467464
-20261003-233321-scrim-g3lost-fill1791069953,7,us:g3lost,CyrilSharma.finalBot,Capacitance,B,455,The winning team captured all flags.,1810576776
-20261003-233321-scrim-g3lost-fill1791069953,8,us:g3lost,CyrilSharma.finalBot,Decision,B,718,The winning team captured all flags.,343197520
-20261003-233321-scrim-g3lost-fill1791069953,9,CyrilSharma.finalBot,us:g3lost,DefaultHuge,B,982,The winning team captured all flags.,1566361991
-20261003-233321-scrim-g3lost-fill1791069953,10,us:g3lost,CyrilSharma.finalBot,DefaultLarge,B,2000,The winning team won on tiebreakers (cap,1740922441
-20261003-233321-scrim-g3lost-fill1791069953,11,CyrilSharma.finalBot,us:g3lost,DefaultSmall,A,2000,The winning team won on tiebreakers (cap,2000373177
-20261003-233321-scrim-g3lost-fill1791069953,12,us:g3lost,CyrilSharma.finalBot,Digging,A,2000,The winning team won on tiebreakers (hig,782011132
-20261003-233321-scrim-g3lost-fill1791069953,13,us:g3lost,CyrilSharma.finalBot,Divergent,A,2000,The winning team won on tiebreakers (cap,84370092
-20261003-233321-scrim-g3lost-fill1791069953,14,CyrilSharma.finalBot,us:g3lost,Duck,A,1551,The winning team captured all flags.,65751641
-20261003-233321-scrim-g3lost-fill1791069953,15,us:g3lost,CyrilSharma.finalBot,EvilGrin,B,1650,The winning team captured all flags.,719323150
-20261003-233321-scrim-g3lost-fill1791069953,16,us:g3lost,CyrilSharma.finalBot,EvilGrin,B,2000,The winning team won on tiebreakers (cap,1616250757
-20261003-233321-scrim-g3lost-fill1791069953,17,CyrilSharma.finalBot,us:g3lost,EvilGrin,A,2000,The winning team won on tiebreakers (cap,1285822087
-20261003-233321-scrim-g3lost-fill1791069953,18,CyrilSharma.finalBot,us:g3lost,Foxes,A,2000,The winning team won on tiebreakers (hig,1197053936
-20261003-233321-scrim-g3lost-fill1791069953,19,us:g3lost,CyrilSharma.finalBot,Funnel,B,2000,The winning team won on tiebreakers (cap,537857630
-20261003-233321-scrim-g3lost-fill1791069953,20,CyrilSharma.finalBot,us:g3lost,Fusbol,B,2000,The winning team won on tiebreakers (hig,920596994
-20261003-233321-scrim-g3lost-fill1791069953,21,CyrilSharma.finalBot,us:g3lost,Gated,B,2000,The winning team won on tiebreakers (hig,1243619828
-20261003-233321-scrim-g3lost-fill1791069953,22,us:g3lost,CyrilSharma.finalBot,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,1983969244
-20261003-233321-scrim-g3lost-fill1791069953,23,us:g3lost,CyrilSharma.finalBot,Hurricane,B,2000,The winning team won on tiebreakers (hig,261821046
-20261003-233321-scrim-g3lost-fill1791069953,24,us:g3lost,CyrilSharma.finalBot,Klein,A,2000,The winning team won on tiebreakers (mor,1344832808
-20261003-233321-scrim-g3lost-fill1791069953,25,CyrilSharma.finalBot,us:g3lost,MIT,A,988,The winning team captured all flags.,2007549672
-20261003-233321-scrim-g3lost-fill1791069953,26,us:g3lost,CyrilSharma.finalBot,MazeRunner,A,2000,The winning team won on tiebreakers (cap,878613832
-20261003-233321-scrim-g3lost-fill1791069953,27,us:g3lost,CyrilSharma.finalBot,Mountain,B,2000,The winning team won on tiebreakers (cap,266071704
-20261003-233321-scrim-g3lost-fill1791069953,28,CyrilSharma.finalBot,us:g3lost,Mountain,B,2000,The winning team won on tiebreakers (hig,2107767102
-20261003-233321-scrim-g3lost-fill1791069953,29,CyrilSharma.finalBot,us:g3lost,Mountain,B,2000,The winning team won on tiebreakers (hig,796094735
-20261003-233321-scrim-g3lost-fill1791069953,30,us:g3lost,CyrilSharma.finalBot,Occulus,A,2000,The winning team won on tiebreakers (hig,1805263641
-20261003-233321-scrim-g3lost-fill1791069953,31,us:g3lost,CyrilSharma.finalBot,Pancakes,B,586,The winning team captured all flags.,928766322
-20261003-233321-scrim-g3lost-fill1791069953,32,us:g3lost,CyrilSharma.finalBot,Puzzle,B,1326,The winning team captured all flags.,269838491
-20261003-233321-scrim-g3lost-fill1791069953,33,us:g3lost,CyrilSharma.finalBot,Puzzle,B,2000,The winning team won on tiebreakers (cap,274549034
-20261003-233321-scrim-g3lost-fill1791069953,34,us:g3lost,CyrilSharma.finalBot,Racetrack,A,2000,The winning team won on tiebreakers (hig,268193631
-20261003-233321-scrim-g3lost-fill1791069953,35,CyrilSharma.finalBot,us:g3lost,Rivers,B,2000,The winning team won on tiebreakers (hig,1869119581
-20261003-233321-scrim-g3lost-fill1791069953,36,CyrilSharma.finalBot,us:g3lost,Soccer,A,1840,The winning team captured all flags.,1008637709
-20261003-233321-scrim-g3lost-fill1791069953,37,us:g3lost,CyrilSharma.finalBot,StarryNight,B,664,The winning team captured all flags.,492892060
-20261003-233321-scrim-g3lost-fill1791069953,38,us:g3lost,CyrilSharma.finalBot,Tunnels,A,2000,The winning team won on tiebreakers (hig,688399620
-20261003-233321-scrim-g3lost-fill1791069953,39,us:g3lost,CyrilSharma.finalBot,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,650666251
-20261003-233321-scrim-g3lost-fill1791069953,40,us:g3lost,CyrilSharma.finalBot,TwistedTreeline,B,2000,The winning team won on tiebreakers (hig,1546928622
+20261003-233321-scrim-g3lost-fill1791069953,1,us:g_iter4,CyrilSharma.finalBot,Alien,B,1668,The winning team captured all flags.,1552867795
+20261003-233321-scrim-g3lost-fill1791069953,2,CyrilSharma.finalBot,us:g_iter4,Alien,B,2000,The winning team won on tiebreakers (hig,1655035799
+20261003-233321-scrim-g3lost-fill1791069953,3,CyrilSharma.finalBot,us:g_iter4,Asteroids,A,950,The winning team captured all flags.,1847574569
+20261003-233321-scrim-g3lost-fill1791069953,4,us:g_iter4,CyrilSharma.finalBot,Battlecode24,B,2000,The winning team won on tiebreakers (cap,1038594401
+20261003-233321-scrim-g3lost-fill1791069953,5,CyrilSharma.finalBot,us:g_iter4,BedWars,B,2000,The winning team won on tiebreakers (cap,2043620044
+20261003-233321-scrim-g3lost-fill1791069953,6,CyrilSharma.finalBot,us:g_iter4,BreadPudding,B,2000,The winning team won on tiebreakers (hig,1640467464
+20261003-233321-scrim-g3lost-fill1791069953,7,us:g_iter4,CyrilSharma.finalBot,Capacitance,B,455,The winning team captured all flags.,1810576776
+20261003-233321-scrim-g3lost-fill1791069953,8,us:g_iter4,CyrilSharma.finalBot,Decision,B,718,The winning team captured all flags.,343197520
+20261003-233321-scrim-g3lost-fill1791069953,9,CyrilSharma.finalBot,us:g_iter4,DefaultHuge,B,982,The winning team captured all flags.,1566361991
+20261003-233321-scrim-g3lost-fill1791069953,10,us:g_iter4,CyrilSharma.finalBot,DefaultLarge,B,2000,The winning team won on tiebreakers (cap,1740922441
+20261003-233321-scrim-g3lost-fill1791069953,11,CyrilSharma.finalBot,us:g_iter4,DefaultSmall,A,2000,The winning team won on tiebreakers (cap,2000373177
+20261003-233321-scrim-g3lost-fill1791069953,12,us:g_iter4,CyrilSharma.finalBot,Digging,A,2000,The winning team won on tiebreakers (hig,782011132
+20261003-233321-scrim-g3lost-fill1791069953,13,us:g_iter4,CyrilSharma.finalBot,Divergent,A,2000,The winning team won on tiebreakers (cap,84370092
+20261003-233321-scrim-g3lost-fill1791069953,14,CyrilSharma.finalBot,us:g_iter4,Duck,A,1551,The winning team captured all flags.,65751641
+20261003-233321-scrim-g3lost-fill1791069953,15,us:g_iter4,CyrilSharma.finalBot,EvilGrin,B,1650,The winning team captured all flags.,719323150
+20261003-233321-scrim-g3lost-fill1791069953,16,us:g_iter4,CyrilSharma.finalBot,EvilGrin,B,2000,The winning team won on tiebreakers (cap,1616250757
+20261003-233321-scrim-g3lost-fill1791069953,17,CyrilSharma.finalBot,us:g_iter4,EvilGrin,A,2000,The winning team won on tiebreakers (cap,1285822087
+20261003-233321-scrim-g3lost-fill1791069953,18,CyrilSharma.finalBot,us:g_iter4,Foxes,A,2000,The winning team won on tiebreakers (hig,1197053936
+20261003-233321-scrim-g3lost-fill1791069953,19,us:g_iter4,CyrilSharma.finalBot,Funnel,B,2000,The winning team won on tiebreakers (cap,537857630
+20261003-233321-scrim-g3lost-fill1791069953,20,CyrilSharma.finalBot,us:g_iter4,Fusbol,B,2000,The winning team won on tiebreakers (hig,920596994
+20261003-233321-scrim-g3lost-fill1791069953,21,CyrilSharma.finalBot,us:g_iter4,Gated,B,2000,The winning team won on tiebreakers (hig,1243619828
+20261003-233321-scrim-g3lost-fill1791069953,22,us:g_iter4,CyrilSharma.finalBot,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,1983969244
+20261003-233321-scrim-g3lost-fill1791069953,23,us:g_iter4,CyrilSharma.finalBot,Hurricane,B,2000,The winning team won on tiebreakers (hig,261821046
+20261003-233321-scrim-g3lost-fill1791069953,24,us:g_iter4,CyrilSharma.finalBot,Klein,A,2000,The winning team won on tiebreakers (mor,1344832808
+20261003-233321-scrim-g3lost-fill1791069953,25,CyrilSharma.finalBot,us:g_iter4,MIT,A,988,The winning team captured all flags.,2007549672
+20261003-233321-scrim-g3lost-fill1791069953,26,us:g_iter4,CyrilSharma.finalBot,MazeRunner,A,2000,The winning team won on tiebreakers (cap,878613832
+20261003-233321-scrim-g3lost-fill1791069953,27,us:g_iter4,CyrilSharma.finalBot,Mountain,B,2000,The winning team won on tiebreakers (cap,266071704
+20261003-233321-scrim-g3lost-fill1791069953,28,CyrilSharma.finalBot,us:g_iter4,Mountain,B,2000,The winning team won on tiebreakers (hig,2107767102
+20261003-233321-scrim-g3lost-fill1791069953,29,CyrilSharma.finalBot,us:g_iter4,Mountain,B,2000,The winning team won on tiebreakers (hig,796094735
+20261003-233321-scrim-g3lost-fill1791069953,30,us:g_iter4,CyrilSharma.finalBot,Occulus,A,2000,The winning team won on tiebreakers (hig,1805263641
+20261003-233321-scrim-g3lost-fill1791069953,31,us:g_iter4,CyrilSharma.finalBot,Pancakes,B,586,The winning team captured all flags.,928766322
+20261003-233321-scrim-g3lost-fill1791069953,32,us:g_iter4,CyrilSharma.finalBot,Puzzle,B,1326,The winning team captured all flags.,269838491
+20261003-233321-scrim-g3lost-fill1791069953,33,us:g_iter4,CyrilSharma.finalBot,Puzzle,B,2000,The winning team won on tiebreakers (cap,274549034
+20261003-233321-scrim-g3lost-fill1791069953,34,us:g_iter4,CyrilSharma.finalBot,Racetrack,A,2000,The winning team won on tiebreakers (hig,268193631
+20261003-233321-scrim-g3lost-fill1791069953,35,CyrilSharma.finalBot,us:g_iter4,Rivers,B,2000,The winning team won on tiebreakers (hig,1869119581
+20261003-233321-scrim-g3lost-fill1791069953,36,CyrilSharma.finalBot,us:g_iter4,Soccer,A,1840,The winning team captured all flags.,1008637709
+20261003-233321-scrim-g3lost-fill1791069953,37,us:g_iter4,CyrilSharma.finalBot,StarryNight,B,664,The winning team captured all flags.,492892060
+20261003-233321-scrim-g3lost-fill1791069953,38,us:g_iter4,CyrilSharma.finalBot,Tunnels,A,2000,The winning team won on tiebreakers (hig,688399620
+20261003-233321-scrim-g3lost-fill1791069953,39,us:g_iter4,CyrilSharma.finalBot,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,650666251
+20261003-233321-scrim-g3lost-fill1791069953,40,us:g_iter4,CyrilSharma.finalBot,TwistedTreeline,B,2000,The winning team won on tiebreakers (hig,1546928622
+20261003-225543-scrim-g3lost,1,us:g_iter4,ColtG5.Goob_final,Ambush,A,1380,The winning team captured all flags.,388229147
+20261003-225543-scrim-g3lost,2,us:g_iter4,ColtG5.Goob_final,EvilGrin,A,1663,The winning team captured all flags.,389845165
+20261003-225543-scrim-g3lost,3,us:g_iter4,ColtG5.Goob_final,Gated,A,2000,The winning team won on tiebreakers (cap,1579102627
+20261003-225543-scrim-g3lost,4,ColtG5.Goob_final,us:g_iter4,Joker,B,2000,The winning team won on tiebreakers (cap,521096345
+20261003-225543-scrim-g3lost,5,ColtG5.Goob_final,us:g_iter4,SteamboatMickey,B,1534,The winning team captured all flags.,725810170
+20261003-225543-scrim-g3lost,6,ColtG5.Goob_final,us:g_iter4,Swoop,B,1354,The winning team captured all flags.,2003424126
+20261003-225543-scrim-g3lost,7,us:g_iter4,CyrilSharma.finalBot,Bunkers,B,1423,The winning team captured all flags.,1917352909
+20261003-225543-scrim-g3lost,8,CyrilSharma.finalBot,us:g_iter4,Decision,A,2000,The winning team won on tiebreakers (cap,81304567
+20261003-225543-scrim-g3lost,9,CyrilSharma.finalBot,us:g_iter4,EvilGrin,A,2000,The winning team won on tiebreakers (cap,1880567235
+20261003-225543-scrim-g3lost,10,us:g_iter4,CyrilSharma.finalBot,OceanFloor,B,2000,The winning team won on tiebreakers (hig,753348490
+20261003-225543-scrim-g3lost,11,CyrilSharma.finalBot,us:g_iter4,Racetrack,B,1803,The winning team captured all flags.,2032353617
+20261003-225543-scrim-g3lost,12,us:g_iter4,CyrilSharma.finalBot,Whirlpool,A,2000,The winning team won on tiebreakers (cap,1190601265
+20261003-225543-scrim-g3lost,13,us:g_iter4,Gymhgy.v10official,Asteroids,B,722,The winning team captured all flags.,2085813460
+20261003-225543-scrim-g3lost,14,us:g_iter4,Gymhgy.v10official,Backslash,A,2000,The winning team won on tiebreakers (hig,1620316434
+20261003-225543-scrim-g3lost,15,us:g_iter4,Gymhgy.v10official,CH3353C4K3F4CT0RY,B,554,The winning team captured all flags.,1051562799
+20261003-225543-scrim-g3lost,16,Gymhgy.v10official,us:g_iter4,Decision,A,1023,The winning team captured all flags.,1270292891
+20261003-225543-scrim-g3lost,17,Gymhgy.v10official,us:g_iter4,DefaultLarge,B,1229,The winning team captured all flags.,1674292333
+20261003-225543-scrim-g3lost,18,Gymhgy.v10official,us:g_iter4,Klein,A,2000,The winning team won on tiebreakers (cap,80553495
+20261003-225543-scrim-g3lost,19,us:g_iter4,IvanGeffner.kuma,Backslash,B,1866,The winning team captured all flags.,969026777
+20261003-225543-scrim-g3lost,20,us:g_iter4,IvanGeffner.kuma,Backslash,B,1868,The winning team captured all flags.,298973771
+20261003-225543-scrim-g3lost,21,us:g_iter4,IvanGeffner.kuma,EndAround,A,2000,The winning team won on tiebreakers (hig,1826800329
+20261003-225543-scrim-g3lost,22,us:g_iter4,IvanGeffner.kuma,Occulus,B,1771,The winning team captured all flags.,1806622292
+20261003-225543-scrim-g3lost,23,us:g_iter4,IvanGeffner.kuma,Racetrack,B,1508,The winning team captured all flags.,1421225016
+20261003-225543-scrim-g3lost,24,us:g_iter4,IvanGeffner.kuma,Swoop,B,1625,The winning team captured all flags.,1606762079
+20261003-225543-scrim-g3lost,25,us:g_iter4,NotLLeon.v3,Backslash,B,1193,The winning team captured all flags.,213928933
+20261003-225543-scrim-g3lost,26,NotLLeon.v3,us:g_iter4,Backslash,A,2000,The winning team won on tiebreakers (cap,2105386055
+20261003-225543-scrim-g3lost,27,NotLLeon.v3,us:g_iter4,Gated,A,616,The winning team captured all flags.,657771952
+20261003-225543-scrim-g3lost,28,us:g_iter4,NotLLeon.v3,ORV,B,2000,The winning team won on tiebreakers (hig,234186621
+20261003-225543-scrim-g3lost,29,NotLLeon.v3,us:g_iter4,Pancakes,A,1001,The winning team captured all flags.,950391499
+20261003-225543-scrim-g3lost,30,NotLLeon.v3,us:g_iter4,Waterworld,B,2000,The winning team won on tiebreakers (hig,2124838825
+20261003-225543-scrim-g3lost,31,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Foxes,B,1945,The winning team captured all flags.,1969376549
+20261003-225543-scrim-g3lost,32,SampleProvider.TSPAARKSPRINT1,us:g_iter4,QuestionableChess,B,593,The winning team captured all flags.,700063329
+20261003-225543-scrim-g3lost,33,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Snake,B,1526,The winning team captured all flags.,1259267669
+20261003-225543-scrim-g3lost,34,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Soccer,B,1707,The winning team captured all flags.,526337882
+20261003-225543-scrim-g3lost,35,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Waterworld,A,635,The winning team captured all flags.,525136591
+20261003-225543-scrim-g3lost,36,us:g_iter4,SampleProvider.TSPAARKSPRINT1,WheresMyWater,A,738,The winning team captured all flags.,2127237636
+20261003-225543-scrim-g3lost,37,us:g_iter4,Strequals.duck0127v5,Canals,B,1056,The winning team captured all flags.,681682985
+20261003-225543-scrim-g3lost,38,Strequals.duck0127v5,us:g_iter4,Divergent,A,1879,The winning team captured all flags.,2077310565
+20261003-225543-scrim-g3lost,39,Strequals.duck0127v5,us:g_iter4,Divergent,A,2000,The winning team won on tiebreakers (cap,224993491
+20261003-225543-scrim-g3lost,40,Strequals.duck0127v5,us:g_iter4,MIT,B,1073,The winning team captured all flags.,301713889
+20261003-225543-scrim-g3lost,41,us:g_iter4,Strequals.duck0127v5,MazeRunner,B,2000,The winning team won on tiebreakers (hig,1663982617
+20261003-225543-scrim-g3lost,42,us:g_iter4,Strequals.duck0127v5,Rainbow,B,2000,The winning team won on tiebreakers (cap,1730903654
+20261003-225543-scrim-g3lost,43,andli28.v9_USQuals_angle,us:g_iter4,Battlecode24,B,2000,The winning team won on tiebreakers (hig,1187075210
+20261003-225543-scrim-g3lost,44,us:g_iter4,andli28.v9_USQuals_angle,Canals,B,2000,The winning team won on tiebreakers (cap,804810739
+20261003-225543-scrim-g3lost,45,andli28.v9_USQuals_angle,us:g_iter4,EvilGrin,A,1596,The winning team captured all flags.,660750254
+20261003-225543-scrim-g3lost,46,andli28.v9_USQuals_angle,us:g_iter4,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,1786039363
+20261003-225543-scrim-g3lost,47,andli28.v9_USQuals_angle,us:g_iter4,Joker,A,1464,The winning team captured all flags.,1326829206
+20261003-225543-scrim-g3lost,48,us:g_iter4,andli28.v9_USQuals_angle,Valentine,B,2000,The winning team won on tiebreakers (hig,655054020
+20261003-225543-scrim-g3lost,49,us:g_iter4,andrewgopher.player22,Diagonal,A,2000,The winning team won on tiebreakers (cap,2147476515
+20261003-225543-scrim-g3lost,50,andrewgopher.player22,us:g_iter4,Digging,A,1588,The winning team captured all flags.,753335601
+20261003-225543-scrim-g3lost,51,us:g_iter4,andrewgopher.player22,Mountain,B,2000,The winning team won on tiebreakers (hig,1320951044
+20261003-225543-scrim-g3lost,52,us:g_iter4,andrewgopher.player22,ORV,B,2000,The winning team won on tiebreakers (cap,707511960
+20261003-225543-scrim-g3lost,53,andrewgopher.player22,us:g_iter4,StackGame,A,457,The winning team captured all flags.,442422572
+20261003-225543-scrim-g3lost,54,andrewgopher.player22,us:g_iter4,TwistedTreeline,A,2000,The winning team won on tiebreakers (hig,185460227
+20261003-225543-scrim-g3lost,55,us:g_iter4,awu7.ExplosiveBot,BedWars,A,779,The winning team captured all flags.,2123761983
+20261003-225543-scrim-g3lost,56,awu7.ExplosiveBot,us:g_iter4,BedWars,B,703,The winning team captured all flags.,1624145203
+20261003-225543-scrim-g3lost,57,awu7.ExplosiveBot,us:g_iter4,DefaultLarge,B,857,The winning team captured all flags.,1598973425
+20261003-225543-scrim-g3lost,58,us:g_iter4,awu7.ExplosiveBot,Diagonal,A,1949,The winning team captured all flags.,391950888
+20261003-225543-scrim-g3lost,59,us:g_iter4,awu7.ExplosiveBot,OceanFloor,A,1255,The winning team captured all flags.,1424365261
+20261003-225543-scrim-g3lost,60,awu7.ExplosiveBot,us:g_iter4,Randy,B,1653,The winning team captured all flags.,662536684
+20261003-225543-scrim-g3lost,61,chenyx512.flagbot_final,us:g_iter4,AceOfSpades,A,933,The winning team captured all flags.,1445884921
+20261003-225543-scrim-g3lost,62,chenyx512.flagbot_final,us:g_iter4,Divergent,A,2000,The winning team won on tiebreakers (cap,2045673167
+20261003-225543-scrim-g3lost,63,us:g_iter4,chenyx512.flagbot_final,Racetrack,B,1082,The winning team captured all flags.,1632167210
+20261003-225543-scrim-g3lost,64,chenyx512.flagbot_final,us:g_iter4,Skyline,A,1360,The winning team captured all flags.,1825746774
+20261003-225543-scrim-g3lost,65,us:g_iter4,chenyx512.flagbot_final,Swoop,B,1210,The winning team captured all flags.,734201873
+20261003-225543-scrim-g3lost,66,chenyx512.flagbot_final,us:g_iter4,Tunnels,A,2000,The winning team won on tiebreakers (cap,2113603362
+20261003-225543-scrim-g3lost,67,clbarrell.duck8,us:g_iter4,AceOfSpades,B,733,The winning team captured all flags.,1457061592
+20261003-225543-scrim-g3lost,68,clbarrell.duck8,us:g_iter4,Foxes,B,1027,The winning team captured all flags.,1509874551
+20261003-225543-scrim-g3lost,69,clbarrell.duck8,us:g_iter4,GaltonBoard,B,1596,The winning team captured all flags.,1265640701
+20261003-225543-scrim-g3lost,70,clbarrell.duck8,us:g_iter4,OceanFloor,B,469,The winning team captured all flags.,540007083
+20261003-225543-scrim-g3lost,71,clbarrell.duck8,us:g_iter4,Pancakes,B,463,The winning team captured all flags.,1552824702
+20261003-225543-scrim-g3lost,72,clbarrell.duck8,us:g_iter4,QuestionableChess,B,1303,The winning team captured all flags.,1163935267
+20261003-225543-scrim-g3lost,73,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,Battlecode24,A,901,The winning team captured all flags.,90245541
+20261003-225543-scrim-g3lost,74,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,BreadPudding,A,1284,The winning team captured all flags.,206383388
+20261003-225543-scrim-g3lost,75,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,DefaultLarge,A,820,The winning team captured all flags.,1418280143
+20261003-225543-scrim-g3lost,76,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Diagonal,B,2000,The winning team won on tiebreakers (cap,100496005
+20261003-225543-scrim-g3lost,77,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,KingQuacksCastle,B,651,The winning team captured all flags.,1939632284
+20261003-225543-scrim-g3lost,78,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,QueenOfHearts,A,813,The winning team captured all flags.,900629797
+20261003-225543-scrim-g3lost,79,us:g_iter4,hsmalladi.finalbot,AceOfSpades,B,370,The winning team captured all flags.,1401985627
+20261003-225543-scrim-g3lost,80,hsmalladi.finalbot,us:g_iter4,Fountain,A,738,The winning team captured all flags.,758416187
+20261003-225543-scrim-g3lost,81,hsmalladi.finalbot,us:g_iter4,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,1891305764
+20261003-225543-scrim-g3lost,82,hsmalladi.finalbot,us:g_iter4,ORV,A,2000,The winning team won on tiebreakers (hig,1175028316
+20261003-225543-scrim-g3lost,83,us:g_iter4,hsmalladi.finalbot,WheresMyWater,B,436,The winning team captured all flags.,1890874041
+20261003-225543-scrim-g3lost,84,hsmalladi.finalbot,us:g_iter4,WheresMyWater,A,1577,The winning team captured all flags.,190245996
+20261003-225543-scrim-g3lost,85,us:g_iter4,jmerle.camel_case_v21_final,Battlecode24,B,634,The winning team captured all flags.,353098772
+20261003-225543-scrim-g3lost,86,us:g_iter4,jmerle.camel_case_v21_final,Canals,B,1984,The winning team captured all flags.,1263124018
+20261003-225543-scrim-g3lost,87,us:g_iter4,jmerle.camel_case_v21_final,Fountain,B,2000,The winning team won on tiebreakers (cap,1852046879
+20261003-225543-scrim-g3lost,88,us:g_iter4,jmerle.camel_case_v21_final,StackGame,B,459,The winning team captured all flags.,879318828
+20261003-225543-scrim-g3lost,89,us:g_iter4,jmerle.camel_case_v21_final,Swoop,A,734,The winning team captured all flags.,822601305
+20261003-225543-scrim-g3lost,90,us:g_iter4,jmerle.camel_case_v21_final,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,874868291
+20261003-225543-scrim-g3lost,91,jonters.bling3,us:g_iter4,Backslash,B,435,The winning team captured all flags.,439072549
+20261003-225543-scrim-g3lost,92,us:g_iter4,jonters.bling3,Bunkers,A,664,The winning team captured all flags.,987577422
+20261003-225543-scrim-g3lost,93,jonters.bling3,us:g_iter4,Duck,B,843,The winning team captured all flags.,1523203818
+20261003-225543-scrim-g3lost,94,jonters.bling3,us:g_iter4,Snake,B,892,The winning team captured all flags.,1607081481
+20261003-225543-scrim-g3lost,95,us:g_iter4,jonters.bling3,Starfish,A,541,The winning team captured all flags.,385377359
+20261003-225543-scrim-g3lost,96,jonters.bling3,us:g_iter4,Waterworld,B,841,The winning team captured all flags.,1624747259
+20261003-225543-scrim-g3lost,97,us:g_iter4,justinottesen.sprint1,Decision,A,1843,The winning team captured all flags.,970673459
+20261003-225543-scrim-g3lost,98,us:g_iter4,justinottesen.sprint1,Decision,A,1893,The winning team captured all flags.,172614845
+20261003-225543-scrim-g3lost,99,us:g_iter4,justinottesen.sprint1,Fountain,A,407,The winning team captured all flags.,1373087052
+20261003-225543-scrim-g3lost,100,us:g_iter4,justinottesen.sprint1,Fountain,A,648,The winning team captured all flags.,1534533125
+20261003-225543-scrim-g3lost,101,justinottesen.sprint1,us:g_iter4,OceanFloor,B,856,The winning team captured all flags.,429887011
+20261003-225543-scrim-g3lost,102,justinottesen.sprint1,us:g_iter4,StackGame,B,613,The winning team captured all flags.,879232872
+20261003-225543-scrim-g3lost,103,kyleezz.jeeryfix3,us:g_iter4,Backslash,B,780,The winning team captured all flags.,1111858335
+20261003-225543-scrim-g3lost,104,us:g_iter4,kyleezz.jeeryfix3,BedWars,A,615,The winning team captured all flags.,634990366
+20261003-225543-scrim-g3lost,105,us:g_iter4,kyleezz.jeeryfix3,Fusbol,A,2000,The winning team won on tiebreakers (cap,1625081971
+20261003-225543-scrim-g3lost,106,kyleezz.jeeryfix3,us:g_iter4,Fusbol,B,2000,The winning team won on tiebreakers (cap,1389249358
+20261003-225543-scrim-g3lost,107,kyleezz.jeeryfix3,us:g_iter4,Intercontinental,A,1082,The winning team captured all flags.,1273655694
+20261003-225543-scrim-g3lost,108,kyleezz.jeeryfix3,us:g_iter4,Klein,B,2000,The winning team won on tiebreakers (hig,1436361136
+20261003-225543-scrim-g3lost,109,us:g_iter4,quesswho.cretplayer2_3,AceOfSpades,B,653,The winning team captured all flags.,1097316289
+20261003-225543-scrim-g3lost,110,us:g_iter4,quesswho.cretplayer2_3,BigDucksBigPond,B,1088,The winning team captured all flags.,2071487767
+20261003-225543-scrim-g3lost,111,us:g_iter4,quesswho.cretplayer2_3,Checkered,A,484,The winning team captured all flags.,2020498364
+20261003-225543-scrim-g3lost,112,us:g_iter4,quesswho.cretplayer2_3,Digging,A,1210,The winning team captured all flags.,727041822
+20261003-225543-scrim-g3lost,113,us:g_iter4,quesswho.cretplayer2_3,ORV,B,1479,The winning team captured all flags.,1590066878
+20261003-225543-scrim-g3lost,114,quesswho.cretplayer2_3,us:g_iter4,Waterworld,B,1360,The winning team captured all flags.,1527962710
+20261003-225543-scrim-g3lost,115,winkelmantanner.waffle,us:g_iter4,Funnel,A,949,The winning team captured all flags.,349832503
+20261003-225543-scrim-g3lost,116,winkelmantanner.waffle,us:g_iter4,Islands,B,1300,The winning team captured all flags.,1787240453
+20261003-225543-scrim-g3lost,117,winkelmantanner.waffle,us:g_iter4,Mountain,A,1156,The winning team captured all flags.,1275231049
+20261003-225543-scrim-g3lost,118,us:g_iter4,winkelmantanner.waffle,Puzzle,B,883,The winning team captured all flags.,43572598
+20261003-225543-scrim-g3lost,119,winkelmantanner.waffle,us:g_iter4,Soccer,B,1444,The winning team captured all flags.,586653682
+20261003-225543-scrim-g3lost,120,winkelmantanner.waffle,us:g_iter4,Tunnels,A,2000,The winning team won on tiebreakers (cap,331686854
+20261003-230938-scrim-g3lost,1,ColtG5.Goob_final,us:g_iter4,BigDucksBigPond,B,1609,The winning team captured all flags.,1373565771
+20261003-230938-scrim-g3lost,2,us:g_iter4,ColtG5.Goob_final,DefaultLarge,A,1867,The winning team captured all flags.,1494140251
+20261003-230938-scrim-g3lost,3,us:g_iter4,ColtG5.Goob_final,MazeRunner,A,2000,The winning team won on tiebreakers (hig,923954545
+20261003-230938-scrim-g3lost,4,us:g_iter4,ColtG5.Goob_final,OceanFloor,A,1932,The winning team captured all flags.,1365390763
+20261003-230938-scrim-g3lost,5,us:g_iter4,ColtG5.Goob_final,Snake,B,2000,The winning team won on tiebreakers (cap,58320527
+20261003-230938-scrim-g3lost,6,us:g_iter4,ColtG5.Goob_final,Tunnels,B,2000,The winning team won on tiebreakers (cap,2104829018
+20261003-230938-scrim-g3lost,7,CyrilSharma.finalBot,us:g_iter4,AceOfSpades,A,2000,The winning team won on tiebreakers (cap,22103082
+20261003-230938-scrim-g3lost,8,CyrilSharma.finalBot,us:g_iter4,BedWars,B,1221,The winning team captured all flags.,168353483
+20261003-230938-scrim-g3lost,9,us:g_iter4,CyrilSharma.finalBot,DefaultLarge,B,2000,The winning team won on tiebreakers (cap,1643889103
+20261003-230938-scrim-g3lost,10,us:g_iter4,CyrilSharma.finalBot,Fusbol,A,2000,The winning team won on tiebreakers (hig,1379688079
+20261003-230938-scrim-g3lost,11,CyrilSharma.finalBot,us:g_iter4,QuestionableChess,B,2000,The winning team won on tiebreakers (hig,2002954788
+20261003-230938-scrim-g3lost,12,us:g_iter4,CyrilSharma.finalBot,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,2128121692
+20261003-230938-scrim-g3lost,13,Gymhgy.v10official,us:g_iter4,DefaultMedium,A,2000,The winning team won on tiebreakers (cap,1069710449
+20261003-230938-scrim-g3lost,14,us:g_iter4,Gymhgy.v10official,Diagonal,B,2000,The winning team won on tiebreakers (hig,1036930179
+20261003-230938-scrim-g3lost,15,us:g_iter4,Gymhgy.v10official,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1458476991
+20261003-230938-scrim-g3lost,16,Gymhgy.v10official,us:g_iter4,HeMustBeFreed,A,1342,The winning team captured all flags.,728394498
+20261003-230938-scrim-g3lost,17,us:g_iter4,Gymhgy.v10official,Starfish,A,1245,The winning team captured all flags.,1764326832
+20261003-230938-scrim-g3lost,18,Gymhgy.v10official,us:g_iter4,Starfish,B,675,The winning team captured all flags.,284414102
+20261003-230938-scrim-g3lost,19,us:g_iter4,IvanGeffner.kuma,Alien,B,497,The winning team captured all flags.,92296552
+20261003-230938-scrim-g3lost,20,us:g_iter4,IvanGeffner.kuma,BigDucksBigPond,B,1744,The winning team captured all flags.,380267729
+20261003-230938-scrim-g3lost,21,us:g_iter4,IvanGeffner.kuma,Capacitance,B,1109,The winning team captured all flags.,107670671
+20261003-230938-scrim-g3lost,22,IvanGeffner.kuma,us:g_iter4,Diagonal,A,2000,The winning team won on tiebreakers (hig,1654103241
+20261003-230938-scrim-g3lost,23,IvanGeffner.kuma,us:g_iter4,Randy,A,1770,The winning team captured all flags.,1117573858
+20261003-230938-scrim-g3lost,24,IvanGeffner.kuma,us:g_iter4,StackGame,A,1460,The winning team captured all flags.,48426423
+20261003-230938-scrim-g3lost,25,NotLLeon.v3,us:g_iter4,Decision,A,2000,The winning team won on tiebreakers (hig,472217858
+20261003-230938-scrim-g3lost,26,NotLLeon.v3,us:g_iter4,Duck,A,1939,The winning team captured all flags.,873652421
+20261003-230938-scrim-g3lost,27,us:g_iter4,NotLLeon.v3,FloodGates,B,2000,The winning team won on tiebreakers (cap,312982536
+20261003-230938-scrim-g3lost,28,NotLLeon.v3,us:g_iter4,Foxes,A,1282,The winning team captured all flags.,173418598
+20261003-230938-scrim-g3lost,29,NotLLeon.v3,us:g_iter4,Hurricane,B,2000,The winning team won on tiebreakers (hig,591527457
+20261003-230938-scrim-g3lost,30,us:g_iter4,NotLLeon.v3,Rainbow,B,2000,The winning team won on tiebreakers (hig,1804076568
+20261003-230938-scrim-g3lost,31,us:g_iter4,SampleProvider.TSPAARKSPRINT1,EndAround,A,2000,The winning team won on tiebreakers (cap,497919621
+20261003-230938-scrim-g3lost,32,SampleProvider.TSPAARKSPRINT1,us:g_iter4,EndAround,B,1858,The winning team captured all flags.,45817194
+20261003-230938-scrim-g3lost,33,us:g_iter4,SampleProvider.TSPAARKSPRINT1,English,B,603,The winning team captured all flags.,1611756421
+20261003-230938-scrim-g3lost,34,SampleProvider.TSPAARKSPRINT1,us:g_iter4,KingQuacksCastle,B,1273,The winning team captured all flags.,406376610
+20261003-230938-scrim-g3lost,35,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Swoop,A,1618,The winning team captured all flags.,1825146753
+20261003-230938-scrim-g3lost,36,SampleProvider.TSPAARKSPRINT1,us:g_iter4,WheresMyWater,B,601,The winning team captured all flags.,1557127989
+20261003-230938-scrim-g3lost,37,us:g_iter4,Strequals.duck0127v5,Canals,B,1431,The winning team captured all flags.,295111703
+20261003-230938-scrim-g3lost,38,us:g_iter4,Strequals.duck0127v5,Divergent,A,2000,The winning team won on tiebreakers (cap,107509573
+20261003-230938-scrim-g3lost,39,Strequals.duck0127v5,us:g_iter4,Foxes,A,2000,The winning team won on tiebreakers (cap,1799125930
+20261003-230938-scrim-g3lost,40,Strequals.duck0127v5,us:g_iter4,Skyline,A,2000,The winning team won on tiebreakers (hig,678728768
+20261003-230938-scrim-g3lost,41,us:g_iter4,Strequals.duck0127v5,Soccer,A,885,The winning team captured all flags.,1713997273
+20261003-230938-scrim-g3lost,42,us:g_iter4,Strequals.duck0127v5,Soccer,B,1049,The winning team captured all flags.,1663136944
+20261003-230938-scrim-g3lost,43,andli28.v9_USQuals_angle,us:g_iter4,AceOfSpades,A,922,The winning team captured all flags.,2021593168
+20261003-230938-scrim-g3lost,44,andli28.v9_USQuals_angle,us:g_iter4,Funnel,A,2000,The winning team won on tiebreakers (cap,55376709
+20261003-230938-scrim-g3lost,45,us:g_iter4,andli28.v9_USQuals_angle,Gated,B,2000,The winning team won on tiebreakers (cap,1359358931
+20261003-230938-scrim-g3lost,46,us:g_iter4,andli28.v9_USQuals_angle,Occulus,B,2000,The winning team won on tiebreakers (cap,1834567884
+20261003-230938-scrim-g3lost,47,us:g_iter4,andli28.v9_USQuals_angle,QuestionableChess,B,1119,The winning team captured all flags.,1962248693
+20261003-230938-scrim-g3lost,48,andli28.v9_USQuals_angle,us:g_iter4,SteamboatMickey,B,1903,The winning team captured all flags.,814090197
+20261003-230938-scrim-g3lost,49,andrewgopher.player22,us:g_iter4,Divergent,B,2000,The winning team won on tiebreakers (cap,1790958032
+20261003-230938-scrim-g3lost,50,us:g_iter4,andrewgopher.player22,Fountain,B,2000,The winning team won on tiebreakers (cap,177205154
+20261003-230938-scrim-g3lost,51,us:g_iter4,andrewgopher.player22,Snake,B,2000,The winning team won on tiebreakers (cap,561138428
+20261003-230938-scrim-g3lost,52,us:g_iter4,andrewgopher.player22,StackGame,B,545,The winning team captured all flags.,1286824881
+20261003-230938-scrim-g3lost,53,us:g_iter4,andrewgopher.player22,WheresMyWater,B,1638,The winning team captured all flags.,1834396064
+20261003-230938-scrim-g3lost,54,andrewgopher.player22,us:g_iter4,Yinyang,A,1604,The winning team captured all flags.,1155063877
+20261003-230938-scrim-g3lost,55,us:g_iter4,awu7.ExplosiveBot,Alligator,A,991,The winning team captured all flags.,574339386
+20261003-230938-scrim-g3lost,56,us:g_iter4,awu7.ExplosiveBot,Canals,A,1127,The winning team captured all flags.,1542068392
+20261003-230938-scrim-g3lost,57,awu7.ExplosiveBot,us:g_iter4,Capacitance,B,1238,The winning team captured all flags.,1524235544
+20261003-230938-scrim-g3lost,58,us:g_iter4,awu7.ExplosiveBot,GaltonBoard,A,813,The winning team captured all flags.,1776998448
+20261003-230938-scrim-g3lost,59,awu7.ExplosiveBot,us:g_iter4,Joker,B,685,The winning team captured all flags.,955547094
+20261003-230938-scrim-g3lost,60,awu7.ExplosiveBot,us:g_iter4,Klein,B,897,The winning team captured all flags.,2125075410
+20261003-230938-scrim-g3lost,61,us:g_iter4,chenyx512.flagbot_final,Alligator,B,1321,The winning team captured all flags.,1927867319
+20261003-230938-scrim-g3lost,62,us:g_iter4,chenyx512.flagbot_final,Bunkers,B,1006,The winning team captured all flags.,1011896799
+20261003-230938-scrim-g3lost,63,chenyx512.flagbot_final,us:g_iter4,CH3353C4K3F4CT0RY,A,1273,The winning team captured all flags.,79094415
+20261003-230938-scrim-g3lost,64,us:g_iter4,chenyx512.flagbot_final,Intercontinental,B,1094,The winning team captured all flags.,1332940260
+20261003-230938-scrim-g3lost,65,chenyx512.flagbot_final,us:g_iter4,KingQuacksCastle,A,1071,The winning team captured all flags.,659346808
+20261003-230938-scrim-g3lost,66,chenyx512.flagbot_final,us:g_iter4,OceanFloor,A,1237,The winning team captured all flags.,555521779
+20261003-230938-scrim-g3lost,67,clbarrell.duck8,us:g_iter4,Diagonal,B,2000,The winning team won on tiebreakers (cap,2001337895
+20261003-230938-scrim-g3lost,68,us:g_iter4,clbarrell.duck8,Fountain,A,770,The winning team captured all flags.,579827105
+20261003-230938-scrim-g3lost,69,clbarrell.duck8,us:g_iter4,Hockey,B,940,The winning team captured all flags.,964465468
+20261003-230938-scrim-g3lost,70,clbarrell.duck8,us:g_iter4,Islands,B,678,The winning team captured all flags.,1476877618
+20261003-230938-scrim-g3lost,71,clbarrell.duck8,us:g_iter4,Mountain,B,1736,The winning team captured all flags.,994533888
+20261003-230938-scrim-g3lost,72,us:g_iter4,clbarrell.duck8,Whirlpool,A,1153,The winning team captured all flags.,53198984
+20261003-230938-scrim-g3lost,73,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,DefaultHuge,A,586,The winning team captured all flags.,1975883387
+20261003-230938-scrim-g3lost,74,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Foxes,B,2000,The winning team won on tiebreakers (cap,1001287951
+20261003-230938-scrim-g3lost,75,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,GaltonBoard,B,1390,The winning team captured all flags.,604801249
+20261003-230938-scrim-g3lost,76,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,Klein,A,902,The winning team captured all flags.,520303708
+20261003-230938-scrim-g3lost,77,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,OceanFloor,B,891,The winning team captured all flags.,889454124
+20261003-230938-scrim-g3lost,78,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,StarryNight,A,1277,The winning team captured all flags.,2079770995
+20261003-230938-scrim-g3lost,79,hsmalladi.finalbot,us:g_iter4,BreadPudding,A,1900,The winning team captured all flags.,1258871736
+20261003-230938-scrim-g3lost,80,hsmalladi.finalbot,us:g_iter4,HungerGames,A,1019,The winning team captured all flags.,2091401538
+20261003-230938-scrim-g3lost,81,us:g_iter4,hsmalladi.finalbot,Hurricane,B,2000,The winning team won on tiebreakers (cap,801332627
+20261003-230938-scrim-g3lost,82,us:g_iter4,hsmalladi.finalbot,Puzzle,B,511,The winning team captured all flags.,1015857395
+20261003-230938-scrim-g3lost,83,us:g_iter4,hsmalladi.finalbot,StackGame,B,447,The winning team captured all flags.,492858712
+20261003-230938-scrim-g3lost,84,us:g_iter4,hsmalladi.finalbot,TwistedTreeline,B,1306,The winning team captured all flags.,1107480744
+20261003-230938-scrim-g3lost,85,jmerle.camel_case_v21_final,us:g_iter4,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,139176021
+20261003-230938-scrim-g3lost,86,jmerle.camel_case_v21_final,us:g_iter4,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,2013639453
+20261003-230938-scrim-g3lost,87,jmerle.camel_case_v21_final,us:g_iter4,HungerGames,A,302,The winning team captured all flags.,536609281
+20261003-230938-scrim-g3lost,88,us:g_iter4,jmerle.camel_case_v21_final,Hurricane,A,2000,The winning team won on tiebreakers (hig,2053170927
+20261003-230938-scrim-g3lost,89,jmerle.camel_case_v21_final,us:g_iter4,OceanFloor,B,1027,The winning team captured all flags.,150055261
+20261003-230938-scrim-g3lost,90,jmerle.camel_case_v21_final,us:g_iter4,Starfish,A,432,The winning team captured all flags.,2052633966
+20261003-230938-scrim-g3lost,91,us:g_iter4,jonters.bling3,Alien,A,471,The winning team captured all flags.,795563338
+20261003-230938-scrim-g3lost,92,jonters.bling3,us:g_iter4,DefaultHuge,B,386,The winning team captured all flags.,577314073
+20261003-230938-scrim-g3lost,93,jonters.bling3,us:g_iter4,Hockey,B,962,The winning team captured all flags.,1120558098
+20261003-230938-scrim-g3lost,94,jonters.bling3,us:g_iter4,Randy,B,1036,The winning team captured all flags.,1813538490
+20261003-230938-scrim-g3lost,95,us:g_iter4,jonters.bling3,Snake,A,1335,The winning team captured all flags.,723925599
+20261003-230938-scrim-g3lost,96,jonters.bling3,us:g_iter4,Whirlpool,B,1234,The winning team captured all flags.,2007509604
+20261003-230938-scrim-g3lost,97,justinottesen.sprint1,us:g_iter4,Battlecode24,B,573,The winning team captured all flags.,773248577
+20261003-230938-scrim-g3lost,98,justinottesen.sprint1,us:g_iter4,GaltonBoard,B,771,The winning team captured all flags.,1311055259
+20261003-230938-scrim-g3lost,99,justinottesen.sprint1,us:g_iter4,Hurricane,B,1118,The winning team captured all flags.,315509440
+20261003-230938-scrim-g3lost,100,us:g_iter4,justinottesen.sprint1,Joker,A,1147,The winning team captured all flags.,1808022651
+20261003-230938-scrim-g3lost,101,justinottesen.sprint1,us:g_iter4,Rivers,B,462,The winning team captured all flags.,1653512209
+20261003-230938-scrim-g3lost,102,us:g_iter4,justinottesen.sprint1,StarryNight,A,632,The winning team captured all flags.,104024773
+20261003-230938-scrim-g3lost,103,kyleezz.jeeryfix3,us:g_iter4,CH3353C4K3F4CT0RY,B,1537,The winning team captured all flags.,1548925304
+20261003-230938-scrim-g3lost,104,kyleezz.jeeryfix3,us:g_iter4,Digging,B,1505,The winning team captured all flags.,1412330635
+20261003-230938-scrim-g3lost,105,kyleezz.jeeryfix3,us:g_iter4,Hurricane,B,2000,The winning team won on tiebreakers (hig,501956966
+20261003-230938-scrim-g3lost,106,us:g_iter4,kyleezz.jeeryfix3,OceanFloor,A,2000,The winning team won on tiebreakers (cap,35905289
+20261003-230938-scrim-g3lost,107,us:g_iter4,kyleezz.jeeryfix3,Skyline,B,1719,The winning team captured all flags.,964867658
+20261003-230938-scrim-g3lost,108,kyleezz.jeeryfix3,us:g_iter4,YearOfTheDragon,A,1821,The winning team captured all flags.,2044178023
+20261003-230938-scrim-g3lost,109,quesswho.cretplayer2_3,us:g_iter4,Battlefield,B,1290,The winning team captured all flags.,2002077296
+20261003-230938-scrim-g3lost,110,us:g_iter4,quesswho.cretplayer2_3,Canals,B,2000,The winning team won on tiebreakers (hig,1797310573
+20261003-230938-scrim-g3lost,111,us:g_iter4,quesswho.cretplayer2_3,Capacitance,A,2000,The winning team won on tiebreakers (hig,2013939056
+20261003-230938-scrim-g3lost,112,quesswho.cretplayer2_3,us:g_iter4,KingQuacksCastle,B,743,The winning team captured all flags.,1672112939
+20261003-230938-scrim-g3lost,113,us:g_iter4,quesswho.cretplayer2_3,OceanFloor,A,669,The winning team captured all flags.,1904122098
+20261003-230938-scrim-g3lost,114,quesswho.cretplayer2_3,us:g_iter4,Tunnels,B,1966,The winning team captured all flags.,1902263663
+20261003-230938-scrim-g3lost,115,us:g_iter4,winkelmantanner.waffle,BedWars,A,718,The winning team captured all flags.,1087562080
+20261003-230938-scrim-g3lost,116,winkelmantanner.waffle,us:g_iter4,Gauntlet,A,396,The winning team captured all flags.,924805462
+20261003-230938-scrim-g3lost,117,us:g_iter4,winkelmantanner.waffle,Islands,B,588,The winning team captured all flags.,1967343909
+20261003-230938-scrim-g3lost,118,us:g_iter4,winkelmantanner.waffle,Skyline,B,969,The winning team captured all flags.,637162974
+20261003-230938-scrim-g3lost,119,winkelmantanner.waffle,us:g_iter4,StackGame,B,1713,The winning team captured all flags.,231591639
+20261003-230938-scrim-g3lost,120,winkelmantanner.waffle,us:g_iter4,Whirlpool,A,2000,The winning team won on tiebreakers (cap,222075282
+20261003-234119-scrim-g3lost,1,us:g_iter4,ColtG5.Goob_final,Bunkers,A,669,The winning team captured all flags.,2000382302
+20261003-234119-scrim-g3lost,2,us:g_iter4,ColtG5.Goob_final,Fountain,A,2000,The winning team won on tiebreakers (cap,1206832105
+20261003-234119-scrim-g3lost,3,us:g_iter4,ColtG5.Goob_final,Joker,A,2000,The winning team won on tiebreakers (cap,238372422
+20261003-234119-scrim-g3lost,4,us:g_iter4,ColtG5.Goob_final,Racetrack,A,2000,The winning team won on tiebreakers (cap,639907592
+20261003-234119-scrim-g3lost,5,us:g_iter4,ColtG5.Goob_final,TreeSearch,A,1702,The winning team captured all flags.,1060345502
+20261003-234119-scrim-g3lost,6,us:g_iter4,ColtG5.Goob_final,Tunnels,A,2000,The winning team won on tiebreakers (hig,1809155732
+20261003-234119-scrim-g3lost,7,CyrilSharma.finalBot,us:g_iter4,Asteroids,A,2000,The winning team won on tiebreakers (cap,1036465852
+20261003-234119-scrim-g3lost,8,us:g_iter4,CyrilSharma.finalBot,Decision,B,845,The winning team captured all flags.,1219091015
+20261003-234119-scrim-g3lost,9,us:g_iter4,CyrilSharma.finalBot,HungerGames,B,517,The winning team captured all flags.,965952321
+20261003-234119-scrim-g3lost,10,CyrilSharma.finalBot,us:g_iter4,HungerGames,A,659,The winning team captured all flags.,1127405419
+20261003-234119-scrim-g3lost,11,CyrilSharma.finalBot,us:g_iter4,Racetrack,B,2000,The winning team won on tiebreakers (cap,1883244520
+20261003-234119-scrim-g3lost,12,CyrilSharma.finalBot,us:g_iter4,Rivers,B,2000,The winning team won on tiebreakers (cap,1135134121
+20261003-234119-scrim-g3lost,13,us:g_iter4,Gymhgy.v10official,Alligator,A,2000,The winning team won on tiebreakers (hig,1828473532
+20261003-234119-scrim-g3lost,14,us:g_iter4,Gymhgy.v10official,Ambush,B,568,The winning team captured all flags.,1399127225
+20261003-234119-scrim-g3lost,15,us:g_iter4,Gymhgy.v10official,BigDucksBigPond,B,1302,The winning team captured all flags.,1232131661
+20261003-234119-scrim-g3lost,16,us:g_iter4,Gymhgy.v10official,BreadPudding,A,2000,The winning team won on tiebreakers (cap,170339625
+20261003-234119-scrim-g3lost,17,Gymhgy.v10official,us:g_iter4,Swoop,B,1024,The winning team captured all flags.,2129496144
+20261003-234119-scrim-g3lost,18,Gymhgy.v10official,us:g_iter4,Yinyang,B,807,The winning team captured all flags.,298285035
+20261003-234119-scrim-g3lost,19,IvanGeffner.kuma,us:g_iter4,Battlecode24,A,2000,The winning team won on tiebreakers (cap,453891815
+20261003-234119-scrim-g3lost,20,us:g_iter4,IvanGeffner.kuma,CH3353C4K3F4CT0RY,B,768,The winning team captured all flags.,209092621
+20261003-234119-scrim-g3lost,21,IvanGeffner.kuma,us:g_iter4,DefaultLarge,A,1580,The winning team captured all flags.,1693875477
+20261003-234119-scrim-g3lost,22,us:g_iter4,IvanGeffner.kuma,Fountain,A,412,The winning team captured all flags.,1132142136
+20261003-234119-scrim-g3lost,23,us:g_iter4,IvanGeffner.kuma,Soccer,B,1494,The winning team captured all flags.,1715108544
+20261003-234119-scrim-g3lost,24,IvanGeffner.kuma,us:g_iter4,TreeSearch,A,782,The winning team captured all flags.,862451822
+20261003-234119-scrim-g3lost,25,us:g_iter4,NotLLeon.v3,AceOfSpades,B,1087,The winning team captured all flags.,1238487203
+20261003-234119-scrim-g3lost,26,NotLLeon.v3,us:g_iter4,Checkered,A,379,The winning team captured all flags.,444779946
+20261003-234119-scrim-g3lost,27,NotLLeon.v3,us:g_iter4,DefaultSmall,A,1243,The winning team captured all flags.,762892240
+20261003-234119-scrim-g3lost,28,us:g_iter4,NotLLeon.v3,Gated,B,2000,The winning team won on tiebreakers (cap,801097396
+20261003-234119-scrim-g3lost,29,NotLLeon.v3,us:g_iter4,Pancakes,A,911,The winning team captured all flags.,1737406374
+20261003-234119-scrim-g3lost,30,us:g_iter4,NotLLeon.v3,StackGame,B,1582,The winning team captured all flags.,882125579
+20261003-234119-scrim-g3lost,31,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Battlefield,A,977,The winning team captured all flags.,1753419293
+20261003-234119-scrim-g3lost,32,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Capacitance,A,960,The winning team captured all flags.,1047870970
+20261003-234119-scrim-g3lost,33,us:g_iter4,SampleProvider.TSPAARKSPRINT1,English,B,1028,The winning team captured all flags.,172019819
+20261003-234119-scrim-g3lost,34,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Hockey,A,1303,The winning team captured all flags.,2026546088
+20261003-234119-scrim-g3lost,35,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Joker,B,1153,The winning team captured all flags.,952114490
+20261003-234119-scrim-g3lost,36,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Occulus,A,1448,The winning team captured all flags.,464459039
+20261003-234119-scrim-g3lost,37,Strequals.duck0127v5,us:g_iter4,AceOfSpades,A,789,The winning team captured all flags.,1364635144
+20261003-234119-scrim-g3lost,38,Strequals.duck0127v5,us:g_iter4,BedWars,A,1223,The winning team captured all flags.,211260391
+20261003-234119-scrim-g3lost,39,us:g_iter4,Strequals.duck0127v5,Duck,B,2000,The winning team won on tiebreakers (hig,1787181426
+20261003-234119-scrim-g3lost,40,Strequals.duck0127v5,us:g_iter4,Fusbol,A,2000,The winning team won on tiebreakers (cap,817320291
+20261003-234119-scrim-g3lost,41,Strequals.duck0127v5,us:g_iter4,KingQuacksCastle,A,1253,The winning team captured all flags.,1809036933
+20261003-234119-scrim-g3lost,42,us:g_iter4,Strequals.duck0127v5,Klein,A,2000,The winning team won on tiebreakers (cap,1418665766
+20261003-234119-scrim-g3lost,43,us:g_iter4,andli28.v9_USQuals_angle,Battlefield,B,1492,The winning team captured all flags.,12004883
+20261003-234119-scrim-g3lost,44,us:g_iter4,andli28.v9_USQuals_angle,Capacitance,B,1042,The winning team captured all flags.,546689369
+20261003-234119-scrim-g3lost,45,andli28.v9_USQuals_angle,us:g_iter4,Intercontinental,A,1788,The winning team captured all flags.,1235229322
+20261003-234119-scrim-g3lost,46,us:g_iter4,andli28.v9_USQuals_angle,OceanFloor,A,2000,The winning team won on tiebreakers (cap,554178614
+20261003-234119-scrim-g3lost,47,us:g_iter4,andli28.v9_USQuals_angle,SteamboatMickey,A,660,The winning team captured all flags.,1825449108
+20261003-234119-scrim-g3lost,48,andli28.v9_USQuals_angle,us:g_iter4,Valentine,A,2000,The winning team won on tiebreakers (cap,842508856
+20261003-234119-scrim-g3lost,49,us:g_iter4,andrewgopher.player22,GaltonBoard,B,572,The winning team captured all flags.,1490939109
+20261003-234119-scrim-g3lost,50,us:g_iter4,andrewgopher.player22,HeMustBeFreed,B,2000,The winning team won on tiebreakers (hig,505556655
+20261003-234119-scrim-g3lost,51,andrewgopher.player22,us:g_iter4,KingQuacksCastle,A,1849,The winning team captured all flags.,1875628672
+20261003-234119-scrim-g3lost,52,us:g_iter4,andrewgopher.player22,TreeSearch,A,1624,The winning team captured all flags.,58762209
+20261003-234119-scrim-g3lost,53,andrewgopher.player22,us:g_iter4,TreeSearch,A,1867,The winning team captured all flags.,1387402623
+20261003-234119-scrim-g3lost,54,us:g_iter4,andrewgopher.player22,YearOfTheDragon,B,1525,The winning team captured all flags.,945556907
+20261003-234119-scrim-g3lost,55,us:g_iter4,awu7.ExplosiveBot,Alien,A,1092,The winning team captured all flags.,1644225524
+20261003-234119-scrim-g3lost,56,us:g_iter4,awu7.ExplosiveBot,FloodGates,A,1100,The winning team captured all flags.,2122395487
+20261003-234119-scrim-g3lost,57,awu7.ExplosiveBot,us:g_iter4,Fountain,B,953,The winning team captured all flags.,1575822260
+20261003-234119-scrim-g3lost,58,awu7.ExplosiveBot,us:g_iter4,Hockey,B,874,The winning team captured all flags.,1615732665
+20261003-234119-scrim-g3lost,59,awu7.ExplosiveBot,us:g_iter4,SteamboatMickey,B,1874,The winning team captured all flags.,1578927126
+20261003-234119-scrim-g3lost,60,us:g_iter4,awu7.ExplosiveBot,Waterworld,A,825,The winning team captured all flags.,967483315
+20261003-234119-scrim-g3lost,61,us:g_iter4,chenyx512.flagbot_final,AceOfSpades,B,1210,The winning team captured all flags.,986035426
+20261003-234119-scrim-g3lost,62,chenyx512.flagbot_final,us:g_iter4,Fusbol,A,2000,The winning team won on tiebreakers (cap,486662042
+20261003-234119-scrim-g3lost,63,chenyx512.flagbot_final,us:g_iter4,Intercontinental,A,1102,The winning team captured all flags.,1203580765
+20261003-234119-scrim-g3lost,64,chenyx512.flagbot_final,us:g_iter4,OceanFloor,A,1696,The winning team captured all flags.,907473270
+20261003-234119-scrim-g3lost,65,us:g_iter4,chenyx512.flagbot_final,Racetrack,B,921,The winning team captured all flags.,1164533731
+20261003-234119-scrim-g3lost,66,us:g_iter4,chenyx512.flagbot_final,WheresMyWater,B,1420,The winning team captured all flags.,799436631
+20261003-234119-scrim-g3lost,67,us:g_iter4,clbarrell.duck8,AceOfSpades,A,900,The winning team captured all flags.,1392778395
+20261003-234119-scrim-g3lost,68,us:g_iter4,clbarrell.duck8,Duck,A,907,The winning team captured all flags.,1278846367
+20261003-234119-scrim-g3lost,69,us:g_iter4,clbarrell.duck8,Fountain,A,1227,The winning team captured all flags.,1214374663
+20261003-234119-scrim-g3lost,70,us:g_iter4,clbarrell.duck8,Racetrack,A,1525,The winning team captured all flags.,1421818461
+20261003-234119-scrim-g3lost,71,clbarrell.duck8,us:g_iter4,Tunnels,A,2000,The winning team won on tiebreakers (cap,1576035555
+20261003-234119-scrim-g3lost,72,us:g_iter4,clbarrell.duck8,Waterworld,A,952,The winning team captured all flags.,57962652
+20261003-234119-scrim-g3lost,73,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Ambush,B,484,The winning team captured all flags.,1323566767
+20261003-234119-scrim-g3lost,74,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,EndAround,B,832,The winning team captured all flags.,496667591
+20261003-234119-scrim-g3lost,75,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Mountain,A,1173,The winning team captured all flags.,1311644801
+20261003-234119-scrim-g3lost,76,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,SteamboatMickey,B,1643,The winning team captured all flags.,1519006264
+20261003-234119-scrim-g3lost,77,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Swoop,B,620,The winning team captured all flags.,2077213945
+20261003-234119-scrim-g3lost,78,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,WheresMyWater,B,1485,The winning team captured all flags.,831205014
+20261003-234119-scrim-g3lost,79,hsmalladi.finalbot,us:g_iter4,BreadPudding,A,2000,The winning team won on tiebreakers (hig,1975105791
+20261003-234119-scrim-g3lost,80,hsmalladi.finalbot,us:g_iter4,Checkered,B,1011,The winning team captured all flags.,1165560574
+20261003-234119-scrim-g3lost,81,hsmalladi.finalbot,us:g_iter4,Diagonal,B,2000,The winning team won on tiebreakers (cap,1525553209
+20261003-234119-scrim-g3lost,82,us:g_iter4,hsmalladi.finalbot,KingQuacksCastle,B,1935,The winning team captured all flags.,786779868
+20261003-234119-scrim-g3lost,83,hsmalladi.finalbot,us:g_iter4,Rainbow,A,2000,The winning team won on tiebreakers (cap,585572479
+20261003-234119-scrim-g3lost,84,hsmalladi.finalbot,us:g_iter4,TreeSearch,B,552,The winning team captured all flags.,824885401
+20261003-234119-scrim-g3lost,85,us:g_iter4,jmerle.camel_case_v21_final,Anchor,B,1239,The winning team captured all flags.,152251958
+20261003-234119-scrim-g3lost,86,jmerle.camel_case_v21_final,us:g_iter4,EndAround,A,2000,The winning team won on tiebreakers (cap,226423638
+20261003-234119-scrim-g3lost,87,us:g_iter4,jmerle.camel_case_v21_final,Occulus,B,470,The winning team captured all flags.,1055375187
+20261003-234119-scrim-g3lost,88,jmerle.camel_case_v21_final,us:g_iter4,Puzzle,A,595,The winning team captured all flags.,313150939
+20261003-234119-scrim-g3lost,89,us:g_iter4,jmerle.camel_case_v21_final,Snake,B,570,The winning team captured all flags.,426595653
+20261003-234119-scrim-g3lost,90,jmerle.camel_case_v21_final,us:g_iter4,Soccer,A,1226,The winning team captured all flags.,2040843788
+20261003-234119-scrim-g3lost,91,us:g_iter4,jonters.bling3,BreadPudding,A,1488,The winning team captured all flags.,1165967984
+20261003-234119-scrim-g3lost,92,us:g_iter4,jonters.bling3,HungerGames,B,410,The winning team captured all flags.,1364769290
+20261003-234119-scrim-g3lost,93,jonters.bling3,us:g_iter4,MIT,B,930,The winning team captured all flags.,662872646
+20261003-234119-scrim-g3lost,94,jonters.bling3,us:g_iter4,TwistedTreeline,B,346,The winning team captured all flags.,1695739146
+20261003-234119-scrim-g3lost,95,us:g_iter4,jonters.bling3,Valentine,A,1374,The winning team captured all flags.,1695621633
+20261003-234119-scrim-g3lost,96,us:g_iter4,jonters.bling3,YearOfTheDragon,A,2000,The winning team won on tiebreakers (cap,998160938
+20261003-234119-scrim-g3lost,97,justinottesen.sprint1,us:g_iter4,GravitationalWaves,B,1190,The winning team captured all flags.,1531519581
+20261003-234119-scrim-g3lost,98,us:g_iter4,justinottesen.sprint1,QueenOfHearts,A,595,The winning team captured all flags.,511646128
+20261003-234119-scrim-g3lost,99,justinottesen.sprint1,us:g_iter4,QueenOfHearts,B,764,The winning team captured all flags.,483994101
+20261003-234119-scrim-g3lost,100,us:g_iter4,justinottesen.sprint1,Rainbow,A,717,The winning team captured all flags.,936963404
+20261003-234119-scrim-g3lost,101,justinottesen.sprint1,us:g_iter4,Skyline,B,623,The winning team captured all flags.,247029033
+20261003-234119-scrim-g3lost,102,justinottesen.sprint1,us:g_iter4,Waterworld,B,453,The winning team captured all flags.,1961268326
+20261003-234119-scrim-g3lost,103,kyleezz.jeeryfix3,us:g_iter4,BigDucksBigPond,B,1744,The winning team captured all flags.,434185137
+20261003-234119-scrim-g3lost,104,kyleezz.jeeryfix3,us:g_iter4,DefaultHuge,B,907,The winning team captured all flags.,126091461
+20261003-234119-scrim-g3lost,105,us:g_iter4,kyleezz.jeeryfix3,DefaultMedium,B,922,The winning team captured all flags.,1964975535
+20261003-234119-scrim-g3lost,106,us:g_iter4,kyleezz.jeeryfix3,Diagonal,A,2000,The winning team won on tiebreakers (hig,1881013790
+20261003-234119-scrim-g3lost,107,us:g_iter4,kyleezz.jeeryfix3,Hurricane,A,2000,The winning team won on tiebreakers (hig,1234397623
+20261003-234119-scrim-g3lost,108,us:g_iter4,kyleezz.jeeryfix3,Racetrack,B,1606,The winning team captured all flags.,1893196107
+20261003-234119-scrim-g3lost,109,us:g_iter4,quesswho.cretplayer2_3,Anchor,A,1352,The winning team captured all flags.,1910255009
+20261003-234119-scrim-g3lost,110,quesswho.cretplayer2_3,us:g_iter4,Funnel,A,1867,The winning team captured all flags.,1927128403
+20261003-234119-scrim-g3lost,111,quesswho.cretplayer2_3,us:g_iter4,Gated,B,1268,The winning team captured all flags.,927496366
+20261003-234119-scrim-g3lost,112,us:g_iter4,quesswho.cretplayer2_3,Islands,A,844,The winning team captured all flags.,1554274223
+20261003-234119-scrim-g3lost,113,quesswho.cretplayer2_3,us:g_iter4,OceanFloor,B,940,The winning team captured all flags.,2017252475
+20261003-234119-scrim-g3lost,114,us:g_iter4,quesswho.cretplayer2_3,Soccer,A,1081,The winning team captured all flags.,1414549972
+20261003-234119-scrim-g3lost,115,winkelmantanner.waffle,us:g_iter4,CH3353C4K3F4CT0RY,B,1180,The winning team captured all flags.,854897199
+20261003-234119-scrim-g3lost,116,us:g_iter4,winkelmantanner.waffle,Gated,A,1922,The winning team captured all flags.,1000107603
+20261003-234119-scrim-g3lost,117,us:g_iter4,winkelmantanner.waffle,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1023582368
+20261003-234119-scrim-g3lost,118,us:g_iter4,winkelmantanner.waffle,Klein,B,2000,The winning team won on tiebreakers (cap,992514775
+20261003-234119-scrim-g3lost,119,us:g_iter4,winkelmantanner.waffle,Snake,B,1871,The winning team captured all flags.,918540424
+20261003-234119-scrim-g3lost,120,us:g_iter4,winkelmantanner.waffle,YearOfTheDragon,A,2000,The winning team won on tiebreakers (hig,238675232
+20261003-235439-scrim-g3lost,1,ColtG5.Goob_final,us:g_iter4,Backslash,B,1326,The winning team captured all flags.,822828993
+20261003-235439-scrim-g3lost,2,us:g_iter4,ColtG5.Goob_final,Battlefield,B,1468,The winning team captured all flags.,1319870930
+20261003-235439-scrim-g3lost,3,us:g_iter4,ColtG5.Goob_final,BreadPudding,B,2000,The winning team won on tiebreakers (cap,108054479
+20261003-235439-scrim-g3lost,4,ColtG5.Goob_final,us:g_iter4,Canals,B,1180,The winning team captured all flags.,421623281
+20261003-235439-scrim-g3lost,5,us:g_iter4,ColtG5.Goob_final,Decision,A,1489,The winning team captured all flags.,1219814170
+20261003-235439-scrim-g3lost,6,us:g_iter4,ColtG5.Goob_final,QuestionableChess,A,2000,The winning team won on tiebreakers (hig,1835248800
+20261003-235439-scrim-g3lost,7,us:g_iter4,CyrilSharma.finalBot,Capacitance,B,1294,The winning team captured all flags.,368857583
+20261003-235439-scrim-g3lost,8,us:g_iter4,CyrilSharma.finalBot,EndAround,B,2000,The winning team won on tiebreakers (hig,815589013
+20261003-235439-scrim-g3lost,9,us:g_iter4,CyrilSharma.finalBot,Hockey,B,2000,The winning team won on tiebreakers (cap,605171141
+20261003-235439-scrim-g3lost,10,us:g_iter4,CyrilSharma.finalBot,Rainbow,A,2000,The winning team won on tiebreakers (hig,1164564538
+20261003-235439-scrim-g3lost,11,CyrilSharma.finalBot,us:g_iter4,Randy,A,2000,The winning team won on tiebreakers (cap,344216561
+20261003-235439-scrim-g3lost,12,us:g_iter4,CyrilSharma.finalBot,TwistedTreeline,A,2000,The winning team won on tiebreakers (hig,1357366378
+20261003-235439-scrim-g3lost,13,Gymhgy.v10official,us:g_iter4,Canals,A,1229,The winning team captured all flags.,569120744
+20261003-235439-scrim-g3lost,14,Gymhgy.v10official,us:g_iter4,Fusbol,A,2000,The winning team won on tiebreakers (cap,833276499
+20261003-235439-scrim-g3lost,15,Gymhgy.v10official,us:g_iter4,Islands,B,1223,The winning team captured all flags.,206570000
+20261003-235439-scrim-g3lost,16,Gymhgy.v10official,us:g_iter4,Rivers,A,435,The winning team captured all flags.,1151653726
+20261003-235439-scrim-g3lost,17,us:g_iter4,Gymhgy.v10official,Soccer,A,1743,The winning team captured all flags.,274482659
+20261003-235439-scrim-g3lost,18,us:g_iter4,Gymhgy.v10official,Yinyang,A,2000,The winning team won on tiebreakers (cap,449465628
+20261003-235439-scrim-g3lost,19,IvanGeffner.kuma,us:g_iter4,Capacitance,A,1834,The winning team captured all flags.,249589223
+20261003-235439-scrim-g3lost,20,us:g_iter4,IvanGeffner.kuma,Duck,B,2000,The winning team won on tiebreakers (hig,2074658209
+20261003-235439-scrim-g3lost,21,us:g_iter4,IvanGeffner.kuma,Hurricane,B,2000,The winning team won on tiebreakers (hig,456165839
+20261003-235439-scrim-g3lost,22,IvanGeffner.kuma,us:g_iter4,Occulus,A,1263,The winning team captured all flags.,1033013740
+20261003-235439-scrim-g3lost,23,IvanGeffner.kuma,us:g_iter4,OceanFloor,A,2000,The winning team won on tiebreakers (cap,654654068
+20261003-235439-scrim-g3lost,24,us:g_iter4,IvanGeffner.kuma,WheresMyWater,B,643,The winning team captured all flags.,1560149264
+20261003-235439-scrim-g3lost,25,NotLLeon.v3,us:g_iter4,Capacitance,B,2000,The winning team won on tiebreakers (hig,988935095
+20261003-235439-scrim-g3lost,26,NotLLeon.v3,us:g_iter4,DefaultMedium,B,2000,The winning team won on tiebreakers (cap,331576657
+20261003-235439-scrim-g3lost,27,NotLLeon.v3,us:g_iter4,Fountain,A,1941,The winning team captured all flags.,1893801997
+20261003-235439-scrim-g3lost,28,us:g_iter4,NotLLeon.v3,Funnel,B,2000,The winning team won on tiebreakers (hig,676180346
+20261003-235439-scrim-g3lost,29,us:g_iter4,NotLLeon.v3,Hockey,B,1807,The winning team captured all flags.,1707139003
+20261003-235439-scrim-g3lost,30,NotLLeon.v3,us:g_iter4,Klein,B,2000,The winning team won on tiebreakers (hig,748710340
+20261003-235439-scrim-g3lost,31,SampleProvider.TSPAARKSPRINT1,us:g_iter4,FloodGates,B,810,The winning team captured all flags.,1114425122
+20261003-235439-scrim-g3lost,32,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Foxes,B,1903,The winning team captured all flags.,582376667
+20261003-235439-scrim-g3lost,33,us:g_iter4,SampleProvider.TSPAARKSPRINT1,Intercontinental,A,987,The winning team captured all flags.,193986327
+20261003-235439-scrim-g3lost,34,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Randy,B,1235,The winning team captured all flags.,1877447498
+20261003-235439-scrim-g3lost,35,SampleProvider.TSPAARKSPRINT1,us:g_iter4,Soccer,B,1127,The winning team captured all flags.,163787014
+20261003-235439-scrim-g3lost,36,SampleProvider.TSPAARKSPRINT1,us:g_iter4,SteamboatMickey,B,1420,The winning team captured all flags.,1181110367
+20261003-235439-scrim-g3lost,37,Strequals.duck0127v5,us:g_iter4,Decision,A,660,The winning team captured all flags.,2089483922
+20261003-235439-scrim-g3lost,38,Strequals.duck0127v5,us:g_iter4,DefaultLarge,A,1825,The winning team captured all flags.,985396451
+20261003-235439-scrim-g3lost,39,us:g_iter4,Strequals.duck0127v5,GaltonBoard,B,1131,The winning team captured all flags.,1548004883
+20261003-235439-scrim-g3lost,40,Strequals.duck0127v5,us:g_iter4,Occulus,A,1506,The winning team captured all flags.,198609488
+20261003-235439-scrim-g3lost,41,Strequals.duck0127v5,us:g_iter4,Racetrack,A,1951,The winning team captured all flags.,1490228234
+20261003-235439-scrim-g3lost,42,Strequals.duck0127v5,us:g_iter4,Yinyang,A,1073,The winning team captured all flags.,28379566
+20261003-235439-scrim-g3lost,43,andli28.v9_USQuals_angle,us:g_iter4,Anchor,A,1842,The winning team captured all flags.,24681913
+20261003-235439-scrim-g3lost,44,andli28.v9_USQuals_angle,us:g_iter4,Capacitance,A,1358,The winning team captured all flags.,1952931016
+20261003-235439-scrim-g3lost,45,us:g_iter4,andli28.v9_USQuals_angle,Diagonal,A,2000,The winning team won on tiebreakers (hig,1559557464
+20261003-235439-scrim-g3lost,46,andli28.v9_USQuals_angle,us:g_iter4,Mountain,A,2000,The winning team won on tiebreakers (cap,723466153
+20261003-235439-scrim-g3lost,47,andli28.v9_USQuals_angle,us:g_iter4,Randy,A,2000,The winning team won on tiebreakers (cap,587478391
+20261003-235439-scrim-g3lost,48,andli28.v9_USQuals_angle,us:g_iter4,Valentine,A,2000,The winning team won on tiebreakers (hig,2005499535
+20261003-235439-scrim-g3lost,49,andrewgopher.player22,us:g_iter4,Anchor,A,2000,The winning team won on tiebreakers (cap,761641592
+20261003-235439-scrim-g3lost,50,andrewgopher.player22,us:g_iter4,Battlefield,A,852,The winning team captured all flags.,703745398
+20261003-235439-scrim-g3lost,51,us:g_iter4,andrewgopher.player22,GravitationalWaves,A,2000,The winning team won on tiebreakers (hig,846517729
+20261003-235439-scrim-g3lost,52,us:g_iter4,andrewgopher.player22,Occulus,B,1961,The winning team captured all flags.,1413729421
+20261003-235439-scrim-g3lost,53,andrewgopher.player22,us:g_iter4,Rainbow,A,2000,The winning team won on tiebreakers (cap,440563443
+20261003-235439-scrim-g3lost,54,us:g_iter4,andrewgopher.player22,Rivers,B,683,The winning team captured all flags.,1010241779
+20261003-235439-scrim-g3lost,55,us:g_iter4,awu7.ExplosiveBot,Asteroids,A,824,The winning team captured all flags.,1939148732
+20261003-235439-scrim-g3lost,56,us:g_iter4,awu7.ExplosiveBot,DefaultMedium,A,1211,The winning team captured all flags.,1901669787
+20261003-235439-scrim-g3lost,57,us:g_iter4,awu7.ExplosiveBot,Diagonal,A,2000,The winning team won on tiebreakers (hig,1816490856
+20261003-235439-scrim-g3lost,58,us:g_iter4,awu7.ExplosiveBot,EvilGrin,A,980,The winning team captured all flags.,828093322
+20261003-235439-scrim-g3lost,59,us:g_iter4,awu7.ExplosiveBot,MazeRunner,A,775,The winning team captured all flags.,750692779
+20261003-235439-scrim-g3lost,60,awu7.ExplosiveBot,us:g_iter4,Rainbow,B,1484,The winning team captured all flags.,12251911
+20261003-235439-scrim-g3lost,61,us:g_iter4,chenyx512.flagbot_final,English,A,978,The winning team captured all flags.,632859958
+20261003-235439-scrim-g3lost,62,chenyx512.flagbot_final,us:g_iter4,Foxes,A,1612,The winning team captured all flags.,238433397
+20261003-235439-scrim-g3lost,63,us:g_iter4,chenyx512.flagbot_final,Islands,B,933,The winning team captured all flags.,145119511
+20261003-235439-scrim-g3lost,64,chenyx512.flagbot_final,us:g_iter4,Klein,A,1638,The winning team captured all flags.,840396888
+20261003-235439-scrim-g3lost,65,us:g_iter4,chenyx512.flagbot_final,QuestionableChess,B,1344,The winning team captured all flags.,89089101
+20261003-235439-scrim-g3lost,66,us:g_iter4,chenyx512.flagbot_final,TreeSearch,B,1120,The winning team captured all flags.,544145322
+20261003-235439-scrim-g3lost,67,clbarrell.duck8,us:g_iter4,Bunkers,B,809,The winning team captured all flags.,580817996
+20261003-235439-scrim-g3lost,68,clbarrell.duck8,us:g_iter4,EvilGrin,B,1067,The winning team captured all flags.,693841811
+20261003-235439-scrim-g3lost,69,clbarrell.duck8,us:g_iter4,Gauntlet,B,707,The winning team captured all flags.,830639590
+20261003-235439-scrim-g3lost,70,clbarrell.duck8,us:g_iter4,Hurricane,B,1867,The winning team captured all flags.,1102635506
+20261003-235439-scrim-g3lost,71,clbarrell.duck8,us:g_iter4,Skyline,B,1196,The winning team captured all flags.,738918770
+20261003-235439-scrim-g3lost,72,clbarrell.duck8,us:g_iter4,SteamboatMickey,B,907,The winning team captured all flags.,712668631
+20261003-235439-scrim-g3lost,73,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,Asteroids,A,1741,The winning team captured all flags.,1962883348
+20261003-235439-scrim-g3lost,74,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Bunkers,B,766,The winning team captured all flags.,1780062872
+20261003-235439-scrim-g3lost,75,us:g_iter4,dmtrung14.defaultplayer_intlqualifier,Foxes,A,1703,The winning team captured all flags.,1643551496
+20261003-235439-scrim-g3lost,76,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,Puzzle,B,772,The winning team captured all flags.,203791580
+20261003-235439-scrim-g3lost,77,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,TreeSearch,B,1143,The winning team captured all flags.,1088062433
+20261003-235439-scrim-g3lost,78,dmtrung14.defaultplayer_intlqualifier,us:g_iter4,TreeSearch,B,618,The winning team captured all flags.,1946997717
+20261003-235439-scrim-g3lost,79,us:g_iter4,hsmalladi.finalbot,Battlefield,B,1061,The winning team captured all flags.,1410748929
+20261003-235439-scrim-g3lost,80,hsmalladi.finalbot,us:g_iter4,DefaultHuge,A,977,The winning team captured all flags.,1827480130
+20261003-235439-scrim-g3lost,81,hsmalladi.finalbot,us:g_iter4,Intercontinental,B,1277,The winning team captured all flags.,694488992
+20261003-235439-scrim-g3lost,82,hsmalladi.finalbot,us:g_iter4,MazeRunner,A,2000,The winning team won on tiebreakers (hig,838849590
+20261003-235439-scrim-g3lost,83,us:g_iter4,hsmalladi.finalbot,Mountain,B,2000,The winning team won on tiebreakers (cap,1602421064
+20261003-235439-scrim-g3lost,84,us:g_iter4,hsmalladi.finalbot,Occulus,B,801,The winning team captured all flags.,1682147365
+20261003-235439-scrim-g3lost,85,jmerle.camel_case_v21_final,us:g_iter4,Bunkers,A,476,The winning team captured all flags.,1500812465
+20261003-235439-scrim-g3lost,86,us:g_iter4,jmerle.camel_case_v21_final,Digging,B,965,The winning team captured all flags.,1370715890
+20261003-235439-scrim-g3lost,87,jmerle.camel_case_v21_final,us:g_iter4,Foxes,A,1468,The winning team captured all flags.,902497452
+20261003-235439-scrim-g3lost,88,us:g_iter4,jmerle.camel_case_v21_final,Islands,B,470,The winning team captured all flags.,1036999919
+20261003-235439-scrim-g3lost,89,jmerle.camel_case_v21_final,us:g_iter4,Starfish,A,397,The winning team captured all flags.,612265072
+20261003-235439-scrim-g3lost,90,jmerle.camel_case_v21_final,us:g_iter4,YearOfTheDragon,A,638,The winning team captured all flags.,689164332
+20261003-235439-scrim-g3lost,91,jonters.bling3,us:g_iter4,Anchor,B,730,The winning team captured all flags.,1374713362
+20261003-235439-scrim-g3lost,92,jonters.bling3,us:g_iter4,Foxes,B,1451,The winning team captured all flags.,1451572836
+20261003-235439-scrim-g3lost,93,jonters.bling3,us:g_iter4,GaltonBoard,B,1452,The winning team captured all flags.,591841799
+20261003-235439-scrim-g3lost,94,us:g_iter4,jonters.bling3,ORV,A,978,The winning team captured all flags.,240462123
+20261003-235439-scrim-g3lost,95,jonters.bling3,us:g_iter4,Snake,B,1329,The winning team captured all flags.,1107956911
+20261003-235439-scrim-g3lost,96,jonters.bling3,us:g_iter4,Whirlpool,B,767,The winning team captured all flags.,1494605928
+20261003-235439-scrim-g3lost,97,justinottesen.sprint1,us:g_iter4,DefaultSmall,B,607,The winning team captured all flags.,17994512
+20261003-235439-scrim-g3lost,98,us:g_iter4,justinottesen.sprint1,Digging,A,604,The winning team captured all flags.,242518352
+20261003-235439-scrim-g3lost,99,justinottesen.sprint1,us:g_iter4,EndAround,B,698,The winning team captured all flags.,1627598395
+20261003-235439-scrim-g3lost,100,justinottesen.sprint1,us:g_iter4,QueenOfHearts,B,435,The winning team captured all flags.,1157101672
+20261003-235439-scrim-g3lost,101,justinottesen.sprint1,us:g_iter4,Soccer,B,489,The winning team captured all flags.,1271586535
+20261003-235439-scrim-g3lost,102,us:g_iter4,justinottesen.sprint1,SteamboatMickey,A,806,The winning team captured all flags.,1117611529
+20261003-235439-scrim-g3lost,103,us:g_iter4,kyleezz.jeeryfix3,Decision,B,1152,The winning team captured all flags.,513805841
+20261003-235439-scrim-g3lost,104,us:g_iter4,kyleezz.jeeryfix3,Duck,A,2000,The winning team won on tiebreakers (hig,2026010489
+20261003-235439-scrim-g3lost,105,kyleezz.jeeryfix3,us:g_iter4,Duck,A,800,The winning team captured all flags.,875549656
+20261003-235439-scrim-g3lost,106,kyleezz.jeeryfix3,us:g_iter4,EvilGrin,B,2000,The winning team won on tiebreakers (cap,649137782
+20261003-235439-scrim-g3lost,107,us:g_iter4,kyleezz.jeeryfix3,HeMustBeFreed,A,2000,The winning team won on tiebreakers (hig,208967103
+20261003-235439-scrim-g3lost,108,us:g_iter4,kyleezz.jeeryfix3,TreeSearch,A,1390,The winning team captured all flags.,1998721634
+20261003-235439-scrim-g3lost,109,quesswho.cretplayer2_3,us:g_iter4,Alien,B,1286,The winning team captured all flags.,1480903482
+20261003-235439-scrim-g3lost,110,us:g_iter4,quesswho.cretplayer2_3,BreadPudding,A,686,The winning team captured all flags.,1984029158
+20261003-235439-scrim-g3lost,111,quesswho.cretplayer2_3,us:g_iter4,Hurricane,B,2000,The winning team won on tiebreakers (hig,1080533404
+20261003-235439-scrim-g3lost,112,us:g_iter4,quesswho.cretplayer2_3,MazeRunner,A,1914,The winning team captured all flags.,508026834
+20261003-235439-scrim-g3lost,113,quesswho.cretplayer2_3,us:g_iter4,Swoop,A,2000,The winning team won on tiebreakers (cap,895287772
+20261003-235439-scrim-g3lost,114,quesswho.cretplayer2_3,us:g_iter4,WheresMyWater,A,809,The winning team captured all flags.,2091259211
+20261003-235439-scrim-g3lost,115,us:g_iter4,winkelmantanner.waffle,Alligator,B,2000,The winning team won on tiebreakers (cap,1819564121
+20261003-235439-scrim-g3lost,116,us:g_iter4,winkelmantanner.waffle,Battlefield,B,1210,The winning team captured all flags.,252519125
+20261003-235439-scrim-g3lost,117,us:g_iter4,winkelmantanner.waffle,Bunkers,A,838,The winning team captured all flags.,660160699
+20261003-235439-scrim-g3lost,118,winkelmantanner.waffle,us:g_iter4,Canals,B,1121,The winning team captured all flags.,1271028466
+20261003-235439-scrim-g3lost,119,winkelmantanner.waffle,us:g_iter4,Digging,B,1355,The winning team captured all flags.,1310469719
+20261003-235439-scrim-g3lost,120,winkelmantanner.waffle,us:g_iter4,MazeRunner,B,2000,The winning team won on tiebreakers (hig,1595518611

@@ -71,8 +71,8 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && !C.FLAG_LOST && !C.DEF_TETHER,
-              "src/bot plays as the incumbent g_iter3 (g_iter2 + carrier stun + flag relocation V2; the track sensor off)");
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER,
+              "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
         G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;

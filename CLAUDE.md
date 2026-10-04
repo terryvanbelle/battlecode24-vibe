@@ -40,7 +40,7 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     pre-registered victory read against the ladder target is not vetoed by a relative check (kill/death, trapsHit,
     stillPost, gathered400, floating250) that its tactic pays by design (e.g. a convoy trading bodies for re-grabs);
     log the cost. The absolute bars (symWrong, symmetry decided in time, overruns, exceptions) are bugs and still stop it.
-16. **Incumbent g_iter3 since 2026-10-03** (g2cr: g_iter2 + carrier stun + flag relocation V2; seeded band pairs vs
-    g_iter2 net +11 then +11 on fresh seeds, pooled +22 of 473, sign p 0.017, capture delta +0.25 +- 0.07; basics PASS).
-    src/bot with its defaults plays as g_iter3 (src/g_iter3 is the frozen copy); new arms flip switches from these
-    defaults and are paired against g_iter3 on shared engine seeds.
+16. **Incumbent g_iter4 since 2026-10-04** (g3lost: g_iter3 + C.FLAG_LOST, the second audit's BOT1 fix; seeded band pairs
+    vs g_iter3 pooled over 473: upper-tier capture delta +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05, net +9; basics PASS).
+    Before it g_iter3 (carrier stun + flag relocation V2, the waffle crack). src/bot with its defaults plays as g_iter4
+    (src/g_iter4 is the frozen copy); new arms flip switches from these defaults and are paired against g_iter4.

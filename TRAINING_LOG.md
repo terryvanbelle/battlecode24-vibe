@@ -1384,3 +1384,12 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   test running.
 - g3lost band test vs g_iter3: net +1, capture delta +0.14 +- 0.06 (t 2.2), upper tier +0.22 +- 0.09 (t 2.5): criterion
   (b) met; basics PASS (identical games 86/234: it changes play only after a capture). Confirmation seeds queued.
+
+### 2026-10-04 00:15 UTC — **g3lost confirmed; promoted to incumbent g_iter4** (second audit, BOT1)
+- Confirmation seeds 717171 + 818181 vs g_iter3's: net +8, capture delta +0.14 +- 0.06, upper +0.27 +- 0.09 (t 2.9; upper
+  wins 24 -> 33, p 0.035); basics PASS. Pooled 473 pairs: upper +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05 (t 3.1), net
+  +9: criterion (b). First Cyril filler pair g3lost vs g_iter3: +4 of 40 (6-2).
+- Promotion: C.FLAG_LOST default on; src/g_iter4 snapshotted (identical to g3lost but a comment); AuditTest incumbent
+  check; band runs recorded and g3lost games relabelled g_iter4; keep-replays gains g_iter4 and g3lost; ladder refit:
+  g_iter4 1932 +- 39 (rank 12), g_iter3 1901 (dragged by many filler losses to Cyril), waffle 1903, Cyril 2032.
+  CLAUDE rule 16, HANDOFF, README, REWRITE.md updated. The filler pairs g_iter4 with g_iter3 against Cyril.

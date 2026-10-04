@@ -8,3 +8,5 @@ g1basics
 g_iter2
 g_iter3
 g2cr
+g_iter4
+g3lost
