@@ -151,6 +151,15 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
           'replay-dump --capabilities: first grabs + re-grabs + relay pickups = post-setup pickups <= all pickups')
     r = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, '--nosuchflag'], capture_output=True, text=True)
     check(r.returncode != 0, 'replay-dump: unknown flags are hard errors')
+    tg = [l.split(',') for l in dump('--trapgeo').splitlines() if l.startswith('TG,')]
+    check(all(len(x) == 11 and x[1] in 'AB' and x[2] in ('STUN', 'EXPLOSIVE', 'WATER') and int(x[3]) > 200
+              and (x[8] == '-1' or int(x[9]) == int(x[8]) - int(x[3]) >= 0) for x in tg),
+          f'replay-dump --trapgeo: 11 fields, post-setup builds, latency = trigger - build ({len(tg)} traps)')
+    capr = {c['team']: c for c in _pick(_sections(dump('--capabilities')), 'enemyCarrierKills')}
+    check(all(sum(1 for x in tg if x[1] == t and x[2] == 'STUN' and x[8] != '-1') <= int(capr[t]['stunTrig']) for t in capr),
+          'replay-dump: --trapgeo triggered post-setup stuns <= census stunTrig (which also counts setup-built stuns)')
+    sc = subprocess.run([os.path.join(HERE, 'stun-check.sh'), FIX], capture_output=True, text=True).stdout
+    check(' stuns ' in sc and ' built ' in sc and ' latMedian ' in sc, 'stun-check.sh: one summary line per replay')
 else:
     print('test_tools: replay fixture or engine missing, replay-dump checks skipped')
 
