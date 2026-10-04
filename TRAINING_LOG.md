@@ -1552,3 +1552,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   r271 and r371) with 0.95 of ours within dist2 20; its defense puts 5.4 chasers on each of our trips (31 trips, 24 first
   grabs, 29 carriers dead). Against it we grab often (16 first grabs a game vs Cyril's 4) but carriers die. Candidate
   levers if it becomes the target: Z2ESCORT (hit the adjacent receivers first) and Z1HOLD, both never re-gated.
+- Gymhgy 5(a), 8 shared cells (seed 777050) for g_iter4 / g4z2 (Z2ESCORT) / g4z1 (Z1HOLD): wins 3 / 3 / 5. g4z2 cuts
+  Gymhgy's re-grabs 4.9 -> 2.9 a game and changes nothing else. **g4z1**: our ducks within dist2 20 of its carrier 1.95 ->
+  2.95, Gymhgy captures by r600 1.75 -> 1.12, unseen carrier-rounds 91 -> 69, games 1,313 -> 1,795 rounds (EvilGrin and
+  KingQuacksCastle no longer lost early). Delivery pre-registered on the Gymhgy pool: `DGPOOL=Gymhgy.v10official
+  DGTAG=-gym BASE=g_iter4 tools/delivery-gate.sh g4z1 'rel:chasers20>=1.25 nw:kills>=0.95 mean:overruns<=0'`; g4z1 5(a)
+  on the Cyril cells too (Z1HOLD was never re-gated on the fixed base, RETEST arm 12).
