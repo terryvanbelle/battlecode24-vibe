@@ -1393,3 +1393,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   check; band runs recorded and g3lost games relabelled g_iter4; keep-replays gains g_iter4 and g3lost; ladder refit:
   g_iter4 1932 +- 39 (rank 12), g_iter3 1901 (dragged by many filler losses to Cyril), waffle 1903, Cyril 2032.
   CLAUDE rule 16, HANDOFF, README, REWRITE.md updated. The filler pairs g_iter4 with g_iter3 against Cyril.
+- Audit BOT5 and BOT3(b) as switches on g_iter4: C.PICKUP_AFTER_MOVE (step to a loose enemy flag one step away and pick
+  it up before striking or healing; after any move try a pickup; note "pickstep"; AuditTest) -> arm g4pick; and
+  C.RELOC_STALL_MOVES (relocation counts only movement-ready turns and gives up to the best tile reached, not the spawn
+  centre) -> arm g4reach. 5(a) queued for both (g4reach on the maps the audit traced: Hurricane, Diagonal, Starfish,
+  Waterworld, BedWars, Fusbol, EvilGrin, Divergent, with g_iter4 mirrors alongside).
