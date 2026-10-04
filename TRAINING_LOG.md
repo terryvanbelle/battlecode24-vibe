@@ -1443,3 +1443,16 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4bundle band test vs g_iter4 (234 pairs): net +2, capture +0.08 +- 0.09; upper (11 bots now) net -5, -0.13 +- 0.13;
   rest +7, +0.28 +- 0.13 (t 2.2); basics PASS (k/d 2.53 vs 3.09, -1.6 SE). No criterion: parked. Better against weaker
   bots, worse against the top: more re-grab attempts cost carriers against strong defenders (as with the convoy).
+- Audit BOT16 behind C.RELOC_SPREAD (arm g4spread): the relocation spot scan pauses at 4,000 bytecodes left and resumes
+  next turn (AuditTest: paused-every-column spots equal one-go spots; a broken resume fails it). 5(a), 6 maps vs g_iter4
+  mirrors: max bytecode and turns at 90%+ unchanged (Bunkers 50, Waterworld 42). New `replay-dump --near90` lists those
+  turns: **all are round 1, one per robot (22.8-22.9k of 25k)**, G.init's 27x27 spawn-centre loop. Fix C.INIT_FAST (arm
+  g4init: the same centres from a bitset; AuditTest 500 random layouts). It frees round-1 bytecode, so Sym.update can
+  observe on round 1 (a behaviour change, hence an arm). 5(a) with g4spread on TwistedTreeline and English (the audit's
+  23.6k relocation turns) queued.
+- Audit BOT9 behind C.ALERT_NEAREST (arm g4alert): field ducks answer the nearest live fresh alert within ALERT_RADIUS2,
+  not the freshest; respawns split over all live fresh alerts by index; indicator counter an (turns on a shadowed alert).
+  5(a): 8 shared-seed scrimmages vs Cyril for g4alert and g_iter4 queued.
+- Cyril read on 1,259 g_iter4 filler games (36%): losses MORE_FLAG_CAPTURES 406, CAPTURE 292, LEVEL_SUM 105; wins
+  LEVEL_SUM 188, MORE_FLAG_CAPTURES 139, CAPTURE 128. We capture nothing in 467 of 803 losses. Flag distance does not
+  separate wins from losses at game level (mean 31.3 vs 31.2 tiles); enemy unseen carrier-rounds do (95 vs 141).

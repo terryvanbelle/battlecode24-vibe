@@ -16,16 +16,18 @@
   Delivery checks are three-way since the second audit: PASS 1 SE beyond the bar, FAIL 2 SE short, else INCONCLUSIVE
   (auto-extended 24 -> 48 -> 96 cells, never a closure). Open findings of research/AUDIT-2026-10-03.md are tracked
   below.
-- In flight: the Cyril target (research/CRACK-CYRIL.md; g_iter4 27-37 so far); the filler pairs g_iter4 with g_iter3
-  against Cyril. Second-audit follow-through: tools fixed (three-way delivery verdicts, discordance printed, basics on
-  unmeasured bases, replay keep list); BOT1 promoted (g_iter4); BOT2 tether closed (powered FAIL); next BOT3
-  (relocation abandons ~20% of flags), BOT5 (pickup timing), BOT4 (post-setup economy). Open tool findings: MEAS3
-  (replay names lack the seed), MEAS4-MEAS17 (see the report).
+- In flight: the Cyril target (research/CRACK-CYRIL.md; g_iter4 vs Cyril 456-803, 36%, on 1,259 filler games). In
+  those games a Cyril capture decides most losses (MORE_FLAG_CAPTURES 406, CAPTURE 292) and we win flag ties on level
+  sum 188-105. Second-audit follow-through: tools fixed; BOT1 promoted (g_iter4); closed or parked against Cyril: BOT2
+  tether, BOT4 econ, BOT5 pick, BOT7 ahead, BOT8 fill, BOT10 pred, the g4bundle combination. Now: BOT9 (g4alert, nearest
+  alert + split respawns), BOT16 (g4spread, relocation scan paused for bytecode) and round-1 init cost (g4init: every
+  robot's round 1 ran at 22.8-22.9k of 25k). Open: BOT3(a) reachable relocation spots, BOT6, BOT11, BOT14, BOT15,
+  BOT17-BOT20; tools MEAS3 (replay names lack the seed), MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (see the report).
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
   `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=CyrilSharma.finalBot tools/filler-pair.sh g_iter4 - 40`
-  (finishing the waffle read; next: the CyrilSharma pool), collected with `tools/collect-fillers.sh g_iter2 g_iter3`.
+  (the g_iter4 vs Cyril baseline), collected with `tools/collect-fillers.sh g_iter4 -`.
 - Every build and test block gets `tools/basics.py` (CLAUDE rule 15); unit tests include the dead-code and arm-intent
   checks.
 
