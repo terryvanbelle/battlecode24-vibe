@@ -173,3 +173,6 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4econ (POST_SETUP_CRUMBS + GATHER_ROUND 185, BOT4) 5(a): gathered200 identical to g_iter4 on all 6 maps, gathered400
   equal in sum (57,100 each); kills lower in two games (ducks detour for crumbs). Does not deliver in mirrors; parked.
 - g_iter4 vs g_iter3 vs Cyril (paired filler): 120 games, net +7 (+1.5 SE).
+- g4pick band test vs g_iter4 (234 pairs): net +9 (18-9, p 0.12), capture delta +0.12 +- 0.09, upper +0.16 +- 0.12; basics
+  PASS. No criterion met; extended with the confirmation seeds (pre-registered: the pooled 4 seeds must meet REWRITE_EVAL
+  (a) or (b), else no promotion), since 234-pair blocks are underpowered for a few-point effect (audit MEAS2).

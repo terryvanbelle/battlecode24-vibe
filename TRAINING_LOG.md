@@ -1409,3 +1409,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4pick Cyril delivery PASS (regrabs x5.3, +3.7 SE): filler pairs it with g_iter4 vs Cyril; band guard + test queued.
   g4econ 5(a): no change in crumbs gathered (r200 identical, r400 equal in sum), parked. g_iter4 vs g_iter3 on Cyril:
   +7 of 120 paired (+1.5 SE).
+- g4pick band test vs g_iter4: net +9 (p 0.12), capture +0.12 +- 0.09, upper +0.16 +- 0.12; basics PASS. Not yet a
+  criterion; extended with seeds 717171 + 818181, the pooled result pre-registered to decide.
