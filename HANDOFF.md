@@ -22,9 +22,13 @@
   tether, BOT4 econ, BOT5 pick, BOT7 ahead, BOT8 fill, BOT9 alert (g4alert INCONCLUSIVE at 96), BOT10 pred, the g4bundle
   combination; BOT16 fixed behind C.RELOC_SPREAD (small effect, for a later combined build). **Cyril's stun economy
   (TACTICS T14, research/CRACK-CYRIL.md)**: it builds 475 traps a game to our 247 (census of 1,520 games), ~54 crumbs a stun
-  to our ~77 (build-level discount), and takes 3x our centre crumbs in r201-400. Tried: g4front placement (delivery FAIL,
-  crumb-bound), g4wary / g4wary2 avoidance (parked), g4crumb centre crumbs (INCONCLUSIVE at 96, +17% vs bar +15%),
-  g4builder / g4builder2 dedicated builders (1/7 at 5(a) twice, early losses; parked). Open: BOT3(a) reachable relocation
+  to our ~77 (build-level discount), and takes 3x our centre crumbs in r201-400. g4front (placement) FAIL; g4wary/2
+  (avoidance), g4crumb (INCONCLUSIVE at 96), g4builder/2 (dedicated builders) parked; **g4econ2** (centre crumbs + builders
+  on top of everyone's stuns) passed Cyril delivery (fast stun victims +54%) but its band test met no criterion (net +3,
+  upper -0.20, t -1.6; kills -17%): the paired Cyril filler decides whether it is a crack. **Scouting Gymhgy.v10official**
+  (owner PROMPTS 177; research/CRACK-GYMHGY.md): g_iter4 78-103 (43%) on 181 games; g4z1 (Z1HOLD, hold our dropped flag
+  against its voluntary relay) failed delivery on a column that measured the wrong thing; second attempt on dropGuard
+  running. Open: BOT3(a) reachable relocation
   spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS3, MEAS4, MEAS6-MEAS10, MEAS13-MEAS17.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
