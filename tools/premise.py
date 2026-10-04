@@ -56,7 +56,7 @@ from fractions import Fraction
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DUMP = os.path.join(REPO, 'tools', 'replay-dump.sh')
-NAME = re.compile(r'^(.+)__(.+)__bot([AB])\.bc24$')
+NAME = re.compile(r'^(.+?)__(.+?)(?:__s\d+)?__bot([AB])\.bc24$')   # audit MEAS3: optional __s<seed>
 
 
 class InputError(Exception):

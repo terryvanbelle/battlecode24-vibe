@@ -7,7 +7,7 @@ Cells are paired by (seed index, replay basename) as in tools/arm-deltas.py. For
   capture difference per game (our captures - theirs): control mean, arm mean, paired delta +- SE (t).
 The upper tier is the list of bots rated 2050+ on our ladder (2026-10-02; re-derived 2026-10-04 on the converged fit, audit
 MEAS11: waffle, which we now beat ~62%, dropped), which beat us 83-100%."""
-import csv, math, os, sys
+import csv, math, os, re, sys
 from collections import defaultdict
 
 def load(path):
@@ -35,11 +35,17 @@ def sign_p(g, l):
     p = sum(math.comb(n, i) for i in range(k + 1)) / 2 ** n
     return min(1.0, 2 * p)
 
+SEEDSEG = re.compile(r'__s\d+(?=__bot[AB]\.bc24$)')
+
 def pairs(ctl, arm, runpairs):
+    # audit MEAS3: replay names carry the engine seed since 2026-10-04; pair on full names when both runs have them, else on
+    # seedless names (older control runs)
+    seeded = all(SEEDSEG.search(b) for (_, b) in list(ctl) + list(arm))
+    k = (lambda b: b) if seeded else (lambda b: SEEDSEG.sub('', b))
     for cr, ar in runpairs:
         for (run, base), a in arm.items():
             if not run.endswith(ar): continue
-            c = next((v for (r2, b2), v in ctl.items() if r2.endswith(cr) and b2 == base), None)
+            c = next((v for (r2, b2), v in ctl.items() if r2.endswith(cr) and k(b2) == k(base)), None)
             if c is not None: yield c, a
 
 def summarize(name, P):

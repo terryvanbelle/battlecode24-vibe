@@ -482,6 +482,20 @@ with tempfile.TemporaryDirectory() as d:
     open(cc, 'w').write('file,opp,us,team,kills\n' + ''.join(f'g{i},o,1,A,{10 + (8 if i % 2 else -8)}\n' for i in range(20)))
     r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'nwz', 'nw:kills>=0.95', cc, cs, 'run', bcc, bcs], cwd=d, capture_output=True, text=True)
     check('delivery nwz: INCONCLUSIVE' in r.stdout, 'delivery-check nw: an equal arm with the same noise stays INCONCLUSIVE: ' + r.stdout)
+    # audit MEAS3: seeded replay names. Two seeds of one cell are two pairs when both sides carry seeds; against a seedless
+    # base (an old cache) the arm pairs on seedless names, as before
+    sa = os.path.join(d, 'sa_c.csv'); ss = os.path.join(d, 'sa_s.csv'); sb = os.path.join(d, 'sb_c.csv'); sbs = os.path.join(d, 'sb_s.csv')
+    names = [f'o__M{i % 10}__s{100 + i}__botA.bc24' for i in range(20)]
+    open(sa, 'w').write('file,opp,us,team,kills\n' + ''.join(f'r/{n},o,1,A,12\n' for n in names))
+    open(ss, 'w').write('file,opp,us,team,x\n' + ''.join(f'r/{n},o,1,A,0\n' for n in names))
+    open(sb, 'w').write('file,opp,us,team,kills\n' + ''.join(f'q/{n},o,1,A,10\n' for n in names))
+    open(sbs, 'w').write('file,opp,us,team,x\n' + ''.join(f'q/{n},o,1,A,0\n' for n in names))
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'seeded', 'rel:kills>=1.1', sa, ss, 'run', sb, sbs], cwd=d, capture_output=True, text=True)
+    check('20 shared cells' in r.stdout, 'delivery-check: seeded names keep both seeds of a repeated cell (20 pairs): ' + r.stdout)
+    open(sb, 'w').write('file,opp,us,team,kills\n' + ''.join(f'q/o__M{i},o,1,A,10\n'.replace(f'o__M{i},', f'o__M{i}__botA.bc24,') for i in range(10)))
+    open(sbs, 'w').write('file,opp,us,team,x\n' + ''.join(f'q/o__M{i}__botA.bc24,o,1,A,0\n' for i in range(10)))
+    r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'mixed', 'rel:kills>=1.1', sa, ss, 'run', sb, sbs], cwd=d, capture_output=True, text=True, env=dict(os.environ, MIN_PAIRS='2'))
+    check('10 shared cells' in r.stdout, 'delivery-check: a seedless base pairs the seeded arm on seedless names: ' + r.stdout)
     cc, cs = block('few', 1.5, n=10)
     r = subprocess.run([sys.executable, os.path.join(HERE, 'delivery-check.py'), 'few', 'rel:kills>=1.2', cc, cs, 'run', bcc, bcs], cwd=d, capture_output=True, text=True)
     check('delivery few: INCONCLUSIVE' in r.stdout and 'only 10 shared cells' in r.stdout, 'delivery-check: fewer than 18 shared cells is INCONCLUSIVE: ' + r.stdout)

@@ -90,7 +90,9 @@ game () {  # opp map side
   local silence
   if [ "$SIDE" = A ]; then TA=$PB; TB=$PA; UAA=$UB; UBB=$UA; silence=-Dbc.engine.silence-b=true
   else TA=$PA; TB=$PB; UAA=$UA; UBB=$UB; silence=-Dbc.engine.silence-a=true; fi
-  local REPLAY="$OUT/replays/${OPP}__${MAP}__bot${SIDE}.bc24"
+  # audit MEAS3: the engine seed is in the name (opp__map__s<seed>__bot<side>; the side stays last for the side parsers):
+  # without it a repeated (opponent, map, side) cell overwrote the earlier replay (12% of single-opponent census games lost)
+  local REPLAY="$OUT/replays/${OPP}__${MAP}__s${SEED}__bot${SIDE}.bc24"
   local LOG TO=0; LOG=$(timeout "${GAME_TIMEOUT:-1800}" java -Xmx${GAME_XMX:-512m} -XX:+UseSerialGC -XX:ReservedCodeCacheSize=512m \
     -Dbc.server.mode=headless -Dbc.server.map-path="$ENGINE_DIR/maps" -Dbc.game.map-path="$ENGINE_DIR/maps" \
     -Dbc.server.robot-player-to-system-out=false -Dbc.server.debug=false \

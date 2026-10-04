@@ -3,7 +3,7 @@
    tools/arm-deltas.py <ctl.csv> <arm.csv> <ctl-run-s1>,<arm-run-s1> [<ctl-run-s2>,<arm-run-s2> ...] [--beaters a,b,...]
 Rows are census/survey CSVs (tools/capability-census.sh). Cells are paired by (seed index, replay basename).
 For each numeric column: mean of our (arm - ctl) delta, its SE, n; also on beater cells only."""
-import csv, sys, os, math, statistics as st
+import csv, re, sys, os, math, statistics as st
 argv = sys.argv[1:]; beaters = set()
 if '--beaters' in argv:
     i = argv.index('--beaters'); beaters = set(argv[i + 1].split(',')); argv = argv[:i] + argv[i + 2:]
@@ -13,7 +13,7 @@ def load(p):
     rows = {}
     for r in csv.DictReader(l for l in open(p) if ',' in l and not l.startswith('census:')):
         if r.get('us') != '1': continue
-        rows[(r['file'].split('/')[-3] if r['file'].count('/') >= 2 else '', os.path.basename(r['file']))] = r
+        rows[(r['file'].split('/')[-3] if r['file'].count('/') >= 2 else '', re.sub(r'__s\d+(?=__bot[AB]\.bc24$)', '', os.path.basename(r['file'])))] = r
     return rows
 C, A = load(ctl_csv), load(arm_csv)
 def num(x):

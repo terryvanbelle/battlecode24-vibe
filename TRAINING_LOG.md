@@ -1638,3 +1638,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   replays on DefaultSmall and EndAround), so paired cells against it are exact for code that changes nothing. Second
   attempt **g4farm2**: FARM_XP 5 (level 1 for every duck: ~250 digs, ~50 levels, the passive income of r1500-2000),
   no reserve; 5(a) on the same cells queued.
+- g4crumb map-class gate (Gymhgy, centre-crumb maps) at 48 cells: signature PASS (gathered201to400 8,538 vs 4,885, +1.2 SE
+  past x1.5), kills guard INCONCLUSIVE with kills UP 39% (335 vs 241): extending to 96. Two tool defects surfaced:
+  (1) the nw guard's INCONCLUSIVE rule used 2 SE alone and ignored the direction of the difference; it now uses the worst
+  plausible drop (lower 2-SE bound of arm - base, as a share of the base), tests added; (2) **audit MEAS3 fixed**: only
+  17 of 24 and 26 of 48 cells paired, because a 17-map class has 34 distinct cells and repeated cells overwrote each
+  other. Replay names now carry the engine seed (opp__map__s<seed>__bot<side>); delivery-check and eval-paired pair on full
+  names when both sides have seeds and on seedless names against older runs; arm-deltas and premise.py read both forms;
+  regression tests. Synced to the VM after the running gate finishes.

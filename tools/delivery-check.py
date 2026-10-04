@@ -11,6 +11,13 @@ def load(paths):
             if r.get('us') == '1': rows.setdefault(os.path.basename(r['file']), {}).update(r)
     return rows
 rows = load((cpath, spath)); base = load(base_paths) if len(base_paths) == 2 else {}
+SEEDSEG = re.compile(r'__s\d+(?=__bot[AB]\.bc24$)')
+if base and not all(SEEDSEG.search(k) for k in list(rows) + list(base)):   # audit MEAS3: a seedless side pairs on seedless names
+    def _unseed(d):
+        out = {}
+        for k, v in d.items(): out.setdefault(SEEDSEG.sub('', k), {}).update(v)
+        return out
+    rows, base = _unseed(rows), _unseed(base)
 games = list(rows.values())
 def vals(col):
     out = []
