@@ -1,4 +1,4 @@
-package bot;
+package g4relay2;
 
 import battlecode.common.*;
 

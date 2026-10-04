@@ -1,4 +1,4 @@
-package bot;
+package g4relay2;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -25,8 +25,8 @@ public strictfp class C {
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before giving up the spot (V2: walk to the best tile reached, else home)
     public static final boolean RELOC_STALL_MOVES = false;  // audit BOT3(b): count only movement-ready turns; give up to the best tile reached; arm g4reach
-    public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
-    public static final boolean RELAY_THREAT = false;   // RELAY only for a carrier below RELAY_HP or with an enemy in view; arm g4relay2
+    public static final boolean RELAY = true;          // T3 offence copy: hand the flag forward to an adjacent ally
+    public static final boolean RELAY_THREAT = true;   // RELAY only for a carrier below RELAY_HP or with an enemy in view; arm g4relay2
     public static final int RELAY_HP = 600;
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
     public static final boolean ALERT_FIX = true;       // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders
@@ -75,7 +75,7 @@ public strictfp class C {
     public static final boolean CARRY_PREDICT = false;  // audit BOT10: chase a stale carrier sighting at its predicted point (age < 60); arm g4pred
     public static final int PREDICT_MARGIN = 5;         // CARRY_PREDICT: rounds of slack past the predicted arrival
     public static final boolean STUN_AHEAD = false;     // audit BOT7: build a carrier stun only from ahead of the carrier; arm g4ahead
-    public static final boolean PICKUP_AFTER_MOVE = false;  // audit BOT5: pick up a loose enemy flag after the step, before striking; arm g4pick
+    public static final boolean PICKUP_AFTER_MOVE = true;  // audit BOT5: pick up a loose enemy flag after the step, before striking; arm g4pick
     public static final boolean DEF_TETHER = false;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
     public static final int TETHER_R2 = 20;
     public static final boolean CAMP_SPLIT = false;     // DEST_CAMP: split campers over the enemy spawns within 1.3x the nearest distance (arm g3camp2)
