@@ -1,29 +1,29 @@
 # Ladder
 
-23589 scrimmages (ours only), 23589 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+23669 scrimmages (ours only), 23669 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter4 | 1964 +- 12 | 12 of 81 | 3480 | 1393-2087 | 81.4% | 23.4% (vs 11) |
-| g4econ2 | 1960 +- 56 | 13 of 81 | 160 | 60-100 | 81.2% | 23.0% (vs 11) |
+| g_iter4 | 1965 +- 12 | 12 of 81 | 3560 | 1426-2134 | 81.4% | 23.5% (vs 11) |
+| g4econ2 | 1961 +- 56 | 13 of 81 | 160 | 60-100 | 81.2% | 23.1% (vs 11) |
 | g3lost | 1948 +- 112 | 14 of 81 | 40 | 15-25 | 80.8% | 21.9% (vs 11) |
-| g4pick | 1946 +- 65 | 15 of 81 | 120 | 43-77 | 80.7% | 21.7% (vs 11) |
+| g4pick | 1947 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 21.8% (vs 11) |
 | g2cr | 1922 +- 107 | 16 of 81 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
 | g_iter3 | 1921 +- 13 | 17 of 81 | 3520 | 1259-2261 | 79.9% | 19.5% (vs 11) |
 | g3escrg2 | 1921 +- 44 | 18 of 81 | 280 | 90-190 | 79.9% | 19.5% (vs 11) |
 | g_iter2 | 1878 +- 15 | 20 of 81 | 2200 | 1032-1168 | 78.4% | 18.4% (vs 12) |
-| arch_rush10 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
-| a3dig5 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
-| g_iter1_c2 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| g_iter1_c2 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| arch_rush10 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| a3dig5 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | e1aggr | 1773 +- 130 | 26 of 81 | 110 | 83-27 | 74.9% | 16.4% (vs 14) |
-| c6pair | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
-| c5bank | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
-| a3dig10 | 1748 +- 129 | 29 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
-| a2relay | 1723 +- 127 | 31 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
-| e2aggr | 1723 +- 127 | 32 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
-| a2reloc | 1723 +- 127 | 33 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
+| c5bank | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| a3dig10 | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| c6pair | 1748 +- 129 | 29 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| a2reloc | 1723 +- 127 | 31 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
+| a2relay | 1723 +- 127 | 32 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
+| e2aggr | 1723 +- 127 | 33 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
 | b1z2b | 1710 +- 24 | 34 of 81 | 1760 | 620-1140 | 72.7% | 14.7% (vs 15) |
 | g_iter1 | 1704 +- 10 | 35 of 81 | 6990 | 2485-4505 | 72.4% | 14.3% (vs 15) |
 | g1copy | 1697 +- 91 | 36 of 81 | 80 | 28-52 | 72.2% | 13.9% (vs 15) |
@@ -46,30 +46,30 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 7 | andli28.v9_USQuals_angle | 2167 | 53 | 580 | 534-46 | 6% (g_iter1 13-211) |
 | 8 | andrewgopher.player22 | 2099 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
 | 9 | CyrilSharma.finalBot | 2053 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
-| 10 | Gymhgy.v10official | 2047 | 23 | 1180 | 866-314 | 41% (g_iter4 257-367) |
-| 11 | hsmalladi.finalbot | 2047 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
-| 12 | **us:g_iter4** | 1964 | 12 | 3480 | 1393-2087 |  |
-| 13 | **us:g4econ2** | 1960 | 56 | 160 | 60-100 |  |
+| 10 | hsmalladi.finalbot | 2047 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
+| 11 | Gymhgy.v10official | 2046 | 22 | 1260 | 913-347 | 41% (g_iter4 290-414) |
+| 12 | **us:g_iter4** | 1965 | 12 | 3560 | 1426-2134 |  |
+| 13 | **us:g4econ2** | 1961 | 56 | 160 | 60-100 |  |
 | 14 | **us:g3lost** | 1948 | 112 | 40 | 15-25 |  |
-| 15 | **us:g4pick** | 1946 | 65 | 120 | 43-77 |  |
+| 15 | **us:g4pick** | 1947 | 65 | 120 | 43-77 |  |
 | 16 | **us:g2cr** | 1922 | 107 | 40 | 21-19 |  |
 | 17 | **us:g_iter3** | 1921 | 13 | 3520 | 1259-2261 |  |
 | 18 | **us:g3escrg2** | 1921 | 44 | 280 | 90-190 |  |
 | 19 | winkelmantanner.waffle | 1919 | 15 | 2300 | 1375-925 | 62% (g_iter3 163-101) |
 | 20 | **us:g_iter2** | 1878 | 15 | 2200 | 1032-1168 |  |
 | 21 | ColtG5.Goob_final | 1809 | 12 | 3540 | 2205-1335 | 67% (g_iter2 203-101) |
-| 22 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
-| 23 | **us:a3dig5** | 1798 | 131 | 110 | 84-26 |  |
-| 24 | **us:g_iter1_c2** | 1798 | 131 | 110 | 84-26 |  |
+| 22 | **us:g_iter1_c2** | 1798 | 131 | 110 | 84-26 |  |
+| 23 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
+| 24 | **us:a3dig5** | 1798 | 131 | 110 | 84-26 |  |
 | 25 | kyleezz.jeeryfix3 | 1790 | 29 | 580 | 342-238 | 41% (g_iter1 91-133) |
 | 26 | **us:e1aggr** | 1773 | 130 | 110 | 83-27 |  |
-| 27 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
-| 28 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
-| 29 | **us:a3dig10** | 1748 | 129 | 110 | 82-28 |  |
+| 27 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
+| 28 | **us:a3dig10** | 1748 | 129 | 110 | 82-28 |  |
+| 29 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
 | 30 | quesswho.cretplayer2_3 | 1746 | 29 | 580 | 307-273 | 40% (g_iter1 90-134) |
-| 31 | **us:a2relay** | 1723 | 127 | 110 | 81-29 |  |
-| 32 | **us:e2aggr** | 1723 | 127 | 110 | 81-29 |  |
-| 33 | **us:a2reloc** | 1723 | 127 | 110 | 81-29 |  |
+| 31 | **us:a2reloc** | 1723 | 127 | 110 | 81-29 |  |
+| 32 | **us:a2relay** | 1723 | 127 | 110 | 81-29 |  |
+| 33 | **us:e2aggr** | 1723 | 127 | 110 | 81-29 |  |
 | 34 | **us:b1z2b** | 1710 | 24 | 1760 | 620-1140 |  |
 | 35 | **us:g_iter1** | 1704 | 10 | 6990 | 2485-4505 |  |
 | 36 | **us:g1copy** | 1697 | 91 | 80 | 28-52 |  |
