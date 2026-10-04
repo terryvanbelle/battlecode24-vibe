@@ -1572,3 +1572,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   New census column dropGuard (our robot-rounds within dist2 8 of our flag lying dropped away from home): Canals, ours 7
   all game, Gymhgy's 641. Second attempt (pre-registered, fresh seed 919191): `SEED=919191 DGPOOL=Gymhgy.v10official
   DGTAG=-gym2 BASE=g_iter4 tools/delivery-gate.sh g4z1 'rel:dropGuard>=2.0 nw:kills>=0.95 mean:overruns<=0'`.
+- g4z1 5(a) on the 8 Cyril cells (7 shared with g_iter4): no signature. dropGuard 204 vs 286 robot-rounds (lower), enemy
+  re-grabs 12.9 vs 14.4, Cyril captures identical (2.00), wins 2 vs 3. Against Cyril our flag drops mostly where its
+  carrier dies among our defenders, so we already stand around it (g_iter4's dropGuard vs Cyril 286 a game; vs Gymhgy on
+  Canals 7). Z1HOLD is a Gymhgy (voluntary relay) lever only; not gated against Cyril.
