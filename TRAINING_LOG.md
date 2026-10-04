@@ -1422,3 +1422,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   nw:kills). Indicator: pr (predicted chases) replaced the always-zero hl.
 - g4pred INCONCLUSIVE at the 96-cell maximum (unseen carrier-rounds unchanged, chasers +8%): parked. g_iter4 vs Cyril
   217-367 (37%; g_iter3 ~30%). Next: the decision-affecting tool findings (MEAS11 Elo convergence first).
+- Audit MEAS11 fixed: elolib.fit iterates to tolerance (about 24,000 MM iterations, 8 s) and warns if capped; the old
+  3,000-iteration cap had every rating 30-46 points low (differences unchanged). Synthetic-ladder test added.
+  upper-tier.txt re-derived on the converged fit at 2050+: waffle dropped (we beat it ~62%), 11 bots; REWRITE_EVAL and
+  eval-paired note it. Converged ladder: g_iter4 1954 +- 23 (rank 12), CyrilSharma 2056 (rank 10), waffle 1928 (16).

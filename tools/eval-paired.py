@@ -5,7 +5,8 @@
 Cells are paired by (seed index, replay basename) as in tools/arm-deltas.py. For each slice (all, upper tier, rest):
   wins: control, arm, gained / lost (discordant pairs), net, exact two-sided sign-test p;
   capture difference per game (our captures - theirs): control mean, arm mean, paired delta +- SE (t).
-The upper tier is the list of bots rated 2050+ on our ladder (2026-10-02), which beat us 83-100%."""
+The upper tier is the list of bots rated 2050+ on our ladder (2026-10-02; re-derived 2026-10-04 on the converged fit, audit
+MEAS11: waffle, which we now beat ~62%, dropped), which beat us 83-100%."""
 import csv, math, os, sys
 from collections import defaultdict
 

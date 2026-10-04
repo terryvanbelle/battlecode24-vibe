@@ -7,7 +7,8 @@ Written before any rewrite code exists. Numbers decided here are not moved after
 - Cells: the 20-bot band (`tools/band-20261001.txt`), SEED 515151 and 616161, 120 games each (~117 complete).
   Control runs on these cells: `20261001-011402-scrim-g_iter1` (515151) and `20261001-021054-scrim-g_iter1` (616161);
   census `research/census-g_iter1.csv`.
-- Tiers: the band holds 11 of the 12 bots rated 2050+ on our ladder (`tools/upper-tier.txt`); they beat us 83-100%.
+- Tiers: the band holds the bots rated 2050+ on our ladder (`tools/upper-tier.txt`: 12 on 2026-10-02; 11 since 2026-10-04,
+  re-derived on the converged fit, audit MEAS11, which dropped waffle); they beat us 83-100%.
   Every result is reported for all cells, the upper tier and the rest.
 
 ## Measures (tools/eval-paired.py, paired cell by cell)

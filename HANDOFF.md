@@ -5,7 +5,8 @@
 - Incumbent: **g_iter4** (since 2026-10-04; code in `src/g_iter4`, and `src/bot` with its defaults plays the same).
   It is g_iter3 plus C.FLAG_LOST (second audit, research/AUDIT-2026-10-03.md, BOT1: captured own flags are recognised, so
   their defender, alerts and respawns stop serving an empty home). Seeded band pairs vs g_iter3, pooled over 473: upper-tier
-  capture delta +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05 (t 3.1), net +9; basics PASS. Ladder: **1932 +- 39, rank 12**.
+  capture delta +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05 (t 3.1), net +9; basics PASS. Ladder: **1954 +- 23, rank 12**
+  (converged fit since 2026-10-04, audit MEAS11: every rating ~46 higher than the old capped fit; gaps unchanged).
   g_iter3 (carrier stun + flag relocation V2, the waffle crack; research/CRACK-WAFFLE.md), g_iter2 (first audit), g_iter1.
 - **Ladder target: CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14; CLAUDE rule 14). Defeated: ColtG5 (declared by
   the owner, PROMPTS 157), winkelmantanner.waffle (g_iter3 ranks above it; paired waffle read finishing on the filler).

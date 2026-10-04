@@ -581,5 +581,19 @@ with tempfile.TemporaryDirectory() as td:
     r_nb = subprocess.run([sys.executable, os.path.join(HERE, 'basics.py'), os.path.join(td, 'ok.csv'), '--base', os.path.join(td, 'base_nostill.csv')], capture_output=True, text=True)
     check(r_nb.returncode == 1 and 'base not measured' in r_nb.stdout, 'basics: a base census without a column fails that check: ' + r_nb.stdout)
 
+# Elo fit converges (audit 2026-10-03 MEAS11): a synthetic ladder recovers its true rating gaps; a capped fit warns
+import elolib, contextlib, io, random as _r
+_r.seed(7); true = {f'p{i}': 1500 + 60 * i for i in range(12)}; rows = []
+names = list(true)
+for k in range(6000):
+    a, b = _r.sample(names, 2)
+    rows.append(dict(run=f'r{k}', seq=str(k), teamA=a, teamB=b, map='m', winner='A' if _r.random() < elolib.expected(true[a], true[b]) else 'B', rounds='1', reason='x', seed=str(k)))
+R, SE, g, W = elolib.fit(rows)
+gaps = [(R[f'p{i}'] - R['p0']) - 60 * i for i in range(12)]
+check(max(abs(x) for x in gaps) < 60, 'elo fit: synthetic ladder rating gaps recovered within 60 (worst %.0f)' % max(abs(x) for x in gaps))
+err = io.StringIO()
+with contextlib.redirect_stderr(err): elolib.fit(rows, iters=3)
+check('not converged' in err.getvalue(), 'elo fit: a capped fit warns on stderr')
+
 print('test_tools: %s' % ('OK' if fails == 0 else f'FAILED {fails}'))
 sys.exit(1 if fails else 0)

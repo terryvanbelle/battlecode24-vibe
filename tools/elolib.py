@@ -7,7 +7,7 @@ with one 'us' rating inherited by every build, depended on play order: 96 easy c
 'us' from rank 65 to rank 4, above bots with 104-9 records against us. The fit has no order, and a
 build's rating comes only from its own games. A weak prior (one virtual win and one loss against a
 1500 anchor) keeps unbeaten or winless records finite; the anchor fixes the scale at 1500."""
-import csv, os, math, collections
+import sys, csv, os, math, collections
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GAMES = os.path.join(REPO, 'progress', 'games.csv')
 HDR = ['run', 'seq', 'teamA', 'teamB', 'map', 'winner', 'rounds', 'reason', 'seed']
@@ -26,24 +26,27 @@ def build_of(name): return name[3:] if is_ours(name) else None
 def load():
     return list(csv.DictReader(open(GAMES))) if os.path.exists(GAMES) else []
 def expected(ra, rb): return 1 / (1 + 10 ** ((rb - ra) / 400))
-def fit(rows, prior=1.0, iters=3000, tol=1e-10):
+def fit(rows, prior=1.0, iters=100000, tol=1e-10):
     """Bradley-Terry by minorise-maximise. -> (R, SE, games, wins): rating, standard error (Elo points,
     from the diagonal of the Fisher information), games and wins per player. Players are the names in
-    teamA/teamB as written ('us:g_iter5' is a player, 'us:g_iter3' another)."""
+    teamA/teamB as written ('us:g_iter5' is a player, 'us:g_iter3' another).
+    Iterates to tol (audit 2026-10-03 MEAS11: the old 3,000-iteration cap stopped every rating 30-46 points low;
+    convergence takes ~24,000 iterations on ~19,000 games) and warns on stderr if iters runs out first."""
     rows = dedupe(rows)
     W = collections.Counter(); games = collections.Counter(); N = collections.defaultdict(collections.Counter)
     for r in rows:
         a, b = r['teamA'], r['teamB']; win = a if r['winner'] == 'A' else b
         W[win] += 1; games[a] += 1; games[b] += 1; N[a][b] += 1; N[b][a] += 1
-    s = {p: 1.0 for p in games}
+    P = list(games); ix = {p: i for i, p in enumerate(P)}
+    nb = [[(ix[q], n) for q, n in N[p].items()] for p in P]; w = [W[p] + prior for p in P]
+    v = [1.0] * len(P); delta = 0.0; done = not P
     for _ in range(iters):
-        new = {}
-        for p in s:
-            den = sum(n / (s[p] + s[q]) for q, n in N[p].items()) + 2 * prior / (s[p] + 1)
-            new[p] = (W[p] + prior) / den
-        delta = max(abs(math.log(new[p] / s[p])) for p in s) if s else 0
-        s = new
-        if delta < tol: break
+        new = [w[i] / (sum(n / (v[i] + v[j]) for j, n in nb[i]) + 2 * prior / (v[i] + 1)) for i in range(len(P))]
+        delta = max(abs(math.log(new[i] / v[i])) for i in range(len(P)))
+        v = new
+        if delta < tol: done = True; break
+    if not done: print(f'elolib.fit: not converged after {iters} iterations (delta {delta:.2e} > tol {tol:.0e})', file=sys.stderr)
+    s = {p: v[ix[p]] for p in P}
     R = collections.defaultdict(lambda: 1500.0); SE = collections.defaultdict(lambda: float('inf'))
     for p in s:
         R[p] = 1500 + SCALE * math.log(s[p])

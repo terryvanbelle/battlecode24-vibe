@@ -9,4 +9,3 @@ Gymhgy.v10official
 andrewgopher.player22
 hsmalladi.finalbot
 CyrilSharma.finalBot
-winkelmantanner.waffle
