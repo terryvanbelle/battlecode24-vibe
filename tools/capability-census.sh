@@ -12,5 +12,7 @@ one () {   # MODE=--survey for the tactic features instead
 }
 export -f one; export REPO
 { echo "file,opp,us,$("$REPO/tools/replay-dump.sh" "$REPO/test/fixtures/example-DefaultSmall-s1.bc24" ${MODE:---capabilities} | head -1)"
-  for d in "$@"; do ls "$d"/losses/*.bc24 "$d"/replays/*.bc24 2>/dev/null; done | xargs -P "${P:-3}" -I{} bash -c 'one {}'; } > "$OUT"
+  # `|| true`: a run with no losses (or no wins) has no such folder, and under pipefail the failed ls ended the whole
+  # census after its header (2026-10-04, 1,298 g_iter4-vs-Cyril replays -> 0 rows)
+  for d in "$@"; do ls "$d"/losses/*.bc24 "$d"/replays/*.bc24 2>/dev/null || true; done | xargs -P "${P:-3}" -I{} bash -c 'one {}'; } > "$OUT"
 echo "census: $(( $(wc -l < "$OUT") - 1 )) rows -> $OUT"

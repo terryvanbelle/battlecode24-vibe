@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tests for the python tools: the SPRT, the Elo bookkeeping, the scrimmage recorder, the benchmark
 selector. Synthetic inputs; runs from tools/unit-tests.sh. Every check names what it protects."""
-import math, re, os, subprocess, sys, tempfile, csv, importlib.util
+import math, re, os, shutil, subprocess, sys, tempfile, csv, importlib.util
 HERE = os.path.dirname(os.path.abspath(__file__))
 fails = 0
 def check(ok, what):
@@ -160,6 +160,12 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
           'replay-dump: --trapgeo triggered post-setup stuns <= census stunTrig (which also counts setup-built stuns)')
     sc = subprocess.run([os.path.join(HERE, 'stun-check.sh'), FIX], capture_output=True, text=True).stdout
     check(' stuns ' in sc and ' built ' in sc and ' latMedian ' in sc, 'stun-check.sh: one summary line per replay')
+    with tempfile.TemporaryDirectory() as cd:   # a run with wins only (no losses/ folder) must still be censused
+        os.makedirs(os.path.join(cd, 'run', 'replays'))
+        shutil.copy(FIX, os.path.join(cd, 'run', 'replays', 'examplefuncsplayer__DefaultSmall__botA.bc24'))
+        cr = subprocess.run([os.path.join(HERE, 'capability-census.sh'), os.path.join(cd, 'out.csv'), os.path.join(cd, 'run')], capture_output=True, text=True)
+        rows = open(os.path.join(cd, 'out.csv')).read().splitlines() if os.path.exists(os.path.join(cd, 'out.csv')) else []
+        check(cr.returncode == 0 and len(rows) == 3, f'capability-census.sh: a run without losses/ still gives its rows ({len(rows)} lines)')
 else:
     print('test_tools: replay fixture or engine missing, replay-dump checks skipped')
 
@@ -251,7 +257,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False

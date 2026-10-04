@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -158,6 +158,21 @@ public class AuditTest {
             check(Duck.frontStunTile() == null, "STUN_FRONT: enemies 5 tiles away are not one step from the trigger");
         } catch (GameActionException e) { check(false, "STUN_FRONT: unexpected " + e); }
         BotTest.buildOk = false; Duck.enemies = new RobotInfo[0];
+
+        // STUN_WARY: me (10,10), an enemy at (13,10) this round: stepping east puts (12,9..11) within dist2 2, beside the
+        // enemy and beside none of ours: risky; west is clear; with an ally at (12,12), (12,11) is covered but (12,9) and (12,10) are not;
+        // an enemy seen beside a tile WARY_ROUNDS+1 rounds ago no longer counts
+        G.W = 40; G.H = 30; G.round = 500; Micro.enemyNearStamp = null;
+        MapLocation wm = new MapLocation(10, 10);
+        Micro.waryPrep(new RobotInfo[]{enemy(1, 13, 10)}, new RobotInfo[0], wm);
+        check(Micro.waryRisk(new MapLocation(11, 10), wm) == 3 && Micro.waryRisk(new MapLocation(9, 10), wm) == 0,
+              "STUN_WARY: a step toward a fresh enemy front is risky (3 suspect tiles), a step away is not");
+        Micro.waryPrep(new RobotInfo[]{enemy(1, 13, 10)}, new RobotInfo[]{new RobotInfo(9, Team.A, 1000, new MapLocation(12, 12), false, 0, 0, 0)}, wm);
+        check(Micro.waryRisk(new MapLocation(11, 10), wm) == 2, "STUN_WARY: tiles beside an ally are clear ((12,11) covered; (12,9), (12,10) stay suspect)");
+        G.round = 500 + C.WARY_ROUNDS + 1;
+        Micro.waryPrep(new RobotInfo[0], new RobotInfo[0], wm);
+        check(Micro.waryRisk(new MapLocation(11, 10), wm) == 0, "STUN_WARY: an enemy seen beside a tile WARY_ROUNDS+1 rounds ago no longer counts");
+        Micro.enemyNearStamp = null;
 
         // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
         java.util.Random ir = new java.util.Random(77);

@@ -64,6 +64,7 @@ import java.util.zip.GZIPInputStream;
  *   stunTrig           our stun traps triggered after setup; stunVictims: enemy robots within dist2 13 of them (end of round)
  *   enemyStunTrig      the same for the opponent's stuns; enemyStunVictims: our robots they caught
  *   stunVictimsEsc     stunVictims of our stuns triggered within dist2 36 of our own carrier (escort stuns); enemyStunVictimsEsc theirs
+ *   stunVictimsFast    stunVictims of our stuns triggered within 10 rounds of their build (the fight they were built for); enemy... theirs
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -555,7 +556,7 @@ public class ReplayDump {
         VecTable tl = r.trapAddedLocations();
         for (int j = 0; j < r.trapAddedIdsLength(); j++) {
             int tid = r.trapAddedIds(j), tt = r.trapAddedTeams(j), ty = r.trapAddedTypes(j);
-            trapTeam.put(tid, tt); trapType.put(tid, ty); trapLoc.put(tid, new int[]{tl.xs(j), tl.ys(j)});
+            trapTeam.put(tid, tt); trapType.put(tid, ty); trapLoc.put(tid, new int[]{tl.xs(j), tl.ys(j)}); trapRound.put(tid, rn);
             if (tt >= 1 && tt <= 2 && ty >= 0 && ty < 3) cTraps[tt][ty]++;
             if (inWindow(rn)) out.printf("r%d TRAP %s builds %s at (%d,%d)%n", rn, tname(tt), BUILD[ty], tl.xs(j), tl.ys(j));
             if (trapGeo && rn > 200 && tt >= 1 && tt <= 2) {   // nearest enemy and enemies around the trap at the end of the build round
@@ -577,7 +578,9 @@ public class ReplayDump {
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
                     kStunTrig[tt]++;
                     boolean esc = carrierNear(tt, l[0], l[1], 36);   // an escort stun: tt's own carrier within dist2 36
-                    for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) { kStunVictims[tt]++; if (esc) kStunVictimsEsc[tt]++; }
+                    boolean fast = rn - trapRound.getOrDefault(tid, -1000) <= 10;
+                    for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) {
+                        kStunVictims[tt]++; if (esc) kStunVictimsEsc[tt]++; if (fast) kStunVictimsFast[tt]++; }
                 } }
             if (trapGeo && trapBuilt.containsKey(tid)) {
                 int[] b = trapBuilt.remove(tid), l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0), v = 0;
@@ -1097,7 +1100,8 @@ public class ReplayDump {
     /** stunTrig / stunVictims: our stun traps triggered post-setup, and enemy robots within dist2 13 of them at the end of that
      *  round (the trap sets their cooldowns to 40); enemyStunTrig / enemyStunVictims: the same for theirs on us (2026-10-04,
      *  Cyril study: each of its stuns froze ~5.8 of ours). */
-    static int[] kStunTrig = new int[3], kStunVictims = new int[3], kStunVictimsEsc = new int[3];
+    static int[] kStunTrig = new int[3], kStunVictims = new int[3], kStunVictimsEsc = new int[3], kStunVictimsFast = new int[3];
+    static Map<Integer, Integer> trapRound = new HashMap<>();   // trap id -> build round
     static Map<Integer, int[]> nowLoc = new HashMap<>();
     /** --trapgeo: one line per post-setup trap when it triggers (untriggered ones at the end, trigRound -1):
      *  TG,team,type,buildRound,nearestEnemyD2,enemies13,enemies8,ownWithin2,trigRound,latency,victims13 */
@@ -1247,7 +1251,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1273,7 +1277,7 @@ public class ReplayDump {
                         + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t] + "," + kCaptured600[t] + "," + kCaptured600[o]
                         + "," + (kDefAtGrabN[t] > 0 ? String.format("%.2f", (double) kDefAtGrabSum[t] / kDefAtGrabN[t]) : "") + "," + kCapturedHomeRounds[t]
                         + "," + kStunTrig[t] + "," + kStunVictims[t] + "," + kStunTrig[o] + "," + kStunVictims[o]
-                        + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o]);
+                        + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o] + "," + kStunVictimsFast[t] + "," + kStunVictimsFast[o]);
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
