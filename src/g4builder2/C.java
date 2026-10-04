@@ -1,4 +1,4 @@
-package bot;
+package g4builder2;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -56,7 +56,7 @@ public strictfp class C {
     // 10/15/20/30/40/50% (engine SkillType) and needs 5L build actions, but level 4 in attack or heal caps build at 3):
     // one field duck in ten builds every combat stun (front placement), digs toward level 6 in setup, and stops attacking
     // and healing before either reaches level 4. Arm g4builder.
-    public static final boolean BUILDERS = false;
+    public static final boolean BUILDERS = true;
     public static final int BUILDER_DIGS = 30, BUILDER_DIG_RESERVE = 1000, BUILDER_XP_ATK = 74, BUILDER_XP_HEAL = 99;
     // g4builder (reserve 300, non-builders never built combat stuns): setup digs took the bank (Joker 662 at r200 vs 3,857),
     // setup traps fell (14 vs 24, 31 vs 48) and three games ended in early captures. g4builder2: the default dig reserve,

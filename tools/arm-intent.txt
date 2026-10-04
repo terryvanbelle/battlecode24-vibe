@@ -88,3 +88,4 @@ g4wary2 C.STUN_WARY=true
 g4crumb C.CRUMB_STEP=true
 g4crumb C.POST_SETUP_CRUMBS=true
 g4builder C.BUILDERS=true
+g4builder2 C.BUILDERS=true
