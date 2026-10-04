@@ -1,25 +1,25 @@
 # Ladder
 
-24949 scrimmages (ours only), 24949 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+25029 scrimmages (ours only), 25029 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter4 | 1967 +- 10 | 12 of 81 | 4840 | 1940-2900 | 81.4% | 23.7% (vs 11) |
-| g4econ2 | 1962 +- 56 | 13 of 81 | 160 | 60-100 | 81.3% | 23.2% (vs 11) |
-| g3lost | 1950 +- 112 | 14 of 81 | 40 | 15-25 | 80.9% | 22.1% (vs 11) |
-| g4pick | 1948 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 21.9% (vs 11) |
+| g_iter4 | 1968 +- 10 | 12 of 81 | 4920 | 1982-2938 | 81.5% | 23.8% (vs 11) |
+| g4econ2 | 1963 +- 56 | 13 of 81 | 160 | 60-100 | 81.3% | 23.3% (vs 11) |
+| g3lost | 1951 +- 112 | 14 of 81 | 40 | 15-25 | 80.9% | 22.2% (vs 11) |
+| g4pick | 1949 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 22.0% (vs 11) |
 | g_iter3 | 1923 +- 13 | 16 of 81 | 3520 | 1259-2261 | 80.0% | 19.7% (vs 11) |
-| g3escrg2 | 1923 +- 44 | 17 of 81 | 280 | 90-190 | 79.9% | 19.7% (vs 11) |
+| g3escrg2 | 1923 +- 44 | 17 of 81 | 280 | 90-190 | 80.0% | 19.7% (vs 11) |
 | g2cr | 1922 +- 107 | 18 of 81 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
 | g_iter2 | 1878 +- 15 | 20 of 81 | 2200 | 1032-1168 | 78.5% | 18.5% (vs 12) |
 | g_iter1_c2 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | a3dig5 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | arch_rush10 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | e1aggr | 1773 +- 130 | 26 of 81 | 110 | 83-27 | 74.9% | 16.4% (vs 14) |
-| c6pair | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
-| c5bank | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| c5bank | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| c6pair | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
 | a3dig10 | 1748 +- 129 | 29 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
 | e2aggr | 1723 +- 127 | 31 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
 | a2relay | 1723 +- 127 | 32 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
@@ -28,7 +28,7 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g_iter1 | 1704 +- 10 | 35 of 81 | 6990 | 2485-4505 | 72.4% | 14.3% (vs 15) |
 | g1copy | 1697 +- 91 | 36 of 81 | 80 | 28-52 | 72.2% | 13.9% (vs 15) |
 | b2fs | 1696 +- 28 | 37 of 81 | 1280 | 439-841 | 72.1% | 13.8% (vs 15) |
-| g1sym | 1692 +- 51 | 38 of 81 | 200 | 68-132 | 72.0% | 13.6% (vs 15) |
+| g1sym | 1691 +- 51 | 38 of 81 | 200 | 68-132 | 72.0% | 13.6% (vs 15) |
 | b1v2 | 1685 +- 22 | 40 of 81 | 2120 | 711-1409 | 71.7% | 15.5% (vs 16) |
 | arch_rush | 1375 +- 94 | 43 of 81 | 110 | 62-48 | 56.7% | 6.7% (vs 18) |
 | g_iter0 | 1310 +- 89 | 46 of 81 | 109 | 56-53 | 52.1% | 9.1% (vs 20) |
@@ -47,11 +47,11 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 8 | andrewgopher.player22 | 2099 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
 | 9 | CyrilSharma.finalBot | 2055 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
 | 10 | hsmalladi.finalbot | 2047 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
-| 11 | Gymhgy.v10official | 2041 | 15 | 2540 | 1679-861 | 41% (g_iter4 804-1180) |
-| 12 | **us:g_iter4** | 1967 | 10 | 4840 | 1940-2900 |  |
-| 13 | **us:g4econ2** | 1962 | 56 | 160 | 60-100 |  |
-| 14 | **us:g3lost** | 1950 | 112 | 40 | 15-25 |  |
-| 15 | **us:g4pick** | 1948 | 65 | 120 | 43-77 |  |
+| 11 | Gymhgy.v10official | 2038 | 14 | 2620 | 1717-903 | 41% (g_iter4 846-1218) |
+| 12 | **us:g_iter4** | 1968 | 10 | 4920 | 1982-2938 |  |
+| 13 | **us:g4econ2** | 1963 | 56 | 160 | 60-100 |  |
+| 14 | **us:g3lost** | 1951 | 112 | 40 | 15-25 |  |
+| 15 | **us:g4pick** | 1949 | 65 | 120 | 43-77 |  |
 | 16 | **us:g_iter3** | 1923 | 13 | 3520 | 1259-2261 |  |
 | 17 | **us:g3escrg2** | 1923 | 44 | 280 | 90-190 |  |
 | 18 | **us:g2cr** | 1922 | 107 | 40 | 21-19 |  |
@@ -63,8 +63,8 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 24 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
 | 25 | kyleezz.jeeryfix3 | 1790 | 29 | 580 | 342-238 | 41% (g_iter1 91-133) |
 | 26 | **us:e1aggr** | 1773 | 130 | 110 | 83-27 |  |
-| 27 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
-| 28 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
+| 27 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
+| 28 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
 | 29 | **us:a3dig10** | 1748 | 129 | 110 | 82-28 |  |
 | 30 | quesswho.cretplayer2_3 | 1746 | 29 | 580 | 307-273 | 40% (g_iter1 90-134) |
 | 31 | **us:e2aggr** | 1723 | 127 | 110 | 81-29 |  |
@@ -74,7 +74,7 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 35 | **us:g_iter1** | 1704 | 10 | 6990 | 2485-4505 |  |
 | 36 | **us:g1copy** | 1697 | 91 | 80 | 28-52 |  |
 | 37 | **us:b2fs** | 1696 | 28 | 1280 | 439-841 |  |
-| 38 | **us:g1sym** | 1692 | 51 | 200 | 68-132 |  |
+| 38 | **us:g1sym** | 1691 | 51 | 200 | 68-132 |  |
 | 39 | SampleProvider.TSPAARKSPRINT1 | 1686 | 29 | 580 | 259-321 | 50% (g_iter1 112-112) |
 | 40 | **us:b1v2** | 1685 | 22 | 2120 | 711-1409 |  |
 | 41 | dmtrung14.defaultplayer_intlqualifier | 1522 | 33 | 580 | 142-438 | 69% (g_iter1 155-69) |
