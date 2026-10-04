@@ -158,3 +158,13 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - **g3lost band test vs g_iter3** (234 seeded pairs; identical 86/234): net +1, capture delta +0.14 +- 0.06 (t 2.2), upper
   +0.22 +- 0.09 (t 2.5): REWRITE_EVAL criterion (b) met; basics PASS. Confirmation seeds queued; the Cyril paired filler
   follows when the queue is idle.
+
+**Second-audit fixes on g_iter4.**
+- g4pick (C.PICKUP_AFTER_MOVE, BOT5) 5(a), 6 mirror maps vs g_iter4 mirrors: the after-move pickup counter stays 0 (a
+  just-dropped flag cannot be picked up until the next round), but stepping to a loose flag instead of striking lifts
+  pickups 3-10x and regrabs ~10x (Bunkers 38 vs 4, DefaultLarge 34 vs 3, Islands 74 vs 4); captures 7 vs 3 over the 6
+  games. Delivery: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4pick
+  'rel:regrabs>=2.0 nw:kills>=0.95 mean:overruns<=0'`.
+- g4reach (C.RELOC_STALL_MOVES, BOT3(b)) 5(a), 8 traced maps: flag distance barely moves (mean of means +1%; Divergent +3
+  tiles, BedWars -1). The stall fix alone recovers little; BOT3(a), scoring only reachable spots, is the larger part and
+  is not built yet. Not gated.

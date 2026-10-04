@@ -1403,3 +1403,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   o, x, ch/ic/cp, et, ct, rg, pk (after-move pickups), es, cs, hl; bytecode peak, advances and fills dropped (the census
   reads bytecode from the engine). tools/side-indsum.sh parses each counter on its own. g4pick rebuilt; 5(a) re-run with
   g_iter4 mirrors alongside.
+- g4pick 5(a): regrabs ~10x vs g_iter4 mirrors (the pickup lands the turn after the step: a dropped flag cannot be picked
+  up the round it drops), captures 7 vs 3 in 6 games; Cyril delivery queued (rel:regrabs>=2.0, nw:kills). g4reach 5(a):
+  flag distance +1% only; not gated until BOT3(a) (reachable spots) is built.
