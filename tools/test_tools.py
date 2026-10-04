@@ -513,19 +513,24 @@ with tempfile.TemporaryDirectory() as td:
     os.makedirs(os.path.join(td, 'tools'))
     open(os.path.join(td, 'tools', 'keep-replays.txt'), 'w').write('g_iter1\n')
     runs = {'20261001-000000-scrim-x': True, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
-            '20261001-000003-scrim-z': False, '20261001-000004-scrim-g_iter1-fill123': True}
+            '20261001-000003-scrim-z': False, '20261001-000004-scrim-g_iter1-fill123': True,
+            '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': True}
     old = 1e9
+    recent = __import__('time').time() - 3 * 3600   # 3 hours old: past AGE, inside DIAG_AGE (1440 min)
     for r, done in runs.items():
         d = os.path.join(td, 'gauntlet', r, 'losses'); os.makedirs(d)
-        f = os.path.join(d, 'a__m__botA.bc24'); open(f, 'w').write('x'); os.utime(f, (old, old))
+        f = os.path.join(d, 'a__m__botA.bc24'); open(f, 'w').write('x')
+        t = recent if r.endswith('diag-gym') else old
+        os.utime(f, (t, t))
         if done: open(os.path.join(td, 'gauntlet', r, 'results.csv'), 'w').write('h\n')
     out = subprocess.run(['bash', os.path.join(HERE, 'vm-prune.sh')], env=dict(os.environ, REPO=td, THRESH='-1', AGE='60'),
                          capture_output=True, text=True).stdout
     left = {r: os.path.exists(os.path.join(td, 'gauntlet', r, 'losses', 'a__m__botA.bc24')) for r in runs}
     check(left == {'20261001-000000-scrim-x': False, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
-                   '20261001-000003-scrim-z': True, '20261001-000004-scrim-g_iter1-fill123': False}
+                   '20261001-000003-scrim-z': True, '20261001-000004-scrim-g_iter1-fill123': False,
+                   '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': False}
           and all(os.path.exists(os.path.join(td, 'gauntlet', r, 'results.csv')) for r, d in runs.items() if d),
-          'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs and results: %r %s' % (left, out))
+          'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs, recent diagnostics and results: %r %s' % (left, out))
 
 # eval-paired: pairing, tier split, sign test, capture difference
 spec = importlib.util.spec_from_file_location('evp', os.path.join(HERE, 'eval-paired.py')); evp = importlib.util.module_from_spec(spec); spec.loader.exec_module(evp)

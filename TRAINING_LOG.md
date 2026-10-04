@@ -1580,3 +1580,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   bar x2.0, -2.1 SE); kills guard INCONCLUSIVE. The hold barely adds ducks beside our dropped flag. Z1HOLD closed against
   Gymhgy (two attempts). Next Gymhgy lever, our offense: we grab its flags 16-22 times a game and wins come with more
   re-grabs (6.5 vs 4.2); g4pick (PICKUP_AFTER_MOVE, regrabs x10 in mirrors, parked on the band) 5(a) on the Gymhgy cells.
+- g4pick 5(a) on the 8 Gymhgy cells: regrabs 20.4 vs 4.1 a game, pickups 45.6 vs 24.8, carrier deaths 40.6 vs 19.6, but
+  captures 1.50 vs 1.62 and captures by r600 0.25 vs 0.62; wins 4 vs 3. The same pattern as against Cyril and the band:
+  more re-grabs, not more captures. Not gated.
+- Tool fix: vm-prune deleted step-5(a) diagnostic replays an hour after they ran (their run label is not the keep-list
+  build), so g_iter4's Gymhgy diagnostic was gone before g4pick could be paired with it (the earlier census copy served).
+  Runs named *-diag-* now keep their replays DIAG_AGE (1,440) minutes; regression test extended.

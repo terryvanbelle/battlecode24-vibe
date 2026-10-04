@@ -17,8 +17,11 @@ for d in "$G"/*/; do
   [ -f "$d/results.csv" ] || continue
   label="$(echo "$b" | sed -E 's/^[0-9]{8}-[0-9]{6}-scrim-//; s/-fill[0-9]+$//')"
   if echo "$keep" | grep -qx "$label" && ! echo "$b" | grep -q -- '-fill'; then continue; fi
-  c=$(find "$d" -name '*.bc24' -type f -mmin +"$AGE" | wc -l)
+  # step-5(a) diagnostic runs (RUNTAG diag-*) are compared with later arms on the same cells: keep them DIAG_AGE minutes
+  # (2026-10-04: g_iter4's Gymhgy diagnostic was pruned an hour after it ran, before g4pick could be paired with it)
+  a="$AGE"; case "$b" in *-diag-*) a="${DIAG_AGE:-1440}";; esac
+  c=$(find "$d" -name '*.bc24' -type f -mmin +"$a" | wc -l)
   [ "$c" -gt 0 ] || continue
-  find "$d" -name '*.bc24' -type f -mmin +"$AGE" -delete; n=$((n + c))
+  find "$d" -name '*.bc24' -type f -mmin +"$a" -delete; n=$((n + c))
 done
 echo "vm-prune: disk was ${use}%; deleted $n replays; now $(df -P "$G" | awk 'NR==2 {print $5}')"
