@@ -1576,3 +1576,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   re-grabs 12.9 vs 14.4, Cyril captures identical (2.00), wins 2 vs 3. Against Cyril our flag drops mostly where its
   carrier dies among our defenders, so we already stand around it (g_iter4's dropGuard vs Cyril 286 a game; vs Gymhgy on
   Canals 7). Z1HOLD is a Gymhgy (voluntary relay) lever only; not gated against Cyril.
+- **g4z1 Gymhgy second attempt: FAIL** (seed 919191; INCONCLUSIVE at 24, FAIL at 48 cells): dropGuard 195 vs 166 (+18%,
+  bar x2.0, -2.1 SE); kills guard INCONCLUSIVE. The hold barely adds ducks beside our dropped flag. Z1HOLD closed against
+  Gymhgy (two attempts). Next Gymhgy lever, our offense: we grab its flags 16-22 times a game and wins come with more
+  re-grabs (6.5 vs 4.2); g4pick (PICKUP_AFTER_MOVE, regrabs x10 in mirrors, parked on the band) 5(a) on the Gymhgy cells.
