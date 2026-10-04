@@ -1504,3 +1504,19 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   r200, and was tried only in mirrors.
 - Arm **g4crumb** (C.CRUMB_STEP: fight steps take a crumb tile when otherwise level, +40 against 100 per threat; with
   C.POST_SETUP_CRUMBS idle detours; indicator cr). 5(a) on the 8 Cyril cells queued (signature gathered400).
+- g4wary2 5(a) (8 Cyril cells): wy fires 190-724 a game; our ducks frozen per Cyril stun 6.2 vs g_iter4's 6.5 (-5%);
+  wins 2/8 vs 3/7. The neutralization does not deliver; parked after its second attempt.
+- **Crumb accounting (TwistedTreeline replay, both gathered 2,400):** after setup Cyril had ~27.7k crumbs (bank 2,200,
+  passive 18,000, kill rewards 268 x 30) and built 432 stuns, ~54 crumbs each net of digs and fills; we had ~24.7k
+  (kill rewards 224 x 30) for ~274 stuns and 23 explosives, ~77 a stun. Engine SkillType: build level L cuts trap cost
+  10/15/20/30/40/50% and needs 5L build actions (traps or digs); level 4 in attack or heal caps build at 3. Our stuns are
+  spread over the whole army (most builders at level 0-1); Cyril ends with three build-6 ducks (`--trapgeo` attributes
+  ~40% of its stuns to them, nearest-robot attribution). New census columns deathsHome / enemyDeathsHome (kill rewards:
+  268 vs 224 here) and gatheredAll.
+- Arm **g4builder** (C.BUILDERS): idx 9, 19, ..., 49 build every combat stun (front placement, up to 3 a turn), dig
+  toward 30 build actions in setup (reserve 300), and stop attacking at 74 XP and healing at 99 XP so build stays
+  uncapped. 5(a) queued.
+- g4crumb 5(a) (8 Cyril cells): gathered400 mean 7,057 vs 5,129 (+38%): Ambush 6,000 vs 2,300 (Cyril 3,400 vs 7,100),
+  Joker 23,700 vs 14,500 (Cyril 18,600 vs 27,800); two maps without loose crumbs played identically. The idle detours do
+  it; the fight-step bonus fires rarely (cr 0-8). Wins 3/7 vs 3/7. Delivery pre-registered: `DGPOOL=CyrilSharma.finalBot
+  DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4crumb 'rel:gathered400>=1.15 nw:kills>=0.95 mean:overruns<=0'`.
