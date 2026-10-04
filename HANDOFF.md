@@ -30,7 +30,7 @@
   (owner PROMPTS 177; research/CRACK-GYMHGY.md): g_iter4 78-103 (43%) on 181 games; g4z1 (Z1HOLD, hold our dropped flag
   against its voluntary relay) failed delivery on a column that measured the wrong thing; second attempt on dropGuard
   running. Open: BOT3(a) reachable relocation
-  spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS3, MEAS4, MEAS6-MEAS10, MEAS13-MEAS17.
+  spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (MEAS3 fixed 2026-10-04: seeds in replay names).
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
