@@ -19,6 +19,7 @@ import java.util.zip.GZIPInputStream;
  *     --map-at R          ASCII board at the end of round R
  *     --logs REGEX        indicator strings matching REGEX [--team A|B]
  *     --bytecode          per-team bytecode maxima and turns at the limit
+ *     --near90            as --bytecode, plus every turn at 90%+ of the limit (round, robot, count)
  *     --navstats          movement statistics per team
  *     --flags             every flag event with round, flag team, actor and location
  *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome,
@@ -121,6 +122,7 @@ public class ReplayDump {
     static Pattern logs = null; static int logTeam = 0;
     static boolean defMode = false;
     static Map<Integer, int[]> trip = new HashMap<>();   // --defense: holder -> {startRound, first(1/0), fx, fy, near20, near64, chaserSum, rounds}
+    static boolean near90 = false;   // --near90: as --bytecode, plus one line per turn at 90%+ of the limit
     static boolean bytecode = false, navstats = false, flagsMode = false, summary = true, survey = false, levelsMode = false, capMode = false;
     // --capabilities: basic-capability census per team (research/TACTIC_LEVELS.md)
     static int[] side;                                   // tile -> team whose spawn centres are nearer (1/2)
@@ -159,6 +161,7 @@ public class ReplayDump {
                 case "--logs": logs = Pattern.compile(args[++i]); summary = false; break;
                 case "--team": logTeam = args[++i].equalsIgnoreCase("A") ? 1 : 2; break;
                 case "--bytecode": bytecode = true; summary = false; break;
+                case "--near90": bytecode = true; near90 = true; summary = false; break;
                 case "--navstats": navstats = true; summary = false; break;
                 case "--flags": flagsMode = true; summary = false; break;
                 case "--survey": survey = true; summary = false; break;
@@ -459,7 +462,7 @@ public class ReplayDump {
             if (t == 0) continue;
             if (bc > maxBc[t]) maxBc[t] = bc;
             if (bc > roundMaxBc[t]) roundMaxBc[t] = bc;
-            if (bc >= BYTECODE_LIMIT) { turnsAtLimit[t]++; if (bytecode) out.printf("r%d %s#%d at the bytecode limit (%d)%n", r.roundId(), tname(t), id, bc); } else if (bc >= BYTECODE_LIMIT * 9 / 10) turnsNear[t]++;
+            if (bc >= BYTECODE_LIMIT) { turnsAtLimit[t]++; if (bytecode) out.printf("r%d %s#%d at the bytecode limit (%d)%n", r.roundId(), tname(t), id, bc); } else if (bc >= BYTECODE_LIMIT * 9 / 10) { turnsNear[t]++; if (near90) out.printf("r%d %s#%d near the limit (%d)%n", r.roundId(), tname(t), id, bc); }
             bcSum[t] += bc; bcTurns[t]++;
         }
         // actions

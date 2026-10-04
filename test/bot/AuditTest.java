@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -143,6 +143,32 @@ public class AuditTest {
               "REACH_FAST: fast and reference searches agree (" + agree + "/" + trials + ", " + yes + " engageable)");
         G.testBc = -1;
 
+        // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
+        java.util.Random ir = new java.util.Random(77);
+        int same = 0, itr = 500;
+        for (int t = 0; t < itr; t++) {
+            G.W = 30 + ir.nextInt(31); G.H = 30 + ir.nextInt(31);
+            java.util.LinkedHashSet<MapLocation> sp3 = new java.util.LinkedHashSet<>();
+            for (int z = 0; z < 3; z++) {
+                int cx = 1 + ir.nextInt(G.W - 2), cy = 1 + ir.nextInt(G.H - 2);
+                for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) sp3.add(new MapLocation(cx + dx, cy + dy));
+            }
+            java.util.List<MapLocation> shuffled = new java.util.ArrayList<>(sp3);
+            java.util.Collections.shuffle(shuffled, ir);
+            G.spawns = shuffled.toArray(new MapLocation[0]);
+            MapLocation[] ref = new MapLocation[3]; int n = 0;
+            for (MapLocation sa : G.spawns) {
+                int adj = 0;
+                for (MapLocation sb : G.spawns) if (sa.isAdjacentTo(sb) && !sa.equals(sb)) adj++;
+                if (adj == 8 && n < 3) ref[n++] = sa;
+            }
+            G.spawnCenters = new MapLocation[3]; Sym.ours = null;
+            G.initCentres();
+            if (java.util.Arrays.equals(ref, G.spawnCenters)) same++;
+        }
+        check(same == itr, "INIT_FAST: bitset spawn centres equal the 27x27 loop's (" + same + "/" + itr + ")");
+        G.spawnCenters = new MapLocation[3]; Sym.ours = null;
+
         // RELOC_V2: spots within the walk bound, never closer to the nearest candidate enemy centre than the spawn, 8+ apart
         G.W = 60; G.H = 40; Sym.cands = Sym.ROT | Sym.FX;
         G.spawnCenters[0] = new MapLocation(10, 8); G.spawnCenters[1] = new MapLocation(12, 20); G.spawnCenters[2] = new MapLocation(9, 31);
@@ -185,6 +211,18 @@ public class AuditTest {
             BotTest.shared[Comms.OF_HOME + 2] = Comms.enc(new MapLocation(10, 27));
             check(Duck.liveHome(0, 1).equals(new MapLocation(3, 20)) && Duck.liveHome(0, 0).equals(new MapLocation(3, 3))
                   && Duck.liveHome(2, 7).equals(new MapLocation(10, 27)), "FLAG_LOST: a lost flag's defender goes to the nearest live home");
+            // ALERT_NEAREST (audit BOT9): alerts on flags 0 and 1; a duck near home 1 answers flag 1 though flag 0's is fresher
+            G.me = new MapLocation(4, 18);
+            check(Duck.alertedFlagSkipping(0) == 0 && Duck.alertNearest(G.me, 0, C.ALERT_RADIUS2) == 1,
+                  "ALERT_NEAREST: the nearest fresh alert, not the freshest");
+            check(Duck.alertNearest(G.me, 2, C.ALERT_RADIUS2) == -1, "ALERT_NEAREST: a lost flag's alert, or one beyond ALERT_RADIUS2, is not answered");
+            BotTest.shared[Comms.OF_ALERT + 1] = 480;
+            check(Duck.alertNearest(G.me, 0, C.ALERT_RADIUS2) == -1, "ALERT_NEAREST: a stale alert (20 rounds) is not answered");
+            BotTest.shared[Comms.OF_ALERT + 1] = 499; BotTest.shared[Comms.OF_ALERT + 2] = 495;
+            int keepIdx = G.idx; java.util.Set<Integer> sp2 = new java.util.HashSet<>();
+            for (int q = 0; q < 6; q++) { G.idx = q; sp2.add(Duck.alertSplit(0)); }
+            G.idx = keepIdx;
+            check(sp2.size() == 3 && Duck.alertSplit(7) == -1, "ALERT_NEAREST: respawns split over all three alerted flags (" + sp2 + ")");
         } catch (GameActionException e) { check(false, "FLAG_LOST: unexpected " + e); }
 
         // PICKUP_AFTER_MOVE (audit BOT5): a loose enemy flag one step away (dist2 <= 8) is found; a carried one or one 3 away is not

@@ -80,3 +80,5 @@ g4bundle C.FILL_STEP=true
 g4bundle C.PICKUP_AFTER_MOVE=true
 g4bundle C.RELOC_STALL_MOVES=true
 g4spread C.RELOC_SPREAD=true
+g4alert C.ALERT_NEAREST=true
+g4init C.INIT_FAST=true

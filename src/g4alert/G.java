@@ -1,4 +1,4 @@
-package bot;
+package g4alert;
 
 import battlecode.common.*;
 
@@ -26,25 +26,10 @@ public strictfp class G {
         spawns = rc.getAllySpawnLocations();
         // spawn centres: a spawn tile whose 8 neighbours are all spawn tiles
         int n = 0;
-        if (C.INIT_FAST) { initCentres(); return; }
         for (MapLocation a : spawns) {
             int adj = 0;
             for (MapLocation b : spawns) if (a.isAdjacentTo(b) && !a.equals(b)) adj++;
             if (adj == 8 && n < 3) spawnCenters[n++] = a;
-        }
-    }
-
-    /** C.INIT_FAST (2026-10-04: every robot's round 1 ran at 22.8-22.9k of 25k bytecodes, ~18k of it the 27x27 adjacency
-     *  loop above): the same centres in the same order from the spawn bitset, 8 lookups per tile. */
-    static void initCentres() {
-        Sym.buildOurs();
-        int n = 0;
-        for (MapLocation a : spawns) {
-            if (n >= 3) break;
-            int adj = 0;
-            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++)
-                if ((dx != 0 || dy != 0) && Sym.isOurs(new MapLocation(a.x + dx, a.y + dy))) adj++;
-            if (adj == 8) spawnCenters[n++] = a;
         }
     }
 
