@@ -190,3 +190,5 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4pred Cyril delivery: INCONCLUSIVE at 24, 48 and 96 cells (96: unseen carrier-rounds 116.1 vs 116.5, chasers20 +8%, bar
   +10%; kills guard PASS). The prediction fires but does not put eyes back on carriers. Parked (not closed).
 - Baseline after the second audit: g_iter4 vs Cyril 217-367 (37%), up from g_iter3's ~30%.
+- Correction: g4pick's after-move pickups did fire directly (5-99 a game; the earlier 0 came from a side-indsum bug on
+  diag file names, now fixed), not "the turn after". Its parked verdict (pooled band, Cyril filler) stands.

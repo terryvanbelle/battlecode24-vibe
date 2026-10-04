@@ -6,6 +6,7 @@
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 for f in "$@"; do
   b=$(basename "$f" .bc24); side=${b##*__bot}
+  case "$side" in A|B) ;; *) side=A;; esac   # diag-batch names (<bot>-vs-<opp>-<map>-s<seed>): our bot is team A
   tools/replay-dump.sh "$f" --logs ' rg' --team "$side" 2>/dev/null | python3 -c '
 import sys,re
 last={}

@@ -1428,3 +1428,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   eval-paired note it. Converged ladder: g_iter4 1954 +- 23 (rank 12), CyrilSharma 2056 (rank 10), waffle 1928 (16).
 - Audit BOT8 behind C.FILL_STEP (step onto the tile just filled in the same turn); indicator fs (fill-steps) replaces the
   dead es; arm g4fill, 5(a) on water maps with g_iter4 mirrors queued. Audit MEAS11 done (above).
+- Tool bug found and fixed: tools/side-indsum.sh read our side from scrimmage names (__botA); on diag-batch names it fell
+  to the wrong team and summed g_iter4's old-format indicator (no pk/pr/fs). Diag files now default to side A. Re-summed:
+  **g4fill fires 100-387 same-turn fill-steps a game** on water maps (replay check: #10535 fills (35,7) at r3 and stands
+  on it that round); **g4pick's after-move pickups fired directly, 5-99 a game** (correcting the earlier guess that the
+  pickup landed the next turn; its parked verdict rested on the band and Cyril results and stands). g4fill delivery
+  (band, rel:stillPost<=0.97, nw:kills) queued.
