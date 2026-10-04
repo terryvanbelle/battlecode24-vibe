@@ -1,26 +1,26 @@
 # Ladder
 
-24109 scrimmages (ours only), 24109 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+24309 scrimmages (ours only), 24309 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter4 | 1965 +- 11 | 12 of 81 | 4000 | 1597-2403 | 81.4% | 23.5% (vs 11) |
-| g4econ2 | 1961 +- 56 | 13 of 81 | 160 | 60-100 | 81.2% | 23.1% (vs 11) |
-| g3lost | 1949 +- 112 | 14 of 81 | 40 | 15-25 | 80.8% | 22.0% (vs 11) |
-| g4pick | 1947 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 21.8% (vs 11) |
-| g2cr | 1922 +- 107 | 16 of 81 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
-| g_iter3 | 1922 +- 13 | 17 of 81 | 3520 | 1259-2261 | 79.9% | 19.6% (vs 11) |
-| g3escrg2 | 1921 +- 44 | 18 of 81 | 280 | 90-190 | 79.9% | 19.5% (vs 11) |
-| g_iter2 | 1878 +- 15 | 20 of 81 | 2200 | 1032-1168 | 78.4% | 18.4% (vs 12) |
-| arch_rush10 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
-| g_iter1_c2 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| g_iter4 | 1966 +- 11 | 12 of 81 | 4200 | 1683-2517 | 81.4% | 23.6% (vs 11) |
+| g4econ2 | 1962 +- 56 | 13 of 81 | 160 | 60-100 | 81.3% | 23.2% (vs 11) |
+| g3lost | 1949 +- 112 | 14 of 81 | 40 | 15-25 | 80.9% | 22.1% (vs 11) |
+| g4pick | 1948 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 21.9% (vs 11) |
+| g_iter3 | 1922 +- 13 | 16 of 81 | 3520 | 1259-2261 | 79.9% | 19.6% (vs 11) |
+| g3escrg2 | 1922 +- 44 | 17 of 81 | 280 | 90-190 | 79.9% | 19.6% (vs 11) |
+| g2cr | 1922 +- 107 | 18 of 81 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
+| g_iter2 | 1878 +- 15 | 20 of 81 | 2200 | 1032-1168 | 78.4% | 18.5% (vs 12) |
+| g_iter1_c2 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| arch_rush10 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | a3dig5 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | e1aggr | 1773 +- 130 | 26 of 81 | 110 | 83-27 | 74.9% | 16.4% (vs 14) |
-| c6pair | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| c5bank | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
 | a3dig10 | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
-| c5bank | 1748 +- 129 | 29 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
+| c6pair | 1748 +- 129 | 29 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
 | a2relay | 1723 +- 127 | 31 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
 | a2reloc | 1723 +- 127 | 32 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
 | e2aggr | 1723 +- 127 | 33 of 81 | 110 | 81-29 | 73.1% | 15.5% (vs 15) |
@@ -39,33 +39,33 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 |---|---|---|---|---|---|---|
 | 1 | jmerle.camel_case_v21_final | 2327 | 78 | 580 | 561-19 | 4% (g_iter1 10-214) |
 | 2 | Strequals.duck0127v5 | 2318 | 76 | 580 | 560-20 | 3% (g_iter1 7-217) |
-| 3 | IvanGeffner.kuma | 2301 | 73 | 580 | 558-22 | 4% (g_iter1 9-215) |
+| 3 | IvanGeffner.kuma | 2302 | 73 | 580 | 558-22 | 4% (g_iter1 9-215) |
 | 4 | uravt.Version18Final | 2292 | 348 | 26 | 26-0 |  |
 | 5 | chenyx512.flagbot_final | 2240 | 63 | 580 | 549-31 | 6% (g_iter1 13-211) |
 | 6 | NotLLeon.v3 | 2175 | 54 | 580 | 536-44 | 8% (g_iter1 17-207) |
 | 7 | andli28.v9_USQuals_angle | 2167 | 53 | 580 | 534-46 | 6% (g_iter1 13-211) |
 | 8 | andrewgopher.player22 | 2099 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
-| 9 | CyrilSharma.finalBot | 2053 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
+| 9 | CyrilSharma.finalBot | 2054 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
 | 10 | hsmalladi.finalbot | 2047 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
-| 11 | Gymhgy.v10official | 2045 | 19 | 1700 | 1182-518 | 40% (g_iter4 461-683) |
-| 12 | **us:g_iter4** | 1965 | 11 | 4000 | 1597-2403 |  |
-| 13 | **us:g4econ2** | 1961 | 56 | 160 | 60-100 |  |
+| 11 | Gymhgy.v10official | 2042 | 17 | 1900 | 1296-604 | 41% (g_iter4 547-797) |
+| 12 | **us:g_iter4** | 1966 | 11 | 4200 | 1683-2517 |  |
+| 13 | **us:g4econ2** | 1962 | 56 | 160 | 60-100 |  |
 | 14 | **us:g3lost** | 1949 | 112 | 40 | 15-25 |  |
-| 15 | **us:g4pick** | 1947 | 65 | 120 | 43-77 |  |
-| 16 | **us:g2cr** | 1922 | 107 | 40 | 21-19 |  |
-| 17 | **us:g_iter3** | 1922 | 13 | 3520 | 1259-2261 |  |
-| 18 | **us:g3escrg2** | 1921 | 44 | 280 | 90-190 |  |
+| 15 | **us:g4pick** | 1948 | 65 | 120 | 43-77 |  |
+| 16 | **us:g_iter3** | 1922 | 13 | 3520 | 1259-2261 |  |
+| 17 | **us:g3escrg2** | 1922 | 44 | 280 | 90-190 |  |
+| 18 | **us:g2cr** | 1922 | 107 | 40 | 21-19 |  |
 | 19 | winkelmantanner.waffle | 1919 | 15 | 2300 | 1375-925 | 62% (g_iter3 163-101) |
 | 20 | **us:g_iter2** | 1878 | 15 | 2200 | 1032-1168 |  |
 | 21 | ColtG5.Goob_final | 1809 | 12 | 3540 | 2205-1335 | 67% (g_iter2 203-101) |
-| 22 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
-| 23 | **us:g_iter1_c2** | 1798 | 131 | 110 | 84-26 |  |
+| 22 | **us:g_iter1_c2** | 1798 | 131 | 110 | 84-26 |  |
+| 23 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
 | 24 | **us:a3dig5** | 1798 | 131 | 110 | 84-26 |  |
 | 25 | kyleezz.jeeryfix3 | 1790 | 29 | 580 | 342-238 | 41% (g_iter1 91-133) |
 | 26 | **us:e1aggr** | 1773 | 130 | 110 | 83-27 |  |
-| 27 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
+| 27 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
 | 28 | **us:a3dig10** | 1748 | 129 | 110 | 82-28 |  |
-| 29 | **us:c5bank** | 1748 | 129 | 110 | 82-28 |  |
+| 29 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
 | 30 | quesswho.cretplayer2_3 | 1746 | 29 | 580 | 307-273 | 40% (g_iter1 90-134) |
 | 31 | **us:a2relay** | 1723 | 127 | 110 | 81-29 |  |
 | 32 | **us:a2reloc** | 1723 | 127 | 110 | 81-29 |  |
