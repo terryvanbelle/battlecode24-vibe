@@ -1,5 +1,4 @@
-winkelmantanner.waffle
 CyrilSharma.finalBot
 hsmalladi.finalbot
-andrewgopher.player22
 Gymhgy.v10official
+andrewgopher.player22

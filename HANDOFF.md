@@ -8,8 +8,9 @@
   capture delta +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05 (t 3.1), net +9; basics PASS. Ladder: **1954 +- 23, rank 12**
   (converged fit since 2026-10-04, audit MEAS11: every rating ~46 higher than the old capped fit; gaps unchanged).
   g_iter3 (carrier stun + flag relocation V2, the waffle crack; research/CRACK-WAFFLE.md), g_iter2 (first audit), g_iter1.
-- **Ladder target: CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14; CLAUDE rule 14). Defeated: ColtG5 (declared by
-  the owner, PROMPTS 157), winkelmantanner.waffle (g_iter3 ranks above it; paired waffle read finishing on the filler).
+- **Ladder target: Gymhgy.v10official** (2099, rank 9; g_iter4 78-103, 43%, over 181 filler games; CLAUDE rule 14,
+  research/CRACK-GYMHGY.md) since 2026-10-04, when the CyrilSharma lines ran out (owner PROMPTS 177; g_iter4 36% over 2,098
+  games; research/CRACK-CYRIL.md). Defeated: ColtG5 (declared by the owner, PROMPTS 157), winkelmantanner.waffle.
 - Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC.
   That makes a pair exact only for code that changes no decision (identity control 0 of 80 discordant); arms that change
   behaviour still disagree with the control on ~17-29% of pairs (audit 2026-10-03 MEAS2), so size blocks from that.

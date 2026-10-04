@@ -1586,3 +1586,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Tool fix: vm-prune deleted step-5(a) diagnostic replays an hour after they ran (their run label is not the keep-list
   build), so g_iter4's Gymhgy diagnostic was gone before g4pick could be paired with it (the earlier census copy served).
   Runs named *-diag-* now keep their replays DIAG_AGE (1,440) minutes; regression test extended.
+- **g4econ2 vs Cyril, paired filler stopped for futility at 120 pairs:** net +1 (18-17, +0.2 SE), g4econ2 39-71 (35%) vs
+  g_iter4's 36%; the pre-registered read (>= 60% over 240) was out of reach. Not a crack.
+- **Target change (owner PROMPTS 177): CyrilSharma -> Gymhgy.v10official** (2099, rank 9; g_iter4 43% over 181 games).
+  Cyril's lines are exhausted for now (closing note in research/CRACK-CYRIL.md). CLAUDE rule 14, HANDOFF, the target
+  memory, tools/next-rung.txt (waffle removed: below us) and the filler (FILLPOOL=Gymhgy.v10official, g_iter4 baseline)
+  updated.

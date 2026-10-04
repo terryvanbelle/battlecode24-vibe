@@ -1,4 +1,4 @@
-# CRACK-GYMHGY.md: scouting Gymhgy.v10official (owner prompt 177)
+# CRACK-GYMHGY.md: the ladder target since 2026-10-04, Gymhgy.v10official (owner prompt 177)
 
 Opened 2026-10-04 while the CyrilSharma line was running dry (research/CRACK-CYRIL.md): the owner allowed widening the
 target list if the lines of attack on Cyril run out. Gymhgy is rated 2099 (rank 9, above Cyril's 2053) and is the bot
@@ -29,3 +29,8 @@ voluntary hand-offs put our flag on the ground every two rounds, so the hold fir
 **Next.** g4z1 delivery on the Gymhgy pool, pre-registered: `DGPOOL=Gymhgy.v10official DGTAG=-gym BASE=g_iter4
 tools/delivery-gate.sh g4z1 'rel:chasers20>=1.25 nw:kills>=0.95 mean:overruns<=0'`. On a pass, Gymhgy becomes the ladder
 target (CLAUDE rule 14) and the filler pairs g4z1 with g_iter4 against it.
+
+**Became the target (2026-10-04)** when the Cyril lines ran out (research/CRACK-CYRIL.md, closing note). Results so far:
+g4z1 (Z1HOLD) failed delivery twice (chasers20 -18%; dropGuard +18% against a x2 bar): closed. g4z2 (Z2ESCORT) cut its
+re-grabs 41% at 5(a) and nothing else. g4pick at 5(a): our re-grabs x5, captures flat. Next: g4relay (our own relay,
+RELAY + PICKUP_AFTER_MOVE) 5(a); the filler builds the g_iter4 baseline.

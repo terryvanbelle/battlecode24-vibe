@@ -212,3 +212,11 @@ spread over the army. Arms: **g4builder** (one field duck in ten builds every co
 attack and heal below 4) and **g4crumb** (take the centre crumbs: gathered400 +38% at 5(a), Cyril's share falls by
 the same amount). The neutralization (g4wary, g4wary2: avoid steps beside a recent enemy and beside none of ours) did
 not cut our frozen ducks per Cyril stun (6.2 vs 6.5) and is parked.
+
+**Closed for now (2026-10-04).** g4econ2 (the only stun-economy arm to pass delivery) went 39-71 against Cyril on the
+paired filler (g_iter4 36%), net +1 over 120 seeded pairs (+0.2 SE); the pre-registered read (>= 60% over 240) became
+unreachable and the filler stopped for futility. With defense (camp, camp-split, tether, two defenders, alerts), offense
+(convoy, re-grabs), the second audit's fixes and the stun economy all near neutral, the target moved to
+Gymhgy.v10official under owner prompt 177 (research/CRACK-GYMHGY.md). Open ideas if Cyril is revisited: a relay offense
+(g4relay 5(a) queued on these cells), the defender-confound hypothesis for builders (a version that keeps every duck's
+combat stuns and only adds discounted builders is g4econ2; one without the crumb detours is untested).
