@@ -34,3 +34,7 @@ target (CLAUDE rule 14) and the filler pairs g4z1 with g_iter4 against it.
 g4z1 (Z1HOLD) failed delivery twice (chasers20 -18%; dropGuard +18% against a x2 bar): closed. g4z2 (Z2ESCORT) cut its
 re-grabs 41% at 5(a) and nothing else. g4pick at 5(a): our re-grabs x5, captures flat. Next: g4relay (our own relay,
 RELAY + PICKUP_AFTER_MOVE) 5(a); the filler builds the g_iter4 baseline.
+g4relay (RELAY + PICKUP_AFTER_MOVE) slowed the flag (constant hand-offs); g4relay2 (hand over only when hurt or
+threatened) looked strong at 5(a) (captures 2.50 vs 1.62 on 8 cells) but failed delivery at 96 cells (captures 1.68 vs
+1.65, -2.0 SE): relay line closed. A loss study (five lenses, synthesis, critic) is running; its levers and chosen-map
+cells come next (maps and sides may be chosen for diagnostics since PROMPTS 178).
