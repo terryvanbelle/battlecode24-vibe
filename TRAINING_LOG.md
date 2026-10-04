@@ -1492,3 +1492,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   carriers and attackers stalled. Second attempt (pre-registered, one retry after a traced failure) **g4wary2**: the
   penalty only among engage tiles (an enemy in reach), 60 (< one threat unit, 100), i.e. pick the safer reaching tile.
   g4front fast stun victims on the 5(a) cells: mean 536 vs g_iter4 336 (x1.6); Cyril's on us unchanged (~2,000).
+- **g4front Cyril delivery: FAIL** (24 cells): stunVictimsFast 481 vs 382 (+26%, bar +50%, margin -2.3 SE); kills guard
+  PASS. Descriptive (not judged): wins 7 vs 14 (a lucky base block: g_iter4 is ~36% vs Cyril). Trace: total stun victims
+  unchanged (1,075 vs 1,042 a game) and stuns triggered unchanged (206 vs 196): placement only moves stuns earlier; the
+  volume is set by crumbs. Cyril triggers 433 a game.
+- Stun census over 1,520 g_iter4-vs-Cyril games (research/fill/stuncensus3-g_iter4-cyril.csv): Cyril builds 475 traps to
+  our 247 and triggers 454 stuns to our 192; its stuns freeze 1,826 of ours within 10 rounds of the build to our 363.
+  Within a map, our wins come with fewer Cyril stuns (P = 0.63) and fewer of ours frozen (0.60). **Economy is the root:
+  gathered200 is level (4,373 vs 4,209) but gathered400 is 5,663 vs Cyril's 8,376** (audit BOT4: in r201-400 it collects
+  3,572 crumbs to our 838, 1,408 of them from our half). g4econ's crumb detour runs only with no enemy in view, rare after
+  r200, and was tried only in mirrors.
+- Arm **g4crumb** (C.CRUMB_STEP: fight steps take a crumb tile when otherwise level, +40 against 100 per threat; with
+  C.POST_SETUP_CRUMBS idle detours; indicator cr). 5(a) on the 8 Cyril cells queued (signature gathered400).
