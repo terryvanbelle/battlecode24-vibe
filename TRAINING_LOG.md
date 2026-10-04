@@ -1426,3 +1426,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   3,000-iteration cap had every rating 30-46 points low (differences unchanged). Synthetic-ladder test added.
   upper-tier.txt re-derived on the converged fit at 2050+: waffle dropped (we beat it ~62%), 11 bots; REWRITE_EVAL and
   eval-paired note it. Converged ladder: g_iter4 1954 +- 23 (rank 12), CyrilSharma 2056 (rank 10), waffle 1928 (16).
+- Audit BOT8 behind C.FILL_STEP (step onto the tile just filled in the same turn); indicator fs (fill-steps) replaces the
+  dead es; arm g4fill, 5(a) on water maps with g_iter4 mirrors queued. Audit MEAS11 done (above).

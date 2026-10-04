@@ -1,4 +1,4 @@
-package bot;
+package g4fill;
 
 import battlecode.common.*;
 

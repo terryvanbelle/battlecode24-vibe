@@ -75,3 +75,4 @@ g4econ C.POST_SETUP_CRUMBS=true
 g4econ C.GATHER_ROUND=185
 g4pred C.CARRY_PREDICT=true
 g4ahead C.STUN_AHEAD=true
+g4fill C.FILL_STEP=true
