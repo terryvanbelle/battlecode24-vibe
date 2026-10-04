@@ -1624,3 +1624,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   781101/781102, g_iter4 on the same cells; plus a same-cell replay to test Gymhgy's determinism. g4crumb chosen-map
   diagnostic on centre-crumb maps (GaltonBoard A/B, AceOfSpades A/B, KingQuacksCastle A, HungerGames A, StarryNight A,
   control MIT B) queued before it.
+- **g4crumb chosen-map 5(a) vs Gymhgy (centre-crumb maps, 16 shared cells, seeds 781001/781002): wins 7 vs 1** (all 6
+  discordant pairs for g4crumb, sign p ~0.03; GaltonBoard x2, HungerGames, KingQuacksCastle, MIT, StarryNight). Crumbs
+  r201-400 ours 10,950 vs 4,181, Gymhgy's 13,725 vs 18,481; its captures by r600 1.56 vs 2.19; stuns triggered 282 vs 137;
+  games 1,396 vs 872 rounds. The study's critic had found no between-map link of crumb share and wins; the same-cell
+  pairing shows a large effect on this class. New tools: scrim.sh MAPFILE and delivery-gate.sh DGMAPS (map-class blocks;
+  never ladder games), census gathered201to400, tools/maps-centre-crumb.txt (the 17 maps). Delivery pre-registered:
+  `DGPOOL=Gymhgy.v10official DGMAPS=tools/maps-centre-crumb.txt DGTAG=-gymcrumb BASE=g_iter4 tools/delivery-gate.sh
+  g4crumb 'rel:gathered201to400>=1.5 nw:kills>=0.95 mean:overruns<=0'`.
