@@ -93,3 +93,5 @@ g4econ2 C.BUILDERS=true
 g4econ2 C.BUILDER_SEEN_LEVEL=99
 g4econ2 C.CRUMB_STEP=true
 g4econ2 C.POST_SETUP_CRUMBS=true
+g4z2 C.Z2ESCORT=true
+g4z1 C.Z1HOLD=true
