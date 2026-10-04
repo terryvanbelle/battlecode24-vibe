@@ -1632,3 +1632,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   never ladder games), census gathered201to400, tools/maps-centre-crumb.txt (the 17 maps). Delivery pre-registered:
   `DGPOOL=Gymhgy.v10official DGMAPS=tools/maps-centre-crumb.txt DGTAG=-gymcrumb BASE=g_iter4 tools/delivery-gate.sh
   g4crumb 'rel:gathered201to400>=1.5 nw:kills>=0.95 mean:overruns<=0'`.
+- g4farm 5(a) (16 chosen cells vs Gymhgy, g_iter4 on the same cells): the farm barely fires (digsLate 0-11 a game,
+  levelGain1500 unchanged): the late bank sits at 160-260 crumbs, under the 300 reserve, because traps spend the rest.
+  Also: **Gymhgy is deterministic under a fixed engine seed** (the same g_iter4 cell played twice gives identical
+  replays on DefaultSmall and EndAround), so paired cells against it are exact for code that changes nothing. Second
+  attempt **g4farm2**: FARM_XP 5 (level 1 for every duck: ~250 digs, ~50 levels, the passive income of r1500-2000),
+  no reserve; 5(a) on the same cells queued.
