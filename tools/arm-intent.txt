@@ -84,3 +84,4 @@ g4alert C.ALERT_NEAREST=true
 g4init C.INIT_FAST=true
 g4front C.STUN_FRONT=true
 g4wary C.STUN_WARY=true
+g4wary2 C.STUN_WARY=true

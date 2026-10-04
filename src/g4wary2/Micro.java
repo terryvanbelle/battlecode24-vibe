@@ -1,4 +1,4 @@
-package bot;
+package g4wary2;
 
 import battlecode.common.*;
 
