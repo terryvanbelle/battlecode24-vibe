@@ -25,10 +25,12 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     between runs; the queue and filler remove that gap.
 13. **TRAINING_ALGORITHM §3 step 5 is mandatory, no shortcuts** (PROMPTS 66-67): no band test, gate or ladder block
     for an arm until its delivery mini-block passes (`tools/delivery-gate.sh`; `tools/band-test.sh` refuses otherwise).
-14. **Ladder target and idle filler** (PROMPTS 73, 120, 157-159): one ladder opponent at a time, usually the bot just
-    above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking.
+14. **Ladder target and idle filler** (PROMPTS 73, 120, 157-159, 177): one ladder opponent at a time, usually the bot just
+    above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking; if
+    the lines of attack on the target run out, open the list (PROMPTS 177).
     Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
-    crack in research/CRACK-WAFFLE.md). Target now: **CyrilSharma.finalBot** (2020, rank 11; g_iter3 10-14). The filler
+    crack in research/CRACK-WAFFLE.md). Target now: **CyrilSharma.finalBot** (2053, rank 11; g_iter4 37% over 2,184 games); scouting
+    Gymhgy.v10official (2099, rank 9; g_iter4 11-21). The filler
     plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
     maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
     candidate whenever an arm against the target passes delivery.
