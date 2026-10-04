@@ -1,4 +1,4 @@
-package bot;
+package g4crumb;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -52,7 +52,7 @@ public strictfp class C {
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
     public static final boolean STUN_FRONT = false;     // combat stuns one enemy step from triggering, most enemies in the stun radius (Cyril's geometry); arm g4front
     public static final int FRONT_MIN_VICTIMS = 3, FRONT_RESERVE = 100;   // STUN_FRONT: enemies within dist2 13 of the tile; crumbs kept
-    public static final boolean CRUMB_STEP = false;     // audit BOT4: fight steps prefer a tile with crumbs (Cyril collects 3,572 in r201-400 to our 838); arm g4crumb
+    public static final boolean CRUMB_STEP = true;     // audit BOT4: fight steps prefer a tile with crumbs (Cyril collects 3,572 in r201-400 to our 838); arm g4crumb
     public static final int CRUMB_BONUS = 40;           // CRUMB_STEP: score bonus (engage tiles differ by 100 per threat, kite tiles by 1000)
     public static final boolean STUN_WARY = false;      // T14 neutralization: among reaching tiles, avoid one that may sit beside a fresh enemy stun; arm g4wary2
     public static final int WARY_ROUNDS = 8, WARY_COST = 60;    // STUN_WARY: how long an enemy-adjacent tile stays suspect; penalty (< one threat, 100)
@@ -88,7 +88,7 @@ public strictfp class C {
     public static final int V2_HURT_HP = 300, V2_THREAT_HURT = 120, V2_THREAT_STRONG = 15, V2_THREAT_WEAK = 45;
     public static final int V2_SUPPORT = 6, V2_REACH = 100, V2_KILL = 60, V2_GOAL = 20;
     public static final boolean FLAG_TILE_STUN = false; // T1 neutralization: keep a stun trap on each home flag tile (rebuilt when triggered)
-    public static final boolean POST_SETUP_CRUMBS = false; // T10 adoption: after setup, idle ducks pick up visible crumbs (g_iter1 never does)
+    public static final boolean POST_SETUP_CRUMBS = true; // T10 adoption: after setup, idle ducks pick up visible crumbs (g_iter1 never does)
     public static final int UPGRADE_ORDER = 0;           // 0 attack>heal>capture (g_iter1), 1 heal first, 2 capture first, 3 attack>capture>heal
     public static final boolean TRAP_TOWARD_NEAREST = false; // combat trap direction: nearest enemy (true) or enemy centroid (g_iter1)
     public static final int ATTACKER_TENTHS = 0;         // specialisation: ducks with idx%10 below this never heal (attack mastery)

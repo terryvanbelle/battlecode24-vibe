@@ -85,3 +85,5 @@ g4init C.INIT_FAST=true
 g4front C.STUN_FRONT=true
 g4wary C.STUN_WARY=true
 g4wary2 C.STUN_WARY=true
+g4crumb C.CRUMB_STEP=true
+g4crumb C.POST_SETUP_CRUMBS=true
