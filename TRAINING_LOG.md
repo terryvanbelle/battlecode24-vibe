@@ -1597,3 +1597,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   whenever an ally stands ahead costs a round per hand-off. Captures 1.50 vs 1.62 (Cyril 0.86 vs 1.29), kills down.
   Second attempt (pre-registered) **g4relay2**: C.RELAY_THREAT, hand over only below 600 HP or with an enemy in view
   (the purpose: a fresh carrier before the old one dies). 5(a) on the Gymhgy cells queued.
+- **g4relay2 5(a) on the 8 Gymhgy cells: wins 6 vs 3, captures 2.50 vs 1.62 (+54%)**, relay pickups 70 a game, carrier
+  moves 308 vs 290 (no longer slowed), kills 363 vs 349. The first arm to lift captures against Gymhgy. g_iter4 baseline
+  vs Gymhgy now 147-212 (40.9%) over 359 filler games. Delivery pre-registered: `DGPOOL=Gymhgy.v10official DGTAG=-gym
+  BASE=g_iter4 tools/delivery-gate.sh g4relay2 'fire:relayPickups>0>=0.9 rel:captured>=1.2 nw:kills>=0.95
+  mean:overruns<=0'` (the relay exists to turn grabs into captures).
