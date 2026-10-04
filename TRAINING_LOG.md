@@ -1440,3 +1440,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (each fires; none harmful so far), 5(a) queued; delivery will gate on rel:regrabs>=2.0 with nw:kills, then band test.
 - g4bundle 5(a) (6 maps vs g_iter4): after-move pickups 7-60 and fill-steps 46-405 a game. Band delivery
   (rel:regrabs>=2.0, nw:kills) and band test queued.
+- g4bundle band test vs g_iter4 (234 pairs): net +2, capture +0.08 +- 0.09; upper (11 bots now) net -5, -0.13 +- 0.13;
+  rest +7, +0.28 +- 0.13 (t 2.2); basics PASS (k/d 2.53 vs 3.09, -1.6 SE). No criterion: parked. Better against weaker
+  bots, worse against the top: more re-grab attempts cost carriers against strong defenders (as with the convoy).
