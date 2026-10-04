@@ -179,3 +179,8 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4pick pooled 473 pairs vs g_iter4: net +6 (p 0.53), capture +0.08 +- 0.06, upper +0.11 +- 0.09 (confirmation seeds alone
   net -3); Cyril paired filler -2 of 80. Pre-registered bar not met: parked. More re-grabs without more captures, as with
   the convoy.
+- g4ahead (C.STUN_AHEAD, BOT7) 5(a), 6 scrimmages vs Cyril on the same cells as g4pred: carrier-stun builds halved (45 vs
+  99) but carriers caught halved too (27 vs 51): stuns "behind" still catch carriers (escorts walk into them). Parked.
+- g4pred (C.CARRY_PREDICT, BOT10) 5(a): chase totals unchanged (15,772 vs 15,666), unseen carrier-rounds a little lower
+  (mean 64 vs 77); the indicator could not separate predicted chases, so a pr counter replaced the always-zero hl and the
+  check is re-running.

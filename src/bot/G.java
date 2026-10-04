@@ -53,7 +53,7 @@ public strictfp class G {
         // (the census reads bytecode from the engine).
         rc.setIndicatorString(note + " o" + overruns + " x" + exceptions + " ch" + Duck.chases + "/" + Duck.intercepts + "/" + Duck.camps
                 + " et" + Duck.escortTurns + " ct" + Duck.combatTraps + " rg" + Micro.regrabTries + " pk" + Micro.afterMovePickups
-                + " es" + Micro.escortHits + " cs" + Duck.safeSteps + "/" + Micro.carrierHeals + " hl" + Duck.holdTurns);
+                + " es" + Micro.escortHits + " cs" + Duck.safeSteps + "/" + Micro.carrierHeals + " pr" + Duck.predictTurns);
     }
 
     /** xorshift; per-robot seeded from the id so identical code on both sides never shares a sequence. */
