@@ -71,3 +71,5 @@ g3lost C.FLAG_LOST=true
 g3tether C.DEF_TETHER=true
 g4pick C.PICKUP_AFTER_MOVE=true
 g4reach C.RELOC_STALL_MOVES=true
+g4econ C.POST_SETUP_CRUMBS=true
+g4econ C.GATHER_ROUND=185
