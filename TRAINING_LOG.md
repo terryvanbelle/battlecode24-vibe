@@ -1612,3 +1612,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   1.68 vs 1.65 (+2%, bar +20%, -2.0 SE); kills guard PASS. The 5(a)'s +54% on 8 cells was noise. Relay line closed against
   Gymhgy (two attempts: g4relay, g4relay2). A Gymhgy loss study (workflow: five lenses, synthesis, critic) is running to
   find levers and chosen-map cells for diagnostics (PROMPTS 178).
+- **Gymhgy loss study** (workflow: five measurement lenses over 1,174-1,507 games and up to 981 replays, synthesis,
+  critic; reports in research/gymhgy-study-2026-10-04/, summary in research/CRACK-GYMHGY.md). The critic rejected seven of
+  the synthesis's claims (unopposed captures are the relay's base rate; the centre-crumb class effect is real but not
+  caused by crumb share; earlier CAPTURING already failed in the wrong direction). Corrected top lever: a late level farm
+  for the level-sum tiebreak (we lose 0-0 level sums 28-48 by a median 17 levels and never dig late). Side A deficit vs
+  Gymhgy (-4.6 points) is not ours: vs Cyril side A is +2.1.
+- Arm **g4farm** (C.LEVEL_FARM: from r1500, flag counts level, idle ducks below 15 build XP dig checkerboard tiles on our
+  half away from our flags, reserve 300; indicator lf; census digsLate, levelGain1500). Chosen-map 5(a) vs Gymhgy (owner
+  PROMPTS 178): DefaultSmall A/B, EndAround A/B, GravitationalWaves A, Fusbol A, Hurricane A, control Mountain A, seeds
+  781101/781102, g_iter4 on the same cells; plus a same-cell replay to test Gymhgy's determinism. g4crumb chosen-map
+  diagnostic on centre-crumb maps (GaltonBoard A/B, AceOfSpades A/B, KingQuacksCastle A, HungerGames A, StarryNight A,
+  control MIT B) queued before it.

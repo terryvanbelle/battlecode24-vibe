@@ -38,3 +38,30 @@ g4relay (RELAY + PICKUP_AFTER_MOVE) slowed the flag (constant hand-offs); g4rela
 threatened) looked strong at 5(a) (captures 2.50 vs 1.62 on 8 cells) but failed delivery at 96 cells (captures 1.68 vs
 1.65, -2.0 SE): relay line closed. A loss study (five lenses, synthesis, critic) is running; its levers and chosen-map
 cells come next (maps and sides may be chosen for diagnostics since PROMPTS 178).
+
+## Loss study (2026-10-04; research/gymhgy-study-2026-10-04/: five lenses, synthesis, critic)
+
+Over 1,174-1,507 games (critic's frozen census: 1,507). What holds after the critic:
+- **It grabs as often in our wins as in our losses** (within map +0.22 a game, t 0.5); losses are decided by conversion
+  of its chains. "Unopposed captures" is not evidence: 92% of all its captures are unopposed in a relay (the capturing
+  leg is 1-2 rounds at its own spawn), in wins and losses alike.
+- **The size of its group at the grab predicts the chain** (capture 0.03-0.06 with 0-2 of its robots near, 0.36-0.54
+  with 12+; 12+ groups make 48% of its captures), and contact by our robots matters only for groups under 12.
+- **The fight-geography split is game length**: the deathsHome gap builds after r1000; the earliest separator is the
+  dam-drop skirmish (net kills at r250, within map +0.89, p 0.028), faded by r300.
+- **Level sum**: we lose 0-0 level-sum games 28-48 by a median 17 levels, never dig after setup (Gymhgy digs 73 in
+  setup), and 35 of 50 ducks end at build 0 while 250-300 trap builds pile XP onto 1-3 ducks at build 6.
+- **Centre-crumb maps** (17 maps with >= 9,000 crumbs behind dams) win 0.31-0.32 vs 0.41-0.43 elsewhere (out of sample),
+  but our crumb share does not track the win rate within the class (Spearman -0.06): the cause is not the crumbs.
+- **Side**: we win 5.3 points more on side B within map against Gymhgy (p 0.029); against Cyril side A is 2 points
+  better and the band shows no consistent side effect, so this looks like Gymhgy's own asymmetry, not ours.
+- Our carriers die near its flag, outnumbered 8.3 to 3.4 within dist2 20; 51% with no ally within dist2 8; a grabber
+  under 500 HP converts 2.4% (9.3% at 900+). Our re-grab rate after a carrier death is 0.20 (its 0.42-0.44).
+
+Corrected lever ranking (critic): (1) **level farm** (C.LEVEL_FARM, arm g4farm: late digs for build XP when the flag
+counts are level; ceiling ~7 points, realistic 2-4), with a trap-XP routing dose; (2) the side-A deficit (checked:
+opponent-specific); (3) a convoy response with a signature on contact for grab groups under 12; (4) setup budget to
+the dam line; (5) centre crumbs (diagnostic only); (6) CAPTURING at r1200 (demoted: g2up3 failed with captures late
+falling). g4farm 5(a) (stalemate maps DefaultSmall, EndAround, GravitationalWaves, Fusbol, Hurricane; control Mountain A;
+two seeds, both sides where possible, g_iter4 on the same cells) and g4crumb on the centre-crumb maps are queued, plus a
+check that Gymhgy is deterministic under a fixed engine seed.
