@@ -201,3 +201,14 @@ within dist2 4), freezing 6.0 of ours each: 2,594 robot-freezes against our 1,10
 the stuns work in the general fight, not as carrier cover. New arm **g4front** (C.STUN_FRONT: the reachable tile one
 enemy step from triggering with the most enemies within dist2 13, at least 3). 5(a) on the alert cells (seed 777040)
 and a census of the stun columns over all g_iter4-vs-Cyril replays queued. TACTICS T14.
+
+**g4front FAIL and the economy behind the stuns (2026-10-04).** g4front's Cyril delivery failed (fast victims +26%, bar
++50%, -2.3 SE): placement moved stuns earlier but did not add any (206 vs 196 triggered a game), because the stun count is
+set by crumbs. Census of 1,520 g_iter4-vs-Cyril games: Cyril builds 475 traps to our 247 and triggers 454 stuns to our 192;
+gathered400 8,376 vs 5,663 (r200 level). Crumb accounting on TwistedTreeline (both gathered 2,400 crumbs): Cyril's stun
+costs ~54 crumbs net of digs and fills, ours ~77. The engine's build skill cuts trap cost 10/15/20/30/40/50% at levels 1-6
+(5L build actions; level 4 in attack or heal caps build at 3); Cyril ends with three build-6 ducks, while our stuns are
+spread over the army. Arms: **g4builder** (one field duck in ten builds every combat stun, digs toward level 6, keeps
+attack and heal below 4) and **g4crumb** (take the centre crumbs: gathered400 +38% at 5(a), Cyril's share falls by
+the same amount). The neutralization (g4wary, g4wary2: avoid steps beside a recent enemy and beside none of ours) did
+not cut our frozen ducks per Cyril stun (6.2 vs 6.5) and is parked.
