@@ -76,3 +76,6 @@ g4econ C.GATHER_ROUND=185
 g4pred C.CARRY_PREDICT=true
 g4ahead C.STUN_AHEAD=true
 g4fill C.FILL_STEP=true
+g4bundle C.FILL_STEP=true
+g4bundle C.PICKUP_AFTER_MOVE=true
+g4bundle C.RELOC_STALL_MOVES=true

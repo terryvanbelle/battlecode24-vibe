@@ -1434,3 +1434,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   on it that round); **g4pick's after-move pickups fired directly, 5-99 a game** (correcting the earlier guess that the
   pickup landed the next turn; its parked verdict rested on the band and Cyril results and stands). g4fill delivery
   (band, rel:stillPost<=0.97, nw:kills) queued.
+- g4fill INCONCLUSIVE at 96 cells (band stillPost -2%, bar -3%; kills +1.4%): the fix fires only on water maps and the
+  band-wide bar was too strict (on the six water maps of its 5(a), stillPost -7.6%). Following the first audit's lesson,
+  the small correctness fixes go into one combined build: **g4bundle** = FILL_STEP + PICKUP_AFTER_MOVE + RELOC_STALL_MOVES
+  (each fires; none harmful so far), 5(a) queued; delivery will gate on rel:regrabs>=2.0 with nw:kills, then band test.
