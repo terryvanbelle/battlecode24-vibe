@@ -1414,3 +1414,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4pick pooled 473 pairs: net +6, capture +0.08 +- 0.06 (t 1.3), upper +0.11 +- 0.09: the pre-registered bar is not met,
   parked (Cyril filler -2 of 80). Filler back to the g_iter4 baseline vs Cyril. Next from the audit: BOT7 (carrier stuns
   built behind the carrier) and BOT10 (carrier sightings expire after 5 rounds).
+- Audit BOT10 and BOT7 as switches on g_iter4 with tests: C.CARRY_PREDICT (a stale carrier sighting, age 6-59, becomes a
+  predicted point age/2 steps toward its nearest spawn, chased like a fresh one; A11(a) clearing extended to it) -> arm
+  g4pred; C.STUN_AHEAD (carrier stuns only from ahead of the carrier) -> arm g4ahead. 5(a) vs Cyril queued.

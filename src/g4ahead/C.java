@@ -1,4 +1,4 @@
-package bot;
+package g4ahead;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -52,7 +52,7 @@ public strictfp class C {
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
     public static final boolean CARRY_PREDICT = false;  // audit BOT10: chase a stale carrier sighting at its predicted point (age < 60); arm g4pred
     public static final int PREDICT_MARGIN = 5;         // CARRY_PREDICT: rounds of slack past the predicted arrival
-    public static final boolean STUN_AHEAD = false;     // audit BOT7: build a carrier stun only from ahead of the carrier; arm g4ahead
+    public static final boolean STUN_AHEAD = true;     // audit BOT7: build a carrier stun only from ahead of the carrier; arm g4ahead
     public static final boolean PICKUP_AFTER_MOVE = false;  // audit BOT5: pick up a loose enemy flag after the step, before striking; arm g4pick
     public static final boolean DEF_TETHER = false;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
     public static final int TETHER_R2 = 20;

@@ -1,4 +1,4 @@
-package bot;
+package g4pred;
 
 import battlecode.common.*;
 

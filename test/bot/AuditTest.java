@@ -71,7 +71,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -170,6 +170,16 @@ public class AuditTest {
         Duck.flags = new FlagInfo[]{new FlagInfo(new MapLocation(13, 10), Team.B, false, 7), new FlagInfo(new MapLocation(11, 10), Team.B, true, 8)};
         check(Micro.looseFlagNear(G.me) == null, "PICKUP_AFTER_MOVE: dist2 9 or a carried flag is not");
         Duck.flags = new FlagInfo[0];
+
+        // CARRY_PREDICT (audit BOT10): last seen (10,10) heading to (40,10); at age 20 the carrier is ~10 tiles on, we aim 2 ahead
+        MapLocation pr = Duck.predictCarrier(new MapLocation(10, 10), 20, new MapLocation(40, 10));
+        check(pr != null && Math.abs(pr.x - 22) <= 1 && pr.y == 10, "CARRY_PREDICT: predicted point (22,10) +- 1 at age 20 (" + pr + ")");
+        check(Duck.predictCarrier(new MapLocation(10, 10), 60, new MapLocation(40, 10)) == null
+              && Duck.predictCarrier(new MapLocation(10, 10), 2 * 30 + 2 * C.PREDICT_MARGIN + 2, new MapLocation(40, 10)) == null,
+              "CARRY_PREDICT: no prediction at age 60 or after the predicted arrival");
+        // STUN_AHEAD (audit BOT7): carrier (10,10) heading to (20,10); a builder behind it does not build, one ahead does
+        check(!Duck.aheadOf(new MapLocation(8, 10), new MapLocation(10, 10), new MapLocation(20, 10))
+              && Duck.aheadOf(new MapLocation(13, 11), new MapLocation(10, 10), new MapLocation(20, 10)), "STUN_AHEAD: behind no, ahead yes");
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);
