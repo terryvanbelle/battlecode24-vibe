@@ -71,7 +71,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -162,6 +162,14 @@ public class AuditTest {
             check(Duck.liveHome(0, 1).equals(new MapLocation(3, 20)) && Duck.liveHome(0, 0).equals(new MapLocation(3, 3))
                   && Duck.liveHome(2, 7).equals(new MapLocation(10, 27)), "FLAG_LOST: a lost flag's defender goes to the nearest live home");
         } catch (GameActionException e) { check(false, "FLAG_LOST: unexpected " + e); }
+
+        // PICKUP_AFTER_MOVE (audit BOT5): a loose enemy flag one step away (dist2 <= 8) is found; a carried one or one 3 away is not
+        G.them = Team.B; G.me = new MapLocation(10, 10);
+        Duck.flags = new FlagInfo[]{new FlagInfo(new MapLocation(12, 12), Team.B, false, 7), new FlagInfo(new MapLocation(11, 10), Team.B, true, 8)};
+        check(new MapLocation(12, 12).equals(Micro.looseFlagNear(G.me)), "PICKUP_AFTER_MOVE: a dropped enemy flag at dist2 8 is one step away");
+        Duck.flags = new FlagInfo[]{new FlagInfo(new MapLocation(13, 10), Team.B, false, 7), new FlagInfo(new MapLocation(11, 10), Team.B, true, 8)};
+        check(Micro.looseFlagNear(G.me) == null, "PICKUP_AFTER_MOVE: dist2 9 or a carried flag is not");
+        Duck.flags = new FlagInfo[0];
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

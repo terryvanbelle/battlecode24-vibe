@@ -1,4 +1,4 @@
-package bot;
+package g4pick;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -49,7 +49,7 @@ public strictfp class C {
     public static final int INTERCEPT_R2 = 225;
     public static final boolean FLAG_LOST = true;       // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); g_iter4 (2026-10-04)
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
-    public static final boolean PICKUP_AFTER_MOVE = false;  // audit BOT5: pick up a loose enemy flag after the step, before striking; arm g4pick
+    public static final boolean PICKUP_AFTER_MOVE = true;  // audit BOT5: pick up a loose enemy flag after the step, before striking; arm g4pick
     public static final boolean DEF_TETHER = false;     // audit BOT2: defenders fight within TETHER_R2 of their home; arm g3tether
     public static final int TETHER_R2 = 20;
     public static final boolean CAMP_SPLIT = false;     // DEST_CAMP: split campers over the enemy spawns within 1.3x the nearest distance (arm g3camp2)
