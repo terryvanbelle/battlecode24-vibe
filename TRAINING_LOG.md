@@ -1561,3 +1561,14 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4econ2 band guard: INCONCLUSIVE at 24, PASS at 48 cells (kills 479 vs 580, -17%, -1.4 SE, detectable drop 17%;
   enemyCaptured 1.54 vs 1.44, PASS). The kill cost is consistent (Cyril -14%, band -17%): builders stop attacking at 74 XP
   and ducks detour for crumbs. Band test running.
+- **g4econ2 band test vs g_iter4** (234 seeded pairs, identical 16): net +3 (19-16), capture delta -0.08 +- 0.09; upper
+  net -1, -0.20 +- 0.12 (t -1.6); rest +4; basics PASS (gathered400 +24%, trapsHit +11%, k/d level). No REWRITE_EVAL
+  criterion: not promotable on the band. Its remaining case is a Cyril crack, read by the paired filler (g4econ2 vs
+  g_iter4 against Cyril, now the idle filler).
+- **g4z1 Gymhgy delivery: FAIL** (24 cells): chasers20 1.94 vs 2.37 (-18%, bar +25%, -3.3 SE); kills guard INCONCLUSIVE
+  (+20%). Descriptive (not judged): wins 11 vs 8, Gymhgy captures by r600 1.25 vs 1.46, unseen carrier-rounds 69 vs 84.
+  Trace: chasers20 counts our ducks near THEIR CARRIER; Z1HOLD puts ducks on our DROPPED flag, and when the relay picks it
+  up the carrier walks away from them, so the column measured the wrong thing (the 5(a) rise on 8 cells did not hold).
+  New census column dropGuard (our robot-rounds within dist2 8 of our flag lying dropped away from home): Canals, ours 7
+  all game, Gymhgy's 641. Second attempt (pre-registered, fresh seed 919191): `SEED=919191 DGPOOL=Gymhgy.v10official
+  DGTAG=-gym2 BASE=g_iter4 tools/delivery-gate.sh g4z1 'rel:dropGuard>=2.0 nw:kills>=0.95 mean:overruns<=0'`.
