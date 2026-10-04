@@ -1608,3 +1608,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   5(a) checks and arm studies may choose. tools/diag-batch.sh now takes an external opponent from the benchmark manifest
   and an optional side (`<bot>:<opp>:<map>:<seed>[:<side>]`; side B swaps the teams; the external bot is silenced;
   replay names carry __bot<side> so the census tools read our side); DRY=1 and regression tests.
+- **g4relay2 Gymhgy delivery: FAIL** at 96 cells (INCONCLUSIVE at 24 and 48): relays fire in 96% of games, but captures
+  1.68 vs 1.65 (+2%, bar +20%, -2.0 SE); kills guard PASS. The 5(a)'s +54% on 8 cells was noise. Relay line closed against
+  Gymhgy (two attempts: g4relay, g4relay2). A Gymhgy loss study (workflow: five lenses, synthesis, critic) is running to
+  find levers and chosen-map cells for diagnostics (PROMPTS 178).
