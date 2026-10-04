@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Scrimmage block against external bots under contest rules (PROMPTS 25, 2026-09-18):
 # the map and the side are drawn at random for every game, opponents rotate (never the same
-# one twice in a row, each at most ceil(N/pool) times per block). This is the ONLY way an
-# external bot may be played; gauntlet.sh refuses external opponents unless SCRIM=1 (set here).
+# one twice in a row, each at most ceil(N/pool) times per block). This is the only way LADDER games against an
+# external bot are played (diagnostics may choose maps and sides since PROMPTS 178: tools/diag-batch.sh).
 #   BOT=g_iter5 N=48 tools/scrim.sh             # the band: 8 rated bots nearest g_iter5's rating, either side
 #   BOT=g_iter5 POOLSIZE=0 EXPLORE=48 N=96 tools/scrim.sh   # calibration: 48 never-played bots, two games each
 #   POOL="a.b c.d" N=12 SEED=7 tools/scrim.sh   # explicit pool; SEED for a reproducible draw
@@ -54,7 +54,7 @@ for _ in range(n):
     cands = [o for o in pool if counts[o] < per and o != last] or [o for o in pool if counts[o] < per]
     o = random.choice(cands); counts[o] += 1; last = o
     # 4th field: the engine seed (audit B2, 2026-10-02: without it every build drew its own seed per cell, so identical
-    # code flipped 15-29% of cells and paired tests were mostly engine noise). Maps and sides stay random (rule 4).
+    # code flipped 15-29% of cells and paired tests were mostly engine noise). Maps and sides stay random (ladder games, rule 4).
     print(o, random.choice(maps), random.choice("AB"), rs.randrange(1, 2**31 - 1))
 PY
 if [ "${DRY:-0}" = 1 ]; then cat "$CELLS"; rm -f "$CELLS"; exit 0; fi   # DRY=1: print the cells (with engine seeds) only

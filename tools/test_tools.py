@@ -508,6 +508,21 @@ r = fo.classify(['r3 A#10 digs (1,1)', 'r5 B#11 digs (2,2)', 'r9 A#12 fills (1,1
 check(r['A'][:4] == [4, 1, 1, 2] and r['A'][4] == [6], 'fill-origin: A fills own/enemy/natural: %r' % (r['A'],))
 check(r['B'][:4] == [1, 0, 0, 1], 'fill-origin: B one natural fill: %r' % (r['B'],))
 
+# diag-batch (PROMPTS 178): an external opponent from the manifest on a chosen side; side B swaps the teams; the
+# external bot is silenced; replay names carry __bot<side>; unknown opponents and bad sides are refused
+with tempfile.TemporaryDirectory() as td:
+    man = os.path.join(td, 'manifest.tsv'); open(man, 'w').write('Ext.bot\text\t/x\n')
+    env = dict(os.environ, DRY='1', MANIFEST=man)
+    r = subprocess.run([os.path.join(HERE, 'diag-batch.sh'), 't', 'g_iter4:Ext.bot:Ambush:7:B', 'g_iter4:g_iter3:Ambush:7'], capture_output=True, text=True, env=env)
+    lines = r.stdout.strip().splitlines()
+    check(r.returncode == 0 and len(lines) == 2
+          and lines[0].startswith('tools/run-dev.sh Ext.bot g_iter4 Ambush diag/t/g_iter4-vs-Ext.bot-Ambush-s7__botB.bc24') and 'silence-a=true' in lines[0]
+          and lines[1].startswith('tools/run-dev.sh g_iter4 g_iter3 Ambush diag/t/g_iter4-vs-g_iter3-Ambush-s7__botA.bc24') and 'silence' not in lines[1],
+          'diag-batch: external opponent on a chosen side (swapped, silenced), own build unchanged: %r %s' % (lines, r.stderr))
+    r1 = subprocess.run([os.path.join(HERE, 'diag-batch.sh'), 't', 'g_iter4:No.such:Ambush:7'], capture_output=True, text=True, env=env)
+    r2 = subprocess.run([os.path.join(HERE, 'diag-batch.sh'), 't', 'g_iter4:g_iter3:Ambush:7:C'], capture_output=True, text=True, env=env)
+    check(r1.returncode == 2 and r2.returncode == 2, 'diag-batch: unknown opponent and bad side refused')
+
 # vm-prune: deletes old replays of censused arm/filler runs; keeps stack builds, gate bases, unfinished runs, non-replays
 with tempfile.TemporaryDirectory() as td:
     os.makedirs(os.path.join(td, 'tools'))

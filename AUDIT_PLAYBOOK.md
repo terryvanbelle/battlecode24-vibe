@@ -39,7 +39,7 @@ The audit alone is worth little; the gain comes from the follow-through, in this
 
 **HARD RULES** bind every agent. Copy the project's own, naming every forbidden path. The 2024 set:
 - Never read other teams' source code (a named directory); watching their games is allowed. Never read this year's post-mortems, first- or second-hand.
-- Play external bots only as scrimmages on random maps and sides; never choose a map or side against one.
+- Ladder games against external bots are scrimmages on random maps and sides; diagnostics may choose maps and sides (owner, 2024 prompt 178), and those games stay out of the ladder.
 - Games in volume run only on the compute machine, through its queue; the session machine plays one diagnostic game at a time.
 - Record every owner prompt verbatim. Run the unit tests after every change. Push after every commit.
 - No statistical test of an arm until a diagnostic game shows its mechanism firing and its delivery gate passes.

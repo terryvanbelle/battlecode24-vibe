@@ -105,8 +105,9 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
 
 ## 6. The ladder (simulating online scrimmages)
 
-- External bots are played only as scrimmages: random map from the corpus, random side, fresh seed,
-  rotating opponents; never a chosen map or side; external bots never play each other.
+- Ladder games against external bots are scrimmages: random map from the corpus, random side, fresh seed,
+  rotating opponents; external bots never play each other. Diagnostics may choose maps and sides against an
+  external bot (PROMPTS 178); those games never enter the ladder or a pre-registered victory read.
 - Pool = the band: the bots rated nearest the playing build, above and below. Never-played bots are
   placed by a two-game calibration block.
 - Rating = batch Bradley-Terry over all our games, weak prior, repeated (pair, map, seed) cells counted

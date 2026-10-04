@@ -238,3 +238,7 @@ How did things go last night?
 ## 177. 2026-10-04
 
 If you get to a point where you've run out of lines of attack on CyrilSharma, feel free to open up the list of opponents to see if you can get purchase on another bot
+
+## 178. 2026-10-04
+
+I'm going to relax my restriction against choosing a map or side when playing the benchmarks.  You now can feel free to pick either or both if it helps

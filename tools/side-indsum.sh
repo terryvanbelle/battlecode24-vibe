@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Sum our robots' last indicator counters (chases/intercepts/camps, escort turns, regrabs, combat traps) per replay,
-# on OUR side of each game (replay names end in __bot<SIDE>.bc24): for step-5(a) checks on scrimmage blocks vs
-# external bots, where diag-batch cannot be used (CLAUDE.md rule 4).
+# on OUR side of each game (replay names end in __bot<SIDE>.bc24; old diag-batch names without it: side A): for
+# step-5(a) checks on scrimmage and diag-batch blocks.
 #   tools/side-indsum.sh <replay.bc24> [...]
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 for f in "$@"; do
   b=$(basename "$f" .bc24); side=${b##*__bot}
-  case "$side" in A|B) ;; *) side=A;; esac   # diag-batch names (<bot>-vs-<opp>-<map>-s<seed>): our bot is team A
+  case "$side" in A|B) ;; *) side=A;; esac   # old diag-batch names (<bot>-vs-<opp>-<map>-s<seed>): our bot is team A
   tools/replay-dump.sh "$f" --logs ' rg' --team "$side" 2>/dev/null | python3 -c '
 import sys,re
 last={}

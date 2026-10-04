@@ -7,7 +7,11 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
 2. **Push after every commit**; **record every user prompt verbatim in `PROMPTS.md`**, except the prompts a `/loop` fires (e.g.
    "task check"; owner, PROMPTS 171).
 3. **External bots' source is never read** (`BENCHMARK.md`). Their games may be reviewed.
-4. **External bots are played only as scrimmages** (`tools/scrim.sh`). Never choose a map or side against one.
+4. **External bots: the ladder is random scrimmages; diagnostics may choose** (owner, PROMPTS 178 relaxed PROMPTS 25).
+   Ladder games, Elo and pre-registered victory reads come only from `tools/scrim.sh` (random map and side). Diagnostics,
+   5(a) checks and arm studies may pick maps and sides against an external bot (`tools/diag-batch.sh
+   <bot>:<opp>:<map>:<seed>[:<side>]`, or `SCRIM=1 CELLS=... tools/gauntlet.sh`); those games never enter
+   progress/games.csv.
 5. **No gate before a diagnostic game shows the mechanism firing.**
 6. **`tools/unit-tests.sh` after every change** to the bot or any tool.
 7. Bot changes need no approval. Never stop to wait for ideas.

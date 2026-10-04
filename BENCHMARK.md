@@ -6,9 +6,10 @@
    sparse checkout of source files only to `~/projects/vibe/bc24-benchmarks/` (outside this repo, never
    committed), classified by *counting* files that use 2024-only API names (no content displayed), and
    compiled by `tools/bench-compile.sh`, which writes diagnostics to log files and prints only counts.
-2. **External bots are played only as scrimmages** (`tools/scrim.sh`): random map from the full corpus,
+2. **Ladder games against external bots are scrimmages** (`tools/scrim.sh`): random map from the full corpus,
    random side, fresh engine seed, rotating opponents drawn from the rating band around the playing
-   build. Never a chosen map or side. External bots never play each other.
+   build. External bots never play each other. Since 2026-10-04 (owner, PROMPTS 178) diagnostics and arm studies
+   may choose maps and sides against an external bot (`tools/diag-batch.sh`); those games stay out of the ladder.
 3. Their games may be reviewed at any win rate; tactics they beat us with go into `TACTICS.md`.
 4. Post-mortems of the 2024 season are never read, first- or second-hand.
 

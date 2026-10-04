@@ -1602,3 +1602,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   vs Gymhgy now 147-212 (40.9%) over 359 filler games. Delivery pre-registered: `DGPOOL=Gymhgy.v10official DGTAG=-gym
   BASE=g_iter4 tools/delivery-gate.sh g4relay2 'fire:relayPickups>0>=0.9 rel:captured>=1.2 nw:kills>=0.95
   mean:overruns<=0'` (the relay exists to turn grabs into captures).
+- **Owner PROMPTS 178: maps and sides may now be chosen against external bots.** CLAUDE rule 4, BENCHMARK.md,
+  TRAINING_ALGORITHM §6, AUDIT_PLAYBOOK's rule list, gauntlet.sh and scrim.sh updated: the ladder, Elo and pre-registered
+  victory reads stay on random scrimmages (chosen cells would bias them; such runs are never post-blocked); diagnostics,
+  5(a) checks and arm studies may choose. tools/diag-batch.sh now takes an external opponent from the benchmark manifest
+  and an optional side (`<bot>:<opp>:<map>:<seed>[:<side>]`; side B swaps the teams; the external bot is silenced;
+  replay names carry __bot<side> so the census tools read our side); DRY=1 and regression tests.
