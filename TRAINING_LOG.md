@@ -1592,3 +1592,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   Cyril's lines are exhausted for now (closing note in research/CRACK-CYRIL.md). CLAUDE rule 14, HANDOFF, the target
   memory, tools/next-rung.txt (waffle removed: below us) and the filler (FILLPOOL=Gymhgy.v10official, g_iter4 baseline)
   updated.
+- g4relay 5(a) (RELAY + PICKUP_AFTER_MOVE; 8 Gymhgy cells, 7 Cyril cells): relays fire (124 relay pickups a game vs
+  Gymhgy, 25 vs Cyril) but the flag moves LESS while carried (carrier moves 232 vs 290; Cyril 55 vs 99): handing over
+  whenever an ally stands ahead costs a round per hand-off. Captures 1.50 vs 1.62 (Cyril 0.86 vs 1.29), kills down.
+  Second attempt (pre-registered) **g4relay2**: C.RELAY_THREAT, hand over only below 600 HP or with an enemy in view
+  (the purpose: a fresh carrier before the old one dies). 5(a) on the Gymhgy cells queued.
