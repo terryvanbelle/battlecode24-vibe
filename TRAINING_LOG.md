@@ -1558,3 +1558,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   KingQuacksCastle no longer lost early). Delivery pre-registered on the Gymhgy pool: `DGPOOL=Gymhgy.v10official
   DGTAG=-gym BASE=g_iter4 tools/delivery-gate.sh g4z1 'rel:chasers20>=1.25 nw:kills>=0.95 mean:overruns<=0'`; g4z1 5(a)
   on the Cyril cells too (Z1HOLD was never re-gated on the fixed base, RETEST arm 12).
+- g4econ2 band guard: INCONCLUSIVE at 24, PASS at 48 cells (kills 479 vs 580, -17%, -1.4 SE, detectable drop 17%;
+  enemyCaptured 1.54 vs 1.44, PASS). The kill cost is consistent (Cyril -14%, band -17%): builders stop attacking at 74 XP
+  and ducks detour for crumbs. Band test running.
