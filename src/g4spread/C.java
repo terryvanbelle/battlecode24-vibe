@@ -1,4 +1,4 @@
-package bot;
+package g4spread;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -50,7 +50,7 @@ public strictfp class C {
     public static final int INTERCEPT_R2 = 225;
     public static final boolean FLAG_LOST = true;       // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); g_iter4 (2026-10-04)
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
-    public static final boolean RELOC_SPREAD = false;   // audit BOT16: a relocation spot scan pauses at 4000 bytecodes left and resumes next turn; arm g4spread
+    public static final boolean RELOC_SPREAD = true;   // audit BOT16: a relocation spot scan pauses at 4000 bytecodes left and resumes next turn; arm g4spread
     public static final boolean FILL_STEP = false;      // audit BOT8: step onto the tile just filled in the same turn; arm g4fill
     public static final boolean CARRY_PREDICT = false;  // audit BOT10: chase a stale carrier sighting at its predicted point (age < 60); arm g4pred
     public static final int PREDICT_MARGIN = 5;         // CARRY_PREDICT: rounds of slack past the predicted arrival

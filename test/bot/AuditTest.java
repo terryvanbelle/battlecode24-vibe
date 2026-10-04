@@ -8,6 +8,26 @@ public class AuditTest {
     static void check(boolean ok, String what) { if (!ok) { fails++; System.out.println("FAIL " + what); } }
     static RobotInfo enemy(int id, int x, int y) { return new RobotInfo(id, Team.B, 1000, new MapLocation(x, y), false, 0, 0, 0); }
 
+    /** RELOC_SPREAD (audit BOT16): the spots computed with the scan paused at every column (one column per call) equal
+     *  the spots computed in one go, and the paused run really did take more calls. */
+    static boolean spreadSame() {
+        int keepRes = Duck.scanReserve, keepBc = G.testBc;
+        MapLocation[][] spot = new MapLocation[2][3];
+        int[] calls = new int[2];
+        G.testBc = 25000;
+        for (int run = 0; run < 2; run++) {
+            Duck.relocK = 0; Duck.scanK = -1; Duck.scanReserve = run == 0 ? 0 : Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                MapLocation m = null;
+                for (int t = 0; t < 200 && m == null; t++) { m = Duck.relocTargetV2(i); calls[run]++; }
+                spot[run][i] = m;
+            }
+        }
+        Duck.scanReserve = keepRes; G.testBc = keepBc; Duck.relocK = 0; Duck.scanK = -1;
+        for (int i = 0; i < 3; i++) if (spot[0][i] == null || !spot[0][i].equals(spot[1][i])) return false;
+        return calls[1] > calls[0] + 6;
+    }
+
     /** RELOC_V2 spots for the current G.spawnCenters / Sym.cands: none nearer the nearest candidate enemy centre than its
      *  spawn centre, (optionally) at least one strictly farther, pairwise 8+ tiles apart, each within RELOC_R2 of its spawn. */
     static boolean relocOk(int[] syms, boolean someFarther) {
@@ -71,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -139,6 +159,10 @@ public class AuditTest {
         G.W = 30; G.H = 30; Sym.cands = Sym.FY; Duck.relocK = 0;
         G.spawnCenters[0] = new MapLocation(3, 23); G.spawnCenters[1] = new MapLocation(27, 26); G.spawnCenters[2] = new MapLocation(11, 27);
         check(relocOk(new int[]{Sym.FY}, false), "RELOC_V2: Whirlpool layout: no flag closer than at its spawn");
+        check(spreadSame(), "RELOC_SPREAD: Whirlpool spots are the same when every scan pauses after each column");
+        G.W = 44; G.H = 31; Sym.cands = Sym.FX | Sym.ROT | Sym.FY;
+        G.spawnCenters[0] = new MapLocation(3, 3); G.spawnCenters[1] = new MapLocation(3, 23); G.spawnCenters[2] = new MapLocation(9, 27);
+        check(spreadSame(), "RELOC_SPREAD: DefaultMedium spots, all three symmetries live, are the same when every scan pauses");
 
         // CAMP_SPLIT: near-equidistant spawns are both camp candidates, split by id; a clearly nearest one is the only one
         MapLocation[] sp = {new MapLocation(36, 8), new MapLocation(33, 19), new MapLocation(41, 50)};
