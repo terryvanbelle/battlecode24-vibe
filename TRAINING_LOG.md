@@ -1533,3 +1533,14 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   reach build 6 from ring traps, so near our flags every non-builder sees a "builder" and stops placing combat stuns just
   when Cyril raids. The pre-registered second attempt is spent: the builder line is parked; a version that keeps every
   duck's combat stuns and only adds the discount is a different design for later.
+- Owner (PROMPTS 177): if the lines of attack on Cyril run out, open the opponent list. Records vs the bots above us
+  (g_iter4, band and delivery games): Gymhgy.v10official (2099, rank 9) 11-21 over 32 games (band seeds alone 11-13);
+  every other bot above us 4-21%. The idle filler now builds a g_iter4-vs-Gymhgy baseline (FILLPOOL=Gymhgy.v10official)
+  while the last Cyril economy arm runs. Gymhgy (survey): moves flags in setup, digs in setup, relays carriers, heals more
+  than it attacks; its stun output is level with ours (166 triggered a game to our ~170), unlike Cyril's.
+- Arm **g4econ2** (g4crumb + builders as an addition: every duck keeps g_iter4's combat stuns, builders add discounted
+  front stuns, BUILDER_SEEN_LEVEL 99). 5(a) (8 Cyril cells): fast stun victims 4,056 vs 2,349 on the same cells (+73%;
+  Rivers 1,574 vs 232, Joker 993 vs 369, Gated 399 vs 278); builder setup digs still cut setup traps on Ambush (16 vs 24);
+  wins 1/7 (the cells flip for nearly every arm; g_iter4 won Capacitance, which seven of eight arms lost). Delivery
+  pre-registered: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4econ2
+  'rel:stunVictimsFast>=1.3 nw:kills>=0.95 mean:overruns<=0'`.
