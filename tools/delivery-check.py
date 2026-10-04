@@ -30,8 +30,8 @@ for c in checks.split():
     if stat in ('rel', 'nw'):   # paired: arm mean on cells shared with the base vs ratio x base mean on those cells
         # Three-way verdict (audit 2026-10-03 MEAS1: point bars decided 16 of 28 FAILs inside 1 SE). Per pair e = arm - ratio*base;
         # margin = mean(e) on the good side of the bar. rel: PASS when margin >= 1 SE, FAIL when margin <= -2 SE, else
-        # INCONCLUSIVE. nw: (guards) FAIL when margin <= -2 SE, INCONCLUSIVE when it cannot see a drop below NW_MAX_DROP
-        # (2 SE as a share of the base), else PASS. Fewer than MIN_PAIRS shared cells is INCONCLUSIVE.
+        # INCONCLUSIVE. nw: (guards) FAIL when margin <= -2 SE, INCONCLUSIVE when the worst plausible drop (lower 2-SE bound of
+        # arm - base, as a share of the base) exceeds NW_MAX_DROP, else PASS. Fewer than MIN_PAIRS shared cells is INCONCLUSIVE.
         pairs = []
         for k, g in rows.items():
             b = base.get(k)
@@ -47,9 +47,14 @@ for c in checks.split():
             state = 'PASS' if margin >= se else 'FAIL' if margin < -2 * se else 'INCONCLUSIVE'
             why = f'margin {margin / se:+.1f} SE' if se > 0 else 'no variance'
         else:
-            drop = 2 * se / abs(mb) if mb else float('inf')
+            # worst plausible drop: the lower 2-SE bound of (arm - base) as a share of the base (2026-10-04: the old rule used
+            # 2 SE alone, so a guard whose arm was 39% BETTER (kills 335 vs 241, 26 cells) read INCONCLUSIVE on power)
+            d = [a - b for a, b in pairs]
+            sed = st.stdev(d) / math.sqrt(len(d)) if len(d) > 1 else float('inf')
+            sgn = 1 if op in ('>=', '>') else -1           # the direction in which the arm would be worse
+            drop = max(0.0, (2 * sed - sgn * (ma - mb)) / abs(mb)) if mb else float('inf')
             state = 'FAIL' if margin < -2 * se else 'INCONCLUSIVE' if drop > NW_MAX_DROP else 'PASS'
-            why = f'detectable drop {drop:.0%}'
+            why = f'worst plausible drop {drop:.0%}'
         lines.append(f'{c}: arm {ma:.2f} vs base {mb:.2f} on {len(pairs)} shared cells (target {op} {target:.2f}; diff {ma - mb:+.2f}, '
                      f'margin {margin:+.2f} +- {se:.2f}; {why}) {state}')
         worst = max(worst, RANK[state]); continue
