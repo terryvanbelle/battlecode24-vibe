@@ -1464,3 +1464,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - New census columns stunTrig / stunVictims / enemyStunTrig / enemyStunVictims (robots within dist2 13 of each triggered
   post-setup stun). One g_iter4 win vs Cyril (TwistedTreeline): its 434 stuns caught 2,594 of ours (6.0 each); our 255
   caught 1,103 of its (4.3 each). Census over all 1,291 g_iter4-vs-Cyril replays queued.
+- g4alert 5(a) (7 shared-seed cells vs Cyril, g_iter4 on the same cells): an fires 122-3,019 turns a game (g_iter4 0);
+  wins 2 vs 3, Cyril captures 11 vs 14, unseen carrier-rounds 348 vs 943 (Capacitance alone 377 for g_iter4). Delivery,
+  pre-registered: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4alert
+  'rel:enemyUnseenRounds<=0.85 nw:kills>=0.95 mean:overruns<=0'` (responders at shadowed alerts should see carriers leave).
