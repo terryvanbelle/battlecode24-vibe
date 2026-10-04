@@ -1486,3 +1486,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   beside none of ours now (indicator wy = turns the penalty changed the step). 5(a) on the same 8 cells queued.
 - Tool bug fixed: capability-census.sh died after the header under pipefail when a run had no losses/ folder (the
   1,298-replay stun census came back empty); regression test added. Census re-queued.
+- g4wary 5(a) (same 8 Cyril cells): **0 of 7 won** (g_iter4 3 of 7 there), Cyril captured 2-3 flags in every game, we
+  captured none; wy dodges 665-4,610 a game. Trace: the penalty applied to every fight step, including closing on an
+  enemy carrier (20000 - 10 x dist2: 150 = 15 dist2 units) and every advance near their line, so chasers fell off
+  carriers and attackers stalled. Second attempt (pre-registered, one retry after a traced failure) **g4wary2**: the
+  penalty only among engage tiles (an enemy in reach), 60 (< one threat unit, 100), i.e. pick the safer reaching tile.
+  g4front fast stun victims on the 5(a) cells: mean 536 vs g_iter4 336 (x1.6); Cyril's on us unchanged (~2,000).
