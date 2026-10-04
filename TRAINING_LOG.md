@@ -1420,3 +1420,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4ahead parked at 5(a) (carrier-stun builds halved, catches halved: 27 vs 51 on the same 6 cells). g4pred's
   prediction fires (pr 31-1861 a game); Cyril delivery queued (rel:enemyUnseenRounds<=0.85, rel:chasers20>=1.1,
   nw:kills). Indicator: pr (predicted chases) replaced the always-zero hl.
+- g4pred INCONCLUSIVE at the 96-cell maximum (unseen carrier-rounds unchanged, chasers +8%): parked. g_iter4 vs Cyril
+  217-367 (37%; g_iter3 ~30%). Next: the decision-affecting tool findings (MEAS11 Elo convergence first).

@@ -187,3 +187,6 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4pred 5(a) re-run with the pr counter (identical play): predicted chases fire, 31-1861 a game. Delivery:
   `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4pred 'rel:enemyUnseenRounds<=0.85
   rel:chasers20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
+- g4pred Cyril delivery: INCONCLUSIVE at 24, 48 and 96 cells (96: unseen carrier-rounds 116.1 vs 116.5, chasers20 +8%, bar
+  +10%; kills guard PASS). The prediction fires but does not put eyes back on carriers. Parked (not closed).
+- Baseline after the second audit: g_iter4 vs Cyril 217-367 (37%), up from g_iter3's ~30%.
