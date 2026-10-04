@@ -1456,3 +1456,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Cyril read on 1,259 g_iter4 filler games (36%): losses MORE_FLAG_CAPTURES 406, CAPTURE 292, LEVEL_SUM 105; wins
   LEVEL_SUM 188, MORE_FLAG_CAPTURES 139, CAPTURE 128. We capture nothing in 467 of 803 losses. Flag distance does not
   separate wins from losses at game level (mean 31.3 vs 31.2 tiles); enemy unseen carrier-rounds do (95 vs 141).
+- g4init / g4spread 5(a) (6 maps incl. TwistedTreeline and English, vs g_iter4 mirrors, seed 5): **g4init changes
+  nothing** (round 1 still at 22.9k on Bunkers and TwistedTreeline; symmetry decided on the same rounds). The round-1
+  near-limit turns are Sym.update's terrain fill, which by design runs until 2,500 bytecodes are left (BC_STOP), not
+  G.init; no overrun risk. INIT_FAST stays off (no effect). g4spread lowers English's peak 23.3k -> 22.8k and changes
+  nothing else; BOT16 is fixed behind C.RELOC_SPREAD, kept for a later combined build, not gated alone.
+- New census columns stunTrig / stunVictims / enemyStunTrig / enemyStunVictims (robots within dist2 13 of each triggered
+  post-setup stun). One g_iter4 win vs Cyril (TwistedTreeline): its 434 stuns caught 2,594 of ours (6.0 each); our 255
+  caught 1,103 of its (4.3 each). Census over all 1,291 g_iter4-vs-Cyril replays queued.
