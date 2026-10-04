@@ -91,6 +91,16 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   passed delivery and the band test and its confirmation: upper-tier capture difference +0.24 per game (t 3.8). The
   defender tether failed with power and is closed. Next: relocation abandoning ~20% of flags, pickup timing, economy.
 
+- 15:00 UTC (Oct 4): **Cyril's edge found: stun economy.** The rest of the audit fixes did not move Cyril (pick, econ,
+  ahead, pred, fill, alert, bundle: parked). Census of 1,520 g_iter4-vs-Cyril games (we win 36%): it builds 475 traps a
+  game to our 247 and its stuns freeze 1,826 of ours within 10 rounds to our 363. Two causes: cheaper stuns (~54 crumbs
+  to our ~77; build level L cuts trap cost up to 50% and it keeps three build-6 ducks) and 3x our share of the centre
+  crumbs in r201-400. Placement alone failed delivery (crumb-bound); avoidance and dedicated builders were parked;
+  **g4econ2 (centre crumbs + builders added on top of everyone's stuns) passed its Cyril delivery** (fast stun victims
+  +54%, kills -14% inside the guard); band test and the paired Cyril filler are running. Owner prompt 177 opens the
+  opponent list if Cyril runs dry: scouting Gymhgy.v10official (rank 9; g_iter4 11-21), whose relay offense and leaky
+  flag defense suggest different levers (escort-first targeting, holding dropped flags).
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
