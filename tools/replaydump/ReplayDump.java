@@ -20,6 +20,7 @@ import java.util.zip.GZIPInputStream;
  *     --logs REGEX        indicator strings matching REGEX [--team A|B]
  *     --bytecode          per-team bytecode maxima and turns at the limit
  *     --near90            as --bytecode, plus every turn at 90%+ of the limit (round, robot, count)
+ *     --trapgeo           per post-setup trap: TG,team,type,buildRound,nearestEnemyD2,enemies13,enemies8,ownWithin2,trigRound,latency,victims13
  *     --navstats          movement statistics per team
  *     --flags             every flag event with round, flag team, actor and location
  *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome,
@@ -168,6 +169,7 @@ public class ReplayDump {
                 case "--navstats": navstats = true; summary = false; break;
                 case "--flags": flagsMode = true; summary = false; break;
                 case "--survey": survey = true; summary = false; break;
+                case "--trapgeo": trapGeo = true; summary = false; break;
                 case "--levels": levelsMode = true; summary = false; break;
                 case "--capabilities": capMode = true; summary = false; break;
                 case "--defense": defMode = true; summary = false; break;
@@ -556,6 +558,14 @@ public class ReplayDump {
             trapTeam.put(tid, tt); trapType.put(tid, ty); trapLoc.put(tid, new int[]{tl.xs(j), tl.ys(j)});
             if (tt >= 1 && tt <= 2 && ty >= 0 && ty < 3) cTraps[tt][ty]++;
             if (inWindow(rn)) out.printf("r%d TRAP %s builds %s at (%d,%d)%n", rn, tname(tt), BUILD[ty], tl.xs(j), tl.ys(j));
+            if (trapGeo && rn > 200 && tt >= 1 && tt <= 2) {   // nearest enemy and enemies around the trap at the end of the build round
+                int nd = Integer.MAX_VALUE, e13 = 0, e8 = 0, own = 0;
+                for (int[] q : nowLoc.values()) {
+                    int dd = d2(q[0], q[1], tl.xs(j), tl.ys(j));
+                    if (q[2] == 3 - tt) { nd = Math.min(nd, dd); if (dd <= 13) e13++; if (dd <= 8) e8++; } else if (dd <= 2) own++;
+                }
+                trapBuilt.put(tid, new int[]{rn, nd == Integer.MAX_VALUE ? -1 : nd, e13, e8, own});
+            }
             if (capMode && rn > 200 && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[ty]) && carrierNear(3 - tt, tl.xs(j), tl.ys(j), 8)) kCarrierStunBuilds[tt]++;
         }
         for (int j = 0; j < r.trapTriggeredIdsLength(); j++) {
@@ -569,6 +579,11 @@ public class ReplayDump {
                     boolean esc = carrierNear(tt, l[0], l[1], 36);   // an escort stun: tt's own carrier within dist2 36
                     for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) { kStunVictims[tt]++; if (esc) kStunVictimsEsc[tt]++; }
                 } }
+            if (trapGeo && trapBuilt.containsKey(tid)) {
+                int[] b = trapBuilt.remove(tid), l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0), v = 0;
+                if (l != null) for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) v++;
+                out.printf("TG,%s,%s,%d,%d,%d,%d,%d,%d,%d,%d%n", tname(tt), BUILD[trapType.getOrDefault(tid, 0)], b[0], b[1], b[2], b[3], b[4], rn, rn - b[0], v);
+            }
             trapLoc.remove(tid);
         }
         // deaths
@@ -1083,7 +1098,11 @@ public class ReplayDump {
      *  round (the trap sets their cooldowns to 40); enemyStunTrig / enemyStunVictims: the same for theirs on us (2026-10-04,
      *  Cyril study: each of its stuns froze ~5.8 of ours). */
     static int[] kStunTrig = new int[3], kStunVictims = new int[3], kStunVictimsEsc = new int[3];
-    static Map<Integer, int[]> nowLoc = new HashMap<>();   // robots on the map this round: id -> {x, y, team}
+    static Map<Integer, int[]> nowLoc = new HashMap<>();
+    /** --trapgeo: one line per post-setup trap when it triggers (untriggered ones at the end, trigRound -1):
+     *  TG,team,type,buildRound,nearestEnemyD2,enemies13,enemies8,ownWithin2,trigRound,latency,victims13 */
+    static boolean trapGeo = false;
+    static Map<Integer, int[]> trapBuilt = new HashMap<>();   // robots on the map this round: id -> {x, y, team}
     /** defNearAtGrab20: mean of our robots within dist2 20 of our flag at each enemy first grab (from home).
      *  capturedHomeRounds: robot-rounds our robots spend within dist2 8 of the home of one of our captured flags. */
     static int[] kDefAtGrabSum = new int[3], kDefAtGrabN = new int[3], kCapturedHomeRounds = new int[3];
@@ -1257,6 +1276,8 @@ public class ReplayDump {
                         + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o]);
             }
         }
+        if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
+            out.printf("TG,%s,%s,%d,%d,%d,%d,%d,-1,-1,0%n", tname(trapTeam.getOrDefault(e.getKey(), 0)), BUILD[trapType.getOrDefault(e.getKey(), 0)], b[0], b[1], b[2], b[3], b[4]); }
         if (trackMode) printTrack();
         if (commMode) out.println("# commStored " + commStored + "/" + kRounds);
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot

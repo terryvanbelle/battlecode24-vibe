@@ -13,6 +13,7 @@ public class BotTest {
     static boolean badWrite, failReads;
     static GlobalUpgrade[] theirUpg = new GlobalUpgrade[0];
     static java.util.Set<MapLocation> walls = new java.util.HashSet<>();
+    static boolean buildOk = false;   // fakeRc: action ready, 1000 crumbs and canBuild by the engine's placement rules
     static MapLocation[] zoneA = new MapLocation[0], zoneB = new MapLocation[0];
     static int zoneOf(MapLocation l) {
         for (MapLocation c : zoneA) if (Math.max(Math.abs(c.x - l.x), Math.abs(c.y - l.y)) <= 1) return 1;
@@ -39,6 +40,14 @@ public class BotTest {
                         return new MapInfo(l, !walls.contains(l), walls.contains(l), false, zoneOf(l), false, 0, TrapType.NONE, Team.NEUTRAL);
                     }
                     case "getGlobalUpgrades": return theirUpg;
+                    case "isActionReady": return buildOk;
+                    case "getCrumbs": return buildOk ? 1000 : 0;
+                    case "canBuild": {      // buildOk only: in reach, not a wall, not on/adjacent to an enemy (Duck.enemies)
+                        MapLocation l = (MapLocation) args[1];
+                        if (!buildOk || walls.contains(l) || G.me.distanceSquaredTo(l) > 2) return false;
+                        for (RobotInfo e : Duck.enemies) if (e.location.distanceSquaredTo(l) <= 2) return false;
+                        return true;
+                    }
                     case "getRoundNum": return G.round;
                     case "getLocation": return G.me;
                     case "isSpawned": return G.me != null;

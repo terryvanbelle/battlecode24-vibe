@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -142,6 +142,22 @@ public class AuditTest {
         check(agree == trials && yes > trials / 10 && yes < trials * 9 / 10,
               "REACH_FAST: fast and reference searches agree (" + agree + "/" + trials + ", " + yes + " engageable)");
         G.testBc = -1;
+
+        // STUN_FRONT: a line of 4 enemies 3 tiles east: a tile 2 from the nearest with all 4 in the stun radius; never adjacent
+        // to an enemy; none with 2 enemies; none when no enemy is one step from the trigger radius
+        G.W = 40; G.H = 30; G.rc = BotTest.fakeRc(); G.me = new MapLocation(10, 10); BotTest.walls.clear(); BotTest.buildOk = true;
+        try {
+            Duck.enemies = new RobotInfo[]{enemy(1, 13, 10), enemy(2, 13, 11), enemy(3, 14, 10), enemy(4, 13, 9)};
+            MapLocation ft = Duck.frontStunTile();
+            int v = 0, adj = 0;
+            if (ft != null) for (RobotInfo e : Duck.enemies) { int x = ft.distanceSquaredTo(e.location); if (x <= 13) v++; if (x <= 2) adj++; }
+            check(ft != null && ft.x == 11 && v == 4 && adj == 0, "STUN_FRONT: the east-side tile with all 4 enemies in the radius (" + ft + ")");
+            Duck.enemies = new RobotInfo[]{enemy(1, 13, 10), enemy(2, 13, 11)};
+            check(Duck.frontStunTile() == null, "STUN_FRONT: two enemies are not worth a stun");
+            Duck.enemies = new RobotInfo[]{enemy(1, 15, 10), enemy(2, 15, 11), enemy(3, 16, 10)};
+            check(Duck.frontStunTile() == null, "STUN_FRONT: enemies 5 tiles away are not one step from the trigger");
+        } catch (GameActionException e) { check(false, "STUN_FRONT: unexpected " + e); }
+        BotTest.buildOk = false; Duck.enemies = new RobotInfo[0];
 
         // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
         java.util.Random ir = new java.util.Random(77);

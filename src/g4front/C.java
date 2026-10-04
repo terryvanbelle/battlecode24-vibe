@@ -1,4 +1,4 @@
-package bot;
+package g4front;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -50,7 +50,7 @@ public strictfp class C {
     public static final int INTERCEPT_R2 = 225;
     public static final boolean FLAG_LOST = true;       // audit 2026-10-03 BOT1: recognise our captured flags (no alerts, defenders re-home); g_iter4 (2026-10-04)
     public static final int LOST_AFTER = 60;            // FLAG_LOST: rounds a home in view without its flag before the flag counts as gone
-    public static final boolean STUN_FRONT = false;     // combat stuns one enemy step from triggering, most enemies in the stun radius (Cyril's geometry); arm g4front
+    public static final boolean STUN_FRONT = true;     // combat stuns one enemy step from triggering, most enemies in the stun radius (Cyril's geometry); arm g4front
     public static final int FRONT_MIN_VICTIMS = 3, FRONT_RESERVE = 100;   // STUN_FRONT: enemies within dist2 13 of the tile; crumbs kept
     public static final boolean INIT_FAST = false;      // round 1: spawn centres from a bitset (~2k bytecodes, not ~18k); arm g4init
     public static final boolean ALERT_NEAREST = false;  // audit BOT9: field ducks answer the nearest live fresh alert; respawns split over alerts; arm g4alert
