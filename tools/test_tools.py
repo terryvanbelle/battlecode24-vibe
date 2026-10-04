@@ -257,7 +257,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False
@@ -522,6 +522,16 @@ with tempfile.TemporaryDirectory() as td:
     r1 = subprocess.run([os.path.join(HERE, 'diag-batch.sh'), 't', 'g_iter4:No.such:Ambush:7'], capture_output=True, text=True, env=env)
     r2 = subprocess.run([os.path.join(HERE, 'diag-batch.sh'), 't', 'g_iter4:g_iter3:Ambush:7:C'], capture_output=True, text=True, env=env)
     check(r1.returncode == 2 and r2.returncode == 2, 'diag-batch: unknown opponent and bad side refused')
+
+# scrim.sh MAPFILE (PROMPTS 178): cells are drawn only from the given map list; the same SEED gives the same cells
+with tempfile.TemporaryDirectory() as td:
+    mf = os.path.join(td, 'maps.txt'); open(mf, 'w').write('GaltonBoard\nMIT\n')
+    env = dict(os.environ, DRY='1', POOL='Gymhgy.v10official', N='8', SEED='5', MAPFILE=mf)
+    a = subprocess.run([os.path.join(HERE, 'scrim.sh')], capture_output=True, text=True, env=env).stdout.split()
+    b = subprocess.run([os.path.join(HERE, 'scrim.sh')], capture_output=True, text=True, env=env).stdout.split()
+    lines = [l for l in subprocess.run([os.path.join(HERE, 'scrim.sh')], capture_output=True, text=True, env=env).stdout.splitlines() if l.strip()]
+    check(len(lines) == 8 and all(l.split()[1] in ('GaltonBoard', 'MIT') for l in lines) and a == b,
+          'scrim.sh MAPFILE: 8 cells, all on the listed maps, reproducible: %r' % lines[:3])
 
 # vm-prune: deletes old replays of censused arm/filler runs; keeps stack builds, gate bases, unfinished runs, non-replays
 with tempfile.TemporaryDirectory() as td:

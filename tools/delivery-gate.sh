@@ -11,7 +11,8 @@
 # the gate re-runs itself on twice the cells (24 -> 48 -> 96, NMAX) under its own base cache; a line is never closed on
 # INCONCLUSIVE. Writes gauntlet/delivery-<arm>.PASS, .INCONCLUSIVE or .FAIL; tools/band-test.sh refuses without PASS.
 # DGPOOL="ColtG5.Goob_final" DGTAG=-colt: a one-opponent block (the crack, research/CRACK.md); random maps and sides as
-# always; the base cache and run tags carry DGTAG so band and crack bases never mix.
+# always; the base cache and run tags carry DGTAG so band and crack bases never mix. DGMAPS=<map file> (PROMPTS 178): draw
+# the cells from a map class instead of the corpus (give it its own DGTAG: the base cache is keyed on the tag).
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"
 ARM="${1:?arm}"; CHECKS="${2:?checks}"; N="${N:-24}"; SEED="${SEED:-909090}"
@@ -20,7 +21,7 @@ ARM="${1:?arm}"; CHECKS="${2:?checks}"; N="${N:-24}"; SEED="${SEED:-909090}"
 OTAG=""; [ -n "${DGPOOL:-}" ] && OTAG="${DGTAG:-}"
 DGPOOL="${DGPOOL:-$(cat tools/band-20261001.txt)}"; DGTAG="${DGTAG:-}"
 rm -f "gauntlet/delivery-$ARM$OTAG.PASS" "gauntlet/delivery-$ARM$OTAG.FAIL"
-BOT="$ARM" N="$N" SEED="$SEED" RUNTAG="dga$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$ARM" POOL="$DGPOOL" tools/scrim.sh | tail -1
+BOT="$ARM" N="$N" SEED="$SEED" RUNTAG="dga$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$ARM" POOL="$DGPOOL" MAPFILE="${DGMAPS:-tools/bc24-maps.txt}" tools/scrim.sh | tail -1
 RUN="$(ls -d gauntlet/*-scrim-"$ARM"-dga"$DGTAG" | tail -1)"
 P=7 tools/capability-census.sh "gauntlet/dg-census-$ARM$OTAG.csv" "$RUN" >/dev/null
 MODE=--survey P=7 tools/capability-census.sh "gauntlet/dg-survey-$ARM$OTAG.csv" "$RUN" >/dev/null
@@ -31,7 +32,7 @@ BARGS=""
 if [ -n "${BASE:-}" ]; then
   BC="gauntlet/dg-census-$BASE-$SEED$DGTAG.csv"; BS="gauntlet/dg-survey-$BASE-$SEED$DGTAG.csv"
   if [ ! -s "$BC" ] || [ ! -s "$BS" ]; then
-    BOT="$BASE" N="$N" SEED="$SEED" RUNTAG="dg$SEED$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$BASE" POOL="$DGPOOL" tools/scrim.sh | tail -1
+    BOT="$BASE" N="$N" SEED="$SEED" RUNTAG="dg$SEED$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$BASE" POOL="$DGPOOL" MAPFILE="${DGMAPS:-tools/bc24-maps.txt}" tools/scrim.sh | tail -1
     BRUN="$(ls -d gauntlet/*-scrim-"$BASE"-dg"$SEED$DGTAG" | tail -1)"
     P=7 tools/capability-census.sh "$BC" "$BRUN" >/dev/null; MODE=--survey P=7 tools/capability-census.sh "$BS" "$BRUN" >/dev/null
   fi

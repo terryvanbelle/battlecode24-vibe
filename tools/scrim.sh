@@ -44,7 +44,10 @@ if [ -z "${POOL:-}" ]; then
 fi
 SEED="${SEED:-$(date +%s%N | cut -c1-13)}"
 CELLS="$(mktemp)"
-python3 - "$N" "$SEED" "$POOL" "$(tr '\n' ' ' < "$REPO/tools/bc24-maps.txt")" > "$CELLS" <<'PY'
+# MAPFILE=<file>: draw maps from this list instead of the corpus. Chosen maps against external bots are for diagnostics and
+# delivery blocks only (owner PROMPTS 178); such runs are never recorded in the ladder.
+MAPFILE="${MAPFILE:-$REPO/tools/bc24-maps.txt}"
+python3 - "$N" "$SEED" "$POOL" "$(tr '\n' ' ' < "$MAPFILE")" > "$CELLS" <<'PY'
 import random, sys, math
 n = int(sys.argv[1]); seed = int(sys.argv[2]); pool = sys.argv[3].split(); maps = sys.argv[4].split()
 random.seed(seed)

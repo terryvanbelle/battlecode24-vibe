@@ -71,6 +71,7 @@ import java.util.zip.GZIPInputStream;
  *   gatheredAll        map crumbs our robots collected over the whole game
  *   dropGuard          robot-rounds our robots spend within dist2 8 of one of our flags lying dropped away from home
  *   digsLate           our dig actions after r1500; levelGain1500: our level sum at the end minus at r1500 (blank if shorter)
+ *   gathered201to400   map crumbs our robots collected in r201-400 (gathered400 - gathered200, as one column for delivery bars)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -1295,7 +1296,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1323,7 +1324,8 @@ public class ReplayDump {
                         + "," + kStunTrig[t] + "," + kStunVictims[t] + "," + kStunTrig[o] + "," + kStunVictims[o]
                         + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o] + "," + kStunVictimsFast[t] + "," + kStunVictimsFast[o]
                         + "," + kDeathsHome[t] + "," + kDeathsHome[o] + "," + kGathered[t] + "," + kDropGuard[t]
-                        + "," + kDigsLate[t] + "," + (kLevel1500[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1500[t]) : ""));
+                        + "," + kDigsLate[t] + "," + (kLevel1500[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1500[t]) : "")
+                        + "," + (kGathered400[t] - kGathered200[t]));
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
