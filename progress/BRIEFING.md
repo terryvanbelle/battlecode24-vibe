@@ -101,6 +101,11 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   opponent list if Cyril runs dry: scouting Gymhgy.v10official (rank 9; g_iter4 11-21), whose relay offense and leaky
   flag defense suggest different levers (escort-first targeting, holding dropped flags).
 
+- 17:45 UTC (Oct 4): **target moved to Gymhgy.v10official** (owner prompt 177). g4econ2's band test met no criterion and
+  its paired Cyril filler came out net +1 over 120 pairs (35% vs g_iter4's 36%): not a crack. With Cyril's lines exhausted,
+  the target is Gymhgy (2099, rank 9; g_iter4 43% over 181 games). Its first levers: holding our dropped flag (Z1HOLD) failed
+  delivery twice; escort-first targeting and faster re-grabs fire but do not add captures. Next: our own relay (g4relay).
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
