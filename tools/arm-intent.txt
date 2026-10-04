@@ -95,3 +95,5 @@ g4econ2 C.CRUMB_STEP=true
 g4econ2 C.POST_SETUP_CRUMBS=true
 g4z2 C.Z2ESCORT=true
 g4z1 C.Z1HOLD=true
+g4relay C.RELAY=true
+g4relay C.PICKUP_AFTER_MOVE=true
