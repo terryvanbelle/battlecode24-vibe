@@ -62,6 +62,7 @@ import java.util.zip.GZIPInputStream;
  *   capturedHomeRounds robot-rounds our robots spend within dist2 8 of a captured own flag's home
  *   stunTrig           our stun traps triggered after setup; stunVictims: enemy robots within dist2 13 of them (end of round)
  *   enemyStunTrig      the same for the opponent's stuns; enemyStunVictims: our robots they caught
+ *   stunVictimsEsc     stunVictims of our stuns triggered within dist2 36 of our own carrier (escort stuns); enemyStunVictimsEsc theirs
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -565,7 +566,8 @@ public class ReplayDump {
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)]) && carrierNear(3 - tt, l[0], l[1], 13)) kCarrierStunned[tt]++;
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
                     kStunTrig[tt]++;
-                    for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) kStunVictims[tt]++;
+                    boolean esc = carrierNear(tt, l[0], l[1], 36);   // an escort stun: tt's own carrier within dist2 36
+                    for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) { kStunVictims[tt]++; if (esc) kStunVictimsEsc[tt]++; }
                 } }
             trapLoc.remove(tid);
         }
@@ -1080,7 +1082,7 @@ public class ReplayDump {
     /** stunTrig / stunVictims: our stun traps triggered post-setup, and enemy robots within dist2 13 of them at the end of that
      *  round (the trap sets their cooldowns to 40); enemyStunTrig / enemyStunVictims: the same for theirs on us (2026-10-04,
      *  Cyril study: each of its stuns froze ~5.8 of ours). */
-    static int[] kStunTrig = new int[3], kStunVictims = new int[3];
+    static int[] kStunTrig = new int[3], kStunVictims = new int[3], kStunVictimsEsc = new int[3];
     static Map<Integer, int[]> nowLoc = new HashMap<>();   // robots on the map this round: id -> {x, y, team}
     /** defNearAtGrab20: mean of our robots within dist2 20 of our flag at each enemy first grab (from home).
      *  capturedHomeRounds: robot-rounds our robots spend within dist2 8 of the home of one of our captured flags. */
@@ -1226,7 +1228,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1251,7 +1253,8 @@ public class ReplayDump {
                         + "," + (kFlagDistMin[t] >= 0 ? String.format("%.1f", kFlagDistMin[t]) : "") + "," + (kFlagDistMean[t] >= 0 ? String.format("%.1f", kFlagDistMean[t]) : "")
                         + "," + kCarrierStunBuilds[t] + "," + kCarrierStunned[t] + "," + kCaptured600[t] + "," + kCaptured600[o]
                         + "," + (kDefAtGrabN[t] > 0 ? String.format("%.2f", (double) kDefAtGrabSum[t] / kDefAtGrabN[t]) : "") + "," + kCapturedHomeRounds[t]
-                        + "," + kStunTrig[t] + "," + kStunVictims[t] + "," + kStunTrig[o] + "," + kStunVictims[o]);
+                        + "," + kStunTrig[t] + "," + kStunVictims[t] + "," + kStunTrig[o] + "," + kStunVictims[o]
+                        + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o]);
             }
         }
         if (trackMode) printTrack();
