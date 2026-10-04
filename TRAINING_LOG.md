@@ -1646,3 +1646,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   other. Replay names now carry the engine seed (opp__map__s<seed>__bot<side>); delivery-check and eval-paired pair on full
   names when both sides have seeds and on seedless names against older runs; arm-deltas and premise.py read both forms;
   regression tests. Synced to the VM after the running gate finishes.
+- g4crumb map-class gate at 96: INCONCLUSIVE (gathered201to400 9,006 vs 5,476, +0.9 SE past x1.5; kills +23%, guard
+  INCONCLUSIVE under the old rule) on only 34 shared cells (MEAS3 collisions). **VOID**: it rested on the two tool defects
+  fixed above (AUDIT_PLAYBOOK step 1). Re-run with the fixed tools on a fresh seed: `SEED=919191 DGPOOL=Gymhgy.v10official
+  DGMAPS=tools/maps-centre-crumb.txt DGTAG=-gymcrumb2 BASE=g_iter4 tools/delivery-gate.sh g4crumb ...` (same bars).
+- **g4farm2 5(a)** (16 stalemate cells vs Gymhgy): farm digs 63 a game (0 where captures are not level), level gain
+  r1500-2000 37 vs 27 (EndAround +25-42, Hurricane s1 +25, Fusbol s1 +22); wins 6 vs 5: EndAround three level-sum losses
+  became wins; Hurricane s2 and Mountain s1 became losses (level gain flat: digging takes the action a heal would use).
+  Delivery pre-registered on the 23-map stalemate class (tools/maps-stalemate-gymhgy.txt): `DGPOOL=Gymhgy.v10official
+  DGMAPS=tools/maps-stalemate-gymhgy.txt DGTAG=-gymfarm BASE=g_iter4 tools/delivery-gate.sh g4farm2
+  'rel:levelGain1500>=1.25 nw:enemyCaptured<=1.1 mean:overruns<=0'`.
