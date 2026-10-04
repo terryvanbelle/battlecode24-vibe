@@ -192,3 +192,12 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - Baseline after the second audit: g_iter4 vs Cyril 217-367 (37%), up from g_iter3's ~30%.
 - Correction: g4pick's after-move pickups did fire directly (5-99 a game; the earlier 0 came from a side-indsum bug on
   diag file names, now fixed), not "the turn after". Its parked verdict (pooled band, Cyril filler) stands.
+
+**Stun geometry (2026-10-04, `replay-dump --trapgeo`, new census columns stunTrig/stunVictims).** One g_iter4 win on
+TwistedTreeline: Cyril's 434 post-setup stuns were built with our nearest duck at median dist2 5 (2 tiles, the closest
+legal tile) and 5.2 of ours within the stun radius; 432 triggered, median 6 rounds after the build (1 round when built
+within dist2 4), freezing 6.0 of ours each: 2,594 robot-freezes against our 1,103. Our 282: median 66 rounds to trigger,
+4.3 victims, and 142 built with no enemy in vision (flag rings). Only 5% of its stun victims were near its own carrier:
+the stuns work in the general fight, not as carrier cover. New arm **g4front** (C.STUN_FRONT: the reachable tile one
+enemy step from triggering with the most enemies within dist2 13, at least 3). 5(a) on the alert cells (seed 777040)
+and a census of the stun columns over all g_iter4-vs-Cyril replays queued. TACTICS T14.
