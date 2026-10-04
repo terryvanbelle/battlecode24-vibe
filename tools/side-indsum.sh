@@ -12,11 +12,11 @@ last={}
 for l in sys.stdin:
     p=l.split()
     if len(p)>=3: last[p[1]]=l
-s=dict(ch=0,ic=0,cp=0,et=0,rg=0,ct=0)
+s=dict(ch=0,ic=0,cp=0,et=0,rg=0,ct=0,pk=0)
 for l in last.values():
-    m=re.search(r" ch(\d+)/(\d+)/(\d+) et(\d+) .* ct(\d+) .* rg(\d+)",l)
-    if m:
-        for k,i in zip(["ch","ic","cp","et","ct","rg"],range(1,7)): s[k]+=int(m.group(i))
+    for k,pat in (("ch",r" ch(\d+)/"),("ic",r" ch\d+/(\d+)/"),("cp",r" ch\d+/\d+/(\d+)"),("et",r" et(\d+)"),("ct",r" ct(\d+)"),("rg",r" rg(\d+)"),("pk",r" pk(\d+)")):
+        m=re.search(pat,l)
+        if m: s[k]+=int(m.group(1))   # each counter on its own: a truncated tail no longer drops the whole robot
 print(sys.argv[1].ljust(48)," ".join(f"{k}{v}" for k,v in s.items()))
 ' "$b"
 done

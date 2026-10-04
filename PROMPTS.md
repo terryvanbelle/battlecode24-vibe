@@ -226,3 +226,7 @@ Yes, please update ADVICE.md, but please make it much much more concise, and eli
 ## 174. 2026-10-03
 
 How is the cracking of CyrilSharma progressing?
+
+## 175. 2026-10-04
+
+Nice to hear that the second audit also led to an improvement

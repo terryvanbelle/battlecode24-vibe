@@ -23,7 +23,8 @@ public strictfp class C {
     public static final int RELOC_R2 = 225;             // RELOC_V2: a flag's spot is within 15 tiles of its spawn centre
     public static final int RELOC_DECIDE = 40;          // RELOC_V2: wait this long for observed symmetry before choosing spots
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
-    public static final int RELOC_STALL = 12;           // turns without progress before dropping where we stand
+    public static final int RELOC_STALL = 12;           // turns without progress before giving up the spot (V2: walk to the best tile reached, else home)
+    public static final boolean RELOC_STALL_MOVES = false;  // audit BOT3(b): count only movement-ready turns; give up to the best tile reached; arm g4reach
     public static final boolean RELAY = false;          // T3 offence copy: hand the flag forward to an adjacent ally
     public static final int ALERT_RADIUS2 = 100;        // ducks within this dist2 of an alerted flag go home to it (iteration 0 value)
     public static final boolean ALERT_FIX = true;       // audit A1: alert = an enemy within ALERT_THREAT_R2 of the flag home; defenders

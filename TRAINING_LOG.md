@@ -1398,3 +1398,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   C.RELOC_STALL_MOVES (relocation counts only movement-ready turns and gives up to the best tile reached, not the spawn
   centre) -> arm g4reach. 5(a) queued for both (g4reach on the maps the audit traced: Hurricane, Diagonal, Starfish,
   Waterworld, BedWars, Fusbol, EvilGrin, Divergent, with g_iter4 mirrors alongside).
+- Indicator string reformatted (audit MEAS5: it overflowed 64 chars on 70-75% of turns, cutting off the note and the last
+  counters, so g4pick's "pickstep" note never showed and per-robot counter sums undercounted). Now: note first, then
+  o, x, ch/ic/cp, et, ct, rg, pk (after-move pickups), es, cs, hl; bytecode peak, advances and fills dropped (the census
+  reads bytecode from the engine). tools/side-indsum.sh parses each counter on its own. g4pick rebuilt; 5(a) re-run with
+  g_iter4 mirrors alongside.

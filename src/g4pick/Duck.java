@@ -654,6 +654,7 @@ public strictfp class Duck {
         return new MapLocation(rcx[i], rcy[i]);
     }
 
+    static MapLocation relocBest; static int relocBestScore = Integer.MIN_VALUE;   // RELOC_STALL_MOVES: best tile reached
     static MapLocation[] relocEc = new MapLocation[9];
     static int relocNe;
     static int[] relocOrder = new int[3];
@@ -696,10 +697,18 @@ public strictfp class Duck {
         boolean there = G.me.distanceSquaredTo(flagTarget) <= 2;
         int before = G.me.distanceSquaredTo(flagTarget);
         if (!there && G.round < C.RELOC_DEADLINE) {
+            boolean ready = rc.isMovementReady();
             Nav.moveTo(flagTarget);
-            if (G.rc.getLocation().distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0;
+            MapLocation now = G.rc.getLocation();
+            if (C.RELOC_STALL_MOVES) {      // audit BOT3(b): a carrier moves every second turn; count only turns it could move
+                if (ready) { if (now.distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0; }
+                if (relocNe > 0) { int sc = nearestEnemy2(now.x, now.y); if (sc > relocBestScore) { relocBestScore = sc; relocBest = now; } }
+            } else if (now.distanceSquaredTo(flagTarget) >= before) relocStall++; else relocStall = 0;
             if (C.RELOC_V2 && relocStall >= C.RELOC_STALL && !flagTarget.equals(G.spawnCenters[i])) {   // cannot get there:
-                flagTarget = G.spawnCenters[i]; relocStall = 0; return;                                  // go home, never drop short
+                MapLocation home = G.spawnCenters[i];
+                boolean useBest = C.RELOC_STALL_MOVES && relocBest != null && !flagTarget.equals(relocBest)
+                        && relocBestScore > nearestEnemy2(home.x, home.y);
+                flagTarget = useBest ? relocBest : home; relocStall = 0; return;   // BOT3: the best tile reached, else home
             }
             if (relocStall < C.RELOC_STALL) return;
         }

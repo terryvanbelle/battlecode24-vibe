@@ -48,7 +48,12 @@ public strictfp class G {
                     + " e" + Track.exc + " R0 C0 E0 M" + Track.missings + " P0 " + note);
             return;
         }
-        rc.setIndicatorString("bc" + maxBc / 1000 + "k o" + overruns + " x" + exceptions + " adv" + Micro.advances + " ch" + Duck.chases + "/" + Duck.intercepts + "/" + Duck.camps + " et" + Duck.escortTurns + " hl" + Duck.holdTurns + " ct" + Duck.combatTraps + " cs" + Duck.safeSteps + "/" + Micro.carrierHeals + " es" + Micro.escortHits + " rg" + Micro.regrabTries + " f" + Nav.fills + "/" + Nav.avoidableFills + "/" + Nav.ownSkips + " " + note);
+        // audit 2026-10-03 MEAS5: the old string overflowed the 64-char cap on 70-75% of turns and cut off the note and the
+        // last counters. Note first; then mechanism counters, most used first; bytecode peak, advances and fills dropped
+        // (the census reads bytecode from the engine).
+        rc.setIndicatorString(note + " o" + overruns + " x" + exceptions + " ch" + Duck.chases + "/" + Duck.intercepts + "/" + Duck.camps
+                + " et" + Duck.escortTurns + " ct" + Duck.combatTraps + " rg" + Micro.regrabTries + " pk" + Micro.afterMovePickups
+                + " es" + Micro.escortHits + " cs" + Duck.safeSteps + "/" + Micro.carrierHeals + " hl" + Duck.holdTurns);
     }
 
     /** xorshift; per-robot seeded from the id so identical code on both sides never shares a sequence. */
