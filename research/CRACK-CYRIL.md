@@ -168,3 +168,8 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4reach (C.RELOC_STALL_MOVES, BOT3(b)) 5(a), 8 traced maps: flag distance barely moves (mean of means +1%; Divergent +3
   tiles, BedWars -1). The stall fix alone recovers little; BOT3(a), scoring only reachable spots, is the larger part and
   is not built yet. Not gated.
+- **g4pick Cyril delivery: PASS** (regrabs 9.54 vs 1.79, margin +3.7 SE; kills guard PASS, detectable drop 17%). The
+  filler now pairs g4pick with g_iter4 vs Cyril; band guard + band test queued.
+- g4econ (POST_SETUP_CRUMBS + GATHER_ROUND 185, BOT4) 5(a): gathered200 identical to g_iter4 on all 6 maps, gathered400
+  equal in sum (57,100 each); kills lower in two games (ducks detour for crumbs). Does not deliver in mirrors; parked.
+- g_iter4 vs g_iter3 vs Cyril (paired filler): 120 games, net +7 (+1.5 SE).
