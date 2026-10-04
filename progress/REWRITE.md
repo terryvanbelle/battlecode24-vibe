@@ -17,4 +17,5 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | **g3lost** (vs g_iter3; second-audit fix BOT1) | g_iter3 + C.FLAG_LOST (captured own flags recognised) | 122 -> 123, +1 (1.00) | **+0.14 +- 0.06** | 25 -> 27, +2 | **+0.22 +- 0.09** | -1 | +0.04 +- 0.09 | criterion (b) met; basics PASS |
 | g3lost confirmation (seeds 717171 + 818181) | same | 118 -> 126, +8 (0.17) | +0.14 +- 0.06 | 24 -> 33, +9 (p 0.035) | +0.27 +- 0.09 | -1 | -0.01 +- 0.08 | - |
 | **g3lost pooled (4 seeds, 473 pairs)** | same | 240 -> 249, +9 (0.24) | **+0.14 +- 0.05** | 49 -> 60, +11 | **+0.24 +- 0.06** | -2 | +0.01 +- 0.06 | promoted: **g_iter4**, 1932 +- 39 (rank 12) |
-| g4pick (vs g_iter4; second-audit BOT5) | g_iter4 + C.PICKUP_AFTER_MOVE | 123 -> 132, +9 (0.12) | +0.12 +- 0.09 | 27 -> 33, +6 | +0.16 +- 0.12 | +3 | +0.08 +- 0.13 | no criterion yet; basics PASS; extended with the confirmation seeds (pooled must meet (a) or (b)) |
+| g4pick (vs g_iter4; second-audit BOT5) | g_iter4 + C.PICKUP_AFTER_MOVE | 123 -> 132, +9 (0.12) | +0.12 +- 0.09 | 27 -> 33, +6 | +0.16 +- 0.12 | +3 | +0.08 +- 0.13 | no criterion; basics PASS |
+| g4pick pooled (4 seeds, 473 pairs) | same | 249 -> 255, +6 (0.53) | +0.08 +- 0.06 | 60 -> 65, +5 | +0.11 +- 0.09 | +1 | +0.05 +- 0.09 | not met: parked |

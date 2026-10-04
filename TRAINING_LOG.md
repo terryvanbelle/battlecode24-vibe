@@ -1411,3 +1411,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   +7 of 120 paired (+1.5 SE).
 - g4pick band test vs g_iter4: net +9 (p 0.12), capture +0.12 +- 0.09, upper +0.16 +- 0.12; basics PASS. Not yet a
   criterion; extended with seeds 717171 + 818181, the pooled result pre-registered to decide.
+- g4pick pooled 473 pairs: net +6, capture +0.08 +- 0.06 (t 1.3), upper +0.11 +- 0.09: the pre-registered bar is not met,
+  parked (Cyril filler -2 of 80). Filler back to the g_iter4 baseline vs Cyril. Next from the audit: BOT7 (carrier stuns
+  built behind the carrier) and BOT10 (carrier sightings expire after 5 rounds).
