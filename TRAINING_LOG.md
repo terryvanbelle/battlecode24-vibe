@@ -1526,3 +1526,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   reserve 300 took the bank (Joker 662 at r200 vs 3,857), setup traps fell (14 vs 24, 31 vs 48), stun400 fell (25 vs 38),
   and non-builders built no combat stuns early. Second attempt **g4builder2** (pre-registered): the default dig reserve
   (1,000) and non-builders keep the old combat stun when no ally at build level 3+ is in view. 5(a) queued.
+- **g4crumb Cyril delivery: INCONCLUSIVE** at 24, 48 and 96 cells (96: gathered400 7,057 vs 6,049, +17%, bar +15%,
+  margin +0.3 SE; kills guard PASS, detectable drop 6%). Parked (not closed): the crumbs come, but not clearly past the bar.
+- g4builder2 5(a) (same cells): 1/7 won again; Ambush, Capacitance and StackGame still end early (705 / 776 / 993 rounds),
+  setup digs smaller (8-36, Joker 150), traps200 still low on Ambush (16 vs 24). Untested hypothesis: our flag defenders
+  reach build 6 from ring traps, so near our flags every non-builder sees a "builder" and stops placing combat stuns just
+  when Cyril raids. The pre-registered second attempt is spent: the builder line is parked; a version that keeps every
+  duck's combat stuns and only adds the discount is a different design for later.
