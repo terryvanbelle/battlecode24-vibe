@@ -1438,3 +1438,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   band-wide bar was too strict (on the six water maps of its 5(a), stillPost -7.6%). Following the first audit's lesson,
   the small correctness fixes go into one combined build: **g4bundle** = FILL_STEP + PICKUP_AFTER_MOVE + RELOC_STALL_MOVES
   (each fires; none harmful so far), 5(a) queued; delivery will gate on rel:regrabs>=2.0 with nw:kills, then band test.
+- g4bundle 5(a) (6 maps vs g_iter4): after-move pickups 7-60 and fill-steps 46-405 a game. Band delivery
+  (rel:regrabs>=2.0, nw:kills) and band test queued.
