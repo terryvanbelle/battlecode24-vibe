@@ -1417,3 +1417,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Audit BOT10 and BOT7 as switches on g_iter4 with tests: C.CARRY_PREDICT (a stale carrier sighting, age 6-59, becomes a
   predicted point age/2 steps toward its nearest spawn, chased like a fresh one; A11(a) clearing extended to it) -> arm
   g4pred; C.STUN_AHEAD (carrier stuns only from ahead of the carrier) -> arm g4ahead. 5(a) vs Cyril queued.
+- g4ahead parked at 5(a) (carrier-stun builds halved, catches halved: 27 vs 51 on the same 6 cells). g4pred's
+  prediction fires (pr 31-1861 a game); Cyril delivery queued (rel:enemyUnseenRounds<=0.85, rel:chasers20>=1.1,
+  nw:kills). Indicator: pr (predicted chases) replaced the always-zero hl.

@@ -184,3 +184,6 @@ Verdicts are three-way now (PASS 1 SE beyond the bar; INCONCLUSIVE extends the b
 - g4pred (C.CARRY_PREDICT, BOT10) 5(a): chase totals unchanged (15,772 vs 15,666), unseen carrier-rounds a little lower
   (mean 64 vs 77); the indicator could not separate predicted chases, so a pr counter replaced the always-zero hl and the
   check is re-running.
+- g4pred 5(a) re-run with the pr counter (identical play): predicted chases fire, 31-1861 a game. Delivery:
+  `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4pred 'rel:enemyUnseenRounds<=0.85
+  rel:chasers20>=1.1 nw:kills>=0.95 mean:overruns<=0'`.
