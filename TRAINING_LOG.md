@@ -1520,3 +1520,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   Joker 23,700 vs 14,500 (Cyril 18,600 vs 27,800); two maps without loose crumbs played identically. The idle detours do
   it; the fight-step bonus fires rarely (cr 0-8). Wins 3/7 vs 3/7. Delivery pre-registered: `DGPOOL=CyrilSharma.finalBot
   DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4crumb 'rel:gathered400>=1.15 nw:kills>=0.95 mean:overruns<=0'`.
+- g4builder 5(a) (8 Cyril cells): builders reach build 4-6 (build masters 0-8 a game); where games run long the volume
+  jumps (Rivers: 436 stuns triggered vs g_iter4's 215 on the cell, fast victims 1,505 vs 232, won 2-0). But 1/7 won:
+  Ambush, StackGame and Joker ended early (rounds 720 / 631 / 900 vs 1,211 / 1,228 / 1,888). Trace: setup digs with
+  reserve 300 took the bank (Joker 662 at r200 vs 3,857), setup traps fell (14 vs 24, 31 vs 48), stun400 fell (25 vs 38),
+  and non-builders built no combat stuns early. Second attempt **g4builder2** (pre-registered): the default dig reserve
+  (1,000) and non-builders keep the old combat stun when no ally at build level 3+ is in view. 5(a) queued.
