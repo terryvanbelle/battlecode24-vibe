@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && !C.CRUMB_STEP && !C.POST_SETUP_CRUMBS,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && !C.CRUMB_STEP && !C.POST_SETUP_CRUMBS && !C.BUILDERS,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -184,6 +184,11 @@ public class AuditTest {
                   "CRUMB_STEP: " + (C.CRUMB_STEP ? "steps onto the crumb tile" : "off: no reason to move, so no move") + " (" + BotTest.lastMove + ")");
         } catch (GameActionException e) { check(false, "CRUMB_STEP: unexpected " + e); }
         BotTest.moveOk = false; BotTest.crumbTiles = new MapLocation[0];
+
+        // BUILDERS: idx 9, 19, ..., 49 (never a defender 0-2 or scout 3-5); off in the incumbent, so nobody is one
+        check(Duck.builderIdx(9) && Duck.builderIdx(19) && Duck.builderIdx(49) && !Duck.builderIdx(10) && !Duck.builderIdx(5) && !Duck.builderIdx(0),
+              "BUILDERS: one field duck in ten");
+        { int keep = G.idx; G.idx = 9; check(Duck.isBuilder() == C.BUILDERS, "BUILDERS: isBuilder follows the switch"); G.idx = keep; }
 
         // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
         java.util.Random ir = new java.util.Random(77);

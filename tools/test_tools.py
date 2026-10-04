@@ -152,9 +152,9 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     r = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, '--nosuchflag'], capture_output=True, text=True)
     check(r.returncode != 0, 'replay-dump: unknown flags are hard errors')
     tg = [l.split(',') for l in dump('--trapgeo').splitlines() if l.startswith('TG,')]
-    check(all(len(x) == 11 and x[1] in 'AB' and x[2] in ('STUN', 'EXPLOSIVE', 'WATER') and int(x[3]) > 200
+    check(all(len(x) == 12 and x[1] in 'AB' and x[2] in ('STUN', 'EXPLOSIVE', 'WATER') and int(x[3]) > 200
               and (x[8] == '-1' or int(x[9]) == int(x[8]) - int(x[3]) >= 0) for x in tg),
-          f'replay-dump --trapgeo: 11 fields, post-setup builds, latency = trigger - build ({len(tg)} traps)')
+          f'replay-dump --trapgeo: 12 fields, post-setup builds, latency = trigger - build ({len(tg)} traps)')
     capr = {c['team']: c for c in _pick(_sections(dump('--capabilities')), 'enemyCarrierKills')}
     check(all(sum(1 for x in tg if x[1] == t and x[2] == 'STUN' and x[8] != '-1') <= int(capr[t]['stunTrig']) for t in capr),
           'replay-dump: --trapgeo triggered post-setup stuns <= census stunTrig (which also counts setup-built stuns)')
@@ -257,7 +257,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False

@@ -12,7 +12,7 @@ import sys
 s=sys.argv[1]; n=near=0; lat=[]
 for l in sys.stdin:
     p=l.strip().split(",")
-    if len(p) < 11 or p[0] != "TG" or p[1] != s or p[2] != "STUN": continue
+    if len(p) < 12 or p[0] != "TG" or p[1] != s or p[2] != "STUN": continue
     n+=1; near+= 0 <= int(p[4]) <= 8
     if p[8] != "-1": lat.append(int(p[9]))
 lat.sort()

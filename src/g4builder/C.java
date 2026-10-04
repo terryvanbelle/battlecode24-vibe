@@ -1,4 +1,4 @@
-package bot;
+package g4builder;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -56,7 +56,7 @@ public strictfp class C {
     // 10/15/20/30/40/50% (engine SkillType) and needs 5L build actions, but level 4 in attack or heal caps build at 3):
     // one field duck in ten builds every combat stun (front placement), digs toward level 6 in setup, and stops attacking
     // and healing before either reaches level 4. Arm g4builder.
-    public static final boolean BUILDERS = false;
+    public static final boolean BUILDERS = true;
     public static final int BUILDER_DIGS = 30, BUILDER_DIG_RESERVE = 300, BUILDER_XP_ATK = 74, BUILDER_XP_HEAL = 99;
     public static final boolean CRUMB_STEP = false;     // audit BOT4: fight steps prefer a tile with crumbs (Cyril collects 3,572 in r201-400 to our 838); arm g4crumb
     public static final int CRUMB_BONUS = 40;           // CRUMB_STEP: score bonus (engage tiles differ by 100 per threat, kite tiles by 1000)
