@@ -14,6 +14,12 @@ its flag defense leaks, and our carriers die on the way home (16.5 a game). Trac
 offense hands our flag on every ~2 rounds (27 trips: 22 hand-offs, 3 captures, by r271 and r371) with 0.95 of ours within
 dist2 20; its defense puts 5.4 chasers on each of our trips (31 trips, 24 first grabs, 29 carriers dead).
 
+**What separates wins from losses (181 filler games, 78-103).** Losses: CAPTURE 57, LEVEL_SUM 27, MORE_FLAG_CAPTURES 19;
+wins: CAPTURE 42, LEVEL_SUM 23, MORE_FLAG_CAPTURES 12. In wins we kill 201 of its ducks on its own territory (73 in
+losses) and lose 107 of ours on ours (155); kills 458 vs 285 (within-map P = 0.66); its captures by r600 0.91 vs 1.32
+(P 0.34), unopposed captures 1.1 vs 2.0, its unseen carrier-rounds 63 vs 77 (P 0.36). Our grabs barely differ (22 vs 20
+first grabs). The game is decided by where the fight happens and by its early unwatched captures, not by our offense.
+
 **5(a), 8 shared cells (seed 777050).** g_iter4 3/8, g4z2 (C.Z2ESCORT, hit a carrier's escorts first) 3/8, g4z1
 (C.Z1HOLD, converge on our dropped flag and hit enemies in pickup range) 5/8. g4z2 cuts its re-grabs 4.9 -> 2.9 and changes
 nothing else. g4z1: our ducks within dist2 20 of its carrier 1.95 -> 2.95, its captures by r600 1.75 -> 1.12, unseen
