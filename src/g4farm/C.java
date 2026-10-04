@@ -1,4 +1,4 @@
-package bot;
+package g4farm;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -58,7 +58,7 @@ public strictfp class C {
     // 10/15/20/30/40/50% (engine SkillType) and needs 5L build actions, but level 4 in attack or heal caps build at 3):
     // one field duck in ten builds every combat stun (front placement), digs toward level 6 in setup, and stops attacking
     // and healing before either reaches level 4. Arm g4builder.
-    public static final boolean LEVEL_FARM = false;     // late-game build-XP farm for the level-sum tiebreak (Gymhgy study); arm g4farm
+    public static final boolean LEVEL_FARM = true;     // late-game build-XP farm for the level-sum tiebreak (Gymhgy study); arm g4farm
     public static final int FARM_ROUND = 1500, FARM_XP = 15, FARM_RESERVE = 300;
     public static final boolean BUILDERS = false;
     public static final int BUILDER_DIGS = 30, BUILDER_DIG_RESERVE = 1000, BUILDER_XP_ATK = 74, BUILDER_XP_HEAL = 99;

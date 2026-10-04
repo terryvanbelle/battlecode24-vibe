@@ -70,6 +70,7 @@ import java.util.zip.GZIPInputStream;
  *                      its killer +30 crumbs; enemyDeathsHome: theirs on theirs (our kill reward)
  *   gatheredAll        map crumbs our robots collected over the whole game
  *   dropGuard          robot-rounds our robots spend within dist2 8 of one of our flags lying dropped away from home
+ *   digsLate           our dig actions after r1500; levelGain1500: our level sum at the end minus at r1500 (blank if shorter)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -103,6 +104,9 @@ public class ReplayDump {
     /** dropGuard: robot-rounds (after setup, end of round) our robots spend within dist2 8 of one of our flags lying dropped
      *  away from its home (the window in which the enemy can re-grab it); C.Z1HOLD's direct signature (2026-10-04). */
     static int[] kDropGuard = new int[3];
+    /** digsLate: our dig actions after r1500; levelGain1500: our level sum at the end minus at the end of r1500 (blank if the
+     *  game ended before r1500). C.LEVEL_FARM's signature (2026-10-04). */
+    static int[] kDigsLate = new int[3], kLevel1500 = {-1, -1, -1};
     static int[] spawnZone;            // 0 none, 1 A, 2 B
     static int[] crumbs;               // remaining crumbs per tile
     static Map<Integer, Integer> flagTeam = new HashMap<>();   // flag id -> team (1/2)
@@ -507,7 +511,7 @@ public class ReplayDump {
             switch (a) {
                 case Action.ATTACK: cAttacks[t]++; desc = "attacks #" + tgt; break;
                 case Action.HEAL: cHeals[t]++; desc = "heals #" + tgt; break;
-                case Action.DIG: if (id >= 0) cDigs[t]++; water[tgt] = true; desc = "digs (" + tgt % W + "," + tgt / W + ")"; break;
+                case Action.DIG: if (id >= 0) { cDigs[t]++; if (rn > 1500) kDigsLate[t]++; } water[tgt] = true; desc = "digs (" + tgt % W + "," + tgt / W + ")"; break;
                 case Action.FILL: cFills[t]++; water[tgt] = false; desc = "fills (" + tgt % W + "," + tgt / W + ")"; break;
                 case Action.EXPLOSIVE_TRAP: case Action.WATER_TRAP: case Action.STUN_TRAP:
                     cTrapsHit[t]++; desc = "triggers " + ACTION[a] + " at (" + tgt % W + "," + tgt / W + ")"; break;
@@ -669,6 +673,7 @@ public class ReplayDump {
             if (near) kDamStage199[t]++;
         }
         for (int t = 1; t <= 2; t++) { kAliveSum[t] += alive[t]; if (rn == 200) kGathered200[t] = kGathered[t]; if (rn == 400) kGathered400[t] = kGathered[t]; }
+        if (rn == 1500) for (int t = 1; t <= 2; t++) kLevel1500[t] = levelSum(t);
         if (rn > 200) for (Map.Entry<Integer, int[]> fe : flagLoc.entrySet()) {   // dropGuard: own robots beside an own dropped flag
             int[] dgl = fe.getValue(), dgh = flagHome.get(fe.getKey()); int ft = flagTeam.getOrDefault(fe.getKey(), 0);
             if (dgl == null || dgh == null || ft < 1 || ft > 2 || (dgl[0] == dgh[0] && dgl[1] == dgh[1]) || capturedFlags.contains(fe.getKey())) continue;
@@ -1290,7 +1295,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1317,7 +1322,8 @@ public class ReplayDump {
                         + "," + (kDefAtGrabN[t] > 0 ? String.format("%.2f", (double) kDefAtGrabSum[t] / kDefAtGrabN[t]) : "") + "," + kCapturedHomeRounds[t]
                         + "," + kStunTrig[t] + "," + kStunVictims[t] + "," + kStunTrig[o] + "," + kStunVictims[o]
                         + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o] + "," + kStunVictimsFast[t] + "," + kStunVictimsFast[o]
-                        + "," + kDeathsHome[t] + "," + kDeathsHome[o] + "," + kGathered[t] + "," + kDropGuard[t]);
+                        + "," + kDeathsHome[t] + "," + kDeathsHome[o] + "," + kGathered[t] + "," + kDropGuard[t]
+                        + "," + kDigsLate[t] + "," + (kLevel1500[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1500[t]) : ""));
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

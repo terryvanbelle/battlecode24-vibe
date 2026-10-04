@@ -13,9 +13,9 @@ last={}
 for l in sys.stdin:
     p=l.split()
     if len(p)>=3: last[p[1]]=l
-s=dict(ch=0,ic=0,cp=0,et=0,rg=0,ct=0,pk=0,pr=0,fs=0,an=0,wy=0,cr=0)
+s=dict(ch=0,ic=0,cp=0,et=0,rg=0,ct=0,pk=0,pr=0,fs=0,an=0,wy=0,cr=0,lf=0)
 for l in last.values():
-    for k,pat in (("ch",r" ch(\d+)/"),("ic",r" ch\d+/(\d+)/"),("cp",r" ch\d+/\d+/(\d+)"),("et",r" et(\d+)"),("ct",r" ct(\d+)"),("rg",r" rg(\d+)"),("pk",r" pk(\d+)"),("pr",r" pr(\d+)"),("fs",r" fs(\d+)"),("an",r" an(\d+)"),("wy",r" wy(\d+)"),("cr",r" cr(\d+)")):
+    for k,pat in (("ch",r" ch(\d+)/"),("ic",r" ch\d+/(\d+)/"),("cp",r" ch\d+/\d+/(\d+)"),("et",r" et(\d+)"),("ct",r" ct(\d+)"),("rg",r" rg(\d+)"),("pk",r" pk(\d+)"),("pr",r" pr(\d+)"),("fs",r" fs(\d+)"),("an",r" an(\d+)"),("wy",r" wy(\d+)"),("cr",r" cr(\d+)"),("lf",r" lf(\d+)")):
         m=re.search(pat,l)
         if m: s[k]+=int(m.group(1))   # each counter on its own: a truncated tail no longer drops the whole robot
 print(sys.argv[1].ljust(48)," ".join(f"{k}{v}" for k,v in s.items()))

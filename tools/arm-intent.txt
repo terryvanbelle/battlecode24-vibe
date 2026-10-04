@@ -100,3 +100,4 @@ g4relay C.PICKUP_AFTER_MOVE=true
 g4relay2 C.RELAY=true
 g4relay2 C.RELAY_THREAT=true
 g4relay2 C.PICKUP_AFTER_MOVE=true
+g4farm C.LEVEL_FARM=true

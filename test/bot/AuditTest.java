@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && !C.CRUMB_STEP && !C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && !C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && !C.CRUMB_STEP && !C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM,
               "src/bot plays as the incumbent g_iter4 (g_iter3 + captured flags recognised; the track sensor off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -193,6 +193,17 @@ public class AuditTest {
         // RELAY_THREAT: a healthy carrier with no enemy in view keeps the flag; hurt or threatened it hands over; off: always
         check(!Duck.relayWanted(true, 1000, 0) && Duck.relayWanted(true, C.RELAY_HP - 1, 0) && Duck.relayWanted(true, 1000, 2)
               && Duck.relayWanted(false, 1000, 0), "RELAY_THREAT: hand over only in danger");
+
+        // LEVEL_FARM: captures level when our captured registry slots equal our lost flags
+        G.rc = BotTest.fakeRc(); java.util.Arrays.fill(BotTest.shared, 0);
+        try {
+            check(Duck.capturesLevel(), "LEVEL_FARM: 0-0 is level");
+            BotTest.shared[Comms.EF_STATE] = 2;
+            check(!Duck.capturesLevel(), "LEVEL_FARM: 1-0 is not level");
+            BotTest.shared[Comms.OF_LOST] = 4;
+            check(Duck.capturesLevel(), "LEVEL_FARM: 1-1 is level");
+        } catch (GameActionException e) { check(false, "LEVEL_FARM: unexpected " + e); }
+        java.util.Arrays.fill(BotTest.shared, 0);
 
         // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
         java.util.Random ir = new java.util.Random(77);
