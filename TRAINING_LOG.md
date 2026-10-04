@@ -1468,3 +1468,21 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   wins 2 vs 3, Cyril captures 11 vs 14, unseen carrier-rounds 348 vs 943 (Capacitance alone 377 for g_iter4). Delivery,
   pre-registered: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh g4alert
   'rel:enemyUnseenRounds<=0.85 nw:kills>=0.95 mean:overruns<=0'` (responders at shadowed alerts should see carriers leave).
+- g4alert Cyril delivery: INCONCLUSIVE at 24, 48 and 96 cells (96: unseen carrier-rounds 111 vs 117, -4%, bar -15%,
+  margin -1.4 SE; kills guard PASS). Answering the nearest alert does not put eyes on carriers. Parked (not closed).
+- **Stun geometry (TACTICS T14, research/CRACK-CYRIL.md).** `replay-dump --trapgeo` on a g_iter4 win vs Cyril
+  (TwistedTreeline): its 434 post-setup stuns were built two tiles from our nearest duck (median dist2 5) with 5.2 of ours
+  in the stun radius, triggered after a median 6 rounds (1 round when built within dist2 4), 6.0 frozen each; ours: 282,
+  median 66 rounds, 4.3 each, half with no enemy in vision (flag rings). New census column stunVictimsFast (victims of
+  stuns triggered within 10 rounds of the build): Cyril 1,757, g_iter4 312.
+- Adoption arm **g4front** (C.STUN_FRONT: the reachable tile one enemy step from triggering with the most enemies within
+  dist2 13, at least 3). 5(a), 8 Cyril cells (seed 777040, same cells as g_iter4's alert diag): stuns built within dist2 8
+  of an enemy 50-90% of ours (g_iter4 35-66%), median latency 7-33 rounds (g_iter4 21-138), victims per game +9%; wins
+  4/8 vs 3/7. Delivery pre-registered: `DGPOOL=CyrilSharma.finalBot DGTAG=-cyril BASE=g_iter4 tools/delivery-gate.sh
+  g4front 'rel:stunVictimsFast>=1.5 nw:kills>=0.95 mean:overruns<=0'`.
+- Neutralization arm **g4wary** (C.STUN_WARY): an enemy cannot build on or beside one of our robots and a stun fires
+  when one of ours enters a tile within dist2 2 of it, so every tile within dist2 2 of one of our robots now is clear; a
+  fight step pays WARY_COST 150 when a tile within dist2 2 of it had a visible enemy beside it in the last 8 rounds and is
+  beside none of ours now (indicator wy = turns the penalty changed the step). 5(a) on the same 8 cells queued.
+- Tool bug fixed: capability-census.sh died after the header under pipefail when a run had no losses/ folder (the
+  1,298-replay stun census came back empty); regression test added. Census re-queued.

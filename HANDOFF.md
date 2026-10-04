@@ -19,10 +19,11 @@
 - In flight: the Cyril target (research/CRACK-CYRIL.md; g_iter4 vs Cyril 456-803, 36%, on 1,259 filler games). In
   those games a Cyril capture decides most losses (MORE_FLAG_CAPTURES 406, CAPTURE 292) and we win flag ties on level
   sum 188-105. Second-audit follow-through: tools fixed; BOT1 promoted (g_iter4); closed or parked against Cyril: BOT2
-  tether, BOT4 econ, BOT5 pick, BOT7 ahead, BOT8 fill, BOT10 pred, the g4bundle combination. Now: BOT9 (g4alert, nearest
-  alert + split respawns), BOT16 (g4spread, relocation scan paused for bytecode) and round-1 init cost (g4init: every
-  robot's round 1 ran at 22.8-22.9k of 25k). Open: BOT3(a) reachable relocation spots, BOT6, BOT11, BOT14, BOT15,
-  BOT17-BOT20; tools MEAS3 (replay names lack the seed), MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (see the report).
+  tether, BOT4 econ, BOT5 pick, BOT7 ahead, BOT8 fill, BOT9 alert (g4alert INCONCLUSIVE at 96), BOT10 pred, the g4bundle
+  combination; BOT16 fixed behind C.RELOC_SPREAD (small effect, for a later combined build). **Now: Cyril's front stuns
+  (TACTICS T14)**: its stuns freeze ~5.6x more of ours within 10 rounds of the build than ours do of it; adoption arm
+  g4front (delivery queued), neutralization arm g4wary (5(a) queued). Open: BOT3(a) reachable relocation spots, BOT6,
+  BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS3 (replay names lack the seed), MEAS4, MEAS6-MEAS10, MEAS13-MEAS17.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
