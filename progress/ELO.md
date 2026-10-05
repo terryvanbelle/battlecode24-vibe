@@ -1,28 +1,28 @@
 # Ladder
 
-26989 scrimmages (ours only), 26989 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+27229 scrimmages (ours only), 27229 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g4gym1 | 1959 +- 41 | 12 of 83 | 280 | 115-165 | 81.9% | 25.0% (vs 11) |
+| g4gym1 | 1967 +- 34 | 12 of 83 | 400 | 168-232 | 82.1% | 25.8% (vs 11) |
 | g4crumb | 1955 +- 27 | 13 of 83 | 640 | 258-382 | 81.7% | 24.6% (vs 11) |
-| g_iter4 | 1943 +- 9 | 14 of 83 | 5960 | 2349-3611 | 81.3% | 23.4% (vs 11) |
+| g_iter4 | 1943 +- 9 | 14 of 83 | 6080 | 2393-3687 | 81.3% | 23.4% (vs 11) |
 | g4econ2 | 1939 +- 56 | 15 of 83 | 160 | 60-100 | 81.2% | 23.0% (vs 11) |
 | g3lost | 1927 +- 112 | 16 of 83 | 40 | 15-25 | 80.8% | 21.9% (vs 11) |
 | g4pick | 1925 +- 65 | 17 of 83 | 120 | 43-77 | 80.7% | 21.7% (vs 11) |
 | g2cr | 1901 +- 107 | 18 of 83 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
 | g_iter3 | 1900 +- 13 | 19 of 83 | 3520 | 1259-2261 | 79.9% | 19.5% (vs 11) |
-| g3escrg2 | 1900 +- 44 | 20 of 83 | 280 | 90-190 | 79.8% | 19.4% (vs 11) |
+| g3escrg2 | 1899 +- 44 | 20 of 83 | 280 | 90-190 | 79.8% | 19.4% (vs 11) |
 | g_iter2 | 1857 +- 15 | 22 of 83 | 2200 | 1032-1168 | 78.4% | 18.4% (vs 12) |
-| a3dig5 | 1780 +- 130 | 24 of 83 | 110 | 84-26 | 75.8% | 15.7% (vs 13) |
-| arch_rush10 | 1780 +- 130 | 25 of 83 | 110 | 84-26 | 75.8% | 15.7% (vs 13) |
+| arch_rush10 | 1780 +- 130 | 24 of 83 | 110 | 84-26 | 75.8% | 15.7% (vs 13) |
+| a3dig5 | 1780 +- 130 | 25 of 83 | 110 | 84-26 | 75.8% | 15.7% (vs 13) |
 | g_iter1_c2 | 1780 +- 130 | 26 of 83 | 110 | 84-26 | 75.8% | 15.7% (vs 13) |
 | e1aggr | 1755 +- 129 | 28 of 83 | 110 | 83-27 | 74.9% | 16.5% (vs 14) |
-| c5bank | 1730 +- 128 | 29 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
-| c6pair | 1730 +- 128 | 30 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
-| a3dig10 | 1730 +- 128 | 31 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
+| c6pair | 1730 +- 128 | 29 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
+| a3dig10 | 1730 +- 128 | 30 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
+| c5bank | 1730 +- 128 | 31 of 83 | 110 | 82-28 | 74.0% | 14.9% (vs 14) |
 | a2relay | 1705 +- 127 | 33 of 83 | 110 | 81-29 | 73.2% | 15.7% (vs 15) |
 | e2aggr | 1705 +- 127 | 34 of 83 | 110 | 81-29 | 73.2% | 15.7% (vs 15) |
 | a2reloc | 1705 +- 127 | 35 of 83 | 110 | 81-29 | 73.2% | 15.7% (vs 15) |
@@ -46,30 +46,30 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 5 | chenyx512.flagbot_final | 2219 | 63 | 580 | 549-31 | 6% (g_iter1 13-211) |
 | 6 | NotLLeon.v3 | 2154 | 54 | 580 | 536-44 | 8% (g_iter1 17-207) |
 | 7 | andli28.v9_USQuals_angle | 2146 | 53 | 580 | 534-46 | 6% (g_iter1 13-211) |
-| 8 | andrewgopher.player22 | 2079 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
+| 8 | andrewgopher.player22 | 2078 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
 | 9 | CyrilSharma.finalBot | 2032 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
 | 10 | hsmalladi.finalbot | 2026 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
-| 11 | Gymhgy.v10official | 2024 | 11 | 4580 | 2937-1643 | 41% (g4gym1 115-165) |
-| 12 | **us:g4gym1** | 1959 | 41 | 280 | 115-165 |  |
+| 11 | Gymhgy.v10official | 2024 | 10 | 4820 | 3080-1740 | 42% (g4gym1 168-232) |
+| 12 | **us:g4gym1** | 1967 | 34 | 400 | 168-232 |  |
 | 13 | **us:g4crumb** | 1955 | 27 | 640 | 258-382 |  |
-| 14 | **us:g_iter4** | 1943 | 9 | 5960 | 2349-3611 |  |
+| 14 | **us:g_iter4** | 1943 | 9 | 6080 | 2393-3687 |  |
 | 15 | **us:g4econ2** | 1939 | 56 | 160 | 60-100 |  |
 | 16 | **us:g3lost** | 1927 | 112 | 40 | 15-25 |  |
 | 17 | **us:g4pick** | 1925 | 65 | 120 | 43-77 |  |
 | 18 | **us:g2cr** | 1901 | 107 | 40 | 21-19 |  |
 | 19 | **us:g_iter3** | 1900 | 13 | 3520 | 1259-2261 |  |
-| 20 | **us:g3escrg2** | 1900 | 44 | 280 | 90-190 |  |
+| 20 | **us:g3escrg2** | 1899 | 44 | 280 | 90-190 |  |
 | 21 | winkelmantanner.waffle | 1898 | 15 | 2300 | 1375-925 | 62% (g_iter3 163-101) |
 | 22 | **us:g_iter2** | 1857 | 15 | 2200 | 1032-1168 |  |
 | 23 | ColtG5.Goob_final | 1788 | 12 | 3540 | 2205-1335 | 67% (g_iter2 203-101) |
-| 24 | **us:a3dig5** | 1780 | 130 | 110 | 84-26 |  |
-| 25 | **us:arch_rush10** | 1780 | 130 | 110 | 84-26 |  |
+| 24 | **us:arch_rush10** | 1780 | 130 | 110 | 84-26 |  |
+| 25 | **us:a3dig5** | 1780 | 130 | 110 | 84-26 |  |
 | 26 | **us:g_iter1_c2** | 1780 | 130 | 110 | 84-26 |  |
 | 27 | kyleezz.jeeryfix3 | 1770 | 29 | 580 | 342-238 | 41% (g_iter1 91-133) |
 | 28 | **us:e1aggr** | 1755 | 129 | 110 | 83-27 |  |
-| 29 | **us:c5bank** | 1730 | 128 | 110 | 82-28 |  |
-| 30 | **us:c6pair** | 1730 | 128 | 110 | 82-28 |  |
-| 31 | **us:a3dig10** | 1730 | 128 | 110 | 82-28 |  |
+| 29 | **us:c6pair** | 1730 | 128 | 110 | 82-28 |  |
+| 30 | **us:a3dig10** | 1730 | 128 | 110 | 82-28 |  |
+| 31 | **us:c5bank** | 1730 | 128 | 110 | 82-28 |  |
 | 32 | quesswho.cretplayer2_3 | 1725 | 29 | 580 | 307-273 | 40% (g_iter1 90-134) |
 | 33 | **us:a2relay** | 1705 | 127 | 110 | 81-29 |  |
 | 34 | **us:e2aggr** | 1705 | 127 | 110 | 81-29 |  |
@@ -87,9 +87,9 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 46 | jonters.bling3 | 1333 | 45 | 580 | 64-516 | 89% (g_iter1 200-24) |
 | 47 | HugoIngelsson.Bot21 | 1299 | 200 | 26 | 3-23 |  |
 | 48 | **us:g_iter0** | 1295 | 89 | 109 | 56-53 |  |
-| 49 | Metta-AI.bc24scenario | 1233 | 223 | 26 | 2-24 |  |
-| 50 | noahzemlin.honeyducklings | 1233 | 223 | 26 | 2-24 |  |
-| 51 | sivakovivan.NewHide | 1233 | 223 | 26 | 2-24 |  |
+| 49 | Metta-AI.bc24scenario | 1232 | 223 | 26 | 2-24 |  |
+| 50 | noahzemlin.honeyducklings | 1232 | 223 | 26 | 2-24 |  |
+| 51 | sivakovivan.NewHide | 1232 | 223 | 26 | 2-24 |  |
 | 52 | awu7.ExplosiveBot | 1213 | 60 | 580 | 34-546 | 97% (g_iter1 217-7) |
 | 53 | JeffLegendPower.v11 | 1145 | 263 | 26 | 1-25 |  |
 | 54 | MiloAkerman.v1 | 1145 | 263 | 26 | 1-25 |  |
