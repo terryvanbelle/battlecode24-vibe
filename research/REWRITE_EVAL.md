@@ -33,9 +33,15 @@ Written before any rewrite code exists. Numbers decided here are not moved after
 
   | look | pairs (seeds) | ship if | stop (park) if | otherwise |
   |---|---|---|---|---|
-  | 1 | 240 (seeds 1-2: 515151, 616161) | t_all >= 3.0 and net >= 0 | t_all < 0.5 and t_up < 0.8 | run seeds 3-4 |
-  | 2 | 480 (+ 717171, 818181, pooled) | ship test | t_all < 1.0 and t_up < 1.3 | run seeds 5-6 |
-  | 3 | 720 (+ 727272, 838383, pooled) | ship test | everything else | - |
+  | 1 | 240 (seeds 1-2) | t_all >= 3.0 and net >= 0 | t_all < 0.5 and t_up < 0.8 | run seeds 3-4 |
+  | 2 | 480 (seeds 1-4, pooled) | ship test | t_all < 1.0 and t_up < 1.3 | run seeds 5-6 |
+  | 3 | 720 (seeds 1-6, pooled) | ship test | everything else | - |
+
+  Seeds and band per incumbent: `tools/band-seeds.txt` (one line per look) and `tools/band.txt`. g_iter4: 515151 616161 /
+  717171 818181 / 727272 838383 on tools/band-20261001.txt. g_iter5 (2026-10-05 refresh, PROMPTS 185): 525252 626262 /
+  737373 848484 / 959595 161616 on tools/band-20261005.txt (the 20 bots nearest g_iter5; uravt.Version18Final and
+  HugoIngelsson.Bot21 in, awu7.ExplosiveBot and justinottesen.sprint1 out); tools/upper-tier.txt = the 10 bots rated above
+  g_iter5 (uravt out: g_iter4 beat it 26-14).
 
   The incumbent's control on seeds 5-6 is played once per incumbent and reused by every arm. At each promotion the new
   incumbent gets a fresh control on fresh seeds (with the band refresh, PROMPTS 185). Simulated: a null arm ships 2.0%,

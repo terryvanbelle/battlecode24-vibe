@@ -1848,3 +1848,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   filler games relabelled; the g_iter4 seeds-5-6 control recorded; keep-replays gains g_iter5 and g4ship1; ladder refit:
   **g_iter5 1983 +- 19 (rank 11)**, g_iter4 1939, Gymhgy 2010 (rank 10), Cyril 2028. CLAUDE rule 16, HANDOFF, README,
   REWRITE.md updated. Next: the band refresh (PROMPTS 185) with a fresh g_iter5 control.
+- **Band refresh** (owner PROMPTS 184-185, done with the promotion): tools/band-20261005.txt = the 20 bots nearest g_iter5
+  (uravt.Version18Final and HugoIngelsson.Bot21 in; awu7.ExplosiveBot and justinottesen.sprint1 out); tools/band.txt
+  points at the current band and tools/band-seeds.txt holds the incumbent's look seeds, read by band-test.sh,
+  delivery-gate.sh and filler-pair.sh (no more hard-coded band file). g_iter5's seeds are fresh (525252 626262 / 737373
+  848484 / 959595 161616), as the review advised (g4ship1 was selected on the old ones). tools/upper-tier.txt = the 10
+  bots rated above g_iter5 (uravt out). The g_iter5 control on all six seeds queued (720 games); the filler builds the
+  g_iter5 baseline against Gymhgy.

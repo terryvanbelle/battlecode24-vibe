@@ -1,7 +1,6 @@
 jmerle.camel_case_v21_final
 Strequals.duck0127v5
 IvanGeffner.kuma
-uravt.Version18Final
 NotLLeon.v3
 chenyx512.flagbot_final
 andli28.v9_USQuals_angle

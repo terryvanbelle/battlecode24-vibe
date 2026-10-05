@@ -15,8 +15,9 @@ if [ ! -f "gauntlet/delivery-$ARM.PASS" ]; then
   fi
   echo "!! band test WITHOUT delivery for $ARM: $NO_DELIVERY_REASON"
 fi
-SEEDS="${SEEDS:-515151 616161}"; TAG="${TAG:-}"; NS="$(echo $SEEDS | wc -w)"
-for S in $SEEDS; do BOT="$ARM" N=120 SEED=$S MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/bt-classes-$ARM" POOL="$(cat tools/band-20261001.txt)" tools/scrim.sh | tail -2; done
+# tools/band-seeds.txt: the current incumbent's look 1 / 2 / 3 seeds, one line per look (refreshed at each promotion)
+SEEDS="${SEEDS:-$(sed -n 1p tools/band-seeds.txt)}"; TAG="${TAG:-}"; NS="$(echo $SEEDS | wc -w)"
+for S in $SEEDS; do BOT="$ARM" N=120 SEED=$S MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/bt-classes-$ARM" POOL="$(cat tools/band.txt)" tools/scrim.sh | tail -2; done
 RUNS="$(ls -d gauntlet/*-scrim-"$ARM" | tail -"$NS")"
 P=7 tools/capability-census.sh "gauntlet/census-$ARM$TAG.csv" $RUNS
 MODE=--survey P=7 tools/capability-census.sh "gauntlet/survey-$ARM$TAG.csv" $RUNS

@@ -20,7 +20,7 @@ ARM="${1:?arm}"; CHECKS="${2:?checks}"; N="${N:-24}"; SEED="${SEED:-909090}"
 # a block on an explicit pool (e.g. ColtG5) writes tagged outputs, so it never overwrites the band block's PASS/FAIL and
 # census (RETEST.md: band-test.sh reads gauntlet/delivery-<arm>.PASS, which must be the band block's)
 OTAG=""; [ -n "${DGPOOL:-}" ] && OTAG="${DGTAG:-}"
-DGPOOL="${DGPOOL:-$(cat tools/band-20261001.txt)}"; DGTAG="${DGTAG:-}"
+DGPOOL="${DGPOOL:-$(cat tools/band.txt)}"; DGTAG="${DGTAG:-}"   # tools/band.txt: the current band
 rm -f "gauntlet/delivery-$ARM$OTAG.PASS" "gauntlet/delivery-$ARM$OTAG.FAIL"
 BOT="$ARM" N="$N" SEED="$SEED" RUNTAG="dga$DGTAG" MAXJOBS=8 GAME_TIMEOUT=900 CLASSES="build/dg-classes-$ARM" POOL="$DGPOOL" MAPFILE="${DGMAPS:-tools/bc24-maps.txt}" tools/scrim.sh | tail -1
 RUN="$(ls -d gauntlet/*-scrim-"$ARM"-dga"$DGTAG" | tail -1)"
