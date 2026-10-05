@@ -26,7 +26,8 @@
   to our ~77 (build-level discount), and takes 3x our centre crumbs in r201-400. g4front (placement) FAIL; g4wary/2
   (avoidance), g4crumb (INCONCLUSIVE at 96), g4builder/2 (dedicated builders) parked; **g4econ2** (centre crumbs + builders
   on top of everyone's stuns) passed Cyril delivery (fast stun victims +54%) but its band test met no criterion (net +3,
-  upper -0.20, t -1.6; kills -17%): the paired Cyril filler decides whether it is a crack. **Gymhgy.v10official is the target** (research/CRACK-GYMHGY.md; g_iter4 ~40% over 2,400+ games). Delivered: g4crumb
+  upper -0.20, t -1.6; kills -17%), and its paired Cyril filler found no crack (net +1/120, stopped for futility).
+  **Gymhgy.v10official is the target** (research/CRACK-GYMHGY.md; g_iter4 ~40% over 2,400+ games). Delivered: g4crumb
   (centre crumbs; 7-1 on chosen centre-crumb cells, +20/560 on random maps), g4dam (dam-line budget), g4gym1 (both; closed
   at +12/1,880, no measurable effect). Closed or parked: Z1HOLD, Z2ESCORT, pick, relay, level farm (g4farm2/3), convoy
   response (g4contact/g4contact8: fired, but screened rounds rose). **Now: g4ship1** (g4crumb + g4pick; owner PROMPTS 180):
