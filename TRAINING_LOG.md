@@ -1761,3 +1761,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   wins 5/6 vs 4/6, enemy captures 0.33 vs 1.67. Band delivery pre-registered: `DGTAG=-seeded BASE=g_iter4
   tools/delivery-gate.sh g4ship1 'rel:gathered201to400>=1.3 rel:regrabs>=1.5 nw:kills>=0.95 nw:enemyCaptured<=1.1
   mean:overruns<=0'`, band test chained on PASS (REWRITE_EVAL: then confirmation seeds).
+- **g4contact8 5(a)** (CT_GROUP_MAX 8, same 16 cells, g_iter4 twins): diveLeak12 0.18 (was 0.39; bar 0.3), diveNoChain
+  0.02, dives in all 13 games with a u12 chain (75 turns a game vs 242 at the 12 gate), basics clean. Convergence trace
+  (first diver per game against our flag's events): closes on the chain in 6 maps (Canals s1, DefaultHuge s2, GaltonBoard,
+  Joker s2, KingQuacksCastle s1, Puzzle s1); moves away or stays in 4 (Canals s2, Foxes x2, Joker s1; some may be the
+  designed lead pursuit). Passes the plan's 5(a) criteria. Signature preview weaker: screened20u12 0.260 vs 0.294 (-12%,
+  bar -20%). Delivery pre-registered (plan section 7 with the D0 R4 gate column): `DGPOOL=Gymhgy.v10official
+  DGTAG=-gymcontact BASE=g_iter4 tools/delivery-gate.sh g4contact8 'fire:diveTurns>0>=0.9 rel:screened20u12<=0.8
+  nw:kills>=0.95 nw:enemyFirstGrabs<=1.1 nw:enemyStunVictims<=1.2 mean:overruns<=0'`.
+- g4ship1 band delivery: INCONCLUSIVE at 96 cells: gathered201to400 +67% (+3.4 SE, PASS), regrabs x3.7 (+5.6 SE, PASS),
+  enemy captures 1.50 vs 1.53 (guard PASS), kills 450 vs 507 (-11%; worst plausible drop 22% vs the 20% limit:
+  INCONCLUSIVE). The chained band test did not run (rule 13). The kill cost is g4pick's known price (re-grab attempts trade
+  carriers); the decision to run the band test anyway goes to the owner.
