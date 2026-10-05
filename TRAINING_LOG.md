@@ -1708,3 +1708,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (+0.5 SE), continuing to 240.
 - Arm **g4farm3** (LEVEL_FARM dose: from r1200 to 10 build XP per duck): new census columns levelGain1200 and levelGapEnd
   (ours minus theirs at the end). 5(a) on the g4farm cells (g_iter4's replays there re-censused for the new columns).
+- g4gym1 vs g_iter4 against Gymhgy, paired filler: 200 pairs, gained 46, lost 30, net +16 (+1.8 SE), about +8 points;
+  g4gym1 79-121 (39.5%) on cells where g_iter4 went 63-137 (31.5%). Continuing.
