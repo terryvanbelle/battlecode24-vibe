@@ -31,7 +31,10 @@
   (centre crumbs; 7-1 on chosen centre-crumb cells, +20/560 on random maps), g4dam (dam-line budget), g4gym1 (both; closed
   at +12/1,880, no measurable effect). Closed or parked: Z1HOLD, Z2ESCORT, pick, relay, level farm (g4farm2/3), convoy
   response (g4contact/g4contact8: fired, but screened rounds rose). **Now: g4ship1** (g4crumb + g4pick; owner PROMPTS 180):
-  band delivery PASS once the kills guard was removed (PROMPTS 183), band test running, Gymhgy paired filler running.
+  band delivery PASS once the kills guard was removed (PROMPTS 183); pooled 480 band pairs net +12, capture delta +0.14
+  (t_all 2.21), upper t 1.39: under the **new shipping rule** (PROMPTS 186-188, REWRITE_EVAL: ship if t_all >= 2.3 or
+  t_up >= 2.6 with net >= 0, looks at 240/480/720) it goes to look 3 (seeds 727272 / 838383 + a reusable g_iter4
+  control), queued. Gymhgy paired filler running. g4crumb alone vs Gymhgy: +30/640 (+2.3 SE).
   Open: BOT3(a) reachable relocation
   spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (MEAS3 fixed 2026-10-04: seeds in replay names).
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
