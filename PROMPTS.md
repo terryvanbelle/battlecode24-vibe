@@ -246,3 +246,7 @@ I'm going to relax my restriction against choosing a map or side when playing th
 ## 179. 2026-10-05
 
 Good morning!  Can you give me a summary of last night?
+
+## 180. 2026-10-05
+
+Why don't you try stacking two of the close-to-good ideas to see if together they are good enough to ship
