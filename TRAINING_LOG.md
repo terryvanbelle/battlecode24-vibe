@@ -1727,3 +1727,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   groups under 12 (contact matters only there, critic R5). Signature: per-chain noContact10u12; control capRate12p; an
   offline premise check (D0) before the 5(a). Being implemented by a workflow (bot and tools on separate branches, two
   reviewers each, fixer).
+- g4gym1 vs g_iter4 against Gymhgy, paired filler: 840 pairs, net +22 (171-149, +1.2 SE): the early +31/400 regressed;
+  the effect is about +2.6 points. Small and positive; the g4contact lever (in implementation and review) targets the
+  larger loss mode.
