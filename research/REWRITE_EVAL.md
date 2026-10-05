@@ -26,10 +26,22 @@ Written before any rewrite code exists. Numbers decided here are not moved after
 
 ## Per milestone build (the stages switched on so far)
 - Band test (2 seeds, ~234 paired games) against the control runs above, reported by tier.
-- **Improvement** (pre-registered): (a) all-cell wins net >= +2 SE (sign p < 0.05), or (b) upper-tier capture
-  difference delta >= +2 SE with all-cell wins net >= -5 (non-inferior).
-- **Confirmation** before replacing g_iter1: two more seeds for the milestone and for g_iter1 (power ~480 paired games);
-  the pooled result must still meet (a) or (b); then ladder field blocks give its Elo.
+- **Shipping rule since 2026-10-05** (owner PROMPTS 186-188; research/criteria-review-2026-10-05/verdict.md). Statistics
+  from `tools/eval-paired.py ... --look N`: t_all = all-cell capture-difference delta / SE; t_up = the same on the upper
+  tier (tier list frozen when the arm is registered); net = all-cell wins gained - lost.
+  **Ship test:** (t_all >= 2.3 or t_up >= 2.6) and net >= 0.
+
+  | look | pairs (seeds) | ship if | stop (park) if | otherwise |
+  |---|---|---|---|---|
+  | 1 | 240 (seeds 1-2: 515151, 616161) | t_all >= 3.0 and net >= 0 | t_all < 0.5 and t_up < 0.8 | run seeds 3-4 |
+  | 2 | 480 (+ 717171, 818181, pooled) | ship test | t_all < 1.0 and t_up < 1.3 | run seeds 5-6 |
+  | 3 | 720 (+ 727272, 838383, pooled) | ship test | everything else | - |
+
+  The incumbent's control on seeds 5-6 is played once per incumbent and reused by every arm. At each promotion the new
+  incumbent gets a fresh control on fresh seeds (with the band refresh, PROMPTS 185). Simulated: a null arm ships 2.0%,
+  a harmful one <= 0.2%, a g4ship1-sized gain (+2.5 win points, +0.14 capture) 63-65% (the old rule 17% as written).
+- **Old rule (superseded 2026-10-05):** (a) all-cell wins net >= +2 SE (sign p < 0.05), or (b) upper-tier capture
+  difference delta >= +2 SE with all-cell wins net >= -5 (non-inferior); confirmation on two more seeds, pooled.
 - **Regression guard**: all-cell net <= -2 SE stops the milestone; the stage just added is ablated first.
 - Every milestone's numbers go into progress/REWRITE.md (a table: build, stages on, all / upper / rest wins and capture
   deltas, Elo when available) and TRAINING_LOG.md.

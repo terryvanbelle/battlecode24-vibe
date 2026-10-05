@@ -100,6 +100,10 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
   incumbent in the same period against the same band; accept when the pooled difference's lower
   one-SE bound is above zero after a confirming second pair of blocks. Never compare against the
   incumbent's pooled history (winner's curse).
+- **Shipping rule** (owner, PROMPTS 186-188; research/REWRITE_EVAL.md has the table): ship an arm when (all-cell
+  capture-difference delta >= 2.3 SE or upper-tier delta >= 2.6 SE) and all-cell wins net >= 0, read at 240, 480 and 720
+  seeded band pairs (`tools/eval-paired.py --look 1|2|3`) with stop rules for clear losers. The basics battery, the
+  regression guard and the delivery gate are unchanged.
 - **Stacking near-misses** (owner, PROMPTS 180 and 187): it is permissible to stack changes that do not quite meet the
   shipping criteria. A component qualifies when its mechanism delivered (5(b) PASS), its band estimates are positive
   (wins net and capture delta above zero, ideally on every seed), the basics battery passes and no regression guard

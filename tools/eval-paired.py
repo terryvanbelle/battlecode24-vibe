@@ -62,7 +62,33 @@ def summarize(name, P):
     return (f'{name:6s} n={n:4d}  wins {cw}->{aw}  gained {g} lost {l} net {g - l:+d} (sign p={sign_p(g, l):.3f})  '
             f'capture diff {sum(cd) / n:+.2f} -> {sum(ad) / n:+.2f}  delta {m:+.2f} +- {se:.2f} (t={t:+.1f})  identical {same}/{n}')
 
+def stats(P):
+    """(t of the capture-difference delta, wins net) over pairs P."""
+    n = len(P)
+    if n < 2: return float('nan'), 0
+    d = [(a['cap'] - a['ecap']) - (c['cap'] - c['ecap']) for c, a in P]
+    m = sum(d) / n; se = math.sqrt(sum((x - m) ** 2 for x in d) / (n - 1) / n)
+    net = sum(1 for c, a in P if a['won'] and not c['won']) - sum(1 for c, a in P if c['won'] and not a['won'])
+    return (m / se if se > 0 else float('nan')), net
+
+def ship_decision(look, t_all, t_up, net):
+    """Shipping rule (owner PROMPTS 186-188, research/criteria-review-2026-10-05/verdict.md; REWRITE_EVAL.md): ship test
+    (t_all >= 2.3 or t_up >= 2.6) and net >= 0, read at look 1 (240 pairs), 2 (480 pooled) or 3 (720 pooled)."""
+    test = (t_all >= 2.3 or t_up >= 2.6) and net >= 0
+    if look == 1:
+        if t_all >= 3.0 and net >= 0: return 'SHIP'
+        if t_all < 0.5 and t_up < 0.8: return 'STOP (park)'
+        return 'CONTINUE (seeds 3-4)'
+    if look == 2:
+        if test: return 'SHIP'
+        if t_all < 1.0 and t_up < 1.3: return 'STOP (park)'
+        return 'CONTINUE (seeds 5-6)'
+    return 'SHIP' if test else 'STOP (park)'
+
 def main(argv):
+    look = None
+    if '--look' in argv:
+        i = argv.index('--look'); look = int(argv[i + 1]); argv = argv[:i] + argv[i + 2:]
     tier_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'upper-tier.txt')
     rung = None
     if '--rung' in argv:
@@ -77,6 +103,10 @@ def main(argv):
     print(summarize('upper', [p for p in P if p[0]['opp'] in upper]))
     print(summarize('rest', [p for p in P if p[0]['opp'] not in upper]))
     if rung is not None: print(summarize('rung', [p for p in P if p[0]['opp'] in rung]))   # descriptive only
+    if look is not None:
+        t_all, net = stats(P); t_up, _ = stats([p for p in P if p[0]['opp'] in upper])
+        print(f'ship rule, look {look} ({len(P)} pairs): t_all {t_all:+.2f}, t_up {t_up:+.2f}, net {net:+d} -> '
+              f'{ship_decision(look, t_all, t_up, net)}')
 
 if __name__ == '__main__':
     main(sys.argv[1:])

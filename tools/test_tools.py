@@ -764,6 +764,18 @@ with tempfile.TemporaryDirectory() as td:
 # eval-paired: pairing, tier split, sign test, capture difference
 spec = importlib.util.spec_from_file_location('evp', os.path.join(HERE, 'eval-paired.py')); evp = importlib.util.module_from_spec(spec); spec.loader.exec_module(evp)
 check(abs(evp.sign_p(0, 6) - 0.03125) < 1e-9 and evp.sign_p(3, 3) == 1.0, 'eval-paired: exact sign test')
+# shipping rule (PROMPTS 186-188): looks 1-3 with their ship / stop / continue boundaries
+sd = evp.ship_decision
+check(sd(1, 3.1, 0, 1) == 'SHIP' and sd(1, 3.1, 0, -1).startswith('CONTINUE') and sd(1, 0.4, 0.7, 5).startswith('STOP')
+      and sd(1, 1.2, 0, 9).startswith('CONTINUE'), 'eval-paired ship rule look 1: ship at t_all >= 3 with net >= 0, stop below 0.5 / 0.8')
+check(sd(2, 2.21, 1.39, 12).startswith('CONTINUE') and sd(2, 2.3, 0, 0) == 'SHIP' and sd(2, 0.5, 2.6, 0) == 'SHIP'
+      and sd(2, 2.5, 0, -1).startswith('CONTINUE') and sd(2, 0.9, 1.2, 4).startswith('STOP'),
+      'eval-paired ship rule look 2: (t_all >= 2.3 or t_up >= 2.6) and net >= 0; g4ship1 (2.21, 1.39, +12) continues')
+check(sd(3, 2.3, 0, 0) == 'SHIP' and sd(3, 2.29, 2.59, 10).startswith('STOP'), 'eval-paired ship rule look 3: ship test or park')
+P0 = [({'won': 0, 'cap': 1, 'ecap': 1}, {'won': 1, 'cap': 2, 'ecap': 1}), ({'won': 1, 'cap': 2, 'ecap': 0}, {'won': 1, 'cap': 2, 'ecap': 1}),
+      ({'won': 0, 'cap': 0, 'ecap': 2}, {'won': 0, 'cap': 1, 'ecap': 2})]
+t0, n0 = evp.stats(P0)
+check(n0 == 1 and abs(t0 - (1 / 3) / ((((2 / 3) ** 2 * 2 + (4 / 3) ** 2) / 2 / 3) ** 0.5)) < 1e-9, f'eval-paired stats: capture-delta t and wins net ({t0}, {n0})')
 with tempfile.TemporaryDirectory() as td:
     hdr = 'file,opp,us,team,name,won,captured\n'
     def census(path, rows):
