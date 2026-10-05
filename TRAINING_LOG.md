@@ -1788,3 +1788,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g4gym1 vs g_iter4 against Gymhgy, paired filler closed at 1,880 pairs: net +12 (362-350, +0.4 SE)**, ~+0.6 points: the
   early +31/400 was noise; crumbs + dam line do not move the Gymhgy matchup measurably. The filler now pairs g4ship1 with
   g_iter4 against Gymhgy while its band test runs.
+- **g4ship1 band test vs g_iter4** (240 seeded pairs, identical 16): **net +9** (23-14, sign p 0.19), capture delta +0.11
+  +- 0.09 (t 1.2); upper +4, +0.10 +- 0.14; rest +5, +0.12 +- 0.12; basics PASS with kill/death level (3.09 vs 3.09: the
+  delivery-block kill drop does not show on the band). No criterion yet; extended with the confirmation seeds 717171 /
+  818181 (pre-registered as for g4pick: the pooled four seeds must meet REWRITE_EVAL (a) or (b), else no promotion).
