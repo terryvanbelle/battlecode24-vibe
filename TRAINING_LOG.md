@@ -1798,3 +1798,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   from the target filler, so uravt was never redrawn; it is in tools/upper-tier.txt but absent from every band test, so
   the "upper" slice has covered 10 of its 11 bots. A 40-game g_iter4 block vs uravt (random maps and sides, recorded in the
   ladder through the filler path) queued to place its rating and our record.
+- Owner PROMPTS 185 agrees: the band list is refreshed (with uravt) at the next promotion, when a fresh control is played
+  anyway (HANDOFF). g4ship1 vs g_iter4 against Gymhgy (paired filler): 80 pairs, net +10 (+2.0 SE), early.

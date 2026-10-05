@@ -39,6 +39,9 @@
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
   `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=CyrilSharma.finalBot tools/filler-pair.sh g_iter4 - 40`
   (the g_iter4 vs Cyril baseline), collected with `tools/collect-fillers.sh g_iter4 -`.
+- **At the next promotion, refresh the band** (owner PROMPTS 184-185): re-derive the band list from the converged ratings
+  so it includes uravt.Version18Final (absent since 2026-10-01; in tools/upper-tier.txt but never band-tested), and play
+  the new incumbent's control on it.
 - Every build and test block gets `tools/basics.py` (CLAUDE rule 15); unit tests include the dead-code and arm-intent
   checks.
 
