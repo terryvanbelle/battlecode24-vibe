@@ -257,14 +257,16 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd']
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False
     for name, o in outs.items():
         cap = _pick(o, 'enemyCarrierKills'); trk = o.get(29, []); dfn = o.get(11, []); cm = o.get(66, [])
         check(len(cap) == 2 and list(cap[0].keys()) == OLD_CAP + NEW_CAP, f'replay-dump --capabilities ({name}): existing columns kept in order, S0a columns appended')
-        check(all(num_or_blank(c[k]) for c in cap for k in NEW_CAP), f'replay-dump --capabilities ({name}): new columns blank or numeric')
+        SIGNED = {'levelGain1500', 'levelGain1200', 'levelGapEnd'}   # differences may be negative
+        check(all(num_or_blank(c[k]) or (k in SIGNED and re.fullmatch(r'-\d+', c[k] or '')) for c in cap for k in NEW_CAP),
+              f'replay-dump --capabilities ({name}): new columns blank or numeric (signed where a difference)')
         check(all(c['longCapRate'] == '' or abs(float(c['longCapRate']) - int(c['longCaps25']) / int(c['longTrips25'])) < 1e-3 for c in cap),
               f'replay-dump --capabilities ({name}): longCapRate = longCaps25 / longTrips25')
         check(all((c['longTrips25'] == '') == (c['longCaps25'] == '') == (c['longCapRate'] == '') and c['longTrips25'] != '0' for c in cap),

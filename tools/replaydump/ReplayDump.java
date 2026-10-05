@@ -73,6 +73,7 @@ import java.util.zip.GZIPInputStream;
  *   digsLate           our dig actions after r1500; levelGain1500: our level sum at the end minus at r1500 (blank if shorter)
  *   gathered201to400   map crumbs our robots collected in r201-400 (gathered400 - gathered200, as one column for delivery bars)
  *   stunTrig250        our stuns triggered in r201-250; kills250 / deaths250: our kills and deaths by the end of r250
+ *   levelGain1200      our level sum at the end minus at r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
@@ -112,6 +113,8 @@ public class ReplayDump {
     /** stunTrig250: our stuns (built any time) triggered in r201-250; kills250 / deaths250: our kills and deaths by the end of
      *  r250 (the dam-drop skirmish, the Gymhgy study's earliest win/loss separator; C.DAM_FIRST's signature). */
     static int[] kStunTrig250 = new int[3], kKills250 = new int[3], kDeaths250 = new int[3];
+    /** levelGain1200: our level sum at the end minus at the end of r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end. */
+    static int[] kLevel1200 = {-1, -1, -1};
     static int[] spawnZone;            // 0 none, 1 A, 2 B
     static int[] crumbs;               // remaining crumbs per tile
     static Map<Integer, Integer> flagTeam = new HashMap<>();   // flag id -> team (1/2)
@@ -679,6 +682,7 @@ public class ReplayDump {
         }
         for (int t = 1; t <= 2; t++) { kAliveSum[t] += alive[t]; if (rn == 200) kGathered200[t] = kGathered[t]; if (rn == 400) kGathered400[t] = kGathered[t]; }
         if (rn == 1500) for (int t = 1; t <= 2; t++) kLevel1500[t] = levelSum(t);
+        if (rn == 1200) for (int t = 1; t <= 2; t++) kLevel1200[t] = levelSum(t);
         if (rn == 250) for (int t = 1; t <= 2; t++) { kKills250[t] = cDeaths[3 - t]; kDeaths250[t] = cDeaths[t]; }
         if (rn > 200) for (Map.Entry<Integer, int[]> fe : flagLoc.entrySet()) {   // dropGuard: own robots beside an own dropped flag
             int[] dgl = fe.getValue(), dgh = flagHome.get(fe.getKey()); int ft = flagTeam.getOrDefault(fe.getKey(), 0);
@@ -1301,7 +1305,7 @@ public class ReplayDump {
         }
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1330,7 +1334,8 @@ public class ReplayDump {
                         + "," + kStunVictimsEsc[t] + "," + kStunVictimsEsc[o] + "," + kStunVictimsFast[t] + "," + kStunVictimsFast[o]
                         + "," + kDeathsHome[t] + "," + kDeathsHome[o] + "," + kGathered[t] + "," + kDropGuard[t]
                         + "," + kDigsLate[t] + "," + (kLevel1500[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1500[t]) : "")
-                        + "," + (kGathered400[t] - kGathered200[t]) + "," + kStunTrig250[t] + "," + kKills250[t] + "," + kDeaths250[t]);
+                        + "," + (kGathered400[t] - kGathered200[t]) + "," + kStunTrig250[t] + "," + kKills250[t] + "," + kDeaths250[t]
+                        + "," + (kLevel1200[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1200[t]) : "") + "," + (levelSum(t) - levelSum(o)));
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

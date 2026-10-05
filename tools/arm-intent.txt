@@ -106,3 +106,6 @@ g4dam C.DAM_FIRST=true
 g4gym1 C.CRUMB_STEP=true
 g4gym1 C.POST_SETUP_CRUMBS=true
 g4gym1 C.DAM_FIRST=true
+g4farm3 C.LEVEL_FARM=true
+g4farm3 C.FARM_ROUND=1200
+g4farm3 C.FARM_XP=10
