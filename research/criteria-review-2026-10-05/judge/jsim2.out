@@ -1,0 +1,90 @@
+
+harm: capture -0.05, wins coupled: E[cap delta @480] -0.050  E[net/480] -4.0
+  R0 written           0.3%
+  R0 practice          0.5%
+  R0 pooled480         0.9%
+  (i)+screen t2.0      0.2%
+  (iv-h) 2.2/2.5       0.3%   arm games  296
+  (iv-h) 2.3/2.6       0.2%   arm games  296
+  (iv) 2.1             0.2%   arm games  282
+
+harm: capture -0.10, wins -2 pt: E[cap delta @480] -0.100  E[net/480] -9.5
+  R0 written           0.0%
+  R0 practice          0.0%
+  R0 pooled480         0.1%
+  (i)+screen t2.0      0.0%
+  (iv-h) 2.2/2.5       0.0%   arm games  262
+  (iv-h) 2.3/2.6       0.0%   arm games  262
+  (iv) 2.1             0.0%   arm games  254
+
+uniform +0.05: E[cap delta @480] +0.051  E[net/480] +4.4
+  R0 written           4.2%
+  R0 practice          8.2%
+  R0 pooled480        11.0%
+  (i)+screen t2.0     10.2%
+  (iv-h) 2.2/2.5      13.0%   arm games  440
+  (iv-h) 2.3/2.6      11.2%   arm games  443
+  (iv) 2.1            13.4%   arm games  419
+
+uniform +0.10: E[cap delta @480] +0.100  E[net/480] +8.4
+  R0 written          10.8%
+  R0 practice         21.2%
+  R0 pooled480        25.7%
+  (i)+screen t2.0     30.7%
+  (iv-h) 2.2/2.5      39.6%   arm games  503
+  (iv-h) 2.3/2.6      36.4%   arm games  509
+  (iv) 2.1            40.6%   arm games  485
+
+uniform +0.14: E[cap delta @480] +0.140  E[net/480] +11.7
+  R0 written          20.0%
+  R0 practice         37.7%
+  R0 pooled480        42.2%
+  (i)+screen t2.0     54.0%
+  (iv-h) 2.2/2.5      66.3%   arm games  507
+  (iv-h) 2.3/2.6      63.4%   arm games  516
+  (iv) 2.1            67.0%   arm games  494
+
+uniform +0.20: E[cap delta @480] +0.200  E[net/480] +16.7
+  R0 written          39.3%
+  R0 practice         66.0%
+  R0 pooled480        69.4%
+  (i)+screen t2.0     84.5%
+  (iv-h) 2.2/2.5      92.2%   arm games  452
+  (iv-h) 2.3/2.6      91.4%   arm games  458
+  (iv) 2.1            92.2%   arm games  445
+
+trade: capture +0.10, wins -2 pt: E[cap delta @480] +0.100  E[net/480] -9.6
+  R0 written           2.2%
+  R0 practice          5.2%
+  R0 pooled480         6.2%
+  (i)+screen t2.0      4.6%
+  (iv-h) 2.2/2.5       6.1%   arm games  562
+  (iv-h) 2.3/2.6       5.5%   arm games  563
+  (iv) 2.1             6.5%   arm games  547
+
+trade: capture +0.15, wins -2 pt: E[cap delta @480] +0.150  E[net/480] -9.6
+  R0 written           4.9%
+  R0 practice         11.2%
+  R0 pooled480        12.3%
+  (i)+screen t2.0      8.9%
+  (iv-h) 2.2/2.5      12.5%   arm games  628
+  (iv-h) 2.3/2.6      12.0%   arm games  629
+  (iv) 2.1            12.7%   arm games  620
+
+trade: capture +0.15, wins -1 pt: E[cap delta @480] +0.151  E[net/480] -4.9
+  R0 written           8.3%
+  R0 practice         18.4%
+  R0 pooled480        20.3%
+  (i)+screen t2.0     18.8%
+  (iv-h) 2.2/2.5      25.9%   arm games  604
+  (iv-h) 2.3/2.6      24.9%   arm games  607
+  (iv) 2.1            26.4%   arm games  594
+
+pure capture +0.14, wins 0: E[cap delta @480] +0.140  E[net/480] -0.1
+  R0 written          11.4%
+  R0 practice         24.2%
+  R0 pooled480        27.0%
+  (i)+screen t2.0     28.9%
+  (iv-h) 2.2/2.5      40.2%   arm games  569
+  (iv-h) 2.3/2.6      38.3%   arm games  574
+  (iv) 2.1            40.9%   arm games  558

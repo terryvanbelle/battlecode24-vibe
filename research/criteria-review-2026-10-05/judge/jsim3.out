@@ -1,0 +1,10 @@
+null (sign-flip) net >= 0: 1.9%  wins z >= 0.5: 1.8%  wins z >= 1.0: 1.7%
+uniform +0.10 net >= 0: 35.9%  wins z >= 0.5: 35.2%  wins z >= 1.0: 32.8%
+uniform +0.14 net >= 0: 64.0%  wins z >= 0.5: 63.0%  wins z >= 1.0: 59.4%
+pure capture +0.14, wins 0 net >= 0: 37.8%  wins z >= 0.5: 23.1%  wins z >= 1.0: 12.9%
+trade +0.15 / -1 pt net >= 0: 24.6%  wins z >= 0.5: 11.9%  wins z >= 1.0: 5.3%
+trade +0.15 / -2 pt net >= 0: 11.8%  wins z >= 0.5: 4.5%  wins z >= 1.0: 1.5%
+g4ship1 as observed net >= 0: 65.3%  wins z >= 0.5: 64.2%  wins z >= 1.0: 60.7%
+g3lost as observed net >= 0: 96.2%  wins z >= 0.5: 89.6%  wins z >= 1.0: 78.6%
+g2cr as observed net >= 0: 98.3%  wins z >= 0.5: 98.2%  wins z >= 1.0: 97.4%
+g4pick as observed net >= 0: 29.5%  wins z >= 0.5: 28.4%  wins z >= 1.0: 25.4%

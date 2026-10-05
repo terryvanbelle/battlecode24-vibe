@@ -1819,3 +1819,12 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   the 32 cells that reach r1500, -0.2 SE; gathered201to400 and regrabs PASS, identical to g4ship1 on the same cells; enemy
   captures 1.50 vs 1.53). The farm hardly fires on the band (few band games stay tied that long): parked; g4ship1 remains
   the best stack.
+- **Shipping-criteria review** (owner PROMPTS 186; workflow: power simulation, history, alternatives, judge with an
+  independent simulator; research/criteria-review-2026-10-05/). Verdict: the false-promotion rate is right (null arm
+  1.2% as written, 2.4% as practised) but power is about half what the data allow: a g4ship1-sized gain (+2.5 win
+  points, +0.14 capture, ~+30 Elo) ships 17% (written) / 34% (practised). Causes: criterion (a) tests wins, which carry
+  2.2-5.6x less information per pair than the capture difference; (b) reads only the upper half; the all-cell capture
+  delta, the most precise number, is used by no criterion; the 240-pair first stage halves power. Proposed replacement
+  (to pre-register before use): ship if (t_all >= 2.3 or t_up >= 2.6) and wins net >= 0, in three looks (240 / 480 / 720
+  pairs) with stop rules; null 2.0%, harmful <= 0.2%, g4ship1-sized gains 63-65%. On the data in hand it changes no
+  promotion; g4ship1 (t_all 2.21 at 480) would go to a third look (seeds 5-6). Awaiting the owner's decision.

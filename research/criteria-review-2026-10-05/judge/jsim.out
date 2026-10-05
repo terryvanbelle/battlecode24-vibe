@@ -1,0 +1,99 @@
+
+null, g4ship1 pairs sign-flipped: n=480 mean cap delta +0.144, wins/pair +0.0250
+  R0 written               1.2%
+  R0 practice              2.4%
+  R0 pooled480             3.8%
+  (i)+screen t2.0          2.1%
+  (iv-h) 2.2/2.5           2.5%   arm games  359
+  (iv-h) 2.3/2.6           2.0%   arm games  360
+  (iv-h) 2.0/2.3           3.7%   arm games  356
+  (iv-h) 2.4/2.7           1.6%   arm games  360
+  (iv) 2.1                 2.4%   arm games  340
+
+null, all g4-era arm pairs sign-flipped: n=1901 mean cap delta +0.058, wins/pair +0.0147
+  R0 written               1.2%
+  R0 practice              2.3%
+  R0 pooled480             3.6%
+  (i)+screen t2.0          2.1%
+  (iv-h) 2.2/2.5           2.5%   arm games  359
+  (iv-h) 2.3/2.6           2.0%   arm games  360
+  (iv-h) 2.0/2.3           3.8%   arm games  357
+  (iv-h) 2.4/2.7           1.5%   arm games  361
+  (iv) 2.1                 2.5%   arm games  339
+
+null, g3lost pairs sign-flipped: n=473 mean cap delta +0.140, wins/pair +0.0190
+  R0 written               1.3%
+  R0 practice              2.5%
+  R0 pooled480             3.9%
+  (i)+screen t2.0          2.3%
+  (iv-h) 2.2/2.5           2.6%   arm games  358
+  (iv-h) 2.3/2.6           2.1%   arm games  359
+  (iv-h) 2.0/2.3           3.9%   arm games  356
+  (iv-h) 2.4/2.7           1.7%   arm games  360
+  (iv) 2.1                 2.7%   arm games  339
+
+g4ship1 as observed (bootstrap): n=480 mean cap delta +0.144, wins/pair +0.0250
+  R0 written              17.3%
+  R0 practice             34.2%
+  R0 pooled480            37.7%
+  (i)+screen t2.0         56.6%
+  (iv-h) 2.2/2.5          67.8%   arm games  505
+  (iv-h) 2.3/2.6          65.1%   arm games  513
+  (iv-h) 2.0/2.3          72.4%   arm games  488
+  (iv-h) 2.4/2.7          62.2%   arm games  522
+  (iv) 2.1                69.5%   arm games  492
+
+g4ship1 confirmation seeds only (bootstrap): n=240 mean cap delta +0.175, wins/pair +0.0125
+  R0 written              20.2%
+  R0 practice             40.3%
+  R0 pooled480            42.4%
+  (i)+screen t2.0         66.3%
+  (iv-h) 2.2/2.5          77.7%   arm games  494
+  (iv-h) 2.3/2.6          76.6%   arm games  500
+  (iv-h) 2.0/2.3          79.4%   arm games  485
+  (iv-h) 2.4/2.7          75.3%   arm games  507
+  (iv) 2.1                78.1%   arm games  487
+
+g4ship1 at half its observed effect (tilt): n=480 mean cap delta +0.144, wins/pair +0.0250
+  R0 written               6.5%
+  R0 practice             12.7%
+  R0 pooled480            16.2%
+  (i)+screen t2.0         17.6%
+  (iv-h) 2.2/2.5          22.6%   arm games  475
+  (iv-h) 2.3/2.6          20.0%   arm games  480
+  (iv-h) 2.0/2.3          28.0%   arm games  464
+  (iv-h) 2.4/2.7          17.6%   arm games  484
+  (iv) 2.1                23.3%   arm games  454
+
+g3lost as observed (bootstrap): n=473 mean cap delta +0.140, wins/pair +0.0190
+  R0 written              83.8%
+  R0 practice             91.6%
+  R0 pooled480            97.6%
+  (i)+screen t2.0         83.1%
+  (iv-h) 2.2/2.5          96.4%   arm games  448
+  (iv-h) 2.3/2.6          96.3%   arm games  449
+  (iv-h) 2.0/2.3          96.5%   arm games  446
+  (iv-h) 2.4/2.7          96.2%   arm games  451
+  (iv) 2.1                91.6%   arm games  450
+
+g4pick as observed (bootstrap): n=473 mean cap delta +0.082, wins/pair +0.0127
+  R0 written               9.3%
+  R0 practice             18.1%
+  R0 pooled480            22.4%
+  (i)+screen t2.0         24.7%
+  (iv-h) 2.2/2.5          32.6%   arm games  499
+  (iv-h) 2.3/2.6          29.5%   arm games  505
+  (iv-h) 2.0/2.3          38.8%   arm games  485
+  (iv-h) 2.4/2.7          26.5%   arm games  511
+  (iv) 2.1                32.9%   arm games  476
+
+g2cr as observed (bootstrap): n=473 mean cap delta +0.252, wins/pair +0.0465
+  R0 written              41.6%
+  R0 practice             72.0%
+  R0 pooled480            73.2%
+  (i)+screen t2.0         96.0%
+  (iv-h) 2.2/2.5          98.3%   arm games  394
+  (iv-h) 2.3/2.6          98.2%   arm games  396
+  (iv-h) 2.0/2.3          98.5%   arm games  390
+  (iv-h) 2.4/2.7          98.0%   arm games  399
+  (iv) 2.1                98.4%   arm games  392
