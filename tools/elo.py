@@ -62,8 +62,8 @@ if a.build:
           f"rank {rank.get(p_, '-')} of {len(table)}; expected score vs the {len(bots)}-bot field {elolib.field_score(R, p_, bots):.1%}")
     raise SystemExit
 ndist = len(elolib.dedupe(rows))
-# Each opponent's record against the most recent of our builds that played it RUN_MIN+ times (PROMPTS 53-55): the
-# floor is per opponent, not per run -- a 240-game band run gives each of its 8 bots 30 games (+-18 points at 95%).
+# Each opponent's record (PROMPTS 53-55, revised by PROMPTS 181 below). RUN_MIN marks a thin record: a 240-game band run
+# gives each of its 8 bots 30 games (+-18 points at 95%); the seeded band seeds give the upper tier 24 each.
 RUN_MIN = 30
 last_seen = {}
 for i, r in enumerate(rows):
@@ -76,10 +76,15 @@ for r in elolib.dedupe(rows):
     if elolib.is_ours(ta) == elolib.is_ours(tb): continue
     us_, opp = (ta, tb) if elolib.is_ours(ta) else (tb, ta)
     vs[us_, opp][1] += 1; vs[us_, opp][0] += (r['winner'] == 'A') == (opp == ta)
+# PROMPTS 181 (2026-10-05): the column showed g_iter1's record against most of the upper tier, because later builds met
+# each of those bots only 24 times (the band seeds) and fell under RUN_MIN. Now: the INCUMBENT's record against the bot
+# whatever the count (fewer than RUN_MIN games marked *), else the most recent of our builds that played it.
+incumbent = (elolib.accepted_builds(ours) or [None])[-1]
 def recent_run(bot):
-    for p in recent:
+    order = ([incumbent] if incumbent else []) + [p for p in recent if p != incumbent]
+    for p in order:
         w, n = vs[p, bot]
-        if n >= RUN_MIN: return f"{(n - w) / n:.0%} ({elolib.build_of(p)} {n - w}-{w})"   # our wins
+        if n > 0: return f"{(n - w) / n:.0%} ({elolib.build_of(p)} {n - w}-{w}{'*' if n < RUN_MIN else ''})"   # our wins
     return ''
 def higher_field(p):   # expected score against only the ladder bots rated above p
     up = [b for b in rated if R[b] > R[p]]
@@ -94,9 +99,11 @@ lines = ["# Ladder", "",
 for p in ours:
     lines.append(f"| {elolib.build_of(p)} | {R[p]:.0f} +- {1.96 * SE[p]:.0f} | {rank[p]} of {len(table)} | {games[p]} | "
                  f"{wins[p]}-{games[p] - wins[p]} | {elolib.field_score(R, p, bots):.1%} | {higher_field(p)} |")
-lines += ["", f"Our last run = OUR win rate (our W-L) against the bot, by the most recent of our builds that played it {RUN_MIN}+ "
-          f"times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).", "",
-          "| rank | player | rating | +- 95% | games | W-L | our last run |", "|---|---|---|---|---|---|---|"]
+lines += ["", f"Our record = OUR win rate (our W-L) against the bot by the incumbent "
+          f"({elolib.build_of(incumbent) if incumbent else '-'}), whatever the count; * marks fewer than {RUN_MIN} games "
+          f"(+- 18 points at 95% for 30 games, +- 20 for 24); a bot the incumbent never met shows the most recent of our "
+          f"builds that did; blank if none has.", "",
+          "| rank | player | rating | +- 95% | games | W-L | our record |", "|---|---|---|---|---|---|---|"]
 for i, (r, p) in enumerate(table):
     name = f"**{p}**" if elolib.is_ours(p) else p
     lines.append(f"| {i + 1} | {name} | {r:.0f} | {1.96 * SE[p]:.0f} | {games[p]} | {wins[p]}-{games[p] - wins[p]} | "
