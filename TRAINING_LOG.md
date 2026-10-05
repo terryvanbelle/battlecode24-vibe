@@ -1805,3 +1805,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   upper +0.14 +- 0.10 (t 1.4), rest +0.15 +- 0.08**: positive on every seed, but neither REWRITE_EVAL criterion ((a) wins net
   at sign p < 0.05; (b) upper capture delta >= +2 SE): not promoted. Next stack (owner PROMPTS 180): g4ship2 = g4ship1 +
   the late level farm (FARM_XP 5 from r1500), an independent mechanism for the ~8% of band games decided on level sum.
+- g4ship2 5(a) (6 maps vs g_iter4 mirrors, seed 5): all three mechanisms fire: gathered201to400 8,367 vs 2,650, regrabs
+  26.3 vs 7.3, digsLate 54.7 vs 0, levelGain1500 48 vs 31 (level gap at the end +34 vs -28); basics clean; wins 5/6 vs 2/6
+  (descriptive). Band delivery pre-registered (no kills guard, PROMPTS 183): `DGTAG=-seeded BASE=g_iter4
+  tools/delivery-gate.sh g4ship2 'rel:gathered201to400>=1.3 rel:regrabs>=1.5 rel:levelGain1500>=1.1 nw:enemyCaptured<=1.1
+  mean:overruns<=0'`, band test chained. Owner PROMPTS 186: a shipping-criteria review (workflow: power simulation,
+  history, alternatives, judge) is running.
