@@ -1667,3 +1667,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   level-sum margin of 17. Stronger doses (FARM_ROUND 1200, FARM_XP 10) are the next variant if revisited.
 - g4crumb band guard: PASS (24 cells: kills 572 vs 510, worst plausible drop 6%; enemy captures 1.54 vs 1.88). Band test
   running; the Gymhgy paired filler starts when the queue is idle.
+- **g4crumb band test vs g_iter4** (240 seeded pairs, all paired; identical 86): net +4 (15-11), capture delta +0.07 +-
+  0.07 (t 1.0); upper -1, -0.03 +- 0.10; rest +5, +0.18 +- 0.10 (t 1.8); basics PASS (k/d 3.52 vs 3.09, gathered400 +25%).
+  No REWRITE_EVAL criterion, no harm. Its case is the Gymhgy victory read: the paired filler (g4crumb vs g_iter4 against
+  Gymhgy, random maps and sides) runs from now.
