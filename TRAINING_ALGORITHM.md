@@ -63,7 +63,8 @@ change aimed at the field; a single seeded game is a filter, never a verdict.
 7. **On accept**: snapshot; archetype regression; ladder block(s) as a submission; post-block
    (record, refit, charts, study); update TACTICS, ledger, handoff; commit explicit paths; push.
 8. **On reject**: restore `src/bot` from the incumbent snapshot byte-for-byte; ledger entry with the
-   number that closed it and a re-open condition.
+   number that closed it and a re-open condition. A near-miss (mechanism delivered, band estimates positive but short
+   of the shipping criteria) is not discarded: it stays available as a stack component (§5, stacking near-misses).
 
 ## 4. What to work on (rotation)
 
@@ -99,6 +100,14 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
   incumbent in the same period against the same band; accept when the pooled difference's lower
   one-SE bound is above zero after a confirming second pair of blocks. Never compare against the
   incumbent's pooled history (winner's curse).
+- **Stacking near-misses** (owner, PROMPTS 180 and 187): it is permissible to stack changes that do not quite meet the
+  shipping criteria. A component qualifies when its mechanism delivered (5(b) PASS), its band estimates are positive
+  (wins net and capture delta above zero, ideally on every seed), the basics battery passes and no regression guard
+  tripped. Components with independent mechanisms are combined into one arm, which goes through its own 5(a), delivery
+  and band test with confirmation under the same shipping criteria; the stack, not its parts, is what ships. Leave out
+  a component that is band-neutral or negative (2026-10-04: g4gym1's dam-line budget cancelled what the crumbs gained).
+  Record each stack's components and numbers in progress/REWRITE.md. Example: g4ship1 = g4crumb (net +4) + g4pick
+  (pooled net +6), pooled 480 pairs net +12, capture delta +0.14 (t 2.2); g4ship2 adds the late level farm.
 - **Archetype arm** (neutralizations): pre-register a second arm against the archetype that has the property,
   decided before the gate runs.
 - Never read a running batch. Never move a bar after seeing a number. Diff game by game and read the

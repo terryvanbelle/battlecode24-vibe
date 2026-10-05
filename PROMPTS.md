@@ -274,3 +274,7 @@ Sure, sounds good
 ## 186. 2026-10-05
 
 Can you evaluate whether the shipping criteria are too strict?
+
+## 187. 2026-10-05
+
+Please update TRAINING_ALGORITHM to note that it's permissible to stack changes that don't quite meet passing criteria
