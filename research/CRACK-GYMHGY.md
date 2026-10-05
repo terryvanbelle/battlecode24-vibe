@@ -70,3 +70,7 @@ check that Gymhgy is deterministic under a fixed engine seed.
 cells; map-class delivery PASS (crumbs r201-400 x1.9, +2.6 SE; kills +27%) after a VOID first block (MEAS3 collisions and
 the old guard rule). The filler now pairs it with g_iter4 on random maps (the victory read). g4farm2 (level farm, 5 build
 XP per duck after r1500): fires (63 digs, +10 levels late), stalemate-class gate running.
+g4crumb paired filler vs g_iter4 against Gymhgy (random maps): net +20 over 560 pairs (+1.6 SE). g4dam (C.DAM_FIRST: no
+flag rings in setup, the bank reaches the dam line) delivered: stuns triggered r201-250 +69% (+2.2 SE), enemy captures
+guard PASS. **g4gym1 = g4crumb + g4dam** delivered at 96 cells (crumbs r201-400 +61%, dam-drop stuns +86%, Gymhgy captures
+-7%, kills +7%); its paired filler (the victory read) and band test are running.

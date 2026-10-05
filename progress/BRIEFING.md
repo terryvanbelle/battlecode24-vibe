@@ -106,6 +106,15 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   the target is Gymhgy (2099, rank 9; g_iter4 43% over 181 games). Its first levers: holding our dropped flag (Z1HOLD) failed
   delivery twice; escort-first targeting and faster re-grabs fire but do not add captures. Next: our own relay (g4relay).
 
+- 04:50 UTC (Oct 5): **first delivered levers against Gymhgy, from a loss study.** Owner prompt 178 allowed chosen maps and
+  sides for diagnostics; diag-batch, scrim and delivery-gate now take them (the ladder stays random). A five-lens study
+  with a critic found two map classes: centre-crumb maps (we win 31%) and stalemate maps (lost on level sum). Centre
+  crumbs (g4crumb): 7 wins to 1 on 16 chosen cells, delivered on the class, +20 over 560 random-map pairs (+1.6 SE).
+  Dam-line budget (g4dam): +69% stuns in the r200-250 skirmish, delivered. Their combination g4gym1 delivered at 96 cells;
+  its paired filler and band test are running. The late level farm (g4farm2) fires (+8 levels) but its gate stayed
+  inconclusive. Two tool defects fixed on the way: replay names now carry the seed (repeats overwrote each other), and
+  non-worse guards judge the worst plausible drop, not raw noise.
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
