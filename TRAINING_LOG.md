@@ -1835,3 +1835,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   **g4crumb vs g_iter4 against Gymhgy 640 pairs, net +30 (103-73, +2.3 SE)**, ~+4.7 points (the dam-line piece in g4gym1
   cancelled it: g4gym1 +12/1,880); g3escrg2 vs g_iter3 against Cyril 280 pairs, net +14 (+1.5 SE). REWRITE.md gains the
   missing rows (g2nonav, g2bc, g2bc2, g2fast, g4econ2).
+- g4ship1 vs g_iter4 against Gymhgy (paired filler, random maps and sides): 840 pairs, net +38 (185-147, +2.1 SE), ~+4.5
+  points, in line with g4crumb's +30/640 (the crumbs carry it). The g_iter4 seeds-5-6 control is running; g4ship1's
+  look 3 follows.
