@@ -1780,3 +1780,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   updated. g4ship1's 96-cell delivery re-read on the same data without the kills guard: **PASS** (gathered201to400 +3.4 SE,
   regrabs +5.6 SE, enemy captures guard PASS, 0 overruns); its band test now runs without the override. g4contact8's
   running Gymhgy gate will be read without its kills guard.
+- **g4contact8 Gymhgy delivery: FAIL** (24 cells): dives fire in 100% of games, but screened20u12 rose, 0.28 vs 0.24
+  (-2.7 SE against the x0.8 bar); enemy first grabs 8.3 vs 9.4 and kills +17% (guards; the kills guard no longer counts,
+  PROMPTS 183). The dive does not put our ducks in contact with Gymhgy's chains (the 5(a) trace already showed 4 of 10 first
+  divers moving away). With the one pre-registered recalibration spent (gate 12 leaked 0.39; gate 8 fails the signature),
+  the convoy-response line (g4contact) is closed against Gymhgy. Its census columns and D0 tool stay for future work.

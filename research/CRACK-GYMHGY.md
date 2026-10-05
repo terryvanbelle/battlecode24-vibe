@@ -74,3 +74,10 @@ g4crumb paired filler vs g_iter4 against Gymhgy (random maps): net +20 over 560 
 flag rings in setup, the bank reaches the dam line) delivered: stuns triggered r201-250 +69% (+2.2 SE), enemy captures
 guard PASS. **g4gym1 = g4crumb + g4dam** delivered at 96 cells (crumbs r201-400 +61%, dam-drop stuns +86%, Gymhgy captures
 -7%, kills +7%); its paired filler (the victory read) and band test are running.
+
+**Convoy response closed (2026-10-05).** g4contact (a flag track in its own slots plus a capped in-fight dive for observed
+groups under 12; design panel and a reviewed build in research/g4contact-design-2026-10-05/) passed its offline premise
+check and fired in every game, but leaked into big convoys at the 12 gate (0.39) and, recalibrated to 8, failed delivery:
+screened rounds rose (0.28 vs 0.24, -2.7 SE). The g4gym1 combination (crumbs + dam line) remains the best Gymhgy result
+(+22 over 840 pairs, ~+2.6 points). A stack for the band, g4ship1 (crumbs + pick-after-move), passed delivery (PROMPTS
+183 removed the kills guard) and is in its band test.
