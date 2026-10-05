@@ -1662,3 +1662,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   test queued.
 - g4farm2 stalemate-class gate: INCONCLUSIVE at 24 cells (levelGain1500 45 vs 36, +27%, bar +25%, +0.3 SE; enemy captures
   guard PASS); extending to 48.
+- **g4farm2 Gymhgy stalemate-class gate: INCONCLUSIVE** at 24, 48 and 96 cells (96: levelGain1500 43.1 vs 35.0, +23%, bar
+  +25%, -0.5 SE; enemy-captures guard PASS). Parked, not closed: the farm adds ~8 levels a game late against a median
+  level-sum margin of 17. Stronger doses (FARM_ROUND 1200, FARM_XP 10) are the next variant if revisited.
+- g4crumb band guard: PASS (24 cells: kills 572 vs 510, worst plausible drop 6%; enemy captures 1.54 vs 1.88). Band test
+  running; the Gymhgy paired filler starts when the queue is idle.
