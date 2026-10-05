@@ -1776,3 +1776,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Owner PROMPTS 182: run g4ship1's band test despite the INCONCLUSIVE kills guard (documented override:
   NO_DELIVERY_REASON in band-test.sh, reason in the run log). Band test queued; promotion still needs REWRITE_EVAL and the
   confirmation seeds.
+- **Owner PROMPTS 183: no kills guard in delivery criteria.** TRAINING_ALGORITHM §3 step 5 and delivery-gate.sh's header
+  updated. g4ship1's 96-cell delivery re-read on the same data without the kills guard: **PASS** (gathered201to400 +3.4 SE,
+  regrabs +5.6 SE, enemy captures guard PASS, 0 overruns); its band test now runs without the override. g4contact8's
+  running Gymhgy gate will be read without its kills guard.

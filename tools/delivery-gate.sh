@@ -5,7 +5,8 @@
 # Checks are space-separated `stat:column op value` over OUR rows of the mini-block (census + survey columns):
 #   median:crumbs200>=2500   mean:traps200<=6   fire:digs200>0>=0.9   (fire: share of games where column > 0)
 #   rel:enemyRegrabs<=0.7   (with BASE=<bot>: arm mean <= 0.7 x base mean on the same cells)
-#   nw:kills>=0.95          (guards: fail only if the arm misses the ratio by more than 2 paired SE)
+#   nw:enemyCaptured<=1.1   (guards: fail only if the arm misses the ratio by more than 2 paired SE). No kills guard
+#                           since owner PROMPTS 183 (2026-10-05): a mechanism that trades bodies is judged by the band test.
 # Three-way verdicts (audit 2026-10-03 MEAS1): rel: PASSes only 1 paired SE beyond its bar and FAILs only 2 SE short;
 # in between, and for a guard that cannot see a 20% drop or a block with < 18 shared cells, the check is INCONCLUSIVE and
 # the gate re-runs itself on twice the cells (24 -> 48 -> 96, NMAX) under its own base cache; a line is never closed on

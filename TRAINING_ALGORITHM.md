@@ -56,7 +56,9 @@ change aimed at the field; a single seeded game is a filter, never a verdict.
    cells) showing the arm produces the pre-registered behaviour: the mechanism fires in >= 90% of games and the
    signature reaches its target (for a copied tactic, >= 50% of the gap to the opponents'). No band test, mirror gate
    or ladder block starts until (b) passes; `tools/band-test.sh` refuses without the PASS file. A failed delivery is
-   fixed and re-diagnosed, or the arm is dropped and logged as not delivered; it is never judged on wins.
+   fixed and re-diagnosed, or the arm is dropped and logged as not delivered; it is never judged on wins. Guards
+   (`nw:`) protect against harm the band test would not see; there is **no kills guard** (owner, PROMPTS 183): a
+   mechanism that trades bodies for flags or crumbs is judged by the band test, not stopped at delivery.
 6. **Gate** (§5). ACCEPT, REJECT, or PROVISIONAL.
 7. **On accept**: snapshot; archetype regression; ladder block(s) as a submission; post-block
    (record, refit, charts, study); update TACTICS, ledger, handoff; commit explicit paths; push.

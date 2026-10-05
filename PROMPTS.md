@@ -258,3 +258,7 @@ The "our last run" column in ELO.md seems a bit stale to me.  Is it really the c
 ## 182. 2026-10-05
 
 (Answer to a question on g4ship1, whose kills guard was INCONCLUSIVE at delivery:) Run band test anyway (Recommended)
+
+## 183. 2026-10-05
+
+Please remove the kill guard from the criteria
