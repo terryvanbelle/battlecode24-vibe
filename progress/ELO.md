@@ -1,12 +1,12 @@
 # Ladder
 
-25109 scrimmages (ours only), 25109 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+25149 scrimmages (ours only), 25149 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter4 | 1967 +- 10 | 12 of 81 | 5000 | 2011-2989 | 81.5% | 23.8% (vs 11) |
+| g_iter4 | 1967 +- 10 | 12 of 81 | 5040 | 2028-3012 | 81.5% | 23.8% (vs 11) |
 | g4econ2 | 1962 +- 56 | 13 of 81 | 160 | 60-100 | 81.3% | 23.3% (vs 11) |
 | g3lost | 1950 +- 112 | 14 of 81 | 40 | 15-25 | 80.9% | 22.2% (vs 11) |
 | g4pick | 1949 +- 65 | 15 of 81 | 120 | 43-77 | 80.8% | 22.0% (vs 11) |
@@ -15,8 +15,8 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g2cr | 1922 +- 107 | 18 of 81 | 40 | 21-19 | 79.9% | 19.6% (vs 11) |
 | g_iter2 | 1878 +- 15 | 20 of 81 | 2200 | 1032-1168 | 78.5% | 18.5% (vs 12) |
 | g_iter1_c2 | 1798 +- 131 | 22 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
-| a3dig5 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
-| arch_rush10 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| arch_rush10 | 1798 +- 131 | 23 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
+| a3dig5 | 1798 +- 131 | 24 of 81 | 110 | 84-26 | 75.7% | 15.6% (vs 13) |
 | e1aggr | 1773 +- 130 | 26 of 81 | 110 | 83-27 | 74.9% | 16.4% (vs 14) |
 | c6pair | 1748 +- 129 | 27 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
 | c5bank | 1748 +- 129 | 28 of 81 | 110 | 82-28 | 74.0% | 14.7% (vs 14) |
@@ -47,8 +47,8 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 8 | andrewgopher.player22 | 2099 | 45 | 580 | 515-65 | 11% (g_iter1 24-200) |
 | 9 | CyrilSharma.finalBot | 2055 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
 | 10 | hsmalladi.finalbot | 2047 | 41 | 580 | 496-84 | 12% (g_iter1 27-197) |
-| 11 | Gymhgy.v10official | 2039 | 14 | 2700 | 1768-932 | 41% (g_iter4 875-1269) |
-| 12 | **us:g_iter4** | 1967 | 10 | 5000 | 2011-2989 |  |
+| 11 | Gymhgy.v10official | 2039 | 14 | 2740 | 1791-949 | 41% (g_iter4 892-1292) |
+| 12 | **us:g_iter4** | 1967 | 10 | 5040 | 2028-3012 |  |
 | 13 | **us:g4econ2** | 1962 | 56 | 160 | 60-100 |  |
 | 14 | **us:g3lost** | 1950 | 112 | 40 | 15-25 |  |
 | 15 | **us:g4pick** | 1949 | 65 | 120 | 43-77 |  |
@@ -59,8 +59,8 @@ Our last run = OUR win rate (our W-L) against the bot, by the most recent of our
 | 20 | **us:g_iter2** | 1878 | 15 | 2200 | 1032-1168 |  |
 | 21 | ColtG5.Goob_final | 1809 | 12 | 3540 | 2205-1335 | 67% (g_iter2 203-101) |
 | 22 | **us:g_iter1_c2** | 1798 | 131 | 110 | 84-26 |  |
-| 23 | **us:a3dig5** | 1798 | 131 | 110 | 84-26 |  |
-| 24 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
+| 23 | **us:arch_rush10** | 1798 | 131 | 110 | 84-26 |  |
+| 24 | **us:a3dig5** | 1798 | 131 | 110 | 84-26 |  |
 | 25 | kyleezz.jeeryfix3 | 1790 | 29 | 580 | 342-238 | 41% (g_iter1 91-133) |
 | 26 | **us:e1aggr** | 1773 | 130 | 110 | 83-27 |  |
 | 27 | **us:c6pair** | 1748 | 129 | 110 | 82-28 |  |
