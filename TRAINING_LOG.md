@@ -1811,3 +1811,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   tools/delivery-gate.sh g4ship2 'rel:gathered201to400>=1.3 rel:regrabs>=1.5 rel:levelGain1500>=1.1 nw:enemyCaptured<=1.1
   mean:overruns<=0'`, band test chained. Owner PROMPTS 186: a shipping-criteria review (workflow: power simulation,
   history, alternatives, judge) is running.
+- **uravt calibration** (PROMPTS 184): g_iter4 vs uravt.Version18Final 26-14 (65%) over 40 random-map scrimmages; its
+  rating falls from 2274 +- 348 to 1920 +- 90 (rank 18, below us). The old 26-0 came from two-game blocks against g_iter0 /
+  g_iter1-era builds; an unbeaten bot on a tiny sample had an unbounded rating. It drops out of the upper tier at the next
+  re-derivation. Owner PROMPTS 187: TRAINING_ALGORITHM §5 now permits stacking near-misses.
