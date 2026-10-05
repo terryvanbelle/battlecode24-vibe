@@ -1855,3 +1855,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   848484 / 959595 161616), as the review advised (g4ship1 was selected on the old ones). tools/upper-tier.txt = the 10
   bots rated above g_iter5 (uravt out). The g_iter5 control on all six seeds queued (720 games); the filler builds the
   g_iter5 baseline against Gymhgy.
+- **g4ship1 vs g_iter4 against Gymhgy, paired filler closed at 1,200 pairs: net +84 (270-186, +3.9 SE)**, ~+7 points:
+  g4ship1 574-626 (47.8%) on cells where g_iter4 went 490-710 (40.8%). The 320 g4ship1 filler games played after the
+  promotion relabelled g_iter5 (same code); ladder refit: g_iter5 1988 +- 17 (rank 11). The filler now plays g_iter5 alone
+  against Gymhgy. TACTICS T3/T4/T10/T13 updated (T10 and T13 accepted in g_iter5).
