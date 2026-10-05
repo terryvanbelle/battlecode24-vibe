@@ -1815,3 +1815,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   rating falls from 2274 +- 348 to 1920 +- 90 (rank 18, below us). The old 26-0 came from two-game blocks against g_iter0 /
   g_iter1-era builds; an unbeaten bot on a tiny sample had an unbounded rating. It drops out of the upper tier at the next
   re-derivation. Owner PROMPTS 187: TRAINING_ALGORITHM §5 now permits stacking near-misses.
+- g4ship2 band delivery: INCONCLUSIVE at 24, 48, 96 cells on the farm's signature alone (96: levelGain1500 17.9 vs 17.5 on
+  the 32 cells that reach r1500, -0.2 SE; gathered201to400 and regrabs PASS, identical to g4ship1 on the same cells; enemy
+  captures 1.50 vs 1.53). The farm hardly fires on the band (few band games stay tied that long): parked; g4ship1 remains
+  the best stack.
