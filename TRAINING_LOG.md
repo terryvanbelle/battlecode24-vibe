@@ -1800,3 +1800,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   ladder through the filler path) queued to place its rating and our record.
 - Owner PROMPTS 185 agrees: the band list is refreshed (with uravt) at the next promotion, when a fresh control is played
   anyway (HANDOFF). g4ship1 vs g_iter4 against Gymhgy (paired filler): 80 pairs, net +10 (+2.0 SE), early.
+- **g4ship1 confirmation** (seeds 717171 / 818181, 240 pairs): net +3, capture delta +0.17 +- 0.09 (t 1.9), upper +0.17 +-
+  0.14; basics PASS. **Pooled four seeds (480 pairs): net +12 (44-32, sign p 0.21), capture delta +0.14 +- 0.06 (t 2.2),
+  upper +0.14 +- 0.10 (t 1.4), rest +0.15 +- 0.08**: positive on every seed, but neither REWRITE_EVAL criterion ((a) wins net
+  at sign p < 0.05; (b) upper capture delta >= +2 SE): not promoted. Next stack (owner PROMPTS 180): g4ship2 = g4ship1 +
+  the late level farm (FARM_XP 5 from r1500), an independent mechanism for the ~8% of band games decided on level sum.
