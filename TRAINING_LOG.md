@@ -1710,3 +1710,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (ours minus theirs at the end). 5(a) on the g4farm cells (g_iter4's replays there re-censused for the new columns).
 - g4gym1 vs g_iter4 against Gymhgy, paired filler: 200 pairs, gained 46, lost 30, net +16 (+1.8 SE), about +8 points;
   g4gym1 79-121 (39.5%) on cells where g_iter4 went 63-137 (31.5%). Continuing.
+- **g4gym1 vs g_iter4 against Gymhgy: 280 pairs, net +22 (63-41, +2.2 SE)**, about +8 points: the first Gymhgy arm past
+  2 SE on random maps. Continuing for a tighter estimate.
+- g4farm3 5(a) (farm from r1200 to 10 build XP, same 16 cells): level gain from r1200 70 vs 54, level gap at the end +1.4
+  vs -9.5; three games flip to level-sum wins (EndAround s1 A/B, Hurricane s1), but three tied games become MORE_FLAG
+  losses and Gymhgy's captures rise (0.62 vs 0.44): the farm spends the crumbs that fund defensive stuns. Wins 4 vs 5
+  (g4farm2 6 on the same cells). The stronger dose trades level wins for late captures: the farm line stays parked.
