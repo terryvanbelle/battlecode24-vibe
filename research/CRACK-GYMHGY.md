@@ -65,3 +65,8 @@ the dam line; (5) centre crumbs (diagnostic only); (6) CAPTURING at r1200 (demot
 falling). g4farm 5(a) (stalemate maps DefaultSmall, EndAround, GravitationalWaves, Fusbol, Hurricane; control Mountain A;
 two seeds, both sides where possible, g_iter4 on the same cells) and g4crumb on the centre-crumb maps are queued, plus a
 check that Gymhgy is deterministic under a fixed engine seed.
+
+**First delivered levers (2026-10-05).** g4crumb on the centre-crumb maps: chosen-cell 5(a) 7-1 against g_iter4 on 16 shared
+cells; map-class delivery PASS (crumbs r201-400 x1.9, +2.6 SE; kills +27%) after a VOID first block (MEAS3 collisions and
+the old guard rule). The filler now pairs it with g_iter4 on random maps (the victory read). g4farm2 (level farm, 5 build
+XP per duck after r1500): fires (63 digs, +10 levels late), stalemate-class gate running.
