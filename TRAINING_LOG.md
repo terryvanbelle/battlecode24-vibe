@@ -1730,3 +1730,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4gym1 vs g_iter4 against Gymhgy, paired filler: 840 pairs, net +22 (171-149, +1.2 SE): the early +31/400 regressed;
   the effect is about +2.6 points. Small and positive; the g4contact lever (in implementation and review) targets the
   larger loss mode.
+- **g4contact built** (workflow: bot and tools implemented on separate branches in worktrees, two reviewers each, fixer;
+  merged into main). Bot: C.CONTACT (track in slots 34-36, 62, 63; in-fight dive capped per chain for observed groups
+  under 12; out-of-fight predicted chase), all 8 review findings fixed (frozen ducks no longer take dive slots; refused
+  claims are cheap; blocked tiles told apart from walls; shared admission rule; tests pin the hooks): new ContactTest
+  runs with the switch off and on, 11 mutants caught; with the switch off every existing method compiles to the same
+  bytecode. Tools: chain census noContact10u12, contact20u12, screened20u12, chainsU12, chains12p, capRateU12, capRate12p,
+  diveTurns, diveLeak12, diveNoChain; --contact-d0 and tools/contact-d0.py (the four pre-registered D0 routes); both
+  review findings fixed. Unit tests pass on main. D0 queued on the newest 400 g_iter4-vs-Gymhgy replays.
