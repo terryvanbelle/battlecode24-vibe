@@ -314,6 +314,36 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
             if ev == 'PLACE' and last.get(f, ('', 0))[0] == 'DROP': gaps.append(rn - last[f][1]); last[f] = ('HOME', rn)
             else: last[f] = ('DROP' if ev == 'PLACE' else ev, rn)
     check(len(gaps) >= 2 and set(gaps) == {4}, f'replay truth: a dropped flag left alone is home at the end of round drop+4 (inside-window = rn < r0+4; gaps {gaps})')
+    # the chain census's boundaries (convoy plan section 5) from --flags alone: a post-setup pickup of a flag lying on its home
+    # tile starts a chain; CAPTURE ends it, so does a carrier-less PLACE (the reset home) and so does a first grab of the flag
+    # while its chain is open (a carrier dropped it on its own home tile and it was re-grabbed before the reset: RETURN at the
+    # re-grab round). Each chain as (team, grab, flag, outcome, end round of a RETURN); D0 rows end at grab + T + 1
+    def _flag_chains(text):
+        home, at, held, open_, team_, done = {}, {}, set(), {}, {}, []
+        for m in _re.finditer(r'^r(\d+) (PICKUP|PLACE|CAPTURE)\s+flag=([AB])(\d+) actor=\S+ loc=\((\d+),(\d+)\)', text, _re.M):
+            rn, ev, ft, f, loc = int(m[1]), m[2], m[3], int(m[4]), (int(m[5]), int(m[6]))
+            def end(how):
+                if f in open_: done.append((ft, open_.pop(f), f, how, rn if how == 'RETURN' else None))
+            if ev == 'PICKUP':
+                if rn > 200 and at.get(f) is not None and at.get(f) == home.get(f): end('RETURN'); open_[f] = rn; team_[f] = ft
+                held.add(f); at[f] = None
+            elif ev == 'PLACE':
+                if rn == 200 or (rn > 200 and f not in held):
+                    home[f] = loc
+                    if rn > 200: end('RETURN')
+                held.discard(f); at[f] = loc
+            else: end('CAPTURE'); held.discard(f); at[f] = None
+        return sorted(done + [(team_[f], g, f, 'OPEN', None) for f, g in open_.items()])
+    for k, fk in (('fix', 'fixflags'), ('own', 'ownflags')):
+        if k not in outs or fk not in raw: continue
+        want = _flag_chains(raw[fk])
+        got = sorted((r['team'], int(r['grab']), int(r['flag']), r['outcome'], int(r['grab']) + int(r['T']) + 1 if r['outcome'] == 'RETURN' else None)
+                     for r in _pick(outs[k], 'enObsMax'))
+        check(want and got == want, f'replay-dump --contact-d0 ({k}): chains start, end and score as the --flags reference (CAPTURE; RETURN on a reset '
+              f'or on a re-grab from the home tile; OPEN) ({got} vs {want})')
+        if k == 'own':   # B399 dropped on its home tile at r290 and re-grabbed at r294, before its r294 reset
+            check(('B', 290, 399, 'RETURN', 294) in got and ('B', 294, 399, 'RETURN', 362) in got,
+                  f'replay-dump --contact-d0 (our build): the r290 chain on B399 ends RETURN at its r294 re-grab, which opens the next chain')
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')

@@ -91,17 +91,19 @@ import java.util.zip.GZIPInputStream;
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
  *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
- *   carrier) or the game end (OPEN). The flag's tile at the end of a round is its carrier's while carried, else where it
- *   lies. g0 (the grab group) = the carrier team's robots within dist2 20 of the flag at the end of the grab round, carrier
- *   included. At the end of each open round t = 1..T (T = the chain's last open round): ours20 / ours100 = our robots within
- *   dist2 20 / 100 of the flag.
+ *   carrier; also a first grab of the flag while its chain is open, i.e. a carrier dropped it on its own home tile and it was
+ *   re-grabbed before the reset: that chain ends RETURN at the re-grab round, as the reset would have ended it and as the
+ *   arm's contactHome ends a track on a flag lying home, and the re-grab opens the next chain) or the game end (OPEN). The
+ *   flag's tile at the end of a round is its carrier's while carried, else where it lies. g0 (the grab group) = the carrier
+ *   team's robots within dist2 20 of the flag at the end of the grab round, carrier included. At the end of each open round
+ *   t = 1..T (T = the chain's last open round): ours20 / ours100 = our robots within dist2 20 / 100 of the flag.
  *   noContact10u12     among chains with g0 < 12 and T >= 1, the share with ours20 = 0 at every t = 1..min(10, T) (a short
  *                      chain counts over its own window; blank: no such chain)
  *   contact20u12       over the flag-rounds t >= 1 of g0 < 12 chains, the share with ours20 >= 1; screened20u12: the share
  *                      with ours20 = 0 and ours100 >= 1 (both blank without such a flag-round)
  *   chainsU12          chains with g0 < 12; chains12p: g0 >= 12; they sum to enemyFirstGrabs (both blank without a chain)
- *   capRateU12         captures / closed chains (CAPTURE or RETURN; OPEN excluded) among g0 < 12 chains; capRate12p the same
- *                      for g0 >= 12 (blank: no closed chain in the band)
+ *   capRateU12         captures / closed chains (CAPTURE or RETURN, re-grab RETURNs included; OPEN excluded) among g0 < 12
+ *                      chains; capRate12p the same for g0 >= 12 (blank: no closed chain in the band)
  *   diveTurns          our post-setup robot-turns whose indicator string starts with "dive" (C.CONTACT's note); blank without
  *                      a g0 < 12 chain, so a fire check skips the game
  *   diveLeak12         per dive turn, the open chain on our flags whose flag lies nearest the diver within dist2 144 (end of
@@ -1195,9 +1197,9 @@ public class ReplayDump {
 
     // =================================================================================================================
     // g4contact census and premise check D0 (convoy plan sections 5 and 6). One chain per enemy first grab of a flag (the
-    // firstGrabs test) until its CAPTURE, its return home (RETURN) or the game end (OPEN); the flag's tile at the end of a
-    // round is its carrier's while carried, else where it lies. Every count uses the robots alive at the end of the round
-    // (aliveLists), as the S0a tracker does.
+    // firstGrabs test) until its CAPTURE, its return home (RETURN; also a re-grab from the home tile, chainStart) or the game
+    // end (OPEN); the flag's tile at the end of a round is its carrier's while carried, else where it lies. Every count uses
+    // the robots alive at the end of the round (aliveLists), as the S0a tracker does.
     // =================================================================================================================
     static final int U12 = 12, NC_WINDOW = 10, CONTACT_R2 = 20, SCREEN_R2 = 100, LEAK_R2 = 144;
     static final String CHAIN_COLS = "noContact10u12,contact20u12,screened20u12,chainsU12,chains12p,capRateU12,capRate12p,diveTurns,diveLeak12,diveNoChain";
@@ -1249,7 +1251,8 @@ public class ReplayDump {
         return true;
     }
     static void chainStart(int rn, int flag, int dt) {
-        // a flag dropped on its own home tile and re-grabbed passes the first-grab test while its chain is open: it was home
+        // a flag dropped on its own home tile and re-grabbed passes the first-grab test while its chain is open: it was home,
+        // so that chain ends RETURN here (the reset PLACE_FLAG would have ended it so) and the re-grab opens the next
         if (chains.containsKey(flag)) chainEnd(rn, flag, "RETURN", flagHome.get(flag));
         Chain c = new Chain(); c.flag = flag; c.dt = dt; c.grab = rn;
         chains.put(flag, c);
@@ -1305,7 +1308,8 @@ public class ReplayDump {
      * y). Not modelled: the miss rule (CT_MISS), the diver cap and its need > 0 gate.
      *  team            the tracked side (the chain is on its flag)
      *  grab, flag, g0, outcome   the chain as in the census (g0 = the carrier team within dist2 20 of the flag at the end of
-     *                  the grab round; outcome CAPTURE / RETURN / OPEN)
+     *                  the grab round; outcome CAPTURE / RETURN / OPEN, RETURN including a chain whose flag was dropped on
+     *                  its own home tile and re-grabbed before the reset, closed at the re-grab round)
      *  T               the chain's open rounds after the grab (t = 1..T)
      *  seenT0          1 when the sensor saw the flag at the end of the grab round
      *  noContact10     1 when ours20 = 0 at every t = 1..min(10, T), the census's per-chain test (blank: T = 0)
