@@ -1,4 +1,4 @@
-package bot;
+package g4contact;
 
 import battlecode.common.*;
 

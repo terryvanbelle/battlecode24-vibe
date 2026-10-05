@@ -1,4 +1,4 @@
-package bot;
+package g4contact;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -86,7 +86,7 @@ public strictfp class C {
     // number of ducks dive at the predicted flag (Micro.dive); out of a fight it is the chase point (carrierTarget). Only for
     // observed grab groups under CT_GROUP_MAX: contact changes conversion for groups 3-11 (0.34-0.56 vs 0.18-0.35), not for
     // 12+ (0.57 vs 0.54; critic R5). g1icpt's goal lived only in the kite branch; g4pred chased out of fights only.
-    public static final boolean CONTACT = false;
+    public static final boolean CONTACT = true;
     public static final int CT_HOLD = 12;               // CONTACT: rounds a track stays live after the last sighting (12 x 0.56 ~ 7 tiles
                                                         // of predicted travel; g4pred's 60 had a median error of ~24 tiles)
     public static final int CT_GROUP_MAX = 12;          // no dive and no chase for an observed group of this many or more (R5 above)

@@ -130,6 +130,12 @@ Every duck that holds no objective plays g_iter1 exactly.
 
 ### 2.3 Shared-array schema (slots 23-48 used; 49-63 spare)
 
+> **Since this design (2026-10-05):** slots 34-36 are no longer `OWN_C`: they hold `CT[i]`, the flag track of arm g4contact
+> (C.CONTACT). Slots 49-63 are no longer spare either: 49-61 belong to the audit fixes (`OF_THREAT`, `EF_DROP`, `EF_HOME`,
+> `OF_LOST`, `OF_SEEN`) and 62-63 to C.CONTACT (`CT_AUX`, `CT_DIVE`). The schema comment in `Comms.java` is the current
+> layout, and BotTest checks that all of 0-63 are assigned. S3's `OWN_C` therefore needs new slots, and none are free: one
+> must be released first (for example a closed arm's), and the S3 references below updated.
+
 Conventions:
 - Locations use `Comms.enc` = x·64+y+1 (12 bits; at most 3,836 on 60×60).
 - Rounds use 11 bits (the game ends at r2000, below 2048).
@@ -143,9 +149,9 @@ Conventions:
 | 25-27 | `TRK_A[i]` (our flag i) | [11..0] location of the last positive information (carrier or drop tile; home for HOME/MISSING); [14..12] state: 0 HOME, 1 CARRIED, 2 DROPPED, 3 MISSING, 4 LOST, 5 GONE; [15] destination confirmed by heading | any observer, only on change | state machine (§2.4) |
 | 28-30 | `TRK_B[i]` | [10..0] round of that information (HOME: last home confirmation; MISSING: kept at the last confirmation, the pessimistic departure; DROPPED: first round seen dropped); [12..11] destination index 0-2 (3 unknown); [14..13] speed class 0 = 1/2, 1 = 5/6 (they have CAPTURING), 2 = 1/1 (observed relay speed); [15] inferred (no direct sighting since the track began) | same | with `TRK_A` |
 | 31-33 | `TRK_C[i]` | [2..0] enemies within dist2 8 of the carrier at the last sighting (cap 7); [6..3] enemies within dist2 20 (cap 15); [8..7] misses 0-3; [9] miss parity (round & 1 of the last counted miss); [15..10] spare | observer | reset on a positive sighting |
-| 34-36 | `OWN_C[s]` (S3; our carrier of enemy registry slot s) | [10..0] round our carrier last reported; [12..11] index of our spawn centre it heads to; [15..13] enemies in its view (cap 7). Location comes from the existing `EF_LOC[s]`, which `sense()` refreshes from the carried flag | our carrier, every turn | stale when round − [10..0] > 1 |
+| 34-36 | `OWN_C[s]` (S3; our carrier of enemy registry slot s). **Now `CT[i]` (C.CONTACT); S3 needs new slots (note above)** | [10..0] round our carrier last reported; [12..11] index of our spawn centre it heads to; [15..13] enemies in its view (cap 7). Location comes from the existing `EF_LOC[s]`, which `sense()` refreshes from the carried flag | our carrier, every turn | stale when round − [10..0] > 1 |
 | 37-48 | `AUC[o][p]` = 37 + 2o + p; o 0-2 CUT(our flag o), 3-5 ESC(registry o−3); p = round & 1 | [3..0] committed; [7..4] candidates with t ≤ 6; [11..8] 6 < t ≤ 14; [15..12] 14 < t ≤ 30 (each saturating at 15) | each committed or bidding duck: one read-modify-write | the round-start runner zeroes the non-zero `AUC[*][round&1]` before anyone bids; readers use parity (round−1)&1, which is complete. An 11-bit stamp means no aliasing, and a dead member drops out in one round |
-| 49-63 | spare | 15 slots | | |
+| 49-63 | spare in this design; **now all assigned** (49-61 audit fixes, 62-63 C.CONTACT; note above) | 15 slots | | |
 
 ### 2.4 Track semantics (`Track`, the sensor)
 
@@ -188,7 +194,7 @@ Overestimating speed (bug-nav detours slow the real carrier) is the safe side, b
 
 1. **Live tasks.**
    - CUT o: `TRK` state CARRIED or MISSING, or DROPPED (inside the window, or presumed re-grab after it).
-   - ESC o (S3): `EF_STATE[s] == 1` and `OWN_C[s]` fresh. Also, for 3 rounds after the last report, if `EF_LOC[s]` shows the dropped flag; this re-grab window is for already-committed escorts only.
+   - ESC o (S3): `EF_STATE[s] == 1` and `OWN_C[s]` fresh (`OWN_C` needs new slots: §2.3 note). Also, for 3 rounds after the last report, if `EF_LOC[s]` shows the dropped flag; this re-grab window is for already-committed escorts only.
 2. **Size K.**
    - CUT: K = clamp(3 + esc8, `CUT_K_MIN`, `CUT_K_MAX`). esc8 is the escort count at the last sighting; when it is unknown (MISSING or inferred), K = `CUT_K_MIN` + 1.
    - ESC: K = clamp(2 + enemies in the carrier's view, 2, `ESC_K_MAX`).
@@ -227,7 +233,7 @@ Overestimating speed (bug-nav detours slow the real carrier) is the safe side, b
    - within dist2 36 of D with no carrier in view and not urgent;
    - ESC: farther than dist2 100 from the carrier for 5 rounds.
 10. **ESC goal (S3).**
-    - C = `EF_LOC[s]`, H = our centre from `OWN_C[s]`; goal C with band 2, re-frozen when the carrier is 2 or more tiles from the frozen goal.
+    - C = `EF_LOC[s]`, H = our centre from `OWN_C[s]` (new slots: §2.3 note); goal C with band 2, re-frozen when the carrier is 2 or more tiles from the frozen goal.
     - Forbidden tiles: f0 = C + dir(C→H) and its rotateLeft and rotateRight. Escorts trail and flank and never block (the g1esc lesson).
     - In the re-grab window: goal = the dropped flag, band 0.
     - A re-grab is allowed only if allies within dist2 20, counting me, are at least enemies within dist2 20 + 1 (the b2rg lesson).
@@ -491,7 +497,7 @@ Process rules for every stage:
 ### S3: ESC convoy (conditional on P4; `g1cv4`: `ESC_K_MAX` 4, `g1cv6`: 6, one attempt)
 
 - **Base:** the M1 build if it was accepted or provisional, else g1trk.
-- **Scope:** `OWN_C` self-report, ESC objectives, ring and forbidden tiles, the re-grab window, `holdAct` and `regrabSafe`.
+- **Scope:** `OWN_C` self-report (in new slots: 34-36 went to C.CONTACT, §2.3 note), ESC objectives, ring and forbidden tiles, the re-grab window, `holdAct` and `regrabSafe`.
 - **5(a) signature:** 7 g1escrg cells plus 4 g_iter1-mirror cells, paired. This allows a direct comparison with g1escrg (escorts20 6.34 against 5.55 for the mirror).
   - E fires on 2 or more ducks per trip of ours lasting 6+ rounds.
   - escorts20 within rounds 4-6 after pickup is at least the mirror's + 1.5.

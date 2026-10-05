@@ -11,6 +11,12 @@ public class BotTest {
     /** Fake robot controller: a 64-slot shared array, vision dist2 20 around G.me, walls and spawn zones from the test. */
     static int[] shared = new int[64];
     static boolean badWrite, failReads;
+    static boolean[] writeOk;                           // non-null: the only slots a write may touch (else Track's 23-33)
+    static int writeCount;                              // every writeSharedArray call
+    static RobotInfo[] robots = new RobotInfo[0];       // fakeRc: the robots senseNearbyRobots sees (the caller is never listed); canMove
+                                                        // refuses their tiles, as the engine does
+    static FlagInfo[] flagsInView = new FlagInfo[0];    // fakeRc: what senseNearbyFlags returns
+    static int health = 1000;                           // fakeRc: getHealth
     static GlobalUpgrade[] theirUpg = new GlobalUpgrade[0];
     static java.util.Set<MapLocation> walls = new java.util.HashSet<>();
     static boolean buildOk = false;
@@ -33,7 +39,8 @@ public class BotTest {
                         return shared[(Integer) args[0]];
                     case "writeSharedArray": {
                         int i = (Integer) args[0], v = (Integer) args[1];
-                        if (i < Comms.RT_STAMP || i >= Comms.OWN_C || v < 0 || v > GameConstants.MAX_SHARED_ARRAY_VALUE) badWrite = true;
+                        if ((writeOk != null ? !writeOk[i] : i < Comms.RT_STAMP || i >= Comms.CT) || v < 0 || v > GameConstants.MAX_SHARED_ARRAY_VALUE) badWrite = true;
+                        writeCount++;
                         shared[i] = v; return null;
                     }
                     case "canSenseLocation": return sensable((MapLocation) args[0]);
@@ -45,9 +52,29 @@ public class BotTest {
                     case "getGlobalUpgrades": return theirUpg;
                     case "isActionReady": return buildOk;
                     case "isMovementReady": return moveOk;
-                    case "canMove": return moveOk;
+                    case "canMove": {
+                        MapLocation t = G.me.add((Direction) args[0]);
+                        if (!moveOk || walls.contains(t)) return false;
+                        for (RobotInfo r : robots) if (r.location.equals(t)) return false;
+                        return true;
+                    }
+                    case "sensePassability": {   // terrain only (walls stand for wall and water), robots ignored, as the engine
+                        MapLocation l = (MapLocation) args[0];
+                        if (!sensable(l)) throw new GameActionException(GameActionExceptionType.CANT_SENSE_THAT, "test");
+                        return !walls.contains(l);
+                    }
+                    case "senseNearbyFlags": return flagsInView;
+                    case "senseNearbyRobots": {   // (), (r2), (r2, team), (centre, r2, team): within r2 of the centre and in view
+                        MapLocation c = args != null && args.length == 3 ? (MapLocation) args[0] : G.me;
+                        int r2 = args == null || args.length == 0 ? -1 : (Integer) args[args.length == 3 ? 1 : 0];
+                        Team tm = args != null && args.length >= 2 ? (Team) args[args.length - 1] : null;
+                        java.util.List<RobotInfo> got = new java.util.ArrayList<>();
+                        for (RobotInfo r : robots)
+                            if ((tm == null || r.team == tm) && sensable(r.location) && c.distanceSquaredTo(r.location) <= (r2 < 0 ? GameConstants.VISION_RADIUS_SQUARED : r2)) got.add(r);
+                        return got.toArray(new RobotInfo[0]);
+                    }
                     case "move": lastMove = (Direction) args[0]; G.me = G.me.add(lastMove); return null;
-                    case "getHealth": return 1000;
+                    case "getHealth": return health;
                     case "senseNearbyCrumbs": return crumbTiles;
                     case "getCrumbs": return buildOk ? 1000 : 0;
                     case "canBuild": {      // buildOk only: in reach, not a wall, not on/adjacent to an enemy (Duck.enemies)
@@ -365,14 +392,15 @@ public class BotTest {
         check(Comms.dec(0) == null && Comms.enc(null) == 0, "comms: 0 is none");
         // slot layout: no two purposes overlap and all fit in 64
         int[][] ranges = {{Comms.IDX, 1}, {Comms.EF_ID, 3}, {Comms.EF_LOC, 3}, {Comms.EF_STATE, 3}, {Comms.OF_ALERT, 3}, {Comms.OF_LOC, 3}, {Comms.SYM, 1}, {Comms.OF_CARRY, 3},
-                {Comms.OF_HOME, 3}, {Comms.RT_STAMP, 1}, {Comms.PSYM, 1}, {Comms.TRK_A, 3}, {Comms.TRK_B, 3}, {Comms.TRK_C, 3}, {Comms.OWN_C, 3}, {Comms.AUC, Comms.AUC_SLOTS}};
+                {Comms.OF_HOME, 3}, {Comms.RT_STAMP, 1}, {Comms.PSYM, 1}, {Comms.TRK_A, 3}, {Comms.TRK_B, 3}, {Comms.TRK_C, 3}, {Comms.CT, 3}, {Comms.AUC, Comms.AUC_SLOTS},
+                {Comms.OF_THREAT, 3}, {Comms.EF_DROP, 3}, {Comms.EF_HOME, 3}, {Comms.OF_LOST, 1}, {Comms.OF_SEEN, 3}, {Comms.CT_AUX, 1}, {Comms.CT_DIVE, 1}};
         boolean[] used = new boolean[64]; boolean ok = true;
         for (int[] r : ranges) for (int i = r[0]; i < r[0] + r[1]; i++) { if (i >= 64 || used[i]) ok = false; else used[i] = true; }
-        check(ok, "comms: slot ranges disjoint and < 64 (OF_HOME 20-22, rewrite 23-48 included)");
+        check(ok, "comms: slot ranges disjoint and < 64 (OF_HOME 20-22, rewrite 23-48, audit 49-61, contact 34-36/62-63 included)");
         boolean contiguous = true;
-        for (int i = 0; i <= Comms.AUC + Comms.AUC_SLOTS - 1; i++) if (!used[i]) contiguous = false;
-        check(contiguous && Comms.RT_STAMP == 23 && Comms.OWN_C + 3 == Comms.AUC && Comms.AUC + Comms.AUC_SLOTS == 49,
-                "comms: slots 0-48 all assigned, rewrite slots 23-48 as design 2.3");
+        for (int i = 0; i < 64; i++) if (!used[i]) contiguous = false;
+        check(contiguous && Comms.RT_STAMP == 23 && Comms.CT + 3 == Comms.AUC && Comms.AUC + Comms.AUC_SLOTS == 49 && Comms.OF_THREAT == 49,
+                "comms: slots 0-63 all assigned, rewrite slots 23-33 and 37-48 as design 2.3, CT in 34-36 (design 2.3's OWN_C)");
 
         // rng: in range, both parities reachable, differs between ids
         G.id = 12345; G.rngState = 12345 * 0x9E3779B1 + 12345;
