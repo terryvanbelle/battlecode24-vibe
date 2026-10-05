@@ -26,10 +26,12 @@
   to our ~77 (build-level discount), and takes 3x our centre crumbs in r201-400. g4front (placement) FAIL; g4wary/2
   (avoidance), g4crumb (INCONCLUSIVE at 96), g4builder/2 (dedicated builders) parked; **g4econ2** (centre crumbs + builders
   on top of everyone's stuns) passed Cyril delivery (fast stun victims +54%) but its band test met no criterion (net +3,
-  upper -0.20, t -1.6; kills -17%): the paired Cyril filler decides whether it is a crack. **Scouting Gymhgy.v10official**
-  (owner PROMPTS 177; research/CRACK-GYMHGY.md): g_iter4 78-103 (43%) on 181 games; g4z1 (Z1HOLD, hold our dropped flag
-  against its voluntary relay) failed delivery on a column that measured the wrong thing; second attempt on dropGuard
-  running. Open: BOT3(a) reachable relocation
+  upper -0.20, t -1.6; kills -17%): the paired Cyril filler decides whether it is a crack. **Gymhgy.v10official is the target** (research/CRACK-GYMHGY.md; g_iter4 ~40% over 2,400+ games). Delivered: g4crumb
+  (centre crumbs; 7-1 on chosen centre-crumb cells, +20/560 on random maps), g4dam (dam-line budget), g4gym1 (both; closed
+  at +12/1,880, no measurable effect). Closed or parked: Z1HOLD, Z2ESCORT, pick, relay, level farm (g4farm2/3), convoy
+  response (g4contact/g4contact8: fired, but screened rounds rose). **Now: g4ship1** (g4crumb + g4pick; owner PROMPTS 180):
+  band delivery PASS once the kills guard was removed (PROMPTS 183), band test running, Gymhgy paired filler running.
+  Open: BOT3(a) reachable relocation
   spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (MEAS3 fixed 2026-10-04: seeds in replay names).
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
