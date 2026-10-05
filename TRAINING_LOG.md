@@ -1692,3 +1692,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Combined Gymhgy candidate **g4gym1** = g4crumb + g4dam (both delivered against Gymhgy). 5(a) on 16 chosen cells (four
   centre-crumb cells on seeds 781001/2, four early-loss cells on 781201/2); the g_iter4 games on the same cells from the
   earlier diagnostics serve as the base (g_iter4 and Gymhgy are both deterministic under a fixed seed).
+- g4gym1 5(a) (16 chosen cells, g_iter4 base from the earlier diagnostics on the same seeds): both mechanisms fire
+  (gathered201to400 9,925 vs 4,050; stunTrig250 49.6 vs 22.8), Gymhgy captures 2.19 vs 2.50 (by r600 1.44 vs 1.75), kills
+  375 vs 298; wins 2 vs 4 (1 gained, 3 lost) where the single-lever arms won 6 of the same 16 cells: watch for an
+  interaction. Delivery pre-registered on random Gymhgy maps: `DGPOOL=Gymhgy.v10official DGTAG=-gym BASE=g_iter4
+  tools/delivery-gate.sh g4gym1 'rel:gathered201to400>=1.3 rel:stunTrig250>=1.2 nw:enemyCaptured<=1.1 nw:kills>=0.95
+  mean:overruns<=0'`. g4crumb paired filler at 400 pairs: net +13 (+1.3 SE).
