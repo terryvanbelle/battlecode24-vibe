@@ -1671,3 +1671,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   0.07 (t 1.0); upper -1, -0.03 +- 0.10; rest +5, +0.18 +- 0.10 (t 1.8); basics PASS (k/d 3.52 vs 3.09, gathered400 +25%).
   No REWRITE_EVAL criterion, no harm. Its case is the Gymhgy victory read: the paired filler (g4crumb vs g_iter4 against
   Gymhgy, random maps and sides) runs from now.
+- Arm **g4dam** (C.DAM_FIRST, Gymhgy study lever 5): no flag-ring traps in setup (85% of our setup budget sat in deep rings,
+  8-12% firing by r250), so the bank reaches DAM_TRAP_ROUND for dam-line stuns (reserve 300 for the first fight). New
+  census columns stunTrig250, kills250, deaths250 (the dam-drop skirmish, the study's earliest separator). Chosen-cell 5(a)
+  vs Gymhgy (Puzzle A/B, AceOfSpades A, Gated A, EvilGrin B, Battlecode24 A, Occulus A, BedWars B; seeds 781201/2; g_iter4 on
+  the same cells) queued.
