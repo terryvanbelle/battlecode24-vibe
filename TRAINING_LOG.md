@@ -1720,3 +1720,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   promotable: its band test was neutral (net +1, upper capture -0.15, t -1.1) and REWRITE_EVAL needs a band gain; the
   pre-registered crack read (>= 60%) is far off (~40%). It is the base of the Gymhgy line; a convoy-response design panel
   (workflow: three designs, two judges, synthesis) is running for the next lever.
+- **Convoy-response design panel** (workflow: three designs from different angles: keep contact, deny the big group,
+  meet the convoy; two judges, engineering and measurement; synthesis; research/g4contact-design-2026-10-05/). Both judges
+  chose **g4contact** (C.CONTACT): a track of our flag in its own shared-array slots (34-36, 62, 63; OF_CARRY untouched) that
+  survives relay drops and vision loss, and an in-fight dive toward the predicted chain, capped per chain, only for observed
+  groups under 12 (contact matters only there, critic R5). Signature: per-chain noContact10u12; control capRate12p; an
+  offline premise check (D0) before the 5(a). Being implemented by a workflow (bot and tools on separate branches, two
+  reviewers each, fixer).
