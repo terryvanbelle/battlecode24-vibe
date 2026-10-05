@@ -1,12 +1,12 @@
 # Ladder
 
-31949 scrimmages (ours only), 31949 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+31989 scrimmages (ours only), 31989 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g4ship1 | 1991 +- 24 | 11 of 84 | 840 | 390-450 | 83.9% | 29.9% (vs 10) |
+| g4ship1 | 1997 +- 23 | 11 of 84 | 880 | 415-465 | 84.1% | 30.4% (vs 10) |
 | g4crumb | 1948 +- 27 | 12 of 84 | 640 | 258-382 | 82.3% | 25.2% (vs 10) |
 | g4gym1 | 1947 +- 16 | 13 of 84 | 1880 | 755-1125 | 82.3% | 25.2% (vs 10) |
 | g_iter4 | 1945 +- 8 | 14 of 84 | 8480 | 3400-5080 | 82.2% | 24.9% (vs 10) |
@@ -18,12 +18,12 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g2cr | 1899 +- 107 | 21 of 84 | 40 | 21-19 | 80.6% | 22.9% (vs 11) |
 | g_iter2 | 1855 +- 15 | 23 of 84 | 2200 | 1032-1168 | 79.0% | 21.1% (vs 12) |
 | a3dig5 | 1763 +- 127 | 26 of 84 | 110 | 84-26 | 75.8% | 19.0% (vs 14) |
-| arch_rush10 | 1763 +- 127 | 27 of 84 | 110 | 84-26 | 75.8% | 19.0% (vs 14) |
-| g_iter1_c2 | 1763 +- 127 | 28 of 84 | 110 | 84-26 | 75.8% | 19.0% (vs 14) |
+| g_iter1_c2 | 1763 +- 127 | 27 of 84 | 110 | 84-26 | 75.8% | 19.0% (vs 14) |
+| arch_rush10 | 1763 +- 127 | 28 of 84 | 110 | 84-26 | 75.8% | 19.0% (vs 14) |
 | e1aggr | 1739 +- 126 | 29 of 84 | 110 | 83-27 | 74.9% | 17.2% (vs 14) |
-| c6pair | 1716 +- 126 | 31 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
-| c5bank | 1716 +- 126 | 32 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
-| a3dig10 | 1716 +- 126 | 33 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
+| c5bank | 1715 +- 126 | 31 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
+| a3dig10 | 1715 +- 126 | 32 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
+| c6pair | 1715 +- 126 | 33 of 84 | 110 | 82-28 | 74.0% | 17.8% (vs 15) |
 | e2aggr | 1692 +- 124 | 34 of 84 | 110 | 81-29 | 73.2% | 16.2% (vs 15) |
 | a2relay | 1692 +- 124 | 35 of 84 | 110 | 81-29 | 73.2% | 16.2% (vs 15) |
 | a2reloc | 1692 +- 124 | 36 of 84 | 110 | 81-29 | 73.2% | 16.2% (vs 15) |
@@ -49,8 +49,8 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter4), 
 | 7 | andrewgopher.player22 | 2076 | 45 | 580 | 515-65 | 17% (g_iter4 4-20*) |
 | 8 | CyrilSharma.finalBot | 2032 | 9 | 6380 | 4300-2080 | 37% (g_iter4 905-1519) |
 | 9 | hsmalladi.finalbot | 2023 | 41 | 580 | 496-84 | 17% (g_iter4 4-20*) |
-| 10 | Gymhgy.v10official | 2017 | 7 | 9500 | 5802-3698 | 40% (g_iter4 2238-3346) |
-| 11 | **us:g4ship1** | 1991 | 24 | 840 | 390-450 |  |
+| 10 | Gymhgy.v10official | 2017 | 7 | 9540 | 5817-3723 | 40% (g_iter4 2238-3346) |
+| 11 | **us:g4ship1** | 1997 | 23 | 880 | 415-465 |  |
 | 12 | **us:g4crumb** | 1948 | 27 | 640 | 258-382 |  |
 | 13 | **us:g4gym1** | 1947 | 16 | 1880 | 755-1125 |  |
 | 14 | **us:g_iter4** | 1945 | 8 | 8480 | 3400-5080 |  |
@@ -66,13 +66,13 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter4), 
 | 24 | ColtG5.Goob_final | 1785 | 12 | 3540 | 2205-1335 | 83% (g_iter4 20-4*) |
 | 25 | kyleezz.jeeryfix3 | 1766 | 29 | 580 | 342-238 | 71% (g_iter4 17-7*) |
 | 26 | **us:a3dig5** | 1763 | 127 | 110 | 84-26 |  |
-| 27 | **us:arch_rush10** | 1763 | 127 | 110 | 84-26 |  |
-| 28 | **us:g_iter1_c2** | 1763 | 127 | 110 | 84-26 |  |
+| 27 | **us:g_iter1_c2** | 1763 | 127 | 110 | 84-26 |  |
+| 28 | **us:arch_rush10** | 1763 | 127 | 110 | 84-26 |  |
 | 29 | **us:e1aggr** | 1739 | 126 | 110 | 83-27 |  |
 | 30 | quesswho.cretplayer2_3 | 1722 | 29 | 580 | 307-273 | 71% (g_iter4 17-7*) |
-| 31 | **us:c6pair** | 1716 | 126 | 110 | 82-28 |  |
-| 32 | **us:c5bank** | 1716 | 126 | 110 | 82-28 |  |
-| 33 | **us:a3dig10** | 1716 | 126 | 110 | 82-28 |  |
+| 31 | **us:c5bank** | 1715 | 126 | 110 | 82-28 |  |
+| 32 | **us:a3dig10** | 1715 | 126 | 110 | 82-28 |  |
+| 33 | **us:c6pair** | 1715 | 126 | 110 | 82-28 |  |
 | 34 | **us:e2aggr** | 1692 | 124 | 110 | 81-29 |  |
 | 35 | **us:a2relay** | 1692 | 124 | 110 | 81-29 |  |
 | 36 | **us:a2reloc** | 1692 | 124 | 110 | 81-29 |  |
