@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Tests for the python tools: the SPRT, the Elo bookkeeping, the scrimmage recorder, the benchmark
 selector. Synthetic inputs; runs from tools/unit-tests.sh. Every check names what it protects."""
-import math, re, os, shutil, subprocess, sys, tempfile, csv, importlib.util
+import math, re, os, shutil, subprocess, sys, tempfile, csv, importlib.util, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 fails = 0
 def check(ok, what):
@@ -81,7 +81,7 @@ check(elolib.accepted_builds({'us:g_iter10': 1, 'us:g_iter2': 1, 'x.bot': 1, 'us
 FIX = os.path.join(REPO, 'test', 'fixtures', 'example-DefaultSmall-s1.bc24')
 if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.jar')):
     dump = lambda *a: subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, *a], capture_output=True, text=True).stdout
-    def _sections(text):   # one dump with several modes: comm rows 66 fields, --defense 11, --capabilities 47, --track 29
+    def _sections(text):   # one dump with several modes: comm rows 66 fields, --defense 11, --capabilities 93, --track 29, --contact-d0 28
         out = {}
         for ln in text.splitlines():
             if not ln or ln.startswith('#'): continue
@@ -98,12 +98,21 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     OWN = os.path.join(REPO, 'test', 'fixtures', 'bot-vs-example-DefaultSmall-b1.bc24')
     check(os.path.exists(OWN), f'test fixture present: {OWN}')
     COLT = os.path.join(REPO, 'diag', 'sp5', 'ColtG5.Goob_final__Ambush__botA.bc24')   # extra S0a checks on a band game; local only (diag/ is not committed)
-    _jobs = {'fix': [FIX, '--comm', '1-2000', '--defense', '--capabilities', '--track'], 'fixflags': [FIX, '--flags']}
-    if os.path.exists(OWN): _jobs.update(own=[OWN, '--comm', '1-746', '--defense', '--capabilities', '--track'], ownflags=[OWN, '--flags'])
-    if os.path.exists(COLT): _jobs['colt'] = [COLT, '--comm', '1-1', '--defense', '--capabilities', '--track', '--team', 'A']
+    # --contact-d0 rides along (28 fields, its own section); it must leave every other mode's output unchanged
+    _jobs = {'fix': [FIX, '--comm', '1-2000', '--defense', '--capabilities', '--track', '--contact-d0'], 'fixflags': [FIX, '--flags']}
+    if os.path.exists(OWN):
+        _jobs.update(own=[OWN, '--comm', '1-746', '--defense', '--capabilities', '--track', '--contact-d0'], ownflags=[OWN, '--flags'])
+        # the dive plumbing on a replay that predates C.CONTACT: every indicator string counts as a dive turn (prefix ''); B's
+        # strings are listed beside, to count them
+        _jobs['dive'] = [OWN, '--capabilities', '--dive-note', '', '--logs', '^', '--team', 'B']
+    if os.path.exists(COLT): _jobs['colt'] = [COLT, '--comm', '1-1', '--defense', '--capabilities', '--track', '--team', 'A', '--contact-d0']
     END = os.path.join(REPO, 'diag', 'sp5', 'IvanGeffner.kuma__EndAround__botA.bc24')   # local regression of the drop window (below)
     if os.path.exists(END): _jobs['endlog'] = [END, '--track-log', '--team', 'A']
     _procs = {k: subprocess.Popen([os.path.join(HERE, 'replay-dump.sh'), *a], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True) for k, a in _jobs.items()}
+    _d0dir = tempfile.mkdtemp(); _d0csv = os.path.join(_d0dir, 'd0.csv')
+    if os.path.exists(OWN):
+        _procs['d0e2e'] = subprocess.Popen([sys.executable, os.path.join(HERE, 'contact-d0.py'), '-P', '1', '--side', 'B', '--out', _d0csv, OWN],
+                                           stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
     s = dump()
     check('winner B' in s and 'LEVEL_SUM' in s and 'round 2000' in s, 'replay-dump: summary matches the engine result (B by level sum at r2000)')
     import re as _re
@@ -179,6 +188,9 @@ def _rounds(n, cls): return n if cls == 2 else (6 * n + 4) // 5 if cls == 1 else
 def _step(l, d, n): return (l[0] + _sgn(d[0] - l[0]) * min(abs(d[0] - l[0]), n), l[1] + _sgn(d[1] - l[1]) * min(abs(d[1] - l[1]), n))
 def _pred(l, d, cls, age): return _step(l, d, min(max(0, _cheb(l, d) - 1), _moves(age, cls)))
 def _near(cs, p): return min(cs, key=lambda c: ((c[0] - p[0]) ** 2 + (c[1] - p[1]) ** 2, c[0], c[1]))   # ties: lower x, then lower y
+from decimal import Decimal as _Dec, ROUND_HALF_UP as _HALF_UP
+def _jf(n, d):   # Java's %.3f of n/d (half-up on the double's shortest decimal); '' without a denominator
+    return str(_Dec(repr(n / d)).quantize(_Dec('0.001'), rounding=_HALF_UP)) if d else ''
 def _icpt(l, d, cls, age, me=None, jail=-1, centres=()):
     nN = _cheb(l, d) - 1; s = max(1, nN // 12); n = _moves(age, cls)
     while n <= nN:
@@ -223,6 +235,54 @@ if os.path.exists(os.path.join(REPO, 'engine', 'engine.jar')):
     check(mono, 'track prediction: monotone toward D and stops on the zone edge (Chebyshev 1 from the centre)')
     check(_icpt((10, 10), (40, 10), 0, 0, (20, 10)) <= _rounds(4, 0) and _icpt((10, 10), (40, 10), 0, 0, (5, 10)) == 16,
           'intercept rule: a duck ahead meets the carrier no later than it arrives; a duck behind catches up at t=16')
+    # g4contact (convoy plan 3.4): chainPoint = step(L, D, min(m, cheb - 1)) with m = age * 9 >> 4; null once m > cheb (the
+    # predicted arrival has passed). Hand cases: age 0 is L; age 16 is 9 tiles toward a far D; each axis is capped; L next
+    # to D stays at L until m reaches 2 (age 4: null); on a 10-tile line the point stops at cheb - 1 until m = 11 (age 20)
+    def _cpoint(l, d, age):
+        m, n = age * 9 >> 4, _cheb(l, d) - 1
+        if m > n + 1: return '-'
+        s = min(m, n)
+        return '%d %d' % (l if s <= 0 else _step(l, d, s))
+    cq = [('C 10 10 40 10 0', '10 10'), ('C 10 10 40 10 16', '19 10'), ('C 0 0 3 20 16', '3 9'), ('C 10 10 11 11 2', '10 10'),
+          ('C 10 10 11 11 4', '-'), ('C 10 10 20 10 18', '19 10'), ('C 10 10 20 10 20', '-'), ('C 5 5 5 5 0', '5 5')]
+    check(all(_cpoint(tuple(map(int, q.split()[1:3])), tuple(map(int, q.split()[3:5])), int(q.split()[5])) == w for q, w in cq),
+          'chainPoint python reference: the hand cases')
+    for _ in range(300):
+        l = (rnd.randrange(60), rnd.randrange(60)); d = (rnd.randrange(60), rnd.randrange(60)); age = rnd.randrange(0, 70)
+        cq.append((f'C {l[0]} {l[1]} {d[0]} {d[1]} {age}', _cpoint(l, d, age)))
+    got = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), '--calc'], input='\n'.join(q for q, _ in cq) + '\n', capture_output=True, text=True).stdout.split('\n')
+    bad = [(q, w, g) for (q, w), g in zip(cq, got) if w != g]
+    check(len(got) >= len(cq) and not bad, f'replay-dump --calc C: chainPoint matches the python reference ({len(bad)} mismatches, e.g. {bad[:3]})')
+    # the census tally (convoy plan section 5): scripted chains and dive turns into one running ChainTally, each query
+    # printing the cumulative CHAIN_COLS; a python reference recomputes them from scratch after each query
+    def _chain_cols(chains, dives):
+        u = [c for c in chains if c[0] < 12]; p = [c for c in chains if c[0] >= 12]
+        judged = [c for c in u if c[2]]; fr = [o for c in u for o in c[2]]   # T = 0 chains have no window to judge
+        closed = lambda cs: [c for c in cs if c[1] != 'OPEN']; caps = lambda cs: sum(c[1] == 'CAPTURE' for c in cs)
+        return ','.join([_jf(sum(all(o[0] == 0 for o in c[2][:10]) for c in judged), len(judged)),
+                         _jf(sum(o[0] >= 1 for o in fr), len(fr)), _jf(sum(o[0] == 0 and o[1] >= 1 for o in fr), len(fr)),
+                         str(len(u)) if chains else '', str(len(p)) if chains else '', _jf(caps(u), len(closed(u))), _jf(caps(p), len(closed(p))),
+                         str(len(dives)) if u else '', _jf(sum(g >= 12 for g in dives), len(dives)), _jf(sum(g < 0 for g in dives), len(dives))])
+    script = [('V', -1),                                                                     # a dive before any chain: diveTurns blank
+              ('X', (5, 'CAPTURE', [(0, 2), (1, 3), (2, 4)] + [(1, 1)] * 9)),               # u12, contact from t2
+              ('X', (8, 'RETURN', [(0, 1), (0, 3)] * 6)),                                    # u12, screened throughout
+              ('X', (3, 'RETURN', [(0, 0)] * 4)),                                           # u12, returned at t5, no contact
+              ('X', (14, 'CAPTURE', [(3, 5)] * 8)),                                         # 12+: outside the u12 columns
+              ('X', (11, 'OPEN', [(0, 0)] * 10 + [(2, 2)] * 4)),                            # u12 OPEN, contact only after t10
+              ('X', (2, 'CAPTURE', [])),                                                    # T = 0: counted, not judged
+              ('X', (12, 'RETURN', [(0, 0)] * 3)),                                          # g0 = 12 is 12+
+              ('V', 5), ('V', 14), ('V', -1), ('V', 12), ('V', 0)]
+    lines, chains_, dives_, want = [], [], [], []
+    for kind, a in script:
+        if kind == 'V': dives_.append(a); lines.append(f'V {a}')
+        else: chains_.append(a); lines.append(f'X {a[0]} {a[1]} ' + ' '.join(f'{x} {y}' for x, y in a[2]))
+        want.append(_chain_cols(chains_, dives_))
+    got = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), '--calc'], input='\n'.join(lines) + '\n', capture_output=True, text=True).stdout.split('\n')
+    bad = [(q, w, g) for q, w, g in zip(lines, want, got) if w != g]
+    check(len(got) >= len(lines) and not bad, f'replay-dump --calc X/V: the chain census tally matches the python reference ({len(bad)} mismatches, e.g. {bad[:2]})')
+    check(want[0] == ',,,,,,,,0.000,1.000' and want[-1] == '0.750,0.357,0.310,5,2,0.500,0.500,6,0.333,0.333',
+          f'chain tally reference by hand: blanks before a chain; 3 of the 4 judged u12 chains (T >= 1) without contact in t1..10, '
+          f'contact 15/42 and screened 13/42 u12 flag-rounds, captures 2/4 closed u12 (OPEN out) and 1/2 closed 12+, dives 2/6 leak, 2/6 none ({want[-1]!r})')
 
 if 'outs' in globals():   # the combined dumps started in the replay-dump block above
     from fractions import Fraction as _Fr
@@ -257,12 +317,17 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     OLD_CAP = ('team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,'
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
-    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd']
+    NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd',
+               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain']
+    CHAIN_SHARES = ('noContact10u12', 'contact20u12', 'screened20u12', 'capRateU12', 'capRate12p', 'diveLeak12', 'diveNoChain')
+    D0_COLS = ('team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,'
+               + ','.join(f'err{a}' for a in range(1, 13))).split(',')
+    _iv = lambda v: int(v) if v != '' else 0
     def num_or_blank(v):
         try: return v == '' or float(v) >= 0
         except ValueError: return False
     for name, o in outs.items():
-        cap = _pick(o, 'enemyCarrierKills'); trk = o.get(29, []); dfn = o.get(11, []); cm = o.get(66, [])
+        cap = _pick(o, 'enemyCarrierKills'); trk = o.get(29, []); dfn = o.get(11, []); cm = o.get(66, []); d0r = _pick(o, 'enObsMax')
         check(len(cap) == 2 and list(cap[0].keys()) == OLD_CAP + NEW_CAP, f'replay-dump --capabilities ({name}): existing columns kept in order, S0a columns appended')
         SIGNED = {'levelGain1500', 'levelGain1200', 'levelGapEnd'}   # differences may be negative
         check(all(num_or_blank(c[k]) or (k in SIGNED and re.fullmatch(r'-\d+', c[k] or '')) for c in cap for k in NEW_CAP),
@@ -278,7 +343,36 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
         ours = [c for c in cap if name != 'colt' or c['team'] == 'A']   # an external bot may use slot 23 for its own purposes
         check(all(c['psymOk'] == '' for c in ours) and all(float(c['maxBcK']) <= 25.0 and int(c['overruns']) >= 0 for c in cap),
               f'replay-dump --capabilities ({name}): psymOk blank without the tracker slots; maxBcK in thousands, overruns a count')
+        # g4contact chain census (convoy plan section 5)
+        check(all(c[k] == '' or 0 <= float(c[k]) <= 1 for c in cap for k in CHAIN_SHARES), f'replay-dump --capabilities ({name}): chain-census shares in [0,1]')
+        check(all(_iv(c['chainsU12']) + _iv(c['chains12p']) == int(c['enemyFirstGrabs']) and (c['chainsU12'] == '') == (c['chains12p'] == '') == (c['enemyFirstGrabs'] == '0')
+                  for c in cap), f'replay-dump --capabilities ({name}): chainsU12 + chains12p = enemyFirstGrabs, both blank only without a grab')
+        check(all(c['contact20u12'] == '' or float(c['contact20u12']) + float(c['screened20u12']) <= 1.001 for c in cap),
+              f'replay-dump --capabilities ({name}): contact20u12 + screened20u12 <= 1 (disjoint flag-rounds; 3-decimal rounding)')
+        check(all(c['diveTurns'] in ('', '0') and (c['diveTurns'] == '') == (_iv(c['chainsU12']) == 0) and c['diveLeak12'] == c['diveNoChain'] == '' for c in cap),
+              f'replay-dump --capabilities ({name}): no dive note before C.CONTACT: diveTurns 0 (blank without a u12 chain), leak shares blank')
         capd = {c['team']: c for c in cap}
+        check(d0r and list(d0r[0].keys()) == D0_COLS, f'replay-dump --contact-d0 ({name}): the D0_COLS header')
+        for us in sorted({c['team'] for c in cap}) if name != 'colt' else 'A':   # --contact-d0 rows only for the tracked team
+            rs = [r for r in d0r if r['team'] == us]; c = capd[us]; them = 'B' if us == 'A' else 'A'
+            u = [r for r in rs if int(r['g0']) < 12]; p = [r for r in rs if int(r['g0']) >= 12]
+            judged = [r for r in u if r['noContact10'] != '']
+            closed = lambda cs: [r for r in cs if r['outcome'] != 'OPEN']; caps_ = lambda cs: sum(r['outcome'] == 'CAPTURE' for r in cs)
+            check(len(rs) == int(c['enemyFirstGrabs']) and len(u) == _iv(c['chainsU12']) and caps_(rs) == int(c['enemyCaptured'])
+                  and c['capRateU12'] == _jf(caps_(u), len(closed(u))) and c['capRate12p'] == _jf(caps_(p), len(closed(p)))
+                  and c['noContact10u12'] == _jf(sum(r['noContact10'] == '1' for r in judged), len(judged)),
+                  f'replay-dump ({name} {us}): one --contact-d0 row per chain; its g0 bands, outcomes (every capture ends a chain) and noContact10 '
+                  f'give the census\'s chainsU12, capRateU12, capRate12p and noContact10u12')
+            firsts = sorted(int(d['round']) for d in dfn if d['carrierTeam'] == them and d['first'] == '1')
+            grabs = sorted(int(r['grab']) for r in rs)
+            check(not (collections.Counter(firsts) - collections.Counter(grabs)) and len(grabs) - len(firsts) <= sum(r['outcome'] == 'OPEN' for r in rs),
+                  f'replay-dump ({name} {us}): every finished --defense first-grab trip starts a chain (the others are OPEN at the end)')
+            check(all(r['outcome'] in ('CAPTURE', 'RETURN', 'OPEN') and r['seenT0'] in ('0', '1') and (r['noContact10'] == '') == (r['T'] == '0')
+                      and (r['enObsMax'] == '' or 0 <= int(r['enObsMax']) <= 15)
+                      and int(r['elig8']) <= int(r['elig10']) <= int(r['elig12']) <= int(r['elig12r144']) <= int(r['unseenLive']) <= int(r['liveRounds']) <= int(r['T'])
+                      and int(r['noPoint']) + sum(len(r[f'err{a}'].split(';')) for a in range(1, 13) if r[f'err{a}']) == int(r['unseenLive'])
+                      and all(int(x) >= 0 for a in range(1, 13) for x in r[f'err{a}'].split(';') if x) for r in rs),
+                  f'replay-dump --contact-d0 ({name} {us}): eligible <= unseen live <= live <= T; every unseen live round has an error or no point')
         for us in sorted({r['team'] for r in trk}) if name == 'colt' else 'AB':   # the diag run tracks A only (--team A)
             them = 'B' if us == 'A' else 'A'
             th = [r for r in trk if r['team'] == us and r['kind'] == 'their']; ow = [r for r in trk if r['team'] == us and r['kind'] == 'own']
@@ -312,6 +406,23 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
             if capd[us]['symOk'] == '1' and len(s16) == 1 and len({r['round'] for r in cm}) > 200:
                 check(all(r['predErr'] == r['predErrSym'] and r['destHit'] == r['destHitSym'] for r in th),
                       f'replay-dump --track ({name} {us}): with Sym.best() giving the true centres (slot 16 constant), both beliefs score alike')
+    if 'dive' in raw:   # --dive-note '': every post-setup indicator string of our 2026-09-30 build (A) and of examplefuncsplayer (B)
+        dl = raw['dive'].splitlines()
+        logs_b = sum(1 for l in dl if (m := _re.match(r'r(\d+) B#', l)) and int(m[1]) > 200)
+        dc = {c['team']: c for c in csv.DictReader(l for l in dl if not _re.match(r'r\d+ B#', l))}
+        a_, b_ = dc.get('A', {}), dc.get('B', {})
+        check(logs_b > 0 and b_.get('diveTurns') == str(logs_b) and b_.get('chainsU12', '') not in ('', '0')
+              and float(b_['diveLeak12']) + float(b_['diveNoChain']) <= 1.001,
+              f'replay-dump --dive-note: diveTurns counts the post-setup strings with the prefix ({b_.get("diveTurns")} vs --logs {logs_b}); leak + no-chain shares <= 1')
+        check(a_.get('chainsU12') == '' and a_.get('diveTurns') == '' and a_.get('diveLeak12') == '0.000' and a_.get('diveNoChain') == '1.000',
+              f'replay-dump --dive-note: on a side whose flags were never grabbed, diveTurns is blank and every dive turn has no chain ({a_.get("diveNoChain")})')
+    if 'd0e2e' in raw:   # tools/contact-d0.py end to end on our build's fixture (our side B: the side whose flags were grabbed)
+        e2e = raw['d0e2e']
+        check('chains on our flags: 5 (u12 3, 12+ 2)' in e2e and 'ROUTES: R1 ' in e2e and 'replays: 1 found, 1 dumped, 0 failed' in e2e,
+              'contact-d0.py: dumps a replay with --contact-d0 and reads the routes: ' + e2e[-600:])
+        r = subprocess.run([sys.executable, os.path.join(HERE, 'contact-d0.py'), _d0csv], capture_output=True, text=True)
+        check(r.returncode == 0 and r.stdout.splitlines() == e2e.splitlines()[1:], 'contact-d0.py: re-reading its --out CSV gives the same report: ' + r.stdout[-300:])
+    shutil.rmtree(_d0dir, ignore_errors=True)
     if 'own' in outs:
         ot = outs['own'].get(29, []); od = outs['own'].get(11, [])
         z = [r for r in ot if r['team'] == 'A' and r['kind'] == 'own' and r['tripRounds'] == '0']
@@ -440,6 +551,43 @@ with tempfile.TemporaryDirectory() as d:
     check(sorted(kinds) == ['error', 'missing'], f'premise.py --out: the failed replay and the missing cell are rows of the trip CSV ({kinds})')
     r = subprocess.run(P + [out_csv], capture_output=True, text=True)
     check(r.returncode == 1 and 'PARTIAL' in r.stdout and 'ROUTING' not in r.stdout, 'premise.py: re-reading that CSV reports the same shortfall (exit 1)')
+
+# contact-d0.py: the D0 routes (convoy plan section 6) on hand-made chain rows
+spec = importlib.util.spec_from_file_location('cd0', os.path.join(HERE, 'contact-d0.py')); cd0 = importlib.util.module_from_spec(spec); spec.loader.exec_module(cd0)
+def _d0(file, g0, nc='0', seen='0', unseen=0, e12=0, e10=0, e8=0, e144=0, errs=None, outcome='CAPTURE', T=12, noPoint=0):
+    r = dict(file=file, kind='chain', team='A', grab='300', flag='1', g0=str(g0), outcome=outcome, T=str(T), seenT0=seen, noContact10=nc, enObsMax='5',
+             liveRounds=str(unseen), unseenLive=str(unseen), noPoint=str(noPoint), elig12=str(e12), elig10=str(e10), elig8=str(e8), elig12r144=str(e144))
+    for a in range(1, 13): r[f'err{a}'] = ';'.join(map(str, (errs or {}).get(a, [])))
+    return r
+_g = lambda *fs: [dict(file=f, kind='game') for f in fs]
+# A: errors 1-3 at every age (M(12) 2.0 <= 3); reach exactly 1/4; 12+ share of elig12 exactly 1/4; baseline mean(1/2, 0) = 1/4
+#    with 1/1 no-contact chain seen at t0 -> every bar met at its boundary
+rowsA = _g('g1', 'g2') + [_d0('g1', 5, nc='1', seen='1', unseen=8, e12=3, e10=3, e8=3, e144=4, errs={a: [1, 2, 3] for a in range(1, 13)}),
+                          _d0('g1', 6, nc='0', unseen=4, e12=0, errs={1: [2]}), _d0('g2', 9, nc='0', unseen=0), _d0('g2', 7, nc='', T=0),
+                          _d0('g2', 13, e12=1, e10=0, e8=0)]
+t, v = (lambda lv: ('\n'.join(lv[0]), lv[1]))(cd0.evaluate(rowsA))
+check(v == {'PARTIAL': False, 'R1': 'CT_HOLD 12', 'R2': 'BUILD', 'R3': 'CT_GROUP_MAX 12', 'R4': 'rel:noContact10u12<=0.8'}
+      and 'elig12 / unseenLive over u12 chains = 3/12 = 0.250' in t and 'mean of 2 games) 0.250, pooled 1/3' in t and 'chains on our flags: 5 (u12 4, 12+ 1)' in t,
+      f'contact-d0: bars met exactly on their boundaries (fractions, not floats): {v}\n{t}')
+# B: per-age errors 2 up to age 8, 9 after (M(8) 2 <= 3 < M(12)); reach 3/15 = 0.2; 12+ share 1/2 at 12, 1/4 at 10; seen at t0 1/4
+rowsB = _g('g1') + [_d0('g1', 5, nc='1', seen='1', unseen=15, e12=3, e10=3, e8=1, e144=6, errs={**{a: [2] for a in range(1, 9)}, **{a: [9, 9, 9] for a in range(9, 13)}})]
+rowsB += [_d0('g1', 4, nc='1') for _ in range(3)] + [_d0('g1', 14, e12=3, e10=1, e8=0)]
+t, v = (lambda lv: ('\n'.join(lv[0]), lv[1]))(cd0.evaluate(rowsB))
+check(v['R1'] == 'CT_HOLD 8' and v['R2'] == 'CT_DIVE_R2 144' and v['R3'] == 'CT_GROUP_MAX 10' and v['R4'] == 'rel:screened20u12<=0.8'
+      and 'seen at t0 1/4 = 0.250' in t and 'CT_GROUP_MAX 12: eligible rounds from true g0 >= 12 chains 3/6 = 0.500' in t,
+      f'contact-d0: CT_HOLD 8, CT_DIVE_R2 144, the largest qualifying CT_GROUP_MAX, the screened fallback: {v}')
+# C: M(4) 4 > 3 -> PARK; reach 1/10 -> PARK; no threshold qualifies -> keep 12; baseline 0 -> screened
+rowsC = _g('g1') + [_d0('g1', 3, unseen=10, e12=1, e10=1, e8=1, errs={a: [4] for a in range(1, 13)}), _d0('g1', 15, e12=2, e10=2, e8=2)]
+v = cd0.evaluate(rowsC)[1]
+check(v['R1'] == 'PARK' and v['R2'] == 'PARK' and v['R3'] == 'CT_GROUP_MAX 12 (none qualifies)' and v['R4'] == 'rel:screened20u12<=0.8',
+      f'contact-d0: the park routes and the keep-12 fallback: {v}')
+# D: M(4) 3 <= 3 < M(8): no pre-registered route; a failed replay makes the report PARTIAL with no routes
+rowsD = _g('g1') + [_d0('g1', 3, unseen=8, errs={**{a: [3] for a in range(1, 5)}, **{a: [9] for a in range(5, 13)}})]
+l, v = cd0.evaluate(rowsD + [dict(file='x__M__botA.bc24', kind='error', outcome='GZIP EOF')])
+check(v['R1'] == 'NO ROUTE' and v['PARTIAL'] and not any(x.startswith('ROUTES') for x in l) and l[0].startswith('replays: 2 found, 1 dumped, 1 failed'),
+      f'contact-d0: M(4) <= 3 < M(8) has no pre-registered route; a failed dump is PARTIAL without routes: {v} {l[:2]}')
+r = subprocess.run([sys.executable, os.path.join(HERE, 'contact-d0.py'), '/no/such/run'], capture_output=True, text=True)
+check(r.returncode == 2 and 'no such run dir' in r.stderr, 'contact-d0.py: an input that does not exist is an error (exit 2)')
 
 # --- delivery gate: the checker passes/fails correctly; band-test.sh refuses without a PASS file
 with tempfile.TemporaryDirectory() as d:
