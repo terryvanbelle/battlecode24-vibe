@@ -270,3 +270,7 @@ Is there a reason why we've played so few games against uravt.Version18Final?
 ## 185. 2026-10-05
 
 Sure, sounds good
+
+## 186. 2026-10-05
+
+Can you evaluate whether the shipping criteria are too strict?
