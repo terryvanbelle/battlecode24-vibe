@@ -1716,3 +1716,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   vs -9.5; three games flip to level-sum wins (EndAround s1 A/B, Hurricane s1), but three tied games become MORE_FLAG
   losses and Gymhgy's captures rise (0.62 vs 0.44): the farm spends the crumbs that fund defensive stuns. Wins 4 vs 5
   (g4farm2 6 on the same cells). The stronger dose trades level wins for late captures: the farm line stays parked.
+- **g4gym1 vs g_iter4 against Gymhgy: 400 pairs, net +31 (91-60, +2.5 SE)**, ~+8 points on identical cells. Not
+  promotable: its band test was neutral (net +1, upper capture -0.15, t -1.1) and REWRITE_EVAL needs a band gain; the
+  pre-registered crack read (>= 60%) is far off (~40%). It is the base of the Gymhgy line; a convoy-response design panel
+  (workflow: three designs, two judges, synthesis) is running for the next lever.
