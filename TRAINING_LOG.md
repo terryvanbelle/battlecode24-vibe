@@ -1756,3 +1756,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Owner PROMPTS 181: ELO.md's "our last run" showed g_iter1 against most of the upper tier, because later builds met each
   of those bots only 24 times and fell under the 30-game floor. The column is now "our record": the incumbent's record
   against each bot whatever the count (* under 30 games), else the most recent build that played it.
+- **g4ship1 5(a)** (6 chosen maps vs g_iter4 mirrors, seed 5): both mechanisms fire: gathered201to400 9,333 vs 4,250
+  (x2.2), regrabs 32.2 vs 5.3 a game (after-move pickups 15-72 a game); basics clean (0 overruns, max 20.6k). Descriptive:
+  wins 5/6 vs 4/6, enemy captures 0.33 vs 1.67. Band delivery pre-registered: `DGTAG=-seeded BASE=g_iter4
+  tools/delivery-gate.sh g4ship1 'rel:gathered201to400>=1.3 rel:regrabs>=1.5 nw:kills>=0.95 nw:enemyCaptured<=1.1
+  mean:overruns<=0'`, band test chained on PASS (REWRITE_EVAL: then confirmation seeds).
