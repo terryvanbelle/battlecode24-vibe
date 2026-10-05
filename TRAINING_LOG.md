@@ -1698,3 +1698,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   interaction. Delivery pre-registered on random Gymhgy maps: `DGPOOL=Gymhgy.v10official DGTAG=-gym BASE=g_iter4
   tools/delivery-gate.sh g4gym1 'rel:gathered201to400>=1.3 rel:stunTrig250>=1.2 nw:enemyCaptured<=1.1 nw:kills>=0.95
   mean:overruns<=0'`. g4crumb paired filler at 400 pairs: net +13 (+1.3 SE).
+- **g4gym1 Gymhgy delivery: PASS** at 96 cells (INCONCLUSIVE at 24, 48 on the kills guard's power): gathered201to400 +61%
+  (+1.9 SE past x1.3), stunTrig250 +86% (+5.4 SE past x1.2), enemy captures 1.86 vs 2.00 (guard PASS), kills 360 vs 337
+  (guard PASS). The filler now pairs g4gym1 with g_iter4 against Gymhgy (random maps and sides); band guard and band test
+  queued. g4crumb paired filler closed at 560 pairs: net +20 (85-65, +1.6 SE).
