@@ -1785,3 +1785,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   PROMPTS 183). The dive does not put our ducks in contact with Gymhgy's chains (the 5(a) trace already showed 4 of 10 first
   divers moving away). With the one pre-registered recalibration spent (gate 12 leaked 0.39; gate 8 fails the signature),
   the convoy-response line (g4contact) is closed against Gymhgy. Its census columns and D0 tool stay for future work.
+- **g4gym1 vs g_iter4 against Gymhgy, paired filler closed at 1,880 pairs: net +12 (362-350, +0.4 SE)**, ~+0.6 points: the
+  early +31/400 was noise; crumbs + dam line do not move the Gymhgy matchup measurably. The filler now pairs g4ship1 with
+  g_iter4 against Gymhgy while its band test runs.

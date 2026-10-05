@@ -78,6 +78,6 @@ guard PASS. **g4gym1 = g4crumb + g4dam** delivered at 96 cells (crumbs r201-400 
 **Convoy response closed (2026-10-05).** g4contact (a flag track in its own slots plus a capped in-fight dive for observed
 groups under 12; design panel and a reviewed build in research/g4contact-design-2026-10-05/) passed its offline premise
 check and fired in every game, but leaked into big convoys at the 12 gate (0.39) and, recalibrated to 8, failed delivery:
-screened rounds rose (0.28 vs 0.24, -2.7 SE). The g4gym1 combination (crumbs + dam line) remains the best Gymhgy result
-(+22 over 840 pairs, ~+2.6 points). A stack for the band, g4ship1 (crumbs + pick-after-move), passed delivery (PROMPTS
+screened rounds rose (0.28 vs 0.24, -2.7 SE). The g4gym1 combination (crumbs + dam line) closed at +12 over 1,880 pairs (+0.4 SE): no measurable
+effect on the matchup. A stack for the band, g4ship1 (crumbs + pick-after-move), passed delivery (PROMPTS
 183 removed the kills guard) and is in its band test.
