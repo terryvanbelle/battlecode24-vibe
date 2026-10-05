@@ -1744,3 +1744,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   no-contact u12 chains seen at t0 -> the gate column becomes rel:screened20u12<=0.8 (pre-registered switch). The arm is
   built as specified. 5(a) queued (plan section 8: 8 cells x 2 seeds, sides balanced, Canals A the negative control,
   g_iter4 twins on the same seeds).
+- g4contact 5(a) (16 cells, g_iter4 twins): dives fire in all 13 games with a u12 chain (diveTurns 9-792), diveNoChain
+  0.07, basics clean (0 overruns, max 20.9k); identity read passes (every pair identical until our first dive or predicted
+  chase). **Leakage miss: diveLeak12 0.39 (bar 0.3)**. Signature preview: screened20u12 0.245 vs 0.294; price
+  (descriptive): deaths +23%, capRateU12 0.35 vs 0.29. Pre-registered recalibration once: **g4contact8** (CT_GROUP_MAX 8,
+  D0's lowest-leak setting), 5(a) repeated on the same cells.
+- Owner PROMPTS 180 (stack two close-to-good ideas to ship): **g4ship1 = g4crumb + g4pick**, the two arms with independent
+  mechanisms and positive band evidence (g4crumb net +4, capture t 1.0, rest t 1.8, k/d up; g4pick pooled net +6 over 473,
+  capture +0.08, upper +0.11). g4gym1 (crumb + dam) was band-neutral, so the dam is left out. 5(a) vs g_iter4 mirrors on 6
+  maps queued; then the band delivery and the band test toward REWRITE_EVAL.
+- Owner PROMPTS 181: ELO.md's "our last run" showed g_iter1 against most of the upper tier, because later builds met each
+  of those bots only 24 times and fell under the 30-game floor. The column is now "our record": the incumbent's record
+  against each bot whatever the count (* under 30 games), else the most recent build that played it.
