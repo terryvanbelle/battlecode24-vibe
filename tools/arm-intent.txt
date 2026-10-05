@@ -103,3 +103,6 @@ g4relay2 C.PICKUP_AFTER_MOVE=true
 g4farm C.LEVEL_FARM=true
 g4farm2 C.LEVEL_FARM=true
 g4dam C.DAM_FIRST=true
+g4gym1 C.CRUMB_STEP=true
+g4gym1 C.POST_SETUP_CRUMBS=true
+g4gym1 C.DAM_FIRST=true
