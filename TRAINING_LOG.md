@@ -1656,3 +1656,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   Delivery pre-registered on the 23-map stalemate class (tools/maps-stalemate-gymhgy.txt): `DGPOOL=Gymhgy.v10official
   DGMAPS=tools/maps-stalemate-gymhgy.txt DGTAG=-gymfarm BASE=g_iter4 tools/delivery-gate.sh g4farm2
   'rel:levelGain1500>=1.25 nw:enemyCaptured<=1.1 mean:overruns<=0'`.
+- **g4crumb Gymhgy delivery on the centre-crumb maps: PASS** (re-run, seed 919191, 48 cells all paired): gathered201to400
+  8,371 vs 4,423 (+2.6 SE past x1.5); kills 290 vs 228, guard PASS (worst plausible drop 5%). The filler now pairs
+  g4crumb with g_iter4 against Gymhgy on random maps and sides (the victory read; CLAUDE rule 14); band guard and band
+  test queued.
+- g4farm2 stalemate-class gate: INCONCLUSIVE at 24 cells (levelGain1500 45 vs 36, +27%, bar +25%, +0.3 SE; enemy captures
+  guard PASS); extending to 48.
