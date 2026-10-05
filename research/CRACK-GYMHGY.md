@@ -85,3 +85,8 @@ effect on the matchup. A stack for the band, g4ship1 (crumbs + pick-after-move),
 **Final paired tallies (2026-10-05):** g4crumb vs g_iter4 against Gymhgy closed at 640 pairs, net +30 (+2.3 SE, ~+4.7
 points): the crumb lever is a real Gymhgy gain; the dam-line piece cancelled it inside g4gym1 (+12/1,880). g4ship1 (crumbs +
 pick-after-move) carries the crumbs without the dam; its Gymhgy paired filler and its third band look are running.
+
+**g4ship1 shipped as g_iter5 (2026-10-05).** It passed the adopted shipping rule at look 3 (720 band pairs: capture t
+3.25, net +23) and was +38 over 840 paired games against Gymhgy (+2.1 SE, ~+4.5 points). Ladder: g_iter5 1983, Gymhgy
+2010. Gymhgy stays the target; new arms are built on g_iter5 and paired against it on the refreshed band; the filler builds
+g_iter5's baseline against Gymhgy.
