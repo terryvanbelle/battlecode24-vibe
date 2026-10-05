@@ -1687,3 +1687,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   the bank is spent by r250 (149 vs 148); wins 6 vs 7 (2 gained, 3 lost), enemy captures equal. Delivery pre-registered
   on random Gymhgy maps: `DGPOOL=Gymhgy.v10official DGTAG=-gymdam BASE=g_iter4 tools/delivery-gate.sh g4dam
   'rel:stunTrig250>=1.2 nw:enemyCaptured<=1.1 mean:overruns<=0'`.
+- **g4dam Gymhgy delivery: PASS** (24 cells, random maps): stunTrig250 31.1 vs 18.5 (+69%, +2.2 SE past x1.2); enemy
+  captures 1.92 vs 2.08, guard PASS. g4crumb paired filler at 320 pairs: net +11 (+1.2 SE).
+- Combined Gymhgy candidate **g4gym1** = g4crumb + g4dam (both delivered against Gymhgy). 5(a) on 16 chosen cells (four
+  centre-crumb cells on seeds 781001/2, four early-loss cells on 781201/2); the g_iter4 games on the same cells from the
+  earlier diagnostics serve as the base (g_iter4 and Gymhgy are both deterministic under a fixed seed).
