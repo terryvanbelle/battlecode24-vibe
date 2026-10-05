@@ -32,6 +32,12 @@ import java.util.zip.GZIPInputStream;
  *     --track             S0a offline flag tracker (research/REWRITE_DESIGN.md 2.4/2.5/2.11), one CSV row per post-setup trip
  *                         [--team A|B = the tracked ("our") side; default both, rows tagged]. See TRACK_COLS below.
  *     --track-log         --track plus one '#' line per round per tracked flag away from home (belief vs truth)
+ *     --dive-note P       the indicator-string prefix --capabilities diveTurns counts (default dive; a test hook, so the
+ *                         dive plumbing runs on replays that predate C.CONTACT)
+ *     --contact-d0        g4contact premise check D0 (convoy plan section 6): the arm's flag sensor replayed on what one
+ *                         team's robots could see, one CSV row per chain on that team's flags [--team A|B = the tracked
+ *                         side; default both, rows tagged]. See D0_COLS below; tools/contact-d0.py pools the rows into the
+ *                         plan's four routes.
  *   ReplayDump --calc     (no replay) reads queries from stdin and prints the 2.4 prediction / 2.5 intercept time:
  *                           P lx ly dx dy cls age            -> px py     (P(now) = step(L, D, min(N, movesDone(age))))
  *                           T lx ly dx dy cls age mx my      -> t         (alive duck at m; -1 = infeasible or t > 30)
@@ -40,6 +46,14 @@ import java.util.zip.GZIPInputStream;
  *                           N px py cx cy [cx cy..]          -> cx cy     (nearest centre; ties: lower x, then lower y)
  *                           D r0 win rn                      -> 1|0       (a flag first seen dropped at r0 still lies there
  *                                                                           at the end of round rn: rn < r0 + win)
+ *                         and the g4contact rules (convoy plan sections 5-6):
+ *                           C lx ly dx dy age                -> px py | - (the arm's chainPoint; - = null, the predicted
+ *                                                                           arrival has passed)
+ *                           X g0 outcome o20_1 o100_1 .. o20_k o100_k  -> the CHAIN_COLS fields, comma-separated (one
+ *                                                                           scripted chain added to a running ChainTally:
+ *                                                                           outcome CAPTURE|RETURN|OPEN, k = T open rounds)
+ *                           V g0                             -> the same  (one dive turn added to that tally: g0 of its
+ *                                                                           nearest chain, -1 = none within dist2 144)
  *
  * --capabilities columns appended for S0a (each describes the OTHER team's trips on this team's flags, like chasers20;
  * blank when the event is absent, so tools/delivery-check.py skips the game):
@@ -75,6 +89,26 @@ import java.util.zip.GZIPInputStream;
  *   stunTrig250        our stuns triggered in r201-250; kills250 / deaths250: our kills and deaths by the end of r250
  *   levelGain1200      our level sum at the end minus at r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
+ *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
+ *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
+ *   carrier; also a first grab of the flag while its chain is open, i.e. a carrier dropped it on its own home tile and it was
+ *   re-grabbed before the reset: that chain ends RETURN at the re-grab round, as the reset would have ended it and as the
+ *   arm's contactHome ends a track on a flag lying home, and the re-grab opens the next chain) or the game end (OPEN). The
+ *   flag's tile at the end of a round is its carrier's while carried, else where it lies. g0 (the grab group) = the carrier
+ *   team's robots within dist2 20 of the flag at the end of the grab round, carrier included. At the end of each open round
+ *   t = 1..T (T = the chain's last open round): ours20 / ours100 = our robots within dist2 20 / 100 of the flag.
+ *   noContact10u12     among chains with g0 < 12 and T >= 1, the share with ours20 = 0 at every t = 1..min(10, T) (a short
+ *                      chain counts over its own window; blank: no such chain)
+ *   contact20u12       over the flag-rounds t >= 1 of g0 < 12 chains, the share with ours20 >= 1; screened20u12: the share
+ *                      with ours20 = 0 and ours100 >= 1 (both blank without such a flag-round)
+ *   chainsU12          chains with g0 < 12; chains12p: g0 >= 12; they sum to enemyFirstGrabs (both blank without a chain)
+ *   capRateU12         captures / closed chains (CAPTURE or RETURN, re-grab RETURNs included; OPEN excluded) among g0 < 12
+ *                      chains; capRate12p the same for g0 >= 12 (blank: no closed chain in the band)
+ *   diveTurns          our post-setup robot-turns whose indicator string starts with "dive" (C.CONTACT's note); blank without
+ *                      a g0 < 12 chain, so a fire check skips the game
+ *   diveLeak12         per dive turn, the open chain on our flags whose flag lies nearest the diver within dist2 144 (end of
+ *                      round, a chain grabbed that round included; ties: lower x, then lower y): the share whose chain has
+ *                      g0 >= 12; diveNoChain: the share with no chain within dist2 144 (both blank without a dive turn)
  *   Not built (no replay holds them and their encodings are not pinned yet): trkLat, trkHit20, trkFalse, trkDest, trkExc,
  *   the auction/responder columns (cutFire ... escRegrabs) and --defense hunters20.
  *
@@ -200,6 +234,8 @@ public class ReplayDump {
                 case "--defense": defMode = true; summary = false; break;
                 case "--track": trackMode = true; summary = false; break;
                 case "--track-log": trackMode = trackLog = true; summary = false; break;
+                case "--contact-d0": d0Mode = true; summary = false; break;
+                case "--dive-note": diveNote = args[++i]; break;
                 case "--comm": {
                     String[] p = args[++i].split("-");
                     commFrom = Integer.parseInt(p[0]); commTo = p.length > 1 ? Integer.parseInt(p[1]) : commFrom;
@@ -527,7 +563,7 @@ public class ReplayDump {
                     if (rn > 200) {
                         kPostPickups[t]++;
                         int[] fl = flagLoc.get(tgt), fh = flagHome.get(tgt);
-                        if (fl != null && fh != null && fl[0] == fh[0] && fl[1] == fh[1]) kFirstGrabs[t]++;
+                        if (fl != null && fh != null && fl[0] == fh[0] && fl[1] == fh[1]) { kFirstGrabs[t]++; if (chainsOn()) chainStart(rn, tgt, 3 - t); }
                         else if (Boolean.TRUE.equals(lastDropByDeath.get(tgt))) { kRegrabs[t]++; if (rn > 1200) kRegrabsLate[t]++; }
                         else kRelayPickups[t]++;
                     }
@@ -552,6 +588,7 @@ public class ReplayDump {
                     int fx = tgt % W, fy = tgt / W;
                     boolean wasCarried = carrying.containsValue(id);
                     if (rn == 200 || (rn > 200 && !wasCarried)) { flagHome.put(id, new int[]{fx, fy}); lastDropByDeath.remove(id); }   // default set / returned home
+                    if (rn > 200 && !wasCarried && chainsOn()) chainEnd(rn, id, "RETURN", new int[]{fx, fy});
                     { for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) if (ce.getValue() == id && rn > 200) {
                         int holder = ce.getKey(); boolean dies = false;
                         for (int q = 0; q < r.diedIdsLength(); q++) if (r.diedIds(q) == holder) dies = true;
@@ -575,6 +612,7 @@ public class ReplayDump {
                 }
                 case Action.CAPTURE_FLAG:
                     { int ft = flagTeam.getOrDefault(tgt, 0); int[] hm = flagHome.get(tgt); if (ft >= 1 && ft <= 2 && hm != null) capturedHomes[ft].add(hm); }
+                    if (chainsOn()) chainEnd(rn, tgt, "CAPTURE", lastLoc.get(id));
                     cCaptures[t]++; if (rn > 1200) kCapturedLate[t]++; if (rn <= 600) kCaptured600[t]++; if (tripsOn()) endTrip(rn, id, "CAPTURE"); carrying.remove(id); flagLoc.put(tgt, null);
                     capturedFlags.add(tgt);
                     if (firstCapture[t] < 0) firstCapture[t] = rn;
@@ -636,6 +674,7 @@ public class ReplayDump {
         // deaths
         Set<Integer> diedNow = new HashSet<>();
         for (int j = 0; j < r.diedIdsLength(); j++) diedNow.add(r.diedIds(j));
+        deathTile.clear();
         for (int j = 0; j < r.diedIdsLength(); j++) {
             int id = r.diedIds(j), t = team.getOrDefault(id, 0);
             cDeaths[t]++; if (firstDeath[t] < 0) firstDeath[t] = rn;
@@ -645,6 +684,7 @@ public class ReplayDump {
             if (tripsOn() && trip.containsKey(id)) endTrip(rn, id, "DIED");
             int[] l = lastLoc.get(id);
             deathRound.put(id, rn);
+            if (capMode && l != null) deathTile.put(id, l);   // a diver killed after its turn still dived (diveLeak12)
             if (capMode && t > 0 && l != null) {   // lone / trickle deaths: own robots alive at the end of the round within dist2 20
                 int nb = 0;
                 for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
@@ -666,6 +706,10 @@ public class ReplayDump {
             String s = r.indicatorStrings(j);
             if (logs != null && (logTeam == 0 || logTeam == t) && logs.matcher(s).find()) out.printf("r%d %s#%d %s%n", rn, tname(t), id, s);
             else if (id == robot) out.printf("r%d #%d says: %s%n", rn, id, s);
+            if (capMode && rn > 200 && t > 0 && s.startsWith(diveNote)) {   // diveTurns; resolved to a chain in chainTick, after g0
+                int[] at = nowLoc.containsKey(id) ? nowLoc.get(id) : deathTile.get(id);
+                if (at != null) divers.add(new int[]{t, at[0], at[1]});
+            }
         }
         if (every > 0 && rn % every == 0) printEvery(rn);
         if (metricsEvery > 0 && rn % metricsEvery == 0) for (int t = 1; t <= 2; t++) out.println(metricRow(rn, t));
@@ -689,7 +733,7 @@ public class ReplayDump {
             if (dgl == null || dgh == null || ft < 1 || ft > 2 || (dgl[0] == dgh[0] && dgl[1] == dgh[1]) || capturedFlags.contains(fe.getKey())) continue;
             for (int[] q : nowLoc.values()) if (q[2] == ft && d2(q[0], q[1], dgl[0], dgl[1]) <= 8) kDropGuard[ft]++;
         }
-        if (s0a() || capMode) tick(rn);
+        if (s0a() || chainsOn()) tick(rn);
         if (s0a()) witnessWatch.removeIf(x -> rn >= x.start + 10);
         kRounds++;
         totalRounds = rn;
@@ -974,6 +1018,7 @@ public class ReplayDump {
             kEnemyCarried[3 - ct]++;
             if (!near(al[3 - ct], c[0], c[1], VISION2, -1)) kEnemyUnseen[3 - ct]++;
         }
+        if (chainsOn()) chainTick(rn, al);
         if (!s0a()) return;
         Map<Integer, Integer> holderOf = new HashMap<>();
         for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) holderOf.put(ce.getValue(), ce.getKey());
@@ -1117,9 +1162,15 @@ public class ReplayDump {
     /** --calc: the prediction and intercept rules on synthetic inputs (tools/test_tools.py). */
     static void calc() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        ChainTally tally = new ChainTally();   // X and V add to one running tally
         for (String line; (line = in.readLine()) != null; ) {
             String[] p = line.trim().split("\\s+");
             if (p.length == 0 || p[0].isEmpty()) continue;
+            if (p[0].equals("X")) {            // the outcome is a word, the rest are numbers
+                List<int[]> rs = new ArrayList<>();
+                for (int i = 3; i + 1 < p.length; i += 2) rs.add(new int[]{Integer.parseInt(p[i]), Integer.parseInt(p[i + 1])});
+                tally.add(Integer.parseInt(p[1]), p[2], rs); out.println(tally.cols()); continue;
+            }
             int[] a = new int[p.length - 1];
             for (int i = 1; i < p.length; i++) a[i - 1] = Integer.parseInt(p[i]);
             switch (p[0]) {
@@ -1137,8 +1188,205 @@ public class ReplayDump {
                     int[] c = nearestOf(cs, a[0], a[1]); out.println(c[0] + " " + c[1]); break;
                 }
                 case "D": out.println(inDropWindow(a[0], a[2], a[1]) ? 1 : 0); break;
+                case "C": { int[] q = chainPoint(a[0], a[1], a[2], a[3], a[4]); out.println(q == null ? "-" : q[0] + " " + q[1]); break; }
+                case "V": tally.dive(a[0]); out.println(tally.cols()); break;
                 default: out.println("?");
             }
+        }
+    }
+
+    // =================================================================================================================
+    // g4contact census and premise check D0 (convoy plan sections 5 and 6). One chain per enemy first grab of a flag (the
+    // firstGrabs test) until its CAPTURE, its return home (RETURN; also a re-grab from the home tile, chainStart) or the game
+    // end (OPEN); the flag's tile at the end of a round is its carrier's while carried, else where it lies. Every count uses
+    // the robots alive at the end of the round (aliveLists), as the S0a tracker does.
+    // =================================================================================================================
+    static final int U12 = 12, NC_WINDOW = 10, CONTACT_R2 = 20, SCREEN_R2 = 100, LEAK_R2 = 144;
+    static final String CHAIN_COLS = "noContact10u12,contact20u12,screened20u12,chainsU12,chains12p,capRateU12,capRate12p,diveTurns,diveLeak12,diveNoChain";
+    static class Chain {
+        int flag, dt, grab, g0 = -1;               // dt = the defending team (the flag's); g0 -1 = not yet set
+        String outcome = "OPEN";
+        List<int[]> rounds = new ArrayList<>();    // t = 1..T: {ours20, ours100} at the end of each open round
+        // --contact-d0 only
+        int seenT0, enMax = -1, live, unseen, noPoint;
+        int[] elig = new int[4];                   // elig12, elig10, elig8, elig12r144
+        @SuppressWarnings("unchecked") List<Integer>[] err = new List[D0_HOLD + 1];   // by age 1..D0_HOLD
+        Chain() { for (int a = 0; a <= D0_HOLD; a++) err[a] = new ArrayList<>(); }
+    }
+    static boolean d0Mode;
+    static String diveNote = "dive";                       // --dive-note
+    static boolean chainsOn() { return capMode || d0Mode; }
+    static Map<Integer, Chain> chains = new TreeMap<>();   // flag id -> its open chain (TreeMap: a fixed order for the diver ties)
+    static List<Chain> chainsDone = new ArrayList<>();
+    static ChainTally[] chainTally = {null, new ChainTally(), new ChainTally()};   // by defending team
+    static List<int[]> divers = new ArrayList<>();          // this round's dive turns: {team, x, y}
+    static Map<Integer, int[]> deathTile = new HashMap<>(); // this round's deaths: id -> tile
+
+    /** The census tally of one team's chains (the other team's first grabs of its flags) and of its dive turns. Pure: the
+     *  census and --calc X / V feed it alike, and tools/test_tools.py checks it against a python reference. */
+    static class ChainTally {
+        int u12, p12, closedU12, closedP12, capU12, capP12, ncChains, ncNone, flagRounds, contact, screened, dives, diveLeak, diveNone;
+        /** One finished chain: its grab group g0, outcome (CAPTURE, RETURN, OPEN) and {ours20, ours100} for t = 1..T. */
+        void add(int g0, String outcome, List<int[]> rs) {
+            boolean small = g0 < U12, closed = !outcome.equals("OPEN"), capd = outcome.equals("CAPTURE");
+            if (small) { u12++; if (closed) closedU12++; if (capd) capU12++; }
+            else { p12++; if (closed) closedP12++; if (capd) capP12++; }
+            if (!small) return;
+            if (!rs.isEmpty()) { ncChains++; if (noContact(rs)) ncNone++; }   // T = 0: no open round to judge
+            for (int[] o : rs) { flagRounds++; if (o[0] >= 1) contact++; else if (o[1] >= 1) screened++; }
+        }
+        /** One dive turn: g0 of the chain it was resolved to, -1 = no chain within dist2 144. */
+        void dive(int g0) { dives++; if (g0 < 0) diveNone++; else if (g0 >= U12) diveLeak++; }
+        /** The CHAIN_COLS fields. */
+        String cols() {
+            return share(ncNone, ncChains) + "," + share(contact, flagRounds) + "," + share(screened, flagRounds)
+                    + "," + (u12 + p12 > 0 ? u12 + "," + p12 : ",") + "," + share(capU12, closedU12) + "," + share(capP12, closedP12)
+                    + "," + (u12 > 0 ? String.valueOf(dives) : "") + "," + share(diveLeak, dives) + "," + share(diveNone, dives);
+        }
+    }
+    static String share(int n, int d) { return d > 0 ? String.format("%.3f", (double) n / d) : ""; }
+    /** The chain's signature test: ours20 = 0 at the end of every round t = 1..min(10, T). */
+    static boolean noContact(List<int[]> rs) {
+        for (int t = 0; t < rs.size() && t < NC_WINDOW; t++) if (rs.get(t)[0] > 0) return false;
+        return true;
+    }
+    static void chainStart(int rn, int flag, int dt) {
+        // a flag dropped on its own home tile and re-grabbed passes the first-grab test while its chain is open: it was home,
+        // so that chain ends RETURN here (the reset PLACE_FLAG would have ended it so) and the re-grab opens the next
+        if (chains.containsKey(flag)) chainEnd(rn, flag, "RETURN", flagHome.get(flag));
+        Chain c = new Chain(); c.flag = flag; c.dt = dt; c.grab = rn;
+        chains.put(flag, c);
+    }
+    /** at: the flag's tile, for g0 when the chain ends in its grab round (before chainTick set it). */
+    static void chainEnd(int rn, int flag, String outcome, int[] at) {
+        Chain c = chains.remove(flag);
+        if (c == null) return;
+        if (c.g0 < 0 && at != null) { c.g0 = 0; for (int[] q : nowLoc.values()) if (q[2] == 3 - c.dt && d2(q[0], q[1], at[0], at[1]) <= CONTACT_R2) c.g0++; }
+        c.g0 = Math.max(0, c.g0);
+        c.outcome = outcome;
+        chainTally[c.dt].add(c.g0, outcome, c.rounds);
+        chainsDone.add(c);
+    }
+    static int[] flagTile(int flag, Map<Integer, Integer> holderOf) {
+        Integer h = holderOf.get(flag);
+        return h != null ? lastLoc.get(h) : flagLoc.get(flag);
+    }
+    /** End of round rn: g0 of the chains grabbed this round, ours20 / ours100 of the others, the D0 sensor, then this round's
+     *  dive turns (after g0, so a chain grabbed this round is a candidate). */
+    static void chainTick(int rn, List<int[]>[] al) {
+        Map<Integer, Integer> holderOf = new HashMap<>();
+        for (Map.Entry<Integer, Integer> ce : carrying.entrySet()) holderOf.put(ce.getValue(), ce.getKey());
+        if (d0Mode && rn >= D0_FROM) d0Sense(rn, al, holderOf);
+        for (Chain c : chains.values()) {
+            int[] f = flagTile(c.flag, holderOf);
+            if (f == null) continue;
+            if (c.g0 < 0) c.g0 = count(al[3 - c.dt], f[0], f[1], CONTACT_R2, -1);
+            if (d0Mode) d0Tick(c, rn, f, al);
+            if (rn > c.grab) c.rounds.add(new int[]{count(al[c.dt], f[0], f[1], CONTACT_R2, -1), count(al[c.dt], f[0], f[1], SCREEN_R2, -1)});
+        }
+        for (int[] d : divers) {
+            Chain best = null; int[] bf = null; int bd = Integer.MAX_VALUE;
+            for (Chain c : chains.values()) {
+                int[] f = c.dt == d[0] ? flagTile(c.flag, holderOf) : null;
+                if (f == null) continue;
+                int dd = d2(f[0], f[1], d[1], d[2]);
+                if (dd <= LEAK_R2 && better(dd, f, bd, bf)) { best = c; bf = f; bd = dd; }
+            }
+            chainTally[d[0]].dive(best == null ? -1 : best.g0);
+        }
+        divers.clear();
+    }
+
+    /* --contact-d0 columns (convoy plan section 6). The arm's sensor (Duck.contactSight) is replayed on every flag of the
+     * tracked team at the end of every round from r204 on (the arm senses only after the r201-203 home re-stamp window):
+     * observers = our robots within dist2 20 of the flag; observed en = the max over the observers of the enemies within
+     * dist2 20 of both the flag and that observer (senseNearbyRobots(flag, 20, them) returns only tiles the caller can
+     * sense; the carrier is included). A sighting off home keeps the high-water mark of en (cap 15) when the track was live
+     * (last sighting within D0_HOLD rounds), else starts afresh; a sighting of the flag on its home tile, not carried, ends
+     * the track (contactHome). age = rounds since the last sighting; live = a track with age <= D0_HOLD. P = chainPoint(L,
+     * D, age) (--calc C) with L = the last sighting and D = the true enemy spawn centre nearest L (ties: lower x, then lower
+     * y). Not modelled: the miss rule (CT_MISS), the diver cap and its need > 0 gate.
+     *  team            the tracked side (the chain is on its flag)
+     *  grab, flag, g0, outcome   the chain as in the census (g0 = the carrier team within dist2 20 of the flag at the end of
+     *                  the grab round; outcome CAPTURE / RETURN / OPEN, RETURN including a chain whose flag was dropped on
+     *                  its own home tile and re-grabbed before the reset, closed at the re-grab round)
+     *  T               the chain's open rounds after the grab (t = 1..T)
+     *  seenT0          1 when the sensor saw the flag at the end of the grab round
+     *  noContact10     1 when ours20 = 0 at every t = 1..min(10, T), the census's per-chain test (blank: T = 0)
+     *  enObsMax        the largest en of a live track over t = 0..T (blank: never a live track)
+     *  liveRounds      rounds t >= 1 with a live track; unseenLive: those with age >= 1 (no observer that round)
+     *  noPoint         unseen live rounds whose chainPoint is null (the predicted arrival has passed)
+     *  elig12, elig10, elig8   eligible rounds at CT_GROUP_MAX 12 / 10 / 8: unseen live rounds with en < 12 / 10 / 8 and
+     *                  one of ours within dist2 100 (CT_DIVE_R2) of P; elig12r144: en < 12 and one of ours within dist2 144
+     *  err1..err12     the Chebyshev error from P to the flag's true tile on the unseen live rounds of that age, ';'-joined */
+    static final int D0_FROM = 204, D0_HOLD = 12, D0_SPEED16 = 9, D0_DIVE_R2 = 100, D0_EN_CAP = 15;   // C.CT_HOLD, C.CT_SPEED16, C.CT_DIVE_R2
+    static final int[] D0_GROUP = {12, 10, 8};
+    static final String D0_COLS = "team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,"
+            + "err1,err2,err3,err4,err5,err6,err7,err8,err9,err10,err11,err12";
+    static class D0Track { int lx, ly, en, seen = -1; boolean on; }
+    static Map<Integer, D0Track> d0 = new HashMap<>();   // flag id -> the arm's track of it (CT[i] and OF_SEEN[i])
+    /** The arm's chainPoint(L, D, age): m = age * 9 / 16 tiles; null once m > cheb(L, D) (the predicted arrival has passed);
+     *  else step(L, D, min(m, cheb - 1)), L when that is <= 0. */
+    static int[] chainPoint(int lx, int ly, int dx, int dy, int age) {
+        int m = age * D0_SPEED16 >> 4, n = cheb(lx, ly, dx, dy) - 1;
+        if (m > n + 1) return null;
+        int s = Math.min(m, n);
+        return s <= 0 ? new int[]{lx, ly} : step(lx, ly, dx, dy, s);
+    }
+    static void d0Sense(int rn, List<int[]>[] al, Map<Integer, Integer> holderOf) {
+        for (Map.Entry<Integer, Integer> fe : flagTeam.entrySet()) {
+            int f = fe.getKey(), us = fe.getValue();
+            if (!tracked(us) || capturedFlags.contains(f)) continue;
+            int[] F = flagTile(f, holderOf), home = flagHome.get(f);
+            if (F == null) continue;
+            int en = -1;                                    // -1: no observer
+            for (int[] o : al[us]) {
+                if (d2(o[0], o[1], F[0], F[1]) > VISION2) continue;
+                int n = 0;
+                for (int[] e : al[3 - us]) if (d2(e[0], e[1], F[0], F[1]) <= VISION2 && d2(e[0], e[1], o[0], o[1]) <= VISION2) n++;
+                en = Math.max(en, n);
+            }
+            if (en < 0) continue;
+            D0Track k = d0.computeIfAbsent(f, x -> new D0Track());
+            // on a home sighting the track ends; else seen (read before this round's write) is the last sighting off home
+            if (!holderOf.containsKey(f) && home != null && F[0] == home[0] && F[1] == home[1]) { k.on = false; k.seen = rn; continue; }
+            boolean live = k.on && rn - k.seen <= D0_HOLD;
+            k.en = Math.min(D0_EN_CAP, live ? Math.max(k.en, en) : en); k.lx = F[0]; k.ly = F[1]; k.on = true; k.seen = rn;
+        }
+    }
+    static void d0Tick(Chain c, int rn, int[] F, List<int[]>[] al) {
+        D0Track k = d0.get(c.flag);
+        int age = k != null && k.on ? rn - k.seen : -1;
+        if (rn == c.grab) c.seenT0 = age == 0 ? 1 : 0;
+        if (age < 0 || age > D0_HOLD) return;           // no live track
+        c.enMax = Math.max(c.enMax, k.en);
+        if (rn == c.grab) return;
+        c.live++;
+        if (age == 0) return;                           // seen this round
+        c.unseen++;
+        int[] D = nearestOf(centres[3 - c.dt], k.lx, k.ly), P = chainPoint(k.lx, k.ly, D[0], D[1], age);
+        if (P == null) { c.noPoint++; return; }
+        c.err[age].add(cheb(P[0], P[1], F[0], F[1]));
+        boolean r100 = near(al[c.dt], P[0], P[1], D0_DIVE_R2, -1);
+        for (int g = 0; g < D0_GROUP.length; g++) if (r100 && k.en < D0_GROUP[g]) c.elig[g]++;
+        if (k.en < D0_GROUP[0] && near(al[c.dt], P[0], P[1], LEAK_R2, -1)) c.elig[3]++;
+    }
+    static void printD0() {
+        out.println(D0_COLS);
+        List<Chain> rows = new ArrayList<>(chainsDone);
+        rows.sort((a, b) -> a.grab != b.grab ? Integer.compare(a.grab, b.grab) : Integer.compare(a.flag, b.flag));
+        for (Chain c : rows) {
+            if (!tracked(c.dt)) continue;
+            StringBuilder sb = new StringBuilder();
+            sb.append(tname(c.dt)).append(',').append(c.grab).append(',').append(c.flag).append(',').append(c.g0).append(',').append(c.outcome)
+              .append(',').append(c.rounds.size()).append(',').append(c.seenT0).append(',').append(c.rounds.isEmpty() ? "" : noContact(c.rounds) ? "1" : "0")
+              .append(',').append(c.enMax >= 0 ? String.valueOf(c.enMax) : "").append(',').append(c.live).append(',').append(c.unseen).append(',').append(c.noPoint);
+            for (int e : c.elig) sb.append(',').append(e);
+            for (int a = 1; a <= D0_HOLD; a++) {
+                sb.append(',');
+                for (int i = 0; i < c.err[a].size(); i++) sb.append(i > 0 ? ";" : "").append(c.err[a].get(i));
+            }
+            out.println(sb);
         }
     }
 
@@ -1303,9 +1551,10 @@ public class ReplayDump {
                         + sAtk400[t] + "," + sHeals400[t] + "," + sTraps400[t][0] + "," + sTraps400[t][1] + "," + sTraps400[t][2] + "," + cTrapsHit[o] + "," + cDeaths[o] + "," + cDeaths[t] + "," + sUpgrades[t]);
             }
         }
+        if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS);
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1335,12 +1584,14 @@ public class ReplayDump {
                         + "," + kDeathsHome[t] + "," + kDeathsHome[o] + "," + kGathered[t] + "," + kDropGuard[t]
                         + "," + kDigsLate[t] + "," + (kLevel1500[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1500[t]) : "")
                         + "," + (kGathered400[t] - kGathered200[t]) + "," + kStunTrig250[t] + "," + kKills250[t] + "," + kDeaths250[t]
-                        + "," + (kLevel1200[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1200[t]) : "") + "," + (levelSum(t) - levelSum(o)));
+                        + "," + (kLevel1200[t] >= 0 ? String.valueOf(levelSum(t) - kLevel1200[t]) : "") + "," + (levelSum(t) - levelSum(o))
+                        + "," + chainTally[t].cols());
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
             out.printf("TG,%s,%s,%d,%d,%d,%d,%d,-1,-1,0,%d%n", tname(trapTeam.getOrDefault(e.getKey(), 0)), BUILD[trapType.getOrDefault(e.getKey(), 0)], b[0], b[1], b[2], b[3], b[4], b[5]); }
         if (trackMode) printTrack();
+        if (d0Mode) printD0();
         if (commMode) out.println("# commStored " + commStored + "/" + kRounds);
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot
             Map<String, Integer> hist = new TreeMap<>(); int n = 0, atk4 = 0, heal4 = 0, build4 = 0, atkSum = 0, healSum = 0;
