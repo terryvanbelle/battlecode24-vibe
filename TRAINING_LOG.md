@@ -1838,3 +1838,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4ship1 vs g_iter4 against Gymhgy (paired filler, random maps and sides): 840 pairs, net +38 (185-147, +2.1 SE), ~+4.5
   points, in line with g4crumb's +30/640 (the crumbs carry it). The g_iter4 seeds-5-6 control is running; g4ship1's
   look 3 follows.
+
+### 2026-10-05 21:30 UTC — **g4ship1 ships: promoted to incumbent g_iter5** (owner PROMPTS 180 stack; PROMPTS 186-188 rule)
+- Look 3 (seeds 727272 / 838383 vs a fresh g_iter4 control): net +10 (20-10), capture delta +0.23 +- 0.08 (t 2.7), upper
+  +0.21, rest +0.24; basics PASS. Pooled 720 pairs: **t_all +3.25, t_up +1.98, net +23 (sign p 0.033) -> SHIP** (the old
+  criterion (a) passes too). Against Gymhgy: +38 over 840 paired games (+2.1 SE).
+- Promotion: C.CRUMB_STEP, C.POST_SETUP_CRUMBS, C.PICKUP_AFTER_MOVE default on; src/g_iter5 snapshotted (identical to
+  g4ship1 but the package); AuditTest incumbent check; g4ship1's six band runs recorded as g_iter5 and its 880 Gymhgy
+  filler games relabelled; the g_iter4 seeds-5-6 control recorded; keep-replays gains g_iter5 and g4ship1; ladder refit:
+  **g_iter5 1983 +- 19 (rank 11)**, g_iter4 1939, Gymhgy 2010 (rank 10), Cyril 2028. CLAUDE rule 16, HANDOFF, README,
+  REWRITE.md updated. Next: the band refresh (PROMPTS 185) with a fresh g_iter5 control.

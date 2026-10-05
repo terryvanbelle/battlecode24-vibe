@@ -115,6 +115,13 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   inconclusive. Two tool defects fixed on the way: replay names now carry the seed (repeats overwrote each other), and
   non-worse guards judge the worst plausible drop, not raw noise.
 
+- 21:30 UTC (Oct 5): **new incumbent g_iter5**, the owner's stack (PROMPTS 180): centre crumbs + pick-after-move. Under
+  the new shipping rule (PROMPTS 186-188, from a criteria review: the old rule had half the power the data allow) it
+  shipped at its third look: 720 band pairs, capture t 3.25, wins net +23 (p 0.033); against Gymhgy +38/840. Ladder 1983
+  (rank 11), 27 points behind Gymhgy. Also: the kills guard is gone from delivery (PROMPTS 183), stacking near-misses is
+  written into TRAINING_ALGORITHM (PROMPTS 187), uravt turned out weaker than its tiny early sample said (g_iter4 26-14),
+  and the convoy-response arm (g4contact) was built, reviewed and closed (fired, did not put eyes on the chains).
+
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
 - Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.

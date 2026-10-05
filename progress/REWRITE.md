@@ -28,5 +28,7 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | g4gym1 (vs g_iter4) | g4crumb + C.DAM_FIRST | 126 -> 127, +1 (1.00) | -0.06 +- 0.09 | 24 -> 20, -4 | -0.15 +- 0.13 | +5 | +0.03 +- 0.12 | no criterion; basics PASS |
 | **g4ship1** (vs g_iter4; owner PROMPTS 180 stack) | g4crumb + C.PICKUP_AFTER_MOVE | 126 -> 135, +9 (0.19) | +0.11 +- 0.09 | 24 -> 28, +4 | +0.10 +- 0.14 | +5 | +0.12 +- 0.12 | no criterion yet; basics PASS (k/d level) |
 | g4ship1 confirmation (seeds 717171 + 818181) | same | 127 -> 130, +3 (0.75) | +0.17 +- 0.09 | 26 -> 27, +1 | +0.17 +- 0.14 | +2 | +0.17 +- 0.12 | - |
-| **g4ship1 pooled (4 seeds, 480 pairs)** | same | 253 -> 265, +12 (0.21) | **+0.14 +- 0.06** | 50 -> 55, +5 | +0.14 +- 0.10 | +7 | +0.15 +- 0.08 | not met ((a) sign p 0.21; (b) t 1.4); next stack g4ship2 (+ level farm) |
+| **g4ship1 pooled (4 seeds, 480 pairs)** | same | 253 -> 265, +12 (0.21) | **+0.14 +- 0.06** | 50 -> 55, +5 | +0.14 +- 0.10 | +7 | +0.15 +- 0.08 | not met under the old rule; look 3 under the new rule (PROMPTS 188) |
+| g4ship1 look 3 (seeds 727272 + 838383, vs a fresh g_iter4 control) | same | 130 -> 140, +10 (0.10) | +0.23 +- 0.08 | 22 -> 30, +8 | +0.21 +- 0.13 | +2 | +0.24 +- 0.10 | - |
+| **g4ship1 pooled (6 seeds, 720 pairs)** | same | 382 -> 405, **+23 (0.033)** | **+0.17 +- 0.05 (t 3.25)** | 72 -> 85, +13 | +0.16 +- 0.08 (t 1.98) | +10 | +0.18 +- 0.07 | **SHIP: promoted g_iter5**, 1983 +- 19 (rank 11) |
 | g4bundle (vs g_iter4; FILL_STEP + PICKUP_AFTER_MOVE + RELOC_STALL_MOVES) | second-audit correctness fixes combined | 123 -> 125, +2 (0.87) | +0.08 +- 0.09 | 23 -> 18, -5 (upper tier = 11 bots since 2026-10-04) | -0.13 +- 0.13 | +7 | +0.28 +- 0.13 | no criterion; basics PASS (k/d -1.6 SE); parked |

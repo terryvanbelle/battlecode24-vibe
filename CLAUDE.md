@@ -47,7 +47,8 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     pre-registered victory read against the ladder target is not vetoed by a relative check (kill/death, trapsHit,
     stillPost, gathered400, floating250) that its tactic pays by design (e.g. a convoy trading bodies for re-grabs);
     log the cost. The absolute bars (symWrong, symmetry decided in time, overruns, exceptions) are bugs and still stop it.
-16. **Incumbent g_iter4 since 2026-10-04** (g3lost: g_iter3 + C.FLAG_LOST, the second audit's BOT1 fix; seeded band pairs
-    vs g_iter3 pooled over 473: upper-tier capture delta +0.24 +- 0.06 (t 3.8), all +0.14 +- 0.05, net +9; basics PASS).
-    Before it g_iter3 (carrier stun + flag relocation V2, the waffle crack). src/bot with its defaults plays as g_iter4
-    (src/g_iter4 is the frozen copy); new arms flip switches from these defaults and are paired against g_iter4.
+16. **Incumbent g_iter5 since 2026-10-05** (g4ship1: g_iter4 + centre crumbs C.CRUMB_STEP/POST_SETUP_CRUMBS + C.PICKUP_AFTER_MOVE,
+    the owner's stack, PROMPTS 180; shipped under the PROMPTS 186-188 rule at look 3: 720 seeded band pairs vs g_iter4,
+    capture delta +0.17 +- 0.05 (t_all 3.25), upper t 1.98, wins net +23 (sign p 0.033); basics PASS; vs Gymhgy +38/840).
+    Before it g_iter4 (+ C.FLAG_LOST), g_iter3 (carrier stun + relocation V2, the waffle crack). src/bot with its defaults
+    plays as g_iter5 (src/g_iter5 is the frozen copy); new arms flip switches from these defaults and are paired against g_iter5.
