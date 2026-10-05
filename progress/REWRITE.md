@@ -10,6 +10,10 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | B3 b2fs (reference) | - | +1 (1.00) | +0.05 +- 0.10 | +4 | +0.17 +- 0.11 | -3 | -0.09 +- 0.18 | 1789 +- 31 |
 | **g1basics** (seeded pairs vs the seeded g_iter1 control) | audit fixes A1 A2 A4 A5 A6 A7 A9 + observed symmetry | 78 -> 111, **+33 (p<0.001)** | **+0.66 +- 0.11** | 13 -> 21, +8 | **+0.34 +- 0.12** | +25 | +1.04 +- 0.17 | 1918 +- 35 (rank 13) |
 | g1basics confirmation (seeds 717171 + 818181) | same | 78 -> 107, **+29 (p<0.001)** | **+0.68 +- 0.10** | 12 -> 21, +9 (p 0.049) | **+0.46 +- 0.12** | +20 | +0.95 +- 0.16 | promoted: **g_iter2** |
+| g2nonav (vs g_iter2; ablation of NAV_FIX) | g_iter2 with C.NAV_FIX off | net -1 (21-22) | +0.04 +- 0.09 | +2 | +0.17 +- 0.12 | - | - | neutral: NAV_FIX kept; 1 overrun in the block |
+| g2bc (vs g_iter2) | g_iter2 + REACH_BC 11000 | identical (0 of 234 discordant) | 0 | 0 | 0 | 0 | 0 | no effect |
+| g2bc2 (vs g_iter2) | g_iter2 + BFS bail-out at 13000 | net +7 (23-16, p 0.34) | +0.02 +- 0.09 | - | - | - | - | basics FAIL (stillPost): not promoted |
+| g2fast (vs g_iter2) | g_iter2 + C.REACH_FAST | identical (0 of 234 discordant) | 0 | 0 | 0 | 0 | 0 | same decisions, cheaper bytecode: kept in later builds |
 | **g2cr** (seeded pairs vs g_iter2, waffle crack) | carrier stun + flag relocation (C.CARRIER_STUN, RELOCATE_FLAGS + RELOC_V2) | 111 -> 122, +11 (p 0.11) | **+0.33 +- 0.10** | 21 -> 25, +4 | **+0.30 +- 0.13** | +7 | +0.37 +- 0.14 | criterion (b) met |
 | g2cr confirmation (seeds 717171 + 818181) | same | 107 -> 118, +11 (p 0.11) | +0.17 +- 0.09 | 21 -> 24, +3 | +0.07 +- 0.13 | +8 | +0.30 +- 0.13 | - |
 | **g2cr pooled (4 seeds, 473 pairs)** | same | 218 -> 240, **+22 (p 0.017)** | **+0.25 +- 0.07** | 42 -> 49, +7 | +0.18 +- 0.09 | +15 | +0.33 +- 0.10 | promoted: **g_iter3**, 1977 +- 33 (rank 12) |
@@ -20,6 +24,7 @@ band bots rated 2050+; capture diff = our captures minus theirs per game.
 | g4pick (vs g_iter4; second-audit BOT5) | g_iter4 + C.PICKUP_AFTER_MOVE | 123 -> 132, +9 (0.12) | +0.12 +- 0.09 | 27 -> 33, +6 | +0.16 +- 0.12 | +3 | +0.08 +- 0.13 | no criterion; basics PASS |
 | g4pick pooled (4 seeds, 473 pairs) | same | 249 -> 255, +6 (0.53) | +0.08 +- 0.06 | 60 -> 65, +5 | +0.11 +- 0.09 | +1 | +0.05 +- 0.09 | not met: parked |
 | g4crumb (vs g_iter4; Gymhgy study) | g_iter4 + C.CRUMB_STEP + C.POST_SETUP_CRUMBS | 126 -> 130, +4 (0.56) | +0.07 +- 0.07 | 24 -> 23, -1 | -0.03 +- 0.10 | +5 | +0.18 +- 0.10 | no criterion; basics PASS |
+| g4econ2 (vs g_iter4; Cyril stun economy) | g4crumb-like crumbs + builders added (C.BUILDERS, SEEN_LEVEL 99) | 123 -> 126, +3 (0.74) | -0.08 +- 0.09 | 23 -> 22, -1 | -0.20 +- 0.12 | +4 | +0.03 +- 0.12 | no criterion; basics PASS (kills -17%) |
 | g4gym1 (vs g_iter4) | g4crumb + C.DAM_FIRST | 126 -> 127, +1 (1.00) | -0.06 +- 0.09 | 24 -> 20, -4 | -0.15 +- 0.13 | +5 | +0.03 +- 0.12 | no criterion; basics PASS |
 | **g4ship1** (vs g_iter4; owner PROMPTS 180 stack) | g4crumb + C.PICKUP_AFTER_MOVE | 126 -> 135, +9 (0.19) | +0.11 +- 0.09 | 24 -> 28, +4 | +0.10 +- 0.14 | +5 | +0.12 +- 0.12 | no criterion yet; basics PASS (k/d level) |
 | g4ship1 confirmation (seeds 717171 + 818181) | same | 127 -> 130, +3 (0.75) | +0.17 +- 0.09 | 26 -> 27, +1 | +0.17 +- 0.14 | +2 | +0.17 +- 0.12 | - |

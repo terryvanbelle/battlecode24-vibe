@@ -1828,3 +1828,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (to pre-register before use): ship if (t_all >= 2.3 or t_up >= 2.6) and wins net >= 0, in three looks (240 / 480 / 720
   pairs) with stop rules; null 2.0%, harmful <= 0.2%, g4ship1-sized gains 63-65%. On the data in hand it changes no
   promotion; g4ship1 (t_all 2.21 at 480) would go to a third look (seeds 5-6). Awaiting the owner's decision.
+- Owner PROMPTS 188: **the shipping rule is adopted** (REWRITE_EVAL, TRAINING_ALGORITHM §5; `tools/eval-paired.py
+  --look N` prints the decision; tests). g4ship1 goes to look 3: seeds 727272 / 838383 for g4ship1 and a g_iter4 control
+  on the same seeds (reused by every later arm's look 3), queued.
+- Housekeeping from the review (rule 8): the filler kept pairing after two reads were logged as closed. Final tallies:
+  **g4crumb vs g_iter4 against Gymhgy 640 pairs, net +30 (103-73, +2.3 SE)**, ~+4.7 points (the dam-line piece in g4gym1
+  cancelled it: g4gym1 +12/1,880); g3escrg2 vs g_iter3 against Cyril 280 pairs, net +14 (+1.5 SE). REWRITE.md gains the
+  missing rows (g2nonav, g2bc, g2bc2, g2fast, g4econ2).

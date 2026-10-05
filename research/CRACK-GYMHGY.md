@@ -81,3 +81,7 @@ check and fired in every game, but leaked into big convoys at the 12 gate (0.39)
 screened rounds rose (0.28 vs 0.24, -2.7 SE). The g4gym1 combination (crumbs + dam line) closed at +12 over 1,880 pairs (+0.4 SE): no measurable
 effect on the matchup. A stack for the band, g4ship1 (crumbs + pick-after-move), passed delivery (PROMPTS
 183 removed the kills guard) and is in its band test.
+
+**Final paired tallies (2026-10-05):** g4crumb vs g_iter4 against Gymhgy closed at 640 pairs, net +30 (+2.3 SE, ~+4.7
+points): the crumb lever is a real Gymhgy gain; the dam-line piece cancelled it inside g4gym1 (+12/1,880). g4ship1 (crumbs +
+pick-after-move) carries the crumbs without the dam; its Gymhgy paired filler and its third band look are running.
