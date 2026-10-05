@@ -1702,3 +1702,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (+1.9 SE past x1.3), stunTrig250 +86% (+5.4 SE past x1.2), enemy captures 1.86 vs 2.00 (guard PASS), kills 360 vs 337
   (guard PASS). The filler now pairs g4gym1 with g_iter4 against Gymhgy (random maps and sides); band guard and band test
   queued. g4crumb paired filler closed at 560 pairs: net +20 (85-65, +1.6 SE).
+- g4gym1 band guard: INCONCLUSIVE at 48 (kills -13%), PASS at 96 (kills 499 vs 507, enemy captures 1.56 vs 1.53).
+  **Band test vs g_iter4** (240 pairs): net +1 (16-15), capture delta -0.06 +- 0.09; upper -4, -0.15 +- 0.13 (t -1.1);
+  rest +5; basics PASS (k/d 3.52 vs 3.09, gathered400 +25%). Neutral on the band. Gymhgy paired filler: 80 pairs, net +3
+  (+0.5 SE), continuing to 240.
