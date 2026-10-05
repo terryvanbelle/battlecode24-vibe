@@ -62,10 +62,7 @@ public strictfp class Duck {
                     Micro.fight(enemies, allies, ct); intercepts++; G.note = "icpt"; return;
                 }
             }
-            if (C.CONTACT && rc.getHealth() >= C.RETREAT_HP && G.bcLeft() >= C.CT_BC) {   // g4contact: meet a small chain (hurt
-                MapLocation cg = chainGoal();                                            // ducks keep g_iter4's micro)
-                if (cg != null) { Micro.dive(enemies, allies, cg); intercepts++; G.note = "dive" + ctEn; return; }
-            }
+            if (C.CONTACT && contactDive()) return;         // g4contact: meet a small chain
             if (C.MICRO_V2 || C.HOLD_DRIFT > 0) Micro.objective = fieldTarget();
             if (C.DEF_TETHER && isDefender() && !carryingOwn(homeFlag())) {   // audit BOT2: fight beside the flag, not elsewhere
                 MapLocation home = defendTarget();
@@ -561,7 +558,7 @@ public strictfp class Duck {
                 if (last != null && age != Integer.MAX_VALUE) c = predictCarrier(last, age, G.nearest(last, ec));
                 if (c != null) predictTurns++;
             }
-            if (C.CONTACT && c == null && (ctLost >> i & 1) == 0 && !(isDefender() && i != homeFlag())) {
+            if (C.CONTACT && c == null && ctAdmit(i, ctLost)) {
                 MapLocation p = trackGoal(i, from, C.CHASE_RADIUS2);   // g4contact: a stale sighting's track point, no redirect
                 if (p != null) { predictTurns++; int d = from.distanceSquaredTo(p); if (d < bd) { bd = d; best = p; } continue; }
             }
@@ -665,7 +662,12 @@ public strictfp class Duck {
      *  CARRIER_STUN take it), dropped within dist2 8 -> null (fight the receivers), dropped farther -> its tile. Else the
      *  predicted point, CT_LEAD steps on toward its spawn when farther than dist2 20; a spawned robot within CT_MISS_R2 of
      *  the predicted point that does not see the flag (age >= 1) counts a miss instead. */
-    static MapLocation trackGoal(int i, MapLocation from, int maxD2) throws GameActionException {
+    static MapLocation trackGoal(int i, MapLocation from, int maxD2) throws GameActionException { return trackGoal(i, from, maxD2, -1); }
+
+    /** trackGoal with the dive cap: dv >= 0 is CT_DIVE as read this turn, and a chain that already has its `need` divers
+     *  this round is null before any geometry (review 2026-10-05: a refused claim paid the whole geometry and then all of
+     *  Micro.fight, on the crowded turns where g_iter4 peaks near 22k). */
+    static MapLocation trackGoal(int i, MapLocation from, int maxD2, int dv) throws GameActionException {
         RobotController rc = G.rc;
         int ct = rc.readSharedArray(Comms.CT + i);
         if (ct == 0) return null;
@@ -676,7 +678,7 @@ public strictfp class Duck {
         int aux = rc.readSharedArray(Comms.CT_AUX);
         if (Comms.auxMiss(aux, i) >= C.CT_MISS) return null;
         int need = en + C.CT_EDGE - (age <= 1 ? Comms.auxOu(aux, i) : 0);
-        if (need <= 0) return null;
+        if (need <= 0 || (dv >= 0 && Comms.diveCount(dv, i, G.round) >= need)) return null;
         ctEn = en; ctNeed = need;
         if (ctSeenAt[i] == G.round) {
             if (ctSeenCarried[i]) return null;
@@ -698,15 +700,31 @@ public strictfp class Duck {
         if (na != aux) G.rc.writeSharedArray(Comms.CT_AUX, na);
     }
 
-    /** The fight branch's dive goal: the nearest admitted chain within CT_DIVE_R2 (lost flags skipped; a defender only its
-     *  own flag, DEF_TETHER's lesson), if its diver cap has room this round; else null (g_iter4's fight). */
+    /** turn()'s fight-branch hook: dive at chainGoal's chain. Only a healthy duck (hurt ducks keep g_iter4's micro) that can
+     *  move this turn (review 2026-10-05: a stunned duck took one of the chain's diver slots every frozen round without
+     *  moving; its fight turn strikes and heals exactly as the dive's frozen path would), with CT_BC bytecodes left. */
+    static boolean contactDive() throws GameActionException {
+        RobotController rc = G.rc;
+        if (rc.getHealth() < C.RETREAT_HP || !rc.isMovementReady() || G.bcLeft() < C.CT_BC) return false;
+        MapLocation cg = chainGoal();
+        if (cg == null) return false;
+        Micro.dive(enemies, allies, cg); intercepts++; G.note = "dive" + ctEn;
+        return true;
+    }
+
+    /** Our flag i's chain is one the track may send ducks to: not a lost flag, and for a defender only its own flag
+     *  (DEF_TETHER's lesson). The dive (chainGoal) and the chase (carrierTarget) share it. */
+    static boolean ctAdmit(int i, int lost) { return (lost >> i & 1) == 0 && !(isDefender() && i != homeFlag()); }
+
+    /** The fight branch's dive goal: the nearest admitted chain (ctAdmit) within CT_DIVE_R2 whose diver cap still has room
+     *  this round, claimed; else null (g_iter4's fight). A full chain is skipped before its geometry. */
     static MapLocation chainGoal() throws GameActionException {
         if (G.round <= C.SETUP_ROUNDS + 3) return null;
-        int lost = Comms.lostMask(), bi = -1, bd = Integer.MAX_VALUE, bneed = 0, ben = 0;
+        int lost = Comms.lostMask(), dv = G.rc.readSharedArray(Comms.CT_DIVE), bi = -1, bd = Integer.MAX_VALUE, bneed = 0, ben = 0;
         MapLocation best = null;
         for (int i = 0; i < 3; i++) {
-            if ((lost >> i & 1) != 0 || (isDefender() && i != homeFlag())) continue;
-            MapLocation p = trackGoal(i, G.me, C.CT_DIVE_R2);
+            if (!ctAdmit(i, lost)) continue;
+            MapLocation p = trackGoal(i, G.me, C.CT_DIVE_R2, dv);
             if (p == null) continue;
             int d = G.me.distanceSquaredTo(p);
             if (d < bd) { bd = d; best = p; bi = i; bneed = ctNeed; ben = ctEn; }
@@ -716,8 +734,9 @@ public strictfp class Duck {
         return best;
     }
 
-    /** One diver's claim on our flag i's chain this round; false when `need` divers have claimed it already. The cap fills
-     *  in execution order, so the same eligible ducks keep diving from round to round. */
+    /** One diver's claim on our flag i's chain this round; false when `need` divers have claimed it already (chainGoal
+     *  skips such a chain first, from the same read). The cap fills in execution order, so the same eligible ducks keep
+     *  diving from round to round. */
     static boolean claimDive(int i, int need) throws GameActionException {
         int dv = G.rc.readSharedArray(Comms.CT_DIVE);
         if (Comms.diveCount(dv, i, G.round) >= need) return false;

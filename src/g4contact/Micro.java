@@ -246,7 +246,9 @@ public strictfp class Micro {
      *  the goal, minus CT_THREAT per enemy that threatens it, plus CT_HIT for a reaching tile while the strike is still
      *  ready. Against staying put a step is taken only when it adds at most one threat per tile gained, at any distance
      *  (g1icpt paid 150 per threat against ~52 per tile, and its goal lived only in the kite branch). Every progress tile
-     *  blocked: bug around the wall. One enemy loop per tile, so it costs less than fight. */
+     *  wall or water: bug around it. A progress tile a robot stands on still counts as open, so the score picks the tile
+     *  (review 2026-10-05: canMove is false on occupied tiles, and Nav, which ignores threats, stepped sideways into three).
+     *  One enemy loop per tile, so it costs less than fight. */
     public static boolean dive(RobotInfo[] enemies, RobotInfo[] allies, MapLocation goal) throws GameActionException {
         RobotController rc = G.rc;
         boolean actReady = rc.isActionReady();
@@ -260,12 +262,15 @@ public strictfp class Micro {
         Direction best = null; int bestScore = Integer.MIN_VALUE;
         for (int i = 0; i < 9; i++) {
             Direction d = i < 8 ? G.DIRS[i] : Direction.CENTER;
-            if (d != Direction.CENTER && !rc.canMove(d)) continue;
             MapLocation l = me.add(d);
+            int od = Track.cheb(l.x, l.y, goal.x, goal.y);
+            if (d != Direction.CENTER && !rc.canMove(d)) {   // occupied or impassable: open if the terrain is passable
+                if (od < od0 && !open && rc.onTheMap(l) && rc.sensePassability(l)) open = true;
+                continue;
+            }
+            if (od < od0) open = true;
             int th = 0; boolean hit = false;
             for (RobotInfo e : enemies) { int x = l.distanceSquaredTo(e.location); if (x <= 10) { th++; if (x <= 4) hit = true; } }
-            int od = Track.cheb(l.x, l.y, goal.x, goal.y);
-            if (od < od0) open = true;
             int adjAllies = 0;
             for (RobotInfo a : allies) if (l.distanceSquaredTo(a.location) <= 2) adjAllies++;
             int score = carrier != null ? 20000 - l.distanceSquaredTo(carrier.location) * 10 - th   // as fight's carrier branch

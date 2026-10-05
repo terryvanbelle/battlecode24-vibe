@@ -13,7 +13,10 @@ public class BotTest {
     static boolean badWrite, failReads;
     static boolean[] writeOk;                           // non-null: the only slots a write may touch (else Track's 23-33)
     static int writeCount;                              // every writeSharedArray call
-    static RobotInfo[] robots = new RobotInfo[0];       // fakeRc: the robots senseNearbyRobots sees (the caller is never listed)
+    static RobotInfo[] robots = new RobotInfo[0];       // fakeRc: the robots senseNearbyRobots sees (the caller is never listed); canMove
+                                                        // refuses their tiles, as the engine does
+    static FlagInfo[] flagsInView = new FlagInfo[0];    // fakeRc: what senseNearbyFlags returns
+    static int health = 1000;                           // fakeRc: getHealth
     static GlobalUpgrade[] theirUpg = new GlobalUpgrade[0];
     static java.util.Set<MapLocation> walls = new java.util.HashSet<>();
     static boolean buildOk = false;
@@ -49,7 +52,18 @@ public class BotTest {
                     case "getGlobalUpgrades": return theirUpg;
                     case "isActionReady": return buildOk;
                     case "isMovementReady": return moveOk;
-                    case "canMove": return moveOk && !walls.contains(G.me.add((Direction) args[0]));
+                    case "canMove": {
+                        MapLocation t = G.me.add((Direction) args[0]);
+                        if (!moveOk || walls.contains(t)) return false;
+                        for (RobotInfo r : robots) if (r.location.equals(t)) return false;
+                        return true;
+                    }
+                    case "sensePassability": {   // terrain only (walls stand for wall and water), robots ignored, as the engine
+                        MapLocation l = (MapLocation) args[0];
+                        if (!sensable(l)) throw new GameActionException(GameActionExceptionType.CANT_SENSE_THAT, "test");
+                        return !walls.contains(l);
+                    }
+                    case "senseNearbyFlags": return flagsInView;
                     case "senseNearbyRobots": {   // (), (r2), (r2, team), (centre, r2, team): within r2 of the centre and in view
                         MapLocation c = args != null && args.length == 3 ? (MapLocation) args[0] : G.me;
                         int r2 = args == null || args.length == 0 ? -1 : (Integer) args[args.length == 3 ? 1 : 0];
@@ -60,7 +74,7 @@ public class BotTest {
                         return got.toArray(new RobotInfo[0]);
                     }
                     case "move": lastMove = (Direction) args[0]; G.me = G.me.add(lastMove); return null;
-                    case "getHealth": return 1000;
+                    case "getHealth": return health;
                     case "senseNearbyCrumbs": return crumbTiles;
                     case "getCrumbs": return buildOk ? 1000 : 0;
                     case "canBuild": {      // buildOk only: in reach, not a wall, not on/adjacent to an enemy (Duck.enemies)
@@ -386,7 +400,7 @@ public class BotTest {
         boolean contiguous = true;
         for (int i = 0; i < 64; i++) if (!used[i]) contiguous = false;
         check(contiguous && Comms.RT_STAMP == 23 && Comms.CT + 3 == Comms.AUC && Comms.AUC + Comms.AUC_SLOTS == 49 && Comms.OF_THREAT == 49,
-                "comms: slots 0-63 all assigned, rewrite slots 23-33 and 37-48 as design 2.3, CT in 34-36");
+                "comms: slots 0-63 all assigned, rewrite slots 23-33 and 37-48 as design 2.3, CT in 34-36 (design 2.3's OWN_C)");
 
         // rng: in range, both parities reachable, differs between ids
         G.id = 12345; G.rngState = 12345 * 0x9E3779B1 + 12345;
