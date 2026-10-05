@@ -1679,3 +1679,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - g4crumb vs g_iter4 against Gymhgy, paired filler (random maps and sides): 120 pairs, gained 22, lost 11, net +11
   (+1.9 SE); g4crumb 47-73 on those cells, g_iter4 36-84 on the same cells (a hard draw; g_iter4 is 39.9% over 2,093).
   Continuing to 240.
+- **g4crumb vs g_iter4 against Gymhgy, paired filler closed at 240 pairs: net +13 (39-26, +1.6 SE)**, about +5 points; not
+  significant alone and far from a crack read (>= 60%), but positive with a delivered mechanism: a component for a
+  combined Gymhgy candidate.
+- g4dam 5(a) (16 chosen cells vs Gymhgy): fires. Bank at r200 1,592 vs 435; our stuns triggered r201-250 26.6 vs 20.6
+  (+30%); deaths by r250 4.75 vs 5.81, kills 5.12 vs 4.81 (net +0.4 vs -1.0, about the study's within-map W/L gap at r250);
+  the bank is spent by r250 (149 vs 148); wins 6 vs 7 (2 gained, 3 lost), enemy captures equal. Delivery pre-registered
+  on random Gymhgy maps: `DGPOOL=Gymhgy.v10official DGTAG=-gymdam BASE=g_iter4 tools/delivery-gate.sh g4dam
+  'rel:stunTrig250>=1.2 nw:enemyCaptured<=1.1 mean:overruns<=0'`.
