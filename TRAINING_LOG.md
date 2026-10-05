@@ -1676,3 +1676,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   census columns stunTrig250, kills250, deaths250 (the dam-drop skirmish, the study's earliest separator). Chosen-cell 5(a)
   vs Gymhgy (Puzzle A/B, AceOfSpades A, Gated A, EvilGrin B, Battlecode24 A, Occulus A, BedWars B; seeds 781201/2; g_iter4 on
   the same cells) queued.
+- g4crumb vs g_iter4 against Gymhgy, paired filler (random maps and sides): 120 pairs, gained 22, lost 11, net +11
+  (+1.9 SE); g4crumb 47-73 on those cells, g_iter4 36-84 on the same cells (a hard draw; g_iter4 is 39.9% over 2,093).
+  Continuing to 240.
