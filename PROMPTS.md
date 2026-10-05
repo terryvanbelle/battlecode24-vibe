@@ -254,3 +254,7 @@ Why don't you try stacking two of the close-to-good ideas to see if together the
 ## 181. 2026-10-05
 
 The "our last run" column in ELO.md seems a bit stale to me.  Is it really the case that the last run against hsmalladi was g_iter1?
+
+## 182. 2026-10-05
+
+(Answer to a question on g4ship1, whose kills guard was INCONCLUSIVE at delivery:) Run band test anyway (Recommended)

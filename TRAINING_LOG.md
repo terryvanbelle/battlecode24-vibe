@@ -1773,3 +1773,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   enemy captures 1.50 vs 1.53 (guard PASS), kills 450 vs 507 (-11%; worst plausible drop 22% vs the 20% limit:
   INCONCLUSIVE). The chained band test did not run (rule 13). The kill cost is g4pick's known price (re-grab attempts trade
   carriers); the decision to run the band test anyway goes to the owner.
+- Owner PROMPTS 182: run g4ship1's band test despite the INCONCLUSIVE kills guard (documented override:
+  NO_DELIVERY_REASON in band-test.sh, reason in the run log). Band test queued; promotion still needs REWRITE_EVAL and the
+  confirmation seeds.
