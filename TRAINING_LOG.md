@@ -1792,3 +1792,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   +- 0.09 (t 1.2); upper +4, +0.10 +- 0.14; rest +5, +0.12 +- 0.12; basics PASS with kill/death level (3.09 vs 3.09: the
   delivery-block kill drop does not show on the band). No criterion yet; extended with the confirmation seeds 717171 /
   818181 (pre-registered as for g4pick: the pooled four seeds must meet REWRITE_EVAL (a) or (b), else no promotion).
+- Owner PROMPTS 184 (why so few games vs uravt.Version18Final): all 26 of its games come from the 2026-09-30 full-field
+  blocks (2 per build, 26-0 for it). Since 2026-10-01 our games come from the band (tools/band-20261001.txt: the 20 bots
+  nearest g_iter1_c2 then; an unbeaten bot with two games per build gets an unbounded-high rating and fell outside it) and
+  from the target filler, so uravt was never redrawn; it is in tools/upper-tier.txt but absent from every band test, so
+  the "upper" slice has covered 10 of its 11 bots. A 40-game g_iter4 block vs uravt (random maps and sides, recorded in the
+  ladder through the filler path) queued to place its rating and our record.
