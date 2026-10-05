@@ -250,3 +250,7 @@ Good morning!  Can you give me a summary of last night?
 ## 180. 2026-10-05
 
 Why don't you try stacking two of the close-to-good ideas to see if together they are good enough to ship
+
+## 181. 2026-10-05
+
+The "our last run" column in ELO.md seems a bit stale to me.  Is it really the case that the last run against hsmalladi was g_iter1?
