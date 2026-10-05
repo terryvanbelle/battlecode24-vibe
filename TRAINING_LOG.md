@@ -1738,3 +1738,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   bytecode. Tools: chain census noContact10u12, contact20u12, screened20u12, chainsU12, chains12p, capRateU12, capRate12p,
   diveTurns, diveLeak12, diveNoChain; --contact-d0 and tools/contact-d0.py (the four pre-registered D0 routes); both
   review findings fixed. Unit tests pass on main. D0 queued on the newest 400 g_iter4-vs-Gymhgy replays.
+- **g4contact D0 premise check** (400 newest g_iter4-vs-Gymhgy replays, 3,878 chains on our flags: 3,044 u12, 834 12+):
+  R1 prediction median error 1-2 tiles up to age 12 -> CT_HOLD 12; R2 reach 0.686 (bar 0.25) -> BUILD; R3 eligible rounds
+  from true 12+ chains 0.151 at the 12 gate -> CT_GROUP_MAX 12; R4 noContact10u12 baseline 0.061 (< 0.08) and only 4% of
+  no-contact u12 chains seen at t0 -> the gate column becomes rel:screened20u12<=0.8 (pre-registered switch). The arm is
+  built as specified. 5(a) queued (plan section 8: 8 cells x 2 seeds, sides balanced, Canals A the negative control,
+  g_iter4 twins on the same seeds).
