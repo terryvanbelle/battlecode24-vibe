@@ -1706,3 +1706,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   **Band test vs g_iter4** (240 pairs): net +1 (16-15), capture delta -0.06 +- 0.09; upper -4, -0.15 +- 0.13 (t -1.1);
   rest +5; basics PASS (k/d 3.52 vs 3.09, gathered400 +25%). Neutral on the band. Gymhgy paired filler: 80 pairs, net +3
   (+0.5 SE), continuing to 240.
+- Arm **g4farm3** (LEVEL_FARM dose: from r1200 to 10 build XP per duck): new census columns levelGain1200 and levelGapEnd
+  (ours minus theirs at the end). 5(a) on the g4farm cells (g_iter4's replays there re-censused for the new columns).
