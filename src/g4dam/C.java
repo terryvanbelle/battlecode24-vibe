@@ -1,4 +1,4 @@
-package bot;
+package g4dam;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -58,7 +58,7 @@ public strictfp class C {
     // 10/15/20/30/40/50% (engine SkillType) and needs 5L build actions, but level 4 in attack or heal caps build at 3):
     // one field duck in ten builds every combat stun (front placement), digs toward level 6 in setup, and stops attacking
     // and healing before either reaches level 4. Arm g4builder.
-    public static final boolean DAM_FIRST = false;      // setup budget to the dam line: no flag rings in setup, dam traps from DAM_TRAP_ROUND; arm g4dam
+    public static final boolean DAM_FIRST = true;      // setup budget to the dam line: no flag rings in setup, dam traps from DAM_TRAP_ROUND; arm g4dam
     public static final int DAM_FIRST_RESERVE = 300;    // DAM_FIRST: crumbs kept for the first fight after the dam
     public static final boolean LEVEL_FARM = false;     // late-game build-XP farm for the level-sum tiebreak (Gymhgy study); arm g4farm
     // g4farm (FARM_XP 15, reserve 300) fired 0-11 digs a game: the late bank sits at 160-260 crumbs (traps spend the
