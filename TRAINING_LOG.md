@@ -1959,3 +1959,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   seed 72, 64, 70, 66, 69, 72 of 120); basics PASS (overruns 0, max 24.8k, exceptions 0); recorded as g_iter6. Ladder:
   **g_iter6 1999 +- 23 (rank 11), level with Gymhgy 2000 (rank 10)**; g_iter5 1974; g_iter6 vs Gymhgy 98-82 (54%), vs Cyril
   32-28. The filler now pairs g_iter6 with g_iter5 against Gymhgy.
+- **How the upper tier still beats g_iter6** (control census, 360 upper-tier games): losses are mostly three captures (349 of
+  524 upper losses on the ladder; level-sum tiebreaks 68-41 against us). Equal map crumbs (6,963 vs 6,984) but they build 359
+  traps to our 216 and trigger 323 stuns to our 182 (1,716 robot-freezes on us vs 847). The difference is the kill reward
+  (+30 only for a killer on enemy territory): 66% of our deaths fall on our territory (~10,200 crumbs a game to them), 20%
+  of our kills on theirs (~2,400 to us); against the rest of the band it reverses (8,700 to us) and we win 89%. Upper-tier
+  wins vs losses: our deaths on our territory 45% vs 64%, our kills on theirs 31% vs 17%. New TACTICS row T15 (kill-reward
+  economy). Their army stands in our half (22 at r300 vs our 14 in theirs) and moves more (stillPost 20% vs our 31%).
