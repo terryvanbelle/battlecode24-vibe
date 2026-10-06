@@ -90,3 +90,20 @@ pick-after-move) carries the crumbs without the dam; its Gymhgy paired filler an
 3.25, net +23) and was +38 over 840 paired games against Gymhgy (+2.1 SE, ~+4.5 points). Ladder: g_iter5 1983, Gymhgy
 2010. Gymhgy stays the target; new arms are built on g_iter5 and paired against it on the refreshed band; the filler builds
 g_iter5's baseline against Gymhgy.
+
+## On the g_iter5 base (2026-10-06)
+
+- **Where g_iter5 loses** (1,236 ladder games): early. Before r1000 302-123, almost all by three captures; from r1000 on we
+  win 470-341; r2000 ties even. Fixed-time census columns (r200-600: kills, stuns, crumbs, flag distances, presence) do not
+  separate early losses from wins within map; only the conversion of its chains does.
+- **Recall is not the lever** (route R3, pinned before pooling; 720 filler replays, 6,696 chains on our flags). At the grab of
+  a big chain that ends in a capture, 27.5 of its robots are within 10 tiles against 15.2 of ours, nearly all of ours already
+  fighting; free robots within 20 tiles: median 4 (bar 6).
+- **The local fight is not decisive** (route F2): near-flag net kills by t = 10 are even in returned and captured big chains
+  (+0.10 vs -0.21). They differ in contact: at t = 10, 4.4 vs 1.3 of ours within dist2 20 of the flag; a captured flag
+  leaves our fight. The interception family (g1icpt, g1icamp, g4contact) never produced that contact.
+- **Flag spread is not a trait of the bots that beat us** (census flagSpreadMax: only chenyx512 clusters).
+- **Flag distance is**: Gymhgy's flags sit 35.7 tiles from our spawns, ours 28.9 from its; its chains convert 0.50 under 20
+  tiles and 0.13 at 36-47. Arm **g5climb2** (C.RELOC_CLIMB, audit BOT3(a)): the carrier climbs over visible tiles away from
+  the enemy spawns instead of walking to a fixed, sometimes unreachable spot; 5(a) +3.56 tiles on 12 of 12 cells. Band
+  delivery and band test queued; on delivery the filler pairs it with g_iter5 against Gymhgy.
