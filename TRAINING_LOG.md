@@ -1950,3 +1950,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   is ~+4 win points). CLAUDE rules 14 and 16, HANDOFF, README, REWRITE, TACTICS T2 (accepted), CRACK-GYMHGY, BRIEFING
   updated. Next: band refresh around g_iter6 with fresh look seeds and g_iter6's control on all six; the filler pairs g_iter6
   with g_iter5 against Gymhgy (the climb's Gymhgy read).
+- Band refresh for g_iter6 (PROMPTS 185): `tools/elo.py --band 20 --as g_iter6` gives the same 20 bots as band-20261005
+  (tools/band.txt unchanged), and the bots rated above g_iter6 are the same 10 (tools/upper-tier.txt unchanged). Fresh look
+  seeds, since g5climb2 was selected on g_iter5's (tools/band-seeds.txt: 282828 393939 / 404040 171717 / 292929 303030).
+  g_iter6's control on all six queued (720 games); new arms pair against it.
