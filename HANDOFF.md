@@ -29,8 +29,8 @@
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
-  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=Gymhgy.v10official tools/filler-pair.sh g_iter5 - 40` (the g_iter5
-  vs Gymhgy baseline), collected with `tools/collect-fillers.sh g_iter5 -`. tools/vm-prune.sh keeps the newest 25 filler
+  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=Gymhgy.v10official tools/filler-pair.sh g_iter5 g5climb2 40` (g5climb2
+  paired with g_iter5 against Gymhgy), collected with `tools/collect-fillers.sh g_iter5 g5climb2`. tools/vm-prune.sh keeps the newest 25 filler
   runs of each build in tools/keep-replays.txt (older filler replays go after an hour once the disk passes 80%).
 - The band is refreshed at each promotion (owner PROMPTS 184-185): tools/band.txt points at the current band file,
   tools/band-seeds.txt holds the incumbent's three look seeds, tools/upper-tier.txt the bots rated above it.

@@ -1923,3 +1923,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   vs 8, Gymhgy captures 18 vs 19, ours 21 vs 20. Band delivery pre-registered (the mechanism is setup-only):
   `BASE=g_iter5 DGTAG=-g5 tools/delivery-gate.sh g5climb2 'rel:flagDistMean>=1.05 nw:enemyCaptured<=1.1 mean:overruns<=0'`,
   band test chained on PASS (look 1, the shipping rule); on PASS the filler pairs g5climb2 with g_iter5 against Gymhgy.
+- **g5climb2 band delivery: PASS** (24 cells, seed 909090, base g_iter5): flagDistMean 32.56 vs 30.04 (+2.53 tiles, +1.7 SE
+  past x1.05); enemy captures 1.33 vs 1.83 (-27%; guard PASS); 0 overruns. The band test (look 1, seeds 525252 / 626262)
+  runs; the filler now pairs g5climb2 with g_iter5 against Gymhgy (the victory read; CLAUDE rule 14).
