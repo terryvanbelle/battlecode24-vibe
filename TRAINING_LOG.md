@@ -2054,3 +2054,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   the 2026-10-01 B2 retry lost its bank to self-fills). 5(a) pre-registered vs andli28 (6 maps x both sides, seed 6501, g_iter7
   twins): it fires if level200 rises by >= 10 on >= 10 of 12 cells and levelGapEnd rises by >= 20 on average, with 0 overruns
   and 0 exceptions (digs200, crumbs250, fills, wins and captures logged).
+- **g7dig 5(a): FAIL, closed** (12 cells vs andli28, g_iter7 twins): level200 up by >= 10 on 6 of 12 cells (bar 10); levelGapEnd
+  +14.8 on average (bar +20). Dig sites behind our spawn are scarce on some maps (Backslash 1-2 digs; Alien, Canals, Hurricane
+  107-164), and the digs cost elsewhere: wins 3 vs 5, enemy captures 18 vs 13, our captures 8 vs 12; 0 overruns, 0 exceptions.
+  The level-sum gap against andli28 stays the largest loss mode; setup digging is not the way to close it.
