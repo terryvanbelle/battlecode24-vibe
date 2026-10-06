@@ -2044,3 +2044,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g7spawn band delivery: FAIL, closed** (24 cells, base g_iter7): spawnNear20 0.26 vs 0.49 (+4.5 SE past x0.8) but enemy
   captures 1.50 vs 1.00 (guard FAIL, -0.40 +- 0.19 past x1.1): a respawn that avoids the contested zone does not reinforce
   the flag beside it. Confirms the 5(a)'s cost (23 vs 15). The spawn-trickle deaths are the price of defending there.
+- **g_iter7 vs andli28 profile** (census of 200 filler games, 55 won): 101 of 145 losses go to r2000; loss types LEVEL_SUM
+  59, CAPTURE 44, MORE_FLAG 42. In the 59 level-sum losses we trail by a median 41 levels (quartiles 24-55): +40 levels at the
+  end would flip 28 of them, +60 46 (14-23% of all games against it). andli28 digs 79.5 times in setup (level 16 at r200 vs
+  our 4), banks 4,828 crumbs at r250 (ours 224), builds 584 traps to our 266 (each a build action), and kills 876 to our 512.
+- Arm **g7dig** (T4 adoption for the level sum; switches that exist since the T4 era): SETUP_DIGS 5 (five checkerboard digs per
+  duck in setup: build level 1 each, ~+50 levels; the jail penalty takes the highest skill, never a lone build level), DIG_RESERVE
+  300 (was 1,000: digs must not starve), DIG_SITE 2 + NO_FILL_OWN (dig behind our spawn and never fill our own digs in setup:
+  the 2026-10-01 B2 retry lost its bank to self-fills). 5(a) pre-registered vs andli28 (6 maps x both sides, seed 6501, g_iter7
+  twins): it fires if level200 rises by >= 10 on >= 10 of 12 cells and levelGapEnd rises by >= 20 on average, with 0 overruns
+  and 0 exceptions (digs200, crumbs250, fills, wins and captures logged).
