@@ -2080,3 +2080,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   1,000 in >= 75% and digsLate >= 60 in >= 75%, mean levelGapEnd gain >= +15 over cells where both twins tie (P), enemy
   captures <= twins + 2, our captures >= twins - 2, 0 overruns, 0 exceptions; if |L| or |P| < 5 the same 12 cells on seed 6602
   are added (guards +4/-4).
+- **g7bank 5(a): FAIL, closed** (12 cells vs andli28, seed 6601, g_iter7 twins): of the 7 arm games tied at r2000, bank1900
+  >= 1,000 in 1 (bar 75%; banks 132-540, one 1,325), digsLate >= 60 in none (max 53; bar 75%); level-gap gain over the 5
+  cells where both twins tied +7.0 (bar +15); guards held (captures 11 vs 10, theirs 11 vs 12, wins 4 vs 3, 0 overruns, 0
+  exceptions). Why (TreeSearch A and Battlecode24 B metrics r1300-2000): the arm still built ~12 stuns per 100 rounds; most
+  of our late spending is in the exempt classes (fights at an alerted flag, paced close stuns), and the flag counts are
+  often not level through r1400-1900 (TreeSearch was 2-1 until late), so the bank never forms. Closing it would cut the
+  stuns that defend the flags, the trade g4farm3 lost. The level gap against andli28 forms mostly r200-800 (deaths and
+  trap XP), not at the end.
