@@ -121,6 +121,12 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   (rank 11), 27 points behind Gymhgy. Also: the kills guard is gone from delivery (PROMPTS 183), stacking near-misses is
   written into TRAINING_ALGORITHM (PROMPTS 187), uravt turned out weaker than its tiny early sample said (g_iter4 26-14),
   and the convoy-response arm (g4contact) was built, reviewed and closed (fired, did not put eyes on the chains).
+- 01:30 UTC (Oct 6): g4ship1 closed against Gymhgy at +84 over 1,200 paired games (+3.9 SE): g_iter5 wins 48% of those
+  cells, g_iter4 41%. g_iter5's control on the refreshed band: 387-333; ladder 1985, Gymhgy 2011. g_iter5's losses to
+  Gymhgy come early (302-123 before r1000, mostly three captures; 470-341 after), so the next lever must stop its early
+  raids. A recall premise check (are our robots free near a big grab, or fighting elsewhere?) and a flag-spread census
+  (do the bots that beat us keep their flags together?) are queued. A replay prune deleted the 880 g_iter5-vs-Gymhgy
+  replays before the check could read them; the prune now keeps the newest 25 filler runs of kept builds.
 
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.

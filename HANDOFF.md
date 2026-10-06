@@ -6,44 +6,34 @@
   It is g_iter4 plus the owner's stack g4ship1 (PROMPTS 180): centre crumbs (C.CRUMB_STEP, C.POST_SETUP_CRUMBS) and
   pick-after-move (C.PICKUP_AFTER_MOVE). Shipped under the new rule (PROMPTS 186-188) at look 3: 720 seeded band pairs vs
   g_iter4, capture delta +0.17 +- 0.05 (t_all 3.25), upper t 1.98, wins net +23 (sign p 0.033); basics PASS; vs Gymhgy
-  +38 over 840 pairs. Ladder **1983 +- 19, rank 11** (g_iter4 1939). Before it: g_iter4 (+ C.FLAG_LOST), g_iter3, g_iter2, g_iter1.
-- **Ladder target: Gymhgy.v10official** (2099, rank 9; g_iter4 78-103, 43%, over 181 filler games; CLAUDE rule 14,
-  research/CRACK-GYMHGY.md) since 2026-10-04, when the CyrilSharma lines ran out (owner PROMPTS 177; g_iter4 36% over 2,098
-  games; research/CRACK-CYRIL.md). Defeated: ColtG5 (declared by the owner, PROMPTS 157), winkelmantanner.waffle.
+  +84 over 1,200 pairs (+3.9 SE). Ladder **1985 +- 15, rank 11** (g_iter4 1939). Control on the refreshed band
+  (tools/band.txt = band-20261005, look seeds in tools/band-seeds.txt): 387-333 over 720 games; new arms pair against it. Before it: g_iter4 (+ C.FLAG_LOST), g_iter3, g_iter2, g_iter1.
+- **Ladder target: Gymhgy.v10official** (2011, rank 10; g_iter5 603-669, 47%; CLAUDE rule 14, research/CRACK-GYMHGY.md)
+  since 2026-10-04, when the CyrilSharma lines ran out (owner PROMPTS 177; research/CRACK-CYRIL.md). Defeated: ColtG5
+  (declared by the owner, PROMPTS 157), winkelmantanner.waffle.
 - Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC.
   That makes a pair exact only for code that changes no decision (identity control 0 of 80 discordant); arms that change
   behaviour still disagree with the control on ~17-29% of pairs (audit 2026-10-03 MEAS2), so size blocks from that.
   Delivery checks are three-way since the second audit: PASS 1 SE beyond the bar, FAIL 2 SE short, else INCONCLUSIVE
   (auto-extended 24 -> 48 -> 96 cells, never a closure). Open findings of research/AUDIT-2026-10-03.md are tracked
   below.
-- In flight: the Cyril target (research/CRACK-CYRIL.md; g_iter4 vs Cyril 456-803, 36%, on 1,259 filler games). In
-  those games a Cyril capture decides most losses (MORE_FLAG_CAPTURES 406, CAPTURE 292) and we win flag ties on level
-  sum 188-105. Second-audit follow-through: tools fixed; BOT1 promoted (g_iter4); closed or parked against Cyril: BOT2
-  tether, BOT4 econ, BOT5 pick, BOT7 ahead, BOT8 fill, BOT9 alert (g4alert INCONCLUSIVE at 96), BOT10 pred, the g4bundle
-  combination; BOT16 fixed behind C.RELOC_SPREAD (small effect, for a later combined build). **Cyril's stun economy
-  (TACTICS T14, research/CRACK-CYRIL.md)**: it builds 475 traps a game to our 247 (census of 1,520 games), ~54 crumbs a stun
-  to our ~77 (build-level discount), and takes 3x our centre crumbs in r201-400. g4front (placement) FAIL; g4wary/2
-  (avoidance), g4crumb (INCONCLUSIVE at 96), g4builder/2 (dedicated builders) parked; **g4econ2** (centre crumbs + builders
-  on top of everyone's stuns) passed Cyril delivery (fast stun victims +54%) but its band test met no criterion (net +3,
-  upper -0.20, t -1.6; kills -17%), and its paired Cyril filler found no crack (net +1/120, stopped for futility).
-  **Gymhgy.v10official is the target** (research/CRACK-GYMHGY.md; g_iter4 ~40% over 2,400+ games). Delivered: g4crumb
-  (centre crumbs; 7-1 on chosen centre-crumb cells, +20/560 on random maps), g4dam (dam-line budget), g4gym1 (both; closed
-  at +12/1,880, no measurable effect). Closed or parked: Z1HOLD, Z2ESCORT, pick, relay, level farm (g4farm2/3), convoy
-  response (g4contact/g4contact8: fired, but screened rounds rose). **Now: g4ship1** (g4crumb + g4pick; owner PROMPTS 180):
-  band delivery PASS once the kills guard was removed (PROMPTS 183); pooled 480 band pairs net +12, capture delta +0.14
-  (t_all 2.21), upper t 1.39: under the **new shipping rule** (PROMPTS 186-188, REWRITE_EVAL: ship if t_all >= 2.3 or
-  t_up >= 2.6 with net >= 0, looks at 240/480/720) it goes to look 3 (seeds 727272 / 838383 + a reusable g_iter4
-  control), queued. Gymhgy paired filler running. g4crumb alone vs Gymhgy: +30/640 (+2.3 SE).
-  Open: BOT3(a) reachable relocation
-  spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10, MEAS13-MEAS17 (MEAS3 fixed 2026-10-04: seeds in replay names).
+- In flight (2026-10-06): **Gymhgy on the g_iter5 base.** g_iter5's losses to it are early: before r1000 302-123, almost
+  all three-flag captures; from r1000 on we win 470-341. Closed or parked against Gymhgy: Z1HOLD, Z2ESCORT, relay, level
+  farm (g4farm2/3), convoy response (g4contact/8), dam line (g4dam; it cancelled the crumbs inside g4gym1). Delivered and
+  shipped: centre crumbs and pick-after-move (g_iter5). Next: the recall premise check (ReplayDump --recall-d0,
+  tools/recall-d0.py, routes pinned: free robots near a big grab -> L1 recall; robots fighting far away -> disengage
+  design; else not the lever) on the g_iter5 filler's Gymhgy replays, and a flag-spread census (flagSpreadMin/Max) of the
+  band: do the bots that beat us keep their flags together? Cyril (research/CRACK-CYRIL.md): all lines neutral.
+  Open audit items: BOT3(a) reachable relocation spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10,
+  MEAS13-MEAS17.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
 - VM queue: `queue/pending/*.job` on battlecode-dev2 run in order by `tools/vm-queue.sh` (log
-  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=CyrilSharma.finalBot tools/filler-pair.sh g_iter4 - 40`
-  (the g_iter4 vs Cyril baseline), collected with `tools/collect-fillers.sh g_iter4 -`.
-- **At the next promotion, refresh the band** (owner PROMPTS 184-185): re-derive the band list from the converged ratings
-  so it includes uravt.Version18Final (absent since 2026-10-01; in tools/upper-tier.txt but never band-tested), and play
-  the new incumbent's control on it.
+  `gauntlet/queue-runner.log`); idle filler = `FILLPOOL=Gymhgy.v10official tools/filler-pair.sh g_iter5 - 40` (the g_iter5
+  vs Gymhgy baseline), collected with `tools/collect-fillers.sh g_iter5 -`. tools/vm-prune.sh keeps the newest 25 filler
+  runs of each build in tools/keep-replays.txt (older filler replays go after an hour once the disk passes 80%).
+- The band is refreshed at each promotion (owner PROMPTS 184-185): tools/band.txt points at the current band file,
+  tools/band-seeds.txt holds the incumbent's three look seeds, tools/upper-tier.txt the bots rated above it.
 - Every build and test block gets `tools/basics.py` (CLAUDE rule 15); unit tests include the dead-code and arm-intent
   checks.
 
