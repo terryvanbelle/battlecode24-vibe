@@ -2067,3 +2067,16 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - VM disk at 82% with only kept builds left: replays of builds older than g_iter5 (g_iter0, b1v2, b1z2b, b2fs, g1trk,
   g1basics, g_iter2, g_iter3, g2cr, g_iter4, g3lost) and of g4ship1 (g_iter5's code) deleted (results, summaries and census
   files kept); tools/keep-replays.txt now holds g_iter5, g_iter6 (g5climb2) and g_iter7 (g6heal).
+- Arm **g7bank** (C.LATE_BANK, TACTICS T17; workflow: two designs, judge, implementer, two reviewers, fixer;
+  research/level-dump-2026-10-06/): while the flag counts are level, from r1400 builds that would sit and wait (calm re-arms
+  of a full ring, combat stuns with no enemy within dist2 8, float stuns) need up to 2,000 more crumbs (a line rising 400 per
+  100 rounds); close stuns build above the line or once per 20 rounds team-wide (slot 40); alerted-flag fights, carrier stuns,
+  thin rings and fills are unchanged. From r1900 a robot with a spare action and no enemy within dist2 20 digs a checkerboard
+  tile toward its next build level: whole levels only (team ledger in slot 41), build <= 3, only levels the jail penalty never
+  takes, finishing by r2000. New census column bank1900. Six review findings fixed (team-wide level ledger; the stun reroute
+  limited to tied games after r1900 and to dump water; tests that catch mutations); unit tests pass (also rerun by me). 5(a)
+  pre-registered by the judge: 12 cells {EndAround, FloodGates, TreeSearch, Battlecode24, Intercontinental,
+  GravitationalWaves} x {A, B} vs andli28, seed 6601, g_iter7 twins; fires iff in the arm games tied at r2000 (L) bank1900 >=
+  1,000 in >= 75% and digsLate >= 60 in >= 75%, mean levelGapEnd gain >= +15 over cells where both twins tie (P), enemy
+  captures <= twins + 2, our captures >= twins - 2, 0 overruns, 0 exceptions; if |L| or |P| < 5 the same 12 cells on seed 6602
+  are added (guards +4/-4).

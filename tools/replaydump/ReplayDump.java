@@ -105,6 +105,7 @@ import java.util.zip.GZIPInputStream;
  *   gathered201to400   map crumbs our robots collected in r201-400 (gathered400 - gathered200, as one column for delivery bars)
  *   stunTrig250        our stuns triggered in r201-250; kills250 / deaths250: our kills and deaths by the end of r250
  *   levelGain1200      our level sum at the end minus at r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end
+ *   bank1900           our crumbs at the end of r1900 (blank if shorter); C.LATE_BANK's bank signature
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
  *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
@@ -166,6 +167,8 @@ public class ReplayDump {
     static int[] kStunTrig250 = new int[3], kKills250 = new int[3], kDeaths250 = new int[3];
     /** levelGain1200: our level sum at the end minus at the end of r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end. */
     static int[] kLevel1200 = {-1, -1, -1};
+    /** bank1900: our crumbs at the end of r1900 (blank if shorter), not filtered on flag counts; C.LATE_BANK's signature (2026-10-06). */
+    static int[] kBank1900 = {-1, -1, -1};
     static int[] spawnZone;            // 0 none, 1 A, 2 B
     static int[] crumbs;               // remaining crumbs per tile
     static Map<Integer, Integer> flagTeam = new HashMap<>();   // flag id -> team (1/2)
@@ -774,6 +777,7 @@ public class ReplayDump {
         for (int t = 1; t <= 2; t++) { kAliveSum[t] += alive[t]; if (rn == 200) kGathered200[t] = kGathered[t]; if (rn == 400) kGathered400[t] = kGathered[t]; }
         if (rn == 1500) for (int t = 1; t <= 2; t++) kLevel1500[t] = levelSum(t);
         if (rn == 1200) for (int t = 1; t <= 2; t++) kLevel1200[t] = levelSum(t);
+        if (rn == 1900) for (int t = 1; t <= 2; t++) kBank1900[t] = crumbsNow[t];
         if (rn == 250) for (int t = 1; t <= 2; t++) { kKills250[t] = cDeaths[3 - t]; kDeaths250[t] = cDeaths[t]; }
         if (rn > 200) for (Map.Entry<Integer, int[]> fe : flagLoc.entrySet()) {   // dropGuard: own robots beside an own dropped flag
             int[] dgl = fe.getValue(), dgh = flagHome.get(fe.getKey()); int ft = flagTeam.getOrDefault(fe.getKey(), 0);
@@ -1674,7 +1678,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1710,7 +1714,8 @@ public class ReplayDump {
                         + "," + kCarrierDeathsSpawn[t]
                         + "," + share(kDeathsHome[o], cDeaths[o]) + "," + share(kDeathsHome[t], cDeaths[t])
                         + "," + share(kHealThreat[t], kHealPost[t]) + "," + share(kReady20[t], kNear20[t])
-                        + "," + share(kSpawnNear[t], kSpawnPost[t]) + "," + share(kSpawnDeath10[t], kDeathPost[t]));
+                        + "," + share(kSpawnNear[t], kSpawnPost[t]) + "," + share(kSpawnDeath10[t], kDeathPost[t])
+                        + "," + (kBank1900[t] >= 0 ? String.valueOf(kBank1900[t]) : ""));
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

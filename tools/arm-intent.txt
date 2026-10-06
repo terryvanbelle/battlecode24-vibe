@@ -130,3 +130,4 @@ g7dig C.SETUP_DIGS=5
 g7dig C.DIG_RESERVE=300
 g7dig C.DIG_SITE=2
 g7dig C.NO_FILL_OWN=true
+g7bank C.LATE_BANK=true

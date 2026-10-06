@@ -1,4 +1,4 @@
-package bot;
+package g7bank;
 
 import battlecode.common.*;
 

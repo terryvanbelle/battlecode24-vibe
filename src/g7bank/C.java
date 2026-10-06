@@ -1,4 +1,4 @@
-package bot;
+package g7bank;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -94,7 +94,7 @@ public strictfp class C {
     // team-wide (a robot starts only when the bank not owed to the levels in progress, Comms.LB_OWED, covers its level plus
     // DIG_KEEP; it owes the rest until it finishes or stops). A combat stun aimed at water goes beside it. Never combine with
     // LEVEL_FARM, STUN_FRONT or BUILDERS (their branches skip the gate).
-    public static final boolean LATE_BANK = false;
+    public static final boolean LATE_BANK = true;
     public static final int BANK_R1 = 1400, BANK_R2 = 1900, BANK_CAP = 2000, BANK_PACE100 = 400;
     public static final int BANK_CLOSE_R2 = 8, RING_KEEP = 8, BANK_GAP = 20;
     public static final int DIG_XP_MAX = 15, DIG_KEEP = 300, DIG_ALLIN = 1990, DIG_KEEP_END = 100, DIG_HOLD_R2 = 20, DIG_BC = 3000;

@@ -19,10 +19,15 @@ public class BotTest {
     static int health = 1000;                           // fakeRc: getHealth
     static GlobalUpgrade[] theirUpg = new GlobalUpgrade[0];
     static java.util.Set<MapLocation> walls = new java.util.HashSet<>();
-    static boolean buildOk = false;
+    static boolean buildOk = false;                     // fakeRc: action ready; canBuild on an on-map tile in reach
     static boolean moveOk = false;                      // fakeRc: movement ready and every step legal; move() records lastMove
     static Direction lastMove;
     static MapLocation[] crumbTiles = new MapLocation[0];   // fakeRc: action ready, 1000 crumbs and canBuild by the engine's placement rules
+    static java.util.Set<MapLocation> water = new java.util.HashSet<>();   // fakeRc: water tiles (not passable; only explosives build there)
+    static int crumbs = -1;                             // fakeRc: getCrumbs when >= 0 (else 1000 with buildOk); dig pays from it
+    static int buildXp, attackLevel, healLevel;         // fakeRc: getExperience(BUILD), getLevel(ATTACK), getLevel(HEAL); dig adds build XP
+    static boolean digOk;                               // fakeRc: canDig on a dry, in-reach, on-map tile; dig records lastDig and turns it to water
+    static MapLocation lastDig;
     static MapLocation[] zoneA = new MapLocation[0], zoneB = new MapLocation[0];
     static int zoneOf(MapLocation l) {
         for (MapLocation c : zoneA) if (Math.max(Math.abs(c.x - l.x), Math.abs(c.y - l.y)) <= 1) return 1;
@@ -47,7 +52,7 @@ public class BotTest {
                     case "senseMapInfo": {
                         MapLocation l = (MapLocation) args[0];
                         if (!sensable(l)) throw new GameActionException(GameActionExceptionType.CANT_SENSE_THAT, "test");
-                        return new MapInfo(l, !walls.contains(l), walls.contains(l), false, zoneOf(l), false, 0, TrapType.NONE, Team.NEUTRAL);
+                        return new MapInfo(l, !walls.contains(l) && !water.contains(l), walls.contains(l), false, zoneOf(l), water.contains(l), 0, TrapType.NONE, Team.NEUTRAL);
                     }
                     case "getGlobalUpgrades": return theirUpg;
                     case "isActionReady": return buildOk;
@@ -61,7 +66,7 @@ public class BotTest {
                     case "sensePassability": {   // terrain only (walls stand for wall and water), robots ignored, as the engine
                         MapLocation l = (MapLocation) args[0];
                         if (!sensable(l)) throw new GameActionException(GameActionExceptionType.CANT_SENSE_THAT, "test");
-                        return !walls.contains(l);
+                        return !walls.contains(l) && !water.contains(l);
                     }
                     case "senseNearbyFlags": return flagsInView;
                     case "senseNearbyRobots": {   // (), (r2), (r2, team), (centre, r2, team): within r2 of the centre and in view
@@ -76,10 +81,21 @@ public class BotTest {
                     case "move": lastMove = (Direction) args[0]; G.me = G.me.add(lastMove); return null;
                     case "getHealth": return health;
                     case "senseNearbyCrumbs": return crumbTiles;
-                    case "getCrumbs": return buildOk ? 1000 : 0;
+                    case "getCrumbs": return crumbs >= 0 ? crumbs : buildOk ? 1000 : 0;
+                    case "getExperience": return args[0] == SkillType.BUILD ? buildXp : 0;
+                    case "getLevel": return args[0] == SkillType.ATTACK ? attackLevel : args[0] == SkillType.HEAL ? healLevel : SkillType.BUILD.getLevel(buildXp);
+                    case "canDig": {
+                        MapLocation l = (MapLocation) args[0];
+                        return digOk && sensable(l) && G.me.distanceSquaredTo(l) <= 2 && !walls.contains(l) && !water.contains(l);
+                    }
+                    case "dig": {
+                        MapLocation l = (MapLocation) args[0];
+                        crumbs -= (int) Math.round(GameConstants.DIG_COST * (1 + 0.01 * SkillType.BUILD.getSkillEffect(SkillType.BUILD.getLevel(buildXp))));
+                        buildXp++; water.add(l); lastDig = l; return null;
+                    }
                     case "canBuild": {      // buildOk only: in reach, not a wall, not on/adjacent to an enemy (Duck.enemies)
                         MapLocation l = (MapLocation) args[1];
-                        if (!buildOk || walls.contains(l) || G.me.distanceSquaredTo(l) > 2) return false;
+                        if (!buildOk || !sensable(l) || walls.contains(l) || (water.contains(l) && args[0] != TrapType.EXPLOSIVE) || G.me.distanceSquaredTo(l) > 2) return false;
                         for (RobotInfo e : Duck.enemies) if (e.location.distanceSquaredTo(l) <= 2) return false;
                         return true;
                     }

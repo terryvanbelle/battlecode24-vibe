@@ -91,7 +91,7 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO,
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK,
               "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor and the contact dive off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
@@ -204,6 +204,146 @@ public class AuditTest {
             check(Duck.capturesLevel(), "LEVEL_FARM: 1-1 is level");
         } catch (GameActionException e) { check(false, "LEVEL_FARM: unexpected " + e); }
         java.util.Arrays.fill(BotTest.shared, 0);
+
+        // LATE_BANK (arm g7bank, TACTICS T17): the bank line, the dig arithmetic against the engine's, the jail-penalty mirror,
+        // the level read, the stun classes and the dump tile
+        check(!(C.LATE_BANK && C.LEVEL_FARM), "LATE_BANK never with LEVEL_FARM");
+        check(Duck.bankLine(1000) == 0 && Duck.bankLine(1400) == 0 && Duck.bankLine(1401) == 4 && Duck.bankLine(1650) == 1000
+              && Duck.bankLine(1900) == 2000 && Duck.bankLine(1950) == 2000, "LATE_BANK: the bank line is 0 to r1400, +400 a hundred rounds, the cap from r1900");
+        check(Duck.digNeed(0) == 5 && Duck.digNeed(5) == 5 && Duck.digNeed(7) == 3 && Duck.digNeed(14) == 1, "LATE_BANK: digs to the next whole build level");
+        int[] digCost = {20, 18, 17, 16}; boolean costOk = true;
+        for (int lv = 0; lv <= 3; lv++)
+            costOk &= Duck.digCost(lv) == digCost[lv] && Duck.digCost(lv) == (int) Math.round(GameConstants.DIG_COST * (1 + 0.01 * SkillType.BUILD.getSkillEffect(lv)))
+                      && Duck.digCd(lv) == 20 - lv && Duck.digCd(lv) == (int) Math.round(GameConstants.DIG_COOLDOWN * (1 + 0.01 * SkillType.BUILD.getCooldown(lv)));
+        check(costOk, "LATE_BANK: dig cost 20/18/17/16 and cooldown 20/19/18/17 at build 0-3, as the engine's");
+        check(Duck.digDoneRound(1901, 0, 20, 5) == 1909 && Duck.digDoneRound(1992, 0, 20, 5) == 2000 && Duck.digDoneRound(1993, 0, 20, 5) == 2001
+              && Duck.digDoneRound(1993, 0, 19, 5) == 2000 && Duck.digDoneRound(1900, 0, 18, 5) == 1907
+              && Duck.digDoneRound(1990, 15, 20, 1) == 1991 && Duck.digDoneRound(1990, 5, 18, 1) == 1990,
+              "LATE_BANK: the round of a level's last dig, one dig on each ready turn");
+        boolean durOk = true;
+        for (int b = 1; b <= 3; b++) for (int at = 0; at <= 6; at++) for (int h = 0; h <= 6; h++) {
+            boolean penalised = !(at >= b && at >= h) && (b >= at && b >= h);   // InternalRobot.jailedPenalty: attack, else build, else heal
+            if (Duck.digDurable(b, at, h) == penalised) durOk = false;
+        }
+        check(durOk && Duck.digDurable(1, 3, 3) && !Duck.digDurable(3, 2, 3) && Duck.digDurable(2, 1, 4) && !Duck.digDurable(1, 0, 0),
+              "LATE_BANK: a dug level is durable exactly when the jail penalty never takes build");
+        G.rc = BotTest.fakeRc(); java.util.Arrays.fill(BotTest.shared, 0);
+        try {
+            G.round = 1400; Duck.lateAt = -1;
+            check(!Duck.lateLevel(), "LATE_BANK: nothing up to r1400");
+            G.round = 1401; Duck.lateAt = -1;
+            check(Duck.lateLevel(), "LATE_BANK: 0-0 at r1401 is on");
+            BotTest.shared[Comms.EF_STATE] = 2; Duck.lateAt = -1;
+            check(!Duck.lateLevel(), "LATE_BANK: 1-0 is off");
+            BotTest.shared[Comms.OF_LOST] = 1; Duck.lateAt = -1;
+            check(Duck.lateLevel(), "LATE_BANK: 1-1 is on");
+            BotTest.shared[Comms.EF_STATE + 1] = 2;
+            check(Duck.lateLevel(), "LATE_BANK: the flag counts are read once a turn");
+            Duck.lateAt = -1;
+            check(Duck.lateOn() == (C.LATE_BANK && Duck.lateLevel()), "LATE_BANK: lateOn follows the switch");
+        } catch (GameActionException e) { check(false, "LATE_BANK lateLevel: unexpected " + e); }
+        // stun classes, 1000 crumbs (base 300): me (10,10), homes far away; a close enemy at dist2 2, a far one at dist2 18
+        G.W = 40; G.H = 30; G.me = new MapLocation(10, 10); BotTest.buildOk = true; BotTest.walls.clear();
+        java.util.Arrays.fill(BotTest.shared, 0);
+        for (int i = 0; i < 3; i++) BotTest.shared[Comms.OF_HOME + i] = Comms.enc(new MapLocation(25, 25 + i));
+        RobotInfo[] closeE = {enemy(1, 11, 11)}, farE = {enemy(1, 13, 13)};
+        try {
+            G.round = 1500; Duck.enemies = closeE; Duck.lbPaced = false;
+            check(Duck.lateTrapAllowed() && !Duck.lbPaced, "LATE_BANK: r1500, a close stun above the line (400) builds off the pace");
+            G.round = 1800;
+            check(Duck.lateTrapAllowed() && Duck.lbPaced, "LATE_BANK: r1800, a close stun below the line (1600) takes the team pace");
+            Duck.lbPaced = false; BotTest.shared[Comms.LB_PACE] = 1790;
+            check(!Duck.lateTrapAllowed() && !Duck.lbPaced, "LATE_BANK: a paced stun 10 rounds ago: the next close stun waits");
+            // class C at r1500 with the pace free, where the line (400) and the pace would both pass a close stun: a dropped
+            // `close` test in either branch, or a close radius out to the far enemy's dist2 18, builds here
+            G.round = 1500; BotTest.shared[Comms.LB_PACE] = 0; Duck.enemies = farE; Duck.lbPaced = false;
+            check(!Duck.lateTrapAllowed() && !Duck.lbPaced, "LATE_BANK: class C (no enemy within BANK_CLOSE_R2, no alert) waits where a close stun builds");
+            G.round = 1800; BotTest.shared[Comms.LB_PACE] = 1790;
+            BotTest.shared[Comms.OF_ALERT] = 1795; BotTest.shared[Comms.OF_HOME] = Comms.enc(new MapLocation(14, 10));
+            check(Duck.lateTrapAllowed(), "LATE_BANK: class A (a fresh alert on a home at dist2 16) builds");
+            BotTest.shared[Comms.OF_ALERT] = 1780;
+            check(!Duck.lateTrapAllowed(), "LATE_BANK: a 20-round-old alert on that home is not class A");
+            BotTest.shared[Comms.OF_ALERT] = 1795; BotTest.shared[Comms.OF_LOST] = 1;
+            check(!Duck.lateTrapAllowed(), "LATE_BANK: a lost flag's alert is not class A");
+            BotTest.writeOk = new boolean[64]; BotTest.writeOk[Comms.LB_PACE] = true; BotTest.badWrite = false;
+            Duck.lbPaced = true; Duck.lateBuilt();
+            check(BotTest.shared[Comms.LB_PACE] == 1800 && !Duck.lbPaced && !BotTest.badWrite, "LATE_BANK: a paced build stamps LB_PACE and clears the claim");
+            int wc = BotTest.writeCount; Duck.lateBuilt();
+            check(BotTest.writeCount == wc, "LATE_BANK: an unpaced build writes nothing");
+        } catch (GameActionException e) { check(false, "LATE_BANK lateTrapAllowed: unexpected " + e); }
+        // dump tile: me (10,10), one home at (20,20)
+        G.W = 30; G.H = 30; G.me = new MapLocation(10, 10);
+        MapLocation[] dHomes = {new MapLocation(20, 20), null, null}; FlagInfo[] noFl = new FlagInfo[0];
+        try {
+            check(Duck.digSiteOk(new MapLocation(11, 11), dHomes, noFl), "LATE_BANK: (11,11) is a dump tile");
+            check(!Duck.digSiteOk(new MapLocation(10, 11), dHomes, noFl), "LATE_BANK: odd x+y is off the checkerboard");
+            BotTest.walls.add(new MapLocation(11, 12));
+            check(!Duck.digSiteOk(new MapLocation(11, 11), dHomes, noFl), "LATE_BANK: a wall beside the tile would close a lane");
+            BotTest.walls.clear();
+            check(!Duck.digSiteOk(new MapLocation(11, 11), new MapLocation[]{new MapLocation(12, 12), null, null}, noFl), "LATE_BANK: not inside a home's ring");
+            check(!Duck.digSiteOk(new MapLocation(11, 11), dHomes, new FlagInfo[]{new FlagInfo(new MapLocation(13, 11), Team.A, false, 3)}),
+                  "LATE_BANK: not within RING_RADIUS2 of a flag in view");
+            G.me = new MapLocation(1, 1);
+            check(!Duck.digSiteOk(new MapLocation(0, 0), dHomes, noFl), "LATE_BANK: a neighbour off the map");
+        } catch (GameActionException e) { check(false, "LATE_BANK digSiteOk: unexpected " + e); }
+        // a combat stun aimed at water goes beside it; any other refusal keeps the tile (me (10,10), aimed east at (11,10))
+        G.W = 30; G.H = 30; G.me = new MapLocation(10, 10); Duck.enemies = new RobotInfo[0];
+        MapLocation east = new MapLocation(11, 10);
+        try {
+            check(Duck.dumpSide(TrapType.STUN, east).equals(east), "LATE_BANK: a stun on dry land stays");
+            Duck.enemies = new RobotInfo[]{enemy(1, 12, 10)};
+            check(Duck.dumpSide(TrapType.STUN, east).equals(east), "LATE_BANK: an enemy beside the tile is no reason to move the stun");
+            Duck.enemies = new RobotInfo[0]; BotTest.water.add(east);
+            check(Duck.dumpSide(TrapType.STUN, east).equals(new MapLocation(11, 11)), "LATE_BANK: a stun aimed at water goes left of it");
+            BotTest.walls.add(new MapLocation(11, 11));
+            check(Duck.dumpSide(TrapType.STUN, east).equals(new MapLocation(11, 9)), "LATE_BANK: right of it when the left is blocked");
+            check(Duck.dumpSide(TrapType.EXPLOSIVE, east).equals(east), "LATE_BANK: an explosive builds on water");
+            G.me = new MapLocation(0, 5);
+            check(Duck.dumpSide(TrapType.STUN, new MapLocation(-1, 5)).equals(new MapLocation(-1, 5)), "LATE_BANK: a tile off the map stays");
+        } catch (GameActionException e) { check(false, "LATE_BANK dumpSide: unexpected " + e); }
+        BotTest.water.clear(); BotTest.walls.clear();
+        // lateDig: levels are committed team-wide. Bank 450, keep 300, two robots at build XP 0 (a level: 5 x 20 + 300)
+        int keepBc = G.testBc; Team keepThem = G.them;
+        G.me = new MapLocation(10, 10); G.them = Team.B; G.testBc = 25000; java.util.Arrays.fill(BotTest.shared, 0);
+        for (int i = 0; i < 3; i++) BotTest.shared[Comms.OF_HOME + i] = Comms.enc(new MapLocation(25, 25 + i));
+        BotTest.buildOk = true; BotTest.digOk = true; BotTest.attackLevel = 3; BotTest.writeOk = new boolean[64]; BotTest.writeOk[Comms.LB_OWED] = true; BotTest.badWrite = false;
+        try {
+            G.round = 1950; Duck.lateAt = -1; BotTest.crumbs = 450; BotTest.buildXp = 0; Duck.myOwed = 0; BotTest.lastDig = null;
+            Duck.lateDig();
+            check(BotTest.lastDig != null && BotTest.crumbs == 430 && BotTest.shared[Comms.LB_OWED] == 80 && Duck.myOwed == 80,
+                  "LATE_BANK: robot 1 starts a level and owes its other 4 digs");
+            Duck.myOwed = 0; BotTest.buildXp = 0; BotTest.lastDig = null;   // robot 2
+            Duck.lateDig();
+            check(BotTest.lastDig == null && BotTest.crumbs == 430 && BotTest.shared[Comms.LB_OWED] == 80 && Duck.myOwed == 0,
+                  "LATE_BANK: robot 2 may not start (430 - 80 owed < 100 + 300)");
+            Duck.myOwed = 80; BotTest.buildXp = 1; G.round = 1952;          // robot 1 again: its level needs 80 + 300 of the whole bank
+            Duck.lateDig();
+            check(BotTest.lastDig != null && BotTest.crumbs == 410 && BotTest.shared[Comms.LB_OWED] == 60 && Duck.myOwed == 60,
+                  "LATE_BANK: robot 1 digs on and owes 3 digs");
+            BotTest.buildXp = 4; BotTest.buildOk = false;                    // two trap builds, no action left this turn
+            Duck.lateDig();
+            check(BotTest.shared[Comms.LB_OWED] == 20 && Duck.myOwed == 20, "LATE_BANK: trap-build XP lowers the share to the rest of the level");
+            BotTest.buildXp = 5;
+            Duck.lateDig();
+            check(BotTest.shared[Comms.LB_OWED] == 0 && Duck.myOwed == 0, "LATE_BANK: a trap build that completes the level frees the share");
+            Duck.myOwed = 60; BotTest.shared[Comms.LB_OWED] = 60; BotTest.buildXp = 7; G.me = null;
+            Duck.lateDig();
+            check(BotTest.shared[Comms.LB_OWED] == 0 && Duck.myOwed == 0, "LATE_BANK: a jailed robot frees its share");
+            G.me = new MapLocation(10, 10); Duck.myOwed = 60; BotTest.shared[Comms.LB_OWED] = 60; BotTest.shared[Comms.EF_STATE] = 2; Duck.lateAt = -1;
+            Duck.lateDig();
+            check(BotTest.shared[Comms.LB_OWED] == 0 && Duck.myOwed == 0, "LATE_BANK: a capture that ends the level game frees the share");
+            BotTest.shared[Comms.EF_STATE] = 0; BotTest.buildOk = true; BotTest.crumbs = 1000; BotTest.buildXp = 0; BotTest.lastDig = null;
+            G.round = 1993; Duck.lateAt = -1;
+            Duck.lateDig();
+            check(BotTest.lastDig == null && Duck.myOwed == 0, "LATE_BANK: r1993: a level of 5 digs (to r2001) is not started");
+            G.round = 1992; Duck.lateAt = -1;
+            Duck.lateDig();
+            check(BotTest.lastDig != null && Duck.myOwed == 80 && !BotTest.badWrite, "LATE_BANK: r1992: its 5 digs end at r2000");
+        } catch (GameActionException e) { check(false, "LATE_BANK lateDig: unexpected " + e); }
+        G.testBc = keepBc; G.them = keepThem; G.me = new MapLocation(10, 10); Duck.myOwed = 0;
+        BotTest.crumbs = -1; BotTest.buildXp = 0; BotTest.attackLevel = 0; BotTest.digOk = false; BotTest.lastDig = null; BotTest.water.clear();
+        BotTest.buildOk = false; BotTest.walls.clear(); java.util.Arrays.fill(BotTest.shared, 0); Duck.enemies = new RobotInfo[0];
+        BotTest.writeOk = null; BotTest.badWrite = false; Duck.lateAt = -1; Duck.lbPaced = false;
 
         // INIT_FAST: the bitset finds the same spawn centres, in the same order, as the 27x27 loop (random 3x3 zones, map edges)
         java.util.Random ir = new java.util.Random(77);
