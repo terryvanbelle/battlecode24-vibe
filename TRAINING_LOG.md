@@ -1973,3 +1973,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   territory / our deaths). 5(a) pre-registered: 12 cells vs the upper tier (Gymhgy, Cyril, NotLLeon, andli28, andrewgopher,
   hsmalladi; two maps each; seed 6201; g_iter6 on the same cells); it fires if paidKillShare rises on >= 7 of 12 cells and
   by >= 0.03 on average, with 0 overruns and 0 exceptions.
+- **g6terr 5(a): FAIL, closed** (12 cells vs the upper tier, g_iter6 twins): paidKillShare up on 5 of 12 cells, mean -0.086
+  (bar >= 7 and +0.03); single cells swing from 0.04 to 0.59 between twins (Cyril Backslash), so the territory split follows
+  the game's flow, not a tile preference inside a fight; wins 3 vs 5, enemy captures 19 vs 17; 0 overruns, 0 exceptions.
+  The kill-reward gap (T15) is a consequence of where the armies meet; micro cannot move it.
