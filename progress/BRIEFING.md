@@ -144,6 +144,9 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   within dist2 10: band look 1, wins 136 -> 164 (net +28, 36-8, p < 0.001), capture t 6.46, upper-tier wins 31 -> 50. Ladder
   2116 +- 57, rank 7 (provisional, 240 games), above hsmalladi, Cyril and Gymhgy: the target moves to NotLLeon.v3. The
   kill-reward economy (T15) is a consequence of fight location, and a territory-aware micro (g6terr) failed its 5(a).
+- 11:45 UTC (Oct 6): g_iter7's control on the band: 514-206 (71.4%; g_iter6 57.4%). Ladder **2150 +- 29, rank 6 of 86**,
+  above NotLLeon (2133) and andrewgopher (2110). New target: **andli28.v9_USQuals_angle** (2174, rank 5; g_iter7 14-34).
+  Next arm in its 5(a): g7spawn (respawn away from a contested spawn zone, micro-study proposal 3).
 
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.

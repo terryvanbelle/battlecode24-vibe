@@ -1,0 +1,18 @@
+# CRACK-ANDLI28: the ladder target since 2026-10-06
+
+**Target:** andli28.v9_USQuals_angle, 2174 (rank 5 of 86), the bot just above g_iter7 (2150 +- 29) once the control settled
+its rating (CLAUDE rule 14). Starting record: g_iter7 14-34 (29%) over 48 band games.
+
+**Victory read (pre-registered, as for the earlier targets):** a build passes andli28 on the ladder when its rating exceeds
+andli28's on the converged fit; the paired filler (candidate vs incumbent against andli28, random maps and sides) reports the
+matchup effect.
+
+**What we know already** (g_iter6 control census and the upper-tier micro study, research/upper-tier-micro-2026-10-06):
+- It heals under threat 9% of the time (ours 45% before g_iter7) and holds a ready strike 0.41 (ours 0.16): the tempo gap
+  g_iter7's heal hold closes.
+- It digs in setup (TACTICS measured table), banks crumbs at r250, is stun-heavy and uses water traps; its flags sit 26 tiles
+  from our spawns (ours 33 from its).
+- g_iter6 won 28% of 36 control games against it; its captures 1.89 a game.
+
+**Next:** the filler builds g_iter7's baseline against andli28; g7spawn (spawn safety) is in its 5(a); a loss study of
+g_iter7 against andli28 once ~200 filler games exist.
