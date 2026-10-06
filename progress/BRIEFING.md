@@ -127,6 +127,13 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   raids. A recall premise check (are our robots free near a big grab, or fighting elsewhere?) and a flag-spread census
   (do the bots that beat us keep their flags together?) are queued. A replay prune deleted the 880 g_iter5-vs-Gymhgy
   replays before the check could read them; the prune now keeps the newest 25 filler runs of kept builds.
+- 04:00 UTC (Oct 6): **a new candidate, g5climb2**. Recall (route R3) and a flag-fight stun bank (route F2) were ruled out
+  by pre-registered premise checks: the fight at our flag is lost about 28 to 16, and captured flags differ from returned
+  ones in contact, not kills. Flag clustering is not what winners do. Flag distance is: Gymhgy's flags sit 35.7 tiles from
+  our spawns, ours 28.9 from its. g5climb2 fixes the open audit item BOT3(a): the carrier climbs to the farthest visible
+  tile instead of a fixed, sometimes unreachable spot. 5(a) +3.56 tiles on 12 of 12 cells; band delivery PASS (+2.5 tiles,
+  enemy captures -27%); band look 1: capture t 2.20, upper t 1.86, net +10 (upper-tier wins 20 -> 29): continue. Look 2
+  running; the filler pairs it with g_iter5 against Gymhgy. A 25-tile dose added nothing (local maxima bind, not the radius).
 
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.

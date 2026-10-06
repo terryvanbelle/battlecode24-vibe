@@ -22,9 +22,11 @@
   farm (g4farm2/3), convoy response (g4contact/8), dam line (g4dam; it cancelled the crumbs inside g4gym1). Delivered and
   shipped: centre crumbs and pick-after-move (g_iter5). Next: the recall premise check (ReplayDump --recall-d0,
   tools/recall-d0.py, routes pinned: free robots near a big grab -> L1 recall; robots fighting far away -> disengage
-  design; else not the lever) on the g_iter5 filler's Gymhgy replays, and a flag-spread census (flagSpreadMin/Max) of the
-  band: do the bots that beat us keep their flags together? Cyril (research/CRACK-CYRIL.md): all lines neutral.
-  Open audit items: BOT3(a) reachable relocation spots, BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10,
+  design; else not the lever): R3, the fight at our flag is lost ~28 to 16; fight route F2: near-flag kills even, contact
+  differs; flag spread: no pattern. **Candidate g5climb2** (C.RELOC_CLIMB, audit BOT3(a)): band delivery PASS, look 1 capture
+  t 2.20 / upper t 1.86 / net +10 -> look 2 running; filler pairs it with g_iter5 against Gymhgy. Cyril
+  (research/CRACK-CYRIL.md): all lines neutral.
+  Open audit items: BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10,
   MEAS13-MEAS17.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
