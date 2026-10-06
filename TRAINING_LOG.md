@@ -2000,3 +2000,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   kills 9,411 vs 8,263 (+14%), deaths 9,275 vs 7,689 (+21%); 0 overruns, 0 exceptions. Band delivery: `BASE=g_iter6
   DGTAG=-g6 tools/delivery-gate.sh g6heal 'rel:healThreat10<=0.5 rel:readyHeld20>=1.2 nw:enemyCaptured<=1.1
   mean:overruns<=0'`, band test (look 1, seeds 282828 / 393939) chained on PASS.
+- **g6heal band delivery: PASS** (24 cells, base g_iter6): heals under threat 0.13 vs 0.44 (+17.7 SE past x0.5); ready strike
+  held near an enemy 0.33 vs 0.22 (+3.8 SE past x1.2; the upper tier's 0.32); enemy captures 1.00 vs 1.33 (guard PASS); 0
+  overruns. Band test (look 1, seeds 282828 / 393939) running.
