@@ -1991,3 +1991,12 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   us vs them: heals under threat 0.445 vs 0.257, ready strike held near an enemy 0.196 vs 0.318; rest of the band at parity
   (0.467 vs 0.399, 0.244 vs 0.242). Widest: jmerle 0.03 / 0.38, andli28 0.09 / 0.41, hsmalladi 0.11 / 0.40, andrewgopher
   0.16 / 0.24; Gymhgy (0.41 / 0.17) and Cyril (0.49 / 0.44) play like us. g6heal's 5(a) running.
+- **g6heal 5(a)** (12 cells vs jmerle, andli28, hsmalladi, andrewgopher; g_iter6 twins): heals under threat fall on every
+  cell (0.30-0.47 -> 0.09-0.17); readyHeld20 up by >= 0.05 on 12 of 12 (bar 9). The absolute bar healThreat10 <= 0.15
+  was met on 9 of 12, not 11 (misses 0.16, 0.17, 0.17): the census measures enemy distance at the end of the round while
+  the bot decides from the enemies it sensed at the start of its turn, and flag-carrier heals stay allowed, so a residue
+  remains; the switch fires as designed (no code defect found). Recorded as a miss of that bar; the mechanism is shown
+  firing (rule 5), so delivery is pre-registered on relative bars. Descriptive: wins 7 vs 4, enemy captures 10 vs 14,
+  kills 9,411 vs 8,263 (+14%), deaths 9,275 vs 7,689 (+21%); 0 overruns, 0 exceptions. Band delivery: `BASE=g_iter6
+  DGTAG=-g6 tools/delivery-gate.sh g6heal 'rel:healThreat10<=0.5 rel:readyHeld20>=1.2 nw:enemyCaptured<=1.1
+  mean:overruns<=0'`, band test (look 1, seeds 282828 / 393939) chained on PASS.
