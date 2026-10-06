@@ -1,15 +1,15 @@
 # Ladder
 
-39989 scrimmages (ours only), 39989 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+40429 scrimmages (ours only), 40429 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter7 | 2120 +- 18 | 7 of 86 | 2000 | 1002-998 | 88.1% | 31.8% (vs 6) |
-| g_iter6 | 1993 +- 18 | 11 of 86 | 1880 | 1029-851 | 84.1% | 26.0% (vs 9) |
-| g_iter5 | 1964 +- 11 | 13 of 86 | 4440 | 2195-2245 | 83.1% | 25.5% (vs 10) |
-| g4crumb | 1920 +- 27 | 14 of 86 | 640 | 258-382 | 81.7% | 21.3% (vs 10) |
+| g_iter7 | 2117 +- 16 | 7 of 86 | 2440 | 1127-1313 | 88.0% | 31.4% (vs 6) |
+| g_iter6 | 1993 +- 18 | 11 of 86 | 1880 | 1029-851 | 84.1% | 25.9% (vs 9) |
+| g_iter5 | 1965 +- 11 | 13 of 86 | 4440 | 2195-2245 | 83.1% | 25.5% (vs 10) |
+| g4crumb | 1920 +- 27 | 14 of 86 | 640 | 258-382 | 81.6% | 21.2% (vs 10) |
 | g4gym1 | 1919 +- 16 | 15 of 86 | 1880 | 755-1125 | 81.6% | 21.2% (vs 10) |
 | g_iter4 | 1917 +- 7 | 16 of 86 | 9040 | 3645-5395 | 81.6% | 21.0% (vs 10) |
 | g4econ2 | 1914 +- 56 | 17 of 86 | 160 | 60-100 | 81.4% | 20.7% (vs 10) |
@@ -19,16 +19,16 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g_iter3 | 1876 +- 13 | 21 of 86 | 3520 | 1259-2261 | 80.2% | 17.6% (vs 10) |
 | g3escrg2 | 1874 +- 44 | 23 of 86 | 280 | 90-190 | 80.1% | 20.4% (vs 11) |
 | g_iter2 | 1835 +- 15 | 25 of 86 | 2200 | 1032-1168 | 78.8% | 19.9% (vs 12) |
-| g_iter1_c2 | 1748 +- 129 | 27 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
-| a3dig5 | 1748 +- 129 | 28 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
-| arch_rush10 | 1748 +- 129 | 29 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
+| arch_rush10 | 1748 +- 129 | 27 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
+| g_iter1_c2 | 1748 +- 129 | 28 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
+| a3dig5 | 1748 +- 129 | 29 of 86 | 110 | 84-26 | 75.8% | 16.4% (vs 13) |
 | e1aggr | 1723 +- 128 | 31 of 86 | 110 | 83-27 | 74.9% | 17.0% (vs 14) |
 | c6pair | 1699 +- 126 | 33 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
-| c5bank | 1699 +- 126 | 34 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
-| a3dig10 | 1699 +- 126 | 35 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
-| a2reloc | 1675 +- 125 | 36 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
-| e2aggr | 1675 +- 125 | 37 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
-| a2relay | 1675 +- 125 | 38 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
+| a3dig10 | 1699 +- 126 | 34 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
+| c5bank | 1699 +- 126 | 35 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
+| a2relay | 1675 +- 125 | 36 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
+| a2reloc | 1675 +- 125 | 37 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
+| e2aggr | 1675 +- 125 | 38 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
 | b1z2b | 1672 +- 24 | 39 of 86 | 1760 | 620-1140 | 73.1% | 15.9% (vs 15) |
 | g_iter1 | 1660 +- 10 | 40 of 86 | 6990 | 2485-4505 | 72.6% | 15.1% (vs 15) |
 | b2fs | 1657 +- 28 | 41 of 86 | 1280 | 439-841 | 72.6% | 15.0% (vs 15) |
@@ -42,19 +42,19 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter7), 
 
 | rank | player | rating | +- 95% | games | W-L | our record |
 |---|---|---|---|---|---|---|
-| 1 | Strequals.duck0127v5 | 2300 | 52 | 772 | 723-49 | 31% (g_iter7 15-33) |
-| 2 | chenyx512.flagbot_final | 2296 | 51 | 772 | 722-50 | 19% (g_iter7 9-39) |
-| 3 | jmerle.camel_case_v21_final | 2292 | 51 | 772 | 721-51 | 31% (g_iter7 15-33) |
+| 1 | Strequals.duck0127v5 | 2299 | 52 | 772 | 723-49 | 31% (g_iter7 15-33) |
+| 2 | chenyx512.flagbot_final | 2295 | 51 | 772 | 722-50 | 19% (g_iter7 9-39) |
+| 3 | jmerle.camel_case_v21_final | 2291 | 51 | 772 | 721-51 | 31% (g_iter7 15-33) |
 | 4 | IvanGeffner.kuma | 2273 | 49 | 772 | 716-56 | 29% (g_iter7 14-34) |
-| 5 | andli28.v9_USQuals_angle | 2242 | 20 | 1772 | 1376-396 | 30% (g_iter7 318-730) |
-| 6 | NotLLeon.v3 | 2128 | 35 | 812 | 682-130 | 55% (g_iter7 48-40) |
-| 7 | **us:g_iter7** | 2120 | 18 | 2000 | 1002-998 |  |
+| 5 | andli28.v9_USQuals_angle | 2249 | 18 | 2212 | 1691-521 | 30% (g_iter7 443-1045) |
+| 6 | NotLLeon.v3 | 2127 | 35 | 812 | 682-130 | 55% (g_iter7 48-40) |
+| 7 | **us:g_iter7** | 2117 | 16 | 2440 | 1127-1313 |  |
 | 8 | andrewgopher.player22 | 2106 | 36 | 772 | 651-121 | 52% (g_iter7 25-23) |
 | 9 | hsmalladi.finalbot | 2067 | 34 | 772 | 630-142 | 54% (g_iter7 26-22) |
 | 10 | CyrilSharma.finalBot | 2006 | 9 | 6572 | 4389-2183 | 73% (g_iter7 35-13) |
 | 11 | **us:g_iter6** | 1993 | 18 | 1880 | 1029-851 |  |
 | 12 | Gymhgy.v10official | 1989 | 6 | 12852 | 7569-5283 | 81% (g_iter7 39-9) |
-| 13 | **us:g_iter5** | 1964 | 11 | 4440 | 2195-2245 |  |
+| 13 | **us:g_iter5** | 1965 | 11 | 4440 | 2195-2245 |  |
 | 14 | **us:g4crumb** | 1920 | 27 | 640 | 258-382 |  |
 | 15 | **us:g4gym1** | 1919 | 16 | 1880 | 755-1125 |  |
 | 16 | **us:g_iter4** | 1917 | 7 | 9040 | 3645-5395 |  |
@@ -65,21 +65,21 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter7), 
 | 21 | **us:g_iter3** | 1876 | 13 | 3520 | 1259-2261 |  |
 | 22 | winkelmantanner.waffle | 1875 | 14 | 2492 | 1434-1058 | 92% (g_iter7 44-4) |
 | 23 | **us:g3escrg2** | 1874 | 44 | 280 | 90-190 |  |
-| 24 | uravt.Version18Final | 1845 | 53 | 210 | 74-136 | 96% (g_iter7 46-2) |
+| 24 | uravt.Version18Final | 1845 | 52 | 210 | 74-136 | 96% (g_iter7 46-2) |
 | 25 | **us:g_iter2** | 1835 | 15 | 2200 | 1032-1168 |  |
 | 26 | ColtG5.Goob_final | 1760 | 12 | 3732 | 2221-1511 | 96% (g_iter7 46-2) |
-| 27 | **us:g_iter1_c2** | 1748 | 129 | 110 | 84-26 |  |
-| 28 | **us:a3dig5** | 1748 | 129 | 110 | 84-26 |  |
-| 29 | **us:arch_rush10** | 1748 | 129 | 110 | 84-26 |  |
+| 27 | **us:arch_rush10** | 1748 | 129 | 110 | 84-26 |  |
+| 28 | **us:g_iter1_c2** | 1748 | 129 | 110 | 84-26 |  |
+| 29 | **us:a3dig5** | 1748 | 129 | 110 | 84-26 |  |
 | 30 | kyleezz.jeeryfix3 | 1746 | 27 | 772 | 376-396 | 90% (g_iter7 43-5) |
 | 31 | **us:e1aggr** | 1723 | 128 | 110 | 83-27 |  |
 | 32 | quesswho.cretplayer2_3 | 1702 | 27 | 772 | 335-437 | 90% (g_iter7 43-5) |
 | 33 | **us:c6pair** | 1699 | 126 | 110 | 82-28 |  |
-| 34 | **us:c5bank** | 1699 | 126 | 110 | 82-28 |  |
-| 35 | **us:a3dig10** | 1699 | 126 | 110 | 82-28 |  |
-| 36 | **us:a2reloc** | 1675 | 125 | 110 | 81-29 |  |
-| 37 | **us:e2aggr** | 1675 | 125 | 110 | 81-29 |  |
-| 38 | **us:a2relay** | 1675 | 125 | 110 | 81-29 |  |
+| 34 | **us:a3dig10** | 1699 | 126 | 110 | 82-28 |  |
+| 35 | **us:c5bank** | 1699 | 126 | 110 | 82-28 |  |
+| 36 | **us:a2relay** | 1675 | 125 | 110 | 81-29 |  |
+| 37 | **us:a2reloc** | 1675 | 125 | 110 | 81-29 |  |
+| 38 | **us:e2aggr** | 1675 | 125 | 110 | 81-29 |  |
 | 39 | **us:b1z2b** | 1672 | 24 | 1760 | 620-1140 |  |
 | 40 | **us:g_iter1** | 1660 | 10 | 6990 | 2485-4505 |  |
 | 41 | **us:b2fs** | 1657 | 28 | 1280 | 439-841 |  |
