@@ -1911,3 +1911,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   maps (Starfish, Waterworld, BedWars, Fusbol, EvilGrin, Divergent, Yinyang, Hurricane, Diagonal) plus Backslash, Alien,
   Canals, seed 6101, sides alternating, g_iter5 on the same cells; it fires if flagDistMean rises on >= 8 of 12 cells and by
   >= 3 tiles on average, with 0 overruns, 0 exceptions and no flag reset at r200.
+- **g5climb 5(a)** (12 cells vs Gymhgy, g_iter5 on the same cells): flags farther on 11 of 12 cells, mean +2.72 tiles
+  (bar 3: missed narrowly); nearest flag much farther on Hurricane (28.3 vs 19.8) and Waterworld (38.1 vs 25.0); 0 overruns,
+  0 exceptions; descriptive: enemy captures 14 vs 19, wins 9 vs 8. A bug held it back: 10 flags were dropped by r20 (g_iter5
+  4). On Alien our spawn centres are 6 tiles apart, so every better tile lay within 8 tiles of another flag's start and the
+  step read a local maximum in round 2. Fix: flags climb by priority (most exposed first); a flag keeps clear of placed
+  flags and of higher-priority flags where they are now, and waits (no drop) when only a moving flag blocks a better tile.
+  **g5climb2** re-runs the same 5(a) cells and bar.

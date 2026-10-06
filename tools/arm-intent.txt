@@ -120,3 +120,4 @@ g4ship2 C.POST_SETUP_CRUMBS=true
 g4ship2 C.PICKUP_AFTER_MOVE=true
 g4ship2 C.LEVEL_FARM=true
 g5climb C.RELOC_CLIMB=true
+g5climb2 C.RELOC_CLIMB=true
