@@ -2123,3 +2123,15 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   columns stepMid, stepMidN, stepDec, stepLethal, stepLethalAvoid, stepDeaths, killShare; delivery-gate.sh now refuses a
   DGPOOL block without DGTAG (the review found it would overwrite the band block's PASS file). Eight review findings fixed;
   unit tests pass (also rerun by me). 5(a)s queued: g7fc 24 cells x twins (seed 19502026), g7ehp 12 cells x twins (seed 6701).
+- **g7ehp 5(a) FIRES** (12 cells vs andli28, seed 6701, g_iter7 twins): (a) setup identical 12/12, eh > 0 in 12/12 (824-4,250
+  a game), 0 overruns, 0 exceptions; (b) lethal step-ins from a safe tile 0.002x twins, lower on 12/12 (bar <= 0.15x); (c) mid-HP
+  step-in share 0.235 (twins 0.663; bar <= 0.35); (d) deaths right after a step-in 0.19x (bar <= 0.5x); (e) deaths per game
+  0.68x (bar <= 0.90x); (f) kill share +0.040, positive 10/12 (bar +0.015, 8/12); (g) guards: our captures 15 vs 18 (bar >=
+  -3, at the edge), theirs 24 vs 22, first grabs 1.08x. Wins 2 vs 2.
+- **g7fc 5(a) FIRES** (24 cells vs andli28, seed 19502026, g_iter7 twins): |L| = 17 games level at r1950; (a) identity through
+  r1940 24/24; (b) digs in 17/17 of L, mean 19.9 (bar 15), none in games not level, fc counter = digsLate in 24/24; (c) level-gap
+  gain over L +9.5 (bar +8); (d) build levels per dig 0.54 (bar 0.35); (e) captures after r1950 0/0 both sides; 0 overruns, 0
+  exceptions. In L: 4 wins vs the twins' 2 (Fusbol B, Klein A flipped).
+- Queued: the pre-registered andli28 deliveries (DGTAG -andliehp / -andlifc), then each arm's band delivery with its band test
+  chained (band checks pre-registered: g7ehp 'rel:stepLethalAvoid<=0.2 rel:stepDeaths<=0.6 rel:deaths<=0.92 nw:enemyCaptured<=1.1
+  mean:overruns<=0'; g7fc 'mean:digsLate>=2 rel:levelGain1500>=1.05 nw:enemyCaptured<=1.1 mean:overruns<=0').

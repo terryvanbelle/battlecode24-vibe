@@ -23,3 +23,7 @@ g_iter7 vs andli28 over 1,520 filler games (29.5%): the fight trade decides (kil
 step into reach 40% of the time one step from an enemy (andli28 15%) and our step-in strikes kill half as often; the level-sum
 gap is heal XP and jail losses that follow from the fight. Levers being built: FINAL_COMPLETE (finish partial build levels in
 the last 50 rounds of a tied game) and ENGAGE_HP (no step-in below ~600 HP unless it kills). Refuted: a late all-in assault.
+
+**5(a) results (2026-10-06).** g7ehp (ENGAGE_HP 700): mid-HP step-ins 0.66 -> 0.24 of decisions, deaths -32%, kill share +0.040
+(10 of 12 cells), captures level. g7fc (FINAL_COMPLETE): in the 17 games level at r1950, 20 digs a game, level gap +9.5, 4 wins vs
+2. Both go to the andli28 deliveries and the band tests.
