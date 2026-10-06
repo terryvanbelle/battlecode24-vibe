@@ -1,12 +1,12 @@
 # Ladder
 
-38949 scrimmages (ours only), 38949 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
+38989 scrimmages (ours only), 38989 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 55 of 55 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; vs higher = the same against only the ladder bots rated above the build, with their count):
 
 | build | rating | rank | games | record | field score | vs higher |
 |---|---|---|---|---|---|---|
-| g_iter7 | 2150 +- 29 | 6 of 86 | 960 | 678-282 | 89.2% | 33.4% (vs 5) |
+| g_iter7 | 2149 +- 28 | 6 of 86 | 1000 | 698-302 | 89.1% | 33.3% (vs 5) |
 | g_iter6 | 1992 +- 18 | 11 of 86 | 1880 | 1029-851 | 84.1% | 26.2% (vs 9) |
 | g_iter5 | 1964 +- 11 | 13 of 86 | 4440 | 2195-2245 | 83.2% | 25.8% (vs 10) |
 | g4crumb | 1920 +- 27 | 14 of 86 | 640 | 258-382 | 81.7% | 21.5% (vs 10) |
@@ -15,7 +15,7 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g4econ2 | 1914 +- 56 | 17 of 86 | 160 | 60-100 | 81.5% | 21.0% (vs 10) |
 | g3lost | 1902 +- 112 | 18 of 86 | 40 | 15-25 | 81.1% | 20.0% (vs 10) |
 | g4pick | 1900 +- 65 | 19 of 86 | 120 | 43-77 | 81.0% | 19.8% (vs 10) |
-| g2cr | 1879 +- 107 | 20 of 86 | 40 | 21-19 | 80.3% | 18.1% (vs 10) |
+| g2cr | 1879 +- 107 | 20 of 86 | 40 | 21-19 | 80.3% | 18.0% (vs 10) |
 | g_iter3 | 1876 +- 13 | 21 of 86 | 3520 | 1259-2261 | 80.2% | 17.9% (vs 10) |
 | g3escrg2 | 1874 +- 44 | 23 of 86 | 280 | 90-190 | 80.2% | 20.6% (vs 11) |
 | g_iter2 | 1835 +- 15 | 25 of 86 | 2200 | 1032-1168 | 78.8% | 20.0% (vs 12) |
@@ -27,8 +27,8 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | c5bank | 1699 +- 126 | 34 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
 | a3dig10 | 1699 +- 126 | 35 of 86 | 110 | 82-28 | 74.1% | 17.7% (vs 15) |
 | e2aggr | 1675 +- 125 | 36 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
-| a2relay | 1675 +- 125 | 37 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
-| a2reloc | 1675 +- 125 | 38 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
+| a2reloc | 1675 +- 125 | 37 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
+| a2relay | 1675 +- 125 | 38 of 86 | 110 | 81-29 | 73.2% | 16.1% (vs 15) |
 | b1z2b | 1671 +- 24 | 39 of 86 | 1760 | 620-1140 | 73.1% | 15.9% (vs 15) |
 | g_iter1 | 1659 +- 10 | 40 of 86 | 6990 | 2485-4505 | 72.6% | 15.1% (vs 15) |
 | b2fs | 1657 +- 28 | 41 of 86 | 1280 | 439-841 | 72.5% | 14.9% (vs 15) |
@@ -46,9 +46,9 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter7), 
 | 2 | chenyx512.flagbot_final | 2302 | 52 | 772 | 722-50 | 19% (g_iter7 9-39) |
 | 3 | jmerle.camel_case_v21_final | 2298 | 51 | 772 | 721-51 | 31% (g_iter7 15-33) |
 | 4 | IvanGeffner.kuma | 2279 | 49 | 772 | 716-56 | 29% (g_iter7 14-34) |
-| 5 | andli28.v9_USQuals_angle | 2174 | 40 | 772 | 680-92 | 29% (g_iter7 14-34) |
-| 6 | **us:g_iter7** | 2150 | 29 | 960 | 678-282 |  |
-| 7 | NotLLeon.v3 | 2133 | 38 | 772 | 662-110 | 58% (g_iter7 28-20) |
+| 5 | andli28.v9_USQuals_angle | 2173 | 40 | 772 | 680-92 | 29% (g_iter7 14-34) |
+| 6 | **us:g_iter7** | 2149 | 28 | 1000 | 698-302 |  |
+| 7 | NotLLeon.v3 | 2134 | 36 | 812 | 682-130 | 55% (g_iter7 48-40) |
 | 8 | andrewgopher.player22 | 2110 | 36 | 772 | 651-121 | 52% (g_iter7 25-23) |
 | 9 | hsmalladi.finalbot | 2070 | 34 | 772 | 630-142 | 54% (g_iter7 26-22) |
 | 10 | CyrilSharma.finalBot | 2006 | 9 | 6572 | 4389-2183 | 73% (g_iter7 35-13) |
@@ -78,8 +78,8 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter7), 
 | 34 | **us:c5bank** | 1699 | 126 | 110 | 82-28 |  |
 | 35 | **us:a3dig10** | 1699 | 126 | 110 | 82-28 |  |
 | 36 | **us:e2aggr** | 1675 | 125 | 110 | 81-29 |  |
-| 37 | **us:a2relay** | 1675 | 125 | 110 | 81-29 |  |
-| 38 | **us:a2reloc** | 1675 | 125 | 110 | 81-29 |  |
+| 37 | **us:a2reloc** | 1675 | 125 | 110 | 81-29 |  |
+| 38 | **us:a2relay** | 1675 | 125 | 110 | 81-29 |  |
 | 39 | **us:b1z2b** | 1671 | 24 | 1760 | 620-1140 |  |
 | 40 | **us:g_iter1** | 1659 | 10 | 6990 | 2485-4505 |  |
 | 41 | **us:b2fs** | 1657 | 28 | 1280 | 439-841 |  |
@@ -90,7 +90,7 @@ Our record = OUR win rate (our W-L) against the bot by the incumbent (g_iter7), 
 | 46 | dmtrung14.defaultplayer_intlqualifier | 1476 | 32 | 772 | 148-624 | 98% (g_iter7 47-1) |
 | 47 | clbarrell.duck8 | 1450 | 34 | 772 | 132-640 | 100% (g_iter7 48-0) |
 | 48 | **us:arch_rush** | 1335 | 94 | 110 | 62-48 |  |
-| 49 | jonters.bling3 | 1306 | 44 | 772 | 66-706 | 98% (g_iter7 47-1) |
+| 49 | jonters.bling3 | 1307 | 44 | 772 | 66-706 | 98% (g_iter7 47-1) |
 | 50 | HugoIngelsson.Bot21 | 1277 | 154 | 170 | 5-165 | 100% (g_iter7 48-0) |
 | 51 | **us:g_iter0** | 1270 | 89 | 109 | 56-53 |  |
 | 52 | Metta-AI.bc24scenario | 1208 | 223 | 26 | 2-24 | 100% (g_iter1 2-0*) |
