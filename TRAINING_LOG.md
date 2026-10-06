@@ -1880,3 +1880,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   keeps its three within 8 tiles in a corner, TACTICS T2): do the bots that beat us keep their flags together? Queued on
   the g_iter5 control's 720 band replays. TACTICS T2 adoption brought up to date (RELOC_V2 accepted in g_iter3). Ladder
   refit with the control: g_iter5 1985 +- 15 (rank 11), Gymhgy 2011, Cyril 2028.
+- **Flag-spread census** (g_iter5 control, 720 band games, 36 a bot): the bots that beat us do not keep their flags
+  together. Median largest spread at r200: chenyx512 14.2 (the one cluster; nearest pair 6.4; it beats us 94%), the other
+  winners 24-31 (Strequals 27.9, camel_case 27.0, kuma 30.8, Gymhgy 30.8, hsmalladi 38.1), ours 28.0; weak bots alike.
+  Gymhgy's flags sit farthest from our spawns (mean 35.7 tiles; ours from its 28.9). Within games, our flag-distance
+  advantage does not track wins (quartiles 0.48 / 0.59 / 0.50). No flag-cluster arm.
