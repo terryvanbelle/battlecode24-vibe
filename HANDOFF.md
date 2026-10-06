@@ -19,7 +19,8 @@
   Delivery checks are three-way since the second audit: PASS 1 SE beyond the bar, FAIL 2 SE short, else INCONCLUSIVE
   (auto-extended 24 -> 48 -> 96 cells, never a closure). Open findings of research/AUDIT-2026-10-03.md are tracked
   below.
-- In flight (2026-10-06): **the new target andli28**; g7spawn (C.SPAWN_SAFE) 5(a) queued. Closed today: recall (R3),
+- In flight (2026-10-06): **the new target andli28** (filler baseline building). g7spawn (C.SPAWN_SAFE) closed: its
+  delivery cut spawns beside enemies 0.49 -> 0.26 but raised enemy captures 1.00 -> 1.50. Closed today: recall (R3),
   flag-fight stun bank (F2), flag clustering, the climb dose (g5climb3), territory-aware micro (g6terr, T15). Shipped today:
   the relocation climb (g_iter6) and the heal hold (g_iter7). Open proposals from the upper-tier micro study: RECHARGE_CLOSE
   (a robot one turn from ready ends just outside reach) and SPAWN_SAFE (avoid spawn zones with enemies near).

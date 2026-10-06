@@ -2041,3 +2041,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   enemy captures 23 vs 15 (+53%; skipping a contested zone can leave the flag there short of reinforcements), wins 3 vs 3,
   deaths 7,073 vs 9,160, kills 5,805 vs 6,522. Band delivery pre-registered with the capture guard: `BASE=g_iter7 DGTAG=-g7
   tools/delivery-gate.sh g7spawn 'rel:spawnNear20<=0.8 nw:enemyCaptured<=1.1 mean:overruns<=0'`, band test chained on PASS.
+- **g7spawn band delivery: FAIL, closed** (24 cells, base g_iter7): spawnNear20 0.26 vs 0.49 (+4.5 SE past x0.8) but enemy
+  captures 1.50 vs 1.00 (guard FAIL, -0.40 +- 0.19 past x1.1): a respawn that avoids the contested zone does not reinforce
+  the flag beside it. Confirms the 5(a)'s cost (23 vs 15). The spawn-trickle deaths are the price of defending there.
