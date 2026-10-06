@@ -81,7 +81,7 @@ FIRES iff:
 
 Minimum n: if |P| < 8, add a third seed.
 Falsifier: (b) passes but the level gain is < +6, which means the ordering or crumb gate is broken; fix it and re-diagnose.
-Delivery afterwards: DGPOOL=andli28.v9_USQuals_angle BASE=g_iter7 delivery-gate with mean:digsLate>=15, rel:levelGain1500>=1.4, nw:enemyCaptured<=1.1 and mean:overruns<=0.
+Delivery afterwards (superseded: the corrections and the review amendments at the end give the command, its DGTAG and bars): DGPOOL=andli28.v9_USQuals_angle DGTAG=-andlifc BASE=g_iter7 delivery-gate with mean:digsLate>=15, rel:levelGain1500>=1.4, nw:enemyCaptured<=1.1 and mean:overruns<=0.
 
 Risk: - Late spending that defends flags is exempt, so the budget may be ~500 rather than 840 crumbs (+8 to +10 levels, still ~+1.8 pp).
 - 1.6-2.7 robots per band are jailed at r1950.
@@ -133,7 +133,7 @@ FIRES iff:
 (d) readyHeld20: mean (arm - twin) >= +0.02.
 (e) Guards: sum of enemyCaptured <= twins + 2, sum of captured >= twins - 2, overruns 0 and exceptions 0.
 Logged without a bar: wins, kills, deaths, healThreat10, levelGapEnd, homeDeathShare, survey heal400.
-Delivery afterwards: andli28 pool, rel:readyHeld20>=1.08, kill share +0.015, nw:enemyCaptured<=1.1, mean:overruns<=0. No kills guard (PROMPTS 183).
+Delivery afterwards (superseded: see the corrections and the review amendments at the end): andli28 pool with DGTAG=-andliehp, rel:readyHeld20>=1.08, kill share +0.015, nw:enemyCaptured<=1.1, mean:overruns<=0. No kills guard (PROMPTS 183).
 Dose ladder 500/700 if (b) passes but (c) misses.
 
 Risk: - Step vs hold death rates are a selection comparison, so the gain may be much smaller than the upper bound. Andli28's own step/hold ratio (3.8x) resembles ours (3.3x), which is consistent with exposure alone.
@@ -285,3 +285,82 @@ Risk: - Ring stuns catch raiders at the moment of a grab, so their 2.27 victims 
 - The Cyril stun-economy arms all came out neutral.
 - Probability about 0.3. It also frees late crumbs that FINAL_COMPLETE can spend.
 
+
+## Corrections before building (premise checks, 2026-10-06)
+
+The two top levers were built as arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP 700), off in src/bot. The premise checks
+corrected these figures in the sections above; the arms and their 5(a) use the corrected ones.
+
+C.FINAL_COMPLETE. Source: a scratch reader of the replays' per-robot XP over the 1,017 census2 games that reach r1950; it matched
+the official `--levels`/`--metrics` in 12 of 12 dumps (VM ~/scratch-fc).
+- Robots within 1/2/3 digs of their next build level at r1950: 3.9/9.5/16.9 spawned (26.2 within 4). The 6.0/13.8/23.7 above
+  counts jailed robots too (26% of the team is jailed at r1950).
+- Stranded build XP at r2000: 77.6 of 241.5 (32%), not 113 of 251 (45%).
+- Late churn: 9.4% of the games tied at r1900 see a capture afterwards (ours 23, andli28 22) and 5.0% of those tied at r1950
+  (14 / 10); not "2 + 2 of 63". The critic's 10 of 69 (andli28 7, us 3) is within noise of that; the full set splits evenly.
+- The budget for the last 50 rounds (bank + income - kept spending - a 100-crumb floor) is a median 436 crumbs (p10 114, p90 909),
+  not 500-800. Simulated gain +12.1 levels net at about 0.58 levels per dig; about +1.5 pp (0.9-2.8), P(delivers) about 0.6.
+- As built: a 100-crumb floor (it keeps a carrier stun payable); LATE_BANK's team-wide owing (Comms.LB_OWED); robots one dig
+  from a level dig before the fight, the rest only with a spare action after the turn (no `:78` hook, so no heal is replaced),
+  and with an enemy within HOLD_R2 only if the action is ready again next turn; nobody digs near an alerted home
+  (Duck.guardFight); only float stuns and combat stuns away from an alerted home pause. 5(a) bar (c) +8 with the falsifier at
+  +5; delivery mean:digsLate>=4 and rel:levelGain1500>=1.10 (the command and its tag are in the review amendments below).
+
+C.ENGAGE_HP. Source: a scratch replay analyser (Eh.java, not a repo tool; per-game rows on VM ~/ehscratch/out2) over 480
+census2 games. Its execution-order reconstruction is now `replay-dump --capabilities` stepMid, stepLethal, stepDeaths and
+killShare, which match the analyser's on three andli28 losses (stepDeaths within one).
+- Our step-in strikes at 300-599 HP: 1,545 a game, not 1,075. A flat 600 gate would block 20.5% of our strikes, not about 8%.
+- High-HP deaths are not stun follow-up (the critic's guess): 79.7% of our deaths at >= 300 HP came within 3 rounds of a step-in
+  strike; 16.8% were frozen.
+- As built: a tile-level test below 700 HP (the hits of every enemy within dist2 10 of the tile reach our HP, unless an enemy in
+  reach of it dies to our strike), on the engage and the advance branches, in plain fights only. readyHeld20 is dropped as a
+  signature: held robots heal on 49% of their turns. Expected gain +1.5 to +3 pp, P about 0.5.
+
+## Review amendments to the g7fc and g7ehp 5(a) (2026-10-06)
+
+A review of the two arms and their pre-registered 5(a) found the problems below. These amendments replace the clauses named.
+
+C.FINAL_COMPLETE (g7fc):
+1. Delivery command. Without DGTAG an andli28 block wrote gauntlet/delivery-g7fc.PASS, the band block's file that
+   tools/band-test.sh accepts. It also cached the andli28 base as the band base (gauntlet/dg-census-g_iter7-909090.csv).
+   tools/delivery-gate.sh now refuses DGPOOL without DGTAG. The command is:
+   `DGPOOL=andli28.v9_USQuals_angle DGTAG=-andlifc BASE=g_iter7 tools/delivery-gate.sh g7fc 'mean:digsLate>=4 rel:levelGain1500>=1.10 nw:enemyCaptured<=1.1 mean:overruns<=0'`
+   g7ehp's delivery block carries its own tag, DGTAG=-andliehp.
+2. Bar (b), firing share. The only firing-share bar is "digsLate >= 1 in >= 90% of L". The clause "fc counter > 0 in every L
+   game" is replaced by a wiring check: in every arm game, the fc counter (tools/side-indsum.sh) equals census digsLate,
+   and fcF <= fc. In g7fc only fcDig digs after r1500 (SETUP_DIGS 0, LEVEL_FARM and LATE_BANK off), so fc and digsLate count
+   the same digs. The old clause demanded 100% of L and voided the 90% allowance meant for a late andli28 capture or a bank
+   under 117.
+3. Capture visibility (bar (b)'s G0 clause and the diagnostic rule). The bot learns of an andli28 capture only through
+   C.FLAG_LOST: a robot with the home in view, and OF_SEEN more than LOST_AFTER = 60 rounds old (Duck.trackLost). A capture
+   after about r1889 is therefore invisible at r1950. "digsLate = 0 in every G0 game" applies only to G0 games whose last
+   andli28 capture (the --metrics 10 'captured' column) came by r1880. Digs in the other G0 games are logged and are not a
+   bug. Any L game in which andli28's captured count rose in r1890-1950 is reported separately. It is kept out of every
+   clause that says "every" and out of the diagnostic rule "a level game with no FC dig is a bug". The optional bot change
+   (a 26-round LOST_AFTER from r1950) was not built. The clause holds without it, and the change would make the arm differ
+   from g_iter7 after r1950 in games that are not level (defenders re-home and alerts stop sooner).
+4. Bot changes from the review (src/bot, snapshot g7fc):
+   - fcDig refuses near an alerted home (Duck.guardFight) in both hooks, so responders keep their strikes while a raider
+     stands at our home. defend() never runs in a fight, so the alert stun is placeCombatTrap's, and FC no longer pauses it
+     there (as g_iter7). FC_FLOOR keeps only a carrier stun payable: an alert stun needs 100 + TRAP_RESERVE = 300.
+   - With an enemy within HOLD_R2, the post-turn hook skips a dig that would leave the action unready next turn
+     (cooldown + dig cooldown >= 20: every build-0 dig, and any dig the turn after a strike at attack level 1+). HEAL_HOLD's
+     held strike is no longer spent. The fight hook (one dig from a level) still spends it, by design.
+   Both lower digsLate a little. The 90% bar and the delivery bars stand.
+
+C.ENGAGE_HP (g7ehp):
+5. Bar (b) (<= 0.15x pooled, lower on 12/12), the diagnostic's <= 0.2x check and the delivery check rel:stepLethal<=0.2
+   are read on the new census column stepLethalAvoid, with the same thresholds. It counts lethal mid-HP step-ins whose start
+   tile was not lethal. stepLethal stays logged. When every tile is lethal, the start tile included, the kite score can
+   still pick a refused reaching tile (on one more adjacent ally or a crumb). The robot then steps in and strikes, which
+   beats staying. Those step-ins are not failures of the gate. AuditTest pins the case, and refused tiles get no kite
+   penalty.
+6. Bar (c), "stepMid pooled <= 0.35 (twins about 0.65)", is read as sum(stepMidN) / sum(stepDec) over the 12 arm games,
+   with the twin baseline computed the same way. stepMidN and stepDec are new census count columns, stepMid's numerator and
+   denominator. A pooled share cannot be rebuilt from per-game shares.
+7. Falsifier 2 ("kill-share mean <= 0: close the line; do not dose up") covers this variant only. A refused robot that kites
+   outside HOLD_R2 heals as usual (49% of held turns), so it holds no ready strike when an enemy steps in. Before the
+   ENGAGE_HP line is closed, a follow-up arm is played. g7ehp2 = g7ehp, plus: a robot refused this turn holds its action (no
+   heal unless the target carries a flag) while an enemy is within dist2 20. For example, set a static flag from ehRefused
+   and use `enemyWithin(me, ehHoldTurn ? 20 : C.HOLD_R2)` in Micro.tryHeal. It uses the same 12 cells, seed and bars,
+   with healThreat10 and the survey's heals logged as its cost.

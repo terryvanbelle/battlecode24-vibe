@@ -1,4 +1,4 @@
-package bot;
+package g7fc;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -119,7 +119,7 @@ public strictfp class C {
     // placeCombatTrap (except at an alerted home) and spendFloat pause; rings, carrier stuns and fills stay. No bank (g7bank's
     // never formed). Reuses LATE_BANK's dig arithmetic, jail-penalty test, dump tile and owing; never combine with LATE_BANK
     // (they share LB_OWED).
-    public static final boolean FINAL_COMPLETE = false;
+    public static final boolean FINAL_COMPLETE = true;
     public static final int FC_ROUND = 1950, FC_K2 = 1960, FC_K3 = 1975, FC_K4 = 1985, FC_FLOOR = 100;
     public static final int[] FC_KEEP = {0, 0, 20, 60, 100};   // by digs still needed (index 0 unused); simulation: about 0.58
                                                                 // levels per dig at a median 436-crumb budget

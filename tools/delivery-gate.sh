@@ -12,13 +12,20 @@
 # the gate re-runs itself on twice the cells (24 -> 48 -> 96, NMAX) under its own base cache; a line is never closed on
 # INCONCLUSIVE. Writes gauntlet/delivery-<arm>.PASS, .INCONCLUSIVE or .FAIL; tools/band-test.sh refuses without PASS.
 # DGPOOL="ColtG5.Goob_final" DGTAG=-colt: a one-opponent block (the crack, research/CRACK.md); random maps and sides as
-# always; the base cache and run tags carry DGTAG so band and crack bases never mix. DGMAPS=<map file> (PROMPTS 178): draw
-# the cells from a map class instead of the corpus (give it its own DGTAG: the base cache is keyed on the tag).
+# always; the base cache and run tags carry DGTAG so band and crack bases never mix (DGPOOL without DGTAG is refused).
+# DGMAPS=<map file> (PROMPTS 178): draw the cells from a map class instead of the corpus (give it its own DGTAG: the base
+# cache is keyed on the tag).
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"
 ARM="${1:?arm}"; CHECKS="${2:?checks}"; N="${N:-24}"; SEED="${SEED:-909090}"
 # a block on an explicit pool (e.g. ColtG5) writes tagged outputs, so it never overwrites the band block's PASS/FAIL and
 # census (RETEST.md: band-test.sh reads gauntlet/delivery-<arm>.PASS, which must be the band block's)
+# Review 2026-10-06: DGPOOL without DGTAG wrote the pool block's verdict to the band block's file (band-test.sh accepted it)
+# and cached the pool base as the band base (dg-census-<BASE>-<SEED>.csv), so it is refused before anything runs.
+if [ -n "${DGPOOL:-}" ] && [ -z "${DGTAG:-}" ]; then
+  echo "!! delivery-gate: DGPOOL=$DGPOOL needs its own DGTAG (e.g. DGTAG=-andlifc): untagged outputs and base cache are the band block's. Refusing." >&2
+  exit 2
+fi
 OTAG=""; [ -n "${DGPOOL:-}" ] && OTAG="${DGTAG:-}"
 DGPOOL="${DGPOOL:-$(cat tools/band.txt)}"; DGTAG="${DGTAG:-}"   # tools/band.txt: the current band
 rm -f "gauntlet/delivery-$ARM$OTAG.PASS" "gauntlet/delivery-$ARM$OTAG.FAIL"

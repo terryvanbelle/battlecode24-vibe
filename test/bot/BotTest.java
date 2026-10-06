@@ -26,6 +26,7 @@ public class BotTest {
     static java.util.Set<MapLocation> water = new java.util.HashSet<>();   // fakeRc: water tiles (not passable; only explosives build there)
     static int crumbs = -1;                             // fakeRc: getCrumbs when >= 0 (else 1000 with buildOk); dig pays from it
     static int buildXp, attackLevel, healLevel;         // fakeRc: getExperience(BUILD), getLevel(ATTACK), getLevel(HEAL); dig adds build XP
+    static int attackDamage = 150, actionCd;            // fakeRc: getAttackDamage, getActionCooldownTurns
     static boolean digOk;                               // fakeRc: canDig on a dry, in-reach, on-map tile; dig records lastDig and turns it to water
     static MapLocation lastDig;
     static MapLocation[] zoneA = new MapLocation[0], zoneB = new MapLocation[0];
@@ -80,6 +81,8 @@ public class BotTest {
                     }
                     case "move": lastMove = (Direction) args[0]; G.me = G.me.add(lastMove); return null;
                     case "getHealth": return health;
+                    case "getAttackDamage": return attackDamage;
+                    case "getActionCooldownTurns": return actionCd;
                     case "senseNearbyCrumbs": return crumbTiles;
                     case "getCrumbs": return crumbs >= 0 ? crumbs : buildOk ? 1000 : 0;
                     case "getExperience": return args[0] == SkillType.BUILD ? buildXp : 0;

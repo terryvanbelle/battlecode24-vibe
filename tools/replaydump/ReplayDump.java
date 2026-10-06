@@ -24,6 +24,8 @@ import java.util.zip.GZIPInputStream;
  *                         builderBuildLevel (nearest own robot's build level)
  *     --navstats          movement statistics per team
  *     --flags             every flag event with round, flag team, actor and location
+ *     --levels            per team, the robots' last known levels at the end: means, masteries, buildSum (the sum of the
+ *                         team's build levels: C.FINAL_COMPLETE's 5(a) targeting bar) and an a/b/h histogram
  *     --defense           one line per post-setup flag trip: defenders near the flag at pickup, chasers near the carrier, outcome,
  *                         tKnow (as --track, from the defending side; blank = never, or that side not tracked under --team)
  *     --comm R[-R2]       the stored shared array: round,team,s0..s63 for rounds R..R2 [--team A|B]; a last line
@@ -106,6 +108,28 @@ import java.util.zip.GZIPInputStream;
  *   stunTrig250        our stuns triggered in r201-250; kills250 / deaths250: our kills and deaths by the end of r250
  *   levelGain1200      our level sum at the end minus at r1200 (blank if shorter); levelGapEnd: ours minus theirs at the end
  *   bank1900           our crumbs at the end of r1900 (blank if shorter); C.LATE_BANK's bank signature
+ *   step census (C.ENGAGE_HP's signature, andli28 study 2026-10-06; the execution-order reconstruction of that study's
+ *   analyser): every robot is replayed at its own turn. Execution order = round 1's bytecode table (fixed for the game);
+ *   robots that act earlier in the round stand at their end-of-round tile, the rest at their tile from the end of the
+ *   previous round; HP runs through the round's attacks and heals in action order (hit 150, +60 from the round after the
+ *   team's ATTACK upgrade, times the attacker's level effect at the end of the previous round, as the engine; heals alike).
+ *   A decision: a post-setup turn of a robot alive at the end of the previous round, not carrying a flag, ready to act and to
+ *   move (both cooldowns < 20 at the end of the previous round), alive at its turn, with no enemy within dist2 4 and some
+ *   enemy within dist2 10 at its turn, and no enemy carrier (carrying at the end of the previous round) within dist2 20 (the
+ *   carrier branch is not gated). A step-in strike: a decision in which the robot attacks.
+ *   stepMid            step-in strikes / decisions at 300-699 HP at the robot's turn (blank without such a decision)
+ *   stepLethal         step-in strikes at 300-699 HP that end on a lethal tile (the hits of every enemy alive at the turn within
+ *                      dist2 10 of the end tile sum to the robot's HP or more) with no enemy within dist2 4 of it that the
+ *                      robot's hit kills (C.ENGAGE_HP's unsafe tile: the arm takes none in a plain fight)
+ *   stepDeaths         step-in strikes (any HP) after which the robot dies before its next turn: it dies that round, or it dies
+ *                      the next round and the hits on it after its strike and before its next turn reach its HP at the turn
+ *   killShare          kills / (kills + deaths) over the game (blank without either)
+ *   stepMidN, stepDec  stepMid's numerator and denominator: step-in strikes and decisions at 300-699 HP (counts, so a share
+ *                      pools over games: sum stepMidN / sum stepDec; review 2026-10-06)
+ *   stepLethalAvoid    the stepLethal step-ins whose start tile was not lethal (the hits of every enemy alive at the turn within
+ *                      dist2 10 of the start tile stay under the robot's HP; no enemy is within dist2 4 of it at a decision, so
+ *                      no kill exempts it): the avoidable ones. When every tile is lethal C.ENGAGE_HP's kite score may still
+ *                      pick a refused reaching tile, and striking there beats staying (review 2026-10-06)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
  *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
@@ -786,6 +810,7 @@ public class ReplayDump {
         }
         if (s0a() || chainsOn()) tick(rn);
         if (s0a()) witnessWatch.removeIf(x -> rn >= x.start + 10);
+        if (capMode) stepTick(r, rn);
         kRounds++;
         totalRounds = rn;
     }
@@ -1564,6 +1589,109 @@ public class ReplayDump {
     static int[] kSpawnPost = new int[3], kSpawnNear = new int[3], kDeathPost = new int[3], kSpawnDeath10 = new int[3];
     static List<Integer> spawnsNow = new ArrayList<>();
 
+    // ---- --capabilities step census (C.ENGAGE_HP signature, andli28 study 2026-10-06; see the header). Robots by their position
+    // in round 1's bytecode table (the fixed execution order); p* = their state at the end of the previous round.
+    static final int SN = 100;
+    static final int[] ATK_SKILL = {0, 5, 7, 10, 30, 35, 60}, HEAL_SKILL = {0, 3, 5, 7, 10, 15, 25};   // SkillType effects, levels 0-6
+    static Map<Integer, Integer> rankOf = new HashMap<>();
+    static boolean[] pAlive = new boolean[SN], pCarry = new boolean[SN], pUpgAtk = new boolean[3], pUpgHeal = new boolean[3];
+    static int[] pX = new int[SN], pY = new int[SN], pHP = new int[SN], pACD = new int[SN], pMCD = new int[SN], pAtk = new int[SN], pHeal = new int[SN];
+    static int[] kStepDec = new int[3], kStepMidS = new int[3], kStepLethal = new int[3], kStepDeaths = new int[3], kStepLethalAvoid = new int[3];
+    static List<int[]> stepPending = new ArrayList<>();   // {rank, HP left after the hits that followed its step-in strike}
+    static int rankTeam(int k) { return k % 2 == 0 ? 1 : 2; }
+    /** One hit of robot k (InternalRobot.getDamage) with its level and its team's upgrade at the end of the previous round. */
+    static int hitOf(int k) { return Math.round((150 + (pUpgAtk[rankTeam(k)] ? 60 : 0)) * ((float) ATK_SKILL[Math.min(6, Math.max(0, pAtk[k]))] / 100 + 1)); }
+    static int healOf(int k) { return Math.round((80 + (pUpgHeal[rankTeam(k)] ? 50 : 0)) * ((float) HEAL_SKILL[Math.min(6, Math.max(0, pHeal[k]))] / 100 + 1)); }
+
+    /** The step census for round rn (called at the end of round(), so `carrying` is the end-of-round state). First the step-in
+     *  strikes of the previous round still pending are resolved (died this round with the hits before its turn reaching its
+     *  HP); then every robot is replayed at its own turn (ranks in order, actions applied in order); then the end-of-round
+     *  state becomes p*. Levels of a robot not in this round's table (jailed) stay its last known; an upgrade counts from the
+     *  round after its purchase. */
+    static void stepTick(Round r, int rn) {
+        if (rankOf.isEmpty()) for (int j = 0; j < r.bytecodeIdsLength() && j < SN; j++) rankOf.put(r.bytecodeIds(j), j);
+        boolean[] cAlive = new boolean[SN], cDied = new boolean[SN], cSp = new boolean[SN], cIn = new boolean[SN], struck = new boolean[SN];
+        int[] cX = new int[SN], cY = new int[SN];
+        for (int j = 0; j < r.diedIdsLength(); j++) { Integer k = rankOf.get(r.diedIds(j)); if (k != null) cDied[k] = true; }
+        SpawnedBodyTable sb = r.spawnedBodies();
+        if (sb != null) for (int j = 0; j < sb.robotIdsLength(); j++) { Integer k = rankOf.get(sb.robotIds(j)); if (k != null) cSp[k] = true; }
+        VecTable locs = r.robotLocs();
+        for (int j = 0; j < r.robotIdsLength(); j++) {
+            Integer k = rankOf.get(r.robotIds(j)); if (k == null) continue;
+            cIn[k] = true; cX[k] = locs.xs(j); cY[k] = locs.ys(j); cAlive[k] = !cDied[k] && r.robotHealths(j) > 0;
+        }
+        int na = r.actionIdsLength();
+        int[] aR = new int[na], aT = new int[na], aG = new int[na];   // actor rank (-1: not a robot), action, target rank (attack/heal)
+        for (int j = 0; j < na; j++) {
+            Integer k = rankOf.get(r.actionIds(j)); int a = r.actions(j);
+            aR[j] = k == null ? -1 : k; aT[j] = a; aG[j] = -1;
+            if (k != null && (a == Action.ATTACK || a == Action.HEAL)) { Integer g = rankOf.get(r.actionTargets(j)); if (g != null) aG[j] = g; }
+            if (k != null && a == Action.ATTACK && aG[j] >= 0) struck[k] = true;
+        }
+        for (int[] p : stepPending) {   // hits before its turn this round; it died before its next turn if they used up its HP
+            int R = p[0], left = p[1];
+            for (int j = 0; j < na && (aR[j] < 0 || aR[j] < R); j++) if (aR[j] >= 0 && aT[j] == Action.ATTACK && aG[j] == R) left -= hitOf(aR[j]);
+            if (cDied[R] && left <= 0) kStepDeaths[rankTeam(R)]++;
+        }
+        stepPending.clear();
+        if (rn > 200) {
+            boolean[] aliveAt = new boolean[SN]; int[] hpAt = new int[SN], xAt = new int[SN], yAt = new int[SN];
+            for (int k = 0; k < SN; k++) { aliveAt[k] = pAlive[k]; hpAt[k] = pAlive[k] ? pHP[k] : 1000; xAt[k] = pX[k]; yAt[k] = pY[k]; }
+            int j = 0;
+            for (int R = 0; R < SN; R++) {
+                for (; j < na && (aR[j] < 0 || aR[j] < R); j++) {   // the actions of every robot ranked before R
+                    if (aR[j] < 0 || aG[j] < 0) continue;
+                    if (aT[j] == Action.ATTACK) { hpAt[aG[j]] -= hitOf(aR[j]); if (hpAt[aG[j]] <= 0) aliveAt[aG[j]] = false; }
+                    else if (aT[j] == Action.HEAL) hpAt[aG[j]] = Math.min(1000, hpAt[aG[j]] + healOf(aR[j]));
+                }
+                int t = rankTeam(R);
+                if (pAlive[R] && !pCarry[R] && pACD[R] < 20 && pMCD[R] < 20 && aliveAt[R]) {   // ready to act and to move at its turn
+                    int minD = Integer.MAX_VALUE; boolean car = false;
+                    for (int k = 0; k < SN; k++) {
+                        if (k == R || !aliveAt[k] || rankTeam(k) == t) continue;
+                        int dd = d2(pX[R], pY[R], xAt[k], yAt[k]);
+                        if (dd < minD) minD = dd;
+                        if (dd <= VISION2 && pCarry[k]) car = true;
+                    }
+                    if (minD > 4 && minD <= 10 && !car) {           // a decision: one step from reach, no enemy carrier in view
+                        int hp = hpAt[R]; boolean mid = hp >= 300 && hp < 700;
+                        if (mid) { kStepDec[t]++; if (struck[R]) kStepMidS[t]++; }
+                        if (struck[R]) {
+                            int ex = cIn[R] ? cX[R] : pX[R], ey = cIn[R] ? cY[R] : pY[R], my = hitOf(R), sum = 0, sum0 = 0; boolean kill = false;
+                            for (int k = 0; k < SN; k++) {
+                                if (k == R || !aliveAt[k] || rankTeam(k) == t) continue;
+                                int dd = d2(ex, ey, xAt[k], yAt[k]);
+                                if (dd <= 10) sum += hitOf(k);
+                                if (dd <= 4 && hpAt[k] <= my) kill = true;
+                                if (d2(pX[R], pY[R], xAt[k], yAt[k]) <= 10) sum0 += hitOf(k);   // the start tile (stepLethalAvoid)
+                            }
+                            if (mid && sum >= hp && !kill) { kStepLethal[t]++; if (sum0 < hp) kStepLethalAvoid[t]++; }
+                            if (cDied[R]) kStepDeaths[t]++;
+                            else {
+                                int left = hp;
+                                for (int q = 0; q < na; q++) if (aR[q] > R && aT[q] == Action.ATTACK && aG[q] == R) left -= hitOf(aR[q]);
+                                stepPending.add(new int[]{R, left});
+                            }
+                        }
+                    }
+                }
+                aliveAt[R] = (pAlive[R] || cSp[R]) && hpAt[R] > 0;   // its turn is over: its end-of-round tile from here on
+                if (cIn[R]) { xAt[R] = cX[R]; yAt[R] = cY[R]; }
+            }
+        }
+        for (int j = 0; j < r.robotIdsLength(); j++) {
+            Integer k = rankOf.get(r.robotIds(j)); if (k == null) continue;
+            pHP[k] = r.robotHealths(j); pACD[k] = r.robotActionCooldowns(j); pMCD[k] = r.robotMoveCooldowns(j);
+            pAtk[k] = r.attackLevels(j); pHeal[k] = r.healLevels(j); pX[k] = cX[k]; pY[k] = cY[k];
+        }
+        for (int k = 0; k < SN; k++) { pAlive[k] = cAlive[k]; pCarry[k] = false; }
+        for (int id : carrying.keySet()) { Integer k = rankOf.get(id); if (k != null) pCarry[k] = true; }
+        for (int j = 0; j < na; j++) if (aR[j] >= 0 && aT[j] == Action.GLOBAL_UPGRADE) {
+            int tg = r.actionTargets(j), t = rankTeam(aR[j]);
+            if (tg == 0) pUpgAtk[t] = true; else if (tg == 1) pUpgHeal[t] = true;
+        }
+    }
+
     static void surveyTick(int rn) {
         for (int t = 1; t <= 2; t++) {
             if (rn == 200) {
@@ -1678,7 +1806,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1715,7 +1843,9 @@ public class ReplayDump {
                         + "," + share(kDeathsHome[o], cDeaths[o]) + "," + share(kDeathsHome[t], cDeaths[t])
                         + "," + share(kHealThreat[t], kHealPost[t]) + "," + share(kReady20[t], kNear20[t])
                         + "," + share(kSpawnNear[t], kSpawnPost[t]) + "," + share(kSpawnDeath10[t], kDeathPost[t])
-                        + "," + (kBank1900[t] >= 0 ? String.valueOf(kBank1900[t]) : ""));
+                        + "," + (kBank1900[t] >= 0 ? String.valueOf(kBank1900[t]) : "")
+                        + "," + share(kStepMidS[t], kStepDec[t]) + "," + kStepLethal[t] + "," + kStepDeaths[t] + "," + share(cDeaths[o], cDeaths[o] + cDeaths[t])
+                        + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t]);
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
@@ -1725,15 +1855,15 @@ public class ReplayDump {
         if (rdMode) printRd();
         if (commMode) out.println("# commStored " + commStored + "/" + kRounds);
         if (levelsMode) for (int t = 1; t <= 2; t++) {   // last known (attack/build/heal) levels per robot
-            Map<String, Integer> hist = new TreeMap<>(); int n = 0, atk4 = 0, heal4 = 0, build4 = 0, atkSum = 0, healSum = 0;
+            Map<String, Integer> hist = new TreeMap<>(); int n = 0, atk4 = 0, heal4 = 0, build4 = 0, atkSum = 0, healSum = 0, buildSum = 0;
             for (Map.Entry<Integer, int[]> e : levels.entrySet()) {
                 if (team.getOrDefault(e.getKey(), 0) != t) continue;
-                int[] l = e.getValue(); n++; atkSum += l[0]; healSum += l[2];
+                int[] l = e.getValue(); n++; atkSum += l[0]; healSum += l[2]; buildSum += l[1];
                 if (l[0] >= 4) atk4++; if (l[2] >= 4) heal4++; if (l[1] >= 4) build4++;
                 hist.merge("a" + l[0] + "b" + l[1] + "h" + l[2], 1, Integer::sum);
             }
-            out.printf("levels %s: robots=%d meanAtk=%.2f meanHeal=%.2f atkMastery=%d healMastery=%d buildMastery=%d  %s%n", tname(t), n,
-                    n > 0 ? (double) atkSum / n : 0.0, n > 0 ? (double) healSum / n : 0.0, atk4, heal4, build4, hist);
+            out.printf("levels %s: robots=%d meanAtk=%.2f meanHeal=%.2f atkMastery=%d healMastery=%d buildMastery=%d buildSum=%d  %s%n", tname(t), n,
+                    n > 0 ? (double) atkSum / n : 0.0, n > 0 ? (double) healSum / n : 0.0, atk4, heal4, build4, buildSum, hist);
         }
         if (bytecode) for (int t = 1; t <= 2; t++)
             out.printf("bytecode %s: max=%d mean=%.0f turnsAtLimit=%d turnsNear90=%d turns=%d%n", tname(t), maxBc[t],

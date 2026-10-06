@@ -142,6 +142,16 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
         tr = [r for r in rows if r['team'] == t]
         for col in ('deaths', 'kills', 'attacks', 'traps_built', 'moves', 'spawned'):
             check(all(int(a[col]) <= int(b[col]) for a, b in zip(tr, tr[1:])), f'replay-dump: cumulative {col} never decreases ({t})')
+    lvl = dump('--levels')
+    lv_ok = []
+    for t in 'AB':
+        m = re.search(r'^levels ' + t + r': robots=(\d+) .*? buildSum=(\d+)  \{(.*)\}$', lvl, re.M)
+        if not m: lv_ok.append(False); continue
+        hist = [(int(a), int(b), int(h), int(n)) for a, b, h, n in re.findall(r'a(\d+)b(\d+)h(\d+)=(\d+)', m.group(3))]
+        end = [r for r in rows if r['team'] == t][-1]
+        lv_ok.append(sum(n for *_, n in hist) == int(m.group(1)) and int(m.group(2)) == sum(b * n for _, b, _, n in hist)
+                     and sum((a + b + h) * n for a, b, h, n in hist) == int(end['level_sum']))
+    check(lv_ok == [True, True], f'replay-dump --levels: buildSum = the build levels of the histogram, whose level total is the last --metrics level_sum ({lv_ok})')
     nav = dump('--navstats')
     cov = [float(x) for x in _re.findall(r'coverage=([\d.]+)%', nav)]
     check(len(cov) == 2 and all(0 <= c <= 100 for c in cov), 'replay-dump: coverage in [0,100]')
@@ -364,7 +374,8 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
     NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd',
-               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax', 'carrierDeathsSpawn', 'paidKillShare', 'homeDeathShare', 'healThreat10', 'readyHeld20', 'spawnNear20', 'spawnDeath10', 'bank1900']
+               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax', 'carrierDeathsSpawn', 'paidKillShare', 'homeDeathShare', 'healThreat10', 'readyHeld20', 'spawnNear20', 'spawnDeath10', 'bank1900',
+               'stepMid', 'stepLethal', 'stepDeaths', 'killShare', 'stepMidN', 'stepDec', 'stepLethalAvoid']
     CHAIN_SHARES = ('noContact10u12', 'contact20u12', 'screened20u12', 'capRateU12', 'capRate12p', 'diveLeak12', 'diveNoChain')
     D0_COLS = ('team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,'
                + ','.join(f'err{a}' for a in range(1, 13))).split(',')
@@ -391,6 +402,28 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
               f'replay-dump --capabilities ({name}): healThreat10, readyHeld20, spawnNear20, spawnDeath10 are shares, and some robot holds a ready strike near an enemy')
         check(all(0 <= int(c['carrierDeathsSpawn']) <= int(c['carrierDeaths']) for c in cap),
               f'replay-dump --capabilities ({name}): carrierDeathsSpawn is a subset of carrierDeaths')
+        # step census (C.ENGAGE_HP's signature): shares and counts; a death before the next turn is one of our deaths
+        check(all((c['stepMid'] == '' or 0 <= float(c['stepMid']) <= 1) and c['stepLethal'].isdigit() and c['stepDeaths'].isdigit()
+                  and int(c['stepDeaths']) <= int(c['deaths']) for c in cap)
+              and all(c['killShare'] == '' if int(c['kills']) + int(c['deaths']) == 0
+                      else abs(float(c['killShare']) - int(c['kills']) / (int(c['kills']) + int(c['deaths']))) < 1e-3 for c in cap),
+              f'replay-dump --capabilities ({name}): stepMid a share, stepLethal and stepDeaths counts (stepDeaths <= deaths), killShare = kills / (kills + deaths)')
+        # review 2026-10-06: stepMid's counts (a pooled share is sum stepMidN / sum stepDec) and the avoidable lethal step-ins
+        check(all(c['stepMidN'].isdigit() and c['stepDec'].isdigit() and c['stepLethalAvoid'].isdigit()
+                  and (c['stepMid'] == '' if c['stepDec'] == '0' else c['stepMid'] == f"{int(c['stepMidN']) / int(c['stepDec']):.3f}")
+                  and int(c['stepLethalAvoid']) <= int(c['stepLethal']) <= int(c['stepMidN']) <= int(c['stepDec']) for c in cap),
+              f'replay-dump --capabilities ({name}): stepMid = stepMidN / stepDec (blank without a decision); stepLethalAvoid <= stepLethal <= stepMidN <= stepDec')
+        if name == 'own':   # our 2026-09-30 build (A) vs examplefuncsplayer: the study's scratch analyser (Eh.java, the same execution-order
+            # reconstruction written independently) gives 62 of 78 mid-HP decisions stepping in, 8 onto a lethal tile, 3 deaths before
+            # the next turn; examplefuncsplayer never steps in to strike (it strikes before it moves). On three andli28 losses the two
+            # agreed exactly on stepMid and stepLethal and within one on stepDeaths (fresh spawns' levels).
+            st = {c['team']: (c['stepMid'], c['stepLethal'], c['stepDeaths']) for c in cap}
+            check(st.get('A') == ('0.795', '8', '3') and st.get('B') == ('0.000', '0', '0'),
+                  f'replay-dump --capabilities (own): step census A 0.795/8/3 and B 0.000/0/0 as the independent analyser ({st})')
+            # 62 of 78 is the analyser's count; stepLethalAvoid 5 of the 8 is this tool's own value, pinned when it was added
+            sn = {c['team']: (c['stepMidN'], c['stepDec'], c['stepLethalAvoid']) for c in cap}
+            check(sn.get('A') == ('62', '78', '5') and sn.get('B', ('',))[0] == '0',
+                  f'replay-dump --capabilities (own): A stepMidN/stepDec 62/78 as the analyser, stepLethalAvoid 5 (pinned); B never steps in ({sn})')
         check(all(c['flagSpreadMin'] != '' and 0 < float(c['flagSpreadMin']) <= float(c['flagSpreadMax']) for c in cap),
               f'replay-dump --capabilities ({name}): flagSpreadMin (r200, nearest two own flags) > 0 and <= flagSpreadMax')
         check(all(c['flagDistMin'] != '' and 0 < float(c['flagDistMin']) <= float(c['flagDistMean']) for c in cap),
@@ -735,6 +768,12 @@ with tempfile.TemporaryDirectory() as d:
     check('delivery few: INCONCLUSIVE' in r.stdout and 'only 10 shared cells' in r.stdout, 'delivery-check: fewer than 18 shared cells is INCONCLUSIVE: ' + r.stdout)
 r = subprocess.run(['bash', os.path.join(HERE, 'band-test.sh'), 'no_such_arm_xyz'], capture_output=True, text=True)
 check(r.returncode == 5 and 'Refusing' in r.stderr, 'band-test.sh refuses an arm without a delivery PASS')
+# review 2026-10-06: a one-opponent block without DGTAG would write the band block's PASS and base cache; refused before any game
+r = subprocess.run(['bash', os.path.join(HERE, 'delivery-gate.sh'), 'no_such_arm_xyz', 'mean:overruns<=0'], capture_output=True, text=True,
+                   env={k: v for k, v in dict(os.environ, DGPOOL='andli28.v9_USQuals_angle').items() if k != 'DGTAG'})
+check(r.returncode == 2 and 'needs its own DGTAG' in r.stderr and 'Refusing' in r.stderr
+      and not any(f.startswith('delivery-no_such_arm_xyz') for f in (os.listdir(os.path.join(REPO, 'gauntlet')) if os.path.isdir(os.path.join(REPO, 'gauntlet')) else [])),
+      'delivery-gate.sh refuses DGPOOL without DGTAG before anything runs: ' + r.stderr.strip())
 
 # --- filler-tally: pairs cells of control and candidate runs on the same filler seed
 with tempfile.TemporaryDirectory() as d:

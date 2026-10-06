@@ -49,7 +49,230 @@ public class AuditTest {
         return ok && (farther || !someFarther);
     }
 
+    static RobotInfo enemyAt(int id, int x, int y, int hp, int atkLevel) { return new RobotInfo(id, Team.B, hp, new MapLocation(x, y), false, atkLevel, 0, 0); }
+    static RobotInfo ally(int id, int x, int y) { return new RobotInfo(id, Team.A, 1000, new MapLocation(x, y), false, 0, 0, 0); }
+
+    /** One plain (goal null) or goal-directed Micro.fight turn on the fake controller from (10,10), action and movement ready, at
+     *  `hp`; the step taken (null: none). */
+    static Direction fightStep(RobotInfo[] es, RobotInfo[] as, int hp, MapLocation goal) throws GameActionException {
+        G.me = new MapLocation(10, 10); BotTest.lastMove = null; BotTest.health = hp;
+        java.util.List<RobotInfo> all = new java.util.ArrayList<>(java.util.Arrays.asList(as)); all.addAll(java.util.Arrays.asList(es));
+        BotTest.robots = all.toArray(new RobotInfo[0]); Duck.enemies = es; Duck.allies = as;
+        if (goal == null) Micro.fight(es, as); else Micro.fight(es, as, goal);
+        return BotTest.lastMove;
+    }
+
+    /** The andli28 arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP): their pure logic, and their hooks as the switches stand
+     *  (off in src/bot: g_iter7's play; tools/unit-tests.sh runs these again on a copy with FINAL_COMPLETE on and ENGAGE_HP 700). */
+    static void armTests() {
+        Team keepThem = G.them; int keepBc = G.testBc;
+        G.rc = BotTest.fakeRc(); G.them = Team.B; G.testBc = 25000;
+        // ---- FINAL_COMPLETE (arm g7fc)
+        check(!(C.FINAL_COMPLETE && C.LATE_BANK), "FINAL_COMPLETE never with LATE_BANK (they share LB_OWED)");
+        check(C.FC_KEEP.length == 5 && C.FC_KEEP[1] == 0 && C.FC_KEEP[1] <= C.FC_KEEP[2] && C.FC_KEEP[2] <= C.FC_KEEP[3] && C.FC_KEEP[3] <= C.FC_KEEP[4],
+              "FINAL_COMPLETE: FC_KEEP covers 1-4 digs and rises with the digs a level still needs (the closest levels are paid first)");
+        check(Duck.fcK(1949) == 0 && Duck.fcK(1950) == 1 && Duck.fcK(1959) == 1 && Duck.fcK(1960) == 2 && Duck.fcK(1974) == 2 && Duck.fcK(1975) == 3
+              && Duck.fcK(1984) == 3 && Duck.fcK(1985) == 4 && Duck.fcK(2000) == 4, "FINAL_COMPLETE: K = 0 before r1950, then 1/2/3/4 from r1950/1960/1975/1985");
+        check(Duck.fcNeed(1950, 14, 3, 0, 0) == 1 && Duck.fcNeed(1949, 14, 3, 0, 0) == 0 && Duck.fcNeed(1959, 13, 3, 0, 0) == 0 && Duck.fcNeed(1960, 13, 3, 0, 0) == 2
+              && Duck.fcNeed(1974, 12, 3, 0, 0) == 0 && Duck.fcNeed(1975, 12, 3, 0, 0) == 3 && Duck.fcNeed(1984, 11, 3, 0, 0) == 0 && Duck.fcNeed(1985, 11, 3, 0, 0) == 4
+              && Duck.fcNeed(2000, 10, 6, 0, 0) == 0, "FINAL_COMPLETE: a level is started only within K digs (never 5)");
+        check(Duck.fcNeed(2000, 14, 3, 0, 0) == 1 && Duck.fcNeed(2000, 14, 3, 0, 15) == 0 && Duck.fcNeed(1997, 12, 3, 0, 0) == 3 && Duck.fcNeed(1998, 12, 3, 0, 0) == 0
+              && Duck.fcNeed(1999, 13, 3, 0, 0) == 2 && Duck.fcNeed(1999, 13, 3, 0, 5) == 0 && Duck.fcNeed(1999, 3, 3, 0, 0) == 0,
+              "FINAL_COMPLETE: only a level its last dig finishes by r2000 (a dig in r2000 counts; the robot's own cooldown; 18 a dig at build 2, 20 at 0)");
+        check(Duck.fcNeed(1990, 15, 3, 4, 0) == 0 && Duck.fcNeed(1990, 19, 4, 0, 0) == 0 && Duck.fcNeed(1990, 14, 2, 4, 0) == 1 && Duck.fcNeed(1990, 14, 4, 0, 0) == 1,
+              "FINAL_COMPLETE: build XP frozen at 15 under attack or heal level 4 (below it the dig counts)");
+        check(Duck.fcNeed(1990, 4, 0, 0, 0) == 0 && Duck.fcNeed(1990, 4, 1, 0, 0) == 1 && Duck.fcNeed(1990, 18, 3, 3, 0) == 0 && Duck.fcNeed(1990, 29, 3, 3, 0) == 0,
+              "FINAL_COMPLETE: no level the jail penalty would take (build 1 over attack 0 / heal 0; build 4+ over 3/3, so only levels 1-3 are dug)");
+        // the dig: me (10,10), homes far away, attack level 3 (every level up to 3 durable), the action ready
+        G.W = 30; G.H = 30; G.me = new MapLocation(10, 10); java.util.Arrays.fill(BotTest.shared, 0);
+        for (int i = 0; i < 3; i++) BotTest.shared[Comms.OF_HOME + i] = Comms.enc(new MapLocation(25, 25 + i));
+        BotTest.buildOk = true; BotTest.digOk = true; BotTest.attackLevel = 3; BotTest.healLevel = 0; BotTest.actionCd = 0;
+        BotTest.writeOk = new boolean[64]; BotTest.writeOk[Comms.LB_OWED] = true; BotTest.badWrite = false;
+        BotTest.flagsInView = new FlagInfo[0]; BotTest.water.clear(); BotTest.walls.clear();
+        Duck.myOwed = 0; Duck.lateAt = -1; BotTest.lastDig = null; Duck.enemies = new RobotInfo[0];
+        int fc0 = Duck.fcDigs;
+        try {
+            G.round = 1949; BotTest.crumbs = 1000; BotTest.buildXp = 14;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: no dig before FC_ROUND");
+            G.round = 1950; BotTest.crumbs = 116;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: r1950, XP 14: 116 crumbs < 17 + FC_FLOOR 100 + FC_KEEP[1] 0");
+            BotTest.crumbs = 117;
+            check(Duck.fcDig(false) && BotTest.lastDig != null && BotTest.crumbs == 100 && BotTest.buildXp == 15 && BotTest.shared[Comms.LB_OWED] == 0
+                  && Duck.myOwed == 0 && Duck.fcDigs == fc0 + 1, "FINAL_COMPLETE: 117 crumbs: one dig completes build level 3 and owes nothing");
+            BotTest.buildXp = 13; BotTest.crumbs = 1000; BotTest.lastDig = null;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: r1950: a level two digs away waits for FC_K2");
+            G.round = 1960; BotTest.crumbs = 153;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: r1960: 153 crumbs < 2 x 17 + 100 + FC_KEEP[2] 20");
+            BotTest.crumbs = 154;
+            check(Duck.fcDig(false) && BotTest.crumbs == 137 && BotTest.shared[Comms.LB_OWED] == 17 && Duck.myOwed == 17,
+                  "FINAL_COMPLETE: 154 crumbs: robot 1 starts the level and owes its last dig");
+            Duck.myOwed = 0; BotTest.buildXp = 13; BotTest.crumbs = 170; BotTest.lastDig = null;   // robot 2, owing nothing
+            check(!Duck.fcDig(false) && BotTest.lastDig == null && BotTest.shared[Comms.LB_OWED] == 17,
+                  "FINAL_COMPLETE: robot 2 may not start (170 - 17 owed < 154): the levels started can be finished");
+            BotTest.crumbs = 171;
+            check(Duck.fcDig(false) && BotTest.shared[Comms.LB_OWED] == 34 && Duck.myOwed == 17, "FINAL_COMPLETE: 171 - 17 owed covers it: robot 2 starts");
+            Duck.myOwed = 17; BotTest.buildXp = 14; BotTest.crumbs = 120; BotTest.lastDig = null;   // robot 2 again: owing, it checks the whole bank
+            check(Duck.fcDig(false) && BotTest.shared[Comms.LB_OWED] == 17 && Duck.myOwed == 0, "FINAL_COMPLETE: an owing robot digs on from the whole bank (120 >= 117) and frees its share");
+            BotTest.shared[Comms.LB_OWED] = 0; BotTest.water.clear();   // a position has 4 checkerboard tiles: fresh ground from here
+            Duck.myOwed = 0; BotTest.buildXp = 13; BotTest.crumbs = 1000; BotTest.lastDig = null;
+            check(!Duck.fcDig(true) && BotTest.lastDig == null, "FINAL_COMPLETE: the fight hook skips a robot two digs from its level");
+            BotTest.buildXp = 14;
+            check(Duck.fcDig(true) && BotTest.lastDig != null, "FINAL_COMPLETE: the fight hook digs one dig from the level");
+            BotTest.buildXp = 14; BotTest.lastDig = null;
+            BotTest.flagsInView = new FlagInfo[]{new FlagInfo(new MapLocation(10, 14), Team.B, false, 5)};
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: a loose enemy flag in view keeps the action (pickup)");
+            BotTest.flagsInView = new FlagInfo[]{new FlagInfo(new MapLocation(10, 14), Team.A, true, 5)};
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: our flag carried in view keeps the action (strike, carrier stun)");
+            BotTest.flagsInView = new FlagInfo[]{new FlagInfo(new MapLocation(10, 14), Team.A, false, 5)}; BotTest.water.clear();
+            check(Duck.fcDig(false) && BotTest.lastDig != null, "FINAL_COMPLETE: our flag lying in view does not stop a dig");
+            BotTest.flagsInView = new FlagInfo[0]; BotTest.buildXp = 14; BotTest.lastDig = null; BotTest.buildOk = false; BotTest.water.clear();
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: no dig without a ready action");
+            BotTest.buildOk = true; BotTest.attackLevel = 0; BotTest.buildXp = 4;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: no dig toward a level the jail penalty would take");
+            BotTest.attackLevel = 3; BotTest.buildXp = 14; BotTest.crumbs = 1000; G.testBc = C.DIG_BC - 1;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: no dig below DIG_BC bytecodes left");
+            G.testBc = 25000;
+            // review 2026-10-06: HEAL_HOLD's held strike. With an enemy within HOLD_R2 the post-turn dig must leave the action
+            // ready next turn (cooldown + dig cooldown < 20); the fight hook (one dig away, before the fight) spends it by design
+            Duck.enemies = new RobotInfo[]{enemy(1, 12, 11)};   // dist2 5
+            BotTest.buildXp = 14; BotTest.actionCd = 1; BotTest.water.clear(); BotTest.lastDig = null;   // build 2: dig cooldown 18
+            check(Duck.fcDig(false) && BotTest.lastDig != null, "FINAL_COMPLETE: enemy within HOLD_R2, cooldown 1 + 18 < 20: the post-turn dig keeps next turn's strike");
+            BotTest.buildXp = 14; BotTest.actionCd = 2; BotTest.water.clear(); BotTest.lastDig = null;
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: enemy within HOLD_R2, cooldown 2 + 18 = 20: no post-turn dig (it would cost the strike)");
+            check(Duck.fcDig(true) && BotTest.lastDig != null, "FINAL_COMPLETE: the fight hook still digs one dig from the level (it spends the strike by design)");
+            BotTest.buildXp = 4; BotTest.actionCd = 0; BotTest.water.clear(); BotTest.lastDig = null;   // build 0: dig cooldown 20
+            check(!Duck.fcDig(false) && BotTest.lastDig == null, "FINAL_COMPLETE: enemy within HOLD_R2: a build-0 dig (cooldown 20) never goes post-turn");
+            Duck.enemies = new RobotInfo[]{enemy(1, 13, 12)};   // dist2 13: outside HOLD_R2
+            check(Duck.fcDig(false) && BotTest.lastDig != null, "FINAL_COMPLETE: no enemy within HOLD_R2: the build-0 dig goes ahead");
+            Duck.enemies = new RobotInfo[0];
+            // review 2026-10-06: near an alerted home (Duck.guardFight) neither hook digs, so the responders keep their strikes
+            BotTest.shared[Comms.OF_HOME] = Comms.enc(new MapLocation(16, 10)); BotTest.shared[Comms.OF_ALERT] = G.round;   // dist2 36, fresh
+            BotTest.buildXp = 14; BotTest.water.clear(); BotTest.lastDig = null;
+            check(!Duck.fcDig(false) && !Duck.fcDig(true) && BotTest.lastDig == null, "FINAL_COMPLETE: near an alerted home neither hook digs");
+            BotTest.shared[Comms.OF_ALERT] = G.round - 11;
+            check(Duck.fcDig(false) && BotTest.lastDig != null, "FINAL_COMPLETE: an alert 11 rounds old no longer stops the dig");
+            BotTest.shared[Comms.OF_HOME] = Comms.enc(new MapLocation(25, 25)); BotTest.shared[Comms.OF_ALERT] = G.round;   // dist2 450
+            BotTest.buildXp = 14; BotTest.water.clear(); BotTest.lastDig = null;
+            check(Duck.fcDig(false) && BotTest.lastDig != null, "FINAL_COMPLETE: an alerted home beyond ALERT_RADIUS2 does not stop the dig");
+            BotTest.shared[Comms.OF_ALERT] = 0; BotTest.shared[Comms.LB_OWED] = 0; Duck.myOwed = 0; BotTest.water.clear();
+            // the post-turn hook settles the share; the fight hook leaves it to it
+            Duck.myOwed = 17; BotTest.shared[Comms.LB_OWED] = 17; BotTest.buildXp = 14; BotTest.buildOk = false;
+            Duck.fcDig(true);
+            check(BotTest.shared[Comms.LB_OWED] == 17 && Duck.myOwed == 17, "FINAL_COMPLETE: the fight hook does not touch the share");
+            Duck.fcDig(false);
+            check(BotTest.shared[Comms.LB_OWED] == 17 && Duck.myOwed == 17, "FINAL_COMPLETE: a robot that may still finish keeps its share");
+            BotTest.shared[Comms.EF_STATE + 1] = 2; Duck.lateAt = -1;
+            check(!Duck.fcDig(false) && BotTest.shared[Comms.LB_OWED] == 0 && Duck.myOwed == 0, "FINAL_COMPLETE: a capture ends the level game and frees the share");
+            BotTest.shared[Comms.EF_STATE + 1] = 0; Duck.lateAt = -1; Duck.myOwed = 17; BotTest.shared[Comms.LB_OWED] = 17; G.me = null;
+            check(!Duck.fcDig(false) && BotTest.shared[Comms.LB_OWED] == 0 && Duck.myOwed == 0, "FINAL_COMPLETE: a jailed robot frees its share");
+            G.me = new MapLocation(10, 10);
+            // notes: a post-turn dig, a fight dig earlier in the turn
+            BotTest.buildOk = true; BotTest.buildXp = 14; BotTest.crumbs = 1000; Duck.fcFightAt = 0; G.note = "fight e3 a5"; BotTest.water.clear();
+            Duck.finalDig();
+            check(G.note.equals("fc fight e3 a5"), "FINAL_COMPLETE: a post-turn dig notes fc (" + G.note + ")");
+            BotTest.buildOk = false; Duck.fcFightAt = G.round; G.note = "fight e3 a5";
+            Duck.finalDig();
+            check(G.note.equals("fcF fight e3 a5"), "FINAL_COMPLETE: a fight dig notes fcF (" + G.note + ")");
+            check(!BotTest.badWrite, "FINAL_COMPLETE: only LB_OWED is written");
+            // the pauses: field combat stuns and float stuns from FC_ROUND while the flag counts are level (switch on only)
+            G.W = 40; G.H = 30; G.me = new MapLocation(10, 10); BotTest.buildOk = true; BotTest.crumbs = -1; BotTest.writeOk = null;
+            java.util.Arrays.fill(BotTest.shared, 0);
+            Duck.enemies = new RobotInfo[]{enemy(1, 14, 10), enemy(2, 14, 11), enemy(3, 14, 9)};
+            int ct = Duck.combatTraps;
+            G.round = 1949; Duck.lateAt = -1; Duck.placeCombatTrap();
+            check(Duck.combatTraps == ct + 1, "FINAL_COMPLETE: before FC_ROUND a combat stun builds");
+            G.round = 1950; Duck.lateAt = -1; Duck.placeCombatTrap();
+            check(Duck.combatTraps == ct + (C.FINAL_COMPLETE ? 1 : 2), "FINAL_COMPLETE: r1950, level: the combat stun " + (C.FINAL_COMPLETE ? "pauses" : "builds (switch off)"));
+            BotTest.shared[Comms.EF_STATE + 1] = 2; Duck.lateAt = -1; Duck.placeCombatTrap();
+            check(Duck.combatTraps == ct + (C.FINAL_COMPLETE ? 2 : 3), "FINAL_COMPLETE: r1950, one capture up: the combat stun builds");
+            BotTest.shared[Comms.EF_STATE + 1] = 0; BotTest.shared[Comms.OF_HOME] = Comms.enc(new MapLocation(16, 10)); BotTest.shared[Comms.OF_ALERT] = G.round;
+            Duck.lateAt = -1; Duck.placeCombatTrap();
+            check(Duck.combatTraps == ct + (C.FINAL_COMPLETE ? 3 : 4), "FINAL_COMPLETE: r1950, level, at an alerted home (guardFight): the combat stun builds, as g_iter7");
+            BotTest.shared[Comms.OF_HOME] = 0; BotTest.shared[Comms.OF_ALERT] = 0;
+            Duck.enemies = new RobotInfo[0]; BotTest.shared[Comms.EF_STATE + 1] = 0; BotTest.shared[Comms.EF_LOC] = Comms.enc(new MapLocation(20, 10));
+            int ft = Duck.floatTraps;
+            G.round = 1949; Duck.lateAt = -1; Duck.spendFloat();
+            check(Duck.floatTraps == ft + 1, "FINAL_COMPLETE: before FC_ROUND a float stun builds");
+            G.round = 1950; Duck.lateAt = -1; Duck.spendFloat();
+            check(Duck.floatTraps == ft + (C.FINAL_COMPLETE ? 1 : 2), "FINAL_COMPLETE: r1950, level: the float stun " + (C.FINAL_COMPLETE ? "pauses" : "builds (switch off)"));
+        } catch (GameActionException e) { check(false, "FINAL_COMPLETE: unexpected " + e); }
+        BotTest.crumbs = -1; BotTest.buildXp = 0; BotTest.attackLevel = 0; BotTest.digOk = false; BotTest.lastDig = null; BotTest.water.clear();
+        BotTest.buildOk = false; BotTest.walls.clear(); java.util.Arrays.fill(BotTest.shared, 0); Duck.enemies = new RobotInfo[0];
+        BotTest.writeOk = null; BotTest.badWrite = false; Duck.lateAt = -1; Duck.myOwed = 0; Duck.fcFightAt = 0; BotTest.flagsInView = new FlagInfo[0];
+
+        // ---- ENGAGE_HP (arm g7ehp)
+        boolean dmgOk = true;
+        for (int lv = 0; lv <= 6; lv++) for (int u = 0; u < 2; u++)
+            dmgOk &= Micro.hitDamage(u == 1, lv) == Math.round((SkillType.ATTACK.skillEffect + (u == 1 ? GlobalUpgrade.ATTACK.baseAttackChange : 0))
+                                                              * ((float) SkillType.ATTACK.getSkillEffect(lv) / 100 + 1));
+        check(dmgOk && Micro.hitDamage(false, 0) == 150 && Micro.hitDamage(true, 0) == 210 && Micro.hitDamage(true, 3) == 231 && Micro.hitDamage(true, 4) == 273
+              && Micro.hitDamage(false, 6) == 240, "ENGAGE_HP: one hit as the engine's getDamage (150, +60 upgraded, x attack level effect, float rounding)");
+        MapLocation l = new MapLocation(11, 10);
+        RobotInfo[] three = {enemyAt(1, 13, 10, 1000, 0), enemyAt(2, 13, 12, 1000, 0), enemyAt(3, 12, 13, 1000, 0)};   // dist2 4, 8, 10 from l
+        int[] d150 = {150, 150, 150};
+        check(!Micro.unsafeStep(l, new RobotInfo[]{three[0], three[1]}, d150, 400, 150) && Micro.unsafeStep(l, three, d150, 400, 150)
+              && Micro.unsafeStep(l, three, d150, 450, 150) && !Micro.unsafeStep(l, three, d150, 451, 150),
+              "ENGAGE_HP: unsafe when the hits of every enemy within dist2 10 reach our HP (300 < 400; 450 >= 400 and 450; not 451)");
+        check(!Micro.unsafeStep(l, new RobotInfo[]{enemyAt(1, 13, 10, 150, 0), three[1], three[2]}, d150, 400, 150)
+              && Micro.unsafeStep(l, new RobotInfo[]{enemyAt(1, 13, 10, 151, 0), three[1], three[2]}, d150, 400, 150)
+              && Micro.unsafeStep(l, new RobotInfo[]{three[0], enemyAt(2, 13, 12, 100, 0), three[2]}, d150, 400, 150),
+              "ENGAGE_HP: a kill in reach of the tile (dist2 4, HP <= our hit) exempts it; one in its threat ring (dist2 8) does not");
+        check(!Micro.unsafeStep(l, new RobotInfo[]{three[0], three[1], enemyAt(3, 12, 14, 1000, 0)}, d150, 400, 150),
+              "ENGAGE_HP: an enemy at dist2 17 cannot reach the tile next turn");
+        // Micro.fight from (10,10): only the east tile (11,10) reaches an enemy; with the three enemies it is unsafe at 400 HP
+        G.W = 40; G.H = 30; G.round = 800; G.us = Team.A; BotTest.moveOk = true; BotTest.buildOk = true; BotTest.attackDamage = 150;
+        BotTest.theirUpg = new GlobalUpgrade[0]; BotTest.crumbTiles = new MapLocation[0]; Duck.flags = new FlagInfo[0]; BotTest.walls.clear();
+        RobotInfo[] trio = {ally(11, 9, 10), ally(12, 9, 9), ally(13, 9, 11)};   // strong (3 + 1 >= 3), no advance (4 < 3 + 3)
+        boolean on = C.ENGAGE_HP > 0;
+        try {
+            int er = Micro.engageRefusals;
+            Direction d = fightStep(three, trio, 400, null);
+            check(on ? d != Direction.EAST && Micro.engageRefusals == er + 1 : d == Direction.EAST && Micro.engageRefusals == er,
+                  "ENGAGE_HP: 400 HP, three hits of 150 on the only reaching tile: " + (on ? "refused (kite/hold), one eh turn" : "engages (switch off)") + " (" + d + ")");
+            d = fightStep(three, trio, 400, new MapLocation(20, 10));
+            check(d == Direction.EAST, "ENGAGE_HP: a goal-directed fight is not gated (" + d + ")");
+            d = fightStep(new RobotInfo[]{enemyAt(1, 13, 10, 150, 0), three[1], three[2]}, trio, 400, null);
+            check(d == Direction.EAST, "ENGAGE_HP: the step that kills is taken (" + d + ")");
+            d = fightStep(three, trio, 451, null);
+            check(d == Direction.EAST, "ENGAGE_HP: 451 HP survives three hits of 150 (" + d + ")");
+            RobotInfo[] strong3 = {enemyAt(1, 13, 10, 1000, 4), enemyAt(2, 13, 12, 1000, 4), enemyAt(3, 12, 13, 1000, 4)};   // 195 a hit, 273 upgraded
+            d = fightStep(strong3, trio, C.ENGAGE_HP > 0 ? C.ENGAGE_HP - 1 : 699, null);
+            check(d == Direction.EAST, "ENGAGE_HP: just below the gate, 3 x 195 does not reach it: engages (" + d + ")");
+            BotTest.theirUpg = new GlobalUpgrade[]{GlobalUpgrade.ATTACK};
+            d = fightStep(strong3, trio, C.ENGAGE_HP > 0 ? C.ENGAGE_HP - 1 : 699, null);
+            check(on ? d != Direction.EAST : d == Direction.EAST, "ENGAGE_HP: their ATTACK upgrade (3 x 273 = 819) " + (on ? "makes the tile unsafe" : "(switch off)") + " (" + d + ")");
+            d = fightStep(strong3, trio, on ? C.ENGAGE_HP : 700, null);
+            check(d == Direction.EAST, "ENGAGE_HP: at ENGAGE_HP the gate is off (" + d + ")");
+            BotTest.theirUpg = new GlobalUpgrade[0];
+            // the advance branch: walls leave only east and staying put; five allies give the advance (6 >= 3 + 3), two of them beside
+            // the east tile. Unsafe east must not take the advance score (4790) over staying (4771)
+            for (Direction w : G.DIRS) if (w != Direction.EAST) BotTest.walls.add(new MapLocation(10, 10).add(w));
+            RobotInfo[] five = {ally(11, 7, 10), ally(12, 7, 9), ally(13, 7, 11), ally(14, 12, 9), ally(15, 12, 11)};
+            d = fightStep(three, five, 400, null);
+            check(on ? d == null : d == Direction.EAST, "ENGAGE_HP: " + (on ? "an unsafe tile does not advance either: stays" : "engages east (switch off)") + " (" + d + ")");
+            // review 2026-10-06 (pinned, not a bug): when every tile is unsafe, the start tile included, a refused reaching tile still
+            // competes on the kite score and wins it on one more adjacent ally (-2990 vs -2999): the robot steps in and strikes, and eh
+            // counts the turn. Striking beats staying there, so refused tiles get no kite penalty; the census separates these
+            // step-ins from avoidable ones (stepLethalAvoid: the start tile was not lethal)
+            RobotInfo[] ring3 = {enemyAt(1, 13, 10, 1000, 0), enemyAt(2, 12, 12, 1000, 0), enemyAt(3, 12, 8, 1000, 0)};   // start: dist2 9/8/8; east: 4/5/5
+            RobotInfo[] side3 = {ally(11, 12, 11), ally(12, 8, 10), ally(13, 8, 9)};   // (12,11) beside east only; strong (4 >= 3), no advance
+            er = Micro.engageRefusals;
+            d = fightStep(ring3, side3, 400, null);
+            check(d == Direction.EAST && Micro.engageRefusals == er + (on ? 1 : 0),
+                  "ENGAGE_HP: every tile unsafe (450 >= 400 at the start and east): " + (on ? "the refused reaching tile wins the kite score on its adjacent ally, one eh turn" : "engages east (switch off)") + " (" + d + ")");
+        } catch (GameActionException e) { check(false, "ENGAGE_HP fight: unexpected " + e); }
+        BotTest.moveOk = false; BotTest.buildOk = false; BotTest.walls.clear(); BotTest.robots = new RobotInfo[0]; BotTest.health = 1000; BotTest.lastMove = null;
+        Duck.enemies = new RobotInfo[0]; Duck.allies = new RobotInfo[0]; G.me = new MapLocation(10, 10);
+        G.them = keepThem; G.testBc = keepBc;
+    }
+
     public static void main(String[] a) {
+        if (a.length > 0 && a[0].equals("arms")) {   // tools/unit-tests.sh: a copy of src/bot with the arms' switches on
+            armTests();
+            System.out.println("AuditTest arms (FINAL_COMPLETE " + C.FINAL_COMPLETE + ", ENGAGE_HP " + C.ENGAGE_HP + "): " + (fails == 0 ? "OK" : "FAILED " + fails));
+            if (fails > 0) System.exit(1);
+            return;
+        }
         // A1: an alert means an enemy within ALERT_THREAT_R2 (20) of the flag home -- not "an enemy seen by a duck near it"
         MapLocation home = new MapLocation(10, 10);
         check(Comms.threatTo(home, new RobotInfo[]{enemy(1, 17, 11)}) == null, "A1: an enemy at dist2 50 from the home is no threat");
@@ -91,8 +314,8 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK,
-              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor and the contact dive off)");
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK && !C.FINAL_COMPLETE && C.ENGAGE_HP == 0,
+              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor, the contact dive and the andli28 arms off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
         G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;
@@ -211,11 +434,11 @@ public class AuditTest {
         check(Duck.bankLine(1000) == 0 && Duck.bankLine(1400) == 0 && Duck.bankLine(1401) == 4 && Duck.bankLine(1650) == 1000
               && Duck.bankLine(1900) == 2000 && Duck.bankLine(1950) == 2000, "LATE_BANK: the bank line is 0 to r1400, +400 a hundred rounds, the cap from r1900");
         check(Duck.digNeed(0) == 5 && Duck.digNeed(5) == 5 && Duck.digNeed(7) == 3 && Duck.digNeed(14) == 1, "LATE_BANK: digs to the next whole build level");
-        int[] digCost = {20, 18, 17, 16}; boolean costOk = true;
-        for (int lv = 0; lv <= 3; lv++)
+        int[] digCost = {20, 18, 17, 16, 14, 12}; boolean costOk = true;
+        for (int lv = 0; lv <= 5; lv++)
             costOk &= Duck.digCost(lv) == digCost[lv] && Duck.digCost(lv) == (int) Math.round(GameConstants.DIG_COST * (1 + 0.01 * SkillType.BUILD.getSkillEffect(lv)))
-                      && Duck.digCd(lv) == 20 - lv && Duck.digCd(lv) == (int) Math.round(GameConstants.DIG_COOLDOWN * (1 + 0.01 * SkillType.BUILD.getCooldown(lv)));
-        check(costOk, "LATE_BANK: dig cost 20/18/17/16 and cooldown 20/19/18/17 at build 0-3, as the engine's");
+                      && Duck.digCd(lv) == (lv <= 3 ? 20 - lv : lv == 4 ? 16 : 14) && Duck.digCd(lv) == (int) Math.round(GameConstants.DIG_COOLDOWN * (1 + 0.01 * SkillType.BUILD.getCooldown(lv)));
+        check(costOk, "LATE_BANK/FINAL_COMPLETE: dig cost 20/18/17/16/14/12 and cooldown 20/19/18/17/16/14 at build 0-5, as the engine's");
         check(Duck.digDoneRound(1901, 0, 20, 5) == 1909 && Duck.digDoneRound(1992, 0, 20, 5) == 2000 && Duck.digDoneRound(1993, 0, 20, 5) == 2001
               && Duck.digDoneRound(1993, 0, 19, 5) == 2000 && Duck.digDoneRound(1900, 0, 18, 5) == 1907
               && Duck.digDoneRound(1990, 15, 20, 1) == 1991 && Duck.digDoneRound(1990, 5, 18, 1) == 1990,
@@ -463,6 +686,8 @@ public class AuditTest {
         // STUN_AHEAD (audit BOT7): carrier (10,10) heading to (20,10); a builder behind it does not build, one ahead does
         check(!Duck.aheadOf(new MapLocation(8, 10), new MapLocation(10, 10), new MapLocation(20, 10))
               && Duck.aheadOf(new MapLocation(13, 11), new MapLocation(10, 10), new MapLocation(20, 10)), "STUN_AHEAD: behind no, ahead yes");
+
+        armTests();   // with both arms off here; unit-tests.sh runs them again with the switches on
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

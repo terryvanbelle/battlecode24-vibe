@@ -131,3 +131,5 @@ g7dig C.DIG_RESERVE=300
 g7dig C.DIG_SITE=2
 g7dig C.NO_FILL_OWN=true
 g7bank C.LATE_BANK=true
+g7fc C.FINAL_COMPLETE=true
+g7ehp C.ENGAGE_HP=700

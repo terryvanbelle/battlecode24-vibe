@@ -2112,3 +2112,14 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   on Soccer the candidate symmetries give enemy spawn-centre sets that differ by one tile ({(41,26),(47,14),(41,3)} vs
   {(41,2),(47,14),(41,25)}), so symOk (exact set match) reads 0 while every consumer aims within a tile of the truth;
   symWrong (the true symmetry eliminated) is 0 in all 1,520 games.
+- Arms **g7fc** (C.FINAL_COMPLETE) and **g7ehp** (C.ENGAGE_HP 700) built by a workflow (premise checks on the VM, one
+  implementer, an adversarial reviewer per arm, a fixer; research/andli28-study-2026-10-06/synthesis.md "Corrections" and
+  "Review amendments" hold the measured premises and the final pre-registered 5(a)s). g7fc: from r1950 with the flag counts
+  level, robots finish partial build levels by digging (robots one dig from a level first; a 100-crumb floor; team-wide
+  ledger; no dig near an alerted home; the post-turn hook keeps HEAL_HOLD's strike); premise: 3.9/9.5/16.9 spawned robots
+  within 1/2/3 digs at r1950, budget a median 436 crumbs, simulated +12 levels, ~+1.5 pp. g7ehp: below 700 HP a robot in a
+  plain fight does not step onto a tile where the summed hits of the enemies within dist2 10 would kill it, unless its strike
+  kills; premise: 1,545 mid-HP step-in strikes a game, 80% of our deaths at >= 300 HP come within 3 rounds of one. New census
+  columns stepMid, stepMidN, stepDec, stepLethal, stepLethalAvoid, stepDeaths, killShare; delivery-gate.sh now refuses a
+  DGPOOL block without DGTAG (the review found it would overwrite the band block's PASS file). Eight review findings fixed;
+  unit tests pass (also rerun by me). 5(a)s queued: g7fc 24 cells x twins (seed 19502026), g7ehp 12 cells x twins (seed 6701).

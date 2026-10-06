@@ -1,4 +1,4 @@
-package bot;
+package g7ehp;
 
 import battlecode.common.*;
 

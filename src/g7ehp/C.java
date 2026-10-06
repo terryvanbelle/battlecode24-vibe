@@ -1,4 +1,4 @@
-package bot;
+package g7ehp;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -44,7 +44,7 @@ public strictfp class C {
     // enemy hits (each enemy's own hit: their ATTACK upgrade and its attack level) reach its HP, unless an enemy in reach of
     // the tile dies to our strike; the tile scores as kite/hold. RETREAT_HP, strike-first, the carrier and loose-flag branches
     // and HEAL_HOLD are unchanged. 0 = off (g_iter7); arm 700, dose 1000.
-    public static final int ENGAGE_HP = 0;
+    public static final int ENGAGE_HP = 700;
     public static final boolean TERR_MICRO = false;     // TACTICS T15 (kill reward: +30 only for a killer on enemy territory): in a fight,
                                                         // engage from enemy-territory tiles and give ground into our own territory last; arm g6terr
     public static final int TERR_ENGAGE = 60;           // TERR_MICRO: engage-tile bonus on enemy territory (adjacent allies count 10, a threat 100)
