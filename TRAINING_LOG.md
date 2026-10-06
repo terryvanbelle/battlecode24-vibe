@@ -1926,3 +1926,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g5climb2 band delivery: PASS** (24 cells, seed 909090, base g_iter5): flagDistMean 32.56 vs 30.04 (+2.53 tiles, +1.7 SE
   past x1.05); enemy captures 1.33 vs 1.83 (-27%; guard PASS); 0 overruns. The band test (look 1, seeds 525252 / 626262)
   runs; the filler now pairs g5climb2 with g_iter5 against Gymhgy (the victory read; CLAUDE rule 14).
+- Dose arm **g5climb3** (RELOC_CLIMB with CLIMB_R2 625: 25 tiles from the spawn centre, g5climb2 20): 5(a) on the same 12
+  cells queued behind the band test; it is a dose if flagDistMean rises over g5climb2 on >= 8 of 12 cells, with 0 overruns,
+  0 exceptions, every flag placed by r170.
