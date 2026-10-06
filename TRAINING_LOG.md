@@ -1859,3 +1859,24 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   g4ship1 574-626 (47.8%) on cells where g_iter4 went 490-710 (40.8%). The 320 g4ship1 filler games played after the
   promotion relabelled g_iter5 (same code); ladder refit: g_iter5 1988 +- 17 (rank 11). The filler now plays g_iter5 alone
   against Gymhgy. TACTICS T3/T4/T10/T13 updated (T10 and T13 accepted in g_iter5).
+- **g_iter5 control on the refreshed band** (tools/band-20261005.txt, six look seeds 525252 626262 / 737373 848484 / 959595
+  161616, 720 games): 387-333 (53.8%; per seed 61, 63, 56, 67, 74, 66 of 120); recorded in the ladder as g_iter5; its
+  census and survey per look (gauntlet/census-g_iter5-L{1,2,3}.csv) are the base every new arm is paired against.
+- **g_iter5 against Gymhgy** (1,236 ladder games, 593-643): the losses are early. Before r1000 we lose 302-123, almost all
+  by three captures; from r1000 on we win 470-341; ties at r2000 are even (248-227) and level-sum tiebreaks now favour us
+  (131-98). The next lever has to stop Gymhgy's early convoy captures.
+- Recall premise check (Gymhgy study lever L1: a wider recall when a big group grabs a flag): ReplayDump `--recall-d0`
+  (per chain on our flags at t = 0, 10, 20: our free and busy robots by distance to the flag, the free ones' notes) and
+  tools/recall-d0.py with routes pinned before any pooled number: on CAPTURE chains with g0 >= 12 at the grab, median free
+  robots within 20 tiles >= 6 -> build L1; else median robots fighting beyond 20 tiles >= 15 -> a disengage-to-flag design;
+  else the fight is lost at the flag and recall is not the lever. Two replays looked at while building it: 28-40 of our 41
+  robots were in fights at each grab. Queued on the 880 g_iter5 (g4ship1) replays against Gymhgy.
+- The recall premise job found no replays: tools/vm-prune.sh exempts filler runs from tools/keep-replays.txt and deletes
+  their replays after 60 minutes once the disk passes 80%, which the control's 720 replays triggered; all 880 g_iter5
+  (g4ship1) replays against Gymhgy went. Fix: the prune keeps the newest KEEP_FILLS (25, ~1,000 games, ~3 GB) filler runs
+  of each kept build (test added); g_iter1's 3,267 replays (6.5 GB, four promotions old; results and census kept) deleted
+  and g_iter1 dropped from the keep list (disk 72% -> 60%). The recall check now waits for the g_iter5 filler's own replays.
+- New census columns flagSpreadMin / flagSpreadMax (r200: the nearest / farthest two of a team's own flags; hsmalladi
+  keeps its three within 8 tiles in a corner, TACTICS T2): do the bots that beat us keep their flags together? Queued on
+  the g_iter5 control's 720 band replays. TACTICS T2 adoption brought up to date (RELOC_V2 accepted in g_iter3). Ladder
+  refit with the control: g_iter5 1985 +- 15 (rank 11), Gymhgy 2011, Cyril 2028.

@@ -105,6 +105,7 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
         # the dive plumbing on a replay that predates C.CONTACT: every indicator string counts as a dive turn (prefix ''); B's
         # strings are listed beside, to count them
         _jobs['dive'] = [OWN, '--capabilities', '--dive-note', '', '--logs', '^', '--team', 'B']
+        _jobs['rd'] = [OWN, '--recall-d0']   # recall premise check (Gymhgy study L1): checked against --contact-d0's chains
     if os.path.exists(COLT): _jobs['colt'] = [COLT, '--comm', '1-1', '--defense', '--capabilities', '--track', '--team', 'A', '--contact-d0']
     END = os.path.join(REPO, 'diag', 'sp5', 'IvanGeffner.kuma__EndAround__botA.bc24')   # local regression of the drop window (below)
     if os.path.exists(END): _jobs['endlog'] = [END, '--track-log', '--team', 'A']
@@ -348,7 +349,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
     NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd',
-               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain']
+               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax']
     CHAIN_SHARES = ('noContact10u12', 'contact20u12', 'screened20u12', 'capRateU12', 'capRate12p', 'diveLeak12', 'diveNoChain')
     D0_COLS = ('team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,'
                + ','.join(f'err{a}' for a in range(1, 13))).split(',')
@@ -368,6 +369,8 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
               f'replay-dump --capabilities ({name}): longTrips25, longCaps25, longCapRate are all blank without a 25+ round trip (2.11), never 0')
         check(all(int(c['captured600']) <= int(c['captured']) and capd0[c['team']]['enemyCaptured600'] == capd0['B' if c['team'] == 'A' else 'A']['captured600'] for c in cap) if (capd0 := {c['team']: c for c in cap}) else True,
               f'replay-dump --capabilities ({name}): captured600 <= captured; enemyCaptured600 is the other row\'s captured600')
+        check(all(c['flagSpreadMin'] != '' and 0 < float(c['flagSpreadMin']) <= float(c['flagSpreadMax']) for c in cap),
+              f'replay-dump --capabilities ({name}): flagSpreadMin (r200, nearest two own flags) > 0 and <= flagSpreadMax')
         check(all(c['flagDistMin'] != '' and 0 < float(c['flagDistMin']) <= float(c['flagDistMean']) for c in cap),
               f'replay-dump --capabilities ({name}): flagDistMin (r200 own flag to nearest enemy spawn centre) > 0 and <= flagDistMean')
         ours = [c for c in cap if name != 'colt' or c['team'] == 'A']   # an external bot may use slot 23 for its own purposes
@@ -453,6 +456,26 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
         r = subprocess.run([sys.executable, os.path.join(HERE, 'contact-d0.py'), _d0csv], capture_output=True, text=True)
         check(r.returncode == 0 and r.stdout.splitlines() == e2e.splitlines()[1:], 'contact-d0.py: re-reading its --out CSV gives the same report: ' + r.stdout[-300:])
     shutil.rmtree(_d0dir, ignore_errors=True)
+    if 'rd' in raw and 'own' in outs:   # --recall-d0: one t = 0 row per --contact-d0 chain, t = 10 / 20 rows while the chain is open
+        RD_COLS = ('team,grab,flag,g0,outcome,T,t,enemy20,enemy10,ours20,ours100,alive,free10,free20,free30,freeFar,busy10,busy20,busy30,busyFar,'
+                   'nFight,nTether,nChase,nIcpt,nDefend,nThreat,nExplore,nGather,nOther').split(',')
+        rr = list(csv.DictReader(raw['rd'].splitlines()))
+        check(rr and list(rr[0].keys()) == RD_COLS, 'replay-dump --recall-d0: the RD_COLS header')
+        key = lambda r: (r['team'], r['grab'], r['flag'], r['g0'], r['outcome'], r['T'])
+        check(sorted(key(r) for r in rr if r['t'] == '0') == sorted(key(r) for r in _pick(outs['own'], 'enObsMax')),
+              'replay-dump --recall-d0: its t = 0 rows are --contact-d0\'s chains (team, grab, flag, g0, outcome, T)')
+        check(all((r['t'] in ('10', '20')) <= (int(r['T']) >= int(r['t'])) for r in rr) and all(
+                  any(q['t'] == t and key(q) == key(r) for q in rr) for r in rr if r['t'] == '0' for t in ('10', '20') if int(r['T']) >= int(t)),
+              'replay-dump --recall-d0: a t = 10 / 20 row exactly when the chain is open T >= t rounds')
+        B = ('free10', 'free20', 'free30', 'freeFar', 'busy10', 'busy20', 'busy30', 'busyFar'); N = [c for c in RD_COLS if c.startswith('n')]
+        check(all(sum(int(r[c]) for c in B) == int(r['alive']) and int(r['ours20']) <= int(r['ours100']) <= int(r['alive'])
+                  and int(r['enemy20']) <= int(r['enemy10']) and sum(int(r[c]) for c in N) == int(r['free10']) + int(r['free20']) + int(r['free30'])
+                  for r in rr), 'replay-dump --recall-d0: the eight bands sum to alive; ours20 <= ours100 <= alive; enemy20 <= enemy10; notes cover the free robots within 30')
+        _rd = importlib.util.spec_from_file_location('rd0', os.path.join(HERE, 'recall-d0.py')); rd0 = importlib.util.module_from_spec(_rd); _rd.loader.exec_module(rd0)
+        def _route(free, far):
+            row = dict(kind='row', t='0', g0='14', outcome='CAPTURE', grab='300', won='0', free10=str(free), free20='0', busy30=str(far), busyFar='0')
+            return rd0.evaluate([row, dict(kind='game', won='0', file='x')])[1]['ROUTE'][:2]
+        check((_route(6, 0), _route(5, 15), _route(5, 14)) == ('R1', 'R2', 'R3'), 'recall-d0.py: routes R1 at 6 free within 20, R2 at 15 busy beyond 20, else R3')
     if 'own' in outs:
         ot = outs['own'].get(29, []); od = outs['own'].get(11, [])
         z = [r for r in ot if r['team'] == 'A' and r['kind'] == 'own' and r['tripRounds'] == '0']
@@ -743,7 +766,8 @@ with tempfile.TemporaryDirectory() as td:
     open(os.path.join(td, 'tools', 'keep-replays.txt'), 'w').write('g_iter1\n')
     runs = {'20261001-000000-scrim-x': True, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
             '20261001-000003-scrim-z': False, '20261001-000004-scrim-g_iter1-fill123': True,
-            '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': True}
+            '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': True,
+            '20261001-000007-scrim-g_iter1-fill124': True, '20261001-000008-scrim-x-fill125': True}
     old = 1e9
     recent = __import__('time').time() - 3 * 3600   # 3 hours old: past AGE, inside DIAG_AGE (1440 min)
     for r, done in runs.items():
@@ -752,14 +776,15 @@ with tempfile.TemporaryDirectory() as td:
         t = recent if r.endswith('diag-gym') else old
         os.utime(f, (t, t))
         if done: open(os.path.join(td, 'gauntlet', r, 'results.csv'), 'w').write('h\n')
-    out = subprocess.run(['bash', os.path.join(HERE, 'vm-prune.sh')], env=dict(os.environ, REPO=td, THRESH='-1', AGE='60'),
+    out = subprocess.run(['bash', os.path.join(HERE, 'vm-prune.sh')], env=dict(os.environ, REPO=td, THRESH='-1', AGE='60', KEEP_FILLS='1'),
                          capture_output=True, text=True).stdout
     left = {r: os.path.exists(os.path.join(td, 'gauntlet', r, 'losses', 'a__m__botA.bc24')) for r in runs}
     check(left == {'20261001-000000-scrim-x': False, '20261001-000001-scrim-g_iter1': True, '20261001-000002-scrim-y-dg909090': True,
                    '20261001-000003-scrim-z': True, '20261001-000004-scrim-g_iter1-fill123': False,
-                   '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': False}
+                   '20261001-000005-scrim-g_iter1-diag-gym': True, '20261001-000006-scrim-w-diag-old': False,
+                   '20261001-000007-scrim-g_iter1-fill124': True, '20261001-000008-scrim-x-fill125': False}
           and all(os.path.exists(os.path.join(td, 'gauntlet', r, 'results.csv')) for r, d in runs.items() if d),
-          'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs, recent diagnostics and results: %r %s' % (left, out))
+          'vm-prune: prunes arm and filler replays only; keeps stack, gate bases, unfinished runs, recent diagnostics, the newest KEEP_FILLS filler runs of a kept build, and results: %r %s' % (left, out))
 
 # eval-paired: pairing, tier split, sign test, capture difference
 spec = importlib.util.spec_from_file_location('evp', os.path.join(HERE, 'eval-paired.py')); evp = importlib.util.module_from_spec(spec); spec.loader.exec_module(evp)
