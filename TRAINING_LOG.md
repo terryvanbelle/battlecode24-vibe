@@ -1954,3 +1954,4 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (tools/band.txt unchanged), and the bots rated above g_iter6 are the same 10 (tools/upper-tier.txt unchanged). Fresh look
   seeds, since g5climb2 was selected on g_iter5's (tools/band-seeds.txt: 282828 393939 / 404040 171717 / 292929 303030).
   g_iter6's control on all six queued (720 games); new arms pair against it.
+- g5climb2 filler runs (started before the filler switch) relabelled g_iter6 in progress/games.csv (same code). Gymhgy read so far: g5climb2 vs g_iter5 120 paired games, net +4 (+0.5 SE).
