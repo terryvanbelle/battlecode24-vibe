@@ -1,10 +1,5 @@
-jmerle.camel_case_v21_final
 Strequals.duck0127v5
-IvanGeffner.kuma
-NotLLeon.v3
 chenyx512.flagbot_final
+jmerle.camel_case_v21_final
+IvanGeffner.kuma
 andli28.v9_USQuals_angle
-Gymhgy.v10official
-andrewgopher.player22
-hsmalladi.finalbot
-CyrilSharma.finalBot

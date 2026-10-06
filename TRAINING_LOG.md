@@ -2030,3 +2030,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   with an enemy within dist2 20) and spawnDeath10 (deaths within 10 rounds of a spawn). 5(a) pre-registered: 12 cells vs
   andrewgopher, chenyx512, jmerle, kuma (3 maps each, seed 6401, g_iter7 twins); it fires if spawnNear20 falls on >= 8 of 12
   cells and by >= 0.05 on average, with 0 overruns and 0 exceptions (spawnDeath10, wins and captures logged).
+- **g_iter7 control on the band** (seeds 313131 424242 / 535353 646464 / 757575 868686, 720 games): **514-206 (71.4%)**; per
+  seed 85, 92, 82, 89, 82, 84 of 120 (g_iter6 413-307); basics PASS. Ladder: **g_iter7 2150 +- 29, rank 6 of 86** (960 games),
+  above NotLLeon 2133 (g_iter7 28-20) and andrewgopher 2110 (25-23). **Target change (rule 14): NotLLeon and andrewgopher are
+  below us; the new target is andli28.v9_USQuals_angle** (2174, rank 5; g_iter7 14-34). tools/upper-tier.txt re-derived: the
+  5 bots above g_iter7 (Strequals, chenyx512, camel_case, kuma, andli28). The filler builds g_iter7's baseline against andli28.
+- TACTICS measured section regenerated (stale since 2026-10-03; rule 11): the census surveys of the g_iter5/6/7 controls and the g5climb2/g6heal band tests (2,880 games) merged into progress/survey.csv; 4,894 games against 55 opponents.

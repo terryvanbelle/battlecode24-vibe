@@ -33,9 +33,10 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking; if
     the lines of attack on the target run out, open the list (PROMPTS 177).
     Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
-    crack in research/CRACK-WAFFLE.md), Gymhgy.v10official, CyrilSharma.finalBot and hsmalladi.finalbot (g_iter7 2116 >
-    hsmalladi 2071 > Cyril 2007 > Gymhgy 1990 on 2026-10-06; research/CRACK-GYMHGY.md). Target now: **NotLLeon.v3** (2138,
-    rank 6, the bot just above g_iter7; provisional until g_iter7's control settles its rating). The filler
+    crack in research/CRACK-WAFFLE.md), and on 2026-10-06 Gymhgy.v10official, CyrilSharma.finalBot, hsmalladi.finalbot,
+    andrewgopher.player22 and NotLLeon.v3 (g_iter7 2150 +- 29 on 960 games > NotLLeon 2133 > andrewgopher 2110 > hsmalladi
+    2070 > Cyril 2006 > Gymhgy 1989; research/CRACK-GYMHGY.md). Target now: **andli28.v9_USQuals_angle** (2174, rank 5, the
+    bot just above g_iter7; g_iter7 14-34 against it). The filler
     plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
     maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
     candidate whenever an arm against the target passes delivery.
