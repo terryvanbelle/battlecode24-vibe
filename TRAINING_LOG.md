@@ -1987,3 +1987,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   readyHeld20 >= g_iter6's + 0.05 on >= 9 of 12, with 0 overruns and 0 exceptions (kill/death and captures logged).
 - Gymhgy read: g_iter6 vs g_iter5 240 paired filler games net +18 (+1.8 SE); with the g5climb2 games (same code) 360 pairs
   net +22. Ladder g_iter6 1999 +- 21, Gymhgy 2001.
+- **Tempo signature confirmed on the 720-game g_iter6 control** (re-census with healThreat10 / readyHeld20): upper tier,
+  us vs them: heals under threat 0.445 vs 0.257, ready strike held near an enemy 0.196 vs 0.318; rest of the band at parity
+  (0.467 vs 0.399, 0.244 vs 0.242). Widest: jmerle 0.03 / 0.38, andli28 0.09 / 0.41, hsmalladi 0.11 / 0.40, andrewgopher
+  0.16 / 0.24; Gymhgy (0.41 / 0.17) and Cyril (0.49 / 0.44) play like us. g6heal's 5(a) running.
