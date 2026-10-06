@@ -2058,3 +2058,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   +14.8 on average (bar +20). Dig sites behind our spawn are scarce on some maps (Backslash 1-2 digs; Alien, Canals, Hurricane
   107-164), and the digs cost elsewhere: wins 3 vs 5, enemy captures 18 vs 13, our captures 8 vs 12; 0 overruns, 0 exceptions.
   The level-sum gap against andli28 stays the largest loss mode; setup digging is not the way to close it.
+- **Level-sum trajectories vs andli28** (replay metrics every 100 rounds, 200 filler games): in the 59 level-sum losses the
+  gap is -13 at r200 (its setup digs), -47 at r800 (r200-800: our deaths 239 vs 147, its traps 213 vs our 123), -36 from
+  r1400 to r1800, -42 at r2000. In our wins it closes to -11 by r1800. Its late bank: median 1,440 crumbs at r1400 and 2,002
+  at r1800, spent in the last 200 rounds (136 at r2000) on digs (87 -> 209) and traps; ours stays at ~240 all game. New
+  TACTICS row T17 (end-game level dump). A workflow (two designs, judge, implementer, two reviewers, fixer) is building
+  the arm.
