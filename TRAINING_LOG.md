@@ -1918,3 +1918,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   step read a local maximum in round 2. Fix: flags climb by priority (most exposed first); a flag keeps clear of placed
   flags and of higher-priority flags where they are now, and waits (no drop) when only a moving flag blocks a better tile.
   **g5climb2** re-runs the same 5(a) cells and bar.
+- **g5climb2 5(a) passes** (same 12 cells vs Gymhgy): flags farther on 12 of 12 cells, mean +3.56 tiles (bar 3); nearest
+  flag Alien 22.6 vs 14.0, Hurricane 32.8 vs 19.8, Waterworld 38.1 vs 25.0; 0 overruns, 0 exceptions. Descriptive: wins 8
+  vs 8, Gymhgy captures 18 vs 19, ours 21 vs 20. Band delivery pre-registered (the mechanism is setup-only):
+  `BASE=g_iter5 DGTAG=-g5 tools/delivery-gate.sh g5climb2 'rel:flagDistMean>=1.05 nw:enemyCaptured<=1.1 mean:overruns<=0'`,
+  band test chained on PASS (look 1, the shipping rule); on PASS the filler pairs g5climb2 with g_iter5 against Gymhgy.
