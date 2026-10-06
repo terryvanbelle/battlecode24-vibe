@@ -1,4 +1,4 @@
-package bot;
+package g7spawn;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -28,7 +28,7 @@ public strictfp class C {
     public static final boolean RELOC_CLIMB = true;     // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
                                                         // spawns (no fixed spot that may be unreachable) and drops at a local maximum; arm
                                                         // g5climb2, the incumbent g_iter6 since 2026-10-06
-    public static final boolean SPAWN_SAFE = false;     // upper-tier micro study: 59% of our spawns end beside an enemy (theirs 24%), 17% of our
+    public static final boolean SPAWN_SAFE = true;      // upper-tier micro study: 59% of our spawns end beside an enemy (theirs 24%), 17% of our
                                                         // deaths come within 10 rounds of a spawn (theirs 2%); respawn away from a zone with
                                                         // SAFE_MIN+ enemies seen near it in the last 2 rounds when another zone has <= 1; arm g7spawn
     public static final int SAFE_MIN = 3;

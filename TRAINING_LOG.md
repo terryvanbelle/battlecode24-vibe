@@ -2021,3 +2021,12 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Band refresh for g_iter7: `tools/elo.py --band 20 --as g_iter7` gives the same 20 bots (tools/band.txt unchanged); fresh look
   seeds 313131 424242 / 535353 646464 / 757575 868686 (g6heal was selected on g_iter6's). tools/upper-tier.txt is re-derived
   once the control settles g_iter7's rating (andrewgopher 2106 lies inside its +- 57). g_iter7's control on all six queued.
+- RECHARGE_CLOSE (micro-study proposal 2) not built yet: as specified it would rarely move anyone (Micro.threat counts every
+  enemy within dist2 10, so a tile in the dist2 5-9 band carries >= 1 threat at 300 against a 50 band bonus), and its
+  evidence is the weakest of the three; it needs a redesign first.
+- Arm **g7spawn** (C.SPAWN_SAFE, micro-study proposal 3): robots within dist2 36 of a spawn centre report the enemies they see
+  near it (shared slots 37-39: round, count); a respawn skips a zone with 3+ enemies reported in the last 2 rounds when another
+  zone has at most 1 (defenders exempt; indicator ss). New census columns spawnNear20 (post-setup spawns that end their round
+  with an enemy within dist2 20) and spawnDeath10 (deaths within 10 rounds of a spawn). 5(a) pre-registered: 12 cells vs
+  andrewgopher, chenyx512, jmerle, kuma (3 maps each, seed 6401, g_iter7 twins); it fires if spawnNear20 falls on >= 8 of 12
+  cells and by >= 0.05 on average, with 0 overruns and 0 exceptions (spawnDeath10, wins and captures logged).
