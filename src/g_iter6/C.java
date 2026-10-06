@@ -1,4 +1,4 @@
-package bot;
+package g_iter6;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {

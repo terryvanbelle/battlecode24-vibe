@@ -107,3 +107,7 @@ g_iter5's baseline against Gymhgy.
   tiles and 0.13 at 36-47. Arm **g5climb2** (C.RELOC_CLIMB, audit BOT3(a)): the carrier climbs over visible tiles away from
   the enemy spawns instead of walking to a fixed, sometimes unreachable spot; 5(a) +3.56 tiles on 12 of 12 cells. Band
   delivery and band test queued; on delivery the filler pairs it with g_iter5 against Gymhgy.
+
+**g5climb2 shipped as g_iter6 (2026-10-06).** Band delivery +2.5 tiles of flag distance and enemy captures -27%; look 1
+capture t 2.20, look 2 t 2.7; pooled 480 pairs t_all 3.44, t_up 3.34, net +20 (sign p 0.045): SHIP. Its Gymhgy read comes
+from the filler, which now pairs g_iter6 with g_iter5 against Gymhgy on random maps and sides.

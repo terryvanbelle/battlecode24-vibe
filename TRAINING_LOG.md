@@ -1937,3 +1937,16 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g5climb3 (CLIMB_R2 625) 5(a): no dose effect** (3 of 12 cells farther than g5climb2, mean +0.52 tiles; bar 8 of 12):
   identical on 9 cells, Hurricane +4.8, Divergent +0.8, Backslash +0.6. The 20-tile bound rarely binds; the climbs end at
   local maxima of what a carrier can see. Closed; g5climb2 stays the candidate.
+- **g5climb2 band look 2** (seeds 737373 / 848484, 240 pairs): wins 123 -> 133, net +10 (24-14); capture delta +0.24 +- 0.09
+  (t 2.7); upper 19 -> 31, net +12 (15-3, p 0.008), +0.36 +- 0.12 (t 3.1); rest -2, +0.12 +- 0.13; basics PASS (sym wrong 0,
+  overruns 0, max 24.1k, exceptions 0; relative checks level). **Pooled 480 pairs: t_all +3.44, t_up +3.34, net +20 (55-35,
+  sign p 0.045) -> SHIP at look 2** (the old criterion (a) passes too).
+
+### 2026-10-06 05:00 UTC — **g5climb2 ships: promoted to incumbent g_iter6** (audit BOT3(a), the relocation climb)
+- Promotion: C.RELOC_CLIMB default on; src/g_iter6 snapshotted (identical to g5climb2 but the package and one comment);
+  AuditTest incumbent check; g5climb2's four band runs recorded as g_iter6 (no g5climb2 filler games existed yet);
+  keep-replays gains g_iter6 and g5climb2; ladder refit: g_iter6 1977 +- 40 on its 480 games (rank 11), g_iter5 1973 +- 12,
+  Gymhgy 2001 (rank 10), Cyril 2018 (rank 9). The rating cannot yet resolve the paired gain (+20 of 480 on identical cells
+  is ~+4 win points). CLAUDE rules 14 and 16, HANDOFF, README, REWRITE, TACTICS T2 (accepted), CRACK-GYMHGY, BRIEFING
+  updated. Next: band refresh around g_iter6 with fresh look seeds and g_iter6's control on all six; the filler pairs g_iter6
+  with g_iter5 against Gymhgy (the climb's Gymhgy read).

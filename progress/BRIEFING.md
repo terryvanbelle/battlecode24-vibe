@@ -134,6 +134,10 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   tile instead of a fixed, sometimes unreachable spot. 5(a) +3.56 tiles on 12 of 12 cells; band delivery PASS (+2.5 tiles,
   enemy captures -27%); band look 1: capture t 2.20, upper t 1.86, net +10 (upper-tier wins 20 -> 29): continue. Look 2
   running; the filler pairs it with g_iter5 against Gymhgy. A 25-tile dose added nothing (local maxima bind, not the radius).
+- 05:00 UTC (Oct 6): **new incumbent g_iter6** (g5climb2). Look 2 confirmed look 1: pooled 480 band pairs capture t 3.44,
+  upper t 3.34 (upper-tier wins 39 -> 60), wins net +20 (p 0.045) -> SHIP under the PROMPTS 188 rule; basics PASS. The
+  relocation climb closes audit item BOT3(a). Ladder 1977 +- 40 on its first 480 games (g_iter5 1973). Next: g_iter6's
+  control on the refreshed band; the filler pairs g_iter6 with g_iter5 against Gymhgy.
 
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
