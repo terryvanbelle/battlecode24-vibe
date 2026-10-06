@@ -2036,3 +2036,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   below us; the new target is andli28.v9_USQuals_angle** (2174, rank 5; g_iter7 14-34). tools/upper-tier.txt re-derived: the
   5 bots above g_iter7 (Strequals, chenyx512, camel_case, kuma, andli28). The filler builds g_iter7's baseline against andli28.
 - TACTICS measured section regenerated (stale since 2026-10-03; rule 11): the census surveys of the g_iter5/6/7 controls and the g5climb2/g6heal band tests (2,880 games) merged into progress/survey.csv; 4,894 games against 55 opponents.
+- **g7spawn 5(a)** (12 cells vs kuma, andrewgopher, chenyx512, jmerle; g_iter7 twins): the mechanism fires: spawnNear20 falls
+  on 11 of 12 cells, mean -0.223 (bar >= 8 and -0.05); spawnDeath10 0.060 vs 0.093; 0 overruns, 0 exceptions. Cost seen:
+  enemy captures 23 vs 15 (+53%; skipping a contested zone can leave the flag there short of reinforcements), wins 3 vs 3,
+  deaths 7,073 vs 9,160, kills 5,805 vs 6,522. Band delivery pre-registered with the capture guard: `BASE=g_iter7 DGTAG=-g7
+  tools/delivery-gate.sh g7spawn 'rel:spawnNear20<=0.8 nw:enemyCaptured<=1.1 mean:overruns<=0'`, band test chained on PASS.
