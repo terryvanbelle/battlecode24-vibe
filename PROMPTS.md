@@ -290,3 +290,7 @@ It looks like you had a really good night.  Can you tell me about it?
 ## 190. 2026-10-06
 
 Good work, no notes
+
+## 191. 2026-10-06
+
+(Answer to the question whether to cap each build-opponent pair's weight in the ladder fit:) Proceed
