@@ -1929,3 +1929,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Dose arm **g5climb3** (RELOC_CLIMB with CLIMB_R2 625: 25 tiles from the spawn centre, g5climb2 20): 5(a) on the same 12
   cells queued behind the band test; it is a dose if flagDistMean rises over g5climb2 on >= 8 of 12 cells, with 0 overruns,
   0 exceptions, every flag placed by r170.
+- **g5climb2 band look 1 vs g_iter5** (240 seeded pairs, seeds 525252 / 626262, identical 12): wins 124 -> 134, gained 31,
+  lost 21, net +10 (sign p 0.21); capture delta +0.22 +- 0.10 (t_all 2.20); upper tier wins 20 -> 29 (net +9), +0.29 +- 0.16
+  (t_up 1.86); rest +0.14 +- 0.12. Shipping rule look 1: CONTINUE (t_all < 3.0, above the stop bounds). Basics PASS (sym
+  wrong 0, overruns 0, max 24.6k, exceptions 0; kill/death 2.85 vs 2.19, stillPost, trapsHit, gathered400, floating250
+  level). Look 2 (seeds 737373 / 848484) queued.
