@@ -2064,3 +2064,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   at r1800, spent in the last 200 rounds (136 at r2000) on digs (87 -> 209) and traps; ours stays at ~240 all game. New
   TACTICS row T17 (end-game level dump). A workflow (two designs, judge, implementer, two reviewers, fixer) is building
   the arm.
+- VM disk at 82% with only kept builds left: replays of builds older than g_iter5 (g_iter0, b1v2, b1z2b, b2fs, g1trk,
+  g1basics, g_iter2, g_iter3, g2cr, g_iter4, g3lost) and of g4ship1 (g_iter5's code) deleted (results, summaries and census
+  files kept); tools/keep-replays.txt now holds g_iter5, g_iter6 (g5climb2) and g_iter7 (g6heal).

@@ -1,16 +1,4 @@
-g_iter0
-b1v2
-b1z2b
-b2fs
-g1trk
-g1basics
-g_iter2
-g_iter3
-g2cr
-g_iter4
-g3lost
 g_iter5
-g4ship1
 g_iter6
 g5climb2
 g_iter7
