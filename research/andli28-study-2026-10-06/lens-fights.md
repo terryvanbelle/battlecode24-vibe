@@ -1,0 +1,67 @@
+# Lens fights
+
+## The level gap that opens between r200 and r800 is mostly heal levels, then jail losses on attack levels. Andli28's post-setup trap XP adds nothing to it. (strong)
+
+Evidence: Exact XP accounting from the replays (the engine writes every robot's attack, build and heal XP each round; GameMaker.java:754-758). Scratch tool at /tmp/claude-1000/-home-terryvanbelle-projects-vibe-2024/0c12d742-3a89-49d0-8e9e-654c983bb00e/scratchpad/xp/xpdump/XpDump.java, run on the VM over the 200 andli-levels games. Its level sums match --metrics level_sum exactly. In the r2000 games (n=135) the gap goes from -12.4+-0.3 at r200 to -47.7+-2.0 at r800, a change of -35.3, split as heal -27.6+-1.1, attack -15.8+-0.9, build +8.0. At r2000 the gap is -39.4+-2.6: heal -31.4+-1.4, attack -5.2+-1.2, build -2.8+-1.3. In the 59 level-sum losses it is -41.8+-3.0: heal -33.1, attack -5.1, build -3.5. The gap narrows from -48 at r800 to -32 at r1900, then andli28's dump takes it to -39.
+
+Confound: None for the accounting itself. The split into skills does not by itself say which policy causes the gap.
+
+## The attack part of the gap comes entirely from the jail penalty. We earn as much attack XP as andli28 but lose more of it because we die more, and our XP sits close to the level thresholds. (strong)
+
+Evidence: r200-800 (n=135): gross attack-level gains are 153.6 for us vs 149.2 for them (+4.3), but attack levels lost to jail are 41.5 vs 21.4 (-20.1+-1.2). Deaths by r800: 246 vs 148. Levels lost per death: 0.235 for both teams in r400-800, then 0.37 for us vs 0.28 for them after r1200, although we lose less XP per death (7.0 vs 10.3). The reason is that our XP stays near the thresholds: at r2000, 27.3 of our robots sit at heal XP 85-99 against 12.4 of theirs. Total levels lost to jail by r2000: 300 vs 152.
+
+Confound: The extra deaths are an outcome of the fights (stuns, territory), so this splits the mechanism but does not prove a cause.
+
+## The heal part of the gap is gross heal XP, not heal penalties. About half of it is time spent in jail; the other half is a lower heal rate per alive robot-round, partly because we attack more per alive round. (moderate)
+
+Evidence: By r800 we have gained 2,895 heal XP to their 3,696 (-800+-30), while heal levels lost to jail are equal (8.5 vs 8.6). Over r200-2000 (andli-levels.csv, n=135) we heal 7,685 times to their 10,175. That ratio is the product of alive robot-rounds (0.883, from 939 vs 567 deaths x 25 jail rounds) and heals per alive robot-round (0.115 vs 0.134, ratio 0.855). Attacks per alive robot-round are 0.116 for us vs 0.109 for them. Robots at heal level 4 or more at r2000: 16.7 vs 31.3.
+
+Confound: Heal opportunities depend on damage that does not kill. Their stuns freeze our robots about 2.5 times as often as ours freeze theirs, and HEAL_HOLD also cuts our heals. These causes cannot be separated with replays alone; g_iter6's level gap vs andli28 (-48+-10, n=16 r2000 games) does not differ measurably from g_iter7's.
+
+## Andli28's level and trap economy rests on three build-6 builders made in setup. Their 18 levels persist all game, and after r200 its build XP adds zero levels until the r1901 dump. (strong)
+
+Evidence: Survey: 88 setup digs (median) and level 18 at r200. Our XP dump: from r800 to r1900, 47 andli28 robots have 0 build XP and 3 have 30 or more. Its build levels sit at 18.0 from r300 to r1900, so all of its ~550 post-setup traps are built by those three. Its r1900-2000 dump is 127.6 digs (2,487 crumbs) for +12.5 build levels, about 10 digs per level. Our build levels grow from 4.0 to 26.4 by r1900 (we lead on build by +8.4 at r1900), but 113 of our 251 build XP at r2000 (45%) is stranded in partial levels: 27.5 robots hold 1-4 build XP.
+
+Confound: None for the counts. The builder line is closed for us (g4builder, g4builder2 and g4econ2 all dug in setup).
+
+## Price is the main economic difference up to r800: andli28 pays 50 crumbs a stun to our 84-95, so equal spending buys it 1.8 times as many stuns. (strong)
+
+Evidence: Cost per stun, from builder attribution in the XP dump: andli28 50.3+-0.1; ours 95.0 at r400, 90.9 at r800, 83.8 at r2000. Through r800 the two teams spend about the same on traps, digs and fills (16,676 vs 15,826), yet stuns are 207.5 vs 115.5. At andli28's price our stun crumbs would have bought 212. Its 1,325 crumbs of setup digs pay for themselves after about 30 stuns (by ~r260). A build-6 robot can also lay several stuns in one turn (trap cooldown 5 x 0.5).
+
+Confound: The cost attribution assigns each trap to the nearest robot whose build XP rose that round. A mis-assignment changes the price by at most one level step.
+
+## Kill rewards are the largest income difference. The map crumbs we gather are higher than theirs and passive income is equal. (strong)
+
+Evidence: Kill rewards were measured as the residual (change in bank + spending - passive - gathered). The residual is 0.1 through setup, which validates the method. Kill rewards: 941 vs 2,776 by r800 and 2,972 vs 14,330 by r2000 (-11,358+-971, n=135). Map crumbs: 7,577 vs 7,011. At andli28's price its kill rewards buy about 290 of its ~590 stuns a game. In the census (n=1,003 r2000 games), 537 of our 943 deaths fall on our territory.
+
+Confound: Where deaths happen follows where the fight is. The lines that try to move it (g6terr, g1drift, g7spawn) are closed.
+
+## Andli28 does not spend its r200 bank at the dam drop. The bank pays for its stun surge in r250-800, the window in which the level gap grows fastest. (moderate)
+
+Evidence: In r200-250 andli28 builds 20.8 stuns (~1,075 crumbs) while its bank rises from 3,223 to 4,719 (mean) on the centre crumbs. It then draws the bank down by ~2,430 to 2,291 at r800, which buys ~49 stuns. We spend 3,800 in r200-250 (29.5 stuns; bank 763 -> 238) and from then on build only at our income rate. Stuns in r250-400: 15 for us vs 57 for them (3.8x); in r250-800: 60.5 vs 182 (3.0x). That 3.0x is price 1.85x times crumbs 1.62x; of andli28's extra crumbs, 58% come from the bank drawdown and 43% from kill rewards. The level gap grows by 24 levels in r300-500, its fastest stretch.
+
+Confound: Timing only. T5 (banking through setup) was neutral without the discount, so the bank alone is not a lever for us.
+
+## Our setup traps return the fewest victims per crumb of anything we build. (weak)
+
+Evidence: 200 games, all trap triggers. Our setup stuns: 25.0 a game, 92% triggered, 2.95 victims per trigger, 35 crumbs per victim. Our post-setup stuns: 4.20 victims per trigger, 21.5 crumbs per victim. Andli28's post-setup stuns: 4.57 victims per trigger, 11.7 crumbs per victim. Our setup explosives: 9.2 a game (1,778 crumbs), 73% triggered, 2.5 victims each, 105 crumbs per 750-damage victim.
+
+Confound: An explosive victim and a stun victim are not worth the same amount. A setup trap's value (holding the dam, protecting flags) is not captured by its victim count.
+
+## The final level gap tracks the death gap closely. Extrapolated to equal deaths, the gap would be about +8 for us. (moderate)
+
+Evidence: 464 flags-level r2000 games (census2): levelGapEnd against our deaths minus theirs gives r=-0.86 and a slope of -0.13 levels per extra death. Split into thirds by death gap (+124 / +335 / +583), the level gap is -8.0+-1.9 / -36.6+-1.4 / -68.6+-1.6. The trap gap correlates with r=+0.71.
+
+Confound: Correlation only. Both are outcomes of the same fights, and the extrapolation goes outside the observed range.
+
+## The flag state is effectively frozen after r1900, and our robots hold cheap partial levels that can be completed then. (moderate)
+
+Evidence: Of the 63 r2000 games level on flags at r1900, each side captured afterwards in 2 (at r1800: 12 of 68 for andli28). At r1950, per game, our robots hold (engine cap rules applied; XP dump n=135): 6.0+-0.3 robots one dig from the next build level (115 crumbs), 13.8+-0.5 within two digs (421 crumbs) and 23.7+-0.6 within three (1,000 crumbs). 11.3 robots are within 5 heal XP of the next heal level and 5.7 within 5 attack XP of the next attack level. Our final-window budget is about 840 crumbs (606 spent in r1950-2000 plus a floor of ~233). Completing every partial within two digs would flip 8 of the 59 level-sum losses; within three digs, 12. Over 1,520 games: 410 level-sum losses, median deficit 42; 46 are within 15 levels, 66 within 20, 93 within 25.
+
+Confound: Assumes the robots have the actions and andli28 does nothing in reply. 1.6-2.7 of the robots in each band are jailed at r1950 (they are back by about r1975).
+
+## Levers
+
+- **C.FINAL_COMPLETE: complete partial build levels at the end, without a bank**: From FC_ROUND=1950, while Duck.capturesLevel() holds: (a) field combat stuns and float stuns pause; carrier stuns and defence of an alerted flag do not. (b) A duck whose action is ready, with build XP b<30 (b<15 if its attack or heal level is 4 or more), digs an adjacent legal tile when d=5-b%5 <= K(round). K is 1 from r1950, 2 from r1960, 3 from r1975 and 4 from r1985. This applies even in a fight when d=1 (one dig for one level is worth more than an attack this late). (c) The crumb gate is digCost(level) + FC_KEEP[d], with FC_KEEP={0,0,20,60,100}, so robots one dig from a level are paid first. Use LEVEL_FARM's checkerboard and keep-off-the-flag rules. It differs from g7bank (closed because the bank never formed): there is no bank stage, it spends only the final window's ~840 crumbs, and it orders robots by digs to the next level (~1.6 digs a level against g7bank's ~7.6 measured). It differs from g7dig and g4farm in timing and in targeting partial levels. Signature: Census digsLate: 0 -> 20-40 per r2000 game. Our level gain r1950-2000: +2.7 now -> >= +12. Stranded partial build XP at r2000: 113 -> <= 70 (scratch XP dump, or --levels build histogram). levelGapEnd in flags-level r2000 games: -40.7 -> >= -30. Guards: enemy captures after r1950 unchanged (~2 per 63 level games); overruns and exceptions 0. Expected: +10 to +20 levels at r2000 (the measured stock is +13.8 within two digs and +23.7 within three, and ~840 crumbs pay for most of it). Full realization flips 14-20% of level-sum losses (8-12 of 59 here), about 57-82 of the 410 in 1,520 games: +3.8 to +5.4 pp win rate vs andli28 at full realization, roughly +2 to +3.5 pp realistically. No crumb or tempo cost before r1950.
+- **C.LEVEL_SPRINT: in the final window, choose attack or heal by XP to the next level**: From SPRINT_ROUND=1950 with the flags level: a duck within SPRINT_XP (10) heal XP of its next heal level, and allowed to gain it (heal XP <70 or attack and build levels <4), heals rather than attacks when both are legal, and HEAL_HOLD is off for it. A duck within 10 attack XP of its next attack level, under the same rule, attacks rather than heals. From r1976, when a death can no longer be paid back before r2000, a duck whose top skill sits within one jail penalty of its threshold kites instead of engaging (heal 100-109 or 140-154; attack 45-49 or 75-79). The levels at stake: 11.3 robots within 5 heal XP of the next heal level, 5.7 within 5 attack XP, and 27.3 of ours end at heal 85-99 against andli28's 12.4. Signature: --levels at r2000: robots at heal level 4 or more 16.7 -> >= 22; scratch dump: robots at heal XP 85-99 27.3 -> <= 20. Level gain r1950-2000 up. Our deaths in r1976-2000 down (andli-levels-style --metrics 25). Captures unchanged. Expected: +4 to +10 levels at r2000. It adds to FINAL_COMPLETE (different resources: actions, not crumbs); together they plausibly reach +15 to +25, about +3 to +5 pp win rate vs andli28. Small tempo risk only after r1950, when 2 of 63 level games see a capture.
+- **C.BUILD_ROUTE: crumb priority for combat stuns by build level (no digs, no roles)**: In placeCombatTrap, a duck at build level 0 needs ROUTE_EXTRA (100) more crumbs when an ally in vision within dist2 8 has build level 1-5. Ducks already levelled keep today's 100+TRAP_RESERVE gate. Our bank sits at ~210, so ducks that already build win almost every stun; build XP collects on a few ducks instead of 1-4 XP spread over 27 robots. Their unit cost then falls 90/85/80 -> 70-50 at levels 4-6, and a build-6 duck's jail penalty lands on its surplus build XP, so its attack-3 and heal-3 XP stop draining. Optionally, a build-3+ duck lays a second stun in the same turn when 5 or more enemies are in view (trap cooldown 5 allows it). Closest prior: g4builder and g4builder2, in the closed builders family. Both dug to level 6 in setup (bank 662 at r200, setup traps fell, early captures). This lever has no digs, no designated roles and no front placement, and no stun is held back when no levelled ally is near. It shrinks the stock FINAL_COMPLETE draws on, so test them apart. Signature: Scratch XP dump or --levels: build levels at r800 13.6 -> >= 20; robots with 1-4 build XP at r800 23 -> <= 12. Stun unit cost r200-800 ~92 -> <= 82 (crumbs per stun from the dump), equivalently trapsBuilt +10% at equal income. --trapgeo builderBuildLevel median 0 -> >= 2. Stuns in r250-400 15 -> >= 18. Guards: stunTrig250 and enemyCaptured600 not worse. Expected: +8 to +15 levels at r800 and r2000 (stranded partials are 56 XP at r800 and 113 at r2000, worth 11 and 22 levels). Probably +10-20% stuns per crumb in r250-800, small next to andli28's 3.0x. Win effect vs andli28 likely +1 to +3 pp. Lowest confidence of the three: there is a deferral risk and it overlaps the closed builders family.

@@ -16,3 +16,10 @@ matchup effect.
 
 **Next:** the filler builds g_iter7's baseline against andli28; g7spawn (spawn safety) is in its 5(a); a loss study of
 g_iter7 against andli28 once ~200 filler games exist.
+
+## Loss study (2026-10-06, research/andli28-study-2026-10-06/)
+
+g_iter7 vs andli28 over 1,520 filler games (29.5%): the fight trade decides (kill share 0.37 in every phase). Our mid-HP robots
+step into reach 40% of the time one step from an enemy (andli28 15%) and our step-in strikes kill half as often; the level-sum
+gap is heal XP and jail losses that follow from the fight. Levers being built: FINAL_COMPLETE (finish partial build levels in
+the last 50 rounds of a tied game) and ENGAGE_HP (no step-in below ~600 HP unless it kills). Refuted: a late all-in assault.

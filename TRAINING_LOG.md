@@ -2098,3 +2098,17 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   cap more games at the same rate change nothing; pairs under the cap are unaffected; pair_cap=0 is the old fit). Refit:
   g_iter7 2134 +- 25 (rank 6) above NotLLeon 2133 (g_iter7 48-40 head to head), andli28 2210 (was 2248 uncapped), andrewgopher
   2112, hsmalladi 2073, Gymhgy 1999, g_iter6 1989. Cap 100 / 400 gave g_iter7 2148 / 2127.
+- **andli28 loss study** (workflow: five lenses, synthesis, critic; research/andli28-study-2026-10-06/): the fight trade decides
+  these games. Our kill share is 0.37 in every phase (wins above losses in every length bin); the level-sum gap is mostly heal
+  XP (andli28's damaged robots survive to be healed) and attack XP lost to jail, digs only ~13 levels; capture conversion per
+  chain is equal, we start half as many chains after r600; its kill rewards (14,330 vs 2,972 crumbs) buy ~290 of its stuns.
+  The decision where fights are lost: robots at 300-699 HP one step from an enemy step in and strike 39.8% of the time
+  (andli28 15.1%; the same in our wins and losses, so policy), and our step-in strikes kill their target within 2 rounds
+  22.5% vs its 43.8%. Ranked levers after the critic: (1) FINAL_COMPLETE (finish partial build levels in r1950-2000, no
+  bank), (2) ENGAGE_HP (no step-in below ~600 HP unless it kills), (3) RING_POST_RESERVE (post-setup ring rebuilds yield crumbs
+  to field stuns), (4) FOCUS_STEP (weak); LATE_ALLIN refuted (andli28 converts 3x ours late). A second workflow checks the
+  premises of (1) and (2) and builds them (both off by default, reviewed).
+- The critic's "basics hole" (symOk 0 in 36 games: Soccer 15/16, Gauntlet 14/17, Waterworld 6) is mostly a measurement artefact:
+  on Soccer the candidate symmetries give enemy spawn-centre sets that differ by one tile ({(41,26),(47,14),(41,3)} vs
+  {(41,2),(47,14),(41,25)}), so symOk (exact set match) reads 0 while every consumer aims within a tile of the truth;
+  symWrong (the true symmetry eliminated) is 0 in all 1,520 games.
