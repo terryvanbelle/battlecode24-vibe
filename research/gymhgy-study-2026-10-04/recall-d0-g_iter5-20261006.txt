@@ -1,0 +1,36 @@
+input gauntlet/20261006-001712-scrim-g_iter5-fill1791245824: 40 replays; results.csv 33 distinct (opponent, map, side) cells, 33 with a replay
+input gauntlet/20261006-002233-scrim-g_iter5-fill1791246144: 40 replays; results.csv 35 distinct (opponent, map, side) cells, 35 with a replay
+input gauntlet/20261006-002738-scrim-g_iter5-fill1791246449: 40 replays; results.csv 32 distinct (opponent, map, side) cells, 32 with a replay
+input gauntlet/20261006-003302-scrim-g_iter5-fill1791246774: 40 replays; results.csv 36 distinct (opponent, map, side) cells, 36 with a replay
+input gauntlet/20261006-003836-scrim-g_iter5-fill1791247108: 40 replays; results.csv 37 distinct (opponent, map, side) cells, 37 with a replay
+input gauntlet/20261006-004447-scrim-g_iter5-fill1791247478: 40 replays; results.csv 38 distinct (opponent, map, side) cells, 38 with a replay
+input gauntlet/20261006-004952-scrim-g_iter5-fill1791247784: 40 replays; results.csv 33 distinct (opponent, map, side) cells, 33 with a replay
+input gauntlet/20261006-005500-scrim-g_iter5-fill1791248092: 40 replays; results.csv 35 distinct (opponent, map, side) cells, 35 with a replay
+input gauntlet/20261006-010025-scrim-g_iter5-fill1791248416: 40 replays; results.csv 36 distinct (opponent, map, side) cells, 36 with a replay
+input gauntlet/20261006-010528-scrim-g_iter5-fill1791248719: 40 replays; results.csv 37 distinct (opponent, map, side) cells, 37 with a replay
+input gauntlet/20261006-011041-scrim-g_iter5-fill1791249033: 40 replays; results.csv 36 distinct (opponent, map, side) cells, 36 with a replay
+input gauntlet/20261006-011836-scrim-g_iter5-fill1791249507: 40 replays; results.csv 39 distinct (opponent, map, side) cells, 39 with a replay
+replays: 480 dumped (211 won, 269 lost), 0 failed, 0 cells without a replay
+chains on our flags: 4607 (12+ 1034, u12 3573)
+t = 0:
+  CAPTURE 12+                n  458  en20 16.8 en10 27.8 | ours20  5.7 ours100 14.6 alive 44.1 | free <=10 1.3 11-20 4.0 21-30 4.2 >30 5.0 | busy <=10 15.1 11-20  7.4 21-30  4.3 >30  2.7
+  RETURN 12+                 n  550  en20 15.2 en10 24.3 | ours20  4.9 ours100 13.1 alive 43.4 | free <=10 1.4 11-20 4.1 21-30 4.3 >30 4.7 | busy <=10 13.5 11-20  6.9 21-30  4.6 >30  3.8
+  CAPTURE u12                n  487  en20  6.9 en10 15.1 | ours20  2.9 ours100  8.4 alive 44.8 | free <=10 1.1 11-20 3.3 21-30 4.4 >30 5.4 | busy <=10  8.9 11-20  8.9 21-30  7.4 >30  5.5
+  RETURN u12                 n 3045  en20  4.8 en10 10.2 | ours20  3.2 ours100  8.6 alive 43.9 | free <=10 2.1 11-20 4.4 21-30 3.8 >30 4.5 | busy <=10  8.2 11-20  8.5 21-30  6.6 >30  5.8
+t = 10:
+  CAPTURE 12+                n  438  en20 13.7 en10 27.9 | ours20  1.4 ours100 11.0 alive 43.3 | free <=10 1.8 11-20 5.6 21-30 4.1 >30 3.3 | busy <=10 13.3 11-20  9.6 21-30  3.4 >30  2.1
+  RETURN 12+                 n  433  en20 12.5 en10 25.0 | ours20  4.4 ours100 14.0 alive 42.7 | free <=10 2.5 11-20 4.7 21-30 3.5 >30 3.6 | busy <=10 14.4 11-20  7.5 21-30  4.0 >30  2.5
+  CAPTURE u12                n  487  en20  9.0 en10 17.9 | ours20  1.2 ours100  9.6 alive 44.5 | free <=10 1.9 11-20 4.6 21-30 4.3 >30 4.0 | busy <=10 10.4 11-20  9.3 21-30  6.1 >30  3.9
+  RETURN u12                 n 1568  en20  5.9 en10 12.6 | ours20  4.7 ours100 11.9 alive 43.9 | free <=10 3.8 11-20 4.4 21-30 3.8 >30 3.8 | busy <=10 10.0 11-20  7.3 21-30  6.2 >30  4.4
+t = 20:
+  CAPTURE 12+                n  389  en20 12.4 en10 25.2 | ours20  1.0 ours100  6.6 alive 42.9 | free <=10 1.9 11-20 7.1 21-30 4.4 >30 2.8 | busy <=10  8.1 11-20 13.6 21-30  3.6 >30  1.5
+  RETURN 12+                 n  285  en20 11.3 en10 23.6 | ours20  4.4 ours100 12.6 alive 41.8 | free <=10 2.8 11-20 5.3 21-30 3.8 >30 2.7 | busy <=10 12.5 11-20  9.0 21-30  3.5 >30  2.1
+  CAPTURE u12                n  466  en20 10.0 en10 19.6 | ours20  0.8 ours100  6.4 alive 44.4 | free <=10 1.9 11-20 6.8 21-30 4.8 >30 3.1 | busy <=10  7.7 11-20 11.4 21-30  5.8 >30  2.9
+  RETURN u12                 n  732  en20  7.3 en10 15.4 | ours20  4.9 ours100 12.6 alive 43.8 | free <=10 4.0 11-20 4.7 21-30 4.1 >30 3.3 | busy <=10 10.9 11-20  7.4 21-30  5.8 >30  3.6
+by result, CAPTURE 12+ at t = 0:
+  in our wins                n  126  en20 16.7 en10 28.9 | ours20  5.8 ours100 16.3 alive 45.1 | free <=10 1.6 11-20 4.6 21-30 4.2 >30 3.4 | busy <=10 16.9 11-20  8.5 21-30  4.0 >30  2.0
+  in our losses              n  332  en20 16.8 en10 27.3 | ours20  5.7 ours100 13.9 alive 43.7 | free <=10 1.3 11-20 3.8 21-30 4.2 >30 5.7 | busy <=10 14.4 11-20  6.9 21-30  4.4 >30  3.0
+  grabbed before r1000       n  412  en20 16.8 en10 28.0 | ours20  5.7 ours100 14.8 alive 44.4 | free <=10 1.4 11-20 4.1 21-30 4.2 >30 4.6 | busy <=10 15.3 11-20  7.8 21-30  4.3 >30  2.5
+  free-within-30 notes: other 49%, chase 29%, fight 10%, defend 8%, threat 3%
+C12 (CAPTURE 12+, t = 0, n 458): median free within 20 tiles 5.0, median busy beyond 20 tiles 5.0
+ROUTE: R3 local loss (recall is not the lever)

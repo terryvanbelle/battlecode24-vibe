@@ -1885,3 +1885,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   winners 24-31 (Strequals 27.9, camel_case 27.0, kuma 30.8, Gymhgy 30.8, hsmalladi 38.1), ours 28.0; weak bots alike.
   Gymhgy's flags sit farthest from our spawns (mean 35.7 tiles; ours from its 28.9). Within games, our flag-distance
   advantage does not track wins (quartiles 0.48 / 0.59 / 0.50). No flag-cluster arm.
+- **Recall premise check: route R3, recall is not the lever** (480 g_iter5-vs-Gymhgy filler replays, 4,607 chains on our
+  flags; research/gymhgy-study-2026-10-04/recall-d0-g_iter5-20261006.txt). At the grab of a chain that ends in a capture
+  with 12+ of Gymhgy near (458 chains): 27.8 of its robots within 10 tiles against 15.1 of ours there, nearly all already
+  fighting (1.3 free); free robots within 20 tiles: median 5 (bar 6); ours fighting beyond 20 tiles: median 5 (bar 15).
+  Returned 12+ chains look the same at the grab (24.3 vs 13.5 + 1.4); they part afterwards: at t = 10 ours within dist2 20
+  of the flag 1.4 in captures vs 4.4 in returns, and by t = 20 our fighters are pushed out to 11-20 tiles (13.6 vs 9.0).
+  The fight at the flag is lost locally, outnumbered about 28 to 16; half the free robots near it carry no note (the
+  default advance). New census column carrierDeathsSpawn (our carriers killed within 8 tiles of an enemy spawn, more than
+  10 from the flag's home: the Backslash loss lost a carrier walking past Gymhgy's centre spawn in a flag race); a full
+  census of the 480 games queued for the fight profile.
