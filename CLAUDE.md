@@ -34,9 +34,9 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     the lines of attack on the target run out, open the list (PROMPTS 177).
     Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
     crack in research/CRACK-WAFFLE.md), and on 2026-10-06 Gymhgy.v10official, CyrilSharma.finalBot, hsmalladi.finalbot,
-    andrewgopher.player22 and NotLLeon.v3 (g_iter7 2150 +- 29 on 960 games > NotLLeon 2133 > andrewgopher 2110 > hsmalladi
-    2070 > Cyril 2006 > Gymhgy 1989; research/CRACK-GYMHGY.md). Target now: **andli28.v9_USQuals_angle** (2174, rank 5, the
-    bot just above g_iter7; g_iter7 14-34 against it). The filler
+    andrewgopher.player22 and NotLLeon.v3 (g_iter7 2134 > NotLLeon 2133 (g_iter7 48-40) > andrewgopher 2112 > hsmalladi
+    2073 > Gymhgy 1999 > Cyril; research/CRACK-GYMHGY.md). Target now: **andli28.v9_USQuals_angle** (2210, rank 5, the bot
+    just above g_iter7; g_iter7 562-1326 against it). The ladder fit counts each pair at most 200 games (PROMPTS 191). The filler
     plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
     maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
     candidate whenever an arm against the target passes delivery.

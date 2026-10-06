@@ -91,7 +91,8 @@ def higher_field(p):   # expected score against only the ladder bots rated above
     return f"{elolib.field_score(R, p, up):.1%} (vs {len(up)})" if up else '-'
 lines = ["# Ladder", "",
          f"{len(rows)} scrimmages (ours only), {ndist} distinct (a repeated pairing with the same seed replays the same game and counts once), "
-         f"rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); "
+         f"rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`), each pair of players counting at most "
+         f"{elolib.PAIR_CAP} games (owner PROMPTS 191: the target filler plays one opponent thousands of times); "
          f"each of our builds is its own player. {len(rated)} of {len(bots)} ladder bots met.", "",
          "Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; "
          "vs higher = the same against only the ladder bots rated above the build, with their count):", "",

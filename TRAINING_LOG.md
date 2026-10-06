@@ -2093,3 +2093,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Ladder note: g_iter7's rating has drifted from 2150 to 2116 as the filler added ~1,500 games against andli28 (30% for us);
   g_iter7 now rates 13 points under NotLLeon although it beats it 48-40 head to head. Heavy sampling of one opponent pulls a
   Bradley-Terry fit when matchups are not transitive; to be raised with the owner (a per-pair game cap in the fit is one fix).
+- **Ladder fit: per-pair cap (owner PROMPTS 191).** tools/elolib.py fit() now counts each pair of players at most PAIR_CAP =
+  200 games (a pair with n > 200 games enters with weight 200/n per game; displayed records stay raw); tests pin it (past the
+  cap more games at the same rate change nothing; pairs under the cap are unaffected; pair_cap=0 is the old fit). Refit:
+  g_iter7 2134 +- 25 (rank 6) above NotLLeon 2133 (g_iter7 48-40 head to head), andli28 2210 (was 2248 uncapped), andrewgopher
+  2112, hsmalladi 2073, Gymhgy 1999, g_iter6 1989. Cap 100 / 400 gave g_iter7 2148 / 2127.

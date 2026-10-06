@@ -44,6 +44,21 @@ rep = rows + [dict(rows[0], seq=9)]
 check(elolib.fit(rep)[2]['us:g0'] == 3, 'elo: a repeated cell (same seed) counts once')
 rep2 = rows + [dict(rows[0], seq=9, seed='77')]
 check(elolib.fit(rep2)[2]['us:g0'] == 4, 'elo: a different seed is a new game')
+# per-pair cap (owner PROMPTS 191): past PAIR_CAP games, more games of one pair at the same win rate change nothing; a pair
+# under the cap is unaffected; pair_cap=0 restores the uncapped fit
+cap = elolib.PAIR_CAP
+def _pair(n, start=0, bot='t.bot'):   # g0 wins 3 of every 10 against bot
+    return [dict(run='p', seq=start + i, teamA='us:g0', teamB=bot, map='M', winner='A' if i % 10 < 3 else 'B', rounds='1', reason='', seed=str(start + i)) for i in range(n)]
+base = _pair(10, 0, 'u.bot')[:0] + [dict(run='q', seq=i, teamA='us:g0', teamB='v.bot', map='M', winner='A' if i % 2 else 'B', rounds='1', reason='', seed=str(9000 + i)) for i in range(40)]
+r1 = elolib.fit(base + _pair(2 * cap))[0]; r2 = elolib.fit(base + _pair(6 * cap))[0]
+check(abs(r1['us:g0'] - r2['us:g0']) < 1e-6 and abs(r1['v.bot'] - r2['v.bot']) < 1e-6,
+      f'elo: past PAIR_CAP ({cap}) games a pair at the same win rate no longer moves the fit ({r1["us:g0"]:.2f} vs {r2["us:g0"]:.2f})')
+r3 = elolib.fit(base + _pair(2 * cap), pair_cap=0)[0]; r4 = elolib.fit(base + _pair(6 * cap), pair_cap=0)[0]
+check(abs(r2['us:g0'] - r4['us:g0']) > 1e-3 and abs(r3['us:g0'] - r4['us:g0']) > 1e-3,
+      'elo: with pair_cap=0 the extra games of one pair still move the fit, and the capped fit differs from it')
+small = base + _pair(cap // 2)
+check(abs(elolib.fit(small)[0]['us:g0'] - elolib.fit(small, pair_cap=0)[0]['us:g0']) < 1e-6, 'elo: pairs under the cap are unaffected')
+check(elolib.fit(base + _pair(6 * cap))[2]['us:g0'] == 40 + 6 * cap, 'elo: games returned are the raw counts')
 # the 2026-09-24 failure: many wins over weak bots must not lift us above a bot that beats us 9 of 10
 hist = [dict(run='r', seq=i, teamA='us:g0', teamB='s.bot', map='M', winner='B' if i % 10 else 'A', rounds='1', reason='', seed=str(i)) for i in range(40)]
 hist += [dict(run='r', seq=100 + i, teamA='us:g0', teamB=f'w{i}.bot', map='M', winner='A', rounds='1', reason='', seed=str(i)) for i in range(96)]

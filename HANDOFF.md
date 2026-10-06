@@ -7,10 +7,11 @@
   robot keeps its action for a strike instead of healing (flag carriers still healed). The upper tier healed under threat
   26% of the time to our 45% and held a ready strike 0.32 to our 0.20 (720-game census). Band delivery: heals under threat
   0.13 vs 0.44, ready held 0.33 vs 0.22; shipped at look 1: 240 seeded band pairs vs g_iter6, wins 136 -> 164 (net +28,
-  36-8, p < 0.001), capture delta +0.57 +- 0.09 (t_all 6.46), upper +0.72 +- 0.14 (t_up 5.31); basics PASS. Ladder **2150
-  +- 29, rank 6** (960 games; control on the band 514-206 over 720; g_iter6 1992). Before it: g_iter6 (the relocation climb, audit BOT3(a)), g_iter5
+  36-8, p < 0.001), capture delta +0.57 +- 0.09 (t_all 6.46), upper +0.72 +- 0.14 (t_up 5.31); basics PASS. Ladder **2134
+  +- 25, rank 6** (control on the band 514-206 over 720; g_iter6 1989; each pair counts at most 200 games in the fit since
+  PROMPTS 191). Before it: g_iter6 (the relocation climb, audit BOT3(a)), g_iter5
   (the owner's stack: centre crumbs + pick-after-move), g_iter4, g_iter3, g_iter2, g_iter1.
-- **Ladder target: andli28.v9_USQuals_angle** (2174, rank 5, the bot just above g_iter7; g_iter7 14-34 against it).
+- **Ladder target: andli28.v9_USQuals_angle** (2210, rank 5, the bot just above g_iter7; g_iter7 562-1326 against it).
   Defeated: ColtG5 (declared by the owner, PROMPTS 157), winkelmantanner.waffle, and on 2026-10-06 Gymhgy.v10official,
   CyrilSharma.finalBot, hsmalladi.finalbot, andrewgopher.player22 and NotLLeon.v3 (all rated below g_iter7).
 - Measurement: paired tests share the engine seed per cell (`tools/scrim.sh` 4th field) since 2026-10-02 23:00 UTC.
