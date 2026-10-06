@@ -349,7 +349,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
                'carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,'
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
     NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd',
-               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax', 'carrierDeathsSpawn']
+               'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax', 'carrierDeathsSpawn', 'paidKillShare', 'homeDeathShare']
     CHAIN_SHARES = ('noContact10u12', 'contact20u12', 'screened20u12', 'capRateU12', 'capRate12p', 'diveLeak12', 'diveNoChain')
     D0_COLS = ('team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,'
                + ','.join(f'err{a}' for a in range(1, 13))).split(',')
@@ -369,6 +369,9 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
               f'replay-dump --capabilities ({name}): longTrips25, longCaps25, longCapRate are all blank without a 25+ round trip (2.11), never 0')
         check(all(int(c['captured600']) <= int(c['captured']) and capd0[c['team']]['enemyCaptured600'] == capd0['B' if c['team'] == 'A' else 'A']['captured600'] for c in cap) if (capd0 := {c['team']: c for c in cap}) else True,
               f'replay-dump --capabilities ({name}): captured600 <= captured; enemyCaptured600 is the other row\'s captured600')
+        check(all((c['paidKillShare'] == '' or abs(float(c['paidKillShare']) - int(c['enemyDeathsHome']) / int(c['kills'])) < 1e-3)
+                  and (c['homeDeathShare'] == '' or abs(float(c['homeDeathShare']) - int(c['deathsHome']) / int(c['deaths'])) < 1e-3) for c in cap),
+              f'replay-dump --capabilities ({name}): paidKillShare = enemyDeathsHome / kills, homeDeathShare = deathsHome / deaths')
         check(all(0 <= int(c['carrierDeathsSpawn']) <= int(c['carrierDeaths']) for c in cap),
               f'replay-dump --capabilities ({name}): carrierDeathsSpawn is a subset of carrierDeaths')
         check(all(c['flagSpreadMin'] != '' and 0 < float(c['flagSpreadMin']) <= float(c['flagSpreadMax']) for c in cap),

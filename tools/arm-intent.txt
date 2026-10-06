@@ -123,3 +123,4 @@ g5climb C.RELOC_CLIMB=true
 g5climb2 C.RELOC_CLIMB=true
 g5climb3 C.RELOC_CLIMB=true
 g5climb3 C.CLIMB_R2=625
+g6terr C.TERR_MICRO=true

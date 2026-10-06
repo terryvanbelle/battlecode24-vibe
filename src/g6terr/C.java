@@ -1,4 +1,4 @@
-package bot;
+package g6terr;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -28,7 +28,7 @@ public strictfp class C {
     public static final boolean RELOC_CLIMB = true;     // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
                                                         // spawns (no fixed spot that may be unreachable) and drops at a local maximum; arm
                                                         // g5climb2, the incumbent g_iter6 since 2026-10-06
-    public static final boolean TERR_MICRO = false;     // TACTICS T15 (kill reward: +30 only for a killer on enemy territory): in a fight,
+    public static final boolean TERR_MICRO = true;      // TACTICS T15 (kill reward: +30 only for a killer on enemy territory): in a fight,
                                                         // engage from enemy-territory tiles and give ground into our own territory last; arm g6terr
     public static final int TERR_ENGAGE = 60;           // TERR_MICRO: engage-tile bonus on enemy territory (adjacent allies count 10, a threat 100)
     public static final int TERR_HOLD = 40;             // TERR_MICRO: kite/hold penalty for a tile on our territory (the distance band counts 50)

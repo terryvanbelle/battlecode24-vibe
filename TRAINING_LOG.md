@@ -1966,3 +1966,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   of our kills on theirs (~2,400 to us); against the rest of the band it reverses (8,700 to us) and we win 89%. Upper-tier
   wins vs losses: our deaths on our territory 45% vs 64%, our kills on theirs 31% vs 17%. New TACTICS row T15 (kill-reward
   economy). Their army stands in our half (22 at r300 vs our 14 in theirs) and moves more (stillPost 20% vs our 31%).
+- Arm **g6terr** (C.TERR_MICRO, TACTICS T15 adoption): in a fight, an engage tile on enemy territory scores +60 (a kill from
+  there pays 30 crumbs; adjacent allies count 10, a threat 100), and in the kite/hold branch a tile on our own territory
+  costs 40 (the distance band counts 50, a threat 1000): engage for pay, give ground into our half last. Indicator counter
+  tm; new census columns paidKillShare (enemy deaths on their territory / our kills) and homeDeathShare (our deaths on our
+  territory / our deaths). 5(a) pre-registered: 12 cells vs the upper tier (Gymhgy, Cyril, NotLLeon, andli28, andrewgopher,
+  hsmalladi; two maps each; seed 6201; g_iter6 on the same cells); it fires if paidKillShare rises on >= 7 of 12 cells and
+  by >= 0.03 on average, with 0 overruns and 0 exceptions.
