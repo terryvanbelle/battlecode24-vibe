@@ -1934,3 +1934,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (t_up 1.86); rest +0.14 +- 0.12. Shipping rule look 1: CONTINUE (t_all < 3.0, above the stop bounds). Basics PASS (sym
   wrong 0, overruns 0, max 24.6k, exceptions 0; kill/death 2.85 vs 2.19, stillPost, trapsHit, gathered400, floating250
   level). Look 2 (seeds 737373 / 848484) queued.
+- **g5climb3 (CLIMB_R2 625) 5(a): no dose effect** (3 of 12 cells farther than g5climb2, mean +0.52 tiles; bar 8 of 12):
+  identical on 9 cells, Hurricane +4.8, Divergent +0.8, Backslash +0.6. The 20-tile bound rarely binds; the climbs end at
+  local maxima of what a carrier can see. Closed; g5climb2 stays the candidate.
