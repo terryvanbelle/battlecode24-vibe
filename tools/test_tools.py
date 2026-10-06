@@ -476,6 +476,8 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
         K = ('kills100', 'deaths100', 'stunVict100', 'enStunVict100')
         check(all(all(int(q[k]) >= int(r[k]) for k in K) for r in rr for q in rr if key(q) == key(r) and int(q['t']) > int(r['t'])),
               'replay-dump --recall-d0: the near-flag kills, deaths and stun victims accumulate from t = 0 to 10 to 20')
+        check(sum(int(r['stunVict100']) + int(r['enStunVict100']) for r in rr) > 0 and sum(int(r['kills100']) for r in rr) > 0,
+              'replay-dump --recall-d0: stun victims and kills are counted without --capabilities (2026-10-06: the stun hook sat in the census-only block)')
         _rd = importlib.util.spec_from_file_location('rd0', os.path.join(HERE, 'recall-d0.py')); rd0 = importlib.util.module_from_spec(_rd); _rd.loader.exec_module(rd0)
         def _route(free, far):
             row = dict(kind='row', t='0', g0='14', outcome='CAPTURE', grab='300', won='0', free10=str(free), free20='0', busy30=str(far), busyFar='0')

@@ -1895,3 +1895,19 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   default advance). New census column carrierDeathsSpawn (our carriers killed within 8 tiles of an enemy spawn, more than
   10 from the flag's home: the Backslash loss lost a carrier walking past Gymhgy's centre spawn in a flag race); a full
   census of the 480 games queued for the fight profile.
+- **Fight route F2: the local fight is not decisive** (720 g_iter5-vs-Gymhgy replays, 1,543 big chains). Near-flag net
+  kills by t = 10: returned big chains +0.10, captured -0.21 (D +0.31, bar 1.5): the flag-fight stun bank is not built.
+  Captured and returned chains differ in contact, not kills: at t = 10, 1.3 vs 4.4 of ours within dist2 20 of the flag; by
+  t = 20 the captured flag has left our fight (our fighters 11-20 tiles from it 13.8 vs 9.1). Tool bug found and fixed on
+  the way: --recall-d0's stun-victim hook sat in the census-only block, so stun victims read 0 (kills and deaths were
+  right; the route uses them); regression test added.
+- Arm **g5climb** (C.RELOC_CLIMB, audit BOT3(a), open since 2026-10-03): Gymhgy's flags sit 35.7 tiles from our spawns,
+  ours 28.9 from its; the audit found 23% of our fixed relocation spots unreachable and ~20% of flags walked back home (BOT3(b)'s
+  best-tile fallback moved flag distance 1%). Against Gymhgy a flag under 20 tiles from its spawn converts 0.50, at 36-47
+  tiles 0.13. g5climb drops the fixed spot: after symmetry, the carrier steps each ready turn to the visible passable tile
+  farthest from the nearest live enemy spawn centre, within 20 tiles of its spawn centre (V2: 15) and 8+ tiles from our other
+  flags' live positions (OF_HOME, else the fresh carried position), and drops at a local maximum (after a stall, back on the
+  best tile reached; never home). AuditTest pins the step. 5(a) pre-registered: vs Gymhgy on the audit's unreachable-spot
+  maps (Starfish, Waterworld, BedWars, Fusbol, EvilGrin, Divergent, Yinyang, Hurricane, Diagonal) plus Backslash, Alien,
+  Canals, seed 6101, sides alternating, g_iter5 on the same cells; it fires if flagDistMean rises on >= 8 of 12 cells and by
+  >= 3 tiles on average, with 0 overruns, 0 exceptions and no flag reset at r200.

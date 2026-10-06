@@ -1,4 +1,4 @@
-package bot;
+package g5climb;
 
 import battlecode.common.*;
 

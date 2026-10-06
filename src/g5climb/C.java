@@ -1,4 +1,4 @@
-package bot;
+package g5climb;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -25,7 +25,7 @@ public strictfp class C {
     public static final int RELOC_DEADLINE = 170;       // drop wherever legal from this round (dam opens after r200)
     public static final int RELOC_STALL = 12;           // turns without progress before giving up the spot (V2: walk to the best tile reached, else home)
     public static final boolean RELOC_STALL_MOVES = false;  // audit BOT3(b): count only movement-ready turns; give up to the best tile reached; arm g4reach
-    public static final boolean RELOC_CLIMB = false;    // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
+    public static final boolean RELOC_CLIMB = true;     // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
                                                         // spawns (no fixed spot that may be unreachable) and drops at a local maximum; arm g5climb
     public static final int CLIMB_R2 = 400;             // RELOC_CLIMB: stay within 20 tiles of the flag's spawn centre (Gymhgy moves its ~18)
     public static final int CLIMB_SEP2 = 64;            // RELOC_CLIMB: 8+ tiles from our other flags (the engine resets all three under dist2 36)

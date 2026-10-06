@@ -248,6 +248,25 @@ public class AuditTest {
         G.spawnCenters[0] = new MapLocation(3, 23); G.spawnCenters[1] = new MapLocation(27, 26); G.spawnCenters[2] = new MapLocation(11, 27);
         check(relocOk(new int[]{Sym.FY}, false), "RELOC_V2: Whirlpool layout: no flag closer than at its spawn");
         check(spreadSame(), "RELOC_SPREAD: Whirlpool spots are the same when every scan pauses after each column");
+
+        // RELOC_CLIMB (audit BOT3(a)): the step goes to the visible tile farthest from the nearest live enemy centre, never into
+        // another flag's dist2 64 or beyond CLIMB_R2 of the spawn centre; null at a local maximum; ties to the nearer tile
+        G.W = 60; G.H = 40; Duck.relocNe = 1; Duck.relocEc[0] = new MapLocation(40, 20);
+        MapLocation cm = new MapLocation(10, 10), csc = new MapLocation(10, 10);
+        MapLocation[] cOthers = {new MapLocation(7, 4), new MapLocation(30, 30)};
+        MapLocation cBest = Duck.climbStep(cm, new MapLocation[]{new MapLocation(12, 10), new MapLocation(8, 10), new MapLocation(7, 9),
+                new MapLocation(6, 12), new MapLocation(0, 30), null}, csc, cOthers);
+        check(new MapLocation(6, 12).equals(cBest), "RELOC_CLIMB: the farthest admissible tile (not one beside another flag, not beyond CLIMB_R2): " + cBest);
+        check(Duck.climbStep(cm, new MapLocation[]{new MapLocation(12, 10), new MapLocation(11, 11), new MapLocation(10, 10)}, csc, cOthers) == null,
+              "RELOC_CLIMB: no tile beats the one we stand on: a local maximum (null)");
+        Duck.relocEc[0] = new MapLocation(10, 30); MapLocation[] cFar = {new MapLocation(50, 35), new MapLocation(30, 30)};
+        check(new MapLocation(13, 7).equals(Duck.climbStep(cm, new MapLocation[]{new MapLocation(11, 9), new MapLocation(13, 7), new MapLocation(9, 9)}, csc, cFar)),
+              "RELOC_CLIMB: the farther tile wins over nearer ones");
+        check(new MapLocation(9, 9).equals(Duck.climbStep(cm, new MapLocation[]{new MapLocation(11, 9), new MapLocation(9, 9)}, csc, cFar)),
+              "RELOC_CLIMB: an exact tie in score and distance goes to the lower x");
+        check(Duck.climbStep(cm, new MapLocation[]{new MapLocation(11, 9), new MapLocation(9, 9)}, csc, new MapLocation[]{new MapLocation(10, 5), null}) == null,
+              "RELOC_CLIMB: every better tile within dist2 64 of another flag: stay (null)");
+        Duck.relocNe = 0;
         G.W = 44; G.H = 31; Sym.cands = Sym.FX | Sym.ROT | Sym.FY;
         G.spawnCenters[0] = new MapLocation(3, 3); G.spawnCenters[1] = new MapLocation(3, 23); G.spawnCenters[2] = new MapLocation(9, 27);
         check(spreadSame(), "RELOC_SPREAD: DefaultMedium spots, all three symmetries live, are the same when every scan pauses");

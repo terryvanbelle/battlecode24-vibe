@@ -666,11 +666,12 @@ public class ReplayDump {
             int tid = r.trapTriggeredIds(j);
             if (inWindow(rn)) { int[] l = trapLoc.get(tid); out.printf("r%d TRAP %s %s at (%d,%d) triggered%n", rn,
                     tname(trapTeam.getOrDefault(tid, 0)), BUILD[trapType.getOrDefault(tid, 0)], l == null ? -1 : l[0], l == null ? -1 : l[1]); }
+            if (rdMode && rn > 200) { int[] l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0);   // --recall-d0 (any mode mix)
+                if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
+                    int v = 0; for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) v++;
+                    rdEv.add(new int[]{0, tt, l[0], l[1], v}); } }
             if (capMode && rn > 200) { int[] l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0);
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)]) && carrierNear(3 - tt, l[0], l[1], 13)) kCarrierStunned[tt]++;
-                if (rdMode && l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
-                    int v = 0; for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) v++;
-                    rdEv.add(new int[]{0, tt, l[0], l[1], v}); }
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
                     kStunTrig[tt]++; if (rn <= 250) kStunTrig250[tt]++;
                     boolean esc = carrierNear(tt, l[0], l[1], 36);   // an escort stun: tt's own carrier within dist2 36
