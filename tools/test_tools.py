@@ -460,7 +460,7 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
     shutil.rmtree(_d0dir, ignore_errors=True)
     if 'rd' in raw and 'own' in outs:   # --recall-d0: one t = 0 row per --contact-d0 chain, t = 10 / 20 rows while the chain is open
         RD_COLS = ('team,grab,flag,g0,outcome,T,t,enemy20,enemy10,ours20,ours100,alive,free10,free20,free30,freeFar,busy10,busy20,busy30,busyFar,'
-                   'nFight,nTether,nChase,nIcpt,nDefend,nThreat,nExplore,nGather,nOther').split(',')
+                   'nFight,nTether,nChase,nIcpt,nDefend,nThreat,nExplore,nGather,nOther,kills100,deaths100,stunVict100,enStunVict100').split(',')
         rr = list(csv.DictReader(raw['rd'].splitlines()))
         check(rr and list(rr[0].keys()) == RD_COLS, 'replay-dump --recall-d0: the RD_COLS header')
         key = lambda r: (r['team'], r['grab'], r['flag'], r['g0'], r['outcome'], r['T'])
@@ -473,11 +473,18 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
         check(all(sum(int(r[c]) for c in B) == int(r['alive']) and int(r['ours20']) <= int(r['ours100']) <= int(r['alive'])
                   and int(r['enemy20']) <= int(r['enemy10']) and sum(int(r[c]) for c in N) == int(r['free10']) + int(r['free20']) + int(r['free30'])
                   for r in rr), 'replay-dump --recall-d0: the eight bands sum to alive; ours20 <= ours100 <= alive; enemy20 <= enemy10; notes cover the free robots within 30')
+        K = ('kills100', 'deaths100', 'stunVict100', 'enStunVict100')
+        check(all(all(int(q[k]) >= int(r[k]) for k in K) for r in rr for q in rr if key(q) == key(r) and int(q['t']) > int(r['t'])),
+              'replay-dump --recall-d0: the near-flag kills, deaths and stun victims accumulate from t = 0 to 10 to 20')
         _rd = importlib.util.spec_from_file_location('rd0', os.path.join(HERE, 'recall-d0.py')); rd0 = importlib.util.module_from_spec(_rd); _rd.loader.exec_module(rd0)
         def _route(free, far):
             row = dict(kind='row', t='0', g0='14', outcome='CAPTURE', grab='300', won='0', free10=str(free), free20='0', busy30=str(far), busyFar='0')
             return rd0.evaluate([row, dict(kind='game', won='0', file='x')])[1]['ROUTE'][:2]
         check((_route(6, 0), _route(5, 15), _route(5, 14)) == ('R1', 'R2', 'R3'), 'recall-d0.py: routes R1 at 6 free within 20, R2 at 15 busy beyond 20, else R3')
+        def _fight(d):
+            mk = lambda o, k: dict(kind='row', t='10', g0='13', outcome=o, grab='300', won='0', kills100=str(k), deaths100='0')
+            return rd0.evaluate([mk('RETURN', d), mk('CAPTURE', 0), dict(kind='game', won='0', file='x')])[1]['FIGHT'][:2]
+        check((_fight(2), _fight(1)) == ('F1', 'F2'), 'recall-d0.py: fight route F1 when returned big chains out-kill captured ones by >= 1.5 near the flag')
     if 'own' in outs:
         ot = outs['own'].get(29, []); od = outs['own'].get(11, [])
         z = [r for r in ot if r['team'] == 'A' and r['kind'] == 'own' and r['tripRounds'] == '0']

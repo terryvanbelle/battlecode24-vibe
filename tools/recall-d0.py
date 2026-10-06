@@ -15,6 +15,11 @@ Routes, pinned on 2026-10-06 before any pooled number was seen. C12 = CAPTURE ch
   R2 committed     else median(busy30 + busyFar) >= 15: our army is fighting more than 20 tiles away -> the lever is a
                    disengage-to-flag rule for the army (riskier; its own design)
   R3 local loss    else: our robots are near the flag but outnumbered -> recall is not the lever
+Fight route F, pinned on 2026-10-06 after R was read (R3) and before any near-flag number was pooled: on chains with
+g0 >= 12 at t = 10, D = mean(kills100 - deaths100) over RETURN chains minus the same over CAPTURE chains:
+  F1 the fight decides  D >= 1.5: the local fight near the flag decides big chains -> build the flag-fight stun bank (stuns
+                   add local strength without bodies; arm design follows)
+  F2 not decisive  else
 Printed beside (descriptive): the same means for RETURN 12+ chains and for u12 chains, ours100 at t = 10 (the study's
 near100AtGrab10, 8.1 in capture chains vs 22.0 in returned ones on g_iter4), the free robots' notes, and the split by result.
 """
@@ -28,7 +33,7 @@ import premise   # noqa: E402
 DUMP = os.path.join(HERE, 'replay-dump.sh')
 NUM = ['g0', 'T', 't', 'enemy20', 'enemy10', 'ours20', 'ours100', 'alive', 'free10', 'free20', 'free30', 'freeFar',
        'busy10', 'busy20', 'busy30', 'busyFar', 'nFight', 'nTether', 'nChase', 'nIcpt', 'nDefend', 'nThreat', 'nExplore',
-       'nGather', 'nOther']
+       'nGather', 'nOther', 'kills100', 'deaths100', 'stunVict100', 'enStunVict100']
 
 
 def dump_one(path, side):
@@ -65,7 +70,8 @@ def line(name, rs):
     return (f'  {name:<26} n {len(rs):>4}  en20 {m["enemy20"]:4.1f} en10 {m["enemy10"]:4.1f} | ours20 {m["ours20"]:4.1f} '
             f'ours100 {m["ours100"]:4.1f} alive {m["alive"]:4.1f} | free <=10 {m["free10"]:3.1f} 11-20 {m["free20"]:3.1f} '
             f'21-30 {m["free30"]:3.1f} >30 {m["freeFar"]:3.1f} | busy <=10 {m["busy10"]:4.1f} 11-20 {m["busy20"]:4.1f} '
-            f'21-30 {m["busy30"]:4.1f} >30 {m["busyFar"]:4.1f}')
+            f'21-30 {m["busy30"]:4.1f} >30 {m["busyFar"]:4.1f} | near flag since grab: kills {m["kills100"]:4.1f} deaths {m["deaths100"]:4.1f} '
+            f'stunned by us {m["stunVict100"]:4.1f} by them {m["enStunVict100"]:4.1f}')
 
 
 def notes(rs):
@@ -101,8 +107,17 @@ def evaluate(rows):
     L.append(f'C12 (CAPTURE 12+, t = 0, n {len(c12)}): median free within 20 tiles {fr}, median busy beyond 20 tiles {far}')
     V['ROUTE'] = ('NO DATA' if not c12 else 'R1 free recall (build L1)' if fr >= 6 else 'R2 committed (disengage-to-flag design)' if far >= 15
                   else 'R3 local loss (recall is not the lever)')
-    if V['PARTIAL']: L.append('PARTIAL: a replay is missing or failed; the route is not read')
-    else: L.append(f'ROUTE: {V["ROUTE"]}')
+    t10 = [r for r in rs if iv(r, 't') == 10 and big(r)]
+    nk = lambda o: [iv(r, 'kills100') - iv(r, 'deaths100') for r in t10 if r['outcome'] == o]
+    ret, cap = nk('RETURN'), nk('CAPTURE')
+    D = mean(ret) - mean(cap) if ret and cap else None
+    if D is not None:
+        sv = lambda o: mean([iv(r, 'stunVict100') for r in t10 if r['outcome'] == o])
+        L.append(f'F (12+ chains, t = 10): net kills near the flag RETURN {mean(ret):+.2f} (n {len(ret)}) vs CAPTURE {mean(cap):+.2f} (n {len(cap)}): '
+                 f'D = {D:+.2f}; stunned by us RETURN {sv("RETURN"):.1f} vs CAPTURE {sv("CAPTURE"):.1f}')
+    V['FIGHT'] = 'NO DATA' if D is None else 'F1 the fight decides (build the flag-fight stun bank)' if D >= 1.5 else 'F2 not decisive'
+    if V['PARTIAL']: L.append('PARTIAL: a replay is missing or failed; the routes are not read')
+    else: L.append(f'ROUTE: {V["ROUTE"]}'); L.append(f'FIGHT ROUTE: {V["FIGHT"]}')
     return L, V
 
 

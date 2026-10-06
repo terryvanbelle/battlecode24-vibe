@@ -668,6 +668,9 @@ public class ReplayDump {
                     tname(trapTeam.getOrDefault(tid, 0)), BUILD[trapType.getOrDefault(tid, 0)], l == null ? -1 : l[0], l == null ? -1 : l[1]); }
             if (capMode && rn > 200) { int[] l = trapLoc.get(tid); int tt = trapTeam.getOrDefault(tid, 0);
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)]) && carrierNear(3 - tt, l[0], l[1], 13)) kCarrierStunned[tt]++;
+                if (rdMode && l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
+                    int v = 0; for (int[] q : nowLoc.values()) if (q[2] == 3 - tt && d2(q[0], q[1], l[0], l[1]) <= 13) v++;
+                    rdEv.add(new int[]{0, tt, l[0], l[1], v}); }
                 if (l != null && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[trapType.getOrDefault(tid, 0)])) {
                     kStunTrig[tt]++; if (rn <= 250) kStunTrig250[tt]++;
                     boolean esc = carrierNear(tt, l[0], l[1], 36);   // an escort stun: tt's own carrier within dist2 36
@@ -696,6 +699,7 @@ public class ReplayDump {
             int[] l = lastLoc.get(id);
             deathRound.put(id, rn);
             if (capMode && l != null) deathTile.put(id, l);   // a diver killed after its turn still dived (diveLeak12)
+            if (rdMode && t > 0 && l != null && rn > 200) rdEv.add(new int[]{1, t, l[0], l[1], 1});
             if (capMode && t > 0 && l != null) {   // lone / trickle deaths: own robots alive at the end of the round within dist2 20
                 int nb = 0;
                 for (Map.Entry<Integer, int[]> re : lastLoc.entrySet()) {
@@ -1220,6 +1224,7 @@ public class ReplayDump {
         String outcome = "OPEN";
         List<int[]> rounds = new ArrayList<>();    // t = 1..T: {ours20, ours100} at the end of each open round
         List<String> rd = new ArrayList<>();       // --recall-d0 rows (t = 0, 10, 20), printed with the outcome
+        int[] rdc = new int[4];                    // --recall-d0: kills, deaths, stun victims, enemy stun victims near the flag
         // --contact-d0 only
         int seenT0, enMax = -1, live, unseen, noPoint;
         int[] elig = new int[4];                   // elig12, elig10, elig8, elig12r144
@@ -1295,9 +1300,14 @@ public class ReplayDump {
             if (f == null) continue;
             if (c.g0 < 0) c.g0 = count(al[3 - c.dt], f[0], f[1], CONTACT_R2, -1);
             if (d0Mode) d0Tick(c, rn, f, al);
-            if (rdMode && (rn - c.grab) % 10 == 0 && rn - c.grab <= 20) rdTick(c, rn, f, al);
+            if (rdMode && rn - c.grab <= 20) {
+                for (int[] e : rdEv) if (d2(e[2], e[3], f[0], f[1]) <= SCREEN_R2) {
+                    if (e[0] == 1) c.rdc[e[1] == c.dt ? 1 : 0]++; else c.rdc[e[1] == c.dt ? 2 : 3] += e[4]; }
+                if ((rn - c.grab) % 10 == 0) rdTick(c, rn, f, al);
+            }
             if (rn > c.grab) c.rounds.add(new int[]{count(al[c.dt], f[0], f[1], CONTACT_R2, -1), count(al[c.dt], f[0], f[1], SCREEN_R2, -1)});
         }
+        rdEv.clear();
         for (int[] d : divers) {
             Chain best = null; int[] bf = null; int bd = Integer.MAX_VALUE;
             for (Chain c : chains.values()) {
@@ -1396,11 +1406,15 @@ public class ReplayDump {
      *  free10, free20, free30, freeFar   free robots at Chebyshev distance <= 10, 11-20, 21-30, > 30 from the flag
      *  busy10, busy20, busy30, busyFar   robots with an enemy within dist2 20 (in a fight), by the same distance bands
      *  nFight..nOther  the free robots within 30 by their last indicator note (first word; G.note): fight, tether, chase,
-     *                  icpt, defend, threat, explore, gather/hold, other */
+     *                  icpt, defend, threat, explore, gather/hold, other
+ *  kills100, deaths100, stunVict100, enStunVict100   since the grab round (through t): the carrier team's deaths and the
+ *                  defending team's deaths within dist2 100 of the flag (its tile that round), and the robots frozen there by
+ *                  the defending team's stun traps (victims within dist2 13 of the trap) and by the carrier team's */
     static boolean rdMode;
     static Map<Integer, String> lastNote = new HashMap<>();
+    static List<int[]> rdEv = new ArrayList<>();   // this round's stun triggers {0, team, x, y, victims} and deaths {1, team, x, y, 1}
     static final String RD_COLS = "team,grab,flag,g0,outcome,T,t,enemy20,enemy10,ours20,ours100,alive,free10,free20,free30,freeFar,busy10,busy20,busy30,busyFar,"
-            + "nFight,nTether,nChase,nIcpt,nDefend,nThreat,nExplore,nGather,nOther";
+            + "nFight,nTether,nChase,nIcpt,nDefend,nThreat,nExplore,nGather,nOther,kills100,deaths100,stunVict100,enStunVict100";
     static final String[] RD_NOTES = {"fight", "tether", "chase", "icpt", "defend", "threat", "explore", "gather"};
     static void rdTick(Chain c, int rn, int[] F, List<int[]>[] al) {
         int[] band = new int[4], busy = new int[4], notes = new int[RD_NOTES.length + 1]; int en10 = 0;
@@ -1422,6 +1436,7 @@ public class ReplayDump {
         for (int b : band) sb.append(',').append(b);
         for (int b : busy) sb.append(',').append(b);
         for (int k : notes) sb.append(',').append(k);
+        for (int k : c.rdc) sb.append(',').append(k);
         c.rd.add(sb.toString());
     }
     static void printRd() {
