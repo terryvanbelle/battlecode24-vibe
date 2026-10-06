@@ -3,7 +3,7 @@
 A practice run at **Battlecode 2024 ("Breadwars")**: a bot trained by an AI agent (Claude Code) under an
 evidence-driven loop, measured against every publicly available 2024 competitor bot on a simulated ladder.
 
-**Current bot: `src/g_iter6`** (incumbent since 2026-10-06; ladder 1977 +- 40, rank 11 of 85). It is g_iter5 (the owner's
+**Current bot: `src/g_iter6`** (incumbent since 2026-10-06; ladder 1999 +- 23, rank 11 of 85). It is g_iter5 (the owner's
 stack: centre crumbs + pick-after-move) plus the relocation climb that closes audit item BOT3(a) in
 `research/AUDIT-2026-10-03.md`. See `HANDOFF.md` for the state, `research/CRACK-GYMHGY.md` for the current target and
 `progress/REWRITE.md` for its statistics.

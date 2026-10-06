@@ -8,7 +8,7 @@
   priority) and drops at a local maximum, instead of walking to a fixed spot that was unreachable 23% of the time. 5(a) +3.56
   tiles on 12 of 12 cells vs Gymhgy; band delivery +2.5 tiles, enemy captures -27%; shipped at look 2: 480 seeded band pairs
   vs g_iter5, capture delta +0.23 +- 0.07 (t_all 3.44), upper +0.33 +- 0.10 (t_up 3.34; upper-tier wins 39 -> 60), wins net
-  +20 (sign p 0.045); basics PASS. Ladder **1977 +- 40, rank 11** on its 480 games (g_iter5 1973 +- 12). Before it: g_iter5
+  +20 (sign p 0.045); basics PASS. Ladder **1999 +- 23, rank 11** (Gymhgy 2000; g_iter5 1974); control on the band 413-307 over 720 games. Before it: g_iter5
   (the owner's stack: centre crumbs + pick-after-move), g_iter4, g_iter3, g_iter2, g_iter1. Before it: g_iter4 (+ C.FLAG_LOST), g_iter3, g_iter2, g_iter1.
 - **Ladder target: Gymhgy.v10official** (2001, rank 10; g_iter5 46% over 1,912 games; CLAUDE rule 14, research/CRACK-GYMHGY.md)
   since 2026-10-04, when the CyrilSharma lines ran out (owner PROMPTS 177; research/CRACK-CYRIL.md). Defeated: ColtG5
