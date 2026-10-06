@@ -2088,3 +2088,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   often not level through r1400-1900 (TreeSearch was 2-1 until late), so the bank never forms. Closing it would cut the
   stuns that defend the flags, the trade g4farm3 lost. The level gap against andli28 forms mostly r200-800 (deaths and
   trap XP), not at the end.
+- Full census of g_iter7 vs andli28 filler games: 1,520 games, 449 won (29.5%). A five-lens loss study (fights, economy and
+  levels, flags and captures, maps and sides, replay traces; synthesis; critic) is running as a workflow.
+- Ladder note: g_iter7's rating has drifted from 2150 to 2116 as the filler added ~1,500 games against andli28 (30% for us);
+  g_iter7 now rates 13 points under NotLLeon although it beats it 48-40 head to head. Heavy sampling of one opponent pulls a
+  Bradley-Terry fit when matchups are not transitive; to be raised with the owner (a per-pair game cap in the fit is one fix).
