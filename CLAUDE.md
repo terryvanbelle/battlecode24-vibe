@@ -33,9 +33,9 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     above us (another higher bot if it is the better target); when it ranks below us, pick the next without asking; if
     the lines of attack on the target run out, open the list (PROMPTS 177).
     Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
-    crack in research/CRACK-WAFFLE.md). Target now: **Gymhgy.v10official** (2001, rank 10 on 2026-10-06; g_iter5 46% over 1,912
-    games; since 2026-10-04, research/CRACK-GYMHGY.md). CyrilSharma.finalBot (2018, rank 9; g_iter4 36%) was left when its lines ran
-    out (research/CRACK-CYRIL.md: defense, offense, audit fixes and the whole stun economy came out neutral). The filler
+    crack in research/CRACK-WAFFLE.md), Gymhgy.v10official, CyrilSharma.finalBot and hsmalladi.finalbot (g_iter7 2116 >
+    hsmalladi 2071 > Cyril 2007 > Gymhgy 1990 on 2026-10-06; research/CRACK-GYMHGY.md). Target now: **NotLLeon.v3** (2138,
+    rank 6, the bot just above g_iter7; provisional until g_iter7's control settles its rating). The filler
     plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
     maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
     candidate whenever an arm against the target passes delivery.
@@ -47,9 +47,9 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     pre-registered victory read against the ladder target is not vetoed by a relative check (kill/death, trapsHit,
     stillPost, gathered400, floating250) that its tactic pays by design (e.g. a convoy trading bodies for re-grabs);
     log the cost. The absolute bars (symWrong, symmetry decided in time, overruns, exceptions) are bugs and still stop it.
-16. **Incumbent g_iter6 since 2026-10-06** (g5climb2: g_iter5 + C.RELOC_CLIMB, audit BOT3(a): in setup the flag carrier climbs
-    over visible tiles away from the enemy spawns instead of walking to a fixed, sometimes unreachable spot; shipped under the
-    PROMPTS 186-188 rule at look 2: 480 seeded band pairs vs g_iter5, capture delta t_all 3.44, upper t 3.34, wins net +20
-    (sign p 0.045); basics PASS). Before it g_iter5 (the owner's stack: centre crumbs + pick-after-move), g_iter4
-    (+ C.FLAG_LOST), g_iter3 (carrier stun + relocation V2, the waffle crack). src/bot with its defaults plays as g_iter6
-    (src/g_iter6 is the frozen copy); new arms flip switches from these defaults and are paired against g_iter6.
+16. **Incumbent g_iter7 since 2026-10-06** (g6heal: g_iter6 + C.HEAL_HOLD: no heal with an enemy within dist2 10 unless the
+    target carries a flag, TACTICS T16; shipped at look 1: 240 seeded band pairs vs g_iter6, wins 136 -> 164 (net +28, 36-8,
+    p < 0.001), capture delta t_all 6.46, upper t 5.31; basics PASS). Before it g_iter6 (the relocation climb, audit BOT3(a)),
+    g_iter5 (the owner's stack: centre crumbs + pick-after-move), g_iter4 (+ C.FLAG_LOST), g_iter3 (carrier stun + relocation
+    V2, the waffle crack). src/bot with its defaults plays as g_iter7 (src/g_iter7 is the frozen copy); new arms flip switches
+    from these defaults and are paired against g_iter7.

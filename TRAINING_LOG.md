@@ -2003,3 +2003,18 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g6heal band delivery: PASS** (24 cells, base g_iter6): heals under threat 0.13 vs 0.44 (+17.7 SE past x0.5); ready strike
   held near an enemy 0.33 vs 0.22 (+3.8 SE past x1.2; the upper tier's 0.32); enemy captures 1.00 vs 1.33 (guard PASS); 0
   overruns. Band test (look 1, seeds 282828 / 393939) running.
+- **g6heal band look 1 vs g_iter6** (240 seeded pairs, seeds 282828 / 393939, identical 18): wins 136 -> 164, gained 36, lost
+  8, **net +28 (sign p < 0.001)**; capture delta +0.57 +- 0.09 (t_all 6.46); upper 31 -> 50 (24-5), +0.72 +- 0.14 (t_up 5.31);
+  rest 105 -> 114 (12-3), +0.42 +- 0.11 (t 3.8). **SHIP at look 1** (t_all >= 3.0, net >= 0). Basics PASS (sym wrong 0, sym
+  decided 181/182 and 57/58, overruns 0, max 24.6k, exceptions 0; stillPost 25.8 vs 28.8; kill/death 2.18 vs 2.59, -0.9 SE).
+
+### 2026-10-06 10:00 UTC — **g6heal ships: promoted to incumbent g_iter7** (the heal hold, TACTICS T16)
+- Promotion: C.HEAL_HOLD default on; src/g_iter7 snapshotted (identical to g6heal but the package and one comment);
+  AuditTest incumbent check (also asserts TERR_MICRO off); g6heal's two band runs recorded as g_iter7; keep-replays gains
+  g_iter7 and g6heal; ladder refit: **g_iter7 2116 +- 57, rank 7 of 86** on its 240 games (between NotLLeon 2138 and
+  andrewgopher 2106), hsmalladi 2071, Cyril 2007, g_iter6 1991, Gymhgy 1990. CLAUDE rules 14 and 16, HANDOFF, README,
+  REWRITE, TACTICS T16 (accepted), BRIEFING updated.
+- **Target change (CLAUDE rule 14):** Gymhgy, Cyril and hsmalladi now rank below g_iter7 -> defeated; the new target is the
+  bot just above, **NotLLeon.v3** (provisional until g_iter7's control settles its rating; g_iter7 6-6 against it so far).
+  The filler plays g_iter7 against NotLLeon (baseline). Gymhgy closing read: the climb code (g5climb2/g_iter6) vs g_iter5
+  against Gymhgy, 520 paired games, net +24.

@@ -111,3 +111,11 @@ g_iter5's baseline against Gymhgy.
 **g5climb2 shipped as g_iter6 (2026-10-06).** Band delivery +2.5 tiles of flag distance and enemy captures -27%; look 1
 capture t 2.20, look 2 t 2.7; pooled 480 pairs t_all 3.44, t_up 3.34, net +20 (sign p 0.045): SHIP. Its Gymhgy read comes
 from the filler, which now pairs g_iter6 with g_iter5 against Gymhgy on random maps and sides.
+
+## Closed: Gymhgy is below us (2026-10-06)
+
+g_iter7 (the heal hold, on top of the climb) rates 2116 +- 57 against Gymhgy's 1990 (and Cyril 2007, hsmalladi 2071): the
+target moves to NotLLeon.v3, the bot just above. What moved the matchup: centre crumbs (+30/640 for g4crumb), pick-after-move
+(g_iter5), flag distance (the climb, g_iter6: +24 over 520 paired games against Gymhgy) and, band-wide, the heal hold
+(g_iter7: +28 of 240 band pairs). Ruled out on the way: recall, a flag-fight stun bank, flag clustering, the convoy dive,
+relay, zone holds, the level farm and the dam line.

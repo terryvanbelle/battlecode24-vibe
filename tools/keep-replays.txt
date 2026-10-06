@@ -13,3 +13,5 @@ g_iter5
 g4ship1
 g_iter6
 g5climb2
+g_iter7
+g6heal

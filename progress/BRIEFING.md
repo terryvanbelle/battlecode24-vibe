@@ -138,6 +138,12 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   upper t 3.34 (upper-tier wins 39 -> 60), wins net +20 (p 0.045) -> SHIP under the PROMPTS 188 rule; basics PASS. The
   relocation climb closes audit item BOT3(a). Ladder 1977 +- 40 on its first 480 games (g_iter5 1973). Next: g_iter6's
   control on the refreshed band; the filler pairs g_iter6 with g_iter5 against Gymhgy.
+- 10:00 UTC (Oct 6): **new incumbent g_iter7** (g6heal, the heal hold). A research agent read 15 upper-tier replays and found
+  we lose the action-cooldown tempo against the upper tier only: we heal with an enemy close 45% of the time (they 26%) and
+  hold a ready strike 0.20 to their 0.32 (confirmed on 720 games). g6heal keeps the action for a strike when an enemy is
+  within dist2 10: band look 1, wins 136 -> 164 (net +28, 36-8, p < 0.001), capture t 6.46, upper-tier wins 31 -> 50. Ladder
+  2116 +- 57, rank 7 (provisional, 240 games), above hsmalladi, Cyril and Gymhgy: the target moves to NotLLeon.v3. The
+  kill-reward economy (T15) is a consequence of fight location, and a territory-aware micro (g6terr) failed its 5(a).
 
 ## Working
 - The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
