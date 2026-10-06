@@ -1977,3 +1977,13 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (bar >= 7 and +0.03); single cells swing from 0.04 to 0.59 between twins (Cyril Backslash), so the territory split follows
   the game's flow, not a tile preference inside a fight; wins 3 vs 5, enemy captures 19 vs 17; 0 overruns, 0 exceptions.
   The kill-reward gap (T15) is a consequence of where the armies meet; micro cannot move it.
+- **Upper-tier micro study** (research agent, 15 g_iter6 replays; research/upper-tier-micro-2026-10-06/): against the upper
+  tier only, we lose the action-cooldown tempo: ready-and-striking on contact 0.27 vs 0.44, their hits on our robots still on
+  cooldown 0.49 vs 0.36, heals with an enemy within dist2 10 45% vs 25%, ready strike held near an enemy 0.11 vs 0.34 (lower
+  band at parity; Gymhgy and Cyril heal under threat like us). Arm **g6heal** (C.HEAL_HOLD: no heal with an enemy within
+  dist2 10 unless the target carries a flag; indicator hh). New census columns healThreat10 and readyHeld20; the g_iter6
+  control is re-censused with them to test the signature on 720 games. 5(a) pre-registered: 12 cells vs jmerle, andli28,
+  hsmalladi, andrewgopher (3 maps each, seed 6301, g_iter6 twins); it fires if healThreat10 <= 0.15 on >= 11 of 12 cells and
+  readyHeld20 >= g_iter6's + 0.05 on >= 9 of 12, with 0 overruns and 0 exceptions (kill/death and captures logged).
+- Gymhgy read: g_iter6 vs g_iter5 240 paired filler games net +18 (+1.8 SE); with the g5climb2 games (same code) 360 pairs
+  net +22. Ladder g_iter6 1999 +- 21, Gymhgy 2001.

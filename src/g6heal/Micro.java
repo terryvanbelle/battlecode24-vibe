@@ -1,4 +1,4 @@
-package bot;
+package g6heal;
 
 import battlecode.common.*;
 

@@ -124,3 +124,4 @@ g5climb2 C.RELOC_CLIMB=true
 g5climb3 C.RELOC_CLIMB=true
 g5climb3 C.CLIMB_R2=625
 g6terr C.TERR_MICRO=true
+g6heal C.HEAL_HOLD=true

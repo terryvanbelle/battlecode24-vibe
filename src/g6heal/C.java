@@ -1,4 +1,4 @@
-package bot;
+package g6heal;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -28,7 +28,7 @@ public strictfp class C {
     public static final boolean RELOC_CLIMB = true;     // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
                                                         // spawns (no fixed spot that may be unreachable) and drops at a local maximum; arm
                                                         // g5climb2, the incumbent g_iter6 since 2026-10-06
-    public static final boolean HEAL_HOLD = false;      // 2026-10-06 replay study: with an enemy within HOLD_R2 keep the action for a strike
+    public static final boolean HEAL_HOLD = true;       // 2026-10-06 replay study: with an enemy within HOLD_R2 keep the action for a strike
                                                         // (no heal unless the target carries a flag); the upper tier heals under threat 25%
                                                         // of the time to our 45% and holds a ready strike 0.34 to our 0.11; arm g6heal
     public static final int HOLD_R2 = 10;

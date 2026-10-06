@@ -79,6 +79,10 @@ import java.util.zip.GZIPInputStream;
  *   paidKillShare      the other team's deaths on its own territory / all its deaths: a proxy for the share of our kills
  *                      that pay the +30 kill reward (the killer stands within 2 tiles of the victim; RULES.md); blank without
  *                      a death. homeDeathShare: the same for our deaths on our territory (kills that pay them) (2026-10-06, T15)
+ *   healThreat10       post-setup heals made with an enemy within dist2 10 of the healer (end-of-round positions) / all
+ *                      post-setup heals; readyHeld20: post-setup robot-rounds with an enemy within dist2 20 in which the robot
+ *                      ends the round with action cooldown < 10 (a strike ready) / all such robot-rounds (2026-10-06: the
+ *                      upper tier heals under threat 25% of the time to our 45% and holds a ready strike 0.34 to our 0.11)
  *   carrierDeathsSpawn post-setup deaths of the team's flag carriers within dist2 64 of an enemy spawn centre and more than
  *                      dist2 100 from the carried flag's home: carriers killed walking past an enemy spawn (2026-10-06)
  *   carrierStunBuilds  post-setup stun traps we built within dist2 8 of an enemy carrying our flag; carrierStunned: our
@@ -443,6 +447,7 @@ public class ReplayDump {
             int id = r.robotIds(j), t = team.getOrDefault(id, 0), x = locs.xs(j), y = locs.ys(j), hp = r.robotHealths(j);
             hpNow.put(id, hp);
             if (t > 0 && hp > 0) nowLoc.put(id, new int[]{x, y, t});
+            if (capMode) acdNow.put(id, r.robotActionCooldowns(j));
             levels.put(id, new int[]{r.attackLevels(j), r.buildLevels(j), r.healLevels(j)});
             if (t == 0) continue;
             if (hp > 0) { alive[t]++; hpSum[t] += hp; }
@@ -549,6 +554,12 @@ public class ReplayDump {
                 if (truth != null && Math.max(Math.abs(truth[0] - ex), Math.abs(truth[1] - ey)) > 2) kEfStaleLoc[t]++;
             }
         }
+        if (capMode && rn > 200) for (Map.Entry<Integer, int[]> e : nowLoc.entrySet()) {   // readyHeld20: near an enemy, action ready
+            int[] q = e.getValue(); boolean near = false;
+            for (int[] o : nowLoc.values()) if (o[2] == 3 - q[2] && d2(o[0], o[1], q[0], q[1]) <= VISION2) { near = true; break; }
+            if (!near) continue;
+            kNear20[q[2]]++; if (acdNow.getOrDefault(e.getKey(), 99) < 10) kReady20[q[2]]++;
+        }
         // bytecodes
         for (int j = 0; j < r.bytecodeIdsLength(); j++) {
             int id = r.bytecodeIds(j), t = team.getOrDefault(id, 0), bc = r.bytecodesUsed(j);
@@ -565,7 +576,12 @@ public class ReplayDump {
             String desc = null;
             switch (a) {
                 case Action.ATTACK: cAttacks[t]++; desc = "attacks #" + tgt; break;
-                case Action.HEAL: cHeals[t]++; desc = "heals #" + tgt; break;
+                case Action.HEAL: cHeals[t]++; desc = "heals #" + tgt;
+                    if (capMode && rn > 200 && t > 0 && nowLoc.containsKey(id)) {   // healThreat10: a heal with an enemy within dist2 10
+                        int[] h = nowLoc.get(id); kHealPost[t]++;
+                        for (int[] o : nowLoc.values()) if (o[2] == 3 - t && d2(o[0], o[1], h[0], h[1]) <= 10) { kHealThreat[t]++; break; }
+                    }
+                    break;
                 case Action.DIG: if (id >= 0) { cDigs[t]++; if (rn > 1500) kDigsLate[t]++; } water[tgt] = true; desc = "digs (" + tgt % W + "," + tgt / W + ")"; break;
                 case Action.FILL: cFills[t]++; water[tgt] = false; desc = "fills (" + tgt % W + "," + tgt / W + ")"; break;
                 case Action.EXPLOSIVE_TRAP: case Action.WATER_TRAP: case Action.STUN_TRAP:
@@ -1528,6 +1544,8 @@ public class ReplayDump {
     }
     static double[] kFlagSpreadMin = {-1, -1, -1}, kFlagSpreadMax = {-1, -1, -1};
     static int[] kCarrierDeathsSpawn = new int[3];
+    static int[] kHealPost = new int[3], kHealThreat = new int[3], kNear20 = new int[3], kReady20 = new int[3];
+    static Map<Integer, Integer> acdNow = new HashMap<>();
 
     static void surveyTick(int rn) {
         for (int t = 1; t <= 2; t++) {
@@ -1643,7 +1661,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1677,7 +1695,8 @@ public class ReplayDump {
                         + "," + chainTally[t].cols()
                         + "," + (kFlagSpreadMax[t] >= 0 ? String.format("%.1f,%.1f", kFlagSpreadMin[t], kFlagSpreadMax[t]) : ",")
                         + "," + kCarrierDeathsSpawn[t]
-                        + "," + share(kDeathsHome[o], cDeaths[o]) + "," + share(kDeathsHome[t], cDeaths[t]));
+                        + "," + share(kDeathsHome[o], cDeaths[o]) + "," + share(kDeathsHome[t], cDeaths[t])
+                        + "," + share(kHealThreat[t], kHealPost[t]) + "," + share(kReady20[t], kNear20[t]));
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();
