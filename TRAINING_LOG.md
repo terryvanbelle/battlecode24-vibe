@@ -2018,3 +2018,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   bot just above, **NotLLeon.v3** (provisional until g_iter7's control settles its rating; g_iter7 6-6 against it so far).
   The filler plays g_iter7 against NotLLeon (baseline). Gymhgy closing read: the climb code (g5climb2/g_iter6) vs g_iter5
   against Gymhgy, 520 paired games, net +24.
+- Band refresh for g_iter7: `tools/elo.py --band 20 --as g_iter7` gives the same 20 bots (tools/band.txt unchanged); fresh look
+  seeds 313131 424242 / 535353 646464 / 757575 868686 (g6heal was selected on g_iter6's). tools/upper-tier.txt is re-derived
+  once the control settles g_iter7's rating (andrewgopher 2106 lies inside its +- 57). g_iter7's control on all six queued.
