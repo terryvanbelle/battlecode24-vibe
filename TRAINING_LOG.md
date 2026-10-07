@@ -2179,3 +2179,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   g7ehp +0.040, 10/12); guards: enemy captures 25 vs 22 (<= +3), first grabs 1.07x, our captures 18 vs 18; ready strike held near
   an enemy 0.31 vs 0.27 (the hold works), heals under threat 0.137 vs 0.132; wins 2 vs 2. Band delivery at 192 cells (g7ehp's
   capture guard needed that power; same bars), band test chained.
+- **g7ehp2 band delivery: INCONCLUSIVE at 192 cells** (the cap; no band test): lethal step-ins 1.4 vs 364 and step-in deaths 24 vs
+  94 (PASS), deaths 384 vs 429 (-11%, +0.7 SE: INCONCLUSIVE), enemy captures 1.18 vs 1.02 (guard INCONCLUSIVE, leaning worse:
+  margin -0.06 +- 0.07; g7ehp read 1.08 on the same cells). Holding the strike costs heals, and on the band that shows up as flags.
+  With g7ehp stopped at band look 1 (net +2, capture t -1.12), **the ENGAGE_HP line is parked for the band**; the paired filler
+  keeps measuring g7ehp against andli28 (+10 over 120 pairs, +1.8 SE so far). The andli28 study's levers are spent: FC closed
+  standalone, ENGAGE_HP parked, RING failed, FOCUS weak, LATE_ALLIN refuted.
