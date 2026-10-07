@@ -2193,3 +2193,12 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   read. A band-safe form of the step-in gate (e.g. one that keeps the heal) is the open question.
 - **g7ehp vs g_iter7 against andli28: 240-pair read complete, net +28 (49-21, +3.3 SE).** The filler returns to g_iter7's baseline
   against andli28 (g7ehp is parked on the band).
+- **Upper-tier study of g_iter7** (workflow: four lenses, synthesis, critic; research/upper-tier-study-2026-10-07/): contact is
+  more lethal for us at equal local numbers (2-round hazard 0.082 vs 0.040), from (1) enemy stun volume (439 triggers a game on us
+  vs our 200, funded by kill rewards and cheaper stuns) and (2) tempo while not ready: after a strike our robots stay in enemy
+  reach 0.252 of the time vs the upper tier's 0.111 (and the rest's 0.178) — a code defect: the kite score counts threats out to
+  dist2 10, so stepping out of reach earns nothing. Target choice and focus fire are at parity (FOCUS refuted). Levers after the
+  critic: (1) KITE_REACH (leave reach when not ready or hurt; the critic's randomized test on the kite score's coin-flip ties:
+  below 700 HP leaving cuts 3-round deaths by 0.04-0.21 at no strike cost, above 700 staying earns strikes, so gate it below 700
+  HP), (2) STUN_MIN13 dose 3 (skip field stuns with <= 2 enemies near the tile), (3) RC_BAND (conditional on 1); HEAL_FRONT
+  refuted. Open before building: 10-round survival and the deaths-to-captures channel.
