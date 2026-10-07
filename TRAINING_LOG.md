@@ -2221,3 +2221,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   captures 12 vs 16, ours 21 vs 20, R wins -2 (at the limit), R capture difference -2, enemy stun triggers 1.21x (cap 1.25x).
   Upper half: wins 2 vs 0, captures 10-8 vs 7-12. Band delivery (registered: rel:reachEndFree<=0.4 rel:reachHit<=0.92
   nw:enemyCaptured<=1.1 mean:overruns<=0) with band look 1 chained as a stop check.
+- **g7kite band delivery: PASS** (48 cells; INCONCLUSIVE at 24): reachEndFree 0.00 vs 0.22 (+17.9 SE), reachHit 0.12 vs 0.17 (-29%,
+  +6.3 SE), enemy captures 0.94 vs 1.12 (guard PASS), 0 overruns. Band look 1 running; the filler pairs g7kite with g_iter7 against
+  andli28. RC_BAND (HP >= 700, local-balance gate) is being built by a workflow as the stack partner g7kiterc.
