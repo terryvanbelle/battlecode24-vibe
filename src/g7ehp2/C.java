@@ -1,4 +1,4 @@
-package bot;
+package g7ehp2;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -47,8 +47,8 @@ public strictfp class C {
     // enemy hits (each enemy's own hit: their ATTACK upgrade and its attack level) reach its HP, unless an enemy in reach of
     // the tile dies to our strike; the tile scores as kite/hold. RETREAT_HP, strike-first, the carrier and loose-flag branches
     // and HEAL_HOLD are unchanged. 0 = off (g_iter7); arm 700, dose 1000.
-    public static final int ENGAGE_HP = 0;
-    public static final boolean EHP_HOLD = false;       // review amendment 7 (research/andli28-study-2026-10-06): a robot ENGAGE_HP refused this
+    public static final int ENGAGE_HP = 700;
+    public static final boolean EHP_HOLD = true;        // review amendment 7 (research/andli28-study-2026-10-06): a robot ENGAGE_HP refused this
     public static final int EHP_HOLD_R2 = 20;           // turn keeps its action (no heal unless the target carries a flag) while an enemy is within
                                                         // EHP_HOLD_R2, so it holds the strike the refusal was for; arm g7ehp2
     public static final boolean TERR_MICRO = false;     // TACTICS T15 (kill reward: +30 only for a killer on enemy territory): in a fight,

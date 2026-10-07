@@ -2170,3 +2170,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (bar 1.4), stun victims 1.03x (bar 1.15), fast-victim share 0.569 (bar 0.47: ok), andli28's first grabs of our flags 1.69x
   (guard 1.1x: FAIL); enemy captures 17 vs 16, wins 2 vs 2. The rings deter grabs; the freed crumbs bought field stuns that
   caught no more victims overall.
+- Arm **g7ehp2** (review amendment 7, the pre-registered follow-up before the ENGAGE_HP line may close): g7ehp plus C.EHP_HOLD
+  (a robot ENGAGE_HP refused this turn keeps its action, no heal unless the target carries a flag, while an enemy is within
+  dist2 20). 5(a) = g7ehp's (12 cells vs andli28, seed 6701, same bars, g_iter7 twins from the g7ehp run), with healThreat10 and
+  heals logged as its cost; on FIRE straight to the band delivery and band test (g7ehp's band test stopped at look 1).
