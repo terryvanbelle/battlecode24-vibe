@@ -2185,3 +2185,4 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   With g7ehp stopped at band look 1 (net +2, capture t -1.12), **the ENGAGE_HP line is parked for the band**; the paired filler
   keeps measuring g7ehp against andli28 (+10 over 120 pairs, +1.8 SE so far). The andli28 study's levers are spent: FC closed
   standalone, ENGAGE_HP parked, RING failed, FOCUS weak, LATE_ALLIN refuted.
+- An upper-tier study of g_iter7 (workflow: four lenses, combat micro, traps and stuns, positioning and cohesion, economy and upgrades; synthesis; critic) is running to find the next band-wide lever, as the study behind the heal hold did.
