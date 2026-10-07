@@ -2191,3 +2191,5 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   shipping rule decides promotion (as for g_iter3, promoted on its band result, not its waffle read), and g7ehp's band look 1
   leaned negative (capture t -1.12). Recorded as the strongest andli28-specific evidence so far; the filler finishes the 240-pair
   read. A band-safe form of the step-in gate (e.g. one that keeps the heal) is the open question.
+- **g7ehp vs g_iter7 against andli28: 240-pair read complete, net +28 (49-21, +3.3 SE).** The filler returns to g_iter7's baseline
+  against andli28 (g7ehp is parked on the band).
