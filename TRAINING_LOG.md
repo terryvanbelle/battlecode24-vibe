@@ -2151,3 +2151,6 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   games level at r1950 are rare on random maps (the 5(a)'s 17 of 24 came from cells chosen for it). Where the condition holds it
   fires every time (17/17) and costs nothing before r1950 (identity 24/24): a stack candidate (TRAINING_ALGORITHM §5), to be
   re-gated only with a delivery measure conditional on games level at r1950, pre-registered afresh.
+- **g7ehp band delivery: PASS at 192 cells**: lethal step-ins from a safe tile 1.5 vs 364 (+19 SE), deaths right after a step-in
+  24 vs 94 (+10.5 SE), deaths 377 vs 429 (-12%, +1.2 SE past x0.92), enemy captures 1.08 vs 1.02 (guard PASS, worst plausible
+  rise 18%), 0 overruns. Band test (look 1, seeds 313131 / 424242) running.
