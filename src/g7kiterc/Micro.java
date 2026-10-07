@@ -1,4 +1,4 @@
-package bot;
+package g7kiterc;
 
 import battlecode.common.*;
 

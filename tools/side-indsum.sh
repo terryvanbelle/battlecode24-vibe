@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Sum our robots' indicator counters (chases/intercepts/camps, escort turns, regrabs, combat traps, ..., the andli28 arms'
-# eh, fc, fcF and arm g7kite's kr) per replay, on OUR side of each game (replay names end in __bot<SIDE>.bc24; old diag-batch
-# names without it: side A): for step-5(a) checks on scrimmage and diag-batch blocks.
+# eh, fc, fcF, arm g7kite's kr and arm g7kiterc's rc) per replay, on OUR side of each game (replay names end in
+# __bot<SIDE>.bc24; old diag-batch names without it: side A): for step-5(a) checks on scrimmage and diag-batch blocks.
 #   tools/side-indsum.sh <replay.bc24> [...]
 # Each counter only grows, so a robot's count is the largest value seen in any of its strings: the engine cuts a string at 64
-# chars, and since arms g7kite/g7ehp/g7fc put their counters after o/x the later counters (from ch on) are often cut in fights
-# (2026-10-06: the old filter ' rg' and "last line per robot" missed those robots).
+# chars, and since arms g7kite/g7kiterc/g7ehp/g7fc put their counters after o/x the later counters (from ch on) are often cut
+# in fights (2026-10-06: the old filter ' rg' and "last line per robot" missed those robots).
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 for f in "$@"; do
   b=$(basename "$f" .bc24); side=${b##*__bot}
@@ -14,7 +14,7 @@ for f in "$@"; do
 import sys,re
 PATS=(("ch",r" ch(\d+)/"),("ic",r" ch\d+/(\d+)/"),("cp",r" ch\d+/\d+/(\d+)"),("et",r" et(\d+)"),("rg",r" rg(\d+)"),("ct",r" ct(\d+)"),("pk",r" pk(\d+)"),
       ("pr",r" pr(\d+)"),("fs",r" fs(\d+)"),("an",r" an(\d+)"),("wy",r" wy(\d+)"),("cr",r" cr(\d+)"),("lf",r" lf(\d+)"),("eh",r" eh(\d+)"),
-      ("fc",r" fc(\d+)"),("fcF",r" fcF(\d+)"),("kr",r" kr(\d+)"))
+      ("fc",r" fc(\d+)"),("fcF",r" fcF(\d+)"),("kr",r" kr(\d+)"),("rc",r" rc(\d+)"))
 best={}
 for l in sys.stdin:
     p=l.split()

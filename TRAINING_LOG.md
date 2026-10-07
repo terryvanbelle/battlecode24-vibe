@@ -2223,7 +2223,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   nw:enemyCaptured<=1.1 mean:overruns<=0) with band look 1 chained as a stop check.
 - **g7kite band delivery: PASS** (48 cells; INCONCLUSIVE at 24): reachEndFree 0.00 vs 0.22 (+17.9 SE), reachHit 0.12 vs 0.17 (-29%,
   +6.3 SE), enemy captures 0.94 vs 1.12 (guard PASS), 0 overruns. Band look 1 running; the filler pairs g7kite with g_iter7 against
-  andli28. RC_BAND (HP >= 700, local-balance gate) is being built by a workflow as the stack partner g7kiterc.
+  andli28. RC_BAND (HP >= 700; gate: at most 2 enemies and at least 4 allies in vision, not the critic's local balance, plus a
+  support clause, 2 allies within dist2 10 of the hold's threat; synthesis.md 'RC_BAND amendments') is being built by a workflow as
+  the stack partner g7kiterc.
 - **g7kite band look 1 vs g_iter7** (240 pairs, seeds 313131 / 424242, identical 16): wins 177 -> 183, net +6 (18-12); capture delta
   +0.17 +- 0.08 (t_all 2.03); upper (5 bots, 60 pairs) 20 -> 19, +0.12 +- 0.17 (t 0.67); rest 157 -> 164 (13-6), +0.18 +- 0.09 (t 2.0).
   **Shipping rule look 1: CONTINUE** (better than the premise's capture estimate of 0 to +0.03). Basics PASS (all bars; stillPost,
@@ -2232,3 +2234,11 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   -0.17. **Pooled 480 pairs: net +3, capture delta +0.02 +- 0.06 (t_all 0.32), t_up 0.38 -> STOP (park).** Look 1's t 2.03 was
   noise; the premise's forecast held (saved robots do not become captures on their own). Basics PASS on both looks. The planned
   stack g7kiterc (RC_BAND for HP >= 700 on top) is still the real band test; its workflow is running.
+- Arm **g7kiterc** (g7kite + C.RC_BAND 150, RC_HP 700, RC_MAX_E 2, RC_MIN_A 4, RC_SUP 2; workflow: premise, implementer, reviewer,
+  fixer; amendments RC1-RC4 in research/upper-tier-study-2026-10-07/synthesis.md): a robot at HP >= 700 that is not action-ready
+  but will be next turn, out of reach, with at most 2 enemies and at least 4 allies in vision, prefers a hold tile (one enemy
+  within dist2 10, none within 4, that enemy supported by 2+ of our seen allies) over the dist2 11-20 band, so it strikes next
+  turn. Premise (720 control replays; the band tile being blocked as a quasi-experiment): holding adds ~+0.2 strikes within 2
+  rounds and +0.07-0.08 own kills within 20, with deaths flat when supported; unsupported holds take 8-9x the hits. New census
+  columns rcHold, rcStrike2, rcHitN, rcHitHoldN; guards read over each cell's common window (RC1). Unit tests pass. Diagnostic
+  first (rule 5), then the 12-cell 5(a) against the g7kite and g_iter7 twins of the kite5a block.

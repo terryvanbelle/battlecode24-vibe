@@ -1,4 +1,4 @@
-package bot;
+package g7kiterc;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -64,7 +64,7 @@ public strictfp class C {
     // carrier branch, so without that gate it kited away from the carrier). 0 = off: play-identical to g_iter7, not
     // byte-identical (the kr counter rides in the indicator string, built every turn, so --metrics max_bc runs above the twin's);
     // arm 300, dose 1200 (min(inRange, 2) x 1200 > 1000: pays one extra threat to leave reach).
-    public static final int KITE_REACH_W = 0;
+    public static final int KITE_REACH_W = 300;
     public static final int KITE_REACH_HP = 700;
     public static final int KITE_REACH_CAP = 2;
     // C.RC_BAND (upper-tier study 2026-10-07 lever 2, as amended by the RC_BAND premise check of 2026-10-07 on the 720 g_iter7
@@ -86,7 +86,7 @@ public strictfp class C {
     // allies took a hit before the next turn +0.135 U / +0.126 R (2+: +0.015 / +0.016) and died within 20 rounds +0.026 / +0.020
     // (2+: -0.012 / +0.005) for the same own kills (+0.085 / +0.060 vs +0.078 / +0.071). It drops about a third of the changed
     // turns (U 245 of 700 a game, R 164 of 598). Allies within dist2 10 of the hold tile itself are 0-1 in only 1-2% of them.
-    public static final int RC_BAND = 0;
+    public static final int RC_BAND = 150;
     public static final int RC_HP = 700;
     public static final int RC_MAX_E = 2;
     public static final int RC_MIN_A = 4;

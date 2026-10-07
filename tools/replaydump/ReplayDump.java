@@ -149,7 +149,7 @@ import java.util.zip.GZIPInputStream;
  *   with the true water it reads 0.182 / 0.191, the gap all in opponents that build water traps (dmtrung14 0.479 -> 0.207,
  *   SampleProvider, hsmalladi, quesswho). The g_iter7 twin baselines are the true-water ones. Debug: REACH_VECWATER=1 in the
  *   environment gives the reach census the analyser's water (the map's, then each round's dig and fill vectors only), so that
- *   check can be rerun; no other column changes (review 2026-10-07)
+ *   check can be rerun; no column outside the reach and rc censuses changes (review 2026-10-07)
  *   reachEndFree       reach turns that end within dist2 4 of an enemy (its end-of-round tile against the enemies where they
  *                      stood at its turn) / reach turns (blank without one); reachEndFreeN, reachEndFreeD: the counts (a pooled
  *                      share is sum N / sum D)
@@ -157,6 +157,30 @@ import java.util.zip.GZIPInputStream;
  *                      the next round before its turn) / reach turns (blank without one); reachHitN: the count
  *   reachKilledN       reach turns after which attacks bring the robot to 0 HP before its next turn (its HP at the turn, then
  *                      the attacks and heals on it in action order; the next round from its end-of-round HP)
+ *   rc census (C.RC_BAND's signature, arm g7kiterc, 2026-10-07; the step census's reconstruction, matched to the RC_BAND premise
+ *   check's analyser Rc.java, a fork of the study's Cm.java). A class turn: a post-setup turn of a robot alive and not carrying at
+ *   the end of the previous round, with move cooldown < 20 and action cooldown in [20, 30) then (ready next turn, not now), alive
+ *   at its turn with HP >= 700, whose nearest enemy is at dist2 5-20 at its turn, with no enemy carrier, at most 2 enemies and at
+ *   least 4 other allies within dist2 20, and a legal supported hold tile among its own tile and its 8 neighbours (on the map, no
+ *   wall, no water at the end of the previous round, no robot on it at its turn): exactly one enemy within dist2 10, none within
+ *   dist2 4, and at least RC_SUP (2) of the allies within dist2 20 of its start tile within dist2 10 of that enemy (holdTile; C.RC_SUP,
+ *   RC_BAND amendments RC4). The arm's gate reads the same counts in vision. Water as the reach census's (REACH_VECWATER=1 gives the
+ *   analyser's water). Validated 2026-10-07 against Rc.java with the RC_SUP class (rc3 on the VM: per-tile support of the hold
+ *   tile's threat from the allies within dist2 20 of the start tile) with the analyser's water: rcHoldD, rcHoldN, rcStrike2N, rcHitN
+ *   and rcHitHoldN equal its counts for both teams in the 24 kite5a twins (g7kite and g_iter7, seed 7101), the own fixture and the
+ *   ColtG5 game (true water moves D by at most 8 a half and no hit count). g7kite twin, true water: rcHold 0.065 U / 0.089 R,
+ *   rcStrike2 0.157 / 0.172, rcHitN / rcHoldD 0.0013 / 0.0040; g_iter7 twin 0.079 / 0.087, 0.145 / 0.160, 0.0003 / 0.0023
+ *   rcHold             class turns whose end-of-round tile is a supported hold tile (against the enemies where they stood at its
+ *                      turn, and the allies it saw) / class turns (blank without one); rcHoldN, rcHoldD: the counts
+ *   rcStrike2          class turns followed by the robot's attack in round t+1 or t+2 / class turns (blank without one);
+ *                      rcStrike2N: the count
+ *   rcHitN             class turns after which an enemy attack hits the robot before its next turn (later in the round, or in the
+ *                      next round before its turn), held or not. The exposure read is rcHitN / rcHoldD (hits per class turn): it
+ *                      counts the same turns in arm and twin. rcHitN / rcHoldN is not: most class-turn hits fall on robots that
+ *                      held (kite5a twins: 23 of 28), so it reads about the per-hold rate, which can stay flat while the arm's
+ *                      hits per class turn rise several-fold (review 2026-10-07, RC_BAND amendments RC2)
+ *   rcHitHoldN         the class turns of rcHitN that ended on a supported hold tile (rcHoldN's turns): rcHitHoldN / rcHoldN is the
+ *                      per-hold hit rate
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
  *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
@@ -1643,7 +1667,7 @@ public class ReplayDump {
     static int[] kReachD = new int[3], kReachEnd = new int[3], kReachHit = new int[3], kReachKilled = new int[3];
     static List<int[]> reachPending = new ArrayList<>();  // {rank, hit already (1/0)}: reach turns whose window runs into the next round
     static boolean[] pWater;                              // water at the end of the previous round (legal tiles; the analyser's timing)
-    static final boolean VECWATER = System.getenv("REACH_VECWATER") != null;   // debug (header): the analyser's water for the reach census
+    static final boolean VECWATER = System.getenv("REACH_VECWATER") != null;   // debug (header): the analysers' water for the reach and rc censuses
     static boolean[] vWater;                              // VECWATER: the map's water, then the rounds' dig and fill vectors only
     static final int[] RDX = {1, 1, 0, -1, -1, -1, 0, 1}, RDY = {0, 1, 1, 1, 0, -1, -1, -1};
 
@@ -1688,6 +1712,62 @@ public class ReplayDump {
         }
         if (hit) kReachHit[t]++;
         if (killed) kReachKilled[t]++; else reachPending.add(new int[]{R, hit ? 1 : 0});
+    }
+    // rc census (C.RC_BAND's signature, arm g7kiterc; see the header)
+    static int[] kRcD = new int[3], kRcHold = new int[3], kRcStrike2 = new int[3], kRcHit = new int[3], kRcHitHold = new int[3];
+    static List<Integer> rcHitPending = new ArrayList<>();   // class turns not hit yet whose window runs into the next round: rank * 2 + (ended on a hold tile ? 1 : 0)
+    static List<int[]> rcStrikePending = new ArrayList<>();  // {rank, round}: class turns whose robot has not attacked yet in t+1..t+2
+
+    static final int RC_SUP = 2;   // C.RC_SUP (RC_BAND amendments RC4): allies the robot sees within dist2 10 of a hold tile's threat
+    /** rc census: a supported hold tile at (x, y) against the n enemies (ex, ey) and the nv allies the robot sees (vx, vy): exactly
+     *  one enemy within dist2 10, none within dist2 4, and at least RC_SUP of those allies within dist2 10 of that enemy. Pure. */
+    static boolean holdTile(int x, int y, int[] ex, int[] ey, int n, int[] vx, int[] vy, int nv) {
+        int th = 0, q1 = -1;
+        for (int q = 0; q < n; q++) { int dd = d2(x, y, ex[q], ey[q]); if (dd <= 4) return false; if (dd <= 10) { th++; q1 = q; } }
+        if (th != 1) return false;
+        int sup = 0;
+        for (int j = 0; j < nv; j++) if (d2(ex[q1], ey[q1], vx[j], vy[j]) <= 10) sup++;
+        return sup >= RC_SUP;
+    }
+
+    /** rc census at robot R's turn (a candidate: alive and not carrying at the end of the previous round, move cooldown < 20 and
+     *  action cooldown in [20, 30) then, alive at its turn with HP >= 700): counted when its nearest enemy is at dist2 5-20, no
+     *  enemy carrier, at most 2 enemies and at least 4 other allies are within dist2 20, and a legal supported hold tile is among
+     *  its own tile and its 8 neighbours (support: the allies within dist2 20 of its start tile, the ones it senses); then whether
+     *  it ends on a supported hold tile, the hit on it for the rest of the round (the next round's part is in rcHitPending, with
+     *  the hold flag for rcHitHoldN) and its attacks in the next two rounds (rcStrikePending). */
+    static void rcTurn(int R, int t, int rn, int na, int[] aR, int[] aT, int[] aG, boolean[] aliveAt, int[] xAt, int[] yAt,
+                       boolean[] cIn, int[] cX, int[] cY) {
+        int sx = pX[R], sy = pY[R], n = 0, nA = 0, minD = Integer.MAX_VALUE; boolean car = false; int[] ex = new int[SN], ey = new int[SN];
+        int[] vx = new int[SN], vy = new int[SN];   // the allies it senses (within dist2 20 of its start tile): RC_SUP's support
+        for (int k = 0; k < SN; k++) {
+            if (k == R || !aliveAt[k]) continue;
+            int dd = d2(sx, sy, xAt[k], yAt[k]);
+            if (rankTeam(k) == t) { if (dd <= VISION2) { vx[nA] = xAt[k]; vy[nA] = yAt[k]; nA++; } continue; }
+            ex[n] = xAt[k]; ey[n] = yAt[k]; n++;
+            if (dd < minD) minD = dd;
+            if (dd <= VISION2 && pCarry[k]) car = true;
+        }
+        if (minD < 5 || minD > VISION2 || car || nA < 4) return;
+        int nE = 0;
+        for (int q = 0; q < n; q++) if (d2(sx, sy, ex[q], ey[q]) <= VISION2) nE++;
+        if (nE > 2) return;
+        boolean hold = holdTile(sx, sy, ex, ey, n, vx, vy, nA);   // the start tile is always legal
+        for (int i = 0; i < 8 && !hold; i++) {
+            int x = sx + RDX[i], y = sy + RDY[i];
+            if (x < 0 || y < 0 || x >= W || y >= H || wall[idx(x, y)] || pWater[idx(x, y)]) continue;
+            boolean occ = false;
+            for (int k = 0; k < SN && !occ; k++) if (k != R && aliveAt[k] && xAt[k] == x && yAt[k] == y) occ = true;
+            if (!occ) hold = holdTile(x, y, ex, ey, n, vx, vy, nA);
+        }
+        if (!hold) return;
+        kRcD[t]++;
+        boolean endHold = holdTile(cIn[R] ? cX[R] : sx, cIn[R] ? cY[R] : sy, ex, ey, n, vx, vy, nA);
+        if (endHold) kRcHold[t]++;
+        boolean hit = false;
+        for (int q = 0; q < na && !hit; q++) if (aR[q] > R && aT[q] == Action.ATTACK && aG[q] == R) hit = true;   // the rest of this round
+        if (hit) { kRcHit[t]++; if (endHold) kRcHitHold[t]++; } else rcHitPending.add(R * 2 + (endHold ? 1 : 0));
+        rcStrikePending.add(new int[]{R, rn});
     }
     static int rankTeam(int k) { return k % 2 == 0 ? 1 : 2; }
     /** One hit of robot k (InternalRobot.getDamage) with its level and its team's upgrade at the end of the previous round. */
@@ -1736,6 +1816,16 @@ public class ReplayDump {
             if (killed) kReachKilled[rankTeam(R)]++;
         }
         reachPending.clear();
+        for (int p : rcHitPending) {   // rc census: an attack on it this round before its turn
+            int R = p >> 1;
+            for (int j = 0; j < na && (aR[j] < 0 || aR[j] < R); j++) if (aR[j] >= 0 && aT[j] == Action.ATTACK && aG[j] == R) {
+                kRcHit[rankTeam(R)]++; if ((p & 1) != 0) kRcHitHold[rankTeam(R)]++; break; }
+        }
+        rcHitPending.clear();
+        for (Iterator<int[]> it = rcStrikePending.iterator(); it.hasNext(); ) {   // rc census: its attack in round t+1 or t+2
+            int[] p = it.next();
+            if (struck[p[0]]) { kRcStrike2[rankTeam(p[0])]++; it.remove(); } else if (rn >= p[1] + 2) it.remove();
+        }
         if (rn > 200) {
             boolean[] aliveAt = new boolean[SN]; int[] hpAt = new int[SN], xAt = new int[SN], yAt = new int[SN];
             for (int k = 0; k < SN; k++) { aliveAt[k] = pAlive[k]; hpAt[k] = pAlive[k] ? pHP[k] : 1000; xAt[k] = pX[k]; yAt[k] = pY[k]; }
@@ -1779,6 +1869,8 @@ public class ReplayDump {
                     if (minD <= 4 && !car && struck[R] && hpAt[R] < 700)   // reach census: an attack from a tile in reach at < 700 HP
                         reachTurn(R, t, na, aR, aT, aG, aliveAt, hpAt, xAt, yAt, cIn, cX, cY);
                 }
+                if (pAlive[R] && !pCarry[R] && pACD[R] >= 20 && pACD[R] < 30 && pMCD[R] < 20 && aliveAt[R] && hpAt[R] >= 700)
+                    rcTurn(R, t, rn, na, aR, aT, aG, aliveAt, xAt, yAt, cIn, cX, cY);   // rc census: ready next turn, not now
                 aliveAt[R] = (pAlive[R] || cSp[R]) && hpAt[R] > 0;   // its turn is over: its end-of-round tile from here on
                 if (cIn[R]) { xAt[R] = cX[R]; yAt[R] = cY[R]; }
             }
@@ -1912,7 +2004,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid,ringStunsPost,fieldStunsPost,reachEndFree,reachEndFreeN,reachEndFreeD,reachHit,reachHitN,reachKilledN");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid,ringStunsPost,fieldStunsPost,reachEndFree,reachEndFreeN,reachEndFreeD,reachHit,reachHitN,reachKilledN,rcHold,rcHoldN,rcHoldD,rcStrike2,rcStrike2N,rcHitN,rcHitHoldN");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1953,7 +2045,8 @@ public class ReplayDump {
                         + "," + share(kStepMidS[t], kStepDec[t]) + "," + kStepLethal[t] + "," + kStepDeaths[t] + "," + share(cDeaths[o], cDeaths[o] + cDeaths[t])
                         + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t] + "," + kRingStuns[t] + "," + kFieldStuns[t]
                         + "," + share(kReachEnd[t], kReachD[t]) + "," + kReachEnd[t] + "," + kReachD[t] + "," + share(kReachHit[t], kReachD[t])
-                        + "," + kReachHit[t] + "," + kReachKilled[t]);
+                        + "," + kReachHit[t] + "," + kReachKilled[t]
+                        + "," + share(kRcHold[t], kRcD[t]) + "," + kRcHold[t] + "," + kRcD[t] + "," + share(kRcStrike2[t], kRcD[t]) + "," + kRcStrike2[t] + "," + kRcHit[t] + "," + kRcHitHold[t]);
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

@@ -62,9 +62,9 @@ public class AuditTest {
         return BotTest.lastMove;
     }
 
-    /** The andli28 arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP) and the upper-tier arm g7kite (C.KITE_REACH_W): their pure
-     *  logic, and their hooks as the switches stand (off in src/bot: g_iter7's play; tools/unit-tests.sh runs these again on a copy
-     *  with FINAL_COMPLETE on, ENGAGE_HP 700 and KITE_REACH_W 300). */
+    /** The andli28 arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP) and the upper-tier arms g7kite (C.KITE_REACH_W) and g7kiterc
+     *  (C.RC_BAND on top of it): their pure logic, and their hooks as the switches stand (off in src/bot: g_iter7's play;
+     *  tools/unit-tests.sh runs these again on a copy with FINAL_COMPLETE on, ENGAGE_HP 700, KITE_REACH_W 300 and RC_BAND 150). */
     static void armTests() {
         Team keepThem = G.them; int keepBc = G.testBc;
         G.rc = BotTest.fakeRc(); G.them = Team.B; G.testBc = 25000;
@@ -361,6 +361,116 @@ public class AuditTest {
             BotTest.walls.clear();
         } catch (GameActionException e) { check(false, "KITE_REACH_W fight: unexpected " + e); }
         BotTest.attackOk = false; BotTest.lastAttack = null;
+
+        // ---- RC_BAND (arm g7kiterc = g7kite + RC_BAND): the gates, the bonus, then Micro.fight from (10,10)
+        // the two gates split on one HP read: never both on, over HP x ready (at the start and after strike-first) x hurt x cooldown
+        boolean disjoint = C.RC_HP >= C.KITE_REACH_HP;
+        int[] hps = {0, 250, 299, 300, 500, 699, 700, 701, 850, 1000};
+        for (int hp : hps) for (int r0 = 0; r0 < 2; r0++) for (int ar = 0; ar < 2; ar++) for (int hu = 0; hu < 2; hu++) for (int cd : new int[]{0, 10, 19, 20}) {
+            boolean hurtG = hu == 1 || hp < C.RETREAT_HP;
+            if (Micro.kiteReachGate(true, ar == 1, hurtG, hp) && Micro.rcGate(true, r0 == 1, cd, hurtG, hp, false, 1, 4)) disjoint = false;
+        }
+        check(disjoint, "RC_BAND: rcGate (HP >= RC_HP) and kiteReachGate (HP < KITE_REACH_HP) are never both on (HP x ready x hurt x cooldown grid)");
+        check(Micro.rcGate(true, false, 19, false, C.RC_HP, false, C.RC_MAX_E, C.RC_MIN_A) && !Micro.rcGate(true, false, 19, false, C.RC_HP - 1, false, C.RC_MAX_E, C.RC_MIN_A),
+              "RC_BAND gate: recharging, ready next turn, on at RC_HP, off just below it");
+        check(!Micro.rcGate(true, true, 19, false, 1000, false, 1, 4) && !Micro.rcGate(true, true, 0, false, 1000, false, 1, 4)
+              && !Micro.rcGate(true, false, 20, false, 1000, false, 1, 4) && Micro.rcGate(true, false, 10, false, 1000, false, 1, 4),
+              "RC_BAND gate: off on a strike turn (action-ready at the start, cooldown 19 or 0 after), off when not ready next turn (20)");
+        check(!Micro.rcGate(true, false, 10, false, 1000, true, 1, 4) && !Micro.rcGate(false, false, 10, false, 1000, false, 1, 4)
+              && !Micro.rcGate(true, false, 10, true, 1000, false, 1, 4),
+              "RC_BAND gate: off when an enemy is in reach of the start tile, in a goal-directed or carrier/loose-flag fight, when hurt");
+        check(!Micro.rcGate(true, false, 10, false, 1000, false, C.RC_MAX_E + 1, 4) && !Micro.rcGate(true, false, 10, false, 1000, false, 1, C.RC_MIN_A - 1)
+              && C.RC_MAX_E == 2 && C.RC_MIN_A == 4 && C.RC_HP == 700,
+              "RC_BAND gate: off with 3 enemies or 3 allies in vision (RC_MAX_E 2, RC_MIN_A 4, RC_HP 700)");
+        check(Micro.rcBonus(true, 1, 0, C.RC_SUP) == 1000 + C.RC_BAND && Micro.rcBonus(true, 2, 0, 9) == 0 && Micro.rcBonus(true, 1, 1, 9) == 0
+              && Micro.rcBonus(true, 0, 0, 9) == 0 && Micro.rcBonus(false, 1, 0, 9) == 0,
+              "RC_BAND bonus: only a hold tile (one threat, none in reach) while the gate is on; a 2-threat tile out of reach gets none");
+        // RC_SUP (RC_BAND amendments RC4): the threat of a hold tile needs RC_SUP (2) of the allies in view within dist2 10 of it
+        check(C.RC_SUP == 2 && Micro.rcBonus(true, 1, 0, C.RC_SUP - 1) == 0 && Micro.rcBonus(true, 1, 0, C.RC_SUP + 3) == 1000 + C.RC_BAND,
+              "RC_SUP: a hold tile whose threat has 1 ally within dist2 10 gets no bonus, 2+ do (RC_SUP 2)");
+        check(Micro.rcSupport(new MapLocation(14, 10), new RobotInfo[]{ally(11, 13, 13), ally(12, 13, 7), ally(13, 11, 12), ally(14, 6, 10)}) == 2
+              && Micro.rcSupport(new MapLocation(14, 10), new RobotInfo[0]) == 0,
+              "RC_SUP: rcSupport counts the allies within dist2 10 of the enemy ((13,13) and (13,7) at 10 count; (11,12) at 13 and (6,10) at 64 do not)");
+        // a hold tile beats every band tile without a crumb (50 + 8 adjacent + stay) and stays below one threat (every non-threat
+        // edge a tile can have: 8 adjacent allies, a crumb, drift both ways, territory, stay)
+        check(C.RC_BAND == 0 || (C.RC_BAND > 50 + 8 * 10 + 1 && C.RC_BAND + 8 * 10 + C.CRUMB_BONUS + 2 * C.HOLD_DRIFT + (C.TERR_MICRO ? C.TERR_HOLD : 0) + 1 < 1000),
+              "RC_BAND: the dose beats a band tile at any adjacency and stays below one threat (1000)");
+        boolean rcon = C.RC_BAND > 0;
+        G.W = 40; G.H = 30; G.round = 800; G.us = Team.A; BotTest.moveOk = true; BotTest.walls.clear(); BotTest.crumbTiles = new MapLocation[0];
+        Duck.flags = new FlagInfo[0]; BotTest.theirUpg = new GlobalUpgrade[0]; BotTest.attackOk = false; BotTest.lastAttack = null;
+        // E at (14,10): the start tile (dist2 16) and N/S (17) are in the 11-20 band, the east column is one step from E (9, 10, 10:
+        // hold tiles), the west column is free and beyond the band. four4: four allies in vision, two of them within dist2 10 of E
+        // ((13,13) and (13,7): RC_SUP 2), none beside any tile. four4far: the same count, all at x <= 7, none near E (the review's
+        // failure mode: the vision gate passes with no ally near the hold). three3: three allies, both supporters among them
+        RobotInfo ee = enemyAt(1, 14, 10, 1000, 0);
+        RobotInfo[] four4 = {ally(11, 6, 10), ally(12, 6, 12), ally(13, 13, 13), ally(14, 13, 7)}, three3 = {four4[0], four4[2], four4[3]};
+        RobotInfo[] four4far = {ally(11, 6, 10), ally(12, 6, 12), ally(13, 6, 8), ally(14, 7, 13)}, four4one = {four4far[0], four4far[1], four4far[2], four4[2]};
+        try {
+            BotTest.buildOk = false; BotTest.actionCd = 10;   // recharging, ready next turn
+            int rcT = Micro.rcTurns;
+            Direction d = fightStep(new RobotInfo[]{ee}, four4, 1000, null);
+            check(rcon ? (d == Direction.EAST || d == Direction.NORTHEAST || d == Direction.SOUTHEAST) && Micro.rcTurns == rcT + 1 : d == null && Micro.rcTurns == rcT,
+                  "RC_BAND: 1000 HP, recharging, one enemy at dist2 16, four allies (two near it): " + (rcon ? "holds one step from it (one rc turn)" : "stays in the band (switch off)") + " (" + d + ")");
+            // RC_SUP: four allies in vision but none, or one, within dist2 10 of E: the hold is unsupported, stays in the band
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee}, four4far, 1000, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_SUP: four allies in vision, none within dist2 10 of the enemy: stays in the band, no rc turn (" + d + ")");
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee}, four4one, 1000, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_SUP: four allies in vision, one within dist2 10 of the enemy: stays in the band, no rc turn (" + d + ")");
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee}, four4, C.RC_HP - 1, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_BAND: just below RC_HP: stays in the band, no rc turn (" + d + ")");
+            // a band tile with a crumb (N, 50 + 40) beats staying (51) in g_iter7 and loses to the hold tile (150)
+            BotTest.crumbTiles = new MapLocation[]{new MapLocation(10, 11)};
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee}, four4, 1000, null);
+            check(rcon ? (d == Direction.EAST || d == Direction.NORTHEAST || d == Direction.SOUTHEAST) && Micro.rcTurns == rcT + 1 : d == Direction.NORTH && Micro.rcTurns == rcT,
+                  "RC_BAND: a band tile with a crumb " + (rcon ? "loses to the hold tile (one rc turn)" : "wins (switch off)") + " (" + d + ")");
+            BotTest.crumbTiles = new MapLocation[0];
+            // three allies (both supporters among them), or three enemies in vision: no rc. E2 (14,8) and E3 (14,12) leave (11,10) a
+            // hold tile (9; 13; 13) whose threat E keeps its two supporters
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee}, three3, 1000, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_BAND: three allies in vision: stays in the band, no rc turn (" + d + ")");
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{ee, enemyAt(2, 14, 8, 1000, 0), enemyAt(3, 14, 12, 1000, 0)}, four4, 1000, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_BAND: three enemies in vision (a hold tile free): stays in the band, no rc turn (" + d + ")");
+            // starting in reach: E1 (12,10) reaches (10,10); N, S and the west column are hold tiles; every tile has one threat and
+            // g_iter7 stays (+1): the tie test's stay-or-leave choice, left alone
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{enemyAt(1, 12, 10, 1000, 0)}, four4, 1000, null);
+            check(d == null && Micro.rcTurns == rcT, "RC_BAND: starting in reach (recharging, 1000 HP, four allies): stays, no rc turn (" + d + ")");
+            // a strike turn: E1 in reach, the strike spends the action and leaves cooldown 19 (attack level 1+). Not a recharge turn
+            // (ready0) and in reach at the start: stays as g_iter7, no rc turn. A gate read after the strike, without the reach
+            // clause, would put the hold bonus on and pull the robot out of reach right after its strike
+            BotTest.buildOk = true; BotTest.attackOk = true; BotTest.actionCd = 19; BotTest.lastAttack = null;
+            RobotInfo e12 = enemyAt(1, 12, 10, 1000, 0);
+            rcT = Micro.rcTurns;
+            d = fightStep(new RobotInfo[]{e12}, four4, 1000, null);
+            check(e12.location.equals(BotTest.lastAttack) && d == null && Micro.rcTurns == rcT,
+                  "RC_BAND: a strike turn with cooldown 19 after the strike: strikes, stays, no rc turn (" + d + ", hit " + BotTest.lastAttack + ")");
+            BotTest.attackOk = false; BotTest.lastAttack = null; BotTest.buildOk = false; BotTest.actionCd = 10;
+            // a tile out of reach with 2 threats gets no bonus. E1 (12,11) and E2 (8,12): the start (5; 8) has 2 threats, W (9,10)
+            // has 2 (10; 5) and an ally beside it, E (11,10) has 1 with E1 in reach (2; 13); walls on every other neighbour.
+            // g_iter7: E -1000 > W -1990 > stay -1999. Scored as thEff (threats - 1 out of reach) W would win (-990)
+            for (Direction w : G.DIRS) if (w != Direction.WEST && w != Direction.EAST) BotTest.walls.add(new MapLocation(10, 10).add(w));
+            RobotInfo[] two = {enemyAt(1, 12, 11, 1000, 0), enemyAt(2, 8, 12, 1000, 0)};
+            RobotInfo[] fourW = {ally(11, 8, 9), ally(12, 13, 13), ally(13, 7, 7), ally(14, 12, 13)};   // (13,13), (12,13): E1's RC_SUP support
+            rcT = Micro.rcTurns;
+            d = fightStep(two, fourW, 1000, null);
+            check(d == Direction.EAST && Micro.rcTurns == rcT, "RC_BAND: a 2-threat tile out of reach gets no bonus: steps east as g_iter7, no rc turn (" + d + ")");
+            // rc counts changed choices only: SE (11,9) is the only hold tile (E1 5, E2 18), supported (two allies within dist2 10 of
+            // E1), so it carries the bonus, and it is already g_iter7's best (-1000 > -1999)
+            BotTest.walls.clear();
+            for (Direction w : G.DIRS) if (w != Direction.SOUTHEAST) BotTest.walls.add(new MapLocation(10, 10).add(w));
+            rcT = Micro.rcTurns;
+            d = fightStep(two, fourW, 1000, null);
+            check(d == Direction.SOUTHEAST && Micro.rcTurns == rcT, "RC_BAND: the hold tile is already the best without the bonus: same choice, no rc turn (" + d + ")");
+            BotTest.walls.clear();
+        } catch (GameActionException e) { check(false, "RC_BAND fight: unexpected " + e); }
+        BotTest.actionCd = 0; BotTest.crumbTiles = new MapLocation[0];
+        BotTest.attackOk = false; BotTest.lastAttack = null;
         BotTest.moveOk = false; BotTest.buildOk = false; BotTest.walls.clear(); BotTest.robots = new RobotInfo[0]; BotTest.health = 1000; BotTest.lastMove = null;
         Duck.enemies = new RobotInfo[0]; Duck.allies = new RobotInfo[0]; G.me = new MapLocation(10, 10);
         G.them = keepThem; G.testBc = keepBc;
@@ -369,7 +479,7 @@ public class AuditTest {
     public static void main(String[] a) {
         if (a.length > 0 && a[0].equals("arms")) {   // tools/unit-tests.sh: a copy of src/bot with the arms' switches on
             armTests();
-            System.out.println("AuditTest arms (FINAL_COMPLETE " + C.FINAL_COMPLETE + ", ENGAGE_HP " + C.ENGAGE_HP + ", KITE_REACH_W " + C.KITE_REACH_W + "): " + (fails == 0 ? "OK" : "FAILED " + fails));
+            System.out.println("AuditTest arms (FINAL_COMPLETE " + C.FINAL_COMPLETE + ", ENGAGE_HP " + C.ENGAGE_HP + ", KITE_REACH_W " + C.KITE_REACH_W + ", RC_BAND " + C.RC_BAND + "): " + (fails == 0 ? "OK" : "FAILED " + fails));
             if (fails > 0) System.exit(1);
             return;
         }
@@ -414,8 +524,8 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK && !C.FINAL_COMPLETE && C.ENGAGE_HP == 0 && C.KITE_REACH_W == 0,
-              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor, the contact dive, the andli28 arms and g7kite off)");
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK && !C.FINAL_COMPLETE && C.ENGAGE_HP == 0 && C.KITE_REACH_W == 0 && C.RC_BAND == 0,
+              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor, the contact dive, the andli28 arms, g7kite and g7kiterc off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
         G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;

@@ -531,3 +531,85 @@ Checked on the VM:
 - t6.py sig, proj and reach on out6 match the study's saved outputs
 - r3.py on out3 matches the critic's run, and gives the same result on out6 (Cm.java's R rows)
 - agg3.py g reproduces the stand-hit shares 0.111 / 0.189 and 649 / 1,227 a game
+
+
+## RC_BAND amendments (2026-10-07)
+
+A code review of the g7kiterc build (C.RC_BAND in src/bot Micro/C/G, ReplayDump's rc census, AuditTest) and of its 5(a) pre-registration changed these clauses before any g7kiterc game. Each one replaces the clause it names in the g7kiterc 5(a) pre-registration (arm g7kiterc = g7kite + RC_BAND 150, RC_HP 700, RC_MAX_E 2, RC_MIN_A 4, and since RC4 RC_SUP 2; seed 7101; the 12 cells and the g7kite and g_iter7 twins of diag/kite5a). src/g7kiterc was re-snapshotted after the code changes (KITE_REACH_W 300, RC_BAND 150; tools/arm-intent.txt pins RC_SUP 2 with the others). src/bot keeps both switches off.
+
+RC1. Guards (d) and the falsifier read over each cell's common window. Replaces "enemyStunTrig per game-round <= 1.10x", "our heals per game-round, from the final-round rows, >= 0.85x" and "deaths per game-round <= 1.08x" in (d), and "deaths per round > 1.08x" and "enemyStunTrig per round > 1.10x" in the falsifier:
+- Window: for each cell, rounds 201..E, where E is the last --metrics 50 row that both games reached: 50 x floor(min(arm rounds, twin rounds) / 50). A cell with E <= 200 adds nothing.
+- deaths and heals: our team's cumulative columns in the --metrics 50 rows, row E minus row 200. Arm rows are in diag/kiterc5a/metrics.csv, twin rows in diag/kite5a/metrics.csv.
+- enemyStunTrig: their stun traps triggered in r201..E, counted from tools/replay-dump.sh <replay> --from 201 --to E. Over r201..2000 this count equals the --capabilities column enemyStunTrig in all 24 kite5a games.
+- Each read is summed over the 12 cells and compared arm / g7kite twin against the registered bars: deaths <= 1.08x, heals >= 0.85x, enemyStunTrig <= 1.10x. The falsifier trips on deaths > 1.08x or enemyStunTrig > 1.10x. The halves are logged.
+- Read with (on the VM, 3 dumps at a time):
+  python3 research/upper-tier-study-2026-10-07/tools/guardwin.py diag/kiterc5a/metrics.csv diag/kite5a/metrics.csv g7kiterc g7kite
+- Why: per game-round reads mix the guards with game length, because late rounds have more deaths and stuns per round. On these 12 cells, g7kite against its g_iter7 twin reads:
+  - deaths: 1.127x per game-round, which would trip the falsifier; windowed 1.004x (jackknife se over cells 0.046)
+  - enemyStunTrig: 1.098x per game-round, right at the bar; windowed 1.030x (se 0.034)
+  - heals: windowed 1.021x (se 0.025)
+  - three cells whose games got longer drive the per-round gap: jmerle 789 -> 1988 rounds (348 -> 1306 deaths), hsmalladi 540 -> 1061, chenyx 1574 -> 2000.
+- The stun bar stays at 1.10x. Windowed, it sits about 3 se above 1.0 on 12 cells, so the alternative (widen the 12-cell bar to 1.20x) is not needed. The band delivery keeps its paired nw:enemyStunTrig<=1.1 as registered.
+- Checked 2026-10-07 on the VM: guardwin.py on the kite5a pair (g7kite as the arm, g_iter7 as the twin) prints, over the 12 cells, deaths 1.004 (se 0.046), heals 1.021 (0.025) and enemyStunTrig 1.030 (0.034). By half: U 0.996 / 1.009 / 1.013, R 1.018 / 1.034 / 1.077.
+
+RC2. The logged exposure read in (c). Replaces "rcHitN / rcHoldN":
+- rcHitN / rcHoldD: hits before the next turn per class turn, arm vs g7kite twin, pooled per half and over the 12 cells. Both sides count the same class of turns, so this is the exposure volume, the critic's main risk. With the class of RC4: g7kite twin 0.0013 (U) / 0.0040 (R); g_iter7 twin 0.0003 / 0.0023.
+- rcHitHoldN / rcHoldN: hits per hold. rcHitHoldN is a new --capabilities column: the class turns of rcHitN that ended on a (supported) hold tile. g7kite twin 0.008 (U) / 0.041 (R), from 2 of 245 and 13 of 314 holds.
+- Why: rcHitN / rcHoldN is close to the per-hold rate in arm and twin alike, and a per-hold rate can stay flat while hits per class turn rise several-fold. At rcHold >= 0.60 and the per-hold rate of supported holders in the quasi-experiment (0.017 U / 0.018 R, RC4), the arm would take about 0.010 hits per class turn: about 8x the g7kite twin in U and 3x in R, while rcHitN / rcHoldN stays within the twin's own per-hold range (0.008 U / 0.041 R). Only rcHitN / rcHoldD shows that.
+- The review's stated cause, that most twin hits land on robots back in the band, does not hold. In the twins, 15 of 19 class-turn hits (g7kite) and 8 of 9 (g_iter7) fall on robots that ended on a supported hold tile (before RC4's class: 55 of 67 and 56 of 59). Its conclusion holds all the same: the read compared per-hold rates and hid the volume.
+- rcHitHoldN: the rc census carries each class turn's hold flag into the next round's hit check (rcHitPending holds rank x 2 + flag).
+  - Checked 2026-10-07 on the VM: rcHitN and rcHitHoldN equal Rc.java's counts (class rows with hitB, and with hitB and an end tile that holds), with the analyser's water: for our side of the 24 kite5a twins before RC4, and with RC4's class for both teams of the 24 twins, the own fixture and the ColtG5 game. True water gives the same hit counts.
+  - Pinned in tools/test_tools.py: own fixture A no hits, B no class turn; the ColtG5 game (local only) A 1 hit, held; B 3 hits, none held.
+- Still logged without a bar, as registered. E and the windowed deaths (RC1) remain the falsifier's exposure reads.
+
+RC3. The diagnostic job and its pass reads. Replaces the DIAGNOSTIC FIRST job and its three conditions:
+  tools/diag-batch.sh kiterc-diag g7kiterc:Strequals.duck0127v5:Fountain:7101:A; f=$(ls diag/kiterc-diag/g7kiterc-*.bc24); tools/replay-dump.sh $f --metrics 50 > diag/kiterc-diag/metrics.csv; tools/side-indsum.sh $f | tail -1 > diag/kiterc-diag/indsum.txt; tools/replay-dump.sh $f --capabilities > diag/kiterc-diag/cap.csv; tools/replay-dump.sh $f --logs ' rc[1-9]' --team A | head -1 > diag/kiterc-diag/rcfirst.txt
+It passes iff:
+- rcfirst.txt holds a line and its round is <= 260. --logs prints 'r<round> A#<id> <string>' for each matching indicator string, and ' rc[1-9]' matches rc >= 1, so the first line is the first turn any of our robots shows a changed tile. rc sits right after kr, inside the 64-char cut (G.java), and no indicator note contains ' rc' followed by a digit.
+- --metrics 50 rows r50-r200 equal the g7kite twin's on every column except max_bc, for both teams, with our max_bc minus the twin's in [0, +200] (unchanged)
+- cap.csv, team A row: overruns 0 and exceptions 0
+Logged, no bar: rcHoldN, rcHoldD, rcStrike2N, rcHitN and rcHitHoldN from cap.csv, an early look at (b) on one game.
+- Why: the registered job could not show two of its three conditions. metrics.csv samples max_bc only once every 50 rounds; side-indsum.sh does not parse the ' o' counter; diag-batch's summary.txt cuts --capabilities to columns 1-5, 12-15, 25 and 31-34, which hold neither overruns nor exceptions. indsum.txt is a whole-game total, so it cannot show when rc first fired.
+
+RC4. The gate counts vision, and a support clause at the hold's threat. Amends ARM (which tile earns the bonus) and the census class. The gate itself is unchanged.
+- The gate counts enemies (<= 2) and allies (>= 4) in vision of the start tile. It is not the critic's local balance (allies within dist2 10 vs threats, bin >= 2). The premise chose it because balance bins cut the next-turn hit but not deaths over 10-20 rounds, while the enemy count cut both.
+- The premise never tested local support. Its script (~/rcscratch/rcq3.py on the VM) says it splits "by allies near the RC tile", but it bins by the start tile's vision counts (nA20, nE20) and reads tA20/tE20 without using them. So four allies standing behind the robot pass the gate even when none is near the hold.
+- Rerun, 2026-10-07. Data: Rc.java with two added columns, over all 720 control replays, on the gated class (HP >= 700, ready next turn, <= 2 enemies and >= 4 allies in vision, a hold tile free). The columns:
+  - tA10: our robots within dist2 10 of the hold tile
+  - sA10v: the allies the robot sees (within dist2 20 of its start tile) that stand within dist2 10 of the hold tile's one threat
+- Method: the premise's quasi-experiment at start dist2 5-10, band tile blocked (g_iter7 holds) minus free (it retreats), SE clustered by game. Scripts in ~/rcfix on the VM (rc2/ the patched Rc, rcq5.py the split).
+
+| sA10v (support at the threat) | share of changed turns | hit before next turn | d10 | d20 | own kills k20 | strikes s2 |
+|---|---|---|---|---|---|---|
+| U, 0-1 | 35% (245 of 700 a game) | +0.135 +- 0.014 | +0.023 | +0.026 +- 0.014 | +0.085 +- 0.026 | +0.253 |
+| U, 2+ | 65% | +0.015 +- 0.002 | +0.004 | -0.012 +- 0.011 | +0.078 +- 0.019 | +0.174 |
+| R, 0-1 | 27% (164 of 598) | +0.126 +- 0.006 | +0.016 | +0.020 +- 0.008 | +0.060 +- 0.016 | +0.235 |
+| R, 2+ | 73% | +0.016 +- 0.001 | +0.007 | +0.005 +- 0.005 | +0.071 +- 0.011 | +0.201 |
+
+  - sA10v 0 alone: hit +0.232 (U) / +0.225 (R); d20 +0.058 +- 0.020 in U.
+  - Allies within dist2 10 of the hold tile itself (the review's clause): 0-1 in only 1-2% of gated turns (U 10 of 700 changed turns a game, R 8 of 598). The vision gate already brings allies to the tile, so that clause would change almost nothing. Not used.
+  - The critic's start-tile balance (allies within dist2 10 + 1 - enemies within dist2 10) is <= 1 in 2% of start 5-10 turns and in none from 11-20.
+  - Closing from dist2 11-20 is about 70% of the changed turns and has no quasi evidence. The upper tier's own closers vs band holders split the same way: hit +0.163 (0-1) vs +0.016 (2+) in U.
+- Reading: support around the threat decides exposure. Unsupported holds take 8-9x the hits and pay +0.02-0.03 deaths within 20 rounds for the same own kills. By the strike-based kill estimate (strikes x 0.114) they about break even (U +0.029 kills vs +0.026 deaths), while supported holds come out clearly positive (+0.020 vs -0.012).
+- Clause, C.RC_SUP 2: the bonus goes only to a hold tile whose one threat has at least 2 of the allies the robot sees within dist2 10.
+  - Micro.rcSupport counts them once per turn for each enemy (at most RC_MAX_E). Micro.rcBonus takes the tile's support.
+  - It drops about a third of the changed turns (U 245 of 700 a game, R 164 of 598). At start dist2 5-10 it drops about 80% (U) / 70% (R) of the extra hits.
+- Census: holdTile and the class need the same support, counted from the allies within dist2 20 of the start tile (the ones the robot senses).
+  - Validated on the VM against Rc.java with this class: rcHoldD, rcHoldN, rcStrike2N, rcHitN and rcHitHoldN are equal for both teams in the 24 kite5a twins, the own fixture and the ColtG5 game.
+  - True water moves rcHoldD by at most 8 a half.
+- Baselines (true water) replace the pre-registration's Rc.java ones:
+  - g7kite twin: rcHold 0.065 (U) / 0.089 (R); rcStrike2 0.157 / 0.172; class turns 3,765 / 3,532 (5,608 / 4,860 before the clause)
+  - g_iter7 twin: rcHold 0.079 / 0.087; rcStrike2 0.145 / 0.160
+- (b)'s bars are unchanged:
+  - rcHold >= 0.60 in each half, and above the g7kite twin in 12/12
+  - rcStrike2 >= 1.25x the g7kite twin's (0.196 / 0.215). The instrument at supported holds (s2 +0.174 / +0.201) predicts about 0.26 / 0.29, about 1.6x.
+- Projection, replacing the premise's (U +136 strikes, kills +19 to +56, deaths +0 to +7 a game): about two thirds of the changed turns remain (U 455, R 434 a game). Summing their per-turn quasi effects:
+  - strikes within 2 rounds: about +80 (U) / +87 (R) a game
+  - kills: +9 / +10 (strikes x 0.114) to +35 / +31 (own kill credit)
+  - deaths: about -5 (U; d20 -0.012 +- 0.011 per turn, so 0 within error) / +2 (R)
+- Tests:
+  - AuditTest, both switch states, pins rcSupport and the bonus's RC_SUP edge.
+  - Two fightStep cases: four allies in vision with none, or with one, within dist2 10 of the enemy. Each stays in the band with no rc turn.
+  - The base hold case now has two supporters, and the already-best case has its threat supported.
+  - With the clause removed, three checks fail.
+  - test_tools.py pins the census on the own fixture (A 99 of 299 hold, strike2 90, no hits) and on the ColtG5 game (A 6 of 74, 1 hit, held; B 11 of 30, 3 hits, none held).
