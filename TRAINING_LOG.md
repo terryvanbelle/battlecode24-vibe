@@ -2244,3 +2244,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   first (rule 5), then the 12-cell 5(a) against the g7kite and g_iter7 twins of the kite5a block.
 - g7kite vs g_iter7 against andli28: 240-pair read complete, net +6 (35-29, +0.8 SE): no matchup effect. The filler returns to g_iter7 alone against andli28.
 - g7kiterc diagnostic (Strequals, Fountain A, seed 7101): PASS: rc first at r211 (bar 260), metrics through r200 identical to the g7kite twin (8/8 rows, max_bc within tolerance), 0 overruns, 0 exceptions; rcHold 711/738 (0.96; twins ~0.07-0.09). The 12-cell block is queued.
+- **Vertical-symmetry penalty vs andli28 replicates out of sample** (the andli28 study's top open question): on 4,200 g_iter7 filler
+  games after the study's 1,520, win rate vertical 0.187 (1,608 games), rotational 0.383 (1,724), horizontal 0.338 (868); against
+  the band (684 control games) vertical is not worse (0.753 vs 0.702). Census vertical-minus-rotational (andli28 | band): first grabs
+  -2.7 | -1.0, captures -0.43 | 0.00, enemy captures +0.17 | -0.31, our kills on its territory 119 -> 72 | +8, its stun triggers
+  +66 | +1, deaths +112 | +25. Our offence collapses on vertical maps against andli28 only. Map table:
+  research/vertical-study-2026-10-07/maps.txt. A four-lens study (maps and team axis, andli28 behaviour, our play and code, timeline;
+  synthesis and critic) is running; the g7kiterc 12-cell block is running on the VM beside it.
