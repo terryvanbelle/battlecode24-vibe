@@ -2243,3 +2243,4 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   columns rcHold, rcStrike2, rcHitN, rcHitHoldN; guards read over each cell's common window (RC1). Unit tests pass. Diagnostic
   first (rule 5), then the 12-cell 5(a) against the g7kite and g_iter7 twins of the kite5a block.
 - g7kite vs g_iter7 against andli28: 240-pair read complete, net +6 (35-29, +0.8 SE): no matchup effect. The filler returns to g_iter7 alone against andli28.
+- g7kiterc diagnostic (Strequals, Fountain A, seed 7101): PASS: rc first at r211 (bar 260), metrics through r200 identical to the g7kite twin (8/8 rows, max_bc within tolerance), 0 overruns, 0 exceptions; rcHold 711/738 (0.96; twins ~0.07-0.09). The 12-cell block is queued.
