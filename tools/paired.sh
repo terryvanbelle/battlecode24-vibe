@@ -8,7 +8,8 @@
 #   BOT=bot REF=g_iter7 MAXJOBS=6 LOGTAG='@uncork' KEEP_LOGS=0 CLASSES=build/paired-classes TAG=paired-40c
 #   OPP=arch_rush: both games of a cell are played against this third build instead (BOT vs OPP, then REF vs OPP, same
 #   map, side and seed) -- a paired gate against one of our own archetypes, for a change that only fires against it
-#   Puppet cells (PROMPTS 59-60): lines `map side seed fixture cutoff` from tools/puppet.sh cells, with OPP=pup_<base>;
+#   Puppet cells (inherited from the predecessor project's PROMPTS 59-60; tools/puppet.sh is not in this repo and no puppet
+#   was used here): lines `map side seed fixture cutoff`, with OPP=pup_<base>;
 #   both games of such a cell run with GAME_CONFIG=<fixture> and -Dbc.testing.pup.cutoff=<cutoff>
 # Writes gauntlet/<stamp>-<TAG>/results.csv: map,side,seed,cand,ctrl,cand_rounds,ctrl_rounds,tags
 # (cand/ctrl = win|loss from BOT's side; tags = LOGTAG lines the BOT side printed in the candidate game) and prints

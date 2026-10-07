@@ -7,7 +7,8 @@ import os, sys, argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import elolib
 ap = argparse.ArgumentParser(); ap.add_argument('run'); ap.add_argument('--label', default='')
 a = ap.parse_args(); run = os.path.basename(a.run.rstrip('/'))
-# a puppet (src/pup_<base>, PROMPTS 59-60) or any of our own packages as the opponent is self-play: it never grades a build
+# a puppet (src/pup_<base>; the predecessor project's PROMPTS 59-60, unused here) or any of our own packages as the opponent
+# is self-play: it never grades a build
 SRC = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src')
 OURS = set(os.listdir(SRC)) if os.path.isdir(SRC) else set()
 def selfplay(name): return name.startswith('pup_') or name in OURS

@@ -2,7 +2,8 @@
 # Driver side of the idle filler (owner prompt 73): fetch every finished filler run from the VM that is not yet in
 # progress/games.csv, record it in the ladder under its bot's label, refit the ratings and charts, and print the
 # running paired tally of candidate vs control over all filler seeds where both played.
-#   tools/collect-fillers.sh [control candidate[,candidate2...]]     (defaults g_iter1 b1v2)
+#   tools/collect-fillers.sh [control candidate[,candidate2...]]     (defaults g_iter1 b1v2, from 2026-10-01: pass both;
+#   at the shutdown the filler was g_iter7's baseline against andli28, collected as `tools/collect-fillers.sh g_iter7 -`)
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; cd "$REPO"; source tools/vm.sh; ensure_vm
 CTL="${1:-g_iter1}"; CAND="${2:-b1v2}"

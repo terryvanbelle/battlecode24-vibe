@@ -1,5 +1,14 @@
 # Synthesis
 
+Status 2026-10-07 (shutdown): g7sg (STUN_MIN13) was never built (dose 3 skips 2-3 stuns a game, below 1 SE) and g7hf
+(HEAL_FRONT) was refuted by the critic and not built. g7kite was built; its registered band delivery was stricter than §1's
+(`rel:reachEndFree<=0.4 rel:reachHit<=0.92 nw:enemyCaptured<=1.1 mean:overruns<=0`), PASSED at 48 cells, and the arm was
+parked on the band (pooled t_all 0.32). g7kiterc was built as g7kite + RC_BAND 150, RC_HP 700, RC_MAX_E 2, RC_MIN_A 4,
+RC_SUP 2 (RC_BAND amendments at the end), not §2's RC_BAND 60; its 12-cell 5(a) FIRED on every bar. Its registered band
+delivery (`mean:rcHold>=0.5 rel:rcStrike2>=1.2 mean:reachEndFree<=0.03 nw:enemyStunTrig<=1.1 nw:heal400>=0.85
+nw:enemyCaptured<=1.1 mean:overruns<=0`) replaces §2's rcClose20 line (that column was never built); it and the band test
+were never run (PROMPTS 192). The driver disk was freed (1.7 GB of scratch deleted; 1.9 GB free at shutdown).
+
 I read the four lens reports, checked their code claims in src/g_iter7/Micro.java and src/bot (Micro.java, Duck.java), and re-cut the 720-game census myself. Data: gauntlet/census-g_iter7-L1..L3.csv. I ran no games and edited no repo files.
 
 Baseline: against the upper tier (180 games) we win 0.278, with kill share 0.374 +- 0.008 and capture difference -0.73 +- 0.11. Against the rest (540 games) we win 0.859, kill share 0.650, capture difference +1.75. The rest has little room left: its r2000 games (win 0.64, capture difference +0.29) and the mid bots andrewgopher 0.53, NotLLeon 0.61, hsmalladi 0.64 and Cyril 0.72.

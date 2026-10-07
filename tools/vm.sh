@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Shared helpers for running games on the battlecode-dev VM (sourced, not run).
-# claude-driver runs only the Claude session; EVERY game runs on the VM.
+# Shared helpers for running games on the battlecode-dev2 VM (us-west2-a; stopped at the shutdown of 2026-10-07; the
+# original battlecode-dev in us-west1-b is not used). Sourced, not run: `source tools/vm.sh && ensure_vm` starts the VM.
+# The driver runs the Claude session and at most one diagnostic game at a time (tools/run-dev.sh); games in volume run on
+# the VM.
 # The VM mirrors the driver's layout, so tools/lib.sh works unchanged there:
 #   ~/jdk/jdk8u504-b01, ~/projects/vibe/2024 (this repo: src tools test engine),
 #   ~/projects/vibe/bc24-benchmarks/{_classes,manifest.tsv}

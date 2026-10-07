@@ -5,7 +5,7 @@ game record, so the tier that governs replay access reflects the current build.
 Sources, newest first:
   progress/games.csv    the scrimmage ladder (from 2026-09-17): one row per game,
                         `teamA`/`teamB` carry `us:<build>`, `winner` is A or B.
-  progress/history.csv  the older gauntlet era: per-opponent, per-map wins/total.
+  progress/history.csv  optional, inherited from the predecessor project (its gauntlet era); absent here and skipped.
 
 The tier uses the most recent SUBMISSION's record against that opponent (the latest build with at
 least 200 recorded games: a candidate's 96-game ladder arm locked laurenschneider on 0 of 6, 2026-09-24), because tier

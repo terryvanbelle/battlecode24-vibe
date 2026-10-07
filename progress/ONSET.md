@@ -1,5 +1,9 @@
 # Which metric starts predicting the result first
 
+Status 2026-10-07 (shutdown): this table and progress/onset-ladder.png come from g_iter2's band block of 2026-10-03 (commit
+09941c4) and were not regenerated for g_iter3 to g_iter7; read them as a g_iter2 snapshot. progress/METRICS.md, named
+below, does not exist: the line is written by tools/onset.py, inherited from the 2021 project.
+
 112 games, 54 wins. Noise floor about 0.19; a correlation inside that band is not evidence.
 
 Every metric is oriented so **higher is better for us**, so a positive correlation always means

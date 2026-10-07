@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Push what a run needs to battlecode-dev (tar over ssh; the VM has no rsync).
+# Push what a run needs to battlecode-dev2 (the VM in tools/vm.sh) (tar over ssh; the VM has no rsync).
 #   tools/vm-sync.sh          # repo tree (src tools test + engine if missing) and, once, JDK 8 and benchmark classes
 #   FULL=1 tools/vm-sync.sh   # re-push engine and benchmark classes too
 set -euo pipefail

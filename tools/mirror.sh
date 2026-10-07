@@ -2,7 +2,7 @@
 # Mirror match under SPRT: our candidate against our incumbent on random maps and random sides.
 # Our own builds, so the contest rule on external bots does not apply -- but random maps, because a
 # fixed 12-map set answers a different question than the ladder does.
-#   BOT=bot REF=g_iter4 N=200 BATCH=16 tools/mirror.sh
+#   BOT=bot REF=g_iter7 N=200 BATCH=16 tools/mirror.sh   (pass REF: the default below is still g_iter4; the incumbent is g_iter7)
 #   W0=11 L0=5 ... resumes the record from an interrupted run (its later, partial batch must be voided by hand)
 #   PAIRED=1 (the default since 2026-09-25): every cell is also played as REF vs REF on the same seed (tools/paired.sh);
 #   the engine is deterministic under a fixed seed, so a pair is concordant wherever the change did not alter the

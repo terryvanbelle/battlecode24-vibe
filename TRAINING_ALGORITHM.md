@@ -1,7 +1,8 @@
 # TRAINING_ALGORITHM.md
 
 A year-agnostic loop for training a Battlecode bot with an AI agent. It is distilled from five practice
-seasons (later seasons weighted higher) and the cross-year `ADVICE.md`. Season-specific numbers live in
+seasons (later seasons weighted higher) and the cross-year `ADVICE.md` (in the battlecode-vibe repo; local copy
+`research/ADVICE-crossyear.md`). Season-specific numbers live in
 `RULES.md`, `TRAINING_LOG.md` and the tools, never here.
 
 ## 0. Objective
@@ -76,7 +77,7 @@ Sources, used in turn so none dries up:
 - **Block census**: earliest-onset metric that separates wins from losses, stratified by opponent.
 - **Capability gap**: unused API methods, unused mechanics, cross-year principles.
 - **Tactic levels** (research/TACTIC_LEVELS.md, TL-1): a copied tactic is armed only if it is elementary, or if its
-  below-par root capability is already at par; every arm first passes a delivery mini-block (~20 cells: the mechanism
+  below-par root capability is already at par; every arm first passes a delivery mini-block (~24 cells: the mechanism
   fires in >= 90% of games and our signature closes >= 50% of the gap to the opponents'). Otherwise build the root
   capabilities first, each gated on its own early metric measured against a same-block control.
 
@@ -84,7 +85,7 @@ Balance: after 3 consecutive rejects in one functional area, leave it. At least 
 in every 4 attempts, and immediately when the ladder is flat for 5 accepts. Plateau escalation, in
 order: **correctness audit of the bot and the measurement pipeline** (`AUDIT_PROMPT.md`, full procedure in
 `AUDIT_PLAYBOOK.md`; also whenever a basic is found broken: in 2024 it ended a 50-experiment plateau, +33 of 234 seed
-pairs); ablate accepted features; API/engine sweep; re-read field games; re-read `ADVICE.md` and other
+pairs); ablate accepted features; API/engine sweep; re-read field games; re-read `ADVICE.md` (above) and other
 years; jointly necessary pairs; structural attempt; rewrite (keep the plumbing, change the roles).
 Never idle: while a gate runs, read replays and prepare the next candidate.
 
@@ -111,7 +112,8 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
   and band test with confirmation under the same shipping criteria; the stack, not its parts, is what ships. Leave out
   a component that is band-neutral or negative (2026-10-04: g4gym1's dam-line budget cancelled what the crumbs gained).
   Record each stack's components and numbers in progress/REWRITE.md. Example: g4ship1 = g4crumb (net +4) + g4pick
-  (pooled net +6), pooled 480 pairs net +12, capture delta +0.14 (t 2.2); g4ship2 adds the late level farm.
+  (pooled net +6), pooled 480 pairs net +12, capture delta +0.14 (t 2.2); it shipped at look 3 (720 pairs, net +23, capture
+  t 3.25) as g_iter5. g4ship2 added the late level farm and never delivered (INCONCLUSIVE at 24, 48 and 96 cells).
 - **Archetype arm** (neutralizations): pre-register a second arm against the archetype that has the property,
   decided before the gate runs.
 - Never read a running batch. Never move a bar after seeing a number. Diff game by game and read the
@@ -133,7 +135,8 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
 ## 7. Records
 
 - `TRAINING_LOG.md`: append-only, one entry per attempt (target, trace, pre-registration, counters,
-  gate numbers, decision, lesson, next); closed-directions ledger and functional-area map at the end.
+  gate numbers, decision, lesson, next); a closed-directions ledger and a functional-area map kept current at the end
+  (the 2024 log has one ledger, dated 2026-10-01, in mid-file, and no map).
 - `TACTICS.md`: per opponent tactic: evidence, Adoption progress, Neutralization progress.
 - `LEARNINGS.md`: durable lessons, each with its measurement.
 - `HANDOFF.md`: state block first (incumbent, grade, in-flight run ids), then gotchas.
@@ -145,7 +148,8 @@ Never idle: while a gate runs, read replays and prepare the next candidate.
 | name | value |
 |---|---|
 | SPRT p0 / p1 / α / β / batch / cap | 0.50 / 0.58 / 0.05 / 0.05 / 16 / 320 pairs |
-| ladder block / band half-width | 48 games / 8 bots |
+| ladder block / band | 48 games / the 20 bots rated nearest the build (`tools/elo.py --band 20`) |
+| filler block | 40 games |
 | max consecutive rejects per area | 3 |
 | structural swing | >= 1 in 4 attempts |
 | bytecode near-miss | 90% of limit; overruns must be 0 |

@@ -1,5 +1,10 @@
 # Decision-layer rewrite: shared flag tracks and bounded responders
 
+Status 2026-10-07 (shutdown): the programme stopped after S0a (premise passed) and S0b (the sensor, C.TRACK / g1trk,
+identity confirmed). S1 CUT was never built: Obj.java and the CUT_* constants do not exist, and research/RETEST.md calls it
+"paused, not refuted". The crack (g1basics -> g_iter2, research/CRACK.md) took over on 2026-10-02/03. tools/upper-tier.txt
+now holds 5 bots, not 11.
+
 Pre-registered on 2026-10-02, before any code was written. The base is **g_iter1**: `src/bot` with every switch off plays as g_iter1 (identity verified with g1copy). Evaluation follows `research/REWRITE_EVAL.md` with its bars unchanged. Milestone results go in `progress/REWRITE.md`, and stage results go in `TRAINING_LOG.md`. The owner asked to "try it out, but keep statistics" (prompt 112). Section 5 says which statistics are kept.
 
 **Where this design comes from.** Four designs were each scored by three judges. Combined scores out of 30: Situation Board 24, Objective-Driven Micro (ODM) 23.5, Task-claimed squads 19.5, Tide 12.

@@ -220,3 +220,8 @@ unreachable and the filler stopped for futility. With defense (camp, camp-split,
 Gymhgy.v10official under owner prompt 177 (research/CRACK-GYMHGY.md). Open ideas if Cyril is revisited: a relay offense
 (g4relay 5(a) queued on these cells), the defender-confound hypothesis for builders (a version that keeps every duck's
 combat stuns and only adds discounted builders is g4econ2; one without the crumb detours is untested).
+
+Status 2026-10-07 (shutdown): g4relay's 5(a) ran on 8 Gymhgy and 7 Cyril cells; relays fired, but the flag moved less
+(Cyril: carrier moves 55 vs 99, captures 0.86 vs 1.29). g4relay2 then failed its Gymhgy delivery at 96 cells and the relay
+line was closed. Cyril was passed on 2026-10-06 and is listed as defeated: final Cyril 1967 (rank 14) vs g_iter7 2113;
+g_iter7 35-13 against it.

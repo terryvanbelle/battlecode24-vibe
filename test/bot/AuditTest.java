@@ -607,8 +607,8 @@ public class AuditTest {
         check(Micro.waryRisk(new MapLocation(11, 10), wm) == 0, "STUN_WARY: an enemy seen beside a tile WARY_ROUNDS+1 rounds ago no longer counts");
         Micro.enemyNearStamp = null;
 
-        // CRUMB_STEP (audit BOT4) is off in the incumbent: with nothing else to choose between, the step ignores the crumb
-        // tile; the arm's bonus is checked by its 5(a) counter cr. Here: the fight loop runs and moves (fake controller).
+        // CRUMB_STEP (audit BOT4) is on in the incumbent (default true since g_iter5, kept in g_iter7): with nothing else to
+        // choose between, the step takes the crumb tile (EAST below). Here: the fight loop runs and moves (fake controller).
         G.W = 40; G.H = 30; G.rc = BotTest.fakeRc(); G.me = new MapLocation(10, 10); BotTest.moveOk = true; BotTest.lastMove = null;
         BotTest.crumbTiles = new MapLocation[]{new MapLocation(11, 10)};
         try {

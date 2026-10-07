@@ -3,8 +3,9 @@
 #   tools/post-block.sh <run-id-on-the-VM> <build-label>
 # 1 fetch the run; 2 record it into progress/games.csv; 3 refit the ladder ratings (ELO.md, elo.png);
 # 4 re-tier the roster in BENCHMARK.md; 5 study the block (study.tsv, nav.tsv; every opponent
-# since PROMPTS 45); 6 correlation and onset tables and chart (progress/ONSET.md, onset-ladder.png), and the onset table over
-# every block of the build (progress/ONSET-merged.md).
+# since PROMPTS 45); 6 correlation and onset tables and chart (progress/ONSET.md, onset-ladder.png), and an attempt at the
+# onset table over every block of the build (tools/onset-merged.sh -> progress/ONSET-merged.md; it needs
+# gauntlet/*-scrim-<build>/study.tsv, finds none for g_iter7 and exits quietly here, so that file was never produced).
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RUN="${1:?run id}"; LABEL="${2:?build label, e.g. g_iter1}"

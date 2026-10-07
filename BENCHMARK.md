@@ -27,13 +27,13 @@
 
 | opponent | repo (commit) | last win % | games | tier | history |
 |---|---|---|---|---|---|
-| `AlexYu84.smartPlayer` | AlexYu84_SWE-Group6-battlecode-project (52f7f35) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `AlexYu84.smartPlayer` | AlexYu84_SWE-Group6-battlecode-project (52f7f35) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `Andycipation.afk` | Andycipation_battlegeese-25 (71f37e7) | - | - | untested |  |
 | `Andycipation.camel_case_v21_final` | Andycipation_battlegeese-25 (71f37e7) | - | - | untested |  |
 | `AnthonyPetrosino.lectureplayer` | AnthonyPetrosino_BattleCode24Petrobot (ca0004f) | - | - | untested |  |
 | `ColtG5.BAMFF` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
 | `ColtG5.GoldenSon` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
-| `ColtG5.Goob_final` | ColtG5_Battlecode2024 (afb621a) | 0 | 2 | locked | 0 50 0 50 50 0 100 50 50 0 0 50 0 |
+| `ColtG5.Goob_final` | ColtG5_Battlecode2024 (afb621a) | 96 | 48 | solved | 0 34 0 50 50 0 100 50 50 0 0 50 0 32 35 31 34 31 67 92 86 88 93 96 |
 | `ColtG5.Its_A_Gun` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
 | `ColtG5.Its_A_Gun_V2` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
 | `ColtG5.Its_A_Gun_V3` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
@@ -60,7 +60,7 @@
 | `ColtG5.coltonbotyay` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
 | `ColtG5.dantebot` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
 | `ColtG5.franklin` | ColtG5_Battlecode2024 (afb621a) | - | - | untested |  |
-| `CyrilSharma.finalBot` | CyrilSharma_Battlecode2024 (675ddbd) | 0 | 2 | locked | 0 0 50 0 50 0 0 0 0 0 0 0 0 |
+| `CyrilSharma.finalBot` | CyrilSharma_Battlecode2024 (675ddbd) | 73 | 48 | peer | 0 20 50 0 50 0 0 0 0 0 0 0 0 14 12 16 50 29 31 32 37 38 36 38 42 53 73 |
 | `CyrilSharma.finalbaseline` | CyrilSharma_Battlecode2024 (675ddbd) | - | - | untested |  |
 | `CyrilSharma.initialBot` | CyrilSharma_Battlecode2024 (675ddbd) | - | - | untested |  |
 | `CyrilSharma.jan11` | CyrilSharma_Battlecode2024 (675ddbd) | - | - | untested |  |
@@ -88,7 +88,7 @@
 | `Gymhgy.v10off2` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.v10off4` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.v10off5` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
-| `Gymhgy.v10official` | Gymhgy_battlecode-24 (ac69ab0) | 0 | 2 | locked | 0 50 0 0 0 0 0 0 0 0 0 0 0 |
+| `Gymhgy.v10official` | Gymhgy_battlecode-24 (ac69ab0) | 81 | 48 | peer | 0 11 0 0 0 0 0 0 0 0 0 0 0 6 8 8 0 25 33 40 40 40 47 52 81 |
 | `Gymhgy.v2` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.v3` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.v3o1` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
@@ -111,7 +111,7 @@
 | `Gymhgy.voff4` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.voff6` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
 | `Gymhgy.voff7` | Gymhgy_battlecode-24 (ac69ab0) | - | - | untested |  |
-| `H4ffliger.keyboardcrusader_v1` | H4ffliger_BattleCode2024 (2ace67f) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `H4ffliger.keyboardcrusader_v1` | H4ffliger_BattleCode2024 (2ace67f) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `HugoIngelsson.Bot1` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot10` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot11` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
@@ -125,7 +125,7 @@
 | `HugoIngelsson.Bot19` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot2` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot20` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
-| `HugoIngelsson.Bot21` | HugoIngelsson_battlecode2024 (8c9278c) | 100 | 2 | solved | 50 100 100 100 100 0 100 100 100 100 100 100 100 |
+| `HugoIngelsson.Bot21` | HugoIngelsson_battlecode2024 (8c9278c) | 100 | 48 | solved | 50 100 100 100 100 0 100 100 100 100 100 100 100 97 98 100 |
 | `HugoIngelsson.Bot3` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot4` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot5` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
@@ -134,7 +134,7 @@
 | `HugoIngelsson.Bot8` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.Bot9` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
 | `HugoIngelsson.FailedDefense` | HugoIngelsson_battlecode2024 (8c9278c) | - | - | untested |  |
-| `IvanGeffner.kuma` | IvanGeffner_BTC24 (71310cf) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 50 0 |
+| `IvanGeffner.kuma` | IvanGeffner_BTC24 (71310cf) | 29 | 48 | target | 0 4 0 0 0 0 0 0 0 0 0 50 0 2 2 2 50 8 8 6 14 17 29 |
 | `JeffLegendPower.ALPHA.v1_ALPHA` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.ALPHA.v2_ALPHA` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.ALPHA.v3_ALPHA` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
@@ -156,35 +156,35 @@
 | `JeffLegendPower.v10` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v10_1` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v10_2` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
-| `JeffLegendPower.v11` | JeffLegendPower_battlecode24-scaffold (839826a) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `JeffLegendPower.v11` | JeffLegendPower_battlecode24-scaffold (839826a) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `JeffLegendPower.v11_1` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v11_2` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v11_3` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v8` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
 | `JeffLegendPower.v9_1` | JeffLegendPower_battlecode24-scaffold (839826a) | - | - | untested |  |
-| `Lithanium.AttackingBot` | Lithanium_Yorkshire-Hippos (250dc0f) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `Lithanium.AttackingBot` | Lithanium_Yorkshire-Hippos (250dc0f) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `Lithanium.CornerBot` | Lithanium_Yorkshire-Hippos (250dc0f) | - | - | untested |  |
 | `Lithanium.SrsBot` | Lithanium_Yorkshire-Hippos (250dc0f) | - | - | untested |  |
 | `Lithanium.anson` | Lithanium_Yorkshire-Hippos (250dc0f) | - | - | untested |  |
 | `Lithanium.mathu` | Lithanium_Yorkshire-Hippos (250dc0f) | - | - | untested |  |
 | `Lithanium.reechee` | Lithanium_Yorkshire-Hippos (250dc0f) | - | - | untested |  |
-| `Metta-AI.bc24scenario` | Metta-AI_cogame-battlecode (eb69952) | 100 | 2 | solved | 0 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `Metta-AI.bc24scenario` | Metta-AI_cogame-battlecode (eb69952) | 100 | 2 | peer(>90 once) | 0 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `MiloAkerman.hades` | MiloAkerman_GBLM2024 (1a56039) | - | - | untested |  |
-| `MiloAkerman.v1` | MiloAkerman_GBLM2024 (1a56039) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `MiloAkerman.v1` | MiloAkerman_GBLM2024 (1a56039) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `NotLLeon.testplayer` | NotLLeon_battlecode24 (9b1a6c7) | - | - | untested |  |
 | `NotLLeon.v0` | NotLLeon_battlecode24 (9b1a6c7) | - | - | untested |  |
 | `NotLLeon.v1` | NotLLeon_battlecode24 (9b1a6c7) | - | - | untested |  |
 | `NotLLeon.v2` | NotLLeon_battlecode24 (9b1a6c7) | - | - | untested |  |
-| `NotLLeon.v3` | NotLLeon_battlecode24 (9b1a6c7) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 0 0 |
-| `PerishoJ.tx` | PerishoJ_bc24 (0d916cd) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `Peter-Fun.dinoboxer` | Peter-Fun_Battle-Code-2024 (24588bd) | 100 | 2 | solved | 100 100 100 100 100 100 50 100 100 100 100 100 100 |
+| `NotLLeon.v3` | NotLLeon_battlecode24 (9b1a6c7) | 55 | 88 | peer | 0 8 0 0 0 0 0 0 0 0 0 0 0 7 7 5 0 8 17 19 26 28 55 |
+| `PerishoJ.tx` | PerishoJ_bc24 (0d916cd) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `Peter-Fun.dinoboxer` | Peter-Fun_Battle-Code-2024 (24588bd) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 50 100 100 100 100 100 100 |
 | `Peter-Fun.dinoboxerold` | Peter-Fun_Battle-Code-2024 (24588bd) | - | - | untested |  |
 | `Peter-Fun.dinoboxers` | Peter-Fun_Battle-Code-2024 (24588bd) | - | - | untested |  |
 | `Peter-Fun.lectureplayer` | Peter-Fun_Battle-Code-2024 (24588bd) | - | - | untested |  |
 | `Rubrasum.version_0` | Rubrasum_battlecode24-rubrasum (f71dcec) | - | - | untested |  |
 | `Rubrasum.version_1` | Rubrasum_battlecode24-rubrasum (f71dcec) | - | - | untested |  |
 | `Rubrasum.version_2` | Rubrasum_battlecode24-rubrasum (f71dcec) | - | - | untested |  |
-| `Rubrasum.version_3` | Rubrasum_battlecode24-rubrasum (f71dcec) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `Rubrasum.version_3` | Rubrasum_battlecode24-rubrasum (f71dcec) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `RyanAspen.dumbplayer` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v0_POST` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v1` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
@@ -202,7 +202,7 @@
 | `RyanAspen.v2` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v20` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v21` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
-| `RyanAspen.v22` | RyanAspen_Battlecode24 (182d928) | 100 | 2 | solved | 100 100 100 100 100 100 50 100 100 100 100 100 100 |
+| `RyanAspen.v22` | RyanAspen_Battlecode24 (182d928) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 50 100 100 100 100 100 100 |
 | `RyanAspen.v2_POST` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v3` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
 | `RyanAspen.v3_POST` | RyanAspen_Battlecode24 (182d928) | - | - | untested |  |
@@ -227,8 +227,8 @@
 | `SampleProvider.TSPAARKJAN15` | SampleProvider_battlecode24 (1757c97) | - | - | untested |  |
 | `SampleProvider.TSPAARKJAN20` | SampleProvider_battlecode24 (1757c97) | - | - | untested |  |
 | `SampleProvider.TSPAARKJAN26` | SampleProvider_battlecode24 (1757c97) | - | - | untested |  |
-| `SampleProvider.TSPAARKSPRINT1` | SampleProvider_battlecode24 (1757c97) | 50 | 2 | peer | 0 0 50 0 100 0 50 50 50 100 50 50 50 |
-| `SriLakshmiPolavarapu.ducks` | SriLakshmiPolavarapu_MIT-Battlecode-Game-2024 (d77bb5d) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `SampleProvider.TSPAARKSPRINT1` | SampleProvider_battlecode24 (1757c97) | 96 | 48 | solved | 0 50 50 0 100 0 50 50 50 100 50 50 50 51 58 44 100 88 88 92 96 97 96 |
+| `SriLakshmiPolavarapu.ducks` | SriLakshmiPolavarapu_MIT-Battlecode-Game-2024 (d77bb5d) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `Strequals.dino` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.dino0131v1` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.duck` | Strequals_bc24 (002e989) | - | - | untested |  |
@@ -240,7 +240,7 @@
 | `Strequals.duck0127v2` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.duck0127v3` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.duck0127v4` | Strequals_bc24 (002e989) | - | - | untested |  |
-| `Strequals.duck0127v5` | Strequals_bc24 (002e989) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 0 0 |
+| `Strequals.duck0127v5` | Strequals_bc24 (002e989) | 31 | 48 | target | 0 3 0 0 0 0 0 0 0 0 0 0 0 1 6 2 0 4 4 14 8 12 31 |
 | `Strequals.duck0128v1` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.duck0129v1` | Strequals_bc24 (002e989) | - | - | untested |  |
 | `Strequals.duck0129v2` | Strequals_bc24 (002e989) | - | - | untested |  |
@@ -287,8 +287,8 @@
 | `TylerJulian.v5` | TylerJulian_battlecode2024 (ad00dba) | - | - | untested |  |
 | `TylerJulian.v7` | TylerJulian_battlecode2024 (ad00dba) | - | - | untested |  |
 | `TylerJulian.v8` | TylerJulian_battlecode2024 (ad00dba) | - | - | untested |  |
-| `TylerJulian.v9` | TylerJulian_battlecode2024 (ad00dba) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `VarunVejalla.alexander` | VarunVejalla_Battlecode2024 (e9ef7c1) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `TylerJulian.v9` | TylerJulian_battlecode2024 (ad00dba) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `VarunVejalla.alexander` | VarunVejalla_Battlecode2024 (e9ef7c1) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `VarunVejalla.caesar` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
 | `VarunVejalla.davinci` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
 | `VarunVejalla.edison` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
@@ -306,10 +306,10 @@
 | `VarunVejalla.suntzu_stun` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
 | `VarunVejalla.suntzu_stun2_old` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
 | `VarunVejalla.tesla` | VarunVejalla_Battlecode2024 (e9ef7c1) | - | - | untested |  |
-| `abdullah8a0.crayBasic` | abdullah8a0_battlecode24 (0f3463a) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `abdullah8a0.crayBasic` | abdullah8a0_battlecode24 (0f3463a) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `abdullah8a0.crayEcon` | abdullah8a0_battlecode24 (0f3463a) | - | - | untested |  |
-| `adamseth2.moveBot1` | adamseth2_BattleCode-2024 (63eaa84) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `aj-chau.cowards` | aj-chau_battlecode24 (38653bd) | 100 | 2 | solved | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
+| `adamseth2.moveBot1` | adamseth2_BattleCode-2024 (63eaa84) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `aj-chau.cowards` | aj-chau_battlecode24 (38653bd) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
 | `aj-chau.stunners` | aj-chau_battlecode24 (38653bd) | - | - | untested |  |
 | `andli28.andys_mainbot_copy` | andli28_bc2024 (4040df7) | - | - | untested |  |
 | `andli28.bfs_plusplus` | andli28_bc2024 (4040df7) | - | - | untested |  |
@@ -349,9 +349,9 @@
 | `andli28.v9_1_USQuals_REAL` | andli28_bc2024 (4040df7) | - | - | untested |  |
 | `andli28.v9_2` | andli28_bc2024 (4040df7) | - | - | untested |  |
 | `andli28.v9_3_diggable` | andli28_bc2024 (4040df7) | - | - | untested |  |
-| `andli28.v9_USQuals_angle` | andli28_bc2024 (4040df7) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 0 0 |
+| `andli28.v9_USQuals_angle` | andli28_bc2024 (4040df7) | 33 | 280 | target | 0 6 0 0 0 0 0 0 0 0 0 0 0 5 14 12 0 0 12 22 19 25 30 39 33 |
 | `andrearante12.lectureplayer` | andrearante12_syntax-slingers-battlecode24 (faba14a) | - | - | untested |  |
-| `andrearante12.turtle` | andrearante12_syntax-slingers-battlecode24 (faba14a) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `andrearante12.turtle` | andrearante12_syntax-slingers-battlecode24 (faba14a) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `andrewgopher.player10` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player11` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player12` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
@@ -366,7 +366,7 @@
 | `andrewgopher.player2` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player20` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player21` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
-| `andrewgopher.player22` | andrewgopher_battlecode24 (5e40068) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 0 0 |
+| `andrewgopher.player22` | andrewgopher_battlecode24 (5e40068) | 52 | 48 | peer | 0 11 0 0 0 0 0 0 0 0 0 0 0 8 11 14 0 25 12 14 19 27 52 |
 | `andrewgopher.player3` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player4` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player5` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
@@ -374,7 +374,7 @@
 | `andrewgopher.player7` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player8` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
 | `andrewgopher.player9` | andrewgopher_battlecode24 (5e40068) | - | - | untested |  |
-| `awu7.ExplosiveBot` | awu7_Battlecode2024 (bb9da33) | 100 | 2 | peer(>90 once) | 0 100 100 100 50 50 100 100 100 100 100 50 100 |
+| `awu7.ExplosiveBot` | awu7_Battlecode2024 (bb9da33) | 100 | 36 | solved | 0 97 100 100 50 50 100 100 100 100 100 50 100 92 88 97 100 100 100 100 100 |
 | `awu7.FlagJump` | awu7_Battlecode2024 (bb9da33) | - | - | untested |  |
 | `awu7.GCMicro` | awu7_Battlecode2024 (bb9da33) | - | - | untested |  |
 | `awu7.Merlin` | awu7_Battlecode2024 (bb9da33) | - | - | untested |  |
@@ -385,14 +385,14 @@
 | `awu7.TestBot` | awu7_Battlecode2024 (bb9da33) | - | - | untested |  |
 | `awu7.waterspam` | awu7_Battlecode2024 (bb9da33) | - | - | untested |  |
 | `battlecode.lectureplayer` | battlecode_battlecode24-lectureplayer (d4f5637) | - | - | untested |  |
-| `cViper971.ourplayer` | cViper971_battlecode-2024 (adacfd2) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `cViper971.ourplayer` | cViper971_battlecode-2024 (adacfd2) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `chenyx512.SPRINT1` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.bfs` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.bot1` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.flagbot` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.flagbot2` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.flagbot3` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
-| `chenyx512.flagbot_final` | chenyx512_battlecode24 (bf245ef) | 0 | 2 | locked | 0 0 0 0 50 0 0 0 0 0 0 0 0 |
+| `chenyx512.flagbot_final` | chenyx512_battlecode24 (bf245ef) | 19 | 48 | locked | 0 6 0 0 50 0 0 0 0 0 0 0 0 6 6 8 0 0 0 3 7 8 19 |
 | `chenyx512.flagrushbot` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.macrobot` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
 | `chenyx512.microbot_39b0c75` | chenyx512_battlecode24 (bf245ef) | - | - | untested |  |
@@ -411,19 +411,19 @@
 | `clbarrell.duck5` | clbarrell_battlecode24 (c60bca8) | - | - | untested |  |
 | `clbarrell.duck6` | clbarrell_battlecode24 (c60bca8) | - | - | untested |  |
 | `clbarrell.duck7` | clbarrell_battlecode24 (c60bca8) | - | - | untested |  |
-| `clbarrell.duck8` | clbarrell_battlecode24 (c60bca8) | 50 | 2 | peer | 0 100 100 100 100 0 100 100 100 100 100 50 50 |
+| `clbarrell.duck8` | clbarrell_battlecode24 (c60bca8) | 100 | 48 | solved | 0 78 100 100 100 0 100 100 100 100 100 50 50 75 67 75 100 96 100 97 99 97 100 |
 | `clbarrell.lectureplayer` | clbarrell_battlecode24 (c60bca8) | - | - | untested |  |
 | `dmtrung14.defaultplayer` | dmtrung14_battlecode24 (a4a6199) | - | - | untested |  |
 | `dmtrung14.defaultplayer21` | dmtrung14_battlecode24 (a4a6199) | - | - | untested |  |
-| `dmtrung14.defaultplayer_intlqualifier` | dmtrung14_battlecode24 (a4a6199) | 100 | 2 | solved | 0 100 100 100 0 0 100 100 100 100 50 100 100 |
+| `dmtrung14.defaultplayer_intlqualifier` | dmtrung14_battlecode24 (a4a6199) | 98 | 48 | solved | 0 69 100 100 0 0 100 100 100 100 50 100 100 72 80 78 100 92 96 94 97 97 98 |
 | `dmtrung14.defaultplayer_sprint2` | dmtrung14_battlecode24 (a4a6199) | - | - | untested |  |
-| `dylanconklin.Team3` | dylanconklin_battlecode (d4bcb69) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `dylanzemlin.dangerduck2` | dylanzemlin_dangerducks (66675e2) | 100 | 2 | solved | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
+| `dylanconklin.Team3` | dylanconklin_battlecode (d4bcb69) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `dylanzemlin.dangerduck2` | dylanzemlin_dangerducks (66675e2) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
 | `hsmalladi.betterinfra` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.builder` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.cheese` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.detectstuntraps` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
-| `hsmalladi.finalbot` | hsmalladi_Battlecode2024 (fdf1eae) | 50 | 2 | peer | 0 0 50 50 50 0 50 50 50 50 50 50 50 |
+| `hsmalladi.finalbot` | hsmalladi_Battlecode2024 (fdf1eae) | 54 | 48 | peer | 0 12 50 50 50 0 50 50 50 50 50 50 50 14 12 14 0 21 12 14 28 18 54 |
 | `hsmalladi.flagmicro` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.flagplacement` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.healingmicro` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
@@ -441,7 +441,7 @@
 | `hsmalladi.stableversionv2` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.usquals` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
 | `hsmalladi.usquals2` | hsmalladi_Battlecode2024 (fdf1eae) | - | - | untested |  |
-| `itswin.MPAttack` | itswin_Battlecode24 (ada7d7e) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `itswin.MPAttack` | itswin_Battlecode24 (ada7d7e) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `itswin.MPBadMicro` | itswin_Battlecode24 (ada7d7e) | - | - | untested |  |
 | `itswin.MPCore` | itswin_Battlecode24 (ada7d7e) | - | - | untested |  |
 | `itswin.MPDodo` | itswin_Battlecode24 (ada7d7e) | - | - | untested |  |
@@ -468,12 +468,12 @@
 | `jmerle.camel_case_v18` | jmerle_battlecode-2024 (d10ddcc) | - | - | untested |  |
 | `jmerle.camel_case_v19_international_qualifiers` | jmerle_battlecode-2024 (d10ddcc) | - | - | untested |  |
 | `jmerle.camel_case_v20` | jmerle_battlecode-2024 (d10ddcc) | - | - | untested |  |
-| `jmerle.camel_case_v21_final` | jmerle_battlecode-2024 (d10ddcc) | 0 | 2 | locked | 0 0 0 0 50 0 0 0 0 0 0 0 0 |
-| `joelcrouch.ducks` | joelcrouch_CTF_DuckHunter (d77bb5d) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `jmerle.camel_case_v21_final` | jmerle_battlecode-2024 (d10ddcc) | 31 | 48 | target | 0 4 0 0 50 0 0 0 0 0 0 0 0 0 1 0 0 12 4 11 12 12 31 |
+| `joelcrouch.ducks` | joelcrouch_CTF_DuckHunter (d77bb5d) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `jonters.attackMicroTestA` | jonters_battlecode24 (c218380) | - | - | untested |  |
 | `jonters.attackMicroTestB` | jonters_battlecode24 (c218380) | - | - | untested |  |
 | `jonters.baldduck` | jonters_battlecode24 (c218380) | - | - | untested |  |
-| `jonters.bling3` | jonters_battlecode24 (c218380) | 100 | 2 | solved | 0 100 100 100 100 0 100 100 100 100 100 100 100 |
+| `jonters.bling3` | jonters_battlecode24 (c218380) | 98 | 48 | solved | 0 89 100 100 100 0 100 100 100 100 100 100 100 91 82 91 50 96 96 97 99 100 98 |
 | `jonters.bobnobuilder` | jonters_battlecode24 (c218380) | - | - | untested |  |
 | `jonters.bobnoheal` | jonters_battlecode24 (c218380) | - | - | untested |  |
 | `jonters.bobthebuilder` | jonters_battlecode24 (c218380) | - | - | untested |  |
@@ -489,7 +489,7 @@
 | `jonters.waxthebuilder` | jonters_battlecode24 (c218380) | - | - | untested |  |
 | `justinottesen.defense` | justinottesen_battlecode24 (faef3b5) | - | - | untested |  |
 | `justinottesen.justin` | justinottesen_battlecode24 (faef3b5) | - | - | untested |  |
-| `justinottesen.sprint1` | justinottesen_battlecode24 (faef3b5) | 100 | 2 | solved | 50 100 50 100 100 0 100 100 100 100 100 100 100 |
+| `justinottesen.sprint1` | justinottesen_battlecode24 (faef3b5) | 100 | 36 | solved | 50 100 50 100 100 0 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `justinottesen.testing` | justinottesen_battlecode24 (faef3b5) | - | - | untested |  |
 | `justinottesen.testing2` | justinottesen_battlecode24 (faef3b5) | - | - | untested |  |
 | `kyleezz.aardvark` | kyleezz_battlecode (f83763d) | - | - | untested |  |
@@ -557,7 +557,7 @@
 | `kyleezz.jeery` | kyleezz_battlecode (f83763d) | - | - | untested |  |
 | `kyleezz.jeeryfix` | kyleezz_battlecode (f83763d) | - | - | untested |  |
 | `kyleezz.jeeryfix2` | kyleezz_battlecode (f83763d) | - | - | untested |  |
-| `kyleezz.jeeryfix3` | kyleezz_battlecode (f83763d) | 50 | 2 | peer | 0 0 0 50 0 0 100 50 0 50 50 50 50 |
+| `kyleezz.jeeryfix3` | kyleezz_battlecode (f83763d) | 90 | 48 | peer | 0 41 0 50 0 0 100 50 0 50 50 50 50 33 41 33 50 54 67 78 78 80 90 |
 | `kyleezz.jeeryfixchase` | kyleezz_battlecode (f83763d) | - | - | untested |  |
 | `kyleezz.jeerymoveout` | kyleezz_battlecode (f83763d) | - | - | untested |  |
 | `kyleezz.kamikazy` | kyleezz_battlecode (f83763d) | - | - | untested |  |
@@ -633,27 +633,27 @@
 | `lcforges.funkyguy2v_0` | lcforges_battlecode24-funkyguy (6966385) | - | - | untested |  |
 | `lcforges.funkyguy2v_1` | lcforges_battlecode24-funkyguy (6966385) | - | - | untested |  |
 | `lcforges.funkyguy2v_2` | lcforges_battlecode24-funkyguy (6966385) | - | - | untested |  |
-| `lcforges.funkyguy3` | lcforges_battlecode24-funkyguy (6966385) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `lcforges.funkyguy3` | lcforges_battlecode24-funkyguy (6966385) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `lcforges.lectureplayer` | lcforges_battlecode24-funkyguy (6966385) | - | - | untested |  |
 | `lukerhoads.blitzer` | lukerhoads_battlecode-2024 (d5bf948) | - | - | untested |  |
 | `lukerhoads.donothingplayer` | lukerhoads_battlecode-2024 (d5bf948) | - | - | untested |  |
 | `lukerhoads.sensei` | lukerhoads_battlecode-2024 (d5bf948) | - | - | untested |  |
 | `lukerhoads.warrior` | lukerhoads_battlecode-2024 (d5bf948) | - | - | untested |  |
-| `lukerhoads.warrior_2nd_comp` | lukerhoads_battlecode-2024 (d5bf948) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `neilhuang007.baseline` | neilhuang007_BakaBC2024 (0450196) | 100 | 2 | solved | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
+| `lukerhoads.warrior_2nd_comp` | lukerhoads_battlecode-2024 (d5bf948) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `neilhuang007.baseline` | neilhuang007_BakaBC2024 (0450196) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 50 100 100 100 100 100 100 100 |
 | `neilhuang007.dev` | neilhuang007_BakaBC2024 (0450196) | - | - | untested |  |
 | `neilhuang007.reference` | neilhuang007_BakaBC2024 (0450196) | - | - | untested |  |
-| `noahzemlin.honeyducklings` | noahzemlin_Honey-Ducklings (311948a) | 100 | 2 | solved | 100 100 100 100 100 0 100 100 100 100 100 100 100 |
+| `noahzemlin.honeyducklings` | noahzemlin_Honey-Ducklings (311948a) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 0 100 100 100 100 100 100 100 |
 | `polyllc.poly` | polyllc_bc2024 (83fcad5) | - | - | untested |  |
 | `polyllc.polyv3` | polyllc_bc2024 (83fcad5) | - | - | untested |  |
-| `polyllc.polyv4` | polyllc_bc2024 (83fcad5) | 100 | 2 | solved | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `polyllc.polyv4` | polyllc_bc2024 (83fcad5) | 100 | 2 | peer(>90 once) | 50 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `qpwoeirut.a_basebot` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.b_comms` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.b_groupattackbot` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.c_micro` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.d_defendflag` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.e_exfiltrateflag` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
-| `qpwoeirut.tournament_sprint1` | qpwoeirut_Battlecode2024 (4844600) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `qpwoeirut.tournament_sprint1` | qpwoeirut_Battlecode2024 (4844600) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `qpwoeirut.w_rushplayer` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.x_moverplayer` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
 | `qpwoeirut.y_groupedplayer` | qpwoeirut_Battlecode2024 (4844600) | - | - | untested |  |
@@ -664,22 +664,22 @@
 | `quesswho.cretplayer2` | quesswho_Battlecode-Cret2024 (b67ce50) | - | - | untested |  |
 | `quesswho.cretplayer2_1` | quesswho_Battlecode-Cret2024 (b67ce50) | - | - | untested |  |
 | `quesswho.cretplayer2_2` | quesswho_Battlecode-Cret2024 (b67ce50) | - | - | untested |  |
-| `quesswho.cretplayer2_3` | quesswho_Battlecode-Cret2024 (b67ce50) | 100 | 2 | peer(>90 once) | 0 0 50 0 100 0 50 100 50 50 50 50 100 |
+| `quesswho.cretplayer2_3` | quesswho_Battlecode-Cret2024 (b67ce50) | 90 | 48 | peer | 0 40 50 0 100 0 50 100 50 50 50 50 100 48 51 38 0 71 71 78 82 85 90 |
 | `quesswho.defensive` | quesswho_Battlecode-Cret2024 (b67ce50) | - | - | untested |  |
 | `reeceyang.v1` | reeceyang_battlecode24 (51a6287) | - | - | untested |  |
 | `reeceyang.v2` | reeceyang_battlecode24 (51a6287) | - | - | untested |  |
 | `reeceyang.v3` | reeceyang_battlecode24 (51a6287) | - | - | untested |  |
 | `reeceyang.v3a` | reeceyang_battlecode24 (51a6287) | - | - | untested |  |
 | `reeceyang.v4` | reeceyang_battlecode24 (51a6287) | - | - | untested |  |
-| `reeceyang.v5` | reeceyang_battlecode24 (51a6287) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `samithShetty.combustiblelemon` | samithShetty_battlecode24 (6f4cc13) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `sayam-goyal.SimpleBot` | sayam-goyal_battlecode2024-async (eea8c0c) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
-| `sivakovivan.NewHide` | sivakovivan_BattleCode24 (2aa94d5) | 100 | 2 | solved | 0 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `reeceyang.v5` | reeceyang_battlecode24 (51a6287) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `samithShetty.combustiblelemon` | samithShetty_battlecode24 (6f4cc13) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `sayam-goyal.SimpleBot` | sayam-goyal_battlecode2024-async (eea8c0c) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `sivakovivan.NewHide` | sivakovivan_BattleCode24 (2aa94d5) | 100 | 2 | peer(>90 once) | 0 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `sivakovivan.currentworkingplayer` | sivakovivan_BattleCode24 (2aa94d5) | - | - | untested |  |
 | `sivakovivan.hideanddefend` | sivakovivan_BattleCode24 (2aa94d5) | - | - | untested |  |
 | `sivakovivan.lectureplayer` | sivakovivan_BattleCode24 (2aa94d5) | - | - | untested |  |
 | `tlevietpdx.Sprint1` | tlevietpdx_Battlecode24 (28d096d) | - | - | untested |  |
-| `tlevietpdx.Sprint2` | tlevietpdx_Battlecode24 (28d096d) | 100 | 2 | solved | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
+| `tlevietpdx.Sprint2` | tlevietpdx_Battlecode24 (28d096d) | 100 | 2 | peer(>90 once) | 100 100 100 100 100 100 100 100 100 100 100 100 100 |
 | `tlevietpdx.Sprint3` | tlevietpdx_Battlecode24 (28d096d) | - | - | untested |  |
 | `tlevietpdx.Sprint4` | tlevietpdx_Battlecode24 (28d096d) | - | - | untested |  |
 | `uravt.DoNothingBot` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
@@ -696,7 +696,7 @@
 | `uravt.Version16` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version17` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version18` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
-| `uravt.Version18Final` | uravt_Battlecode24 (1528e4c) | 0 | 2 | locked | 0 0 0 0 0 0 0 0 0 0 0 0 0 |
+| `uravt.Version18Final` | uravt_Battlecode24 (1528e4c) | 96 | 48 | peer(>90 once) | 0 0 0 0 0 0 0 0 0 0 0 0 0 65 67 67 96 |
 | `uravt.Version1Center` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version2` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version3` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
@@ -707,6 +707,6 @@
 | `uravt.Version8` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version8Water` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
 | `uravt.Version9` | uravt_Battlecode24 (1528e4c) | - | - | untested |  |
-| `winkelmantanner.waffle` | winkelmantanner_battlecode24_waffle (9ddd304) | 0 | 2 | locked | 0 50 0 0 0 0 50 0 0 0 0 0 0 |
+| `winkelmantanner.waffle` | winkelmantanner_battlecode24_waffle (9ddd304) | 92 | 48 | peer(>90 once) | 0 21 0 0 0 0 50 0 0 0 0 0 0 16 24 20 50 43 62 52 42 64 65 92 |
 
 681 bot packages from 58 repositories.

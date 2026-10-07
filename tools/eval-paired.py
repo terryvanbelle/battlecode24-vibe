@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Paired evaluation of an arm against a control on identical band cells, split by opponent tier (owner prompt 112).
     tools/eval-paired.py <ctl_census.csv> <arm_census.csv> <ctl_run>,<arm_run> [...] [--tier tools/upper-tier.txt]
-                         [--rung tools/next-rung.txt]   (descriptive slice: the bots just above us, owner prompt 113)
+                         [--rung tools/next-rung.txt]   (descriptive slice: the bots just above us, owner prompt 113;
+                         the file still holds CyrilSharma, hsmalladi, Gymhgy and andrewgopher, all now rated below
+                         g_iter7)
 Cells are paired by (seed index, replay basename) as in tools/arm-deltas.py. For each slice (all, upper tier, rest):
   wins: control, arm, gained / lost (discordant pairs), net, exact two-sided sign-test p;
   capture difference per game (our captures - theirs): control mean, arm mean, paired delta +- SE (t).
-The upper tier is the list of bots rated 2050+ on our ladder (2026-10-02; re-derived 2026-10-04 on the converged fit, audit
-MEAS11: waffle, which we now beat ~62%, dropped), which beat us 83-100%."""
+The upper tier (tools/upper-tier.txt): the bots rated 2050+ on 2026-10-02 and 2026-10-04 (audit MEAS11), then from
+2026-10-05 the bots rated above the incumbent, re-derived at each promotion. At the shutdown (2026-10-07) it is the 5 bots
+above g_iter7: Strequals 2284, chenyx512 2283, jmerle 2278, IvanGeffner.kuma 2258 and andli28 2187, which beat g_iter7
+69-81%."""
 import csv, math, os, re, sys
 from collections import defaultdict
 

@@ -1,7 +1,7 @@
 # Briefing for the morning discussion (owner prompt 115): the new approach, what's working and what's not
 
-Updated at every task check. Protocol: research/REWRITE_EVAL.md; numbers: progress/REWRITE.md; design:
-research/REWRITE_DESIGN.md (when the design panel returns).
+Updated at every task check until the shutdown of 2026-10-07 (the task-check loop is cancelled; last entry below).
+Protocol: research/REWRITE_EVAL.md; numbers: progress/REWRITE.md; design: research/REWRITE_DESIGN.md.
 
 ## Status
 - 2026-10-02 13:45 UTC: design panel running (four angles, three judges, synthesis). Evaluation protocol and tools in
@@ -149,13 +149,21 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   Next arm in its 5(a): g7spawn (respawn away from a contested spawn zone, micro-study proposal 3).
 
 - 2026-10-07 (Oct 6 evening to Oct 7): andli28 loss study (1,520 games): the fight trade decides; our mid-HP robots step into
-  reach 40% of the time to its 15%. Arms g7ehp (step-in gate) and g7ehp2: +24 over 200 paired games against andli28 (+3.2 SE)
-  but band-neutral, parked. g7fc (finish partial build levels at the end) fires too rarely. Upper-tier study of g_iter7: contact
+  reach 40% of the time to its 15%. Arm g7ehp (step-in gate): +28 over 240 paired games against andli28 (49-21, +3.3 SE)
+  but band look 1 STOP (capture t -1.12); its holding variant g7ehp2 ended INCONCLUSIVE at its 192-cell band delivery (no
+  band test). Both parked. g7fc (finish partial build levels at the end) fires too rarely. Upper-tier study of g_iter7: contact
   is twice as lethal for us at equal numbers (enemy stun volume and tempo while recharging); g7kite (leave reach below 700 HP)
   delivered but band pooled t 0.32, parked; its stack g7kiterc (supported one-step hold at full HP) passed its diagnostic and
   is in 5(a). Ladder fit now caps each pair at 200 games (PROMPTS 191): g_iter7 2134 +- 25 rank 6, andli28 2210. Against
   andli28 vertical-symmetry maps cost 20 points of win rate (0.19 vs 0.38, 5,720 games, replicated out of sample); a study is
   running.
+- 13:10 UTC (Oct 7): **shutdown (owner, PROMPTS 192): the week is up.** Final ladder: g_iter7 2113 +- 25, rank 6 of 88
+  (field score 88.6%, 30.5% against the 5 bots above); andli28 2187, rank 5, not cracked (g_iter7 1739-4109, 30%);
+  NotLLeon.v3 level at 2113 (g_iter7 48-40). g7kiterc's 12-cell 5(a) FIRED on every pre-registered bar; its band delivery
+  and band test are registered but were never run. The vertical-map study was stopped before any lens finished: the penalty
+  is real, its mechanism unidentified, and it is the top open lead. Stopped: the task-check loop, the vertical study, the VM
+  queue runner and the filler (parked as queue/filler.job.stopped); the VM is stopped. Resume steps: HANDOFF.md. Lessons:
+  LEARNINGS.md.
 
 ## Working
 - Seeded pairing plus the shipping rule (looks at 240/480/720 pairs; t_all >= 2.3 or t_up >= 2.6 with net >= 0).
@@ -181,6 +189,8 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   TRAINING_ALGORITHM §3.5 says a failed delivery is never judged on wins, so it is not delivered and the paired filler
   test is not running. Should delivery for a mechanism like this be judged on its own signature (frozen carriers)
   instead of a downstream outcome? Meanwhile: g2cr (carrier stun + relocation) aims at the same capture bar.
-- Once g1basics is measured: adopt it as the new base (g_iter2) if it is non-inferior, even without a clear gain,
-  because it is correct where g_iter1 is broken? Then re-test the most promising old arms on it with seeded pairs.
+- (answered: g1basics was confirmed on fresh seeds, +29, p < 0.001, and promoted to g_iter2 on 2026-10-03 02:15 UTC; the
+  old arms were re-tested on it, research/RETEST.md.) Once g1basics is measured: adopt it as the new base (g_iter2) if it
+  is non-inferior, even without a clear gain, because it is correct where g_iter1 is broken? Then re-test the most
+  promising old arms on it with seeded pairs.
 - (answered, prompt 120: one strategy, all energy on it; the crack against ColtG5.)

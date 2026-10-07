@@ -2,8 +2,13 @@
 
 Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), `HANDOFF.md` (state).
 
-1. **Games in volume run only on the VM `battlecode-dev`** (`tools/vm-run.sh`). The driver (2 vCPU, 2 GB)
-   hosts this session and may play one diagnostic game at a time.
+**Paused since 2026-10-07 ~13:10 UTC** (shutdown, PROMPTS 192; lessons in `LEARNINGS.md`). The VM battlecode-dev2 is
+stopped, its queue runner is stopped, the filler job is parked as queue/filler.job.stopped on the VM, and the task-check
+loop is cancelled. To resume: `source tools/vm.sh && ensure_vm` (starts the VM), restore queue/filler.job on the VM,
+`tools/vm-run.sh queue-runner 'tools/vm-queue.sh'`, and restart the task-check loop (HANDOFF.md).
+
+1. **Games in volume run only on the VM `battlecode-dev2`** (us-west2-a, named in `tools/vm.sh`; `tools/vm-run.sh`). The
+   driver (2 vCPU, 2 GB) hosts this session and may play one diagnostic game at a time.
 2. **Push after every commit**; **record every user prompt verbatim in `PROMPTS.md`**, except the prompts a `/loop` fires (e.g.
    "task check"; owner, PROMPTS 171).
 3. **External bots' source is never read** (`BENCHMARK.md`). Their games may be reviewed.
@@ -34,9 +39,10 @@ Read `TRAINING_ALGORITHM.md` (the loop), `RULES.md` (the game, engine-checked), 
     the lines of attack on the target run out, open the list (PROMPTS 177).
     Defeated so far: ColtG5 (g_iter2, declared by the owner), winkelmantanner.waffle (g_iter3 1977 > waffle 1964; the
     crack in research/CRACK-WAFFLE.md), and on 2026-10-06 Gymhgy.v10official, CyrilSharma.finalBot, hsmalladi.finalbot,
-    andrewgopher.player22 and NotLLeon.v3 (g_iter7 2134 > NotLLeon 2133 (g_iter7 48-40) > andrewgopher 2112 > hsmalladi
-    2073 > Gymhgy 1999 > Cyril; research/CRACK-GYMHGY.md). Target now: **andli28.v9_USQuals_angle** (2210, rank 5, the bot
-    just above g_iter7; g_iter7 562-1326 against it). The ladder fit counts each pair at most 200 games (PROMPTS 191). The filler
+    andrewgopher.player22 and NotLLeon.v3 (final fit: g_iter7 2113 = NotLLeon 2113, now level (g_iter7 48-40) > andrewgopher
+    2092 > hsmalladi 2052 > Gymhgy 1979 > Cyril 1967; research/CRACK-GYMHGY.md). Target at shutdown:
+    **andli28.v9_USQuals_angle** (2187, rank 5, the bot just above g_iter7; g_iter7 1739-4109 against it, 30%), not cracked
+    (research/CRACK-ANDLI28.md). The ladder fit counts each pair at most 200 games (PROMPTS 191). The filler
     plays the target on fresh seeds: `FILLPOOL=<target> tools/filler-pair.sh <incumbent> <candidate or -> 40` (random
     maps and sides); at every task check run `tools/collect-fillers.sh <incumbent> <candidates>`. Update the filler's
     candidate whenever an arm against the target passes delivery.

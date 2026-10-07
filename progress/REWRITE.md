@@ -1,7 +1,11 @@
-# Decision-layer rewrite: milestone statistics
+# Band paired tests: milestone statistics
 
-Protocol: research/REWRITE_EVAL.md. Paired against g_iter1 on the band cells (SEED 515151 + 616161); from g2cr on, against the incumbent g_iter2. "Upper" = the 11
-band bots rated 2050+; capture diff = our captures minus theirs per game.
+Started for the decision-layer rewrite (paused 2026-10-02); the table now records every band paired test. Protocol:
+research/REWRITE_EVAL.md. The first rows are paired against g_iter1 on the band cells (SEED 515151 + 616161); from g2cr on,
+each row is paired against the incumbent of its time (g_iter2 to g_iter7), on the seeds the row names if any, on
+band-20261005 from g5climb2 on. "Upper" = tools/upper-tier.txt at the time: the 11 band bots rated 2050+ through
+g4bundle (re-derived on 2026-10-04); the 10 bots above g_iter5 for the g5climb2 and g6heal rows; the 5 above g_iter7 for
+the g7 rows. Capture diff = our captures minus theirs per game.
 
 | build | stages on | all: wins, net (p) | all: capture delta | upper: wins, net | upper: capture delta | rest: net | rest: capture delta | Elo |
 |---|---|---|---|---|---|---|---|---|

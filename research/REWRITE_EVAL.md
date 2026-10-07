@@ -3,6 +3,12 @@
 Written before any rewrite code exists. Numbers decided here are not moved after a result is seen.
 
 ## Control and cells
+Status 2026-10-07 (shutdown): the control, cells and tiers in this section are the original 2026-10-02 setup. Later arms
+were paired against the incumbent of their time, each with its own control on the look seeds listed below (fresh seeds
+from g_iter5 on); the band is band-20261005 (tools/band.txt) since g_iter5. tools/upper-tier.txt now holds the 5 bots
+rated above g_iter7 (Strequals, chenyx512, jmerle, kuma, andli28), against which g_iter7 wins 19-31%.
+tools/next-rung.txt (CyrilSharma, hsmalladi, Gymhgy, andrewgopher) is no longer the rung above us: all four rate below
+g_iter7.
 - Control: g_iter1 (src/bot with every switch off plays as g_iter1; identity verified 2026-10-02).
 - Cells: the 20-bot band (`tools/band-20261001.txt`), SEED 515151 and 616161, 120 games each (~117 complete).
   Control runs on these cells: `20261001-011402-scrim-g_iter1` (515151) and `20261001-021054-scrim-g_iter1` (616161);
@@ -41,7 +47,8 @@ Written before any rewrite code exists. Numbers decided here are not moved after
   717171 818181 / 727272 838383 on tools/band-20261001.txt. g_iter5 (2026-10-05 refresh, PROMPTS 185): 525252 626262 /
   737373 848484 / 959595 161616 on tools/band-20261005.txt (the 20 bots nearest g_iter5; uravt.Version18Final and
   HugoIngelsson.Bot21 in, awu7.ExplosiveBot and justinottesen.sprint1 out); tools/upper-tier.txt = the 10 bots rated above
-  g_iter5 (uravt out: g_iter4 beat it 26-14).
+  g_iter5 (uravt out: g_iter4 beat it 26-14). g_iter6: 282828 393939 / 404040 171717 / 292929 303030 (band and upper tier
+  unchanged). g_iter7: 313131 424242 / 535353 646464 / 757575 868686 (band unchanged; upper tier the 5 bots above g_iter7).
 
   The incumbent's control on seeds 5-6 is played once per incumbent and reused by every arm. At each promotion the new
   incumbent gets a fresh control on fresh seeds (with the band refresh, PROMPTS 185). Simulated: a null arm ships 2.0%,

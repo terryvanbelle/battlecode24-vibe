@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # The onset table over EVERY recorded block of one build (its study.tsv files merged), not one block at a time:
 # one block's 43 reviewable games have a noise floor of 0.30; twenty blocks' 600 have 0.08 (2026-09-24, PROMPTS 25).
-#   tools/onset-merged.sh g_iter6            # -> progress/ONSET-merged.md (and the games it covers)
+#   tools/onset-merged.sh g_iter6            # -> progress/ONSET-merged.md (and the games it covers); exits 1 when the build
+#                                            # has no study.tsv (none of g_iter7's runs has one), so the file was never produced
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD="${1:?build label, e.g. g_iter6}"

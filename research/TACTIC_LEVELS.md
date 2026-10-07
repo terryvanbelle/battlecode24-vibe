@@ -512,7 +512,8 @@ Block 4 no longer needs a slot. Before adding indicator counters, drop the dead 
    - Start with study.tsv water traps by round (setup vs fight).
    - Then trace replays for andli28, hsmalladi, quesswho, uravt (2 census games, not in the band) and SampleProvider (the volume user).
    - Drop Gymhgy: its median is 2, and its water count matches its setup traps.
-4. **Commit the TL-1 inputs.**
+4. **Commit the TL-1 inputs.** (Status 2026-10-07, shutdown: never done. tools/tl1.py and research/tactic-levels/ do not
+   exist; the TL-1 table in TACTICS.md was written by hand on 2026-10-01 and never re-classified across g_iter2-g_iter7.)
    - research/tactic-levels/{nodes.csv, edges.csv, decompositions.json}, plus `tools/tl1.py`, which computes statuses and labels from the census CSVs.
    - Write the closed-directions ledger and the functional-area map that TRAINING_LOG lines 4-5 promise. Map each building block to the arms it must differ from, with re-open conditions.
 5. **Apply the documentation corrections** in §5.3.

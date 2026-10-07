@@ -71,3 +71,6 @@ Then widen: the rung (kyleezz, quesswho, winkelmantanner, CyrilSharma, hsmalladi
 - 2026-10-03 02:15 UTC: g1basics confirmed and promoted to g_iter2; ladder rank 13 (1918), **above ColtG5** (rank 14, 1877).
   ColtG5 at 120 games: 71/120 = 59.2% (p 0.055), paired +31 vs g_iter1 (+4.3 SE): one win short of the 60% bar. Final
   evaluation pre-registered at 240 ColtG5 games (same bars).
+- Status 2026-10-07 (shutdown): the 240-game evaluation was never completed. The owner declared ColtG5 defeated on
+  2026-10-03 (PROMPTS 157; g_iter2 83-61 = 58% on the ladder, 1918 vs 1877) and the target moved to waffle
+  (research/CRACK-WAFFLE.md). Final: ColtG5 1718 (rank 32); g_iter7 46-2 against it.

@@ -1,5 +1,12 @@
 # RETEST: closed directions to re-test on g_iter2
 
+Status 2026-10-07 (shutdown): queue arms 1-8 ran (TRAINING_LOG 2026-10-03). g2z2 delivery FAIL, parked; g2icamp FAIL
+twice, closed; g2fstun, g2escrg, g2alert400, g2water and g2up3 FAIL; g2rgh does not fire. g2bc played identical to g_iter2
+and g2nonav read net -1. The second audit (correction at the end) reads most of these failures as INCONCLUSIVE. Arms 9-12
+(g2def2, g2fort, g2csafe, g2z1) were never run as written; g3def2 (two defenders, on g_iter3) failed its Cyril delivery.
+The "Stay closed" row on flag relocation and the reserve g2crumbs were overtaken: RELOC_V2 (audit A12 fixed) shipped in
+g_iter3, RELOC_CLIMB in g_iter6, POST_SETUP_CRUMBS in g_iter5; all three are on in g_iter7.
+
 Written 2026-10-03 (owner prompt 150: "now that you've fixed some bugs, old approaches that you discarded are worth revisiting"). Three reviews were merged into one queue: bug interaction, statistical noise and strategic fit. Nothing in this file has been run yet. Every switch below was checked against `src/bot/C.java` and `src/bot/Sym.java`. Name, type and default are as stated. Every delivery column was checked against the census header (`ReplayDump --capabilities`) or the survey header (`--survey`).
 
 ## Why these verdicts can be re-opened

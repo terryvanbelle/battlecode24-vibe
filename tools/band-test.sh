@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Band test of an arm: 2 seeds x 120 games on the rating band, identical cells to the g_iter1 control, then census and
-# survey of its replays. REFUSES unless tools/delivery-gate.sh has written gauntlet/delivery-<arm>.PASS (owner prompt 66).
+# Band test of an arm: 2 seeds x 120 games on the rating band (tools/band.txt), identical cells to the incumbent's (g_iter7's)
+# control on the look seeds in tools/band-seeds.txt, then census and survey of its replays. REFUSES unless
+# tools/delivery-gate.sh has written gauntlet/delivery-<arm>.PASS (owner prompt 66).
 # Override only with NO_DELIVERY_REASON="<why>" (the reason is written into the run log and must go into TRAINING_LOG).
 #   tools/band-test.sh <arm>
 #   SEEDS="717171 818181" TAG=-conf tools/band-test.sh <arm>   (confirmation seeds; census-<arm><TAG>.csv)

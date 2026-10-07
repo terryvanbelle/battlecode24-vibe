@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start a detached run on battlecode-dev after syncing the repo tree. Prints the remote log path.
+# Start a detached run on battlecode-dev2 (the VM in tools/vm.sh; started if stopped) after syncing the repo tree. Prints the remote log path.
 #   tools/vm-run.sh <log-name> '<command line run in ~/projects/vibe/2024>'
 #   tools/vm-run.sh scan1 'MAXJOBS=6 OPPONENTS="a.b c.d" MAPS=maptestsmall TAG=scan1 tools/gauntlet.sh'
 # Follow with tools/vm-tail.sh <log-name>; fetch results with tools/vm-collect.sh <run-id>.

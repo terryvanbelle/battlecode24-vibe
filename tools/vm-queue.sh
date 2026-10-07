@@ -3,7 +3,7 @@
 # Runs ~/projects/vibe/2024/queue/pending/*.job in name order, one at a time, each as a bash script from the repo
 # root with its log in gauntlet/<job>.log; done jobs move to queue/done. When nothing is pending it runs
 # queue/filler.job (if present) once per idle period, so the VM never sits empty. One runner only (flock).
-#   start (from the driver): tools/vm-run.sh queue 'tools/vm-queue.sh'   (vm-run.sh setsid's it)
+#   start (from the driver): tools/vm-run.sh queue-runner 'tools/vm-queue.sh'   (log gauntlet/queue-runner.log; vm-run.sh setsid's it)
 #   enqueue: tools/vm-enqueue.sh <name> '<command>'
 # Runs from a private copy: vm-sync.sh replaces tools/ under a running script.
 if [ -z "${BC24_QREEXEC:-}" ]; then

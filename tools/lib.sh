@@ -22,7 +22,8 @@ team_url () {
 }
 
 # run_game <teamA> <teamB> <map> <replay> [extra -D flags]  -> engine stdout
-#   GAME_CONFIG=file: the engine's -c properties file (a puppet fixture, PROMPTS 59-60); GAME_OPTS: more -D flags
+#   GAME_CONFIG=file: the engine's -c properties file (a puppet fixture; inherited from the predecessor project's PROMPTS
+#   59-60, unused here); GAME_OPTS: more -D flags
 run_game () {
   local TA="$1" TB="$2" MAP="$3" REPLAY="$4"; shift 4
   # a puppet without its fixture resigns at once; refuse before java (the engine only prints a stack trace for a missing -c file)

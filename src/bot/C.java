@@ -30,7 +30,7 @@ public strictfp class C {
     public static final boolean RELOC_STALL_MOVES = false;  // audit BOT3(b): count only movement-ready turns; give up to the best tile reached; arm g4reach
     public static final boolean RELOC_CLIMB = true;     // audit BOT3(a): the carrier climbs over visible passable tiles away from the enemy
                                                         // spawns (no fixed spot that may be unreachable) and drops at a local maximum; arm
-                                                        // g5climb2, the incumbent g_iter6 since 2026-10-06
+                                                        // g5climb2, folded into g_iter6 (2026-10-06) and kept in g_iter7
     public static final boolean SPAWN_SAFE = false;     // upper-tier micro study: 59% of our spawns end beside an enemy (theirs 24%), 17% of our
                                                         // deaths come within 10 rounds of a spawn (theirs 2%); respawn away from a zone with
                                                         // SAFE_MIN+ enemies seen near it in the last 2 rounds when another zone has <= 1; arm g7spawn
@@ -86,6 +86,10 @@ public strictfp class C {
     // allies took a hit before the next turn +0.135 U / +0.126 R (2+: +0.015 / +0.016) and died within 20 rounds +0.026 / +0.020
     // (2+: -0.012 / +0.005) for the same own kills (+0.085 / +0.060 vs +0.078 / +0.071). It drops about a third of the changed
     // turns (U 245 of 700 a game, R 164 of 598). Allies within dist2 10 of the hold tile itself are 0-1 in only 1-2% of them.
+    // Status at the shutdown (2026-10-07, PROMPTS 192): arm g7kiterc (KITE_REACH_W 300 + RC_BAND 150) FIRED its 12-cell 5(a) on
+    // every bar; its band delivery (BASE=g7kite DGTAG=-kiterc tools/delivery-gate.sh g7kiterc, bars in TRAINING_LOG) and band
+    // test are registered but were never run. It is the open bot lever. KITE_REACH_W alone (g7kite) was parked on the band
+    // (pooled t_all 0.32).
     public static final int RC_BAND = 0;
     public static final int RC_HP = 700;
     public static final int RC_MAX_E = 2;
@@ -254,7 +258,7 @@ public strictfp class C {
     public static final int ESCORT_FAR_R2 = 0;          // > 0: out of a fight, join our carrier (registry location) within this dist2
     public static final int STUN_ENEMIES_MIN = 3;       // place a stun trap when this many enemies are within vision
     // S0b sensor (research/REWRITE_DESIGN.md 2.4): a shared, predicted track per our flag in slots 23-33 (Track); no consumer
-    public static final boolean TRACK = false;          // S0b switch (g1trk): off, javac drops every Track hook and play is g_iter1 exactly
+    public static final boolean TRACK = false;          // S0b switch (g1trk): off, javac drops every Track hook; play is unchanged (g_iter7)
     public static final int HOME_CONFIRM = 8;           // re-stamp a HOME track this old when the flag is seen at home: bounds MISSING's
                                                         // pessimistic departure to ~8 rounds for 3 writes per 8 rounds (design 2.4)
     public static final int TRK_MISS_R2 = 10;           // a negative sighting needs the predicted point this close: half the vision dist2 20,

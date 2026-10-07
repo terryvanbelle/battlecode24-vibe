@@ -1,4 +1,4 @@
-# CRACK-GYMHGY.md: the ladder target since 2026-10-04, Gymhgy.v10official (owner prompt 177)
+# CRACK-GYMHGY.md: the ladder target from 2026-10-04 to 2026-10-06, Gymhgy.v10official (owner prompt 177)
 
 Opened 2026-10-04 while the CyrilSharma line was running dry (research/CRACK-CYRIL.md): the owner allowed widening the
 target list if the lines of attack on Cyril run out. Gymhgy is rated 2099 (rank 9, above Cyril's 2053) and is the bot
@@ -119,3 +119,7 @@ target moves to NotLLeon.v3, the bot just above. What moved the matchup: centre 
 (g_iter5), flag distance (the climb, g_iter6: +24 over 520 paired games against Gymhgy) and, band-wide, the heal hold
 (g_iter7: +28 of 240 band pairs). Ruled out on the way: recall, a flag-fight stun bank, flag clustering, the convoy dive,
 relay, zone holds, the level farm and the dam line.
+
+Status 2026-10-07 (shutdown): NotLLeon.v3 is no longer the target either. g_iter7's control put it above NotLLeon on
+2026-10-06 (2150 vs 2133) and the target moved to andli28.v9_USQuals_angle the same day (research/CRACK-ANDLI28.md). Final
+fit: g_iter7 2113, NotLLeon 2113 (level; g_iter7 48-40), hsmalladi 2052, Gymhgy 1979 (g_iter7 39-9), Cyril 1967.

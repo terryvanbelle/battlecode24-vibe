@@ -1,5 +1,9 @@
 # CAPABILITY_CENSUS.md — basic capabilities, us vs opponents
 
+Status 2026-10-07 (shutdown): a dated g_iter1 snapshot (2026-10-01). "Us" below is g_iter1, the incumbent until
+2026-10-03, not g_iter7. Only 5 bots rate above g_iter7, which beats ColtG5 46-2, waffle 44-4, Cyril 35-13 and Gymhgy
+39-9. g_iter7's census is in gauntlet/census-g_iter7-L1..L3.csv (tools/capability-summary.py).
+
 700 games from census-g_iter1.csv, census-g_iter1-field.csv; 15 opponents beat us here (ColtG5.Goob_final, CyrilSharma.finalBot, Gymhgy.v10official, IvanGeffner.kuma, NotLLeon.v3, Strequals.duck0127v5, andli28.v9_USQuals_angle, andrewgopher.player22, chenyx512.flagbot_final, hsmalladi.finalbot, jmerle.camel_case_v21_final, kyleezz.jeeryfix3, quesswho.cretplayer2_3, uravt.Version18Final, winkelmantanner.waffle). Medians; "n" = games where the metric is defined. Regenerate with `tools/capability-summary.py`. Definitions: `tools/replaydump/ReplayDump.java --capabilities`, research/CAPABILITIES.md.
 
 ## vs bots that beat us (444 games)
