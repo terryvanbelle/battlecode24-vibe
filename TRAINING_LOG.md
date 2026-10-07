@@ -2251,3 +2251,19 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   +66 | +1, deaths +112 | +25. Our offence collapses on vertical maps against andli28 only. Map table:
   research/vertical-study-2026-10-07/maps.txt. A four-lens study (maps and team axis, andli28 behaviour, our play and code, timeline;
   synthesis and critic) is running; the g7kiterc 12-cell block is running on the VM beside it.
+- **g7kiterc 5(a) FIRES** (seed 7101, 12 cells, g7kite and g_iter7 twins from diag/kite5a). Every registered bar passes:
+  - (a) rc fired in 12/12; --metrics 50 rows through r200 equal the g7kite twin's in 12/12 (max_bc +0/+4); 0 overruns, 0 exceptions.
+  - (b) rcHold 0.943 (U) and 0.967 (R) vs twin 0.065 / 0.089 (bar 0.60), above the twin in 12/12; rcStrike2 0.342 / 0.348 vs
+    0.157 / 0.172 (2.2x / 2.0x, bar 1.25x); reachEndFree 0.005 / 0.005 (bar 0.02).
+  - (c) killShare mean arm minus g7kite twin +0.004 over 12 cells, +0.009 in U (bar -0.03).
+  - (d) windowed (RC1): deaths 0.962x (se 0.047), heals 0.956x (0.029), enemy stun triggers 0.951x (0.066); enemy captures 14 vs
+    12 (bar +2, at the limit), R half 5 vs 4 (bar +1); our captures 19 vs 21 (bar -2, at the limit).
+  - Falsifier not tripped. Logged: hits per class turn 0.0101 (U) / 0.0118 (R) vs twin 0.0013 / 0.0040, as RC2 forecast (~8x / 3x);
+    hits per hold 0.010 / 0.012. Wins: arm 8, g7kite 6, g_iter7 6; against g_iter7 the stack takes 8 wins to 6, captures 19 to 20,
+    enemy captures 14 to 16.
+  Next (registered, not run: the project was shut down on 2026-10-07, PROMPTS 192): band delivery
+  `BASE=g7kite DGTAG=-kiterc tools/delivery-gate.sh g7kiterc 'mean:rcHold>=0.5 rel:rcStrike2>=1.2 mean:reachEndFree<=0.03
+  nw:enemyStunTrig<=1.1 nw:heal400>=0.85 nw:enemyCaptured<=1.1 mean:overruns<=0' && tools/band-test.sh g7kiterc`.
+- **Shutdown (PROMPTS 192, 2026-10-07 13:10 UTC):** the task-check loop, the vertical-map study workflow (no lens had finished; the
+  replication above is its only result), the VM queue runner and the g_iter7-vs-andli28 filler were stopped; the last three
+  complete filler runs were collected; the VM was stopped. The filler job is parked as queue/filler.job.stopped on the VM.
