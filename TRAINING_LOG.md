@@ -2215,3 +2215,9 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   upper + 6 rest cells, g_iter7 twins.
 - Driver disk was full (85 MB free of 30 GB): this session's scratch directories from finished workflows (1.7 GB) deleted;
   1.8 GB free now. Most of the disk is other projects (projects/vibe/2020 7.8 GB, other sessions' /tmp scratch ~1.3 GB).
+- **g7kite 5(a) FIRES** (seed 7101, 6 upper + 6 rest cells, g_iter7 twins): (a) kr > 0 12/12, identity through r200 12/12 (max_bc
+  within tolerance), 0 overruns, 0 exceptions; (b) reachEndFree pooled 0.003 vs 0.150 (U, 0.02x) and 0.005 vs 0.162 (R, 0.03x),
+  lower 6/6 in each half; (c) reachHit 0.85x (U) and 0.86x (R) (bar 0.90x); (d) guards: kill share +0.002 (R -0.010), enemy
+  captures 12 vs 16, ours 21 vs 20, R wins -2 (at the limit), R capture difference -2, enemy stun triggers 1.21x (cap 1.25x).
+  Upper half: wins 2 vs 0, captures 10-8 vs 7-12. Band delivery (registered: rel:reachEndFree<=0.4 rel:reachHit<=0.92
+  nw:enemyCaptured<=1.1 mean:overruns<=0) with band look 1 chained as a stop check.
