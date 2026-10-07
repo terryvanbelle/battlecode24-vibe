@@ -2142,3 +2142,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g7fc andli28 delivery: FAIL** (48 cells): mean digsLate 3.7 over all games (bar 4; the premise expected 6.8: fewer games
   are level at r1950 on random maps than on the chosen cells), levelGain1500 20.0 vs 17.6 (INCONCLUSIVE, +0.9 SE past x1.10);
   enemy captures equal. Its band delivery (separately pre-registered, digsLate >= 2) still runs and gates its band test.
+- **g7ehp band delivery: INCONCLUSIVE at 96 cells** (the cap): lethal step-ins from a safe tile 1.4 vs 362 (PASS), deaths right
+  after a step-in 22 vs 92 (PASS), deaths 362 vs 438 (-17%, PASS +1.9 SE), enemy captures 1.16 vs 1.07 (guard INCONCLUSIVE: worst
+  plausible rise 25% vs the 20% limit; at 48 cells it read 1.06 vs 1.12). Never closed on INCONCLUSIVE; one 192-cell block
+  (N=192, its own base cache -g7-n192) is queued to give the capture guard the power it lacks, band test chained on PASS.
