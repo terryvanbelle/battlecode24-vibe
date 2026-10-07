@@ -2202,3 +2202,16 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   below 700 HP leaving cuts 3-round deaths by 0.04-0.21 at no strike cost, above 700 staying earns strikes, so gate it below 700
   HP), (2) STUN_MIN13 dose 3 (skip field stuns with <= 2 enemies near the tile), (3) RC_BAND (conditional on 1); HEAL_FRONT
   refuted. Open before building: 10-round survival and the deaths-to-captures channel.
+- Arm **g7kite** (C.KITE_REACH_W 300, KITE_REACH_HP 700, cap 2 enemies; workflow: premise checks, implementer, reviewer, fixer;
+  amendments R1-R5 in research/upper-tier-study-2026-10-07/synthesis.md): in a plain fight (no carrier in view) a robot below 700
+  HP that cannot strike this turn or is hurt leaves enemy reach whenever a tile out of reach adds no threat. Premise (all 720
+  control replays, the kite score's coin-flip ties as a randomized test): leaving cuts deaths at 10 and 20 rounds too (HP < 300:
+  -0.12 to -0.16 per decision; 300-699: -0.02 to -0.05) and adds strikes over 20 rounds; projected -13 to -21 deaths a game (U),
+  -12 to -15 (R); but the deaths-to-captures channel is near zero (g7ehp: -15.6% deaths, captures -0.10), so P(ships alone) ~0.05:
+  its band look is a stop check; the real band test is a stack with RC_BAND restricted to HP >= 700. New census columns
+  reachEndFree, reachHit (+ N/D counts). STUN_MIN13 not built: dose 3 skips 2-3 stuns a game, below 1 SE of any read.
+  Seven review findings fixed (identity bar tolerates the indicator's max_bc cost; carrier gate; cap of 2 enemies so the term
+  never outweighs a threat; reachHit population; tests). Unit tests pass (also rerun by me). 5(a) pre-registered: seed 7101, 6
+  upper + 6 rest cells, g_iter7 twins.
+- Driver disk was full (85 MB free of 30 GB): this session's scratch directories from finished workflows (1.7 GB) deleted;
+  1.8 GB free now. Most of the disk is other projects (projects/vibe/2020 7.8 GB, other sessions' /tmp scratch ~1.3 GB).

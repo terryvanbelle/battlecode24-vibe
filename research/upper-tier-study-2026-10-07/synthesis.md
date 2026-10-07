@@ -465,3 +465,69 @@ Risk: 1. Hurt robots that retreated are healed later and return to the fight lat
 
 Expected band gain x P(delivery) is about 0.5 x 0.35, about 0.18. It is ranked above JOIN_FIGHT (similar EV, but a flag-pressure risk against the rest) and STUN_PRESS (realistic +17 strikes a game, plus comms and frozen-enemy guessing).
 
+
+## Review amendments (2026-10-07)
+
+A code review of the g7kite build (src/bot Micro/C/G, ReplayDump's reach census, AuditTest) changed these clauses of lever 1's registration before any game. Each one replaces the clause it names. src/g7kite was re-snapshotted after the code changes (KITE_REACH_W 300, KITE_REACH_HP 700, KITE_REACH_CAP 2; tools/arm-intent.txt pins all three).
+
+R1. Mechanism: the gate and the cap. Replaces the term in "Mechanism" (with the critic's HP gate):
+  krGate = kiteReachGate(goal == null && carrier == null, actReady, hurt, rc.getHealth());   // HP < KITE_REACH_HP 700
+  if (C.KITE_REACH_W > 0 && krGate) score -= Math.min(inRange, C.KITE_REACH_CAP) * C.KITE_REACH_W;   // KITE_REACH_CAP 2
+- Carrier gate. A hurt robot skips the carrier branch, so with an enemy carrier in view it scored kite tiles with the term. It then stepped out of the carrier's reach, where g_iter7 often stays (a tie) and strikes the carrier first next turn. The census leaves out every turn with an enemy carrier within dist2 20, so neither reachEndFree nor reachHit could see this. The gate now matches the census exclusion, and the signature's definition does not change.
+- Cap. inRange x 300 was not always below one threat. With 4 enemies in reach the term is 1200, so an exit with one more threat won (-5000 vs -5200). With 3 in reach, 900 plus an exit's adjacency and crumb edge (up to 121) could also pass 1000. Capped, the term is at most 600, and 600 + 80 + 40 + 1 < 1000, so the arm never pays a threat to leave reach. Among reaching tiles it still prefers one enemy in reach to two. It still takes every free exit the census counts (300 beats every non-threat term), so (b) is unchanged.
+- Dose ladder. 1200 means the same as before: min(inRange, 2) x 1200 >= 1200 > 1000 pays one extra threat to leave reach.
+- Unit tests (AuditTest, both switch states; the fake controller now accepts attacks, BotTest.attackOk):
+  - strike first from reach, then kite out the same turn: kr +1 (switch off: stays)
+  - 250 HP, enemy carrier in reach, strike ready: stays, no kr turn
+  - two enemies in reach, no exit: moves to the tile with one in reach
+  - four in reach, and the only exit adds a threat: stays (the cap)
+  - each regression the review named fails its case: the gate read before the strike, the carrier gate removed, the cap removed
+
+R2. Identity bar. Replaces "--metrics 50 rows through r200 equal (identical) to the g_iter7 twin" in the diagnostic and in (a):
+  --metrics 50 rows through r200 equal to the g_iter7 twin's on every column except max_bc, for both teams, and our max_bc minus the twin's in [0, +200] in every row.
+- Why max_bc differs: the src/bot indicator string carries five counters that frozen g_iter7 does not (kr, eh, fc, fcF, ss), and it is built every turn, setup included.
+- Measured on diag/ehp5a/metrics.csv: g7ehp vs its g_iter7 twin, rows r50-r200, all 12 games. Every column is equal except our max_bc, which is +16 to +32 in every row.
+- This changes no decision. fight() never runs in setup, and the string is set after Sym.update and finalDig.
+- KITE_REACH_W 0 keeps src/bot play-identical to g_iter7, not byte-identical (line 81 above).
+- The same bar replaces "identical through r200" in the diagnostics and (a) bars of levers 2-4.
+
+R3. Signature baselines and validation. Replaces "validate against the Cm proxy 0.183 U / 0.203 R within +-0.01" and "twin proxy 0.183 / 0.203" in (b):
+- Twin baselines: reachEndFree 0.182 U / 0.191 R. This is the committed census, which reads true water (water-trap digs included).
+- The validation passed with the analyser's water (map and dig/fill vectors only):
+  - 706 of the 720 g_iter7 control games match the analyser exactly, and the rest within 2 turns
+  - pooled, both read 0.183 / 0.203
+- The R gap (0.203 vs 0.191) is all in opponents that build water traps: dmtrung14 (0.479 -> 0.207), SampleProvider, hsmalladi, quesswho. hsmalladi is an R cell, so R's twin read uses true water.
+- To rerun the +-0.01 check: REACH_VECWATER=1 tools/replay-dump.sh <replay> --capabilities gives the reach census the analyser's water. No other column changes.
+- Checked 2026-10-07 on the VM on dmtrung14 Asteroids, SampleProvider Gated and hsmalladi Klein:
+  - with the switch, reachEndFreeN, reachEndFreeD, reachHitN and reachKilledN equal the analyser-water census run for both teams
+  - without it, they equal the true-water run
+  - kills, deaths and stepMidN are the same either way
+
+R4. Exposure read and falsifier. Amends bar (c) and the falsifier:
+- Report reachEndFreeD (arm / twin) for each half next to (c)'s reachHit. The two denominators count different turns:
+  - In the arm, a robot under 700 HP leaves reach after each strike. On the recharging turn the kite score (-1000 per threat, +50 band) pulls it out to dist2 11-20.
+  - Its next strike is then a step-in strike, which starts out of reach, so the denominator never counts it.
+  - Arm reach turns are mostly turns where an enemy stepped into us. Twin reach turns are mostly sustained contact.
+  - So (c) can pass or fail on composition alone. The 0.81x / 0.75x projection held the tie-class population fixed.
+- Exposure read E, which does not depend on that population and uses existing columns: enemy hits per our strike = sum of the opponent's attacks / sum of ours. Read attacks (cumulative) from the final-round rows of tools/replay-dump.sh <replay> --metrics 1. Pool per half and over the 12 cells, arm vs twin.
+- Logged beside E:
+  - opponent attacks per our robot-round alive (meanAlive x rounds, --capabilities)
+  - stepMidN / stepDec and stepDeaths, arm vs twin: hits after our step-in strikes, which reachHit never sees
+- Falsifier: as registered, and it also trips when (b) passes and E pooled over the 12 cells is not below the twins' (arm >= twin). Enemies simply step in and hit: close the line, do not dose up.
+
+R5. Analyser reads: delivery item 10 and two logged items. These have no census column:
+- delivery item 10: U and R enemy deaths near our robots (eD20)
+- logged: stand hits on recharging robots
+- logged: enemy deaths within 20 rounds
+They are read with the study's analyser, which also runs the tie-break test. Its sources are now in research/upper-tier-study-2026-10-07/tools/: Cm.java (the study's src6 code unchanged), t6.py, agg3.py and r3.py (hard-coded paths turned into arguments), and run-cm.sh. Run the dumps on the VM, 3 at a time, with arm and twin in separate directories:
+  T=research/upper-tier-study-2026-10-07/tools
+  $T/run-cm.sh ~/cm/<tag>-arm diag/<tag>/g7kite-vs-*.bc24      (a delivery run: <run>/replays/*.bc24)
+  $T/run-cm.sh ~/cm/<tag>-twin diag/<tag>/g_iter7-vs-*.bc24
+  python3 $T/t6.py proj ~/cm/<tag>-arm    T rows per decision: eD20 (enemies within dist2 20 of the deciding robot dead within 20 rounds), k20, d3/d10/d20
+  python3 $T/agg3.py ~/cm/<tag>-arm g     G rows: stand hits on recharging victims (share of hits and per game), us and them
+  python3 $T/r3.py ~/cm/<tag>-arm         the randomized tie-break test (R rows)
+Checked on the VM:
+- run-cm.sh output is byte-identical to the study's out6 CSVs on two control games, under both gauntlet and diag-batch names
+- t6.py sig, proj and reach on out6 match the study's saved outputs
+- r3.py on out3 matches the critic's run, and gives the same result on out6 (Cm.java's R rows)
+- agg3.py g reproduces the stand-hit shares 0.111 / 0.189 and 649 / 1,227 a game

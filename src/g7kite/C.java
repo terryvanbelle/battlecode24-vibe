@@ -1,4 +1,4 @@
-package bot;
+package g7kite;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -64,7 +64,7 @@ public strictfp class C {
     // carrier branch, so without that gate it kited away from the carrier). 0 = off: play-identical to g_iter7, not
     // byte-identical (the kr counter rides in the indicator string, built every turn, so --metrics max_bc runs above the twin's);
     // arm 300, dose 1200 (min(inRange, 2) x 1200 > 1000: pays one extra threat to leave reach).
-    public static final int KITE_REACH_W = 0;
+    public static final int KITE_REACH_W = 300;
     public static final int KITE_REACH_HP = 700;
     public static final int KITE_REACH_CAP = 2;
     public static final boolean TERR_MICRO = false;     // TACTICS T15 (kill reward: +30 only for a killer on enemy territory): in a fight,

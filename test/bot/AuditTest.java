@@ -62,8 +62,9 @@ public class AuditTest {
         return BotTest.lastMove;
     }
 
-    /** The andli28 arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP): their pure logic, and their hooks as the switches stand
-     *  (off in src/bot: g_iter7's play; tools/unit-tests.sh runs these again on a copy with FINAL_COMPLETE on and ENGAGE_HP 700). */
+    /** The andli28 arms g7fc (C.FINAL_COMPLETE) and g7ehp (C.ENGAGE_HP) and the upper-tier arm g7kite (C.KITE_REACH_W): their pure
+     *  logic, and their hooks as the switches stand (off in src/bot: g_iter7's play; tools/unit-tests.sh runs these again on a copy
+     *  with FINAL_COMPLETE on, ENGAGE_HP 700 and KITE_REACH_W 300). */
     static void armTests() {
         Team keepThem = G.them; int keepBc = G.testBc;
         G.rc = BotTest.fakeRc(); G.them = Team.B; G.testBc = 25000;
@@ -261,6 +262,105 @@ public class AuditTest {
             check(d == Direction.EAST && Micro.engageRefusals == er + (on ? 1 : 0),
                   "ENGAGE_HP: every tile unsafe (450 >= 400 at the start and east): " + (on ? "the refused reaching tile wins the kite score on its adjacent ally, one eh turn" : "engages east (switch off)") + " (" + d + ")");
         } catch (GameActionException e) { check(false, "ENGAGE_HP fight: unexpected " + e); }
+
+        // ---- KITE_REACH_W (arm g7kite): the gate, then Micro.fight from (10,10) with one enemy E1 at (12,10). Every tile around us
+        // is within dist2 10 of E1 (one threat each); (10,10) and the east column are within dist2 4 (reach), N, S and the west
+        // column are not. The kite score ties at -1000 and staying (+1) wins: g_iter7 stays in reach; the term moves us out
+        check(Micro.kiteReachGate(true, false, false, C.KITE_REACH_HP - 1) && !Micro.kiteReachGate(true, false, false, C.KITE_REACH_HP),
+              "KITE_REACH_W gate: recharging, on just below KITE_REACH_HP, off at it");
+        check(!Micro.kiteReachGate(true, true, false, 400) && Micro.kiteReachGate(true, true, true, 250) && !Micro.kiteReachGate(false, false, false, 400)
+              && !Micro.kiteReachGate(false, true, true, 250) && !Micro.kiteReachGate(true, false, true, C.KITE_REACH_HP),
+              "KITE_REACH_W gate: off with a strike ready and not hurt, on when hurt (strike ready or not), off in a goal-directed fight, HP gate holds for hurt too");
+        check(C.KITE_REACH_HP > C.RETREAT_HP && (C.KITE_REACH_W == 0 || C.KITE_REACH_W > 8 * 10 + 50 + C.CRUMB_BONUS + 1),
+              "KITE_REACH_W: every hurt robot is below KITE_REACH_HP; the weight beats every non-threat term (8 allies, band, crumb, stay)");
+        // review 2026-10-07: uncapped, 4 enemies in reach cost 1200 > one threat. Below the 1000 dose (the 1200 dose pays a threat by
+        // design) the capped term plus every non-threat edge an exit can have over a reaching tile (8 allies, crumb, drift both
+        // ways, territory, stay; no band: both tiles have an enemy within dist2 10) stays below one threat
+        check(C.KITE_REACH_CAP >= 1 && (C.KITE_REACH_W == 0 || C.KITE_REACH_W >= 1000
+                  || C.KITE_REACH_CAP * C.KITE_REACH_W + 8 * 10 + C.CRUMB_BONUS + 2 * C.HOLD_DRIFT + (C.TERR_MICRO ? C.TERR_HOLD : 0) + 1 < 1000),
+              "KITE_REACH_W: the capped term (KITE_REACH_CAP enemies in reach) plus every non-threat edge stays below one threat (1000)");
+        G.W = 40; G.H = 30; G.round = 800; G.us = Team.A; BotTest.moveOk = true; BotTest.walls.clear(); BotTest.crumbTiles = new MapLocation[0];
+        Duck.flags = new FlagInfo[0]; BotTest.theirUpg = new GlobalUpgrade[0];
+        boolean kon = C.KITE_REACH_W > 0;
+        RobotInfo e1 = enemyAt(1, 12, 10, 1000, 0);
+        RobotInfo[] one = {e1}, none = {};
+        try {
+            int kr = Micro.kiteReachTurns;
+            BotTest.buildOk = false;   // the action is not ready (struck already, or recharging)
+            Direction d = fightStep(one, none, 600, null);
+            MapLocation end = d == null ? new MapLocation(10, 10) : new MapLocation(10, 10).add(d);
+            check(kon ? end.distanceSquaredTo(e1.location) > 4 && Micro.kiteReachTurns == kr + 1 : d == null && Micro.kiteReachTurns == kr,
+                  "KITE_REACH_W: 600 HP, recharging, a free exit: " + (kon ? "leaves reach (one kr turn)" : "stays in reach (switch off)") + " (" + d + ")");
+            d = fightStep(one, none, C.KITE_REACH_HP - 1, null);
+            end = d == null ? new MapLocation(10, 10) : new MapLocation(10, 10).add(d);
+            check(kon ? end.distanceSquaredTo(e1.location) > 4 : d == null, "KITE_REACH_W: just below the HP gate " + (kon ? "leaves reach" : "stays (switch off)") + " (" + d + ")");
+            kr = Micro.kiteReachTurns;
+            d = fightStep(one, none, C.KITE_REACH_HP, null);
+            check(d == null && Micro.kiteReachTurns == kr, "KITE_REACH_W: at KITE_REACH_HP the term is off: stays in reach, no kr turn (" + d + ")");
+            BotTest.buildOk = true;    // a strike ready (our fake canAttack refuses, so it stays ready): hurt robots kite, healthy ones engage
+            d = fightStep(one, none, 250, null);
+            end = d == null ? new MapLocation(10, 10) : new MapLocation(10, 10).add(d);
+            check(kon ? end.distanceSquaredTo(e1.location) > 4 : d == null, "KITE_REACH_W: hurt (250 HP) with a strike ready " + (kon ? "leaves reach (the || hurt clause)" : "stays (switch off)") + " (" + d + ")");
+            kr = Micro.kiteReachTurns;
+            d = fightStep(one, none, 600, null);
+            check(d == null && Micro.kiteReachTurns == kr, "KITE_REACH_W: a strike ready and not hurt engages from the reaching start tile (9901), untouched (" + d + ")");
+            BotTest.buildOk = false;
+            d = fightStep(one, none, 600, new MapLocation(20, 10));
+            check(d == Direction.EAST, "KITE_REACH_W: a goal-directed fight keeps its rush score: east into reach, nearest the goal (" + d + ")");
+            RobotInfo[] carrierOne = {new RobotInfo(1, Team.B, 1000, new MapLocation(12, 10), true, 0, 0, 0)};
+            d = fightStep(carrierOne, none, 600, null);
+            check(d == Direction.EAST, "KITE_REACH_W: an enemy carrier keeps the carrier branch: east next to it (" + d + ")");
+            // an exit that adds a threat is not taken (300 < 1000): walls on N and NW; E2 at (8,7) threatens S, SW and W (dist2 8, 5,
+            // 10; none in its reach) but not (10,10) (13) nor the east column, so every exit has 2 threats and every reaching tile 1
+            BotTest.walls.add(new MapLocation(10, 11)); BotTest.walls.add(new MapLocation(9, 11));
+            kr = Micro.kiteReachTurns;
+            d = fightStep(new RobotInfo[]{e1, enemyAt(2, 8, 7, 1000, 0)}, none, 600, null);
+            check(d == null && Micro.kiteReachTurns == kr, "KITE_REACH_W: no exit without an extra threat: stays in reach (one more threat outweighs the term) (" + d + ")");
+            BotTest.walls.clear();
+            // kr counts changed choices only: an ally at (8,10) gives W, SW and NW +10, so the best tiles without the term are already out of reach
+            kr = Micro.kiteReachTurns;
+            d = fightStep(one, new RobotInfo[]{ally(11, 8, 10)}, 600, null);
+            check((d == Direction.WEST || d == Direction.SOUTHWEST || d == Direction.NORTHWEST) && Micro.kiteReachTurns == kr,
+                  "KITE_REACH_W: when the best tile without the term is out of reach the choice is the same and no kr turn counts (" + d + ")");
+            // review 2026-10-07: the lever's main path. The action is ready and E1 is in reach: strike first (our fake canAttack now
+            // accepts it), the strike spends the action, and the same turn the robot kites out of reach (a kr turn). A krGate read
+            // before the strike would see the action ready and leave the term off on exactly these turns
+            BotTest.buildOk = true; BotTest.attackOk = true; BotTest.lastAttack = null;
+            kr = Micro.kiteReachTurns;
+            d = fightStep(one, none, 600, null);
+            end = d == null ? new MapLocation(10, 10) : new MapLocation(10, 10).add(d);
+            check(e1.location.equals(BotTest.lastAttack) && !BotTest.buildOk
+                  && (kon ? end.distanceSquaredTo(e1.location) > 4 && Micro.kiteReachTurns == kr + 1 : d == null && Micro.kiteReachTurns == kr),
+                  "KITE_REACH_W: 600 HP, action ready, E1 in reach: strikes it, then " + (kon ? "leaves reach (one kr turn)" : "stays in reach (switch off)") + " (" + d + ", hit " + BotTest.lastAttack + ")");
+            BotTest.attackOk = false; BotTest.lastAttack = null;
+            // an enemy carrier in view turns the term off (the census's free exit leaves those turns out). A hurt robot skips the
+            // carrier branch and scores kite tiles; there g_iter7 stays beside the carrier (every tile pays the -200 hurt band) and
+            // strikes it first next turn (bestTarget ranks carriers first)
+            BotTest.buildOk = true;    // a strike ready that the fake refuses: the action stays ready
+            kr = Micro.kiteReachTurns;
+            d = fightStep(carrierOne, none, 250, null);
+            check(d == null && Micro.kiteReachTurns == kr, "KITE_REACH_W: hurt (250 HP), strike ready, an enemy carrier in reach: stays beside it, no kr turn (" + d + ")");
+            BotTest.buildOk = false;
+            // two enemies in reach, no exit: walls leave only W. A at (10,11) is in reach of (10,10) and of W (dist2 2); E1 only of
+            // (10,10). Both tiles have two threats, so g_iter7 stays (+1); the term charges 600 at (10,10) and 300 at W: moves W
+            for (Direction w : G.DIRS) if (w != Direction.WEST && w != Direction.NORTH) BotTest.walls.add(new MapLocation(10, 10).add(w));
+            kr = Micro.kiteReachTurns;
+            d = fightStep(new RobotInfo[]{e1, enemyAt(2, 10, 11, 1000, 0)}, none, 600, null);
+            check(kon ? d == Direction.WEST && Micro.kiteReachTurns == kr + 1 : d == null && Micro.kiteReachTurns == kr,
+                  "KITE_REACH_W: two enemies in reach, no exit: " + (kon ? "the term scales with enemies in reach: W (one in reach), one kr turn" : "stays (switch off)") + " (" + d + ")");
+            BotTest.walls.clear();
+            // the cap: four enemies in reach of (10,10) (E, N, (12,10), (10,12)); walls leave only SW (9,9), out of every reach but
+            // within dist2 10 of all four and of a fifth at (7,7) (dist2 8; 18 from (10,10)): 5 threats against 4. Capped, (10,10)
+            // pays 600 and wins (-4599 vs -5000); uncapped it paid 1200 (-5199) and bought the extra threat
+            for (Direction w : G.DIRS) if (w != Direction.SOUTHWEST && w != Direction.EAST && w != Direction.NORTH) BotTest.walls.add(new MapLocation(10, 10).add(w));
+            RobotInfo[] four = {enemyAt(1, 11, 10, 1000, 0), enemyAt(2, 10, 11, 1000, 0), enemyAt(3, 12, 10, 1000, 0), enemyAt(4, 10, 12, 1000, 0), enemyAt(5, 7, 7, 1000, 0)};
+            kr = Micro.kiteReachTurns;
+            d = fightStep(four, none, 600, null);
+            check(d == null && Micro.kiteReachTurns == kr,
+                  "KITE_REACH_W: four enemies in reach, the only exit adds a threat: stays (at most KITE_REACH_CAP in reach count: 600 < 1000), no kr turn (" + d + ")");
+            BotTest.walls.clear();
+        } catch (GameActionException e) { check(false, "KITE_REACH_W fight: unexpected " + e); }
+        BotTest.attackOk = false; BotTest.lastAttack = null;
         BotTest.moveOk = false; BotTest.buildOk = false; BotTest.walls.clear(); BotTest.robots = new RobotInfo[0]; BotTest.health = 1000; BotTest.lastMove = null;
         Duck.enemies = new RobotInfo[0]; Duck.allies = new RobotInfo[0]; G.me = new MapLocation(10, 10);
         G.them = keepThem; G.testBc = keepBc;
@@ -269,7 +369,7 @@ public class AuditTest {
     public static void main(String[] a) {
         if (a.length > 0 && a[0].equals("arms")) {   // tools/unit-tests.sh: a copy of src/bot with the arms' switches on
             armTests();
-            System.out.println("AuditTest arms (FINAL_COMPLETE " + C.FINAL_COMPLETE + ", ENGAGE_HP " + C.ENGAGE_HP + "): " + (fails == 0 ? "OK" : "FAILED " + fails));
+            System.out.println("AuditTest arms (FINAL_COMPLETE " + C.FINAL_COMPLETE + ", ENGAGE_HP " + C.ENGAGE_HP + ", KITE_REACH_W " + C.KITE_REACH_W + "): " + (fails == 0 ? "OK" : "FAILED " + fails));
             if (fails > 0) System.exit(1);
             return;
         }
@@ -314,8 +414,8 @@ public class AuditTest {
             check(Comms.carriedAge(0) == Integer.MAX_VALUE && Comms.carried(0, 99) == null && Duck.campTarget(new MapLocation(20, 15), ec) == null,
                   "A11(a): after our flag is seen not carried there is no carry and no camp");
         } catch (GameActionException e) { check(false, "A11(a): unexpected " + e); }
-        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK && !C.FINAL_COMPLETE && C.ENGAGE_HP == 0,
-              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor, the contact dive and the andli28 arms off)");
+        check(C.REG_FIX && C.ALERT_FIX && C.REACH_FIX && C.REACH_FAST && C.NAV_FIX && Sym.OBSERVE && !C.TRACK && C.RELOCATE_FLAGS && C.RELOC_V2 && C.CARRIER_STUN && !C.DEST_CAMP && !C.BUDGET_V1 && !C.ESCORT_TIGHT && C.FLAG_LOST && !C.DEF_TETHER && C.PICKUP_AFTER_MOVE && !C.RELOC_STALL_MOVES && !C.CARRY_PREDICT && !C.STUN_AHEAD && !C.FILL_STEP && !C.RELOC_SPREAD && !C.ALERT_NEAREST && !C.INIT_FAST && !C.STUN_FRONT && !C.STUN_WARY && C.CRUMB_STEP && C.POST_SETUP_CRUMBS && !C.BUILDERS && !C.RELAY && !C.RELAY_THREAT && !C.LEVEL_FARM && !C.DAM_FIRST && !C.CONTACT && C.RELOC_CLIMB && C.CLIMB_R2 == 400 && C.HEAL_HOLD && C.HOLD_R2 == 10 && !C.TERR_MICRO && !C.LATE_BANK && !C.FINAL_COMPLETE && C.ENGAGE_HP == 0 && C.KITE_REACH_W == 0,
+              "src/bot plays as the incumbent g_iter7 (g_iter6 + heal hold; the track sensor, the contact dive, the andli28 arms and g7kite off)");
 
         // A2: an enemy flag id is the location index of their spawn centre; one id decides the symmetry (audit example)
         G.W = 59; G.H = 59; Sym.cands = 7; Sym.conflicts = 0; Sym.decidedRound = -1; G.spawns = null;
@@ -687,7 +787,7 @@ public class AuditTest {
         check(!Duck.aheadOf(new MapLocation(8, 10), new MapLocation(10, 10), new MapLocation(20, 10))
               && Duck.aheadOf(new MapLocation(13, 11), new MapLocation(10, 10), new MapLocation(20, 10)), "STUN_AHEAD: behind no, ahead yes");
 
-        armTests();   // with both arms off here; unit-tests.sh runs them again with the switches on
+        armTests();   // with the arms off here; unit-tests.sh runs them again with the switches on
 
         System.out.println("AuditTest: " + (fails == 0 ? "OK" : "FAILED " + fails));
         if (fails > 0) System.exit(1);

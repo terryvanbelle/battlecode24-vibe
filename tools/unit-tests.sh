@@ -13,11 +13,12 @@ for f in "$REPO"/src/bot/*.java; do sed 's/boolean CONTACT = false;/boolean CONT
 grep -q 'boolean CONTACT = true;' "$CSRC/C.java" || { echo "unit-tests: could not switch C.CONTACT on in the copy" >&2; exit 1; }
 javac -nowarn -encoding UTF-8 -d "$COUT" -cp "$(engine_cp)" "$CSRC"/*.java "$REPO"/test/bot/BotTest.java "$REPO"/test/bot/ContactTest.java
 java -cp "$COUT:$(engine_cp)" bot.ContactTest
-# The andli28 arms (g7fc C.FINAL_COMPLETE, g7ehp C.ENGAGE_HP 700) are off in src/bot too: AuditTest's arm tests run again on a
-# copy with both switches on, which pins the hooks the arm snapshots play (the fight gate, the trap pauses)
+# The andli28 arms (g7fc C.FINAL_COMPLETE, g7ehp C.ENGAGE_HP 700) and the upper-tier arm g7kite (C.KITE_REACH_W 300) are off in
+# src/bot too: AuditTest's arm tests run again on a copy with the switches on, which pins the hooks the arm snapshots play (the
+# fight gate, the trap pauses, the kite reach term)
 ASRC="$REPO/build/tests-arms/src"; AOUT="$REPO/build/tests-arms/classes"; rm -rf "$ASRC" "$AOUT"; mkdir -p "$ASRC" "$AOUT"
-for f in "$REPO"/src/bot/*.java; do sed -e 's/boolean FINAL_COMPLETE = false;/boolean FINAL_COMPLETE = true;/' -e 's/int ENGAGE_HP = 0;/int ENGAGE_HP = 700;/' "$f" > "$ASRC/$(basename "$f")"; done
-grep -q 'boolean FINAL_COMPLETE = true;' "$ASRC/C.java" && grep -q 'int ENGAGE_HP = 700;' "$ASRC/C.java" || { echo "unit-tests: could not switch the andli28 arms on in the copy" >&2; exit 1; }
+for f in "$REPO"/src/bot/*.java; do sed -e 's/boolean FINAL_COMPLETE = false;/boolean FINAL_COMPLETE = true;/' -e 's/int ENGAGE_HP = 0;/int ENGAGE_HP = 700;/' -e 's/int KITE_REACH_W = 0;/int KITE_REACH_W = 300;/' "$f" > "$ASRC/$(basename "$f")"; done
+grep -q 'boolean FINAL_COMPLETE = true;' "$ASRC/C.java" && grep -q 'int ENGAGE_HP = 700;' "$ASRC/C.java" && grep -q 'int KITE_REACH_W = 300;' "$ASRC/C.java" || { echo "unit-tests: could not switch the arms on in the copy" >&2; exit 1; }
 javac -nowarn -encoding UTF-8 -d "$AOUT" -cp "$(engine_cp)" "$ASRC"/*.java "$REPO"/test/bot/BotTest.java "$REPO"/test/bot/AuditTest.java
 java -cp "$AOUT:$(engine_cp)" bot.AuditTest arms
 # no dead code in the bot (owner prompt 127: the symmetry check existed but was never called); reserved slot constants

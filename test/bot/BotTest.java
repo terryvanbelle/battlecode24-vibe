@@ -28,6 +28,8 @@ public class BotTest {
     static int buildXp, attackLevel, healLevel;         // fakeRc: getExperience(BUILD), getLevel(ATTACK), getLevel(HEAL); dig adds build XP
     static int attackDamage = 150, actionCd;            // fakeRc: getAttackDamage, getActionCooldownTurns
     static boolean digOk;                               // fakeRc: canDig on a dry, in-reach, on-map tile; dig records lastDig and turns it to water
+    static boolean attackOk;                            // fakeRc: canAttack on a G.them robot within dist2 4 while the action is ready
+    static MapLocation lastAttack;                      // (buildOk); attack() records it and spends the action (buildOk false)
     static MapLocation lastDig;
     static MapLocation[] zoneA = new MapLocation[0], zoneB = new MapLocation[0];
     static int zoneOf(MapLocation l) {
@@ -80,6 +82,13 @@ public class BotTest {
                         return got.toArray(new RobotInfo[0]);
                     }
                     case "move": lastMove = (Direction) args[0]; G.me = G.me.add(lastMove); return null;
+                    case "canAttack": {
+                        MapLocation l = (MapLocation) args[0];
+                        if (!attackOk || !buildOk || l == null || G.me.distanceSquaredTo(l) > GameConstants.ATTACK_RADIUS_SQUARED) return false;
+                        for (RobotInfo r : robots) if (r.location.equals(l) && r.team == G.them) return true;
+                        return false;
+                    }
+                    case "attack": lastAttack = (MapLocation) args[0]; buildOk = false; return null;
                     case "getHealth": return health;
                     case "getAttackDamage": return attackDamage;
                     case "getActionCooldownTurns": return actionCd;

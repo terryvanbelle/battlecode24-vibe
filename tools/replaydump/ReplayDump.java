@@ -59,6 +59,9 @@ import java.util.zip.GZIPInputStream;
  *                                                                           outcome CAPTURE|RETURN|OPEN, k = T open rounds)
  *                           V g0                             -> the same  (one dive turn added to that tally: g0 of its
  *                                                                           nearest chain, -1 = none within dist2 144)
+ *                         and the reach census's free exit (C.KITE_REACH_W, upper-tier study 2026-10-07):
+ *                           F sx sy legal ex ey [ex ey..]    -> 1|0       (freeExit; legal = bitmask of the 8 neighbours in
+ *                                                                           RDX/RDY order, the start tile always legal)
  *
  * --capabilities columns appended for S0a (each describes the OTHER team's trips on this team's flags, like chasers20;
  * blank when the event is absent, so tools/delivery-check.py skips the game):
@@ -132,6 +135,28 @@ import java.util.zip.GZIPInputStream;
  *                      dist2 10 of the start tile stay under the robot's HP; no enemy is within dist2 4 of it at a decision, so
  *                      no kill exempts it): the avoidable ones. When every tile is lethal C.ENGAGE_HP's kite score may still
  *                      pick a refused reaching tile, and striking there beats staying (review 2026-10-06)
+ *   reach census (C.KITE_REACH_W's signature, upper-tier study 2026-10-07; the step census's reconstruction, matched to that
+ *   study's analyser). A reach turn: a post-setup turn of a robot alive at the end of the previous round, not carrying, ready
+ *   to act and to move (both cooldowns < 20 at the end of the previous round), alive at its turn, that attacks this round, at
+ *   HP below 700 at its turn (hurt robots included), with an enemy within dist2 4 and no enemy carrier within dist2 20 at its
+ *   turn, and a free exit (freeExit): a legal adjacent tile (on the map, no wall, no water at the end of the previous round, no
+ *   robot on it at the robot's turn) within dist2 4 of no enemy, whose threat count (enemies within dist2 10) is at most the
+ *   lowest threat count among the legal tiles within dist2 4 of an enemy, the start tile included: the exit the arm's score
+ *   takes (KITE_REACH_W 300 per enemy in reach, at most KITE_REACH_CAP 2 of them counted, beats every non-threat term and
+ *   stays below one threat). Water includes water-trap digs (DIG actions with actor -1, absent from the round's dig vector):
+ *   the study's analyser read the vector only and so counted exits onto those tiles. With its water this census gave its
+ *   proxy in 706 of the 720 g_iter7 control games and within 2 turns in the rest (pooled 0.183 upper / 0.203 rest for both);
+ *   with the true water it reads 0.182 / 0.191, the gap all in opponents that build water traps (dmtrung14 0.479 -> 0.207,
+ *   SampleProvider, hsmalladi, quesswho). The g_iter7 twin baselines are the true-water ones. Debug: REACH_VECWATER=1 in the
+ *   environment gives the reach census the analyser's water (the map's, then each round's dig and fill vectors only), so that
+ *   check can be rerun; no other column changes (review 2026-10-07)
+ *   reachEndFree       reach turns that end within dist2 4 of an enemy (its end-of-round tile against the enemies where they
+ *                      stood at its turn) / reach turns (blank without one); reachEndFreeN, reachEndFreeD: the counts (a pooled
+ *                      share is sum N / sum D)
+ *   reachHit           reach turns after which an enemy attack hits the robot before its next turn (later in the round, or in
+ *                      the next round before its turn) / reach turns (blank without one); reachHitN: the count
+ *   reachKilledN       reach turns after which attacks bring the robot to 0 HP before its next turn (its HP at the turn, then
+ *                      the attacks and heals on it in action order; the next round from its end-of-round HP)
  *   overruns           turns at or over the bytecode limit (25000), as --bytecode turnsAtLimit
  *   g4contact chain census (convoy plan section 5; ChainTally). A chain runs from an enemy first grab of one of our flags (the
  *   firstGrabs test: picked up from its home tile) to its CAPTURE, its return home (RETURN: a post-setup PLACE_FLAG without a
@@ -348,6 +373,7 @@ public class ReplayDump {
         int n = W * H;
         wall = new boolean[n]; water = new boolean[n]; dam = new boolean[n]; spawnZone = new int[n]; crumbs = new int[n];
         for (int i = 0; i < n; i++) { wall[i] = m.walls(i); water[i] = m.water(i); dam[i] = m.divider(i); }
+        if (VECWATER) vWater = water.clone();
         VecTable sp = m.spawnLocations();
         for (int j = 0; j < sp.xsLength(); j++) {
             int t = (j % 2 == 0) ? 1 : 2, cx = sp.xs(j), cy = sp.ys(j);
@@ -692,11 +718,12 @@ public class ReplayDump {
             }
             if (desc != null && (inWindow(rn) || id == robot)) out.printf("r%d %s#%d %s%n", rn, tname(t), id, desc);
         }
-        // digs from water traps are also in digLocations; keep terrain in sync from the vectors
+        // keep terrain in sync from the vectors too. Water-trap digs come only as DIG actions with actor -1 (above), not in
+        // digLocations (2026-10-07: a SampleProvider game's r236-247 water-trap digs, missing from the vector)
         VecTable dl = r.digLocations();
-        if (dl != null) for (int j = 0; j < dl.xsLength(); j++) water[idx(dl.xs(j), dl.ys(j))] = true;
+        if (dl != null) for (int j = 0; j < dl.xsLength(); j++) { water[idx(dl.xs(j), dl.ys(j))] = true; if (VECWATER) vWater[idx(dl.xs(j), dl.ys(j))] = true; }
         VecTable fl = r.fillLocations();
-        if (fl != null) for (int j = 0; j < fl.xsLength(); j++) water[idx(fl.xs(j), fl.ys(j))] = false;
+        if (fl != null) for (int j = 0; j < fl.xsLength(); j++) { water[idx(fl.xs(j), fl.ys(j))] = false; if (VECWATER) vWater[idx(fl.xs(j), fl.ys(j))] = false; }
         // traps
         VecTable tl = r.trapAddedLocations();
         for (int j = 0; j < r.trapAddedIdsLength(); j++) {
@@ -1274,6 +1301,11 @@ public class ReplayDump {
                 case "D": out.println(inDropWindow(a[0], a[2], a[1]) ? 1 : 0); break;
                 case "C": { int[] q = chainPoint(a[0], a[1], a[2], a[3], a[4]); out.println(q == null ? "-" : q[0] + " " + q[1]); break; }
                 case "V": tally.dive(a[0]); out.println(tally.cols()); break;
+                case "F": {
+                    int n = (a.length - 3) / 2; int[] ex = new int[n], ey = new int[n];
+                    for (int i = 0; i < n; i++) { ex[i] = a[3 + 2 * i]; ey[i] = a[4 + 2 * i]; }
+                    out.println(freeExit(a[0], a[1], ex, ey, n, a[2]) ? 1 : 0); break;
+                }
                 default: out.println("?");
             }
         }
@@ -1607,6 +1639,56 @@ public class ReplayDump {
     static int[] pX = new int[SN], pY = new int[SN], pHP = new int[SN], pACD = new int[SN], pMCD = new int[SN], pAtk = new int[SN], pHeal = new int[SN];
     static int[] kStepDec = new int[3], kStepMidS = new int[3], kStepLethal = new int[3], kStepDeaths = new int[3], kStepLethalAvoid = new int[3];
     static List<int[]> stepPending = new ArrayList<>();   // {rank, HP left after the hits that followed its step-in strike}
+    // reach census (C.KITE_REACH_W's signature; see the header)
+    static int[] kReachD = new int[3], kReachEnd = new int[3], kReachHit = new int[3], kReachKilled = new int[3];
+    static List<int[]> reachPending = new ArrayList<>();  // {rank, hit already (1/0)}: reach turns whose window runs into the next round
+    static boolean[] pWater;                              // water at the end of the previous round (legal tiles; the analyser's timing)
+    static final boolean VECWATER = System.getenv("REACH_VECWATER") != null;   // debug (header): the analyser's water for the reach census
+    static boolean[] vWater;                              // VECWATER: the map's water, then the rounds' dig and fill vectors only
+    static final int[] RDX = {1, 1, 0, -1, -1, -1, 0, 1}, RDY = {0, 1, 1, 1, 0, -1, -1, -1};
+
+    /** reach census: a free exit from (sx, sy), i.e. a legal neighbour (bit i of legal: RDX/RDY[i]) within dist2 4 of none of the
+     *  n enemies (ex, ey) whose threat count (enemies within dist2 10) is at most the lowest threat count among the legal tiles
+     *  within dist2 4 of an enemy, (sx, sy) included (always legal). Pure; --calc F. */
+    static boolean freeExit(int sx, int sy, int[] ex, int[] ey, int n, int legal) {
+        int minIn = Integer.MAX_VALUE, minOut = Integer.MAX_VALUE;
+        for (int i = 0; i <= 8; i++) {
+            if (i < 8 && (legal >> i & 1) == 0) continue;
+            int x = i < 8 ? sx + RDX[i] : sx, y = i < 8 ? sy + RDY[i] : sy, th = 0; boolean in = false;
+            for (int q = 0; q < n; q++) { int dd = d2(x, y, ex[q], ey[q]); if (dd <= 10) th++; if (dd <= 4) in = true; }
+            if (in) minIn = Math.min(minIn, th); else minOut = Math.min(minOut, th);
+        }
+        return minOut != Integer.MAX_VALUE && minOut <= minIn;
+    }
+
+    /** reach census at robot R's turn (a candidate: ready, attacking, HP < 700, an enemy in reach, no carrier near): counted when a
+     *  free exit exists; then whether it ends in reach, and the hits and kill on it for the rest of the round (the next round's
+     *  part is in reachPending). */
+    static void reachTurn(int R, int t, int na, int[] aR, int[] aT, int[] aG, boolean[] aliveAt, int[] hpAt, int[] xAt, int[] yAt,
+                          boolean[] cIn, int[] cX, int[] cY) {
+        int n = 0; int[] ex = new int[SN], ey = new int[SN];
+        for (int k = 0; k < SN; k++) if (k != R && aliveAt[k] && rankTeam(k) != t) { ex[n] = xAt[k]; ey[n] = yAt[k]; n++; }
+        int sx = pX[R], sy = pY[R], legal = 0;
+        for (int i = 0; i < 8; i++) {
+            int x = sx + RDX[i], y = sy + RDY[i];
+            if (x < 0 || y < 0 || x >= W || y >= H || wall[idx(x, y)] || pWater[idx(x, y)]) continue;
+            boolean occ = false;
+            for (int k = 0; k < SN && !occ; k++) if (k != R && aliveAt[k] && xAt[k] == x && yAt[k] == y) occ = true;
+            if (!occ) legal |= 1 << i;
+        }
+        if (!freeExit(sx, sy, ex, ey, n, legal)) return;
+        kReachD[t]++;
+        int fx = cIn[R] ? cX[R] : sx, fy = cIn[R] ? cY[R] : sy;
+        for (int q = 0; q < n; q++) if (d2(fx, fy, ex[q], ey[q]) <= 4) { kReachEnd[t]++; break; }
+        int hp = hpAt[R]; boolean hit = false, killed = false;
+        for (int q = 0; q < na && !killed; q++) {   // the rest of this round, in action order
+            if (aR[q] <= R || aG[q] != R) continue;
+            if (aT[q] == Action.ATTACK) { hit = true; hp -= hitOf(aR[q]); killed = hp <= 0; }
+            else if (aT[q] == Action.HEAL) hp = Math.min(1000, hp + healOf(aR[q]));
+        }
+        if (hit) kReachHit[t]++;
+        if (killed) kReachKilled[t]++; else reachPending.add(new int[]{R, hit ? 1 : 0});
+    }
     static int rankTeam(int k) { return k % 2 == 0 ? 1 : 2; }
     /** One hit of robot k (InternalRobot.getDamage) with its level and its team's upgrade at the end of the previous round. */
     static int hitOf(int k) { return Math.round((150 + (pUpgAtk[rankTeam(k)] ? 60 : 0)) * ((float) ATK_SKILL[Math.min(6, Math.max(0, pAtk[k]))] / 100 + 1)); }
@@ -1643,6 +1725,17 @@ public class ReplayDump {
             if (cDied[R] && left <= 0) kStepDeaths[rankTeam(R)]++;
         }
         stepPending.clear();
+        for (int[] p : reachPending) {   // reach census: the attacks and heals on it this round before its turn
+            int R = p[0], hp = pHP[R]; boolean hit = false, killed = false;
+            for (int j = 0; j < na && (aR[j] < 0 || aR[j] < R) && !killed; j++) {
+                if (aR[j] < 0 || aG[j] != R) continue;
+                if (aT[j] == Action.ATTACK) { hit = true; hp -= hitOf(aR[j]); killed = hp <= 0; }
+                else if (aT[j] == Action.HEAL) hp = Math.min(1000, hp + healOf(aR[j]));
+            }
+            if (hit && p[1] == 0) kReachHit[rankTeam(R)]++;
+            if (killed) kReachKilled[rankTeam(R)]++;
+        }
+        reachPending.clear();
         if (rn > 200) {
             boolean[] aliveAt = new boolean[SN]; int[] hpAt = new int[SN], xAt = new int[SN], yAt = new int[SN];
             for (int k = 0; k < SN; k++) { aliveAt[k] = pAlive[k]; hpAt[k] = pAlive[k] ? pHP[k] : 1000; xAt[k] = pX[k]; yAt[k] = pY[k]; }
@@ -1683,6 +1776,8 @@ public class ReplayDump {
                             }
                         }
                     }
+                    if (minD <= 4 && !car && struck[R] && hpAt[R] < 700)   // reach census: an attack from a tile in reach at < 700 HP
+                        reachTurn(R, t, na, aR, aT, aG, aliveAt, hpAt, xAt, yAt, cIn, cX, cY);
                 }
                 aliveAt[R] = (pAlive[R] || cSp[R]) && hpAt[R] > 0;   // its turn is over: its end-of-round tile from here on
                 if (cIn[R]) { xAt[R] = cX[R]; yAt[R] = cY[R]; }
@@ -1699,6 +1794,8 @@ public class ReplayDump {
             int tg = r.actionTargets(j), t = rankTeam(aR[j]);
             if (tg == 0) pUpgAtk[t] = true; else if (tg == 1) pUpgHeal[t] = true;
         }
+        boolean[] wNow = VECWATER ? vWater : water;
+        if (pWater == null) pWater = wNow.clone(); else System.arraycopy(wNow, 0, pWater, 0, wNow.length);
     }
 
     static void surveyTick(int rn) {
@@ -1815,7 +1912,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid,ringStunsPost,fieldStunsPost");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid,ringStunsPost,fieldStunsPost,reachEndFree,reachEndFreeN,reachEndFreeD,reachHit,reachHitN,reachKilledN");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1854,7 +1951,9 @@ public class ReplayDump {
                         + "," + share(kSpawnNear[t], kSpawnPost[t]) + "," + share(kSpawnDeath10[t], kDeathPost[t])
                         + "," + (kBank1900[t] >= 0 ? String.valueOf(kBank1900[t]) : "")
                         + "," + share(kStepMidS[t], kStepDec[t]) + "," + kStepLethal[t] + "," + kStepDeaths[t] + "," + share(cDeaths[o], cDeaths[o] + cDeaths[t])
-                        + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t] + "," + kRingStuns[t] + "," + kFieldStuns[t]);
+                        + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t] + "," + kRingStuns[t] + "," + kFieldStuns[t]
+                        + "," + share(kReachEnd[t], kReachD[t]) + "," + kReachEnd[t] + "," + kReachD[t] + "," + share(kReachHit[t], kReachD[t])
+                        + "," + kReachHit[t] + "," + kReachKilled[t]);
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

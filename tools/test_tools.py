@@ -96,7 +96,7 @@ check(elolib.accepted_builds({'us:g_iter10': 1, 'us:g_iter2': 1, 'x.bot': 1, 'us
 FIX = os.path.join(REPO, 'test', 'fixtures', 'example-DefaultSmall-s1.bc24')
 if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.jar')):
     dump = lambda *a: subprocess.run([os.path.join(HERE, 'replay-dump.sh'), FIX, *a], capture_output=True, text=True).stdout
-    def _sections(text):   # one dump with several modes: comm rows 66 fields, --defense 11, --capabilities 93, --track 29, --contact-d0 28
+    def _sections(text):   # one dump with several modes: comm rows 66 fields, --defense 11, --capabilities (118 in 2026-10; grows), --track 29, --contact-d0 28
         out = {}
         for ln in text.splitlines():
             if not ln or ln.startswith('#'): continue
@@ -125,6 +125,9 @@ if os.path.exists(FIX) and os.path.exists(os.path.join(REPO, 'engine', 'engine.j
     END = os.path.join(REPO, 'diag', 'sp5', 'IvanGeffner.kuma__EndAround__botA.bc24')   # local regression of the drop window (below)
     if os.path.exists(END): _jobs['endlog'] = [END, '--track-log', '--team', 'A']
     _procs = {k: subprocess.Popen([os.path.join(HERE, 'replay-dump.sh'), *a], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True) for k, a in _jobs.items()}
+    if os.path.exists(OWN):   # REACH_VECWATER (review 2026-10-07): the reach census on the study analyser's water; checked in the 'own' block
+        _procs['ownvw'] = subprocess.Popen([os.path.join(HERE, 'replay-dump.sh'), OWN, '--capabilities'], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                                           text=True, env={**os.environ, 'REACH_VECWATER': '1'})
     _d0dir = tempfile.mkdtemp(); _d0csv = os.path.join(_d0dir, 'd0.csv')
     if os.path.exists(OWN):
         _procs['d0e2e'] = subprocess.Popen([sys.executable, os.path.join(HERE, 'contact-d0.py'), '-P', '1', '--side', 'B', '--out', _d0csv, OWN],
@@ -279,6 +282,33 @@ if os.path.exists(os.path.join(REPO, 'engine', 'engine.jar')):
     got = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), '--calc'], input='\n'.join(q for q, _ in cq) + '\n', capture_output=True, text=True).stdout.split('\n')
     bad = [(q, w, g) for (q, w), g in zip(cq, got) if w != g]
     check(len(got) >= len(cq) and not bad, f'replay-dump --calc C: chainPoint matches the python reference ({len(bad)} mismatches, e.g. {bad[:3]})')
+    # the reach census's free exit (C.KITE_REACH_W, upper-tier study 2026-10-07): a legal neighbour within dist2 4 of no enemy whose
+    # threat count (enemies within dist2 10) is at most the lowest among the legal tiles in reach, the start tile included (not the
+    # start tile's count alone: that counts exits the arm's score rejects). legal: bit i = neighbour i in the order below
+    _NB = [(1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]
+    def _free_exit(s0, es, legal):
+        dd = lambda a, b: (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2
+        tiles = [s0] + [(s0[0] + dx, s0[1] + dy) for i, (dx, dy) in enumerate(_NB) if legal >> i & 1]
+        th = {t: sum(dd(t, e) <= 10 for e in es) for t in tiles}
+        ins = [th[t] for t in tiles if any(dd(t, e) <= 4 for e in es)]; outs_ = [th[t] for t in tiles if all(dd(t, e) > 4 for e in es)]
+        return '1' if outs_ and (not ins or min(outs_) <= min(ins)) else '0'
+    fq = [('F 10 10 255 12 10', '1'),        # one enemy (12,10): every tile has one threat; N, S and the west column are out of reach
+          ('F 10 10 131 12 10', '0'),        # only the east column is legal: every legal tile is in reach
+          ('F 10 10 243 12 10 8 7', '0'),    # N and NW blocked; E2 (8,7) gives S, SW and W a second threat (none in its reach)
+          ('F 10 10 152 12 10 10 13', '0'),  # start 2 threats, SE 1 (in reach), W and NW 2: the lowest in-reach count decides
+          ('F 10 10 4 12 10 10 13', '0'),    # N is out of E1's reach but in E2's (dist2 4): not an exit
+          ('F 10 10 32 12 10 10 13', '1')]   # SW: one threat (E1 at dist2 10, E2 at 17), out of both reaches
+    check(all(_free_exit((10, 10), [tuple(map(int, q.split()[4 + 2 * i:6 + 2 * i])) for i in range((len(q.split()) - 4) // 2)], int(q.split()[3])) == w
+              for q, w in fq), 'reach census free-exit python reference: the hand cases')
+    for _ in range(400):
+        es = [(10 + rnd.randrange(-4, 5), 10 + rnd.randrange(-4, 5)) for _ in range(rnd.randrange(1, 6))]
+        es = [e for e in es if e != (10, 10)] or [(12, 10)]
+        lg = rnd.randrange(256)
+        fq.append((f'F 10 10 {lg} ' + ' '.join(f'{x} {y}' for x, y in es), _free_exit((10, 10), es, lg)))
+    got = subprocess.run([os.path.join(HERE, 'replay-dump.sh'), '--calc'], input='\n'.join(q for q, _ in fq) + '\n', capture_output=True, text=True).stdout.split('\n')
+    bad = [(q, w, g) for (q, w), g in zip(fq, got) if w != g]
+    check(len(got) >= len(fq) and not bad and 0.1 < sum(w == '1' for _, w in fq) / len(fq) < 0.9,
+          f'replay-dump --calc F: the reach census free exit matches the python reference ({len(bad)} mismatches, e.g. {bad[:3]})')
     # the census tally (convoy plan section 5): scripted chains and dive turns into one running ChainTally, each query
     # printing the cumulative CHAIN_COLS; a python reference recomputes them from scratch after each query
     def _chain_cols(chains, dives):
@@ -375,7 +405,8 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
                'carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost').split(',')
     NEW_CAP = ['enemyUnseenRounds', 'unopposedCaps', 'longTrips25', 'longCaps25', 'longCapRate', 'loneDeaths', 'trickleDeaths', 'symOk', 'psymOk', 'maxBcK', 'overruns', 'exceptions', 'symDecidedRound', 'symWrong', 'alertWrites', 'alertNoThreat', 'maxParkOnHome', 'efStaleCarry', 'efStaleLoc', 'flagDistMin', 'flagDistMean', 'carrierStunBuilds', 'carrierStunned', 'captured600', 'enemyCaptured600', 'defNearAtGrab20', 'capturedHomeRounds', 'stunTrig', 'stunVictims', 'enemyStunTrig', 'enemyStunVictims', 'stunVictimsEsc', 'enemyStunVictimsEsc', 'stunVictimsFast', 'enemyStunVictimsFast', 'deathsHome', 'enemyDeathsHome', 'gatheredAll', 'dropGuard', 'digsLate', 'levelGain1500', 'gathered201to400', 'stunTrig250', 'kills250', 'deaths250', 'levelGain1200', 'levelGapEnd',
                'noContact10u12', 'contact20u12', 'screened20u12', 'chainsU12', 'chains12p', 'capRateU12', 'capRate12p', 'diveTurns', 'diveLeak12', 'diveNoChain', 'flagSpreadMin', 'flagSpreadMax', 'carrierDeathsSpawn', 'paidKillShare', 'homeDeathShare', 'healThreat10', 'readyHeld20', 'spawnNear20', 'spawnDeath10', 'bank1900',
-               'stepMid', 'stepLethal', 'stepDeaths', 'killShare', 'stepMidN', 'stepDec', 'stepLethalAvoid', 'ringStunsPost', 'fieldStunsPost']
+               'stepMid', 'stepLethal', 'stepDeaths', 'killShare', 'stepMidN', 'stepDec', 'stepLethalAvoid', 'ringStunsPost', 'fieldStunsPost',
+               'reachEndFree', 'reachEndFreeN', 'reachEndFreeD', 'reachHit', 'reachHitN', 'reachKilledN']
     CHAIN_SHARES = ('noContact10u12', 'contact20u12', 'screened20u12', 'capRateU12', 'capRate12p', 'diveLeak12', 'diveNoChain')
     D0_COLS = ('team,grab,flag,g0,outcome,T,seenT0,noContact10,enObsMax,liveRounds,unseenLive,noPoint,elig12,elig10,elig8,elig12r144,'
                + ','.join(f'err{a}' for a in range(1, 13))).split(',')
@@ -415,6 +446,14 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
                   and (c['stepMid'] == '' if c['stepDec'] == '0' else c['stepMid'] == f"{int(c['stepMidN']) / int(c['stepDec']):.3f}")
                   and int(c['stepLethalAvoid']) <= int(c['stepLethal']) <= int(c['stepMidN']) <= int(c['stepDec']) for c in cap),
               f'replay-dump --capabilities ({name}): stepMid = stepMidN / stepDec (blank without a decision); stepLethalAvoid <= stepLethal <= stepMidN <= stepDec')
+        # reach census (C.KITE_REACH_W's signature, upper-tier study 2026-10-07): shares of their counts; a kill before the next turn
+        # is one of the hits, and one of the deaths
+        check(all(c[k].isdigit() for c in cap for k in ('reachEndFreeN', 'reachEndFreeD', 'reachHitN', 'reachKilledN'))
+              and all(c['reachEndFree'] == _jf(int(c['reachEndFreeN']), int(c['reachEndFreeD'])) and c['reachHit'] == _jf(int(c['reachHitN']), int(c['reachEndFreeD']))
+                      and int(c['reachEndFreeN']) <= int(c['reachEndFreeD']) and int(c['reachKilledN']) <= int(c['reachHitN']) <= int(c['reachEndFreeD'])
+                      and int(c['reachKilledN']) <= int(c['deaths']) for c in cap),
+              f'replay-dump --capabilities ({name}): reachEndFree = reachEndFreeN / reachEndFreeD, reachHit = reachHitN / reachEndFreeD (blank without a '
+              f'reach turn); reachKilledN <= reachHitN <= reachEndFreeD; reachKilledN <= deaths')
         if name == 'own':   # our 2026-09-30 build (A) vs examplefuncsplayer: the study's scratch analyser (Eh.java, the same execution-order
             # reconstruction written independently) gives 62 of 78 mid-HP decisions stepping in, 8 onto a lethal tile, 3 deaths before
             # the next turn; examplefuncsplayer never steps in to strike (it strikes before it moves). On three andli28 losses the two
@@ -426,6 +465,19 @@ if 'outs' in globals():   # the combined dumps started in the replay-dump block 
             sn = {c['team']: (c['stepMidN'], c['stepDec'], c['stepLethalAvoid']) for c in cap}
             check(sn.get('A') == ('62', '78', '5') and sn.get('B', ('',))[0] == '0',
                   f'replay-dump --capabilities (own): A stepMidN/stepDec 62/78 as the analyser, stepLethalAvoid 5 (pinned); B never steps in ({sn})')
+            # the reach census against the upper-tier study's analyser (Cm.java of 2026-10-07, the same reconstruction written separately;
+            # its strike turns below 700 HP whose arm score picks only tiles out of reach): turns ending in reach / turns, hit, killed
+            rc_ = {c['team']: (c['reachEndFreeN'], c['reachEndFreeD'], c['reachHitN'], c['reachKilledN']) for c in cap}
+            check(rc_.get('A') == ('10', '28', '1', '0') and rc_.get('B') == ('19', '19', '11', '6'),
+                  f'replay-dump --capabilities (own): reach census A 10/28 hit 1 killed 0, B 19/19 hit 11 killed 6, as the study analyser ({rc_})')
+            # REACH_VECWATER=1 (review 2026-10-07) gives the reach census the analyser's water (map, then dig and fill vectors only) so
+            # the study's +-0.01 validation can be rerun; no other column moves. On this game the analyser's counts are the same either way
+            if 'ownvw' in raw:
+                vw = {c['team']: c for c in _pick(_sections(raw['ownvw']), 'enemyCarrierKills')}
+                RCOLS = ('reachEndFree', 'reachEndFreeN', 'reachEndFreeD', 'reachHit', 'reachHitN', 'reachKilledN')
+                rv = {t: (c['reachEndFreeN'], c['reachEndFreeD'], c['reachHitN'], c['reachKilledN']) for t, c in vw.items()}
+                check(len(vw) == 2 and all(vw.get(c['team'], {}).get(k) == v for c in cap for k, v in c.items() if k not in RCOLS) and rv == rc_,
+                      f'replay-dump --capabilities (own) with REACH_VECWATER=1: every other column unchanged, reach census as the analyser ({rv})')
         check(all(c['flagSpreadMin'] != '' and 0 < float(c['flagSpreadMin']) <= float(c['flagSpreadMax']) for c in cap),
               f'replay-dump --capabilities ({name}): flagSpreadMin (r200, nearest two own flags) > 0 and <= flagSpreadMax')
         check(all(c['flagDistMin'] != '' and 0 < float(c['flagDistMin']) <= float(c['flagDistMean']) for c in cap),
