@@ -2154,3 +2154,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g7ehp band delivery: PASS at 192 cells**: lethal step-ins from a safe tile 1.5 vs 364 (+19 SE), deaths right after a step-in
   24 vs 94 (+10.5 SE), deaths 377 vs 429 (-12%, +1.2 SE past x0.92), enemy captures 1.08 vs 1.02 (guard PASS, worst plausible
   rise 18%), 0 overruns. Band test (look 1, seeds 313131 / 424242) running.
+- **g7ehp band look 1 vs g_iter7** (240 pairs, seeds 313131 / 424242, identical 11): wins 177 -> 179, net +2 (18-16); capture delta
+  -0.10 +- 0.09 (t_all -1.12); upper (5 bots, 60 pairs) 20 -> 20, -0.08 +- 0.17 (t_up -0.48). **Shipping rule look 1: STOP
+  (park).** Basics: absolute bars ok; stillPost 27.7 vs 25.4 FAIL by > 2 SE (by design: refused robots hold at the edge of
+  reach); kill/death 2.60 vs 2.12. Its andli28 gains (deaths -23%, kill share +0.05 at 48 cells) do not carry to the band; the
+  paired filler against andli28 (just started) gives the target read. g7fc and g7ehp both stop short on the band.
