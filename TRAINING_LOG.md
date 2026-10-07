@@ -2224,3 +2224,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - **g7kite band delivery: PASS** (48 cells; INCONCLUSIVE at 24): reachEndFree 0.00 vs 0.22 (+17.9 SE), reachHit 0.12 vs 0.17 (-29%,
   +6.3 SE), enemy captures 0.94 vs 1.12 (guard PASS), 0 overruns. Band look 1 running; the filler pairs g7kite with g_iter7 against
   andli28. RC_BAND (HP >= 700, local-balance gate) is being built by a workflow as the stack partner g7kiterc.
+- **g7kite band look 1 vs g_iter7** (240 pairs, seeds 313131 / 424242, identical 16): wins 177 -> 183, net +6 (18-12); capture delta
+  +0.17 +- 0.08 (t_all 2.03); upper (5 bots, 60 pairs) 20 -> 19, +0.12 +- 0.17 (t 0.67); rest 157 -> 164 (13-6), +0.18 +- 0.09 (t 2.0).
+  **Shipping rule look 1: CONTINUE** (better than the premise's capture estimate of 0 to +0.03). Basics PASS (all bars; stillPost,
+  kill/death, trapsHit, gathered400, floating250 level). Look 2 (seeds 535353 / 646464) queued.
