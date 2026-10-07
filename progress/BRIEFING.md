@@ -148,25 +148,29 @@ research/REWRITE_DESIGN.md (when the design panel returns).
   above NotLLeon (2133) and andrewgopher (2110). New target: **andli28.v9_USQuals_angle** (2174, rank 5; g_iter7 14-34).
   Next arm in its 5(a): g7spawn (respawn away from a contested spawn zone, micro-study proposal 3).
 
+- 2026-10-07 (Oct 6 evening to Oct 7): andli28 loss study (1,520 games): the fight trade decides; our mid-HP robots step into
+  reach 40% of the time to its 15%. Arms g7ehp (step-in gate) and g7ehp2: +24 over 200 paired games against andli28 (+3.2 SE)
+  but band-neutral, parked. g7fc (finish partial build levels at the end) fires too rarely. Upper-tier study of g_iter7: contact
+  is twice as lethal for us at equal numbers (enemy stun volume and tempo while recharging); g7kite (leave reach below 700 HP)
+  delivered but band pooled t 0.32, parked; its stack g7kiterc (supported one-step hold at full HP) passed its diagnostic and
+  is in 5(a). Ladder fit now caps each pair at 200 games (PROMPTS 191): g_iter7 2134 +- 25 rank 6, andli28 2210. Against
+  andli28 vertical-symmetry maps cost 20 points of win rate (0.19 vs 0.38, 5,720 games, replicated out of sample); a study is
+  running.
+
 ## Working
-- The audit as a method: five lenses plus adversarial verifiers found defects that ~50 experiments never could.
-- Seeded pairing: exact paired tests (0 of 80 discordant for identical code), so small effects are now measurable.
-- Basics battery and contract columns (symWrong, symDecidedRound, alertNoThreat, maxParkOnHome, efStale*, exceptions) in
-  every census; dead-code and arm-intent checks in the unit tests.
-- Measuring before building: the premise tools answered "can it work against ColtG5?" from 515 replays with no bot change.
-- The ColtG5 focus gives a sensitive target: one flag decides most games (102/135 of its wins are 1-flag tiebreaks).
+- Seeded pairing plus the shipping rule (looks at 240/480/720 pairs; t_all >= 2.3 or t_up >= 2.6 with net >= 0).
+- Tempo levers: the heal hold (g_iter7, capture t 6.46) and the relocation climb (g_iter6) shipped on the band.
+- Pre-registered 5(a) checks and delivery gates stop dead mechanisms before a band test (g7spawn, g6terr, g7dig, g7bank).
+- Studies as workflows (lenses, synthesis, critic) with census columns built for each claim.
+- Basics battery, dead-code and arm-intent checks in every block.
 
 ## Not working
-- Most of yesterday's arms were judged with unseeded pairs: their verdicts were mostly engine noise (re-test candidates).
-- Process slips today, each caught: a switch silently left off in a test arm (now an arm-intent test), commits before the
-  test suite finished (twice), a mis-paired evaluation from empty run names.
-- g1sym on ColtG5 (seeded, 120 pairs): 2 gained, 7 lost (n.s.); the three scouts may cost fights while undecided.
-- Raids against ColtG5 (5 builds): flags reached, never brought home.
-- Bot symmetry guess wrong in 28% of ColtG5 games and 34% of band games: the sensor must fix this (PSYM).
-- Band premise fails P3 (destination 0.76): widening beyond ColtG5 will need the tracker revision.
-
-- Re-testing discarded arms on the fixed base: none of the seven delivered its pre-registered mechanism so far; the
-  bugs were real but these ideas were not what held us back.
+- Fewer deaths do not become captures: g7ehp cut deaths 15.6% (captures -0.10), g7kite cut reach exposure 98% (t 0.32).
+- Offence against andli28: convoy dive, zone holds and forward drift never delivered presence at its flags (they sit on its
+  spawn centres); our grab chains start half as often after r600.
+- The stun economy gap to the upper tier (their 439 triggers a game on us, our 200) follows where the armies meet; territory
+  micro (g6terr) could not move it.
+- Level-sum end games: setup digs (g7dig), a late bank (g7bank) and final completion (g7fc) all failed or fire too rarely.
 
 ## Open questions for the owner
 - (answered, prompt 168: cracking the target overrides the relative basics checks such as kill/death; the absolute

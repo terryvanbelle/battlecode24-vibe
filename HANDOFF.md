@@ -20,12 +20,13 @@
   Delivery checks are three-way since the second audit: PASS 1 SE beyond the bar, FAIL 2 SE short, else INCONCLUSIVE
   (auto-extended 24 -> 48 -> 96 cells, never a closure). Open findings of research/AUDIT-2026-10-03.md are tracked
   below.
-- In flight (2026-10-06): **the new target andli28** (filler baseline building). g7spawn (C.SPAWN_SAFE) closed: its
-  delivery cut spawns beside enemies 0.49 -> 0.26 but raised enemy captures 1.00 -> 1.50. Closed today: recall (R3),
-  flag-fight stun bank (F2), flag clustering, the climb dose (g5climb3), territory-aware micro (g6terr, T15). Shipped today:
-  the relocation climb (g_iter6) and the heal hold (g_iter7). Open proposals from the upper-tier micro study: RECHARGE_CLOSE
-  (a robot one turn from ready ends just outside reach) and SPAWN_SAFE (avoid spawn zones with enemies near).
-  Open audit items: BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10,
+- In flight (2026-10-07): **g7kiterc** (g7kite's kite out of reach below 700 HP + C.RC_BAND, a supported one-step hold at
+  HP >= 700 so the next strike lands; research/upper-tier-study-2026-10-07) in its 12-cell 5(a) after its diagnostic passed;
+  then band delivery and band test. **Vertical-map study** (workflow; research/vertical-study-2026-10-07): against andli28 we
+  win 0.19 on vertical-symmetry maps vs 0.38 on rotational ones (5,720 games, replicated out of sample), against the band not.
+  Parked 2026-10-06/07: g7kite alone (band pooled t 0.32), g7ehp/g7ehp2 (step-in gate: +24/200 vs andli28, band-neutral), g7fc
+  (final level completion, rare trigger; stack candidate), g7dig, g7bank, g7ring, g7spawn. Saved robots do not become captures
+  on their own (g7ehp, g7kite). Open audit items: BOT6, BOT11, BOT14, BOT15, BOT17-BOT20; tools MEAS4, MEAS6-MEAS10,
   MEAS13-MEAS17.
 - VM: `battlecode-dev2` in us-west2-a (the original `battlecode-dev` in us-west1-b is stopped and untouched;
   its zone had no e2-standard-8 capacity on 2026-09-30). Snapshot `battlecode-dev-snap-20260930` was the source.
