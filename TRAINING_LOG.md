@@ -2174,3 +2174,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (a robot ENGAGE_HP refused this turn keeps its action, no heal unless the target carries a flag, while an enemy is within
   dist2 20). 5(a) = g7ehp's (12 cells vs andli28, seed 6701, same bars, g_iter7 twins from the g7ehp run), with healThreat10 and
   heals logged as its cost; on FIRE straight to the band delivery and band test (g7ehp's band test stopped at look 1).
+- **g7ehp2 5(a) FIRES** (same 12 cells and twins as g7ehp): lethal step-ins from a safe tile 0.004x, lower on 12/12; mid-HP
+  step-in share 0.237; deaths right after a step-in 0.20x; deaths 0.77x; kill share +0.028, positive 8/12 (bar +0.015, 8/12;
+  g7ehp +0.040, 10/12); guards: enemy captures 25 vs 22 (<= +3), first grabs 1.07x, our captures 18 vs 18; ready strike held near
+  an enemy 0.31 vs 0.27 (the hold works), heals under threat 0.137 vs 0.132; wins 2 vs 2. Band delivery at 192 cells (g7ehp's
+  capture guard needed that power; same bars), band test chained.
