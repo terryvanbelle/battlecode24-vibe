@@ -2228,3 +2228,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   +0.17 +- 0.08 (t_all 2.03); upper (5 bots, 60 pairs) 20 -> 19, +0.12 +- 0.17 (t 0.67); rest 157 -> 164 (13-6), +0.18 +- 0.09 (t 2.0).
   **Shipping rule look 1: CONTINUE** (better than the premise's capture estimate of 0 to +0.03). Basics PASS (all bars; stillPost,
   kill/death, trapsHit, gathered400, floating250 level). Look 2 (seeds 535353 / 646464) queued.
+- **g7kite band look 2** (seeds 535353 / 646464, 240 pairs): net -3 (18-21), capture delta -0.13 +- 0.09 (t -1.5); upper +0.0, rest
+  -0.17. **Pooled 480 pairs: net +3, capture delta +0.02 +- 0.06 (t_all 0.32), t_up 0.38 -> STOP (park).** Look 1's t 2.03 was
+  noise; the premise's forecast held (saved robots do not become captures on their own). Basics PASS on both looks. The planned
+  stack g7kiterc (RC_BAND for HP >= 700 on top) is still the real band test; its workflow is running.
