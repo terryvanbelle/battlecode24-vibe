@@ -2186,3 +2186,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   keeps measuring g7ehp against andli28 (+10 over 120 pairs, +1.8 SE so far). The andli28 study's levers are spent: FC closed
   standalone, ENGAGE_HP parked, RING failed, FOCUS weak, LATE_ALLIN refuted.
 - An upper-tier study of g_iter7 (workflow: four lenses, combat micro, traps and stuns, positioning and cohesion, economy and upgrades; synthesis; critic) is running to find the next band-wide lever, as the study behind the heal hold did.
+- **g7ehp vs g_iter7 against andli28, paired filler: 200 pairs, net +24 (41-17, +3.2 SE)**, ~+12 win points on identical cells:
+  a real matchup effect (andli28 punishes our mid-HP step-ins hardest; it steps in 15% to our 40%). Not promotable: the band
+  shipping rule decides promotion (as for g_iter3, promoted on its band result, not its waffle read), and g7ehp's band look 1
+  leaned negative (capture t -1.12). Recorded as the strongest andli28-specific evidence so far; the filler finishes the 240-pair
+  read. A band-safe form of the step-in gate (e.g. one that keeps the heal) is the open question.

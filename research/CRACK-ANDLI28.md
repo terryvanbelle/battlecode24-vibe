@@ -27,3 +27,7 @@ the last 50 rounds of a tied game) and ENGAGE_HP (no step-in below ~600 HP unles
 **5(a) results (2026-10-06).** g7ehp (ENGAGE_HP 700): mid-HP step-ins 0.66 -> 0.24 of decisions, deaths -32%, kill share +0.040
 (10 of 12 cells), captures level. g7fc (FINAL_COMPLETE): in the 17 games level at r1950, 20 digs a game, level gap +9.5, 4 wins vs
 2. Both go to the andli28 deliveries and the band tests.
+
+**Matchup read (2026-10-07).** g7ehp (step-in gate) vs g_iter7 against andli28: +24 over 200 paired filler games (+3.2 SE), ~+12
+win points. Band-neutral to slightly negative (look 1 capture t -1.12), so not promotable under the shipping rule; the holding
+variant g7ehp2 raised enemy captures on the band. The open question is a band-safe step-in gate.
