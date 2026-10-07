@@ -2166,3 +2166,7 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   Rivers} x {A, B} vs andli28, seed 6801, g_iter7 twins; fires iff ring stuns pooled <= 0.4x twins, field stuns >= 1.4x and
   stunVictims >= 1.15x, fast-victim share >= 0.47, guards (enemy captures <= twins + 2, first grabs <= 1.1x, 0 overruns, 0
   exceptions).
+- **g7ring 5(a): FAIL, closed** (12 cells vs andli28, seed 6801): ring rebuilds 0.25x twins (bar <= 0.4: ok), field stuns 1.38x
+  (bar 1.4), stun victims 1.03x (bar 1.15), fast-victim share 0.569 (bar 0.47: ok), andli28's first grabs of our flags 1.69x
+  (guard 1.1x: FAIL); enemy captures 17 vs 16, wins 2 vs 2. The rings deter grabs; the freed crumbs bought field stuns that
+  caught no more victims overall.
