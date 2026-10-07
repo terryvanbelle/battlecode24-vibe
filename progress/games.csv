@@ -43468,3 +43468,363 @@ run,seq,teamA,teamB,map,winner,rounds,reason,seed
 20261007-052148-scrim-g_iter7-fill1791350492,38,us:g_iter7,andli28.v9_USQuals_angle,Swoop,B,2000,The winning team won on tiebreakers (hig,1467309270
 20261007-052148-scrim-g_iter7-fill1791350492,39,andli28.v9_USQuals_angle,us:g_iter7,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,881121195
 20261007-052148-scrim-g_iter7-fill1791350492,40,us:g_iter7,andli28.v9_USQuals_angle,Waterworld,B,2000,The winning team won on tiebreakers (hig,937389813
+20261007-053101-scrim-g_iter7-fill1791351046,1,andli28.v9_USQuals_angle,us:g_iter7,Alligator,A,2000,The winning team won on tiebreakers (hig,2025274769
+20261007-053101-scrim-g_iter7-fill1791351046,2,us:g_iter7,andli28.v9_USQuals_angle,Backslash,A,2000,The winning team won on tiebreakers (cap,508713057
+20261007-053101-scrim-g_iter7-fill1791351046,3,andli28.v9_USQuals_angle,us:g_iter7,Backslash,B,330,The winning team captured all flags.,1945283291
+20261007-053101-scrim-g_iter7-fill1791351046,4,andli28.v9_USQuals_angle,us:g_iter7,BedWars,A,2000,The winning team won on tiebreakers (hig,936039880
+20261007-053101-scrim-g_iter7-fill1791351046,5,andli28.v9_USQuals_angle,us:g_iter7,BedWars,B,2000,The winning team won on tiebreakers (cap,257153625
+20261007-053101-scrim-g_iter7-fill1791351046,6,us:g_iter7,andli28.v9_USQuals_angle,BigDucksBigPond,B,2000,The winning team won on tiebreakers (cap,1311855302
+20261007-053101-scrim-g_iter7-fill1791351046,7,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,271565120
+20261007-053101-scrim-g_iter7-fill1791351046,8,andli28.v9_USQuals_angle,us:g_iter7,Bunkers,B,1342,The winning team captured all flags.,1346751697
+20261007-053101-scrim-g_iter7-fill1791351046,9,us:g_iter7,andli28.v9_USQuals_angle,Checkered,B,1935,The winning team captured all flags.,728665361
+20261007-053101-scrim-g_iter7-fill1791351046,10,us:g_iter7,andli28.v9_USQuals_angle,DefaultHuge,B,1881,The winning team captured all flags.,604554432
+20261007-053101-scrim-g_iter7-fill1791351046,11,andli28.v9_USQuals_angle,us:g_iter7,DefaultSmall,A,2000,The winning team won on tiebreakers (hig,196300388
+20261007-053101-scrim-g_iter7-fill1791351046,12,andli28.v9_USQuals_angle,us:g_iter7,DefaultSmall,B,2000,The winning team won on tiebreakers (cap,1739037746
+20261007-053101-scrim-g_iter7-fill1791351046,13,us:g_iter7,andli28.v9_USQuals_angle,Divergent,B,2000,The winning team won on tiebreakers (cap,1059390418
+20261007-053101-scrim-g_iter7-fill1791351046,14,andli28.v9_USQuals_angle,us:g_iter7,Divergent,A,2000,The winning team won on tiebreakers (cap,726622004
+20261007-053101-scrim-g_iter7-fill1791351046,15,us:g_iter7,andli28.v9_USQuals_angle,Duck,B,2000,The winning team won on tiebreakers (hig,202929057
+20261007-053101-scrim-g_iter7-fill1791351046,16,andli28.v9_USQuals_angle,us:g_iter7,EndAround,B,2000,The winning team won on tiebreakers (hig,1834355421
+20261007-053101-scrim-g_iter7-fill1791351046,17,us:g_iter7,andli28.v9_USQuals_angle,Funnel,B,2000,The winning team won on tiebreakers (hig,334321765
+20261007-053101-scrim-g_iter7-fill1791351046,18,us:g_iter7,andli28.v9_USQuals_angle,Fusbol,A,2000,The winning team won on tiebreakers (hig,547649108
+20261007-053101-scrim-g_iter7-fill1791351046,19,us:g_iter7,andli28.v9_USQuals_angle,GaltonBoard,B,1350,The winning team captured all flags.,1619412509
+20261007-053101-scrim-g_iter7-fill1791351046,20,andli28.v9_USQuals_angle,us:g_iter7,Hockey,A,2000,The winning team won on tiebreakers (cap,721613056
+20261007-053101-scrim-g_iter7-fill1791351046,21,andli28.v9_USQuals_angle,us:g_iter7,HungerGames,A,1020,The winning team captured all flags.,768113689
+20261007-053101-scrim-g_iter7-fill1791351046,22,andli28.v9_USQuals_angle,us:g_iter7,Islands,B,2000,The winning team won on tiebreakers (cap,2087148929
+20261007-053101-scrim-g_iter7-fill1791351046,23,andli28.v9_USQuals_angle,us:g_iter7,Occulus,A,2000,The winning team won on tiebreakers (hig,464055084
+20261007-053101-scrim-g_iter7-fill1791351046,24,us:g_iter7,andli28.v9_USQuals_angle,Puzzle,B,2000,The winning team won on tiebreakers (hig,255507186
+20261007-053101-scrim-g_iter7-fill1791351046,25,us:g_iter7,andli28.v9_USQuals_angle,Rivers,B,2000,The winning team won on tiebreakers (hig,1809633074
+20261007-053101-scrim-g_iter7-fill1791351046,26,andli28.v9_USQuals_angle,us:g_iter7,Rivers,A,2000,The winning team won on tiebreakers (cap,126134560
+20261007-053101-scrim-g_iter7-fill1791351046,27,andli28.v9_USQuals_angle,us:g_iter7,Snake,A,2000,The winning team won on tiebreakers (hig,2128481417
+20261007-053101-scrim-g_iter7-fill1791351046,28,us:g_iter7,andli28.v9_USQuals_angle,Soccer,B,1791,The winning team captured all flags.,270599203
+20261007-053101-scrim-g_iter7-fill1791351046,29,andli28.v9_USQuals_angle,us:g_iter7,Soccer,A,1452,The winning team captured all flags.,158331287
+20261007-053101-scrim-g_iter7-fill1791351046,30,us:g_iter7,andli28.v9_USQuals_angle,StackGame,B,2000,The winning team won on tiebreakers (hig,48380439
+20261007-053101-scrim-g_iter7-fill1791351046,31,us:g_iter7,andli28.v9_USQuals_angle,StarryNight,B,1747,The winning team captured all flags.,1547537738
+20261007-053101-scrim-g_iter7-fill1791351046,32,andli28.v9_USQuals_angle,us:g_iter7,StarryNight,A,2000,The winning team won on tiebreakers (cap,1718314362
+20261007-053101-scrim-g_iter7-fill1791351046,33,us:g_iter7,andli28.v9_USQuals_angle,Swoop,B,2000,The winning team won on tiebreakers (hig,440474804
+20261007-053101-scrim-g_iter7-fill1791351046,34,us:g_iter7,andli28.v9_USQuals_angle,Tunnels,B,2000,The winning team won on tiebreakers (hig,662023191
+20261007-053101-scrim-g_iter7-fill1791351046,35,andli28.v9_USQuals_angle,us:g_iter7,Tunnels,A,2000,The winning team won on tiebreakers (hig,441507295
+20261007-053101-scrim-g_iter7-fill1791351046,36,us:g_iter7,andli28.v9_USQuals_angle,TwistedTreeline,A,1988,The winning team captured all flags.,505509723
+20261007-053101-scrim-g_iter7-fill1791351046,37,andli28.v9_USQuals_angle,us:g_iter7,Valentine,A,2000,The winning team won on tiebreakers (hig,1545021808
+20261007-053101-scrim-g_iter7-fill1791351046,38,andli28.v9_USQuals_angle,us:g_iter7,Valentine,A,2000,The winning team won on tiebreakers (hig,2130146580
+20261007-053101-scrim-g_iter7-fill1791351046,39,andli28.v9_USQuals_angle,us:g_iter7,WheresMyWater,A,2000,The winning team won on tiebreakers (hig,1594769976
+20261007-053101-scrim-g_iter7-fill1791351046,40,andli28.v9_USQuals_angle,us:g_iter7,WheresMyWater,B,2000,The winning team won on tiebreakers (cap,1179903357
+20261007-054103-scrim-g_iter7-fill1791351647,1,andli28.v9_USQuals_angle,us:g_iter7,AceOfSpades,A,1499,The winning team captured all flags.,1683739679
+20261007-054103-scrim-g_iter7-fill1791351647,2,andli28.v9_USQuals_angle,us:g_iter7,AceOfSpades,A,2000,The winning team won on tiebreakers (hig,192153320
+20261007-054103-scrim-g_iter7-fill1791351647,3,us:g_iter7,andli28.v9_USQuals_angle,Alligator,B,2000,The winning team won on tiebreakers (cap,1867596439
+20261007-054103-scrim-g_iter7-fill1791351647,4,andli28.v9_USQuals_angle,us:g_iter7,Alligator,A,2000,The winning team won on tiebreakers (cap,427883377
+20261007-054103-scrim-g_iter7-fill1791351647,5,us:g_iter7,andli28.v9_USQuals_angle,Asteroids,A,2000,The winning team won on tiebreakers (cap,560100881
+20261007-054103-scrim-g_iter7-fill1791351647,6,us:g_iter7,andli28.v9_USQuals_angle,Backslash,B,2000,The winning team won on tiebreakers (hig,813499230
+20261007-054103-scrim-g_iter7-fill1791351647,7,andli28.v9_USQuals_angle,us:g_iter7,Backslash,A,2000,The winning team won on tiebreakers (cap,2103941873
+20261007-054103-scrim-g_iter7-fill1791351647,8,us:g_iter7,andli28.v9_USQuals_angle,Battlefield,A,399,The winning team captured all flags.,1290019714
+20261007-054103-scrim-g_iter7-fill1791351647,9,andli28.v9_USQuals_angle,us:g_iter7,Battlefield,B,460,The winning team captured all flags.,947856587
+20261007-054103-scrim-g_iter7-fill1791351647,10,us:g_iter7,andli28.v9_USQuals_angle,BedWars,A,2000,The winning team won on tiebreakers (cap,97921747
+20261007-054103-scrim-g_iter7-fill1791351647,11,andli28.v9_USQuals_angle,us:g_iter7,BreadPudding,B,2000,The winning team won on tiebreakers (cap,1318777301
+20261007-054103-scrim-g_iter7-fill1791351647,12,andli28.v9_USQuals_angle,us:g_iter7,Diagonal,B,2000,The winning team won on tiebreakers (hig,1394993161
+20261007-054103-scrim-g_iter7-fill1791351647,13,andli28.v9_USQuals_angle,us:g_iter7,Foxes,A,1992,The winning team captured all flags.,607583300
+20261007-054103-scrim-g_iter7-fill1791351647,14,us:g_iter7,andli28.v9_USQuals_angle,GaltonBoard,B,2000,The winning team won on tiebreakers (cap,1240199625
+20261007-054103-scrim-g_iter7-fill1791351647,15,us:g_iter7,andli28.v9_USQuals_angle,Gated,B,2000,The winning team won on tiebreakers (cap,777994848
+20261007-054103-scrim-g_iter7-fill1791351647,16,andli28.v9_USQuals_angle,us:g_iter7,Gated,A,2000,The winning team won on tiebreakers (cap,182353868
+20261007-054103-scrim-g_iter7-fill1791351647,17,andli28.v9_USQuals_angle,us:g_iter7,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,1655938437
+20261007-054103-scrim-g_iter7-fill1791351647,18,us:g_iter7,andli28.v9_USQuals_angle,HungerGames,B,2000,The winning team won on tiebreakers (hig,1959483682
+20261007-054103-scrim-g_iter7-fill1791351647,19,andli28.v9_USQuals_angle,us:g_iter7,Joker,A,833,The winning team captured all flags.,720296916
+20261007-054103-scrim-g_iter7-fill1791351647,20,andli28.v9_USQuals_angle,us:g_iter7,Joker,B,1498,The winning team captured all flags.,857762035
+20261007-054103-scrim-g_iter7-fill1791351647,21,andli28.v9_USQuals_angle,us:g_iter7,Klein,A,2000,The winning team won on tiebreakers (hig,1413833992
+20261007-054103-scrim-g_iter7-fill1791351647,22,us:g_iter7,andli28.v9_USQuals_angle,MazeRunner,A,2000,The winning team won on tiebreakers (cap,1409677803
+20261007-054103-scrim-g_iter7-fill1791351647,23,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,2000,The winning team won on tiebreakers (cap,35082824
+20261007-054103-scrim-g_iter7-fill1791351647,24,andli28.v9_USQuals_angle,us:g_iter7,OceanFloor,B,2000,The winning team won on tiebreakers (cap,2034919404
+20261007-054103-scrim-g_iter7-fill1791351647,25,andli28.v9_USQuals_angle,us:g_iter7,QuestionableChess,A,2000,The winning team won on tiebreakers (cap,1302980753
+20261007-054103-scrim-g_iter7-fill1791351647,26,us:g_iter7,andli28.v9_USQuals_angle,Randy,B,2000,The winning team won on tiebreakers (cap,454611522
+20261007-054103-scrim-g_iter7-fill1791351647,27,andli28.v9_USQuals_angle,us:g_iter7,Rivers,A,1922,The winning team captured all flags.,1126300702
+20261007-054103-scrim-g_iter7-fill1791351647,28,us:g_iter7,andli28.v9_USQuals_angle,Soccer,B,1979,The winning team captured all flags.,8409503
+20261007-054103-scrim-g_iter7-fill1791351647,29,andli28.v9_USQuals_angle,us:g_iter7,Soccer,A,1778,The winning team captured all flags.,1258464101
+20261007-054103-scrim-g_iter7-fill1791351647,30,us:g_iter7,andli28.v9_USQuals_angle,Starfish,A,1979,The winning team captured all flags.,1147621141
+20261007-054103-scrim-g_iter7-fill1791351647,31,andli28.v9_USQuals_angle,us:g_iter7,StarryNight,B,1343,The winning team captured all flags.,938706330
+20261007-054103-scrim-g_iter7-fill1791351647,32,us:g_iter7,andli28.v9_USQuals_angle,Swoop,A,941,The winning team captured all flags.,993151627
+20261007-054103-scrim-g_iter7-fill1791351647,33,andli28.v9_USQuals_angle,us:g_iter7,TreeSearch,A,1771,The winning team captured all flags.,1122289742
+20261007-054103-scrim-g_iter7-fill1791351647,34,andli28.v9_USQuals_angle,us:g_iter7,TwistedTreeline,B,2000,The winning team won on tiebreakers (cap,593903434
+20261007-054103-scrim-g_iter7-fill1791351647,35,us:g_iter7,andli28.v9_USQuals_angle,Valentine,B,2000,The winning team won on tiebreakers (hig,823441593
+20261007-054103-scrim-g_iter7-fill1791351647,36,andli28.v9_USQuals_angle,us:g_iter7,Valentine,A,2000,The winning team won on tiebreakers (hig,1697786703
+20261007-054103-scrim-g_iter7-fill1791351647,37,andli28.v9_USQuals_angle,us:g_iter7,Waterworld,A,2000,The winning team won on tiebreakers (cap,628900363
+20261007-054103-scrim-g_iter7-fill1791351647,38,us:g_iter7,andli28.v9_USQuals_angle,WheresMyWater,B,1439,The winning team captured all flags.,1579107185
+20261007-054103-scrim-g_iter7-fill1791351647,39,us:g_iter7,andli28.v9_USQuals_angle,YearOfTheDragon,A,1969,The winning team captured all flags.,170667550
+20261007-054103-scrim-g_iter7-fill1791351647,40,andli28.v9_USQuals_angle,us:g_iter7,Yinyang,B,929,The winning team captured all flags.,32710669
+20261007-054811-scrim-g_iter7-fill1791352082,1,us:g_iter7,andli28.v9_USQuals_angle,AceOfSpades,B,758,The winning team captured all flags.,1880242634
+20261007-054811-scrim-g_iter7-fill1791352082,2,andli28.v9_USQuals_angle,us:g_iter7,Alligator,A,1579,The winning team captured all flags.,1359885927
+20261007-054811-scrim-g_iter7-fill1791352082,3,us:g_iter7,andli28.v9_USQuals_angle,Anchor,B,1960,The winning team captured all flags.,452326641
+20261007-054811-scrim-g_iter7-fill1791352082,4,andli28.v9_USQuals_angle,us:g_iter7,Anchor,A,2000,The winning team won on tiebreakers (hig,167994162
+20261007-054811-scrim-g_iter7-fill1791352082,5,us:g_iter7,andli28.v9_USQuals_angle,Backslash,B,2000,The winning team won on tiebreakers (hig,51574838
+20261007-054811-scrim-g_iter7-fill1791352082,6,andli28.v9_USQuals_angle,us:g_iter7,Battlecode24,B,2000,The winning team won on tiebreakers (cap,65050146
+20261007-054811-scrim-g_iter7-fill1791352082,7,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,467801336
+20261007-054811-scrim-g_iter7-fill1791352082,8,us:g_iter7,andli28.v9_USQuals_angle,CH3353C4K3F4CT0RY,B,1128,The winning team captured all flags.,2059896685
+20261007-054811-scrim-g_iter7-fill1791352082,9,us:g_iter7,andli28.v9_USQuals_angle,Capacitance,B,2000,The winning team won on tiebreakers (cap,463882243
+20261007-054811-scrim-g_iter7-fill1791352082,10,us:g_iter7,andli28.v9_USQuals_angle,Decision,A,2000,The winning team won on tiebreakers (cap,1228090684
+20261007-054811-scrim-g_iter7-fill1791352082,11,andli28.v9_USQuals_angle,us:g_iter7,DefaultLarge,A,2000,The winning team won on tiebreakers (hig,1234687832
+20261007-054811-scrim-g_iter7-fill1791352082,12,us:g_iter7,andli28.v9_USQuals_angle,DefaultMedium,A,2000,The winning team won on tiebreakers (hig,1837251753
+20261007-054811-scrim-g_iter7-fill1791352082,13,us:g_iter7,andli28.v9_USQuals_angle,Divergent,B,2000,The winning team won on tiebreakers (cap,1615882004
+20261007-054811-scrim-g_iter7-fill1791352082,14,us:g_iter7,andli28.v9_USQuals_angle,FloodGates,B,2000,The winning team won on tiebreakers (hig,573028398
+20261007-054811-scrim-g_iter7-fill1791352082,15,andli28.v9_USQuals_angle,us:g_iter7,FloodGates,B,2000,The winning team won on tiebreakers (cap,760497371
+20261007-054811-scrim-g_iter7-fill1791352082,16,us:g_iter7,andli28.v9_USQuals_angle,Funnel,B,2000,The winning team won on tiebreakers (hig,852595822
+20261007-054811-scrim-g_iter7-fill1791352082,17,us:g_iter7,andli28.v9_USQuals_angle,Fusbol,A,2000,The winning team won on tiebreakers (hig,723400628
+20261007-054811-scrim-g_iter7-fill1791352082,18,us:g_iter7,andli28.v9_USQuals_angle,Gated,B,2000,The winning team won on tiebreakers (cap,297472214
+20261007-054811-scrim-g_iter7-fill1791352082,19,andli28.v9_USQuals_angle,us:g_iter7,Gauntlet,A,2000,The winning team won on tiebreakers (cap,1178002704
+20261007-054811-scrim-g_iter7-fill1791352082,20,andli28.v9_USQuals_angle,us:g_iter7,Gauntlet,A,2000,The winning team won on tiebreakers (cap,124844099
+20261007-054811-scrim-g_iter7-fill1791352082,21,andli28.v9_USQuals_angle,us:g_iter7,HungerGames,B,2000,The winning team won on tiebreakers (cap,1441228113
+20261007-054811-scrim-g_iter7-fill1791352082,22,us:g_iter7,andli28.v9_USQuals_angle,Intercontinental,B,1669,The winning team captured all flags.,593186899
+20261007-054811-scrim-g_iter7-fill1791352082,23,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,A,2000,The winning team won on tiebreakers (hig,1403236325
+20261007-054811-scrim-g_iter7-fill1791352082,24,andli28.v9_USQuals_angle,us:g_iter7,Joker,A,2000,The winning team won on tiebreakers (cap,1891519070
+20261007-054811-scrim-g_iter7-fill1791352082,25,us:g_iter7,andli28.v9_USQuals_angle,Klein,B,2000,The winning team won on tiebreakers (cap,663284400
+20261007-054811-scrim-g_iter7-fill1791352082,26,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,2000,The winning team won on tiebreakers (cap,1081276167
+20261007-054811-scrim-g_iter7-fill1791352082,27,us:g_iter7,andli28.v9_USQuals_angle,ORV,B,1906,The winning team captured all flags.,343604139
+20261007-054811-scrim-g_iter7-fill1791352082,28,andli28.v9_USQuals_angle,us:g_iter7,Occulus,A,2000,The winning team won on tiebreakers (cap,1332361611
+20261007-054811-scrim-g_iter7-fill1791352082,29,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,589491530
+20261007-054811-scrim-g_iter7-fill1791352082,30,andli28.v9_USQuals_angle,us:g_iter7,Racetrack,A,767,The winning team captured all flags.,1594363146
+20261007-054811-scrim-g_iter7-fill1791352082,31,andli28.v9_USQuals_angle,us:g_iter7,Rainbow,A,2000,The winning team won on tiebreakers (hig,1797727691
+20261007-054811-scrim-g_iter7-fill1791352082,32,us:g_iter7,andli28.v9_USQuals_angle,Rivers,B,2000,The winning team won on tiebreakers (cap,1798005938
+20261007-054811-scrim-g_iter7-fill1791352082,33,andli28.v9_USQuals_angle,us:g_iter7,Skyline,B,665,The winning team captured all flags.,1526920859
+20261007-054811-scrim-g_iter7-fill1791352082,34,us:g_iter7,andli28.v9_USQuals_angle,StackGame,B,1351,The winning team captured all flags.,1153031360
+20261007-054811-scrim-g_iter7-fill1791352082,35,us:g_iter7,andli28.v9_USQuals_angle,Starfish,B,1654,The winning team captured all flags.,705035435
+20261007-054811-scrim-g_iter7-fill1791352082,36,andli28.v9_USQuals_angle,us:g_iter7,StarryNight,A,2000,The winning team won on tiebreakers (cap,855070754
+20261007-054811-scrim-g_iter7-fill1791352082,37,us:g_iter7,andli28.v9_USQuals_angle,Swoop,A,1026,The winning team captured all flags.,1312313622
+20261007-054811-scrim-g_iter7-fill1791352082,38,us:g_iter7,andli28.v9_USQuals_angle,TwistedTreeline,A,664,The winning team captured all flags.,1276119944
+20261007-054811-scrim-g_iter7-fill1791352082,39,andli28.v9_USQuals_angle,us:g_iter7,TwistedTreeline,A,2000,The winning team won on tiebreakers (hig,602267179
+20261007-054811-scrim-g_iter7-fill1791352082,40,us:g_iter7,andli28.v9_USQuals_angle,Waterworld,B,2000,The winning team won on tiebreakers (cap,1655076090
+20261007-055443-scrim-g_iter7-fill1791352473,1,us:g_iter7,andli28.v9_USQuals_angle,AceOfSpades,A,780,The winning team captured all flags.,1212701526
+20261007-055443-scrim-g_iter7-fill1791352473,2,us:g_iter7,andli28.v9_USQuals_angle,Asteroids,B,2000,The winning team won on tiebreakers (hig,94107893
+20261007-055443-scrim-g_iter7-fill1791352473,3,andli28.v9_USQuals_angle,us:g_iter7,Backslash,A,2000,The winning team won on tiebreakers (hig,812481284
+20261007-055443-scrim-g_iter7-fill1791352473,4,andli28.v9_USQuals_angle,us:g_iter7,Battlecode24,A,2000,The winning team won on tiebreakers (hig,1665919401
+20261007-055443-scrim-g_iter7-fill1791352473,5,us:g_iter7,andli28.v9_USQuals_angle,BigDucksBigPond,B,2000,The winning team won on tiebreakers (cap,2133420411
+20261007-055443-scrim-g_iter7-fill1791352473,6,andli28.v9_USQuals_angle,us:g_iter7,BreadPudding,B,2000,The winning team won on tiebreakers (cap,558316584
+20261007-055443-scrim-g_iter7-fill1791352473,7,us:g_iter7,andli28.v9_USQuals_angle,CH3353C4K3F4CT0RY,B,898,The winning team captured all flags.,622524651
+20261007-055443-scrim-g_iter7-fill1791352473,8,us:g_iter7,andli28.v9_USQuals_angle,Decision,A,2000,The winning team won on tiebreakers (cap,405739121
+20261007-055443-scrim-g_iter7-fill1791352473,9,andli28.v9_USQuals_angle,us:g_iter7,Decision,A,1516,The winning team captured all flags.,1216238579
+20261007-055443-scrim-g_iter7-fill1791352473,10,us:g_iter7,andli28.v9_USQuals_angle,DefaultMedium,A,2000,The winning team won on tiebreakers (hig,1271836535
+20261007-055443-scrim-g_iter7-fill1791352473,11,us:g_iter7,andli28.v9_USQuals_angle,Diagonal,B,2000,The winning team won on tiebreakers (cap,1587374304
+20261007-055443-scrim-g_iter7-fill1791352473,12,andli28.v9_USQuals_angle,us:g_iter7,Diagonal,A,2000,The winning team won on tiebreakers (hig,2120831049
+20261007-055443-scrim-g_iter7-fill1791352473,13,andli28.v9_USQuals_angle,us:g_iter7,EndAround,A,2000,The winning team won on tiebreakers (hig,1401606813
+20261007-055443-scrim-g_iter7-fill1791352473,14,andli28.v9_USQuals_angle,us:g_iter7,English,B,2000,The winning team won on tiebreakers (cap,1281276494
+20261007-055443-scrim-g_iter7-fill1791352473,15,andli28.v9_USQuals_angle,us:g_iter7,EvilGrin,A,2000,The winning team won on tiebreakers (cap,1541623281
+20261007-055443-scrim-g_iter7-fill1791352473,16,andli28.v9_USQuals_angle,us:g_iter7,FloodGates,A,2000,The winning team won on tiebreakers (hig,1012032908
+20261007-055443-scrim-g_iter7-fill1791352473,17,andli28.v9_USQuals_angle,us:g_iter7,Fountain,A,2000,The winning team won on tiebreakers (hig,104323530
+20261007-055443-scrim-g_iter7-fill1791352473,18,us:g_iter7,andli28.v9_USQuals_angle,Funnel,B,2000,The winning team won on tiebreakers (cap,1893307175
+20261007-055443-scrim-g_iter7-fill1791352473,19,andli28.v9_USQuals_angle,us:g_iter7,Fusbol,B,2000,The winning team won on tiebreakers (hig,726375263
+20261007-055443-scrim-g_iter7-fill1791352473,20,us:g_iter7,andli28.v9_USQuals_angle,Gated,B,2000,The winning team won on tiebreakers (hig,137213445
+20261007-055443-scrim-g_iter7-fill1791352473,21,us:g_iter7,andli28.v9_USQuals_angle,GravitationalWaves,A,2000,The winning team won on tiebreakers (cap,1998899145
+20261007-055443-scrim-g_iter7-fill1791352473,22,andli28.v9_USQuals_angle,us:g_iter7,Hockey,A,1923,The winning team captured all flags.,243938305
+20261007-055443-scrim-g_iter7-fill1791352473,23,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,B,1410,The winning team captured all flags.,427654524
+20261007-055443-scrim-g_iter7-fill1791352473,24,us:g_iter7,andli28.v9_USQuals_angle,Islands,B,1611,The winning team captured all flags.,1484225849
+20261007-055443-scrim-g_iter7-fill1791352473,25,us:g_iter7,andli28.v9_USQuals_angle,Klein,B,2000,The winning team won on tiebreakers (hig,994532894
+20261007-055443-scrim-g_iter7-fill1791352473,26,andli28.v9_USQuals_angle,us:g_iter7,Klein,A,2000,The winning team won on tiebreakers (hig,545414291
+20261007-055443-scrim-g_iter7-fill1791352473,27,us:g_iter7,andli28.v9_USQuals_angle,MIT,A,1426,The winning team captured all flags.,1121226688
+20261007-055443-scrim-g_iter7-fill1791352473,28,us:g_iter7,andli28.v9_USQuals_angle,OceanFloor,B,2000,The winning team won on tiebreakers (cap,632586772
+20261007-055443-scrim-g_iter7-fill1791352473,29,us:g_iter7,andli28.v9_USQuals_angle,Puzzle,B,2000,The winning team won on tiebreakers (cap,2014477009
+20261007-055443-scrim-g_iter7-fill1791352473,30,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,692802435
+20261007-055443-scrim-g_iter7-fill1791352473,31,us:g_iter7,andli28.v9_USQuals_angle,Rainbow,B,2000,The winning team won on tiebreakers (cap,1722271863
+20261007-055443-scrim-g_iter7-fill1791352473,32,us:g_iter7,andli28.v9_USQuals_angle,Rivers,B,2000,The winning team won on tiebreakers (hig,1376500080
+20261007-055443-scrim-g_iter7-fill1791352473,33,us:g_iter7,andli28.v9_USQuals_angle,StackGame,B,1780,The winning team captured all flags.,1793657811
+20261007-055443-scrim-g_iter7-fill1791352473,34,andli28.v9_USQuals_angle,us:g_iter7,StackGame,A,2000,The winning team won on tiebreakers (cap,535477369
+20261007-055443-scrim-g_iter7-fill1791352473,35,us:g_iter7,andli28.v9_USQuals_angle,StarryNight,B,2000,The winning team won on tiebreakers (cap,1554920681
+20261007-055443-scrim-g_iter7-fill1791352473,36,andli28.v9_USQuals_angle,us:g_iter7,Swoop,A,2000,The winning team won on tiebreakers (hig,820415110
+20261007-055443-scrim-g_iter7-fill1791352473,37,andli28.v9_USQuals_angle,us:g_iter7,TreeSearch,B,1803,The winning team captured all flags.,663782494
+20261007-055443-scrim-g_iter7-fill1791352473,38,us:g_iter7,andli28.v9_USQuals_angle,Tunnels,B,2000,The winning team won on tiebreakers (hig,878597980
+20261007-055443-scrim-g_iter7-fill1791352473,39,andli28.v9_USQuals_angle,us:g_iter7,TwistedTreeline,A,2000,The winning team won on tiebreakers (hig,1207559725
+20261007-055443-scrim-g_iter7-fill1791352473,40,us:g_iter7,andli28.v9_USQuals_angle,Valentine,B,2000,The winning team won on tiebreakers (cap,353120478
+20261007-060116-scrim-g_iter7-fill1791352866,1,andli28.v9_USQuals_angle,us:g_iter7,Battlecode24,A,2000,The winning team won on tiebreakers (cap,2073880266
+20261007-060116-scrim-g_iter7-fill1791352866,2,us:g_iter7,andli28.v9_USQuals_angle,Battlefield,A,433,The winning team captured all flags.,357762154
+20261007-060116-scrim-g_iter7-fill1791352866,3,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,2092255911
+20261007-060116-scrim-g_iter7-fill1791352866,4,us:g_iter7,andli28.v9_USQuals_angle,CH3353C4K3F4CT0RY,B,730,The winning team captured all flags.,720451766
+20261007-060116-scrim-g_iter7-fill1791352866,5,us:g_iter7,andli28.v9_USQuals_angle,Canals,B,2000,The winning team won on tiebreakers (cap,740379167
+20261007-060116-scrim-g_iter7-fill1791352866,6,andli28.v9_USQuals_angle,us:g_iter7,Canals,A,2000,The winning team won on tiebreakers (cap,238697190
+20261007-060116-scrim-g_iter7-fill1791352866,7,andli28.v9_USQuals_angle,us:g_iter7,Decision,A,2000,The winning team won on tiebreakers (hig,506677802
+20261007-060116-scrim-g_iter7-fill1791352866,8,us:g_iter7,andli28.v9_USQuals_angle,DefaultLarge,B,2000,The winning team won on tiebreakers (hig,544996420
+20261007-060116-scrim-g_iter7-fill1791352866,9,andli28.v9_USQuals_angle,us:g_iter7,DefaultSmall,A,2000,The winning team won on tiebreakers (hig,740210089
+20261007-060116-scrim-g_iter7-fill1791352866,10,andli28.v9_USQuals_angle,us:g_iter7,Digging,A,2000,The winning team won on tiebreakers (cap,1812515386
+20261007-060116-scrim-g_iter7-fill1791352866,11,us:g_iter7,andli28.v9_USQuals_angle,Duck,B,2000,The winning team won on tiebreakers (cap,1185236143
+20261007-060116-scrim-g_iter7-fill1791352866,12,us:g_iter7,andli28.v9_USQuals_angle,Duck,B,2000,The winning team won on tiebreakers (cap,2099665957
+20261007-060116-scrim-g_iter7-fill1791352866,13,andli28.v9_USQuals_angle,us:g_iter7,Duck,B,2000,The winning team won on tiebreakers (cap,551936969
+20261007-060116-scrim-g_iter7-fill1791352866,14,andli28.v9_USQuals_angle,us:g_iter7,English,A,2000,The winning team won on tiebreakers (hig,1805874299
+20261007-060116-scrim-g_iter7-fill1791352866,15,us:g_iter7,andli28.v9_USQuals_angle,EvilGrin,B,2000,The winning team won on tiebreakers (cap,477018945
+20261007-060116-scrim-g_iter7-fill1791352866,16,andli28.v9_USQuals_angle,us:g_iter7,EvilGrin,A,2000,The winning team won on tiebreakers (cap,1321456304
+20261007-060116-scrim-g_iter7-fill1791352866,17,andli28.v9_USQuals_angle,us:g_iter7,FloodGates,B,2000,The winning team won on tiebreakers (cap,611837327
+20261007-060116-scrim-g_iter7-fill1791352866,18,andli28.v9_USQuals_angle,us:g_iter7,Funnel,A,2000,The winning team won on tiebreakers (cap,1766971251
+20261007-060116-scrim-g_iter7-fill1791352866,19,andli28.v9_USQuals_angle,us:g_iter7,Gauntlet,A,2000,The winning team won on tiebreakers (hig,15823599
+20261007-060116-scrim-g_iter7-fill1791352866,20,andli28.v9_USQuals_angle,us:g_iter7,Hockey,A,1920,The winning team captured all flags.,654272722
+20261007-060116-scrim-g_iter7-fill1791352866,21,us:g_iter7,andli28.v9_USQuals_angle,Hurricane,A,2000,The winning team won on tiebreakers (cap,126448141
+20261007-060116-scrim-g_iter7-fill1791352866,22,us:g_iter7,andli28.v9_USQuals_angle,Joker,A,1358,The winning team captured all flags.,1063660954
+20261007-060116-scrim-g_iter7-fill1791352866,23,andli28.v9_USQuals_angle,us:g_iter7,Joker,A,1913,The winning team captured all flags.,1615128913
+20261007-060116-scrim-g_iter7-fill1791352866,24,us:g_iter7,andli28.v9_USQuals_angle,Klein,B,2000,The winning team won on tiebreakers (hig,1767007703
+20261007-060116-scrim-g_iter7-fill1791352866,25,us:g_iter7,andli28.v9_USQuals_angle,MazeRunner,B,2000,The winning team won on tiebreakers (hig,335288311
+20261007-060116-scrim-g_iter7-fill1791352866,26,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,1897,The winning team captured all flags.,1241473592
+20261007-060116-scrim-g_iter7-fill1791352866,27,us:g_iter7,andli28.v9_USQuals_angle,ORV,B,1364,The winning team captured all flags.,1509225692
+20261007-060116-scrim-g_iter7-fill1791352866,28,andli28.v9_USQuals_angle,us:g_iter7,ORV,A,2000,The winning team won on tiebreakers (hig,1888963207
+20261007-060116-scrim-g_iter7-fill1791352866,29,andli28.v9_USQuals_angle,us:g_iter7,ORV,A,2000,The winning team won on tiebreakers (hig,419457763
+20261007-060116-scrim-g_iter7-fill1791352866,30,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,B,2000,The winning team won on tiebreakers (cap,1724067848
+20261007-060116-scrim-g_iter7-fill1791352866,31,andli28.v9_USQuals_angle,us:g_iter7,QueenOfHearts,A,2000,The winning team won on tiebreakers (cap,291854692
+20261007-060116-scrim-g_iter7-fill1791352866,32,andli28.v9_USQuals_angle,us:g_iter7,QueenOfHearts,B,2000,The winning team won on tiebreakers (cap,243273120
+20261007-060116-scrim-g_iter7-fill1791352866,33,andli28.v9_USQuals_angle,us:g_iter7,QuestionableChess,B,2000,The winning team won on tiebreakers (hig,1461539710
+20261007-060116-scrim-g_iter7-fill1791352866,34,us:g_iter7,andli28.v9_USQuals_angle,Swoop,B,1849,The winning team captured all flags.,569706792
+20261007-060116-scrim-g_iter7-fill1791352866,35,andli28.v9_USQuals_angle,us:g_iter7,TreeSearch,B,2000,The winning team won on tiebreakers (hig,1300507633
+20261007-060116-scrim-g_iter7-fill1791352866,36,us:g_iter7,andli28.v9_USQuals_angle,Waterworld,B,2000,The winning team won on tiebreakers (cap,1821997994
+20261007-060116-scrim-g_iter7-fill1791352866,37,us:g_iter7,andli28.v9_USQuals_angle,WheresMyWater,A,871,The winning team captured all flags.,905509097
+20261007-060116-scrim-g_iter7-fill1791352866,38,us:g_iter7,andli28.v9_USQuals_angle,Whirlpool,B,1830,The winning team captured all flags.,1900190486
+20261007-060116-scrim-g_iter7-fill1791352866,39,andli28.v9_USQuals_angle,us:g_iter7,YearOfTheDragon,A,2000,The winning team won on tiebreakers (hig,2116887343
+20261007-060116-scrim-g_iter7-fill1791352866,40,andli28.v9_USQuals_angle,us:g_iter7,Yinyang,B,1812,The winning team captured all flags.,1019879560
+20261007-060745-scrim-g_iter7-fill1791353256,1,us:g_iter7,andli28.v9_USQuals_angle,Alligator,B,2000,The winning team won on tiebreakers (cap,480029705
+20261007-060745-scrim-g_iter7-fill1791353256,2,us:g_iter7,andli28.v9_USQuals_angle,Battlecode24,A,2000,The winning team won on tiebreakers (cap,135796312
+20261007-060745-scrim-g_iter7-fill1791353256,3,us:g_iter7,andli28.v9_USQuals_angle,BedWars,B,2000,The winning team won on tiebreakers (hig,7292779
+20261007-060745-scrim-g_iter7-fill1791353256,4,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,1353601845
+20261007-060745-scrim-g_iter7-fill1791353256,5,andli28.v9_USQuals_angle,us:g_iter7,Capacitance,A,863,The winning team captured all flags.,1087065310
+20261007-060745-scrim-g_iter7-fill1791353256,6,us:g_iter7,andli28.v9_USQuals_angle,DefaultLarge,B,2000,The winning team won on tiebreakers (hig,500153301
+20261007-060745-scrim-g_iter7-fill1791353256,7,andli28.v9_USQuals_angle,us:g_iter7,DefaultLarge,A,2000,The winning team won on tiebreakers (hig,197365945
+20261007-060745-scrim-g_iter7-fill1791353256,8,andli28.v9_USQuals_angle,us:g_iter7,DefaultLarge,A,2000,The winning team won on tiebreakers (hig,647130988
+20261007-060745-scrim-g_iter7-fill1791353256,9,us:g_iter7,andli28.v9_USQuals_angle,DefaultMedium,B,2000,The winning team won on tiebreakers (hig,1031616627
+20261007-060745-scrim-g_iter7-fill1791353256,10,us:g_iter7,andli28.v9_USQuals_angle,Diagonal,A,2000,The winning team won on tiebreakers (cap,1675779692
+20261007-060745-scrim-g_iter7-fill1791353256,11,andli28.v9_USQuals_angle,us:g_iter7,Digging,A,1954,The winning team captured all flags.,1769587123
+20261007-060745-scrim-g_iter7-fill1791353256,12,andli28.v9_USQuals_angle,us:g_iter7,Divergent,A,2000,The winning team won on tiebreakers (hig,1099250092
+20261007-060745-scrim-g_iter7-fill1791353256,13,andli28.v9_USQuals_angle,us:g_iter7,Divergent,B,2000,The winning team won on tiebreakers (cap,1227321079
+20261007-060745-scrim-g_iter7-fill1791353256,14,us:g_iter7,andli28.v9_USQuals_angle,EndAround,B,2000,The winning team won on tiebreakers (hig,1505072653
+20261007-060745-scrim-g_iter7-fill1791353256,15,us:g_iter7,andli28.v9_USQuals_angle,EvilGrin,B,2000,The winning team won on tiebreakers (cap,945236931
+20261007-060745-scrim-g_iter7-fill1791353256,16,us:g_iter7,andli28.v9_USQuals_angle,FloodGates,B,1452,The winning team captured all flags.,917103250
+20261007-060745-scrim-g_iter7-fill1791353256,17,us:g_iter7,andli28.v9_USQuals_angle,Foxes,B,2000,The winning team won on tiebreakers (hig,364928582
+20261007-060745-scrim-g_iter7-fill1791353256,18,us:g_iter7,andli28.v9_USQuals_angle,Funnel,B,2000,The winning team won on tiebreakers (cap,1845475471
+20261007-060745-scrim-g_iter7-fill1791353256,19,us:g_iter7,andli28.v9_USQuals_angle,Fusbol,A,2000,The winning team won on tiebreakers (hig,1585855285
+20261007-060745-scrim-g_iter7-fill1791353256,20,us:g_iter7,andli28.v9_USQuals_angle,Gauntlet,B,2000,The winning team won on tiebreakers (cap,523416541
+20261007-060745-scrim-g_iter7-fill1791353256,21,andli28.v9_USQuals_angle,us:g_iter7,Hockey,A,2000,The winning team won on tiebreakers (cap,712958415
+20261007-060745-scrim-g_iter7-fill1791353256,22,andli28.v9_USQuals_angle,us:g_iter7,HungerGames,A,1491,The winning team captured all flags.,581055365
+20261007-060745-scrim-g_iter7-fill1791353256,23,us:g_iter7,andli28.v9_USQuals_angle,Hurricane,A,2000,The winning team won on tiebreakers (cap,189713040
+20261007-060745-scrim-g_iter7-fill1791353256,24,us:g_iter7,andli28.v9_USQuals_angle,Intercontinental,B,1124,The winning team captured all flags.,619071830
+20261007-060745-scrim-g_iter7-fill1791353256,25,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,B,1363,The winning team captured all flags.,105230930
+20261007-060745-scrim-g_iter7-fill1791353256,26,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,B,2000,The winning team won on tiebreakers (cap,711558224
+20261007-060745-scrim-g_iter7-fill1791353256,27,us:g_iter7,andli28.v9_USQuals_angle,MIT,A,2000,The winning team won on tiebreakers (hig,241210473
+20261007-060745-scrim-g_iter7-fill1791353256,28,us:g_iter7,andli28.v9_USQuals_angle,Mountain,B,2000,The winning team won on tiebreakers (cap,896627658
+20261007-060745-scrim-g_iter7-fill1791353256,29,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,2000,The winning team won on tiebreakers (cap,948803964
+20261007-060745-scrim-g_iter7-fill1791353256,30,andli28.v9_USQuals_angle,us:g_iter7,Occulus,A,2000,The winning team won on tiebreakers (cap,1402089037
+20261007-060745-scrim-g_iter7-fill1791353256,31,us:g_iter7,andli28.v9_USQuals_angle,OceanFloor,A,1284,The winning team captured all flags.,111900423
+20261007-060745-scrim-g_iter7-fill1791353256,32,us:g_iter7,andli28.v9_USQuals_angle,OceanFloor,A,556,The winning team captured all flags.,1562080545
+20261007-060745-scrim-g_iter7-fill1791353256,33,us:g_iter7,andli28.v9_USQuals_angle,Pancakes,A,359,The winning team captured all flags.,441344121
+20261007-060745-scrim-g_iter7-fill1791353256,34,us:g_iter7,andli28.v9_USQuals_angle,Skyline,B,1139,The winning team captured all flags.,890375675
+20261007-060745-scrim-g_iter7-fill1791353256,35,andli28.v9_USQuals_angle,us:g_iter7,StackGame,A,1339,The winning team captured all flags.,1404032306
+20261007-060745-scrim-g_iter7-fill1791353256,36,andli28.v9_USQuals_angle,us:g_iter7,Swoop,B,2000,The winning team won on tiebreakers (cap,1928832250
+20261007-060745-scrim-g_iter7-fill1791353256,37,andli28.v9_USQuals_angle,us:g_iter7,Tunnels,A,2000,The winning team won on tiebreakers (cap,1669848513
+20261007-060745-scrim-g_iter7-fill1791353256,38,us:g_iter7,andli28.v9_USQuals_angle,Waterworld,B,2000,The winning team won on tiebreakers (hig,1717516578
+20261007-060745-scrim-g_iter7-fill1791353256,39,us:g_iter7,andli28.v9_USQuals_angle,Whirlpool,B,2000,The winning team won on tiebreakers (cap,523635745
+20261007-060745-scrim-g_iter7-fill1791353256,40,andli28.v9_USQuals_angle,us:g_iter7,YearOfTheDragon,B,2000,The winning team won on tiebreakers (cap,1957420123
+20261007-061416-scrim-g_iter7-fill1791353647,1,us:g_iter7,andli28.v9_USQuals_angle,Alligator,B,2000,The winning team won on tiebreakers (hig,897995387
+20261007-061416-scrim-g_iter7-fill1791353647,2,andli28.v9_USQuals_angle,us:g_iter7,Ambush,A,548,The winning team captured all flags.,197951106
+20261007-061416-scrim-g_iter7-fill1791353647,3,andli28.v9_USQuals_angle,us:g_iter7,Ambush,B,326,The winning team captured all flags.,2055859407
+20261007-061416-scrim-g_iter7-fill1791353647,4,andli28.v9_USQuals_angle,us:g_iter7,Asteroids,A,1551,The winning team captured all flags.,969387269
+20261007-061416-scrim-g_iter7-fill1791353647,5,andli28.v9_USQuals_angle,us:g_iter7,Asteroids,A,2000,The winning team won on tiebreakers (cap,363122215
+20261007-061416-scrim-g_iter7-fill1791353647,6,us:g_iter7,andli28.v9_USQuals_angle,Backslash,B,2000,The winning team won on tiebreakers (cap,1547750002
+20261007-061416-scrim-g_iter7-fill1791353647,7,andli28.v9_USQuals_angle,us:g_iter7,Battlecode24,A,2000,The winning team won on tiebreakers (hig,306707354
+20261007-061416-scrim-g_iter7-fill1791353647,8,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,1408911102
+20261007-061416-scrim-g_iter7-fill1791353647,9,andli28.v9_USQuals_angle,us:g_iter7,BreadPudding,A,2000,The winning team won on tiebreakers (hig,231771375
+20261007-061416-scrim-g_iter7-fill1791353647,10,us:g_iter7,andli28.v9_USQuals_angle,Diagonal,B,2000,The winning team won on tiebreakers (cap,1944593702
+20261007-061416-scrim-g_iter7-fill1791353647,11,us:g_iter7,andli28.v9_USQuals_angle,Diagonal,B,2000,The winning team won on tiebreakers (cap,1974865417
+20261007-061416-scrim-g_iter7-fill1791353647,12,us:g_iter7,andli28.v9_USQuals_angle,Digging,B,1364,The winning team captured all flags.,1477076840
+20261007-061416-scrim-g_iter7-fill1791353647,13,andli28.v9_USQuals_angle,us:g_iter7,FloodGates,B,2000,The winning team won on tiebreakers (cap,463917090
+20261007-061416-scrim-g_iter7-fill1791353647,14,us:g_iter7,andli28.v9_USQuals_angle,Foxes,A,2000,The winning team won on tiebreakers (cap,4140908
+20261007-061416-scrim-g_iter7-fill1791353647,15,us:g_iter7,andli28.v9_USQuals_angle,Funnel,B,2000,The winning team won on tiebreakers (cap,732136502
+20261007-061416-scrim-g_iter7-fill1791353647,16,us:g_iter7,andli28.v9_USQuals_angle,Fusbol,A,2000,The winning team won on tiebreakers (hig,356601631
+20261007-061416-scrim-g_iter7-fill1791353647,17,andli28.v9_USQuals_angle,us:g_iter7,Gauntlet,A,1519,The winning team captured all flags.,301974435
+20261007-061416-scrim-g_iter7-fill1791353647,18,andli28.v9_USQuals_angle,us:g_iter7,Hockey,A,2000,The winning team won on tiebreakers (cap,2044018750
+20261007-061416-scrim-g_iter7-fill1791353647,19,us:g_iter7,andli28.v9_USQuals_angle,Hurricane,A,1771,The winning team captured all flags.,736259271
+20261007-061416-scrim-g_iter7-fill1791353647,20,us:g_iter7,andli28.v9_USQuals_angle,Intercontinental,B,2000,The winning team won on tiebreakers (hig,604744306
+20261007-061416-scrim-g_iter7-fill1791353647,21,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,A,862,The winning team captured all flags.,411621092
+20261007-061416-scrim-g_iter7-fill1791353647,22,us:g_iter7,andli28.v9_USQuals_angle,Joker,A,2000,The winning team won on tiebreakers (cap,5406269
+20261007-061416-scrim-g_iter7-fill1791353647,23,andli28.v9_USQuals_angle,us:g_iter7,Klein,A,2000,The winning team won on tiebreakers (hig,342206935
+20261007-061416-scrim-g_iter7-fill1791353647,24,andli28.v9_USQuals_angle,us:g_iter7,MazeRunner,A,2000,The winning team won on tiebreakers (hig,1232710734
+20261007-061416-scrim-g_iter7-fill1791353647,25,andli28.v9_USQuals_angle,us:g_iter7,MazeRunner,A,2000,The winning team won on tiebreakers (hig,613713216
+20261007-061416-scrim-g_iter7-fill1791353647,26,andli28.v9_USQuals_angle,us:g_iter7,OceanFloor,B,1517,The winning team captured all flags.,1528155024
+20261007-061416-scrim-g_iter7-fill1791353647,27,us:g_iter7,andli28.v9_USQuals_angle,Puzzle,B,2000,The winning team won on tiebreakers (hig,1058556246
+20261007-061416-scrim-g_iter7-fill1791353647,28,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,A,1458,The winning team captured all flags.,2077987399
+20261007-061416-scrim-g_iter7-fill1791353647,29,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,B,2000,The winning team won on tiebreakers (cap,417577296
+20261007-061416-scrim-g_iter7-fill1791353647,30,us:g_iter7,andli28.v9_USQuals_angle,Racetrack,B,2000,The winning team won on tiebreakers (cap,2123950015
+20261007-061416-scrim-g_iter7-fill1791353647,31,us:g_iter7,andli28.v9_USQuals_angle,Racetrack,B,644,The winning team captured all flags.,942228651
+20261007-061416-scrim-g_iter7-fill1791353647,32,andli28.v9_USQuals_angle,us:g_iter7,Rainbow,A,2000,The winning team won on tiebreakers (hig,742510350
+20261007-061416-scrim-g_iter7-fill1791353647,33,us:g_iter7,andli28.v9_USQuals_angle,Rivers,A,2000,The winning team won on tiebreakers (cap,761889828
+20261007-061416-scrim-g_iter7-fill1791353647,34,andli28.v9_USQuals_angle,us:g_iter7,Rivers,A,2000,The winning team won on tiebreakers (cap,119765547
+20261007-061416-scrim-g_iter7-fill1791353647,35,us:g_iter7,andli28.v9_USQuals_angle,Snake,B,2000,The winning team won on tiebreakers (hig,614915789
+20261007-061416-scrim-g_iter7-fill1791353647,36,andli28.v9_USQuals_angle,us:g_iter7,Starfish,B,1761,The winning team captured all flags.,1676946522
+20261007-061416-scrim-g_iter7-fill1791353647,37,us:g_iter7,andli28.v9_USQuals_angle,StarryNight,B,2000,The winning team won on tiebreakers (hig,482222556
+20261007-061416-scrim-g_iter7-fill1791353647,38,andli28.v9_USQuals_angle,us:g_iter7,SteamboatMickey,B,2000,The winning team won on tiebreakers (cap,709966377
+20261007-061416-scrim-g_iter7-fill1791353647,39,andli28.v9_USQuals_angle,us:g_iter7,TwistedTreeline,A,2000,The winning team won on tiebreakers (hig,1161134304
+20261007-061416-scrim-g_iter7-fill1791353647,40,us:g_iter7,andli28.v9_USQuals_angle,Yinyang,A,2000,The winning team won on tiebreakers (cap,1440103284
+20261007-062043-scrim-g_iter7-fill1791354034,1,andli28.v9_USQuals_angle,us:g_iter7,AceOfSpades,A,1196,The winning team captured all flags.,1622928841
+20261007-062043-scrim-g_iter7-fill1791354034,2,us:g_iter7,andli28.v9_USQuals_angle,Alien,B,2000,The winning team won on tiebreakers (cap,399495722
+20261007-062043-scrim-g_iter7-fill1791354034,3,andli28.v9_USQuals_angle,us:g_iter7,Alligator,A,1833,The winning team captured all flags.,344035529
+20261007-062043-scrim-g_iter7-fill1791354034,4,andli28.v9_USQuals_angle,us:g_iter7,Ambush,B,640,The winning team captured all flags.,403984862
+20261007-062043-scrim-g_iter7-fill1791354034,5,us:g_iter7,andli28.v9_USQuals_angle,Asteroids,B,2000,The winning team won on tiebreakers (cap,722193469
+20261007-062043-scrim-g_iter7-fill1791354034,6,andli28.v9_USQuals_angle,us:g_iter7,Backslash,A,1992,The winning team captured all flags.,1049026763
+20261007-062043-scrim-g_iter7-fill1791354034,7,andli28.v9_USQuals_angle,us:g_iter7,Battlecode24,A,2000,The winning team won on tiebreakers (hig,465527763
+20261007-062043-scrim-g_iter7-fill1791354034,8,us:g_iter7,andli28.v9_USQuals_angle,Battlefield,A,339,The winning team captured all flags.,1193090623
+20261007-062043-scrim-g_iter7-fill1791354034,9,andli28.v9_USQuals_angle,us:g_iter7,BigDucksBigPond,A,2000,The winning team won on tiebreakers (cap,1323878505
+20261007-062043-scrim-g_iter7-fill1791354034,10,andli28.v9_USQuals_angle,us:g_iter7,Bunkers,B,661,The winning team captured all flags.,1297681120
+20261007-062043-scrim-g_iter7-fill1791354034,11,andli28.v9_USQuals_angle,us:g_iter7,DefaultMedium,B,2000,The winning team won on tiebreakers (hig,1926936680
+20261007-062043-scrim-g_iter7-fill1791354034,12,andli28.v9_USQuals_angle,us:g_iter7,Digging,A,2000,The winning team won on tiebreakers (cap,912174085
+20261007-062043-scrim-g_iter7-fill1791354034,13,andli28.v9_USQuals_angle,us:g_iter7,EndAround,A,2000,The winning team won on tiebreakers (hig,1128293079
+20261007-062043-scrim-g_iter7-fill1791354034,14,us:g_iter7,andli28.v9_USQuals_angle,Fusbol,A,2000,The winning team won on tiebreakers (hig,18915320
+20261007-062043-scrim-g_iter7-fill1791354034,15,andli28.v9_USQuals_angle,us:g_iter7,Gated,A,2000,The winning team won on tiebreakers (cap,998252351
+20261007-062043-scrim-g_iter7-fill1791354034,16,us:g_iter7,andli28.v9_USQuals_angle,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1641430768
+20261007-062043-scrim-g_iter7-fill1791354034,17,andli28.v9_USQuals_angle,us:g_iter7,GravitationalWaves,B,2000,The winning team won on tiebreakers (cap,1932334186
+20261007-062043-scrim-g_iter7-fill1791354034,18,us:g_iter7,andli28.v9_USQuals_angle,HeMustBeFreed,A,2000,The winning team won on tiebreakers (cap,885275235
+20261007-062043-scrim-g_iter7-fill1791354034,19,us:g_iter7,andli28.v9_USQuals_angle,Hockey,B,2000,The winning team won on tiebreakers (cap,65204910
+20261007-062043-scrim-g_iter7-fill1791354034,20,andli28.v9_USQuals_angle,us:g_iter7,Hurricane,A,2000,The winning team won on tiebreakers (cap,942708209
+20261007-062043-scrim-g_iter7-fill1791354034,21,andli28.v9_USQuals_angle,us:g_iter7,MIT,A,1507,The winning team captured all flags.,1046309217
+20261007-062043-scrim-g_iter7-fill1791354034,22,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,2000,The winning team won on tiebreakers (cap,400143894
+20261007-062043-scrim-g_iter7-fill1791354034,23,us:g_iter7,andli28.v9_USQuals_angle,Occulus,B,2000,The winning team won on tiebreakers (cap,314916238
+20261007-062043-scrim-g_iter7-fill1791354034,24,andli28.v9_USQuals_angle,us:g_iter7,Occulus,A,2000,The winning team won on tiebreakers (cap,2105503456
+20261007-062043-scrim-g_iter7-fill1791354034,25,andli28.v9_USQuals_angle,us:g_iter7,OceanFloor,A,2000,The winning team won on tiebreakers (hig,376433906
+20261007-062043-scrim-g_iter7-fill1791354034,26,us:g_iter7,andli28.v9_USQuals_angle,QueenOfHearts,B,1867,The winning team captured all flags.,1183640268
+20261007-062043-scrim-g_iter7-fill1791354034,27,andli28.v9_USQuals_angle,us:g_iter7,QueenOfHearts,B,1522,The winning team captured all flags.,25754859
+20261007-062043-scrim-g_iter7-fill1791354034,28,us:g_iter7,andli28.v9_USQuals_angle,QuestionableChess,B,1929,The winning team captured all flags.,864572842
+20261007-062043-scrim-g_iter7-fill1791354034,29,us:g_iter7,andli28.v9_USQuals_angle,Racetrack,B,1380,The winning team captured all flags.,1582166597
+20261007-062043-scrim-g_iter7-fill1791354034,30,andli28.v9_USQuals_angle,us:g_iter7,Racetrack,A,2000,The winning team won on tiebreakers (cap,1840841599
+20261007-062043-scrim-g_iter7-fill1791354034,31,us:g_iter7,andli28.v9_USQuals_angle,Randy,A,2000,The winning team won on tiebreakers (cap,1157445985
+20261007-062043-scrim-g_iter7-fill1791354034,32,andli28.v9_USQuals_angle,us:g_iter7,Rivers,A,2000,The winning team won on tiebreakers (hig,713568007
+20261007-062043-scrim-g_iter7-fill1791354034,33,us:g_iter7,andli28.v9_USQuals_angle,Skyline,A,1386,The winning team captured all flags.,148707632
+20261007-062043-scrim-g_iter7-fill1791354034,34,us:g_iter7,andli28.v9_USQuals_angle,Soccer,B,2000,The winning team won on tiebreakers (cap,1260480858
+20261007-062043-scrim-g_iter7-fill1791354034,35,andli28.v9_USQuals_angle,us:g_iter7,StarryNight,A,1509,The winning team captured all flags.,1356811373
+20261007-062043-scrim-g_iter7-fill1791354034,36,andli28.v9_USQuals_angle,us:g_iter7,Swoop,B,1656,The winning team captured all flags.,352090766
+20261007-062043-scrim-g_iter7-fill1791354034,37,us:g_iter7,andli28.v9_USQuals_angle,TreeSearch,B,1320,The winning team captured all flags.,840060459
+20261007-062043-scrim-g_iter7-fill1791354034,38,andli28.v9_USQuals_angle,us:g_iter7,Tunnels,A,2000,The winning team won on tiebreakers (cap,83261703
+20261007-062043-scrim-g_iter7-fill1791354034,39,andli28.v9_USQuals_angle,us:g_iter7,Tunnels,A,2000,The winning team won on tiebreakers (cap,901952736
+20261007-062043-scrim-g_iter7-fill1791354034,40,us:g_iter7,andli28.v9_USQuals_angle,WheresMyWater,A,1850,The winning team captured all flags.,1938355166
+20261007-062713-scrim-g_iter7-fill1791354423,1,us:g_iter7,andli28.v9_USQuals_angle,Alien,B,1889,The winning team captured all flags.,692917419
+20261007-062713-scrim-g_iter7-fill1791354423,2,andli28.v9_USQuals_angle,us:g_iter7,Asteroids,A,1846,The winning team captured all flags.,632081402
+20261007-062713-scrim-g_iter7-fill1791354423,3,us:g_iter7,andli28.v9_USQuals_angle,Battlecode24,A,2000,The winning team won on tiebreakers (cap,2103355852
+20261007-062713-scrim-g_iter7-fill1791354423,4,us:g_iter7,andli28.v9_USQuals_angle,Bunkers,A,577,The winning team captured all flags.,1750479790
+20261007-062713-scrim-g_iter7-fill1791354423,5,us:g_iter7,andli28.v9_USQuals_angle,Canals,B,1927,The winning team captured all flags.,341825321
+20261007-062713-scrim-g_iter7-fill1791354423,6,andli28.v9_USQuals_angle,us:g_iter7,Canals,A,2000,The winning team won on tiebreakers (hig,1815871111
+20261007-062713-scrim-g_iter7-fill1791354423,7,us:g_iter7,andli28.v9_USQuals_angle,DefaultLarge,B,2000,The winning team won on tiebreakers (hig,2009360176
+20261007-062713-scrim-g_iter7-fill1791354423,8,us:g_iter7,andli28.v9_USQuals_angle,Diagonal,A,2000,The winning team won on tiebreakers (hig,804184508
+20261007-062713-scrim-g_iter7-fill1791354423,9,us:g_iter7,andli28.v9_USQuals_angle,Digging,B,1724,The winning team captured all flags.,615733197
+20261007-062713-scrim-g_iter7-fill1791354423,10,us:g_iter7,andli28.v9_USQuals_angle,Duck,B,2000,The winning team won on tiebreakers (hig,144034826
+20261007-062713-scrim-g_iter7-fill1791354423,11,andli28.v9_USQuals_angle,us:g_iter7,English,A,2000,The winning team won on tiebreakers (hig,1033822711
+20261007-062713-scrim-g_iter7-fill1791354423,12,us:g_iter7,andli28.v9_USQuals_angle,EvilGrin,B,2000,The winning team won on tiebreakers (hig,1625827668
+20261007-062713-scrim-g_iter7-fill1791354423,13,andli28.v9_USQuals_angle,us:g_iter7,Fountain,A,1258,The winning team captured all flags.,774177811
+20261007-062713-scrim-g_iter7-fill1791354423,14,us:g_iter7,andli28.v9_USQuals_angle,Foxes,B,2000,The winning team won on tiebreakers (hig,1214620031
+20261007-062713-scrim-g_iter7-fill1791354423,15,andli28.v9_USQuals_angle,us:g_iter7,Funnel,A,2000,The winning team won on tiebreakers (hig,1687503307
+20261007-062713-scrim-g_iter7-fill1791354423,16,andli28.v9_USQuals_angle,us:g_iter7,GaltonBoard,A,1886,The winning team captured all flags.,713411281
+20261007-062713-scrim-g_iter7-fill1791354423,17,andli28.v9_USQuals_angle,us:g_iter7,Gauntlet,A,1864,The winning team captured all flags.,883702466
+20261007-062713-scrim-g_iter7-fill1791354423,18,us:g_iter7,andli28.v9_USQuals_angle,GravitationalWaves,B,2000,The winning team won on tiebreakers (hig,1969213613
+20261007-062713-scrim-g_iter7-fill1791354423,19,us:g_iter7,andli28.v9_USQuals_angle,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,1106159763
+20261007-062713-scrim-g_iter7-fill1791354423,20,andli28.v9_USQuals_angle,us:g_iter7,HeMustBeFreed,B,2000,The winning team won on tiebreakers (cap,1797986256
+20261007-062713-scrim-g_iter7-fill1791354423,21,andli28.v9_USQuals_angle,us:g_iter7,Hurricane,A,2000,The winning team won on tiebreakers (hig,2075097356
+20261007-062713-scrim-g_iter7-fill1791354423,22,andli28.v9_USQuals_angle,us:g_iter7,Intercontinental,A,1553,The winning team captured all flags.,854292188
+20261007-062713-scrim-g_iter7-fill1791354423,23,andli28.v9_USQuals_angle,us:g_iter7,Islands,A,1719,The winning team captured all flags.,1961987390
+20261007-062713-scrim-g_iter7-fill1791354423,24,andli28.v9_USQuals_angle,us:g_iter7,Joker,A,1335,The winning team captured all flags.,1424520932
+20261007-062713-scrim-g_iter7-fill1791354423,25,andli28.v9_USQuals_angle,us:g_iter7,Mountain,A,2000,The winning team won on tiebreakers (cap,1664549884
+20261007-062713-scrim-g_iter7-fill1791354423,26,us:g_iter7,andli28.v9_USQuals_angle,Occulus,B,2000,The winning team won on tiebreakers (hig,1583488632
+20261007-062713-scrim-g_iter7-fill1791354423,27,andli28.v9_USQuals_angle,us:g_iter7,Occulus,B,2000,The winning team won on tiebreakers (cap,1708749790
+20261007-062713-scrim-g_iter7-fill1791354423,28,andli28.v9_USQuals_angle,us:g_iter7,QueenOfHearts,B,2000,The winning team won on tiebreakers (cap,87348640
+20261007-062713-scrim-g_iter7-fill1791354423,29,us:g_iter7,andli28.v9_USQuals_angle,QuestionableChess,B,2000,The winning team won on tiebreakers (cap,1144986240
+20261007-062713-scrim-g_iter7-fill1791354423,30,us:g_iter7,andli28.v9_USQuals_angle,Randy,B,2000,The winning team won on tiebreakers (cap,1339438486
+20261007-062713-scrim-g_iter7-fill1791354423,31,andli28.v9_USQuals_angle,us:g_iter7,Randy,A,2000,The winning team won on tiebreakers (hig,626033683
+20261007-062713-scrim-g_iter7-fill1791354423,32,us:g_iter7,andli28.v9_USQuals_angle,Skyline,B,2000,The winning team won on tiebreakers (hig,1141117948
+20261007-062713-scrim-g_iter7-fill1791354423,33,us:g_iter7,andli28.v9_USQuals_angle,Snake,A,2000,The winning team won on tiebreakers (cap,60172098
+20261007-062713-scrim-g_iter7-fill1791354423,34,andli28.v9_USQuals_angle,us:g_iter7,Snake,A,2000,The winning team won on tiebreakers (cap,975349608
+20261007-062713-scrim-g_iter7-fill1791354423,35,andli28.v9_USQuals_angle,us:g_iter7,Starfish,A,2000,The winning team won on tiebreakers (hig,915382167
+20261007-062713-scrim-g_iter7-fill1791354423,36,andli28.v9_USQuals_angle,us:g_iter7,SteamboatMickey,A,1330,The winning team captured all flags.,1412577776
+20261007-062713-scrim-g_iter7-fill1791354423,37,andli28.v9_USQuals_angle,us:g_iter7,SteamboatMickey,B,1719,The winning team captured all flags.,1457056859
+20261007-062713-scrim-g_iter7-fill1791354423,38,us:g_iter7,andli28.v9_USQuals_angle,TreeSearch,B,1637,The winning team captured all flags.,962119870
+20261007-062713-scrim-g_iter7-fill1791354423,39,us:g_iter7,andli28.v9_USQuals_angle,TwistedTreeline,A,2000,The winning team won on tiebreakers (cap,581239355
+20261007-062713-scrim-g_iter7-fill1791354423,40,us:g_iter7,andli28.v9_USQuals_angle,WheresMyWater,B,2000,The winning team won on tiebreakers (hig,51851253
