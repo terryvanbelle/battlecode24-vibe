@@ -2242,3 +2242,4 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   rounds and +0.07-0.08 own kills within 20, with deaths flat when supported; unsupported holds take 8-9x the hits. New census
   columns rcHold, rcStrike2, rcHitN, rcHitHoldN; guards read over each cell's common window (RC1). Unit tests pass. Diagnostic
   first (rule 5), then the 12-cell 5(a) against the g7kite and g_iter7 twins of the kite5a block.
+- g7kite vs g_iter7 against andli28: 240-pair read complete, net +6 (35-29, +0.8 SE): no matchup effect. The filler returns to g_iter7 alone against andli28.
