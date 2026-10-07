@@ -2146,3 +2146,8 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   after a step-in 22 vs 92 (PASS), deaths 362 vs 438 (-17%, PASS +1.9 SE), enemy captures 1.16 vs 1.07 (guard INCONCLUSIVE: worst
   plausible rise 25% vs the 20% limit; at 48 cells it read 1.06 vs 1.12). Never closed on INCONCLUSIVE; one 192-cell block
   (N=192, its own base cache -g7-n192) is queued to give the capture guard the power it lacks, band test chained on PASS.
+- **g7fc band delivery: FAIL, closed as a standalone arm** (24 cells): mean digsLate 1.9 (bar 2), levelGain1500 INCONCLUSIVE on 10
+  shared cells, enemy captures equal, 0 overruns. Both pre-registered deliveries measured digs averaged over all games, and
+  games level at r1950 are rare on random maps (the 5(a)'s 17 of 24 came from cells chosen for it). Where the condition holds it
+  fires every time (17/17) and costs nothing before r1950 (identity 24/24): a stack candidate (TRAINING_ALGORITHM §5), to be
+  re-gated only with a delivery measure conditional on games level at r1950, pre-registered afresh.
