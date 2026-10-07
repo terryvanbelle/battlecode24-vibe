@@ -2135,3 +2135,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
 - Queued: the pre-registered andli28 deliveries (DGTAG -andliehp / -andlifc), then each arm's band delivery with its band test
   chained (band checks pre-registered: g7ehp 'rel:stepLethalAvoid<=0.2 rel:stepDeaths<=0.6 rel:deaths<=0.92 nw:enemyCaptured<=1.1
   mean:overruns<=0'; g7fc 'mean:digsLate>=2 rel:levelGain1500>=1.05 nw:enemyCaptured<=1.1 mean:overruns<=0').
+- **g7ehp andli28 delivery: PASS** (48 cells; INCONCLUSIVE at 24 on power): lethal step-ins from a safe tile 1.3 vs 585 a game,
+  deaths right after a step-in 49 vs 238, deaths 641 vs 831 (-23%, +2.7 SE past x0.92), kill share 0.43 vs 0.38 (+2.6 SE past
+  x1.04); guards PASS (enemy captures 1.40 vs 1.50, first grabs 10.3 vs 11.5); 0 overruns. The filler now pairs g7ehp with
+  g_iter7 against andli28 (the victory read; CLAUDE rule 14).
+- **g7fc andli28 delivery: FAIL** (48 cells): mean digsLate 3.7 over all games (bar 4; the premise expected 6.8: fewer games
+  are level at r1950 on random maps than on the chosen cells), levelGain1500 20.0 vs 17.6 (INCONCLUSIVE, +0.9 SE past x1.10);
+  enemy captures equal. Its band delivery (separately pre-registered, digsLate >= 2) still runs and gates its band test.
