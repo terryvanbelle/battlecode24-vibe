@@ -2159,3 +2159,10 @@ peak bytecode 24.7k (A4 BFS) to bring down.
   (park).** Basics: absolute bars ok; stillPost 27.7 vs 25.4 FAIL by > 2 SE (by design: refused robots hold at the edge of
   reach); kill/death 2.60 vs 2.12. Its andli28 gains (deaths -23%, kill share +0.05 at 48 cells) do not carry to the band; the
   paired filler against andli28 (just started) gives the target read. g7fc and g7ehp both stop short on the band.
+- Arm **g7ring** (C.RING_POST_RESERVE 300; andli28 study lever 5): after setup a ring rebuild needs its cost + 300 crumbs (was
+  + 100), above placeCombatTrap's 300 gate, so field stuns get first claim on the bank (53% of our post-setup stuns were ring
+  rebuilds catching 2.3 victims after 47-158 rounds; field stuns catch 5.5 after 2-48). Default 100 = g_iter7. New census columns
+  ringStunsPost / fieldStunsPost. 5(a) pre-registered (synthesis): {Puzzle, Fountain, QuestionableChess, Randy, DefaultMedium,
+  Rivers} x {A, B} vs andli28, seed 6801, g_iter7 twins; fires iff ring stuns pooled <= 0.4x twins, field stuns >= 1.4x and
+  stunVictims >= 1.15x, fast-victim share >= 0.47, guards (enemy captures <= twins + 2, first grabs <= 1.1x, 0 overruns, 0
+  exceptions).

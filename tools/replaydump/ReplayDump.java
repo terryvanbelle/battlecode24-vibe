@@ -88,6 +88,8 @@ import java.util.zip.GZIPInputStream;
  *   spawnNear20        post-setup spawns that end their round with an enemy within dist2 20 / all post-setup spawns;
  *                      spawnDeath10: post-setup deaths within 10 rounds of the robot's spawn / all post-setup deaths (2026-10-06:
  *                      vs the upper tier 59% of our spawns end beside an enemy, theirs 24%; SPAWN_SAFE's signature)
+ *   ringStunsPost      post-setup stun traps the team built within dist2 13 of one of its flag homes; fieldStunsPost: its other
+ *                      post-setup stun traps (2026-10-06, andli28 study lever 5, arm g7ring)
  *   carrierDeathsSpawn post-setup deaths of the team's flag carriers within dist2 64 of an enemy spawn centre and more than
  *                      dist2 100 from the carried flag's home: carriers killed walking past an enemy spawn (2026-10-06)
  *   carrierStunBuilds  post-setup stun traps we built within dist2 8 of an enemy carrying our flag; carrierStunned: our
@@ -701,6 +703,12 @@ public class ReplayDump {
             int tid = r.trapAddedIds(j), tt = r.trapAddedTeams(j), ty = r.trapAddedTypes(j);
             trapTeam.put(tid, tt); trapType.put(tid, ty); trapLoc.put(tid, new int[]{tl.xs(j), tl.ys(j)}); trapRound.put(tid, rn);
             if (tt >= 1 && tt <= 2 && ty >= 0 && ty < 3) cTraps[tt][ty]++;
+            if (capMode && rn > 200 && tt >= 1 && tt <= 2 && "STUN".equals(BUILD[ty])) {   // ringStunsPost / fieldStunsPost
+                boolean ring = false;
+                for (Map.Entry<Integer, int[]> fh : flagHome.entrySet())
+                    if (flagTeam.getOrDefault(fh.getKey(), 0) == tt && fh.getValue() != null && d2(fh.getValue()[0], fh.getValue()[1], tl.xs(j), tl.ys(j)) <= 13) { ring = true; break; }
+                if (ring) kRingStuns[tt]++; else kFieldStuns[tt]++;
+            }
             if (inWindow(rn)) out.printf("r%d TRAP %s builds %s at (%d,%d)%n", rn, tname(tt), BUILD[ty], tl.xs(j), tl.ys(j));
             if (trapGeo && rn > 200 && tt >= 1 && tt <= 2) {   // nearest enemy and enemies around the trap at the end of the build round
                 int nd = Integer.MAX_VALUE, e13 = 0, e8 = 0, own = 0, bd = Integer.MAX_VALUE, blv = -1;
@@ -1585,6 +1593,7 @@ public class ReplayDump {
     static double[] kFlagSpreadMin = {-1, -1, -1}, kFlagSpreadMax = {-1, -1, -1};
     static int[] kCarrierDeathsSpawn = new int[3];
     static int[] kHealPost = new int[3], kHealThreat = new int[3], kNear20 = new int[3], kReady20 = new int[3];
+    static int[] kRingStuns = new int[3], kFieldStuns = new int[3];
     static Map<Integer, Integer> acdNow = new HashMap<>();
     static int[] kSpawnPost = new int[3], kSpawnNear = new int[3], kDeathPost = new int[3], kSpawnDeath10 = new int[3];
     static List<Integer> spawnsNow = new ArrayList<>();
@@ -1806,7 +1815,7 @@ public class ReplayDump {
         if (chainsOn()) for (Chain c : new ArrayList<>(chains.values())) chainEnd(totalRounds, c.flag, "OPEN", null);
         if (capMode) {
             out.println("team,name,won,rounds,wintype,gathered200,gathered400,firstEnemySide,inEnemy250,inEnemy300,firstFlagSight,pickups,captured,carrierDeaths,carrierRounds,carrierMoves,enemyCarrierKills,trapsBuilt,trapsHit,kills,deaths,meanAlive,postPickups,firstGrabs,regrabs,relayPickups,carrierDeathDist,damStage199,enemyRegrabs,enemyFirstGrabs,regrabsLate,capturedLate,chasers20,enemyCaptured,escorts20,stillPost,"
-                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid");
+                    + "enemyUnseenRounds,unopposedCaps,longTrips25,longCaps25,longCapRate,loneDeaths,trickleDeaths,symOk,psymOk,maxBcK,overruns,exceptions,symDecidedRound,symWrong,alertWrites,alertNoThreat,maxParkOnHome,efStaleCarry,efStaleLoc,flagDistMin,flagDistMean,carrierStunBuilds,carrierStunned,captured600,enemyCaptured600,defNearAtGrab20,capturedHomeRounds,stunTrig,stunVictims,enemyStunTrig,enemyStunVictims,stunVictimsEsc,enemyStunVictimsEsc,stunVictimsFast,enemyStunVictimsFast,deathsHome,enemyDeathsHome,gatheredAll,dropGuard,digsLate,levelGain1500,gathered201to400,stunTrig250,kills250,deaths250,levelGain1200,levelGapEnd," + CHAIN_COLS + ",flagSpreadMin,flagSpreadMax,carrierDeathsSpawn,paidKillShare,homeDeathShare,healThreat10,readyHeld20,spawnNear20,spawnDeath10,bank1900,stepMid,stepLethal,stepDeaths,killShare,stepMidN,stepDec,stepLethalAvoid,ringStunsPost,fieldStunsPost");
             for (int t = 1; t <= 2; t++) {
                 int o = 3 - t;
                 if (totalRounds < 400) kGathered400[t] = kGathered[t];
@@ -1845,7 +1854,7 @@ public class ReplayDump {
                         + "," + share(kSpawnNear[t], kSpawnPost[t]) + "," + share(kSpawnDeath10[t], kDeathPost[t])
                         + "," + (kBank1900[t] >= 0 ? String.valueOf(kBank1900[t]) : "")
                         + "," + share(kStepMidS[t], kStepDec[t]) + "," + kStepLethal[t] + "," + kStepDeaths[t] + "," + share(cDeaths[o], cDeaths[o] + cDeaths[t])
-                        + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t]);
+                        + "," + kStepMidS[t] + "," + kStepDec[t] + "," + kStepLethalAvoid[t] + "," + kRingStuns[t] + "," + kFieldStuns[t]);
             }
         }
         if (trapGeo) for (Map.Entry<Integer, int[]> e : trapBuilt.entrySet()) { int[] b = e.getValue();

@@ -1,4 +1,4 @@
-package bot;
+package g7ring;
 
 import battlecode.common.*;
 

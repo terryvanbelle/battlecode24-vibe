@@ -1,4 +1,4 @@
-package bot;
+package g7ring;
 
 /** Every tunable constant, each with the measurement (or reason) that set it. */
 public strictfp class C {
@@ -12,7 +12,7 @@ public strictfp class C {
     public static final int FILL_RESERVE = 0;           // crumbs kept back when filling water to get through
     public static final int TRAP_RESERVE = 200;         // crumbs kept back when placing combat stun traps
     public static final int DEF_TRAP_RESERVE = 100;     // defenders keep this many crumbs after a flag-ring trap
-    public static final int RING_POST_RESERVE = 100;    // after setup, the ring reserve (andli28 study lever 5: 53% of our post-setup stuns are
+    public static final int RING_POST_RESERVE = 300;    // after setup, the ring reserve (andli28 study lever 5: 53% of our post-setup stuns are
                                                         // ring rebuilds, 2.3 victims each after 47-158 rounds vs a field stun's 5.5 after 2-48;
                                                         // above placeCombatTrap's 300 gate the field stuns get first claim); 100 = g_iter7, arm g7ring 300
     public static final int DAM_TRAP_ROUND = 185;       // setup: start trapping the dam front (dam opens after r200)
